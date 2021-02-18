@@ -1,6 +1,8 @@
 ﻿using SuleymaniyeTakvimi.Services;
 using SuleymaniyeTakvimi.Views;
 using System;
+using SuleymaniyeTakvimi.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,12 +15,14 @@ namespace SuleymaniyeTakvimi
         {
             InitializeComponent();
 
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             DependencyService.Register<TakvimData>();
             MainPage = new AppShell();
         }
 
         protected override void OnStart()
         {
+            VersionTracking.Track();
         }
 
         protected override void OnSleep()

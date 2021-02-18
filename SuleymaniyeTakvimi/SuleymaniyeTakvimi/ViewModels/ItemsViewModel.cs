@@ -1,4 +1,5 @@
 ﻿using SuleymaniyeTakvimi.Models;
+using SuleymaniyeTakvimi.Services;
 using SuleymaniyeTakvimi.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -16,16 +17,32 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
+        Takvim _takvim;
+        public Takvim Vakit
+        {
+            get
+            {
+                if (_takvim == null)
+                {
+                    var data = new TakvimData();
+                    _takvim = data.takvim;
+                }
 
+                return _takvim;
+            }
+            set { SetProperty(ref _takvim, value); }
+        }
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Süleymaniye Vakfı Takvimi";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Item>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+            var data = new TakvimData();
+            _takvim = data.takvim;
         }
 
         async Task ExecuteLoadItemsCommand()

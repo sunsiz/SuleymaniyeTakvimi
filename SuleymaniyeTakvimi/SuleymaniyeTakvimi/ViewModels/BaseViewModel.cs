@@ -25,24 +25,6 @@ namespace SuleymaniyeTakvimi.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
-        Takvim vakitler;
-
-        public Takvim Vakitler
-        {
-            get
-            {
-                if (vakitler == null)
-                {
-                    isBusy = true;
-                    var data = new TakvimData();
-                    vakitler = data.takvim;
-                    isBusy = false;
-                }
-
-                return vakitler;
-            }
-            set { SetProperty(ref vakitler, value); }
-        }
         //public Takvim Vakitler { get; set; }
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",

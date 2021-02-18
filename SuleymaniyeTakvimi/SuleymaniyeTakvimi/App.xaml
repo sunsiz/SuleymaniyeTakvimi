@@ -1,15 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="SuleymaniyeTakvimi.App">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
         <ResourceDictionary>
+            <!--  Values  -->
+            <Thickness x:Key="ContentPadding">0, 4</Thickness>
             <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="AppPrimaryColor">#1976D2</Color>
+            <Color x:Key="AppBackgroundColor">AliceBlue</Color>
+            <Color x:Key="PrimaryColor">Black</Color>
+            <Color x:Key="SecondaryColor">White</Color>
+            <Color x:Key="TertiaryColor">Silver</Color>
+            <Color x:Key="NavigationBarTextColor">#5D5D5D</Color>
+            <Color x:Key="NormalButtonBackgroundColor">#1976D2</Color>
+            <Color x:Key="NormalButtonTextColor">#FFFFFF</Color>
+            <Color x:Key="HeadingLabelTextColor">#5D5D5D</Color>
+            <!--  Implicit styles  -->
+            <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="BarTextColor" Value="{StaticResource NavigationBarTextColor}" />
+                <!--<Setter Property="ios:NavigationPage.HideNavigationBarSeparator" Value="True" />-->
+            </Style>
+
+            <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
+                <!--<Setter Property="Page.UseSafeArea" Value="False" />-->
+                <Setter Property="NavigationPage.BackButtonTitle" Value="" />
+            </Style>
+
             <Style TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BackgroundColor" Value="{StaticResource NormalButtonBackgroundColor}" />
+                <Setter Property="TextColor" Value="{StaticResource NormalButtonTextColor}" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+            <!--  Fonts  -->
+            <OnPlatform x:Key="font_bold" x:TypeArguments="x:String">
+                <On Platform="iOS" Value=".SFUIText-Bold" />
+                <On Platform="Android" Value="sans-serif-medium" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="font_semibold" x:TypeArguments="x:String">
+                <On Platform="iOS" Value=".SFUIText-Semibold" />
+                <On Platform="Android" Value="sans-serif-medium" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="font_medium" x:TypeArguments="x:String">
+                <On Platform="iOS" Value=".SFUIText-Medium" />
+                <On Platform="Android" Value="sans-serif-medium" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="font_regular" x:TypeArguments="x:String">
+                <On Platform="iOS" Value=".SFUIText" />
+                <On Platform="Android" Value="sans-serif" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="font_icon" x:TypeArguments="x:String">
+                <On Platform="iOS" Value=".Ionicons" />
+                <On Platform="Android" Value="ionicons.ttf" />
+            </OnPlatform>
+            <!--<OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Material Icons" />
+                <On Platform="Android" Value="MaterialIcons-Regular.ttf#Material Design Icons" />
+                <On Platform="UWP" Value="Assets/Fonts/materialdesignicons-webfont.ttf#Material Design Icons" />
+            </OnPlatform>-->
+            <!--<Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -26,7 +88,22 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
+            </Style>-->
+            <Style x:Key="label_section_header" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource font_bold}" />
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource HeadingLabelTextColor}" />
             </Style>
-        </ResourceDictionary>        
+            <Style x:Key="text_section_header" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource font_bold}" />
+                <Setter Property="FontSize" Value="28"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
+            <Style x:Key="card" TargetType="pancakeView:PancakeView">
+                <Setter Property="BackgroundColor" Value="#ffffff" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup BlurRadius=8, Opacity=0.2, Offset='4,4'}" />
+            </Style>
+</ResourceDictionary>        
     </Application.Resources>
 </Application>

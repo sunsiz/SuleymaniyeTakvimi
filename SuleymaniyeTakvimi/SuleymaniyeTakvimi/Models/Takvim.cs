@@ -27,5 +27,6 @@
         public string Yatsi { get; set; }
 
         public string YatsiSonu { get; set; }
+        public string Tarih { get; set; }
     }
 }

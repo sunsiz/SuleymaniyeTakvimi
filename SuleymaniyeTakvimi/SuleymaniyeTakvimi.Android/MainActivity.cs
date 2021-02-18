@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace SuleymaniyeTakvimi.Droid
 {
-    [Activity(Label = "SuleymaniyeTakvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "SuleymaniyeTakvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -18,7 +18,9 @@ namespace SuleymaniyeTakvimi.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
+            UserDialogs.Init(this);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
+            Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

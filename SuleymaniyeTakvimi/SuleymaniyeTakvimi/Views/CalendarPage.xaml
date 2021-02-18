@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="SuleymaniyeTakvimi.Views.CalendarPage">
+    <ContentPage.BindingContext>
+        <viewModels:CalendarViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Padding="25,0,0,0" RowDefinitions="Auto, Auto, Auto, *" ColumnDefinitions="Auto, *, Auto">
+            <!--Corner image-->
+            <Image Grid.Row="0" Grid.Column="2" Source="app_logo" HeightRequest="100" Margin="12,2"/>
+            <!--Schedule timeline-->
+            <Label Text="&#xe614;" Grid.Row="1" Grid.Column="0" FontFamily="Material" TextColor="#623323" FontSize="54" HeightRequest="50" Margin="0,-85,0,0" VerticalOptions="Start" />
+            <!--<Image Grid.Row="1" Grid.Column="0" Source="icon_calendar" HeightRequest="50" Margin="0,-85,0,0" VerticalOptions="Start"/>-->
+            <BoxView Grid.Row="2" Grid.Column="0"  VerticalOptions="Start" WidthRequest="5" Color="DeepSkyBlue" HeightRequest="30" Margin="25,-40,25,10"/>
+            <!-- Date description-->
+            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Today}" Margin="0,-90,0,0" TextColor="#623323" FontAttributes="Bold" FontSize="45" Padding="10,0,0,0"/>
+
+            <!-- Shedule list structure-->
+            <CollectionView ItemsSource="{Binding schedule}"
+                                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                                 VerticalScrollBarVisibility="Never"
+                                 VerticalOptions="Start">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *">
+                            <!-- Schedule time-->
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Hour}"  TextColor="BlueViolet" FontAttributes="Bold" FontSize="Large" VerticalOptions="Start"/>
+                            <!-- Vertical Line-->
+                            <BoxView Grid.Row="1" Grid.Column="0" WidthRequest="4" Color="DeepSkyBlue" HeightRequest="30" Margin="25,0,50,0" />
+                            <!-- Card -->
+                            <pancakeView:PancakeView Style="{StaticResource card}"  Grid.RowSpan="2" Grid.Column="1" CornerRadius="0,25,0,25" Margin="0,5,30,30" Padding="15">
+                                <!--<Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" CornerRadius="25" HasShadow="True" Margin="5,0,30,35">-->
+                                <pancakeView:PancakeView.Triggers>
+                                    <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Passed">
+                                        <Setter Property="BackgroundColor" Value="AntiqueWhite" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Happening">
+                                        <Setter Property="BackgroundColor" Value="Gold" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Waiting">
+                                        <Setter Property="BackgroundColor" Value="LightGreen" />
+                                    </DataTrigger>
+                                </pancakeView:PancakeView.Triggers>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="#623323" FontSize="22" HeightRequest="35" HorizontalOptions="Start"/>
+                                    <Label Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="EndAndExpand" FontSize="28" />
+                                    <!--<Label Text="{Binding Description}" TextColor="Silver" FontSize="18"/>-->
+                                    <!-- Features-->
+                                    <!--<CollectionView ItemsSource="{Binding Features}"
+                                                             Margin="0,20,0,0"
+                                                             HorizontalScrollBarVisibility="Never"
+                                                             HeightRequest="50"
+                                                             ItemsLayout="HorizontalList">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Margin="0,0,10,0">
+                                                    <Label Text="{Binding Name}" BackgroundColor="{Binding BGColor}" FontAttributes="Bold" TextColor="{Binding TxColor}" Padding="10" HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>-->
+
+                                </StackLayout>
+                            <!--</Frame>-->
+                            </pancakeView:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
