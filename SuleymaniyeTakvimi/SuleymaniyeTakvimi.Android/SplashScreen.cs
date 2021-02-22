@@ -12,7 +12,7 @@ using Android.Animation;
 
 namespace SuleymaniyeTakvimi.Droid
 {
-    [Activity(Label = "MusicPlayer", MainLauncher = true, NoHistory = true, Theme = "@style/MyTheme.Splash")]
+    [Activity(Label = "Süleymaniye Vakfı Takvimi", MainLauncher = true, NoHistory = true, Theme = "@style/MyTheme.Splash")]
     public class SplashScreen : Activity, Android.Animation.Animator.IAnimatorListener
     {
         protected override void OnCreate(Bundle savedInstanceState)

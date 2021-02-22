@@ -104,6 +104,22 @@
                 <Setter Property="CornerRadius" Value="8" />
                 <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup BlurRadius=8, Opacity=0.2, Offset='4,4'}" />
             </Style>
-</ResourceDictionary>        
+            <Style TargetType="CheckBox">
+                <Style.Triggers>
+                    <Trigger TargetType="CheckBox"
+                             Property="IsEnabled" Value="False">
+                        <Setter Property="Color" Value="Silver" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="Label">
+                <Style.Triggers>
+                    <Trigger TargetType="Label"
+                             Property="IsEnabled" Value="False">
+                        <Setter Property="TextColor" Value="Silver" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>        
     </Application.Resources>
 </Application>

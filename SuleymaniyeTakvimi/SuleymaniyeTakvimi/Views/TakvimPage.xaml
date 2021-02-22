@@ -153,9 +153,9 @@
                 Text="Reset"
                 TextColor="Gray" />
     </shades:Shadows>-->
-            <StackLayout>
+            <!--<StackLayout>
                 <ActivityIndicator IsVisible="{Binding  IsBusy}" IsRunning="{Binding IsBusy}" Scale="4" VerticalOptions="CenterAndExpand" Color="Black" />
-            </StackLayout>
+            </StackLayout>-->
         </Grid>
 
 </ContentPage>

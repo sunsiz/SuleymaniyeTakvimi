@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
-             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="SuleymaniyeTakvimi.Views.CalendarPage">
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="SuleymaniyeTakvimi.Views.CalendarPage"
+             Title="{Binding Title}">
     <ContentPage.BindingContext>
         <viewModels:CalendarViewModel />
     </ContentPage.BindingContext>
@@ -22,14 +23,16 @@
             <CollectionView ItemsSource="{Binding schedule}"
                                  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
                                  VerticalScrollBarVisibility="Never"
-                                 VerticalOptions="Start">
+                                 VerticalOptions="Start"
+                                 SelectionMode="Single"
+                                 SelectedItem="{Binding SelectedSchedule}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *">
                             <!-- Schedule time-->
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Hour}"  TextColor="BlueViolet" FontAttributes="Bold" FontSize="Large" VerticalOptions="Start"/>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Hour}"  TextColor="Brown" FontAttributes="Bold" FontSize="Large" VerticalOptions="Start"/>
                             <!-- Vertical Line-->
-                            <BoxView Grid.Row="1" Grid.Column="0" WidthRequest="4" Color="DeepSkyBlue" HeightRequest="30" Margin="25,0,50,0" />
+                            <BoxView Grid.Row="1" Grid.Column="0" WidthRequest="5" Color="DeepSkyBlue" HeightRequest="30" Margin="25,0,50,0" />
                             <!-- Card -->
                             <pancakeView:PancakeView Style="{StaticResource card}"  Grid.RowSpan="2" Grid.Column="1" CornerRadius="0,25,0,25" Margin="0,5,30,30" Padding="15">
                                 <!--<Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" CornerRadius="25" HasShadow="True" Margin="5,0,30,35">-->
@@ -44,9 +47,43 @@
                                         <Setter Property="BackgroundColor" Value="LightGreen" />
                                     </DataTrigger>
                                 </pancakeView:PancakeView.Triggers>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="#623323" FontSize="22" HeightRequest="35" HorizontalOptions="Start"/>
-                                    <Label Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="EndAndExpand" FontSize="28" />
+                                <StackLayout>
+                                    <xct:Expander ExpandAnimationEasing="{x:Static Easing.SpringIn}"
+                                                  CollapseAnimationEasing="{x:Static Easing.SpringOut}">
+                                        <xct:Expander.Header>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="#623323" FontSize="22" HeightRequest="35" HorizontalOptions="StartAndExpand" Margin="7,0"/>
+                                                <Label Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="End" FontSize="28" Margin="9,0" TextColor="Chocolate"/>
+                                                <!--<Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" FontSize="32" FontAttributes="Bold"/>
+                                                <Label Text="Enable nested:" FontSize="13" VerticalOptions="CenterAndExpand" />
+                                                <Switch IsToggled="{Binding IsEnabled}" />-->
+                                            </StackLayout>
+                                        </xct:Expander.Header>
+                                        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*,1.5*" Padding="0,9,0,0">
+                                            <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                                                <CheckBox IsChecked="{Binding Vibration}" Color="DeepSkyBlue" IsEnabled="{Binding NotificationOn}">
+                                                    <CheckBox.Behaviors>
+                                                        <xct:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding VibrationChecked}" CommandParameter="{Binding .}" />
+                                                    </CheckBox.Behaviors>
+                                                </CheckBox>
+                                                <Label Text="Titreme" FontSize="Large" TextColor="DeepSkyBlue" IsEnabled="{Binding NotificationOn}"/>
+                                            </StackLayout>
+                                            <!--<BoxView Grid.Column="1" BackgroundColor="#623323" WidthRequest="3" HorizontalOptions="Start" 
+                                                     VerticalOptions="FillAndExpand"/>-->
+                                            <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                                                <CheckBox IsChecked="{Binding Notification}" Color="DeepSkyBlue" IsEnabled="{Binding NotificationOn}">
+                                                    <CheckBox.Behaviors>
+                                                        <xct:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding NotificationChecked}" CommandParameter="{Binding .}" />
+                                                    </CheckBox.Behaviors>
+                                                </CheckBox>
+                                                <Label Text="Bildirim" FontSize="Large" TextColor="DeepSkyBlue" IsEnabled="{Binding NotificationOn}"/>
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="2" HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                                                <Switch IsToggled="{Binding NotificationOn}" ThumbColor="DeepSkyBlue"/>
+                                                <Label Text="Etkinleştir" FontSize="Large" TextColor="DeepSkyBlue"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </xct:Expander>
                                     <!--<Label Text="{Binding Description}" TextColor="Silver" FontSize="18"/>-->
                                     <!-- Features-->
                                     <!--<CollectionView ItemsSource="{Binding Features}"
