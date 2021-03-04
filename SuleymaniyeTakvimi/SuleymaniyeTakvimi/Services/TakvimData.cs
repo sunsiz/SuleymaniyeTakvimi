@@ -92,8 +92,8 @@ namespace SuleymaniyeTakvimi.Services
 
         public async Task<bool> UpdateItemAsync(Item item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
+            //var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+            //items.Remove(oldItem);
             items.Add(item);
 
             return await Task.FromResult(true);
@@ -101,15 +101,15 @@ namespace SuleymaniyeTakvimi.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            //var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            //items.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Item> GetItemAsync(string adi)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(items.FirstOrDefault(s => s.Adi == adi));
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)

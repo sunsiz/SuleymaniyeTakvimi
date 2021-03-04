@@ -16,8 +16,31 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ObservableCollection<Schedule> schedule { get; set; }
         Schedule selectedSchedule;
         String today;
-        public Command VibrationChecked => new Command(vibrationChecked);
-        public Command NotificationChecked => new Command(notificationChecked);
+        private ICommand vibreationChecked;
+        //private ICommand notificationChecked;
+        //private ICommand enableReminder;
+        public ICommand VibrationChecked => vibreationChecked ??= new Command(() =>
+        {
+            var theSchedule = selectedSchedule;
+            switch (theSchedule.Title)
+            {
+                case "Fecri Kazip": Preferences.Set("FKVibration", theSchedule.Vibration); break;
+                case "Fecri Sadik": Preferences.Set("FSVibration", theSchedule.Vibration); break;
+                case "Saba Sonu": Preferences.Set("SSVibration", theSchedule.Vibration); break;
+                case "Öğle": Preferences.Set("OGVibration", theSchedule.Vibration); break;
+                case "İkindi": Preferences.Set("IKVibration", theSchedule.Vibration); break;
+                case "Akşam": Preferences.Set("AKVibration", theSchedule.Vibration); break;
+                case "Yatsı": Preferences.Set("YAVibration", theSchedule.Vibration); break;
+                case "Yatsı Sonu": Preferences.Set("YSVibration", theSchedule.Vibration); break;
+            }
+        });
+        //public ICommand NotificationChecked => notificationChecked ??= new Command(notificationCheckedChanged);
+        public ICommand NotificationCheckedChanged { get; private set; }
+        public ICommand ReminderEnabledChanged { get; private set; }
+        //public ICommand EnableReminder => enableReminder ??= new Command(() =>
+        //{
+        //    var testing = "";
+        //});
 
         public Schedule SelectedSchedule
         {
@@ -151,6 +174,13 @@ namespace SuleymaniyeTakvimi.ViewModels
                     //Waiting = DateTime.Now < DateTime.Parse(takvim.YatsiSonu)
                 }
             };
+            ReminderEnabledChanged = new Command(ReminderSettingChanged);
+            NotificationCheckedChanged = new Command(notificationSettingChanged);
+        }
+
+        private void ReminderSettingChanged(object obj)
+        {
+            Console.WriteLine(obj.ToString());
         }
 
         private string CheckState(DateTime next, DateTime current)
@@ -162,7 +192,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             return state;
         }
 
-        public void vibrationChecked()
+        public void vibrationCheckedChanged()
         {
             var theSchedule = selectedSchedule;
             switch (theSchedule.Title)
@@ -178,7 +208,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        public void notificationChecked()
+        public void notificationSettingChanged(object obj)
         {
             var theSchedule = selectedSchedule;
             switch (theSchedule.Title)

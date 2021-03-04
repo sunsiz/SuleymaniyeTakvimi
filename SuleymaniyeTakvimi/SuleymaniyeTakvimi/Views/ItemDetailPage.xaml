@@ -1,14 +1,153 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
+             xmlns:common="clr-namespace:SuleymaniyeTakvimi;assembly=SuleymaniyeTakvimi"
              x:Class="SuleymaniyeTakvimi.Views.ItemDetailPage"
              Title="{Binding Title}">
-
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Text}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Description}" FontSize="Small"/>
-    </StackLayout>
-    
+<ContentPage.BindingContext>
+        <viewModels:ItemDetailViewModel/>
+</ContentPage.BindingContext>
+    <ScrollView VerticalScrollBarVisibility="Never">
+    <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="25" Margin="9">
+        <pancakeView:PancakeView.BackgroundGradientStops>
+            <pancakeView:GradientStop Color="WhiteSmoke" Offset="0"/>
+            <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
+            <pancakeView:GradientStop Color="AliceBlue" Offset="1"/>
+        </pancakeView:PancakeView.BackgroundGradientStops>
+        <pancakeView:PancakeView.Shadow>
+            <pancakeView:DropShadow Color="#000"/>
+        </pancakeView:PancakeView.Shadow>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,2*">
+            <pancakeView:PancakeView CornerRadius="9" Grid.Row="0" Grid.ColumnSpan="2" Margin="14,7">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="Goldenrod" Offset="0"/>
+                    <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
+                    <pancakeView:GradientStop Color="Gold" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
+                    <!--<Label Grid.Row="0" Grid.Column="0" Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="End" FontSize="36" FontAttributes="Bold" Margin="9,10" TextColor="Chocolate" Padding="33,0">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="False">
+                        <Setter Property="Text" Value="&#xe7f6;" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="True">
+                        <Setter Property="Text" Value="&#xe7f5;" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>-->
+                    <Label HorizontalOptions="CenterAndExpand" Text="{Binding Title}" FontSize="28" FontAttributes="Bold" TextColor="Snow"/>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Grid.Row="1" Grid.ColumnSpan="2" Margin="14,4">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="AntiqueWhite" Offset="0"/>
+                    <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
+                    <pancakeView:GradientStop Color="PapayaWhip" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                        <Label HorizontalOptions="EndAndExpand" Text="Vakti:" FontSize="Large" />
+                        <Label HorizontalOptions="StartAndExpand" Text="{Binding Vakit}" FontSize="Large" FontAttributes="Bold" TextColor="MediumSeaGreen"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}">
+                            <Switch.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding SwitchToggled}" CommandParameter="{Binding Etkin}"/>
+                            </Switch.Behaviors>
+                        </Switch>
+                        <Label HorizontalOptions="StartAndExpand" Text="Etkinleştir" FontSize="Large"/>
+                    </StackLayout>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Grid.Row="3" Grid.ColumnSpan="2" Margin="14,4">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="Khaki" Offset="0"/>
+                    <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
+                    <pancakeView:GradientStop Color="LightYellow" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="14">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
+                        <CheckBox Grid.Row="3" Grid.Column="0" IsChecked="{Binding Bildiri}" IsEnabled="{Binding Etkin}" Color="Maroon">
+                            <CheckBox.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding BildiriCheckedChanged}" CommandParameter="{Binding Bildiri}"/>
+                            </CheckBox.Behaviors>
+                        </CheckBox>
+                        <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="Bildiri Göster" FontSize="Large"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
+                        <CheckBox Grid.Row="4" Grid.Column="0" IsChecked="{Binding Titreme}" IsEnabled="{Binding Etkin}" Color="Maroon">
+                            <CheckBox.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding TitremeCheckedChanged}" CommandParameter="{Binding Titreme}"/>
+                            </CheckBox.Behaviors>
+                        </CheckBox>
+                        <Label Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="Titreşim" FontSize="Large"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
+                        <CheckBox Grid.Row="5" Grid.Column="0" IsChecked="{Binding Alarm}" IsEnabled="{Binding Etkin}" Color="Maroon">
+                            <CheckBox.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding AlarmCheckedChanged}" CommandParameter="{Binding Alarm}"/>
+                            </CheckBox.Behaviors>
+                        </CheckBox>
+                        <Label Grid.Row="5" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="Alarm Çal" FontSize="Large"/>
+                    </StackLayout>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Grid.Row="6" Grid.ColumnSpan="2" Margin="14,4">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="LemonChiffon" Offset="0"/>
+                    <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
+                    <pancakeView:GradientStop Color="LavenderBlush" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout HorizontalOptions="FillAndExpand" Padding="14">
+                    <Label Grid.Row="6" Grid.Column="0" HorizontalOptions="Start" Text="Bildirme Zamanı:" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>
+                    <RadioButton Grid.Row="6" Grid.Column="1" Content="Zamanında" Value="0" IsEnabled="{Binding Etkin}" x:Name="Zamaninda" TextColor="DarkGreen">
+                        <RadioButton.Triggers>
+                            <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="0">
+                                <Setter TargetName="Zamaninda" Property="IsChecked" Value="True"/>
+                            </DataTrigger>
+                        </RadioButton.Triggers>
+                        <RadioButton.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Zamaninda}"/>
+                        </RadioButton.Behaviors>
+                    </RadioButton>
+                    <RadioButton Grid.Row="7" Grid.Column="1" Content="5 dakika önceden" Value="5" IsEnabled="{Binding Etkin}" x:Name="Bes" TextColor="DarkSlateGray">
+                        <RadioButton.Triggers>
+                            <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="5">
+                                <Setter TargetName="Bes" Property="IsChecked" Value="True"/>
+                            </DataTrigger>
+                        </RadioButton.Triggers>
+                        <RadioButton.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Bes}"/>
+                        </RadioButton.Behaviors>
+                    </RadioButton>
+                    <RadioButton Grid.Row="8" Grid.Column="1" Content="15 dakika önceden" Value="15" IsEnabled="{Binding Etkin}" x:Name="Onbes" TextColor="MidnightBlue">
+                        <RadioButton.Triggers>
+                            <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="15">
+                                <Setter TargetName="Onbes" Property="IsChecked" Value="True"/>
+                            </DataTrigger>
+                        </RadioButton.Triggers>
+                        <RadioButton.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Onbes}"/>
+                        </RadioButton.Behaviors>
+                    </RadioButton>
+                </StackLayout>
+            </pancakeView:PancakeView>
+        </Grid>
+    </pancakeView:PancakeView>
+    </ScrollView>
 </ContentPage>
