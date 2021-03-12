@@ -5,17 +5,18 @@
              xmlns:local="clr-namespace:SuleymaniyeTakvimi.ViewModels"  
              xmlns:model="clr-namespace:SuleymaniyeTakvimi.Models"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              x:Name="BrowseItemsPage"
-             Title="{Binding Title}">
+             Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
 
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <local:ItemsViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Konumu Yenile" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding GoToMapCommand}" />
     </ContentPage.ToolbarItems>
-    <ContentPage.Content>
+    <StackLayout>
         <!--<pancakeView:PancakeView HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="0" Margin="0,0" Padding="0,0" >
         <pancakeView:PancakeView.BackgroundGradientStops BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
             <pancakeView:GradientStop Color="#87a8d0" Offset="0"/>
@@ -149,61 +150,65 @@
         </pancakeView:PancakeView>
         </Grid></Frame>-->
         <!--</pancakeView:PancakeView>-->
-        <Grid Padding="25,15" RowDefinitions="Auto,*" ColumnDefinitions="*,*" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
-            <pancakeView:PancakeView Grid.Row="0" Grid.Column="0" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=8, Opacity=0.2, Offset='4,4'}" Margin="3,9">
-                <Label Text="{Binding Today}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="26" Padding="5,0" HorizontalTextAlignment="Center" />
-            </pancakeView:PancakeView>
-            <pancakeView:PancakeView Grid.Row="0" Grid.Column="1" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.7, Offset='8,8'}" Margin="3,9">
-                <Label Text="{Binding City}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="28" Padding="5,0" HorizontalTextAlignment="Center" />
-            </pancakeView:PancakeView>
-            <CollectionView ItemsSource="{Binding Items}" Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Never" VerticalOptions="CenterAndExpand">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid RowDefinitions="Auto">
-                            <!-- Card -->
-                            <pancakeView:PancakeView Style="{StaticResource card}" CornerRadius="25" Margin="7" Padding="9">
-                                <pancakeView:PancakeView.Triggers>
-                                    <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Passed">
-                                        <Setter Property="BackgroundColor" Value="AntiqueWhite" />
-                                    </DataTrigger>
-                                    <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Happening">
-                                        <Setter Property="BackgroundColor" Value="Gold" />
-                                    </DataTrigger>
-                                    <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Waiting">
-                                        <Setter Property="BackgroundColor" Value="LightGreen" />
-                                    </DataTrigger>
-                                </pancakeView:PancakeView.Triggers>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Adi}" FontAttributes="Bold" TextColor="#623323" FontSize="22" HeightRequest="35" HorizontalOptions="StartAndExpand" Margin="7,0"/>
-                                    <Label Text="{Binding Vakit}"  TextColor="Brown" FontAttributes="Bold" FontSize="Title" VerticalOptions="Start"/>
-                                    <Label Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="End" FontSize="28" Margin="9,0" TextColor="Chocolate">
-                                        <Label.Triggers>
-                                            <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="False">
-                                                <Setter Property="Text" Value="&#xe7f6;" />
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="True">
-                                                <Setter Property="Text" Value="&#xe7f5;" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer 
+        <Grid Padding="15" RowDefinitions="Auto,*" ColumnDefinitions="*,Auto" HorizontalOptions="CenterAndExpand">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="18">
+                <pancakeView:PancakeView BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=8, Opacity=0.2, Offset='4,4'}" Margin="3,9">
+                    <Label Text="{Binding Today}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="26" Padding="5,0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                </pancakeView:PancakeView>
+                <pancakeView:PancakeView BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.7, Offset='8,8'}" Margin="3,9">
+                    <Button Text="{Binding City}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="24" Padding="5,0" Command="{Binding GoToMapCommand}" BackgroundColor="SandyBrown" HorizontalOptions="Center" />
+                </pancakeView:PancakeView>
+            </StackLayout>
+            <pancakeView:PancakeView Grid.Row="1" Grid.ColumnSpan="2">
+                <CollectionView ItemsSource="{Binding Items}" VerticalScrollBarVisibility="Never" VerticalOptions="CenterAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="Auto">
+                                <!-- Card -->
+                                <pancakeView:PancakeView Style="{StaticResource card}" CornerRadius="25" Margin="5,7" Padding="9">
+                                    <pancakeView:PancakeView.Triggers>
+                                        <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Passed">
+                                            <Setter Property="BackgroundColor" Value="AntiqueWhite" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Happening">
+                                            <Setter Property="BackgroundColor" Value="Gold" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Waiting">
+                                            <Setter Property="BackgroundColor" Value="LightGreen" />
+                                        </DataTrigger>
+                                    </pancakeView:PancakeView.Triggers>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Adi}" FontAttributes="Bold" TextColor="#623323" FontSize="22" HorizontalOptions="StartAndExpand" Padding="7,0,0,0"/>
+                                        <Label Text="{Binding Vakit}"  TextColor="Brown" FontAttributes="Bold" FontSize="Title" VerticalOptions="Start"/>
+                                        <Label Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="End" FontSize="28" Margin="0,0,9,0" TextColor="Chocolate">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="False">
+                                                    <Setter Property="Text" Value="&#xe7f6;" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="True">
+                                                    <Setter Property="Text" Value="&#xe7f5;" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer 
                                             NumberOfTapsRequired="1"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
                                             CommandParameter="{Binding .}">
-                                        </TapGestureRecognizer>
-                                    </StackLayout.GestureRecognizers>
-                                    <!--<Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" FontSize="32" FontAttributes="Bold"/>
+                                            </TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+                                        <!--<Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" FontSize="32" FontAttributes="Bold"/>
                                                 <Label Text="Enable nested:" FontSize="13" VerticalOptions="CenterAndExpand" />
                                                 <Switch IsToggled="{Binding IsEnabled}" />-->
-                                </StackLayout>
-                            </pancakeView:PancakeView>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                    </StackLayout>
+                                </pancakeView:PancakeView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </pancakeView:PancakeView>
         </Grid>
-    </ContentPage.Content>
+    </StackLayout>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings

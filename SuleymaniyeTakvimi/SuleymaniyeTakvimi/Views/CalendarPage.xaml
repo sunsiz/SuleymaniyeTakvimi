@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              x:Class="SuleymaniyeTakvimi.Views.CalendarPage"
-             Title="{Binding Title}">
+             Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
     <ContentPage.BindingContext>
         <viewModels:CalendarViewModel />
     </ContentPage.BindingContext>
@@ -75,7 +76,7 @@
                                                         <xct:EventToCommandBehavior EventName="Toggled" Command="{Binding ReminderEnabledChanged}" CommandParameter="{Binding .}" />
                                                     </Switch.Behaviors>
                                                 </Switch>
-                                                <Label Text="Etkinleştir" FontSize="Large" TextColor="DeepSkyBlue"/>
+                                                <Label Text="{x:Static resources:AppResources.EtkinlestirSwitch}" FontSize="Large" TextColor="DeepSkyBlue"/>
                                             </StackLayout>
                                             <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" VerticalOptions="Center">
                                                 <CheckBox IsChecked="{Binding Vibration}" Color="DeepSkyBlue" IsEnabled="{Binding NotificationOn}">
@@ -83,7 +84,7 @@
                                                         <xct:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding VibrationChecked}" CommandParameter="{Binding .}"/>
                                                     </CheckBox.Behaviors>
                                                 </CheckBox>
-                                                <Label Text="Titreme" FontSize="Large" TextColor="DeepSkyBlue" IsEnabled="{Binding NotificationOn}"/>
+                                                <Label Text="{x:Static resources:AppResources.TitresimSwitch}" FontSize="Large" TextColor="DeepSkyBlue" IsEnabled="{Binding NotificationOn}"/>
                                             </StackLayout>
                                             <!--<BoxView Grid.Column="1" BackgroundColor="#623323" WidthRequest="3" HorizontalOptions="Start" 
                                                      VerticalOptions="FillAndExpand"/>-->
@@ -93,7 +94,7 @@
                                                         <xct:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding NotificationCheckedChanged}" CommandParameter="{Binding .}" />
                                                     </CheckBox.Behaviors>
                                                 </CheckBox>
-                                                <Label Text="Bildirim" FontSize="Large" TextColor="DeepSkyBlue" IsEnabled="{Binding NotificationOn}"/>
+                                                <Label Text="{x:Static resources:AppResources.BildirimGosterSwitch}" FontSize="Large" TextColor="DeepSkyBlue" IsEnabled="{Binding NotificationOn}"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </xct:Expander>

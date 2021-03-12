@@ -26,7 +26,7 @@ namespace SuleymaniyeTakvimi.Droid
 
             animation.AddAnimatorListener(this);
         }
-
+#nullable enable
         public void OnAnimationCancel(Animator? animation)
         {
             

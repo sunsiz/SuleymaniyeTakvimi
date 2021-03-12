@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Plugin.LocalNotification;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -32,46 +33,89 @@ namespace SuleymaniyeTakvimi.ViewModels
             TitremeCheckedChanged = new Command(TitremeAyari);
             AlarmCheckedChanged = new Command(AlarmAyari);
             RadioButtonCheckedChanged = new Command(BildirmeVaktiAyari);
+            //Etkin = Preferences.Get(itemId + "Etkin", false);
+            //Titreme = Preferences.Get(itemId + "Titreme", false);
+            //Bildiri = Preferences.Get(itemId + "Bildiri", false);
+            //Alarm = Preferences.Get(itemId + "Alarm", false);
         }
 
         private void BildirmeVaktiAyari(object obj)
         {
-            var radiobutton = obj as RadioButton;
-            Preferences.Set(itemId + "BildirmeVakti", radiobutton.Value.ToString());
-            Console.WriteLine("Value Setted for -> " + itemId + "BildirmeVakti: " +
-                              Preferences.Get(itemId + "BildirmeVakti", radiobutton.Value.ToString()));
+            //When page load the obj value awlways be false, so avoiding it.
+            if (!IsBusy)
+            {
+                var radiobutton = obj as RadioButton;
+                Preferences.Set(itemId + "BildirmeVakti", radiobutton.Value.ToString());
+                Console.WriteLine("Value Setted for -> " + itemId + "BildirmeVakti: " +
+                                  Preferences.Get(itemId + "BildirmeVakti", radiobutton.Value.ToString()));
+                bildirmeVakti = radiobutton.Value.ToString();
+            }
         }
 
         private void AlarmAyari(object obj)
         {
-            var value = (bool)obj;
-            Preferences.Set(itemId + "Alarm", value);
-            Console.WriteLine("Value Setted for -> " + itemId + "Alarm: " +
-                              Preferences.Get(itemId + "Alarm", value));
+            //When page load the obj value awlways be false, so avoiding it.
+            if (!IsBusy)
+            {
+                var value = (bool) obj;
+                Preferences.Set(itemId + "Alarm", value);
+                Console.WriteLine("Value Setted for -> " + itemId + "Alarm: " +
+                                  Preferences.Get(itemId + "Alarm", value));
+                Alarm = value;
+            }
         }
 
         private void TitremeAyari(object obj)
         {
-            var value = (bool)obj;
-            Preferences.Set(itemId + "Titreme", value);
-            Console.WriteLine("Value Setted for -> " + itemId + "Titreme: " +
-                              Preferences.Get(itemId + "Titreme", value));
+            //When page load the obj value awlways be false, so avoiding it.
+            if (!IsBusy)
+            {
+                var value = (bool) obj;
+                Preferences.Set(itemId + "Titreme", value);
+                Console.WriteLine("Value Setted for -> " + itemId + "Titreme: " +
+                                  Preferences.Get(itemId + "Titreme", value));
+                Titreme = value;
+            }
         }
 
         private void BildiriAyari(object obj)
         {
-            var value = (bool)obj;
-            Preferences.Set(itemId + "Bildiri", value);
-            Console.WriteLine("Value Setted for -> " + itemId + "Bildiri: " +
-                              Preferences.Get(itemId + "Bildiri", value));
+            //When page load the obj value awlways be false, so avoiding it.
+            if (!IsBusy)
+            {
+                var value = (bool) obj;
+                Preferences.Set(itemId + "Bildiri", value);
+                Console.WriteLine("Value Setted for -> " + itemId + "Bildiri: " +
+                                  Preferences.Get(itemId + "Bildiri", value));
+                Bildiri = value;
+                if (value)
+                {
+                    var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
+                    var notification = new NotificationRequest
+                    {
+                        NotificationId = 100,
+                        Title = itemAdi + " Vakti Bildirimi",
+                        Description = itemAdi + " Vakti: " + Vakit,
+                        ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
+                        NotifyTime =  DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
+                    };
+                    NotificationCenter.Current.Show(notification);
+                }
+            }
         }
 
         private void Etkinlestir(object obj)
         {
-            var value = (bool) obj;
-            Preferences.Set(itemId + "Etkin", value);
-            Console.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
-                              Preferences.Get(itemId + "Etkin", value));
+
+            //When page load the obj value awlways be false, so avoiding it.
+            if (!IsBusy)
+            {
+                var value = (bool) obj;
+                Preferences.Set(itemId + "Etkin", value);
+                Console.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
+                                  Preferences.Get(itemId + "Etkin", value));
+                Etkin = value;
+            }
         }
 
         public string ItemId
@@ -79,8 +123,10 @@ namespace SuleymaniyeTakvimi.ViewModels
             get => itemId;
             set
             {
+                IsBusy = true;
                 itemId = value;
                 LoadItem(value);
+                IsBusy = false;
             }
         }
 
@@ -126,7 +172,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             set => SetProperty(ref itemAdi, value);
         }
 
-        public async void LoadItem(string itemId)
+        public void LoadItem(string itemId)
         {
             try
             {
@@ -157,12 +203,18 @@ namespace SuleymaniyeTakvimi.ViewModels
                         Title = itemAdi = "Yatsı Sonu";
                         break;
                 }
+
+                //string itemIdEtkin = itemId + "Etkin";
+                //string itemIdBildiri = itemId + "Bildiri";
+                //string itemIdTitreme = itemId + "Titreme";
+                //string itemIdAlarm = itemId + "Alarm";
+                //string itemIdBildirmeVakti = itemId + "BildirmeVakti";
                 Vakit = Preferences.Get(itemId, "");
                 Etkin = Preferences.Get(itemId + "Etkin", false);
                 Bildiri = Preferences.Get(itemId + "Bildiri", false);
                 Titreme = Preferences.Get(itemId + "Titreme", false);
                 Alarm = Preferences.Get(itemId + "Alarm", false);
-                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0");
+                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", (5 - 5).ToString());//when assign "0" for defaultValue, there always thow exception says: java.lang cannot convert boolean to string. So cheating.
                 //var item = await DataStore.GetItemAsync(itemId);
                 //Id = item.Id;
                 //Text = item.Text;

@@ -4,7 +4,10 @@ using SuleymaniyeTakvimi.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -16,7 +19,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
+        public Command GoToMapCommand { get; }
         public Command<Item> ItemTapped { get; }
         Takvim _takvim;
         private string today;
@@ -29,8 +32,15 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public string City
         {
-            get { return "İstanbul"; }
+            get { return city; }
             set { SetProperty(ref city, value); }
+        }
+
+        private async void GetCity()
+        {
+            //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
+            var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(false);
+            City = placemark.FirstOrDefault()?.AdminArea ?? placemark.FirstOrDefault()?.CountryName;
         }
         //public Takvim Vakit
         //{
@@ -48,7 +58,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         //}
         public ItemsViewModel()
         {
-            Title = "Süleymaniye Vakfı Takvimi";
+            //Title = "Süleymaniye Vakfı Takvimi";
             Items = new ObservableCollection<Item>();
             var data = new TakvimData();
             _takvim = data.takvim;
@@ -56,8 +66,23 @@ namespace SuleymaniyeTakvimi.ViewModels
 
             ItemTapped = new Command<Item>(OnItemSelected);
 
-            AddItemCommand = new Command(OnAddItem);
+            //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
+            GoToMapCommand = new Command(async ()=>{
+                var location = new Location(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat),Convert.ToDouble(_takvim.Boylam, CultureInfo.InvariantCulture.NumberFormat));
+                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem,CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat));
+                var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName};
+
+                try
+                {
+                    await Map.OpenAsync(location, options);
+                }
+                catch (Exception ex)
+                {
+                    UserDialogs.Instance.Toast("Haritayı açarken bir sorun oluştu.\nDetaylar: " + ex.Message);
+                }
+            });
             LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
+            GetCity();
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -150,6 +175,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             IsBusy = true;
             SelectedItem = null;
+            LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
         }
 
         public Item SelectedItem

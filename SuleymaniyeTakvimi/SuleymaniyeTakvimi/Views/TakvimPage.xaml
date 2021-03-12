@@ -6,7 +6,8 @@
              xmlns:model="clr-namespace:SuleymaniyeTakvimi.Models"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:shades="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
-             Title="{Binding Title}">
+             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
+             Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
 
     <ContentPage.BindingContext>
         <vm:TakvimViewModel />
@@ -52,7 +53,7 @@
 
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Konumu Yenile" Command="{Binding RefreshLocationCommand}" />
+        <ToolbarItem Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding RefreshLocationCommand}" />
     </ContentPage.ToolbarItems>
 
     <Grid>
@@ -64,7 +65,7 @@
             <StackLayout BackgroundColor="{StaticResource AppPrimaryColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                     <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
-                    <Label Text="Süleymaniye Vakfi Namaz Vakitleri" TextColor="White" FontSize="32" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="20,0"/>
+                    <Label Text="{x:Static resources:AppResources.PageTitle}" TextColor="White" FontSize="32" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="20,0"/>
                     </ContentView>
                 </StackLayout>
             </StackLayout>
@@ -100,29 +101,29 @@
                         <yummy:GradientStop Color="#0000FF" Offset="1" />
                     </yummy:GradientStopCollection>
                 </yummy:PancakeView.BackgroundGradientStops>-->
-                        <Label Text="Fecri Kazip:" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{x:Static resources:AppResources.FecriKazip}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
                     <Label Text="{Binding Vakitler.FecriKazip}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
                     <!--</yummy:PancakeView>
         </yummy:PancakeView>-->
-                <Label Text="Fecri Sadık:" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{x:Static resources:AppResources.FecriSadik}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
                     <Label Text="{Binding Vakitler.FecriSadik}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="1" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="Sabah Sonu:" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{x:Static resources:AppResources.SabahSonu}" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
                     <Label Text="{Binding Vakitler.SabahSonu}" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="1" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="Öğle:" HorizontalOptions="StartAndExpand" Grid.Row="3" Grid.Column="0" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{x:Static resources:AppResources.Ogle}" HorizontalOptions="StartAndExpand" Grid.Row="3" Grid.Column="0" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
                     <Label Text="{Binding Vakitler.Ogle}" HorizontalOptions="StartAndExpand" Grid.Row="3" Grid.Column="1" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="İkindi" HorizontalOptions="StartAndExpand" Grid.Row="4" Grid.Column="0" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{x:Static resources:AppResources.Ikindi}" HorizontalOptions="StartAndExpand" Grid.Row="4" Grid.Column="0" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
                     <Label Text="{Binding Vakitler.Ikindi}" HorizontalOptions="StartAndExpand" Grid.Row="4" Grid.Column="1" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="Akşam:" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="0" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{x:Static resources:AppResources.Aksam}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="0" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
                     <Label Text="{Binding Vakitler.Aksam}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="1" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="Yatsı:" HorizontalOptions="StartAndExpand" Grid.Row="6" Grid.Column="0" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{x:Static resources:AppResources.Yatsi}" HorizontalOptions="StartAndExpand" Grid.Row="6" Grid.Column="0" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
                     <Label Text="{Binding Vakitler.Yatsi}" HorizontalOptions="StartAndExpand" Grid.Row="6" Grid.Column="1" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="Yatsı Sonu:" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{x:Static resources:AppResources.YatsiSonu}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
                     <Label Text="{Binding Vakitler.YatsiSonu}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="1" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
                     <BoxView VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="1" WidthRequest="Infinity" Color="DarkGray" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"></BoxView>
-                    <Label Text="{Binding Vakitler.Enlem, StringFormat='Enlem: {0}'}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="0" TextColor="LimeGreen"/>
-                    <Label Text="{Binding Vakitler.Boylam, StringFormat='Boylam: {0}'}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="1" TextColor="LimeGreen"/>
-                    <Label Text="{Binding Vakitler.Yukseklik, StringFormat='Yükseklik: {0}'}" HorizontalOptions="StartAndExpand" Grid.Row="10" Grid.Column="0" TextColor="LimeGreen"/>
-                    <Label Text="{Binding Vakitler.SaatBolgesi, StringFormat='Saat Bölgesi: GMT {0}'}" HorizontalOptions="StartAndExpand" Grid.Row="10" Grid.Column="1" TextColor="LimeGreen"/>
+                <Label Text="{Binding Vakitler.Enlem, StringFormat={x:Static resources:AppResources.Enlem}}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="0" TextColor="LimeGreen"/>
+                <Label Text="{Binding Vakitler.Boylam, StringFormat={x:Static resources:AppResources.Boylam}}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="1" TextColor="LimeGreen"/>
+                <Label Text="{Binding Vakitler.Yukseklik, StringFormat={x:Static resources:AppResources.Yukseklik}}" HorizontalOptions="StartAndExpand" Grid.Row="10" Grid.Column="0" TextColor="LimeGreen"/>
+                <Label Text="{Binding Vakitler.SaatBolgesi, StringFormat={x:Static resources:AppResources.SaatBolgesi}}" HorizontalOptions="StartAndExpand" Grid.Row="10" Grid.Column="1" TextColor="LimeGreen"/>
                 </Grid>
             </Frame>    
             <!--<shades:Shadows Grid.Row="1"

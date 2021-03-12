@@ -33,12 +33,12 @@
                 <Setter Property="NavigationPage.BackButtonTitle" Value="" />
             </Style>
 
-            <Style TargetType="Button">
+            <!--<Style TargetType="Button">
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="BackgroundColor" Value="{StaticResource NormalButtonBackgroundColor}" />
                 <Setter Property="TextColor" Value="{StaticResource NormalButtonTextColor}" />
                 <Setter Property="CornerRadius" Value="5" />
-            </Style>
+            </Style>-->
             <!--  Fonts  -->
             <OnPlatform x:Key="font_bold" x:TypeArguments="x:String">
                 <On Platform="iOS" Value=".SFUIText-Bold" />

@@ -1,6 +1,7 @@
 ﻿using SuleymaniyeTakvimi.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
@@ -14,7 +15,7 @@ namespace SuleymaniyeTakvimi.Services
 {
     public class TakvimData : ITakvimData
     {
-        readonly List<Item> items;
+        //readonly List<Item> items;
         public Takvim konum;
         public Takvim takvim;
         //public Command GetLocationCommand { get; }
@@ -83,39 +84,39 @@ namespace SuleymaniyeTakvimi.Services
             //};
         }
 
-        public async Task<bool> AddItemAsync(Item item)
-        {
-            items.Add(item);
+        //public async Task<bool> AddItemAsync(Item item)
+        //{
+        //    items.Add(item);
 
-            return await Task.FromResult(true);
-        }
+        //    return await Task.FromResult(true);
+        //}
 
-        public async Task<bool> UpdateItemAsync(Item item)
-        {
-            //var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            //items.Remove(oldItem);
-            items.Add(item);
+        //public async Task<bool> UpdateItemAsync(Item item)
+        //{
+        //    //var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+        //    //items.Remove(oldItem);
+        //    items.Add(item);
 
-            return await Task.FromResult(true);
-        }
+        //    return await Task.FromResult(true);
+        //}
 
-        public async Task<bool> DeleteItemAsync(string id)
-        {
-            //var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            //items.Remove(oldItem);
+        //public async Task<bool> DeleteItemAsync(string id)
+        //{
+        //    //var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+        //    //items.Remove(oldItem);
 
-            return await Task.FromResult(true);
-        }
+        //    return await Task.FromResult(true);
+        //}
 
-        public async Task<Item> GetItemAsync(string adi)
-        {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Adi == adi));
-        }
+        //public async Task<Item> GetItemAsync(string adi)
+        //{
+        //    return await Task.FromResult(items.FirstOrDefault(s => s.Adi == adi));
+        //}
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
-        {
-            return await Task.FromResult(items);
-        }
+        //public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        //{
+        //    return await Task.FromResult(items);
+        //}
 
 
         public async Task<Takvim> GetCurrentLocation()
@@ -200,20 +201,21 @@ namespace SuleymaniyeTakvimi.Services
                 {
                     switch (item.Name.LocalName)
                     {
+                        //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
                         case "Enlem":
-                            takvim.Enlem = Convert.ToDouble(item.Value);
+                            takvim.Enlem = Convert.ToDouble(item.Value,CultureInfo.InvariantCulture.NumberFormat);
                             break;
                         case "Boylam":
-                            takvim.Boylam = Convert.ToDouble(item.Value);
+                            takvim.Boylam = Convert.ToDouble(item.Value, CultureInfo.InvariantCulture.NumberFormat);
                             break;
                         case "Yukseklik":
-                            takvim.Yukseklik = Convert.ToDouble(item.Value);
+                            takvim.Yukseklik = Convert.ToDouble(item.Value, CultureInfo.InvariantCulture.NumberFormat);
                             break;
                         case "SaatBolgesi":
-                            takvim.SaatBolgesi = Convert.ToDouble(item.Value);
+                            takvim.SaatBolgesi = Convert.ToDouble(item.Value, CultureInfo.InvariantCulture.NumberFormat);
                             break;
                         case "YazKis":
-                            takvim.YazKis = Convert.ToDouble(item.Value);
+                            takvim.YazKis = Convert.ToDouble(item.Value, CultureInfo.InvariantCulture.NumberFormat);
                             break;
                         case "FecriKazip":
                             takvim.FecriKazip = item.Value;
