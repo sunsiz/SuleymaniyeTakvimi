@@ -14,11 +14,11 @@
             <!--Corner image-->
             <Image Grid.Row="0" Grid.Column="2" Source="app_logo" HeightRequest="100" Margin="12,2"/>
             <!--Schedule timeline-->
-            <Label Text="&#xe614;" Grid.Row="1" Grid.Column="0" FontFamily="Material" TextColor="#623323" FontSize="45" HeightRequest="50" Margin="5,-85,0,0" VerticalOptions="Start" />
+            <Label Text="&#xe614;" Grid.Row="1" Grid.Column="0" FontFamily="MaterialIcons" TextColor="#623323" FontSize="45" HeightRequest="50" Margin="5,-85,0,0" VerticalOptions="Start" />
             <!--<Image Grid.Row="1" Grid.Column="0" Source="icon_calendar" HeightRequest="50" Margin="0,-85,0,0" VerticalOptions="Start"/>-->
-            <BoxView Grid.Row="2" Grid.Column="0"  VerticalOptions="Start" WidthRequest="5" Color="DeepSkyBlue" HeightRequest="30" Margin="25,-40,25,10"/>
+            <BoxView Grid.Row="2" Grid.Column="0"  VerticalOptions="StartAndExpand" WidthRequest="5" Color="DeepSkyBlue" HeightRequest="30" Margin="26,-40,25,10"/>
             <!-- Date description-->
-            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Today}" Margin="-5,-85,0,0" TextColor="#623323" FontAttributes="Bold" FontSize="32" Padding="0"/>
+            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Today}" Margin="-5,-85,0,0" TextColor="#623323" FontAttributes="Bold" FontSize="30" Padding="0"/>
 
             <!-- Shedule list structure-->
             <CollectionView ItemsSource="{Binding schedule}"
@@ -31,11 +31,11 @@
                     <DataTemplate>
                         <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *">
                             <!-- Schedule time-->
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Hour}"  TextColor="Brown" FontAttributes="Bold" FontSize="Title" VerticalOptions="Start"/>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Hour}"  TextColor="Brown" FontAttributes="Bold" FontSize="Title"/>
                             <!-- Vertical Line-->
                             <BoxView Grid.Row="1" Grid.Column="0" WidthRequest="5" Color="DeepSkyBlue" HeightRequest="30" Margin="25,0,50,0" />
                             <!-- Card -->
-                            <pancakeView:PancakeView Style="{StaticResource card}"  Grid.RowSpan="2" Grid.Column="1" CornerRadius="0,25,0,25" Margin="0,5,30,30" Padding="15">
+                            <pancakeView:PancakeView Style="{StaticResource card}"  Grid.RowSpan="2" Grid.Column="1" CornerRadius="0,25,0,25" Margin="0,5,30,20" Padding="15">
                                 <!--<Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" CornerRadius="25" HasShadow="True" Margin="5,0,30,35">-->
                                 <pancakeView:PancakeView.Triggers>
                                     <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Passed">
@@ -54,7 +54,7 @@
                                         <xct:Expander.Header>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="#623323" FontSize="22" HeightRequest="35" HorizontalOptions="StartAndExpand" Margin="7,0"/>
-                                                <Label Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="End" FontSize="28" Margin="9,0" TextColor="Chocolate">
+                                                <Label Text="&#xe7f6;" FontFamily="MaterialIcons" HorizontalOptions="End" FontSize="28" Margin="9,0" TextColor="Chocolate">
                                                 <Label.Triggers>
                                                     <DataTrigger TargetType="Label" Binding="{Binding NotificationOn}" Value="False">
                                                         <Setter Property="Text" Value="&#xe7f6;" />

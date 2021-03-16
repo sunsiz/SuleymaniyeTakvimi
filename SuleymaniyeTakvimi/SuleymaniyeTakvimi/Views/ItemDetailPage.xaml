@@ -54,8 +54,8 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                            <Label HorizontalOptions="EndAndExpand" Text="{x:Static resources:AppResources.Vakti}" FontSize="Large" />
-                            <Label HorizontalOptions="StartAndExpand" Text="{Binding Vakit}" FontSize="Large" FontAttributes="Bold" TextColor="MediumSeaGreen"/>
+                            <Label HorizontalOptions="EndAndExpand" Text="{x:Static resources:AppResources.Vakti}" FontSize="Medium" />
+                            <Label HorizontalOptions="StartAndExpand" Text="{Binding Vakit}" FontSize="Medium" FontAttributes="Bold" TextColor="MediumSeaGreen"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                             <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}">
@@ -63,7 +63,7 @@
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding SwitchToggled}" CommandParameter="{Binding Etkin}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.EtkinlestirSwitch}" FontSize="Large"/>
+                            <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.EtkinlestirSwitch}" FontSize="Medium"/>
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
@@ -82,7 +82,7 @@
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding BildiriCheckedChanged}" CommandParameter="{Binding Bildiri}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.BildirimGosterSwitch}" FontSize="Large"/>
+                            <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.BildirimGosterSwitch}" FontSize="Medium"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
                             <Switch Grid.Row="4" Grid.Column="0" IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}">
@@ -90,7 +90,7 @@
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding TitremeCheckedChanged}" CommandParameter="{Binding Titreme}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.TitresimSwitch}" FontSize="Large"/>
+                            <Label Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.TitresimSwitch}" FontSize="Medium"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
                             <Switch Grid.Row="5" Grid.Column="0" IsToggled="{Binding Alarm}" IsEnabled="{Binding Etkin}"> <!--Color="Maroon"-->
@@ -98,7 +98,7 @@
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding AlarmCheckedChanged}" CommandParameter="{Binding Alarm}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label Grid.Row="5" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.AlarmSwitch}" FontSize="Large"/>
+                            <Label Grid.Row="5" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.AlarmSwitch}" FontSize="Medium"/>
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
@@ -113,7 +113,7 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout HorizontalOptions="FillAndExpand" Padding="14">
                         <Label HorizontalOptions="Start" Text="{x:Static resources:AppResources.BildirmeZamani}" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>
-                        <RadioButton Content="{x:Static resources:AppResources.Zamaninda}" Value="0" IsEnabled="{Binding Etkin}" x:Name="Zamaninda" GroupName="zaman">
+                        <RadioButton Content="{x:Static resources:AppResources.Zamaninda}" Value="0" IsEnabled="{Binding Etkin}" x:Name="Zamaninda" GroupName="zaman" BackgroundColor="Transparent">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="0">
                                     <Setter TargetName="Zamaninda" Property="IsChecked" Value="True"/>
@@ -123,7 +123,7 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Zamaninda}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <RadioButton Content="{x:Static resources:AppResources.BesDakikaOnceden}" Value="5" IsEnabled="{Binding Etkin}" x:Name="Bes" GroupName="zaman">
+                        <RadioButton Content="{x:Static resources:AppResources.BesDakikaOnceden}" Value="5" IsEnabled="{Binding Etkin}" x:Name="Bes" GroupName="zaman" BackgroundColor="Transparent">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="5">
                                     <Setter TargetName="Bes" Property="IsChecked" Value="True"/>
@@ -133,7 +133,7 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Bes}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <RadioButton Content="{x:Static resources:AppResources.OnBesDakikaOnceden}" Value="15" IsEnabled="{Binding Etkin}" x:Name="Onbes" GroupName="zaman">
+                        <RadioButton Content="{x:Static resources:AppResources.OnBesDakikaOnceden}" Value="15" IsEnabled="{Binding Etkin}" x:Name="Onbes" GroupName="zaman" BackgroundColor="Transparent">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="15">
                                     <Setter TargetName="Onbes" Property="IsChecked" Value="True"/>

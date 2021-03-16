@@ -41,5 +41,7 @@
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>tr</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor</string>
 </dict>
 </plist>

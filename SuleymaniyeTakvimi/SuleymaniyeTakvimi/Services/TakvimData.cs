@@ -31,8 +31,8 @@ namespace SuleymaniyeTakvimi.Services
         {
             takvim = new Takvim()
             {
-                Enlem = Preferences.Get("enlem", 50.87),
-                Boylam = Preferences.Get("boylam", 4.33),
+                Enlem = Preferences.Get("enlem", 41.0056),
+                Boylam = Preferences.Get("boylam", 28.9767),
                 Yukseklik = Preferences.Get("yukseklik", 4.0),
                 SaatBolgesi = Preferences.Get("saatbolgesi", 1.0),
                 YazKis = Preferences.Get("yazkis", 0.0),

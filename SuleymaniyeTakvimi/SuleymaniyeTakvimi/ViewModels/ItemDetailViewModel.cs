@@ -214,7 +214,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Bildiri = Preferences.Get(itemId + "Bildiri", false);
                 Titreme = Preferences.Get(itemId + "Titreme", false);
                 Alarm = Preferences.Get(itemId + "Alarm", false);
-                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", (5 - 5).ToString());//when assign "0" for defaultValue, there always thow exception says: java.lang cannot convert boolean to string. So cheating.
+                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0.00");//when assign "0" for defaultValue, there always thow exception says: java.lang cannot convert boolean to string. So cheating.
                 //var item = await DataStore.GetItemAsync(itemId);
                 //Id = item.Id;
                 //Text = item.Text;

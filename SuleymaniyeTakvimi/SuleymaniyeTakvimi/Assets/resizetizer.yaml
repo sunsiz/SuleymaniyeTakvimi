@@ -1,0 +1,51 @@
+﻿- platform: Android
+  outputBasePath: "../SuleymaniyeTakvimi.Android/Resources/"
+  assets:
+   - file: "app_logo.png"
+     size: 100x100
+   - file: "icon_about.png"
+     size: 100x100
+   - file: "icon_calendar.png"
+     size: 100x100
+   - file: "icon_feed.png"
+     size: 100x100
+   - file: "welcome.svg"
+     size: 400x400
+   - file: "show.svg"
+     size: 400x400
+   - file: "notification.svg"
+     size: 400x400
+  outputs:
+   - path: "./drawable-mdpi"
+     ratio: 1.0
+   - path: "./drawable-hdpi"
+     ratio: 1.5
+   - path: "./drawable-xhdpi"
+     ratio: 2.0
+   - path: "./drawable-xxhdpi"
+     ratio: 3.0
+   - path: "./drawable-xxxhdpi"
+     ratio: 4.0
+- platform: iOS
+  outputBasePath: "../SuleymaniyeTakvimi.iOS/Resources/"
+  assets:
+   - file: "app_logo.png"
+     size: 32x30
+   - file: "icon_about.png"
+     size: 32x30
+   - file: "icon_calendar.png"
+     size: 32x30
+   - file: "icon_feed.png"
+     size: 32x30
+   - file: "welcome.svg"
+     size: 400x400
+   - file: "show.svg"
+     size: 400x400
+   - file: "notification.svg"
+     size: 400x400
+  outputs:
+   - ratio: 1.0
+   - fileSuffix: "@2x"
+     ratio: 2.0
+   - fileSuffix: "@3x"
+     ratio: 3.0
