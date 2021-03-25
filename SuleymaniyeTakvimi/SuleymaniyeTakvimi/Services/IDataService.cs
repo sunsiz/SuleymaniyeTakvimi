@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.Services
 {
-    public interface ITakvimData
+    public interface IDataService
     {
         //Task<bool> AddItemAsync(T item);
         //Task<bool> UpdateItemAsync(T item);

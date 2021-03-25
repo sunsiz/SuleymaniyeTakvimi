@@ -130,7 +130,7 @@
     <value>Show Notification</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>Notification Time:</value>
+    <value>Reminding Time:</value>
   </data>
   <data name="Boylam" xml:space="preserve">
     <value>Longitude: {0}</value>

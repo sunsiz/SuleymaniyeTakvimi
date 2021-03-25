@@ -10,7 +10,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public ITakvimData TakvimData => DependencyService.Get<ITakvimData>();
+        public IDataService TakvimData => DependencyService.Get<IDataService>();
 
         bool isBusy = false;
         public bool IsBusy

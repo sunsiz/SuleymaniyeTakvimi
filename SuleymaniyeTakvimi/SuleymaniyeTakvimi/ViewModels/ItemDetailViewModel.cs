@@ -3,7 +3,10 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using Plugin.LocalNotification;
+using Shiny;
+using Shiny.Notifications;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -75,6 +78,26 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Titreme: " +
                                   Preferences.Get(itemId + "Titreme", value));
                 Titreme = value;
+                if (value)
+                {
+                    try
+                    {
+                        // Use default vibration length
+                        Vibration.Vibrate();
+
+                        // Or use specified time
+                        var duration = TimeSpan.FromSeconds(1);
+                        Vibration.Vibrate(duration);
+                    }
+                    catch (FeatureNotSupportedException ex)
+                    {
+                        UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. "+ex.Message, "Cihaz desteklemiyor");
+                    }
+                    catch (Exception ex)
+                    {
+                        UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+                    }
+                }
             }
         }
 
@@ -91,15 +114,48 @@ namespace SuleymaniyeTakvimi.ViewModels
                 if (value)
                 {
                     var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
-                    var notification = new NotificationRequest
+                    //var notification = new NotificationRequest
+                    //{
+                    //    NotificationId = 100,
+                    //    Title = itemAdi + " Vakti Bildirimi",
+                    //    Description = itemAdi + " Vakti: " + Vakit,
+                    //    ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
+                    //    NotifyTime =  DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
+                    //};
+                    //NotificationCenter.Current.Show(notification);
+                    var notification = new Notification
                     {
-                        NotificationId = 100,
-                        Title = itemAdi + " Vakti Bildirimi",
-                        Description = itemAdi + " Vakti: " + Vakit,
-                        ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
-                        NotifyTime =  DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
+                        Id = new Random().Next(101,999),
+                        Title = "Bildiri Ayarı Etkinleşti",
+                        Message = $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.",
+                        //ScheduleDate = DateTimeOffset.Parse(bildiriVakti.ToString()),
+                        //ScheduleDate = DateTime.Now.AddSeconds(2)
                     };
-                    NotificationCenter.Current.Show(notification);
+                    ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+                    //Task.Run(async () =>
+                    //{
+                    //    var notificationManager = ShinyHost.Resolve<INotificationManager>();
+                    //    var state= await notificationManager.RequestAccess();
+                    //    await notificationManager.Send(notification).ConfigureAwait(false);
+                    //    //Console.WriteLine("Notification Message ID: " + msgId);
+                    //});
+                    //try
+                    //{
+                    //    // Use default vibration length
+                    //    Vibration.Vibrate();
+
+                    //    // Or use specified time
+                    //    var duration = TimeSpan.FromSeconds(1);
+                    //    Vibration.Vibrate(duration);
+                    //}
+                    //catch (FeatureNotSupportedException ex)
+                    //{
+                    //    UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor.", "Cihaz desteklemiyor");
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+                    //}
                 }
             }
         }

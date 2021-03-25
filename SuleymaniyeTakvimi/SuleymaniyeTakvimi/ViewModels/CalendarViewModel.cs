@@ -57,7 +57,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public CalendarViewModel()
         {
             Title = "Süleymaniye Vakfı Takvimi";
-            var data=new TakvimData();
+            var data=new DataService();
             var takvim = data.takvim;
             schedule = new ObservableCollection<Schedule>
             {

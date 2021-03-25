@@ -130,7 +130,7 @@
     <value>Bildirim Göster</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>Bildirme Zamanı:</value>
+    <value>Hatırlatma Zamanı:</value>
   </data>
   <data name="Boylam" xml:space="preserve">
     <value>Boylam: {0}</value>

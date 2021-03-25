@@ -8,12 +8,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Acr.UserDialogs;
+using Plugin.LocalNotification;
+using Shiny;
+using Shiny.Notifications;
+using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.Services
 {
-    public class TakvimData : ITakvimData
+
+    public class DataService : IDataService
     {
         //readonly List<Item> items;
         public Takvim konum;
@@ -27,14 +32,14 @@ namespace SuleymaniyeTakvimi.Services
         //        cts.Cancel();
         //    base.OnDisappearing();
         //}
-        public TakvimData()
+        public DataService()
         {
             takvim = new Takvim()
             {
                 Enlem = Preferences.Get("enlem", 41.0056),
                 Boylam = Preferences.Get("boylam", 28.9767),
                 Yukseklik = Preferences.Get("yukseklik", 4.0),
-                SaatBolgesi = Preferences.Get("saatbolgesi", 1.0),
+                SaatBolgesi = Preferences.Get("saatbolgesi", 3.0),
                 YazKis = Preferences.Get("yazkis", 0.0),
                 FecriKazip = Preferences.Get("fecrikazip", "06:28"),
                 FecriSadik = Preferences.Get("fecrisadik", "07:16"),
@@ -350,6 +355,68 @@ namespace SuleymaniyeTakvimi.Services
             }
 
             return takvim;
+        }
+        public void CheckNotification()
+        {
+            if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipBildiri", false)) SetNotification("fecrikazip", takvim.FecriKazip);
+            if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikBildiri", false)) SetNotification("fecrisadik", takvim.FecriSadik);
+            if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuBildiri", false)) SetNotification("sabahsonu", takvim.SabahSonu);
+            if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleBildiri", false)) SetNotification("ogle", takvim.Ogle);
+            if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiBildiri", false)) SetNotification("ikindi", takvim.Ikindi);
+            if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamBildiri", false)) SetNotification("aksam", takvim.Aksam);
+            if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiBildiri", false)) SetNotification("yatsi", takvim.Yatsi);
+            if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuBildiri", false)) SetNotification("yatsisonu", takvim.YatsiSonu);
+        }
+
+        private void SetNotification(string Adi, string Vakit)
+        {
+            var itemAdi = "";
+            var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get(Adi + "BildirmeVakti", 0.0)));
+            switch (Adi)
+            {
+                case "fecrikazip":
+                    itemAdi = "Fecri Kazip";
+                    break;
+                case "fecrisadik":
+                    itemAdi = "Fecri Sadik";
+                    break;
+                case "sabahsonu":
+                    itemAdi = "Sabah Sonu";
+                    break;
+                case "ogle":
+                    itemAdi = "Öğle";
+                    break;
+                case "ikindi":
+                    itemAdi = "İkindi";
+                    break;
+                case "aksam":
+                    itemAdi = "Akşam";
+                    break;
+                case "yatsi":
+                    itemAdi = "Yatsı";
+                    break;
+                case "yatsisonu":
+                    itemAdi = "Yatsı Sonu";
+                    break;
+            }
+            //var notification = new NotificationRequest
+            //{
+            //    NotificationId = 100,
+            //    Title = itemAdi + " Vakti Bildirimi",
+            //    Description = itemAdi + " Vakti: " + Vakit,
+            //    ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
+            //    NotifyTime = DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
+            //};
+            //NotificationCenter.Current.Show(notification);
+            var notification = new Notification
+            {
+                Id = new Random().Next(101,999),
+                Title = $"{itemAdi} Vakti Bildirimi",
+                Message = $"{itemAdi} Vakti: {bildiriVakti}",
+                ScheduleDate = DateTime.Parse(bildiriVakti.ToString()),
+            };
+            ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+
         }
     }
 }

@@ -97,7 +97,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bildirme Zamanı:.
+        ///   Looks up a localized string similar to Hatırlatma Zamanı:.
         /// </summary>
         internal static string BildirmeZamani {
             get {

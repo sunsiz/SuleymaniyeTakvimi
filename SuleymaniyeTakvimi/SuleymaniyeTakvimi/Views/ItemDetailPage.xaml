@@ -12,7 +12,7 @@
         <viewModels:ItemDetailViewModel/>
     </ContentPage.BindingContext>
     <ScrollView VerticalScrollBarVisibility="Never">
-        <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="25" Margin="9">
+        <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18" Margin="9">
             <pancakeView:PancakeView.BackgroundGradientStops>
                 <pancakeView:GradientStop Color="WhiteSmoke" Offset="0"/>
                 <pancakeView:GradientStop Color="AliceBlue" Offset="1"/>
@@ -44,7 +44,7 @@
                         <Label HorizontalOptions="CenterAndExpand" Text="{Binding Title}" FontSize="28" FontAttributes="Bold" TextColor="SaddleBrown"/>
                     </StackLayout>
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView CornerRadius="9" Grid.Row="1" Grid.ColumnSpan="2" Margin="14,4">
+                <pancakeView:PancakeView CornerRadius="9" Grid.Row="1" Grid.ColumnSpan="2" Margin="4,4" VerticalOptions="Center">
                     <pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStop Color="AntiqueWhite" Offset="0"/>
                         <pancakeView:GradientStop Color="PapayaWhip" Offset="1"/>
@@ -67,7 +67,7 @@
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView CornerRadius="9" Grid.Row="3" Grid.ColumnSpan="2" Margin="14,4">
+                <pancakeView:PancakeView CornerRadius="9" Grid.Row="3" Grid.ColumnSpan="2" Margin="4,4">
                     <pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStop Color="Khaki" Offset="0"/>
                         <pancakeView:GradientStop Color="LightYellow" Offset="1"/>
@@ -102,7 +102,7 @@
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView CornerRadius="9" Grid.Row="6" Grid.ColumnSpan="2" Margin="14,4">
+                <pancakeView:PancakeView CornerRadius="9" Grid.Row="6" Grid.ColumnSpan="2" Margin="4,4">
                     <pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStop Color="LemonChiffon" Offset="0"/>
                         <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
@@ -113,7 +113,7 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout HorizontalOptions="FillAndExpand" Padding="14">
                         <Label HorizontalOptions="Start" Text="{x:Static resources:AppResources.BildirmeZamani}" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>
-                        <RadioButton Content="{x:Static resources:AppResources.Zamaninda}" Value="0" IsEnabled="{Binding Etkin}" x:Name="Zamaninda" GroupName="zaman" BackgroundColor="Transparent">
+                        <RadioButton Content="{x:Static resources:AppResources.Zamaninda}" Value="0" x:Name="Zamaninda" GroupName="zaman" BackgroundColor="Transparent">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="0">
                                     <Setter TargetName="Zamaninda" Property="IsChecked" Value="True"/>
@@ -123,7 +123,7 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Zamaninda}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <RadioButton Content="{x:Static resources:AppResources.BesDakikaOnceden}" Value="5" IsEnabled="{Binding Etkin}" x:Name="Bes" GroupName="zaman" BackgroundColor="Transparent">
+                        <RadioButton Content="{x:Static resources:AppResources.BesDakikaOnceden}" Value="5" x:Name="Bes" GroupName="zaman" BackgroundColor="Transparent">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="5">
                                     <Setter TargetName="Bes" Property="IsChecked" Value="True"/>
@@ -133,7 +133,7 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Bes}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <RadioButton Content="{x:Static resources:AppResources.OnBesDakikaOnceden}" Value="15" IsEnabled="{Binding Etkin}" x:Name="Onbes" GroupName="zaman" BackgroundColor="Transparent">
+                        <RadioButton Content="{x:Static resources:AppResources.OnBesDakikaOnceden}" Value="15" x:Name="Onbes" GroupName="zaman" BackgroundColor="Transparent">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="15">
                                     <Setter TargetName="Onbes" Property="IsChecked" Value="True"/>

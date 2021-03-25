@@ -60,7 +60,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             //Title = "Süleymaniye Vakfı Takvimi";
             Items = new ObservableCollection<Item>();
-            var data = new TakvimData();
+            var data = new DataService();
             _takvim = data.takvim;
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 

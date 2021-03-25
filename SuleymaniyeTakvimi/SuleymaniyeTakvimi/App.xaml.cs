@@ -17,7 +17,7 @@ namespace SuleymaniyeTakvimi
             InitializeComponent();
 
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            DependencyService.Register<TakvimData>();
+            DependencyService.Register<DataService>();
             // Local Notification tap event listener
             NotificationCenter.Current.NotificationTapped += OnLocalNotificationTapped;
             MainPage = new AppShell();
