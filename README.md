@@ -7,5 +7,5 @@ Suleymaniyetakvimi.com Xamarin mobile application
 
 **Future Plans:**
 * Implement a compass for indicate qibla direction.
-* Online radio from [Radyo Fitrat](www.radyofitrat.com)
+* Online radio from [Radyo Fitrat](http://www.radyofitrat.com)
 * Links for our sites and social media
