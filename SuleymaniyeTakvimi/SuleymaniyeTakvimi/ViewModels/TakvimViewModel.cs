@@ -35,8 +35,9 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 if (vakitler == null)
                 {
-                    var data = new TakvimData();
+                    var data = new DataService();
                     vakitler = data.takvim;
+                    //data.CheckNotification();
                 }
 
                 return vakitler;
@@ -99,7 +100,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             //data.GetCurrentLocation().Wait(2000);
             //Vakitler = data.VakitHesabi();
 
-            var data = new TakvimData();
+            var data = new DataService();
             Vakitler = data.takvim;
 
             //Task.Run(async () =>
@@ -149,7 +150,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
             async Task GetPrayerTimesAsync()/*TakvimData data*/
             {
-                var data = new TakvimData();
+                var data = new DataService();
                 try
                 {
                     var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
@@ -199,7 +200,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
             CancellationTokenSource cts = new CancellationTokenSource();
             var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);
-            var data = new TakvimData();
+            var data = new DataService();
             if (location == null)
                 await data.GetCurrentLocation();
             else
@@ -218,7 +219,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private void GetLocation()
         {
             IsBusy = true;
-            var data = new TakvimData();
+            var data = new DataService();
             Vakitler = data.takvim;
 
             //refreshing last known location to the newest one.
@@ -234,7 +235,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
             try
             {
-                var data = new TakvimData();
+                var data = new DataService();
                 //Vakitler = data.takvim.Result;
             }
             catch (Exception ex)

@@ -60,7 +60,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             //Title = "Süleymaniye Vakfı Takvimi";
             Items = new ObservableCollection<Item>();
-            var data = new TakvimData();
+            var data = new DataService();
             _takvim = data.takvim;
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
@@ -108,6 +108,14 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Items.Add(Aksam);
                 Items.Add(Yatsi);
                 Items.Add(YatsiSonu);
+                if (Preferences.Get(FecriKazip.Id, "") == "") Preferences.Set(FecriKazip.Id, _takvim.FecriKazip);
+                if (Preferences.Get(FecriSadik.Id, "") == "") Preferences.Set(FecriSadik.Id, _takvim.FecriSadik);
+                if (Preferences.Get(SabahSonu.Id, "") == "") Preferences.Set(SabahSonu.Id, _takvim.SabahSonu);
+                if (Preferences.Get(Ogle.Id, "") == "") Preferences.Set(Ogle.Id, _takvim.Ogle);
+                if (Preferences.Get(Ikindi.Id, "") == "") Preferences.Set(Ikindi.Id, _takvim.Ikindi);
+                if (Preferences.Get(Aksam.Id, "") == "") Preferences.Set(Aksam.Id, _takvim.Aksam);
+                if (Preferences.Get(Yatsi.Id, "") == "") Preferences.Set(Yatsi.Id, _takvim.Yatsi);
+                if (Preferences.Get(YatsiSonu.Id, "") == "") Preferences.Set(YatsiSonu.Id, _takvim.YatsiSonu);
                 //Preferences.Set(FecriKazip.Id + "Etkin", FecriKazip.Etkin);
                 //Preferences.Set(FecriSadik.Id + "Etkin", FecriSadik.Etkin);
                 //Preferences.Set(SabahSonu.Id + "Etkin", SabahSonu.Etkin);

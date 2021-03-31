@@ -17,8 +17,8 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public OnBoardingViewModel()
         {
-            SetNextButtonText("SONRAKİ");
-            SetSkipButtonText("İLERKİ");
+            SetNextButtonText("SONRA");
+            SetSkipButtonText("ATLA");
             OnBoarding();
             LaunchNextCommand();
             LaunchSkipCommand();
@@ -35,19 +35,19 @@ namespace SuleymaniyeTakvimi.ViewModels
                 {
                     Title = "Merhaba!",
                     Content = "Süleymaniye Vakfi Takvim uygulamasına Hoş geldiniz.",
-                    ImageUrl = "welcome.svg"
+                    ImageUrl = "welcome"
                 },
                 new OnBoarding
                 {
                     Title = "Özellikler",
                     Content = "Namaz vakitlerini bulunduğunuz konuma göre gösterir.\nNamaz vakti geldiğinde isterseniz bildiri ile uyarabilir.",
-                    ImageUrl = "show.svg"
+                    ImageUrl = "show"
                 },
                 new OnBoarding
                 {
                     Title = "Yenilikler",
                     Content = "Uygulama siz değerli kullanıcılarımızın Önerileri ile yeniden tasarlandi.",
-                    ImageUrl = "notification.svg"
+                    ImageUrl = "notification"
                 }
             };
         }
@@ -121,11 +121,11 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             if (LastPositionReached())
             {
-                SetNextButtonText("GOT IT");
+                SetNextButtonText("TAMAM");
             }
             else
             {
-                SetNextButtonText("NEXT");
+                SetNextButtonText("SONRA");
             }
         }
 

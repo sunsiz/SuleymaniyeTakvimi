@@ -2,6 +2,7 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              x:Class="SuleymaniyeTakvimi.App">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
@@ -10,7 +11,7 @@
         <ResourceDictionary>
             <!--  Values  -->
             <Thickness x:Key="ContentPadding">3, 7</Thickness>
-            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">DodgerBlue</Color>
             <Color x:Key="AppPrimaryColor">#1976D2</Color>
             <Color x:Key="AppBackgroundColor">AliceBlue</Color>
             <Color x:Key="PrimaryColor">Black</Color>
@@ -24,7 +25,7 @@
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="BarTextColor" Value="{StaticResource NavigationBarTextColor}" />
-                <!--<Setter Property="ios:NavigationPage.HideNavigationBarSeparator" Value="True" />-->
+                <Setter Property="iOsSpecific:NavigationPage.HideNavigationBarSeparator" Value="True" />
             </Style>
 
             <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
@@ -60,9 +61,14 @@
                 <On Platform="Android" Value="sans-serif" />
             </OnPlatform>
 
-            <OnPlatform x:Key="font_icon" x:TypeArguments="x:String">
-                <On Platform="iOS" Value=".Ionicons" />
-                <On Platform="Android" Value="ionicons.ttf" />
+            <!--<OnPlatform x:Key="FontIcon" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Typicons" />
+                <On Platform="Android" Value="typicons.ttf" />
+            </OnPlatform>-->
+
+            <OnPlatform x:Key="MaterialIcons" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="MaterialIcons" />
+                <On Platform="Android" Value="MaterialIcons-Regular.ttf" />
             </OnPlatform>
             <!--<OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
                 <On Platform="iOS" Value="Material Icons" />
@@ -102,7 +108,7 @@
             <Style x:Key="card" TargetType="pancakeView:PancakeView">
                 <Setter Property="BackgroundColor" Value="#ffffff" />
                 <Setter Property="CornerRadius" Value="9" />
-                <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.2, Offset='4,4'}" />
+                <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.2, Offset='4,4'}" />
             </Style>
             <Style TargetType="CheckBox">
                 <Style.Triggers>

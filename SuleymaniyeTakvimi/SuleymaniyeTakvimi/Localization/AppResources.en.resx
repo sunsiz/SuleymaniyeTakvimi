@@ -130,13 +130,13 @@
     <value>Show Notification</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>Notification Time:</value>
+    <value>Reminding Time:</value>
   </data>
   <data name="Boylam" xml:space="preserve">
-    <value>Longitude: {0}</value>
+    <value>Longitude: {0:G9}</value>
   </data>
   <data name="Enlem" xml:space="preserve">
-    <value>Latitude: {0}</value>
+    <value>Latitude: {0:G9}</value>
   </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
     <value>Enable</value>

@@ -11,30 +11,31 @@ using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
-    class CalendarViewModel:MvvmHelpers.BaseViewModel
+    class CalendarViewModel : MvvmHelpers.BaseViewModel
     {
         public ObservableCollection<Schedule> schedule { get; set; }
-        Schedule selectedSchedule;
+        //Schedule selectedSchedule;
         String today;
-        private ICommand vibreationChecked;
+        //private ICommand vibreationChecked;
         //private ICommand notificationChecked;
         //private ICommand enableReminder;
-        public ICommand VibrationChecked => vibreationChecked ??= new Command(() =>
-        {
-            var theSchedule = selectedSchedule;
-            switch (theSchedule.Title)
-            {
-                case "Fecri Kazip": Preferences.Set("FKVibration", theSchedule.Vibration); break;
-                case "Fecri Sadik": Preferences.Set("FSVibration", theSchedule.Vibration); break;
-                case "Saba Sonu": Preferences.Set("SSVibration", theSchedule.Vibration); break;
-                case "Öğle": Preferences.Set("OGVibration", theSchedule.Vibration); break;
-                case "İkindi": Preferences.Set("IKVibration", theSchedule.Vibration); break;
-                case "Akşam": Preferences.Set("AKVibration", theSchedule.Vibration); break;
-                case "Yatsı": Preferences.Set("YAVibration", theSchedule.Vibration); break;
-                case "Yatsı Sonu": Preferences.Set("YSVibration", theSchedule.Vibration); break;
-            }
-        });
+        //public ICommand VibrationChecked => vibreationChecked ??= new Command((sch) =>
+        //{
+        //    var theSchedule = (Schedule)sch;
+        //    switch (theSchedule.Title)
+        //    {
+        //        case "Fecri Kazip": Preferences.Set("FKVibration", theSchedule.Vibration); break;
+        //        case "Fecri Sadik": Preferences.Set("FSVibration", theSchedule.Vibration); break;
+        //        case "Saba Sonu": Preferences.Set("SSVibration", theSchedule.Vibration); break;
+        //        case "Öğle": Preferences.Set("OGVibration", theSchedule.Vibration); break;
+        //        case "İkindi": Preferences.Set("IKVibration", theSchedule.Vibration); break;
+        //        case "Akşam": Preferences.Set("AKVibration", theSchedule.Vibration); break;
+        //        case "Yatsı": Preferences.Set("YAVibration", theSchedule.Vibration); break;
+        //        case "Yatsı Sonu": Preferences.Set("YSVibration", theSchedule.Vibration); break;
+        //    }
+        //});
         //public ICommand NotificationChecked => notificationChecked ??= new Command(notificationCheckedChanged);
+        public ICommand VibrationChecked { get; private set; }
         public ICommand NotificationCheckedChanged { get; private set; }
         public ICommand ReminderEnabledChanged { get; private set; }
         //public ICommand EnableReminder => enableReminder ??= new Command(() =>
@@ -42,22 +43,22 @@ namespace SuleymaniyeTakvimi.ViewModels
         //    var testing = "";
         //});
 
-        public Schedule SelectedSchedule
-        {
-            get => selectedSchedule;
-            set => SetProperty(ref selectedSchedule, value);
-        }
+        //public Schedule SelectedSchedule
+        //{
+        //    get => selectedSchedule;
+        //    set => SetProperty(ref selectedSchedule, value);
+        //}
         public string Today
         {
-            get { return DateTime.Today.ToString("yyyy MMMM dd"); }
-            set { SetProperty(ref today, value); }
+            get => DateTime.Today.ToString("yyyy MMMM dd");
+            set => SetProperty(ref today, value);
         }
 
-        
+
         public CalendarViewModel()
         {
             Title = "Süleymaniye Vakfı Takvimi";
-            var data=new TakvimData();
+            var data = new DataService();
             var takvim = data.takvim;
             schedule = new ObservableCollection<Schedule>
             {
@@ -66,9 +67,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Title = "Fecri Kazip",
                     Hour = takvim.FecriKazip,
                     State = CheckState(DateTime.Parse(takvim.FecriKazip),DateTime.Parse(takvim.FecriSadik)),
-                    NotificationOn = Preferences.Get("FKNotification",false),
-                    Vibration = Preferences.Get("FKVibration",false),
-                    Notification = Preferences.Get("FKNotification",false)
+                    NotificationOn = Preferences.Get("fecrikazipEtkin",false),
+                    Vibration = Preferences.Get("fecrikazipTitreme",false),
+                    Notification = Preferences.Get("fecrikazipBildiri",false)
+                    //NotificationOn = Preferences.Get("FKNotification",false),
+                    //Vibration = Preferences.Get("FKVibration",false),
+                    //Notification = Preferences.Get("FKNotification",false)
                     //NotificationType = Preferences.Get("FKNotification",0)
                     //Passed = DateTime.Now > DateTime.Parse(takvim.FecriSadik),
                     //Happening = DateTime.Now > DateTime.Parse(takvim.FecriKazip) &&
@@ -80,9 +84,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Title = "Fecri Sadik",
                     Hour = takvim.FecriSadik,
                     State = CheckState(DateTime.Parse(takvim.SabahSonu), DateTime.Parse(takvim.FecriSadik)),
-                    NotificationOn = Preferences.Get("FSNotification",false),
-                    Vibration = Preferences.Get("FSVibration",false),
-                    Notification = Preferences.Get("FSNotification",false)
+                    NotificationOn = Preferences.Get("fecrisadikEtkin",false),
+                    Vibration = Preferences.Get("fecrisadikTitreme",false),
+                    Notification = Preferences.Get("fecrisadikBildiri",false)
+                    //NotificationOn = Preferences.Get("FSNotification",false),
+                    //Vibration = Preferences.Get("FSVibration",false),
+                    //Notification = Preferences.Get("FSNotification",false)
                     //NotificationType = Preferences.Get("FSNotification",0)
                     //Passed = DateTime.Now > DateTime.Parse(takvim.SabahSonu),
                     //Happening = DateTime.Now > DateTime.Parse(takvim.FecriSadik) &&
@@ -94,9 +101,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Title = "Sabah Sonu",
                     Hour = takvim.SabahSonu,
                     State = CheckState(DateTime.Parse(takvim.Ogle), DateTime.Parse(takvim.SabahSonu)),
-                    NotificationOn = Preferences.Get("SSNotification",false),
-                    Vibration = Preferences.Get("SSVibration",false),
-                    Notification = Preferences.Get("SSNotification",false)
+                    NotificationOn = Preferences.Get("sabahsonuEtkin",false),
+                    Vibration = Preferences.Get("sabahsonuTitreme",false),
+                    Notification = Preferences.Get("SabahsonuBildiri",false)
+                    //NotificationOn = Preferences.Get("SSNotification",false),
+                    //Vibration = Preferences.Get("SSVibration",false),
+                    //Notification = Preferences.Get("SSNotification",false)
                     //NotificationType = Preferences.Get("SSNotification",0)
                     //Passed = DateTime.Now > DateTime.Parse(takvim.Ogle),
                     //Happening = DateTime.Now > DateTime.Parse(takvim.SabahSonu) &&
@@ -108,9 +118,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Title = "Öğle",
                     Hour = takvim.Ogle,
                     State = CheckState(DateTime.Parse(takvim.Ikindi), DateTime.Parse(takvim.Ogle)),
-                    NotificationOn = Preferences.Get("OGNotification",false),
-                    Vibration = Preferences.Get("OGVibration",false),
-                    Notification = Preferences.Get("OGNotification",false)
+                    NotificationOn = Preferences.Get("ogleEtkin",false),
+                    Vibration = Preferences.Get("ogleTitreme",false),
+                    Notification = Preferences.Get("ogleBildiri",false)
+                    //NotificationOn = Preferences.Get("OGNotification",false),
+                    //Vibration = Preferences.Get("OGVibration",false),
+                    //Notification = Preferences.Get("OGNotification",false)
                     //NotificationType = Preferences.Get("OGNotification",0)
                     //Passed = DateTime.Now > DateTime.Parse(takvim.Ikindi),
                     //Happening = DateTime.Now > DateTime.Parse(takvim.Ogle) &&
@@ -122,9 +135,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Title = "İkindi",
                     Hour = takvim.Ikindi,
                     State = CheckState(DateTime.Parse(takvim.Aksam), DateTime.Parse(takvim.Ikindi)),
-                    NotificationOn = Preferences.Get("IKNotification",false),
-                    Vibration = Preferences.Get("IKVibration",false),
-                    Notification = Preferences.Get("IKNotification",false)
+                    NotificationOn = Preferences.Get("ikindiEtkin",false),
+                    Vibration = Preferences.Get("ikindiTitreme",false),
+                    Notification = Preferences.Get("ikindiBildiri",false)
+                    //NotificationOn = Preferences.Get("IKNotification",false),
+                    //Vibration = Preferences.Get("IKVibration",false),
+                    //Notification = Preferences.Get("IKNotification",false)
                     //NotificationType = Preferences.Get("IKNotification",0)
                     //Passed = DateTime.Now > DateTime.Parse(takvim.Aksam),
                     //Happening = DateTime.Now > DateTime.Parse(takvim.Ikindi) &&
@@ -136,9 +152,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Title = "Akşam",
                     Hour = takvim.Aksam,
                     State = CheckState(DateTime.Parse(takvim.Yatsi), DateTime.Parse(takvim.Aksam)),
-                    NotificationOn = Preferences.Get("AKNotification",false),
-                    Vibration = Preferences.Get("AKVibration",false),
-                    Notification = Preferences.Get("AKNotification",false)
+                    NotificationOn = Preferences.Get("aksamEtkin",false),
+                    Vibration = Preferences.Get("aksamTitreme",false),
+                    Notification = Preferences.Get("aksamBildiri",false)
+                    //NotificationOn = Preferences.Get("AKNotification",false),
+                    //Vibration = Preferences.Get("AKVibration",false),
+                    //Notification = Preferences.Get("AKNotification",false)
                     //NotificationType = Preferences.Get("AKNotification",0)
                     //Passed = DateTime.Now > DateTime.Parse(takvim.Yatsi),
                     //Happening = DateTime.Now > DateTime.Parse(takvim.Aksam) &&
@@ -150,9 +169,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Title = "Yatsı",
                     Hour = takvim.Yatsi,
                     State = CheckState(DateTime.Parse(takvim.YatsiSonu), DateTime.Parse(takvim.Yatsi)),
-                    NotificationOn = Preferences.Get("YANotification",false),
-                    Vibration = Preferences.Get("YAVibration",false),
-                    Notification = Preferences.Get("YANotification",false)
+                    NotificationOn = Preferences.Get("yatsiEtkin",false),
+                    Vibration = Preferences.Get("yatsiTitrme",false),
+                    Notification = Preferences.Get("yatsiBildiri",false)
+                    //NotificationOn = Preferences.Get("YANotification",false),
+                    //Vibration = Preferences.Get("YAVibration",false),
+                    //Notification = Preferences.Get("YANotification",false)
                     //NotificationType = Preferences.Get("YANotification",0)
                     //Passed = DateTime.Now > DateTime.Parse(takvim.YatsiSonu),
                     //Happening = DateTime.Now > DateTime.Parse(takvim.Yatsi) &&
@@ -164,9 +186,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Title = "Yatsı Sonu",
                     Hour = takvim.YatsiSonu,
                     State = CheckState(DateTime.Parse(takvim.FecriKazip), DateTime.Parse(takvim.YatsiSonu)),
-                    NotificationOn = Preferences.Get("YSNotification",false),
-                    Vibration = Preferences.Get("YSVibration",false),
-                    Notification = Preferences.Get("YSNotification",false)
+                    NotificationOn = Preferences.Get("yatsisonuEtkin",false),
+                    Vibration = Preferences.Get("yatsisonuTitreme",false),
+                    Notification = Preferences.Get("yatsisonuBildiri",false)
+                    //NotificationOn = Preferences.Get("YSNotification",false),
+                    //Vibration = Preferences.Get("YSVibration",false),
+                    //Notification = Preferences.Get("YSNotification",false)
                     //NotificationType = Preferences.Get("YSNotification",0)
                     //Passed = DateTime.Now > DateTime.Parse(takvim.FecriKazip),
                     //Happening = DateTime.Now > DateTime.Parse(takvim.YatsiSonu) &&
@@ -176,6 +201,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             };
             ReminderEnabledChanged = new Command(ReminderSettingChanged);
             NotificationCheckedChanged = new Command(notificationSettingChanged);
+            VibrationChecked = new Xamarin.Forms.Command(vibrationCheckedChanged);
         }
 
         private void ReminderSettingChanged(object obj)
@@ -192,35 +218,73 @@ namespace SuleymaniyeTakvimi.ViewModels
             return state;
         }
 
-        public void vibrationCheckedChanged()
+        public void vibrationCheckedChanged(object obj)
         {
-            var theSchedule = selectedSchedule;
-            switch (theSchedule.Title)
+            if (obj.GetType() == typeof(Schedule))
             {
-                case "Fecri Kazip":Preferences.Set("FKVibration",theSchedule.Vibration);break;
-                case "Fecri Sadik":Preferences.Set("FSVibration",theSchedule.Vibration);break;
-                case "Saba Sonu": Preferences.Set("SSVibration", theSchedule.Vibration); break;
-                case "Öğle": Preferences.Set("OGVibration", theSchedule.Vibration); break;
-                case "İkindi": Preferences.Set("IKVibration", theSchedule.Vibration); break;
-                case "Akşam": Preferences.Set("AKVibration", theSchedule.Vibration); break;
-                case "Yatsı": Preferences.Set("YAVibration", theSchedule.Vibration); break;
-                case "Yatsı Sonu": Preferences.Set("YSVibration", theSchedule.Vibration); break;
+                var theSchedule = obj as Schedule;
+                switch (theSchedule.Title)
+                {
+                    case "Fecri Kazip":
+                        Preferences.Set("fecrikazipTitreme", theSchedule.Vibration);
+                        break;
+                    case "Fecri Sadik":
+                        Preferences.Set("fecrisadikTitreme", theSchedule.Vibration);
+                        break;
+                    case "Saba Sonu":
+                        Preferences.Set("sabahsonuTitreme", theSchedule.Vibration);
+                        break;
+                    case "Öğle":
+                        Preferences.Set("ogleTitreme", theSchedule.Vibration);
+                        break;
+                    case "İkindi":
+                        Preferences.Set("ikindiTitreme", theSchedule.Vibration);
+                        break;
+                    case "Akşam":
+                        Preferences.Set("aksamTitreme", theSchedule.Vibration);
+                        break;
+                    case "Yatsı":
+                        Preferences.Set("yatsiTitreme", theSchedule.Vibration);
+                        break;
+                    case "Yatsı Sonu":
+                        Preferences.Set("yatsisonuTitreme", theSchedule.Vibration);
+                        break;
+                }
             }
         }
 
         public void notificationSettingChanged(object obj)
         {
-            var theSchedule = selectedSchedule;
-            switch (theSchedule.Title)
+            if (obj.GetType() == typeof(Schedule))
             {
-                case "Fecri Kazip": Preferences.Set("FKNotification", theSchedule.Notification); break;
-                case "Fecri Sadik": Preferences.Set("FSNotification", theSchedule.Notification); break;
-                case "Saba Sonu": Preferences.Set("SSNotification", theSchedule.Notification); break;
-                case "Öğle": Preferences.Set("OGNotification", theSchedule.Notification); break;
-                case "İkindi": Preferences.Set("IKNotification", theSchedule.Notification); break;
-                case "Akşam": Preferences.Set("AKNotification", theSchedule.Notification); break;
-                case "Yatsı": Preferences.Set("YANotification", theSchedule.Notification); break;
-                case "Yatsı Sonu": Preferences.Set("YSNotification", theSchedule.Notification); break;
+                var theSchedule = (Schedule)obj;
+                switch (theSchedule.Title)
+                {
+                    case "Fecri Kazip":
+                        Preferences.Set("fecrikazipBildiri", theSchedule.Notification);
+                        break;
+                    case "Fecri Sadik":
+                        Preferences.Set("fecrisadikBildiri", theSchedule.Notification);
+                        break;
+                    case "Saba Sonu":
+                        Preferences.Set("sabahsonuBildiri", theSchedule.Notification);
+                        break;
+                    case "Öğle":
+                        Preferences.Set("ogleBildiri", theSchedule.Notification);
+                        break;
+                    case "İkindi":
+                        Preferences.Set("ikindiBildiri", theSchedule.Notification);
+                        break;
+                    case "Akşam":
+                        Preferences.Set("aksamBildiri", theSchedule.Notification);
+                        break;
+                    case "Yatsı":
+                        Preferences.Set("yatsiBildiri", theSchedule.Notification);
+                        break;
+                    case "Yatsı Sonu":
+                        Preferences.Set("yatsisonuBildiri", theSchedule.Notification);
+                        break;
+                }
             }
         }
     }

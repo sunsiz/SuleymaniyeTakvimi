@@ -130,13 +130,13 @@
     <value>Bildirim Göster</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>Bildirme Zamanı:</value>
+    <value>Hatırlatma Zamanı:</value>
   </data>
   <data name="Boylam" xml:space="preserve">
-    <value>Boylam: {0}</value>
+    <value>Boylam: {0:G9}</value>
   </data>
   <data name="Enlem" xml:space="preserve">
-    <value>Enlem: {0}</value>
+    <value>Enlem: {0:G9}</value>
   </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
     <value>Etkinleştir</value>

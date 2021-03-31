@@ -7,26 +7,56 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\BackgroundNotificationJob.cs" />
+    <Compile Remove="ShinyDelegate.cs" />
+    <Compile Remove="Startup.cs" />
+    <Compile Remove="Typicons.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\app_logo.png" />
+    <None Remove="Assets\ezan.mp3" />
+    <None Remove="Assets\icon_about.png" />
+    <None Remove="Assets\icon_calendar.png" />
+    <None Remove="Assets\icon_feed.png" />
+    <None Remove="Assets\notification.svg" />
+    <None Remove="Assets\show.svg" />
+    <None Remove="Assets\welcome.svg" />
     <None Remove="Fonts\MaterialIcons-Regular.ttf" />
     <None Remove="Fonts\typicons.ttf" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\ezan.mp3" />
     <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
-    <EmbeddedResource Include="Fonts\typicons.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.481" />
-    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.8" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.9" />
+    <PackageReference Include="Matcha.BackgroundService" Version="1.0.5478" />
     <PackageReference Include="Plugin.LocalNotification" Version="5.2.0" />
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="0.9.0" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
     <PackageReference Include="Sharpnado.Presentation.Forms" Version="1.7.1" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.3" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SharedImage Include="Assets\app_logo.png" />
+    <SharedImage Include="Assets\icon_about.png" />
+    <SharedImage Include="Assets\icon_calendar.png" />
+    <SharedImage Include="Assets\icon_feed.png" />
+    <SharedImage Include="Assets\notification.svg" />
+    <SharedImage Include="Assets\show.svg" />
+    <SharedImage Include="Assets\welcome.svg" />
   </ItemGroup>
 
   <ItemGroup>

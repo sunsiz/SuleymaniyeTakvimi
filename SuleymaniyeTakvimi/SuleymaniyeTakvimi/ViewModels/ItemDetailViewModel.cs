@@ -3,7 +3,11 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
+using Matcha.BackgroundService;
 using Plugin.LocalNotification;
+using Plugin.LocalNotifications;
+using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -75,6 +79,26 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Titreme: " +
                                   Preferences.Get(itemId + "Titreme", value));
                 Titreme = value;
+                if (value)
+                {
+                    try
+                    {
+                        // Use default vibration length
+                        Vibration.Vibrate();
+
+                        // Or use specified time
+                        var duration = TimeSpan.FromSeconds(1);
+                        Vibration.Vibrate(duration);
+                    }
+                    catch (FeatureNotSupportedException ex)
+                    {
+                        UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. "+ex.Message, "Cihaz desteklemiyor");
+                    }
+                    catch (Exception ex)
+                    {
+                        UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+                    }
+                }
             }
         }
 
@@ -88,18 +112,60 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Bildiri: " +
                                   Preferences.Get(itemId + "Bildiri", value));
                 Bildiri = value;
+                var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
                 if (value)
                 {
-                    var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
-                    var notification = new NotificationRequest
-                    {
-                        NotificationId = 100,
-                        Title = itemAdi + " Vakti Bildirimi",
-                        Description = itemAdi + " Vakti: " + Vakit,
-                        ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
-                        NotifyTime =  DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
-                    };
-                    NotificationCenter.Current.Show(notification);
+                    CrossLocalNotifications.Current.Show("Bildiri Ayarı Etkinleşti",
+                        $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.", 1001);
+                    CrossLocalNotifications.Current.Cancel(1002);
+                    //var notification = new NotificationRequest
+                    //{
+                    //    NotificationId = 100,
+                    //    Title = itemAdi + " Vakti Bildirimi",
+                    //    Description = itemAdi + " Vakti: " + Vakit,
+                    //    ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
+                    //    NotifyTime =  DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
+                    //};
+                    //NotificationCenter.Current.Show(notification);
+                    //var notification = new Notification
+                    //{
+                    //    Id = new Random().Next(101,999),
+                    //    Title = "Bildiri Ayarı Etkinleşti",
+                    //    Message = $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.",
+                    //    //ScheduleDate = DateTimeOffset.Parse(bildiriVakti.ToString()),
+                    //    //ScheduleDate = DateTime.Now.AddSeconds(2)
+                    //};
+                    //ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+                    //Task.Run(async () =>
+                    //{
+                    //    var notificationManager = ShinyHost.Resolve<INotificationManager>();
+                    //    var state= await notificationManager.RequestAccess();
+                    //    await notificationManager.Send(notification).ConfigureAwait(false);
+                    //    //Console.WriteLine("Notification Message ID: " + msgId);
+                    //});
+                    //try
+                    //{
+                    //    // Use default vibration length
+                    //    Vibration.Vibrate();
+
+                    //    // Or use specified time
+                    //    var duration = TimeSpan.FromSeconds(1);
+                    //    Vibration.Vibrate(duration);
+                    //}
+                    //catch (FeatureNotSupportedException ex)
+                    //{
+                    //    UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor.", "Cihaz desteklemiyor");
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+                    //}
+                }
+                else
+                {
+                    CrossLocalNotifications.Current.Show("Bildiri Ayarı Devre Dışı",
+                        $"{itemAdi} --> {bildiriVakti} için bildiri devre dışı bırakıldı.", 1002);
+                    CrossLocalNotifications.Current.Cancel(1001);
                 }
             }
         }
@@ -115,6 +181,11 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
                                   Preferences.Get(itemId + "Etkin", value));
                 Etkin = value;
+                if(value && BackgroundAggregatorService.Instance==null)
+                {
+                    BackgroundAggregatorService.Add(() => new ReminderService(60));
+                    BackgroundAggregatorService.StartBackgroundService();
+                }
             }
         }
 
@@ -214,7 +285,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Bildiri = Preferences.Get(itemId + "Bildiri", false);
                 Titreme = Preferences.Get(itemId + "Titreme", false);
                 Alarm = Preferences.Get(itemId + "Alarm", false);
-                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", (5 - 5).ToString());//when assign "0" for defaultValue, there always thow exception says: java.lang cannot convert boolean to string. So cheating.
+                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0.00");//when assign "0" for defaultValue, there always thow exception says: java.lang cannot convert boolean to string. So cheating.
                 //var item = await DataStore.GetItemAsync(itemId);
                 //Id = item.Id;
                 //Text = item.Text;

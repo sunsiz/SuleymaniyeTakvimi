@@ -97,7 +97,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bildirme Zamanı:.
+        ///   Looks up a localized string similar to Hatırlatma Zamanı:.
         /// </summary>
         internal static string BildirmeZamani {
             get {
@@ -106,7 +106,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Boylam: {0}.
+        ///   Looks up a localized string similar to Boylam: {0:G9}.
         /// </summary>
         internal static string Boylam {
             get {
@@ -115,7 +115,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enlem: {0}.
+        ///   Looks up a localized string similar to Enlem: {0:G9}.
         /// </summary>
         internal static string Enlem {
             get {
