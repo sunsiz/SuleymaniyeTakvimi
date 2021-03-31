@@ -4,9 +4,10 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
+using Matcha.BackgroundService;
 using Plugin.LocalNotification;
-using Shiny;
-using Shiny.Notifications;
+using Plugin.LocalNotifications;
+using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -111,9 +112,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Bildiri: " +
                                   Preferences.Get(itemId + "Bildiri", value));
                 Bildiri = value;
+                var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
                 if (value)
                 {
-                    var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
+                    CrossLocalNotifications.Current.Show("Bildiri Ayarı Etkinleşti",
+                        $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.", 1001);
+                    CrossLocalNotifications.Current.Cancel(1002);
                     //var notification = new NotificationRequest
                     //{
                     //    NotificationId = 100,
@@ -123,15 +127,15 @@ namespace SuleymaniyeTakvimi.ViewModels
                     //    NotifyTime =  DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
                     //};
                     //NotificationCenter.Current.Show(notification);
-                    var notification = new Notification
-                    {
-                        Id = new Random().Next(101,999),
-                        Title = "Bildiri Ayarı Etkinleşti",
-                        Message = $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.",
-                        //ScheduleDate = DateTimeOffset.Parse(bildiriVakti.ToString()),
-                        //ScheduleDate = DateTime.Now.AddSeconds(2)
-                    };
-                    ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+                    //var notification = new Notification
+                    //{
+                    //    Id = new Random().Next(101,999),
+                    //    Title = "Bildiri Ayarı Etkinleşti",
+                    //    Message = $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.",
+                    //    //ScheduleDate = DateTimeOffset.Parse(bildiriVakti.ToString()),
+                    //    //ScheduleDate = DateTime.Now.AddSeconds(2)
+                    //};
+                    //ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
                     //Task.Run(async () =>
                     //{
                     //    var notificationManager = ShinyHost.Resolve<INotificationManager>();
@@ -157,6 +161,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                     //    UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
                     //}
                 }
+                else
+                {
+                    CrossLocalNotifications.Current.Show("Bildiri Ayarı Devre Dışı",
+                        $"{itemAdi} --> {bildiriVakti} için bildiri devre dışı bırakıldı.", 1002);
+                    CrossLocalNotifications.Current.Cancel(1001);
+                }
             }
         }
 
@@ -171,6 +181,11 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
                                   Preferences.Get(itemId + "Etkin", value));
                 Etkin = value;
+                if(value && BackgroundAggregatorService.Instance==null)
+                {
+                    BackgroundAggregatorService.Add(() => new ReminderService(60));
+                    BackgroundAggregatorService.StartBackgroundService();
+                }
             }
         }
 

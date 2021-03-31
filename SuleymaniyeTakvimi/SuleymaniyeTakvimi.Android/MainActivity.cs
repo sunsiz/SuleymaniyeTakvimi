@@ -7,12 +7,15 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading;
+using Matcha.BackgroundService.Droid;
+using MediaManager;
 using Plugin.LocalNotification;
-using Shiny;
+using Plugin.LocalNotifications;
 
 namespace SuleymaniyeTakvimi.Droid
 {
-    [Activity(Label = "SuleymaniyeTakvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "SuleymaniyeTakvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, LaunchMode = LaunchMode.SingleTop)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -20,12 +23,14 @@ namespace SuleymaniyeTakvimi.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             
+            BackgroundAggregator.Init(this);
             base.OnCreate(savedInstanceState);
             UserDialogs.Init(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CrossMediaManager.Current.Init(this);
             //this.ShinyOnCreate();
             //AndroidShinyHost.Init(this, platformBuild: services => services.UseNotifications());
             //Shiny.Notifications.AndroidOptions.DefaultSmallIconResourceName = "app_logo.png";
@@ -34,20 +39,30 @@ namespace SuleymaniyeTakvimi.Droid
             //NotificationCenter.CreateNotificationChannel();
             LoadApplication(new App());
             //NotificationCenter.NotifyNotificationTapped(Intent);
+            LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.app_logo;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            AndroidShinyHost.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            //AndroidShinyHost.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             //this.ShinyRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        //protected override void OnNewIntent(Intent intent)
-        //{
-        //    //NotificationCenter.NotifyNotificationTapped(intent);
-        //    base.OnNewIntent(intent);
-        //    this.ShinyOnNewIntent(intent);
-        //}
+        protected override void OnNewIntent(Intent intent)
+        {
+            //NotificationCenter.NotifyNotificationTapped(intent);
+            base.OnNewIntent(intent);
+            //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
+            //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
+            //CrossMediaManager.Current.Notification.Enabled = false;
+            CrossMediaManager.Current.Stop();
+            //CrossMediaManager.Current.Notification.UpdateNotification();
+            //CrossMediaManager.Current.Queue.Clear();
+            //CrossMediaManager.Current.MediaPlayer = null;
+            //CrossMediaManager.Current.TryDispose();
+            //CrossMediaManager.Current.Dispose();
+            //this.ShinyOnNewIntent(intent);
+        }
     }
 }

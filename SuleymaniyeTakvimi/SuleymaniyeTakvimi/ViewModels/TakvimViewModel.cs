@@ -37,7 +37,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 {
                     var data = new DataService();
                     vakitler = data.takvim;
-                    data.CheckNotification();
+                    //data.CheckNotification();
                 }
 
                 return vakitler;

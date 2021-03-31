@@ -4,10 +4,10 @@
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
-             x:Class="SuleymaniyeTakvimi.Views.CalendarPage"
+             x:Class="SuleymaniyeTakvimi.Views.CalendarPage" x:Name="Page"
              Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
     <ContentPage.BindingContext>
-        <viewModels:CalendarViewModel />
+        <viewModels:CalendarViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid Padding="25,0,0,0" RowDefinitions="Auto, Auto, Auto, *" ColumnDefinitions="Auto, *, Auto">
@@ -31,9 +31,9 @@
                     <DataTemplate>
                         <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *">
                             <!-- Schedule time-->
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Hour}"  TextColor="Brown" FontAttributes="Bold" FontSize="Title"/>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Hour}}"  TextColor="Brown" FontAttributes="Bold" FontSize="Title"/>
                             <!-- Vertical Line-->
-                            <BoxView Grid.Row="1" Grid.Column="0" WidthRequest="5" Color="DeepSkyBlue" HeightRequest="30" Margin="25,0,50,0" />
+                            <BoxView Grid.Row="1" Grid.Column="0" WidthRequest="5" Color="DeepSkyBlue" HeightRequest="30" Margin="25,0,75,0" />
                             <!-- Card -->
                             <pancakeView:PancakeView Style="{StaticResource card}"  Grid.RowSpan="2" Grid.Column="1" CornerRadius="0,25,0,25" Margin="0,5,30,20" Padding="15">
                                 <!--<Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" CornerRadius="25" HasShadow="True" Margin="5,0,30,35">-->
@@ -73,7 +73,7 @@
                                             <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" VerticalOptions="Center">
                                                 <Switch IsToggled="{Binding NotificationOn}" ThumbColor="DeepSkyBlue">
                                                     <Switch.Behaviors>
-                                                        <xct:EventToCommandBehavior EventName="Toggled" Command="{Binding ReminderEnabledChanged}" CommandParameter="{Binding .}" />
+                                                        <xct:EventToCommandBehavior EventName="Toggled" Command="{Binding Source={x:Reference Page}, Path=BindingContext.ReminderEnabledChanged}" CommandParameter="{Binding .}" />
                                                     </Switch.Behaviors>
                                                 </Switch>
                                                 <Label Text="{x:Static resources:AppResources.EtkinlestirSwitch}" FontSize="Large" TextColor="DeepSkyBlue"/>
@@ -81,7 +81,7 @@
                                             <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" VerticalOptions="Center">
                                                 <CheckBox IsChecked="{Binding Vibration}" Color="DeepSkyBlue" IsEnabled="{Binding NotificationOn}">
                                                     <CheckBox.Behaviors>
-                                                        <xct:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding VibrationChecked}" CommandParameter="{Binding .}"/>
+                                                        <xct:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding Source={x:Reference Page}, Path=BindingContext.VibrationChecked}" CommandParameter="{Binding .}"/>
                                                     </CheckBox.Behaviors>
                                                 </CheckBox>
                                                 <Label Text="{x:Static resources:AppResources.TitresimSwitch}" FontSize="Large" TextColor="DeepSkyBlue" IsEnabled="{Binding NotificationOn}"/>
@@ -91,7 +91,7 @@
                                             <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" VerticalOptions="Center">
                                                 <CheckBox IsChecked="{Binding Notification}" Color="DeepSkyBlue" IsEnabled="{Binding NotificationOn}">
                                                     <CheckBox.Behaviors>
-                                                        <xct:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding NotificationCheckedChanged}" CommandParameter="{Binding .}" />
+                                                        <xct:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding Source={x:Reference Page}, Path=BindingContext.NotificationCheckedChanged}" CommandParameter="{Binding .}" />
                                                     </CheckBox.Behaviors>
                                                 </CheckBox>
                                                 <Label Text="{x:Static resources:AppResources.BildirimGosterSwitch}" FontSize="Large" TextColor="DeepSkyBlue" IsEnabled="{Binding NotificationOn}"/>

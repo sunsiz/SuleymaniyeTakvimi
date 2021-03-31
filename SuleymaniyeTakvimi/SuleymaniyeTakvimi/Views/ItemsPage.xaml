@@ -13,9 +13,9 @@
         <local:ItemsViewModel />
     </ContentPage.BindingContext>-->
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding GoToMapCommand}" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     <StackLayout>
         <!--<pancakeView:PancakeView HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="0" Margin="0,0" Padding="0,0" >
         <pancakeView:PancakeView.BackgroundGradientStops BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
@@ -152,11 +152,11 @@
         <!--</pancakeView:PancakeView>-->
         <Grid Padding="15" RowDefinitions="Auto,*" ColumnDefinitions="*,Auto" HorizontalOptions="CenterAndExpand">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="18">
-                <pancakeView:PancakeView BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=8, Opacity=0.2, Offset='4,4'}" Margin="3,9" MinimumWidthRequest="300">
-                    <Label Text="{Binding Today}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="26" Padding="5,-5" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <pancakeView:PancakeView BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.7, Offset='4,4'}" Margin="3,7" MinimumWidthRequest="300">
+                    <Label Text="{Binding Today}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="26" Padding="5,0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=9, Opacity=0.2, Offset='4,4'}" Margin="3,9" MinimumWidthRequest="300">
-                    <Button Text="{Binding City}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="24" Padding="5,-5" Command="{Binding GoToMapCommand}" BackgroundColor="SandyBrown" HorizontalOptions="Center" />
+                <pancakeView:PancakeView BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.7, Offset='4,4'}" Margin="3,7" MinimumWidthRequest="300">
+                    <Button Text="{Binding City}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="24" Padding="5,0" Command="{Binding GoToMapCommand}" BackgroundColor="SandyBrown" HorizontalOptions="Center" />
                 </pancakeView:PancakeView>
             </StackLayout>
             <pancakeView:PancakeView Grid.Row="1" Grid.ColumnSpan="2">

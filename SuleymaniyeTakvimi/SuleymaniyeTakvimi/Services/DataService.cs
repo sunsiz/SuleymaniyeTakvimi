@@ -2,15 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Acr.UserDialogs;
+using MediaManager;
 using Plugin.LocalNotification;
-using Shiny;
-using Shiny.Notifications;
+using Plugin.LocalNotifications;
+using Plugin.SimpleAudioPlayer;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -356,7 +359,7 @@ namespace SuleymaniyeTakvimi.Services
 
             return takvim;
         }
-        public void CheckNotification()
+        public void CheckReminders()
         {
             if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipBildiri", false)) SetNotification("fecrikazip", takvim.FecriKazip);
             if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikBildiri", false)) SetNotification("fecrisadik", takvim.FecriSadik);
@@ -366,57 +369,128 @@ namespace SuleymaniyeTakvimi.Services
             if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamBildiri", false)) SetNotification("aksam", takvim.Aksam);
             if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiBildiri", false)) SetNotification("yatsi", takvim.Yatsi);
             if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuBildiri", false)) SetNotification("yatsisonu", takvim.YatsiSonu);
+            if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipTitreme", false)) CheckVibration(takvim.FecriKazip);
+            if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikTitreme", false)) CheckVibration(takvim.FecriSadik);
+            if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuTitreme", false)) CheckVibration(takvim.SabahSonu);
+            if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleTitreme", false)) CheckVibration(takvim.Ogle);
+            if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiTitreme", false)) CheckVibration(takvim.Ikindi);
+            if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamTitreme", false)) CheckVibration(takvim.Aksam);
+            if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiTitreme", false)) CheckVibration(takvim.Yatsi);
+            if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuTitreme", false)) CheckVibration(takvim.YatsiSonu);
+            if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipAlarm", false)) CheckAlarm(takvim.FecriKazip);
+            if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikAlarm", false)) CheckAlarm(takvim.FecriSadik);
+            if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuAlarm", false)) CheckAlarm(takvim.SabahSonu);
+            if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleAlarm", false)) CheckAlarm(takvim.Ogle);
+            if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiAlarm", false)) CheckAlarm(takvim.Ikindi);
+            if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamAlarm", false)) CheckAlarm(takvim.Aksam);
+            if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiAlarm", false)) CheckAlarm(takvim.Yatsi);
+            if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuAlarm", false)) CheckAlarm(takvim.YatsiSonu);
         }
 
-        private void SetNotification(string Adi, string Vakit)
+        private async void CheckAlarm(string vakit)
+        {
+            if ((DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString())) == TimeSpan.FromMinutes(0))
+            {
+                await CrossMediaManager.Current.PlayFromAssembly("ezan.mp3").ConfigureAwait(false);
+                //ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                //player.Load(GetStreamFromFile("ezan.mp3"));
+                //player.Play();
+            }
+        }
+        //Stream GetStreamFromFile(string filename)
+        //{
+        //    var assembly = typeof(App).GetTypeInfo().Assembly;
+        //    var stream = assembly.GetManifestResourceStream("Assets." + filename);
+        //    return stream;
+        //}
+
+        private void CheckVibration(string vakit)
+        {
+            if ((DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString()))==TimeSpan.FromMinutes(0))
+            try
+            {
+                // Use default vibration length
+                Vibration.Vibrate();
+
+                // Or use specified time
+                var duration = TimeSpan.FromSeconds(10);
+                Vibration.Vibrate(duration);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. " + ex.Message, "Cihaz desteklemiyor");
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+            }
+        }
+
+        private void SetNotification(string Adi, string vakit)
         {
             var itemAdi = "";
-            var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get(Adi + "BildirmeVakti", 0.0)));
-            switch (Adi)
+            var NotificationId = 101;
+            var bildiriVakti = TimeSpan.Parse(vakit) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get(Adi + "BildirmeVakti", 0.0)));
+            var tamVakit = DateTime.Parse(bildiriVakti.ToString());
+            if (tamVakit > DateTime.Now)
             {
-                case "fecrikazip":
-                    itemAdi = "Fecri Kazip";
-                    break;
-                case "fecrisadik":
-                    itemAdi = "Fecri Sadik";
-                    break;
-                case "sabahsonu":
-                    itemAdi = "Sabah Sonu";
-                    break;
-                case "ogle":
-                    itemAdi = "Öğle";
-                    break;
-                case "ikindi":
-                    itemAdi = "İkindi";
-                    break;
-                case "aksam":
-                    itemAdi = "Akşam";
-                    break;
-                case "yatsi":
-                    itemAdi = "Yatsı";
-                    break;
-                case "yatsisonu":
-                    itemAdi = "Yatsı Sonu";
-                    break;
-            }
-            //var notification = new NotificationRequest
-            //{
-            //    NotificationId = 100,
-            //    Title = itemAdi + " Vakti Bildirimi",
-            //    Description = itemAdi + " Vakti: " + Vakit,
-            //    ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
-            //    NotifyTime = DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
-            //};
-            //NotificationCenter.Current.Show(notification);
-            var notification = new Notification
-            {
-                Id = new Random().Next(101,999),
-                Title = $"{itemAdi} Vakti Bildirimi",
-                Message = $"{itemAdi} Vakti: {bildiriVakti}",
-                ScheduleDate = DateTime.Parse(bildiriVakti.ToString()),
-            };
-            ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+                switch (Adi)
+                {
+                    case "fecrikazip":
+                        itemAdi = "Fecri Kazip";
+                        NotificationId = 1003;
+                        break;
+                    case "fecrisadik":
+                        itemAdi = "Fecri Sadik";
+                        NotificationId = 1004;
+                        break;
+                    case "sabahsonu":
+                        itemAdi = "Sabah Sonu";
+                        NotificationId = 1005;
+                        break;
+                    case "ogle":
+                        itemAdi = "Öğle";
+                        NotificationId = 1006;
+                        break;
+                    case "ikindi":
+                        itemAdi = "İkindi";
+                        NotificationId = 1007;
+                        break;
+                    case "aksam":
+                        itemAdi = "Akşam";
+                        NotificationId = 1008;
+                        break;
+                    case "yatsi":
+                        itemAdi = "Yatsı";
+                        NotificationId = 1009;
+                        break;
+                    case "yatsisonu":
+                        itemAdi = "Yatsı Sonu";
+                        NotificationId = 1010;
+                        break;
+                }
 
+                //var notification = new NotificationRequest
+                //{
+                //    NotificationId = 100,
+                //    Title = itemAdi + " Vakti Bildirimi",
+                //    Description = itemAdi + " Vakti: " + Vakit,
+                //    ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
+                //    NotifyTime = DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
+                //};
+                //NotificationCenter.Current.Show(notification);
+                //var notification = new Notification
+                //{
+                //    Id = new Random().Next(101,999),
+                //    Title = $"{itemAdi} Vakti Bildirimi",
+                //    Message = $"{itemAdi} Vakti: {bildiriVakti}",
+                //    ScheduleDate = DateTime.Parse(bildiriVakti.ToString()),
+                //};
+                //ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+                CrossLocalNotifications.Current.Show($"{itemAdi} Vakti Hatırlatması",
+                    $"{itemAdi} Vakti: {bildiriVakti}",
+                    NotificationId, tamVakit);
+            }
         }
     }
 }
