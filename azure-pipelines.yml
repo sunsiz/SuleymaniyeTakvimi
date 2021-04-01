@@ -1,36 +1,102 @@
-resources:
-  repositories:
-    - repository: builttoroam_templates
-      type: github
-      name: builttoroam/pipeline_templates
-      ref: refs/tags/v0.1.0
-      endpoint: Pipeline-Templates
-  
-variables:
-  - group: 'Suleymaniye Takvimi Build Variables'
-  
-stages:
-- template:  azure/mobile/build-xamarin-ios.yml@builttoroam_templates
-  parameters:
-    solution_filename: 'SuleymaniyeTakvimi.sln'
-    solution_build_configuration: 'Release'
-    ios_plist_filename: 'SuleymaniyeTakvimi/SuleymaniyeTakvimi.iOS/Info.plist'
-#    ios_cert_password: '$(ios_signing_certificate_password)'
-#    ios_cert_securefiles_filename: '$(ios_signing_certificate_securefiles_filename)'
-#    ios_provisioning_profile_securefiles_filename: '$(ios_provisioning_profile_securefiles_filename)'
-    build_number: '$(Build.BuildId)'
-    full_version_number: '$(version_prefix).$(Build.BuildId)'
-    ios_signing_identity: '$(ios_signing_identity)'
-    ios_provisioning_profile_id: '$(ios_provisioning_profile_id)'
+# Xamarin.Android and Xamarin.iOS
+# Build a Xamarin.Android and Xamarin.iOS app.
+# Add steps that test, sign, and distribute the app, save build artifacts, and more:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/xamarin
 
-- template:  azure/mobile/build-xamarin-android.yml@builttoroam_templates
-  parameters:
-    build_android: $(android_enabled)
-    solution_filename: 'SuleymaniyeTakvimi.sln'
-    solution_build_configuration: 'Release'
-    android_manifest_filename:  'SuleymaniyeTakvimi/SuleymaniyeTakvimi.Android/Properties/AndroidManifest.xml'
-    build_number: '$(Build.BuildId)'
-    full_version_number: '$(version_prefix).$(Build.BuildId)'
+jobs:
+
+- job: Android
+  pool:
+    vmImage: 'windows-2019'
+
+  variables:
+    buildConfiguration: 'Release'
+    outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
+  steps:
+  - task: NuGetToolInstaller@1
+
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
+
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: '**/*droid*.csproj'
+      outputDirectory: '$(outputDirectory)'
+      configuration: '$(buildConfiguration)'
+      msbuildVersionOption: '16.0'
+
+  - task: AndroidSigning@3
+    inputs:
+      apksign: false
+      zipalign: false
+      apkFiles: '$(outputDirectory)/*.apk'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(outputDirectory)'
+
+- job: iOS
+  pool:
+    vmImage: 'macOS-10.15'
+
+  steps:
+  # To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
+  # https://go.microsoft.com/fwlink/?linkid=871629
+  - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 5_4_1 
+    displayName: 'Select Xamarin SDK version'
+    enabled: false
+
+  - task: NuGetToolInstaller@1
+
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
+
+  - task: XamariniOS@2
+    inputs:
+      solutionFile: '**/*iOS.csproj'
+      configuration: 'Release'
+      buildForSimulator: true
+      packageApp: false
+
+
+
+
+# resources:
+#   repositories:
+#     - repository: builttoroam_templates
+#       type: github
+#       name: builttoroam/pipeline_templates
+#       ref: refs/tags/v0.1.0
+#       endpoint: Pipeline-Templates
+  
+# variables:
+#   - group: 'Suleymaniye Takvimi Build Variables'
+  
+# stages:
+# - template:  azure/mobile/build-xamarin-ios.yml@builttoroam_templates
+#   parameters:
+#     solution_filename: 'SuleymaniyeTakvimi.sln'
+#     solution_build_configuration: 'Release'
+#     ios_plist_filename: 'SuleymaniyeTakvimi/SuleymaniyeTakvimi.iOS/Info.plist'
+# #    ios_cert_password: '$(ios_signing_certificate_password)'
+# #    ios_cert_securefiles_filename: '$(ios_signing_certificate_securefiles_filename)'
+# #    ios_provisioning_profile_securefiles_filename: '$(ios_provisioning_profile_securefiles_filename)'
+#     build_number: '$(Build.BuildId)'
+#     full_version_number: '$(version_prefix).$(Build.BuildId)'
+#     ios_signing_identity: '$(ios_signing_identity)'
+#     ios_provisioning_profile_id: '$(ios_provisioning_profile_id)'
+
+# - template:  azure/mobile/build-xamarin-android.yml@builttoroam_templates
+#   parameters:
+#     build_android: $(android_enabled)
+#     solution_filename: 'SuleymaniyeTakvimi.sln'
+#     solution_build_configuration: 'Release'
+#     android_manifest_filename:  'SuleymaniyeTakvimi/SuleymaniyeTakvimi.Android/Properties/AndroidManifest.xml'
+#     build_number: '$(Build.BuildId)'
+#     full_version_number: '$(version_prefix).$(Build.BuildId)'
 #    secure_file_keystore_filename: '$(android_keystore_filename)'
 #    keystore_alias: '$(android_keystore_alias)'
 #    keystore_password: '$(android_keystore_password)'
