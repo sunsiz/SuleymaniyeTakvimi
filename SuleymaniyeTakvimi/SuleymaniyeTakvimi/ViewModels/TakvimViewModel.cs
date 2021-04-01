@@ -153,7 +153,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 var data = new DataService();
                 try
                 {
-                    var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                    var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
                     CancellationTokenSource cts = new CancellationTokenSource();
                     var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);
                     if (location != null)

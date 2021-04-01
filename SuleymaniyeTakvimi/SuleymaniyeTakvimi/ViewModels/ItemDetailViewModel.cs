@@ -24,7 +24,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private bool bildiri;
         private bool alarm;
         private bool etkin;
-        public ICommand SwitchToggled { get; private set; }
+        public ICommand EnableSwitchToggled { get; private set; }
         public ICommand BildiriCheckedChanged { get; private set; }
         public ICommand TitremeCheckedChanged { get; private set; }
         public ICommand AlarmCheckedChanged { get; private set; }
@@ -32,7 +32,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public ItemDetailViewModel()
         {
-            SwitchToggled = new Command(Etkinlestir);
+            EnableSwitchToggled = new Command(Etkinlestir);
             BildiriCheckedChanged = new Command(BildiriAyari);
             TitremeCheckedChanged = new Command(TitremeAyari);
             AlarmCheckedChanged = new Command(AlarmAyari);
