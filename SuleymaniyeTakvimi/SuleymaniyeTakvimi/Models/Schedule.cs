@@ -7,21 +7,22 @@ namespace SuleymaniyeTakvimi.Models
 {
     class Schedule:ObservableObject
     {
-        private bool notificationOn;
+        private bool reminderOn;
         public string Title { get; set; }
         public string Hour { get; set; }
         public string State { get; set; }
         //public bool Passed { get; set; }
         //public bool Happening { get; set; }
         //public bool Waiting { get; set; }
-        public bool NotificationOn
+        public bool ReminderOn
         {
-            get => notificationOn;
-            set => SetProperty(ref notificationOn, value);
+            get => reminderOn;
+            set => SetProperty(ref reminderOn, value);
         }
 
         //public int NotificationType { get; set; }
         public bool Vibration { get; set; }
         public bool Notification { get; set; }
+        public bool Alarm { get; set; }
     }
 }

@@ -76,10 +76,10 @@
                            IndicatorsShape="Circle"
                            SelectedIndicatorColor="DarkGray" />
 
-
+<StackLayout Margin="5" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="5" Grid.Row="3" Grid.Column="0">
             <Button Grid.Row="3"
                     Grid.Column="0"
-                    Margin="5"
+                    Padding="15"
                     BackgroundColor="IndianRed"
                     CornerRadius="15"
                     FontAttributes="Bold"
@@ -87,10 +87,11 @@
                     BorderColor="Aqua"
                     TextColor="{StaticResource SkipButtonColor}"
                     Command="{Binding SkipCommand}"
-                    Text="{Binding SkipButtonText}" />
+                    Text="{Binding SkipButtonText}" /></StackLayout>
+            <StackLayout Margin="5" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="5" Grid.Row="3" Grid.Column="2">
             <Button Grid.Row="3"
                     Grid.Column="2"
-                    Margin="5"
+                    Padding="15"
                     BackgroundColor="Goldenrod"
                     CornerRadius="15"
                     FontAttributes="Bold"
@@ -98,7 +99,7 @@
                     BorderColor="Aqua"
                     TextColor="{StaticResource SkipButtonColor}"
                     Command="{Binding NextCommand}"
-                    Text="{Binding NextButtonText}" />
+                    Text="{Binding NextButtonText}" /></StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -121,7 +121,7 @@
     <value>Maghrib</value>
   </data>
   <data name="AlarmSwitch" xml:space="preserve">
-    <value>Play an alarm</value>
+    <value>Play azan</value>
   </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
     <value>5 min before</value>
@@ -133,10 +133,10 @@
     <value>Reminding Time:</value>
   </data>
   <data name="Boylam" xml:space="preserve">
-    <value>Longitude: {0:G9}</value>
+    <value>Longitude: {0:G7}</value>
   </data>
   <data name="Enlem" xml:space="preserve">
-    <value>Latitude: {0:G9}</value>
+    <value>Latitude: {0:G7}</value>
   </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
     <value>Enable</value>

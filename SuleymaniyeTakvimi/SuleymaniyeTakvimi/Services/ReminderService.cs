@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Matcha.BackgroundService;
 using MediaManager;
 using Plugin.LocalNotifications;
-using Plugin.SimpleAudioPlayer;
 
 namespace SuleymaniyeTakvimi.Services
 {

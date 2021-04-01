@@ -121,7 +121,7 @@
     <value>Akşam</value>
   </data>
   <data name="AlarmSwitch" xml:space="preserve">
-    <value>Alarm Çal</value>
+    <value>Ezan Oku</value>
   </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
     <value>5 dakika önceden</value>
@@ -133,10 +133,10 @@
     <value>Hatırlatma Zamanı:</value>
   </data>
   <data name="Boylam" xml:space="preserve">
-    <value>Boylam: {0:G9}</value>
+    <value>Boylam: {0:G7}</value>
   </data>
   <data name="Enlem" xml:space="preserve">
-    <value>Enlem: {0:G9}</value>
+    <value>Enlem: {0:G7}</value>
   </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
     <value>Etkinleştir</value>

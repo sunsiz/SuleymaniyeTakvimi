@@ -70,7 +70,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alarm Çal.
+        ///   Looks up a localized string similar to Ezan Oku.
         /// </summary>
         internal static string AlarmSwitch {
             get {
@@ -106,7 +106,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Boylam: {0:G9}.
+        ///   Looks up a localized string similar to Boylam: {0:G7}.
         /// </summary>
         internal static string Boylam {
             get {
@@ -115,7 +115,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enlem: {0:G9}.
+        ///   Looks up a localized string similar to Enlem: {0:G7}.
         /// </summary>
         internal static string Enlem {
             get {

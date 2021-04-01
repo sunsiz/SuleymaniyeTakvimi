@@ -108,7 +108,7 @@
             <Style x:Key="card" TargetType="pancakeView:PancakeView">
                 <Setter Property="BackgroundColor" Value="#ffffff" />
                 <Setter Property="CornerRadius" Value="9" />
-                <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.2, Offset='4,4'}" />
+                <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}" />
             </Style>
             <Style TargetType="CheckBox">
                 <Style.Triggers>

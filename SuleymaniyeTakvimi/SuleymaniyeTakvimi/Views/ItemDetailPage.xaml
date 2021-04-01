@@ -14,11 +14,11 @@
     <ScrollView VerticalScrollBarVisibility="Never">
         <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18" Margin="9">
             <pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:GradientStop Color="WhiteSmoke" Offset="0"/>
-                <pancakeView:GradientStop Color="AliceBlue" Offset="1"/>
+                <pancakeView:GradientStop Color="AliceBlue" Offset="0"/>
+                <pancakeView:GradientStop Color="WhiteSmoke" Offset="1"/>
             </pancakeView:PancakeView.BackgroundGradientStops>
             <pancakeView:PancakeView.Shadow>
-                <pancakeView:DropShadow Color="#000"/>
+                <pancakeView:DropShadow Color="Coral" BlurRadius="6" Opacity="0.3"/>
             </pancakeView:PancakeView.Shadow>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,2*">
                 <pancakeView:PancakeView CornerRadius="9" Grid.Row="0" Grid.ColumnSpan="2" Margin="14,7">
@@ -28,7 +28,7 @@
                         <pancakeView:GradientStop Color="Gold" Offset="1"/>
                     </pancakeView:PancakeView.BackgroundGradientStops>
                     <pancakeView:PancakeView.Shadow>
-                        <pancakeView:DropShadow Color="#000"/>
+                        <pancakeView:DropShadow Color="SaddleBrown" BlurRadius="3" Offset="4,4" Opacity="0.6"/>
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
                         <!--<Label Grid.Row="0" Grid.Column="0" Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="End" FontSize="36" FontAttributes="Bold" Margin="9,10" TextColor="Chocolate" Padding="33,0">
@@ -50,7 +50,7 @@
                         <pancakeView:GradientStop Color="PapayaWhip" Offset="1"/>
                     </pancakeView:PancakeView.BackgroundGradientStops>
                     <pancakeView:PancakeView.Shadow>
-                        <pancakeView:DropShadow Color="#000"/>
+                        <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
@@ -60,7 +60,7 @@
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                             <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}">
                                 <Switch.Behaviors>
-                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding SwitchToggled}" CommandParameter="{Binding Etkin}"/>
+                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding EnableSwitchToggled}" CommandParameter="{Binding Etkin}"/>
                                 </Switch.Behaviors>
                             </Switch>
                             <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.EtkinlestirSwitch}" FontSize="Medium"/>
@@ -73,7 +73,7 @@
                         <pancakeView:GradientStop Color="LightYellow" Offset="1"/>
                     </pancakeView:PancakeView.BackgroundGradientStops>
                     <pancakeView:PancakeView.Shadow>
-                        <pancakeView:DropShadow Color="#000"/>
+                        <pancakeView:DropShadow Color="#000" BlurRadius="3" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="14">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
@@ -109,7 +109,7 @@
                         <pancakeView:GradientStop Color="LavenderBlush" Offset="1"/>
                     </pancakeView:PancakeView.BackgroundGradientStops>
                     <pancakeView:PancakeView.Shadow>
-                        <pancakeView:DropShadow Color="#000"/>
+                        <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="1,1" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout HorizontalOptions="FillAndExpand" Padding="14">
                         <Label HorizontalOptions="Start" Text="{x:Static resources:AppResources.BildirmeZamani}" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>

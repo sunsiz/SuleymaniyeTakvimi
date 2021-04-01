@@ -13,7 +13,6 @@ using Acr.UserDialogs;
 using MediaManager;
 using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
-using Plugin.SimpleAudioPlayer;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
