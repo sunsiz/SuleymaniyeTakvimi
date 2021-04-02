@@ -9,7 +9,7 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 **Gelecek planlar:**
 
 * Kıble yönünü belirtmek için bir pusula eklenmesi.
-* [Radyo Fitrat](http://www.radyofitrat.com)'tan çevrimiçi radyo çalabilmesi
+* [Radyo Fıtrat](http://www.radyofitrat.com)'tan çevrimiçi radyo çalabilmesi
 * Sitelerimiz ve sosyal medya bağlantıları
 
 
