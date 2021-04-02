@@ -5,61 +5,62 @@
 
  jobs:
 
-# - job: Android
-#   pool:
-#     vmImage: 'windows-2019'
+  - job: Android
+    pool:
+      vmImage: 'windows-2019'
 
-#   variables:
-#     buildConfiguration: 'Release'
-#     outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+    variables:
+      buildConfiguration: 'Release'
+      outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
-#   steps:
-#   - task: NuGetToolInstaller@1
+    steps:
+    - task: NuGetToolInstaller@1
 
-#   - task: NuGetCommand@2
-#     inputs:
-#       restoreSolution: '**/*.sln'
+    - task: NuGetCommand@2
+      inputs:
+        restoreSolution: '**/*.sln'
 
-#   - task: XamarinAndroid@1
-#     inputs:
-#       projectFile: '**/*droid*.csproj'
-#       outputDirectory: '$(outputDirectory)'
-#       configuration: '$(buildConfiguration)'
-#       msbuildVersionOption: '16.0'
+    - task: XamarinAndroid@1
+      inputs:
+        projectFile: '**/*droid*.csproj'
+        outputDirectory: '$(outputDirectory)'
+        configuration: '$(buildConfiguration)'
+        msbuildVersionOption: '16.0'
 
-#   - task: AndroidSigning@3
-#     inputs:
-#       apksign: false
-#       zipalign: false
-#       apkFiles: '$(outputDirectory)/*.apk'
+    - task: AndroidSigning@3
+      inputs:
+        apksign: false
+        zipalign: false
+        apkFiles: '$(outputDirectory)/*.apk'
 
-#   - task: PublishBuildArtifacts@1
-#     inputs:
-#       pathtoPublish: '$(outputDirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(outputDirectory)'
 
- - job: iOS
-   pool:
-     vmImage: 'macOS-10.15'
+  - job: iOS
+    pool:
+      vmImage: 'macOS-10.15'
 
-   steps:
-  # To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
-  # https://go.microsoft.com/fwlink/?linkid=871629
-   - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
-     displayName: 'Select Xamarin SDK version'
-     enabled: true
+    steps:
+    # To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
+    # https://go.microsoft.com/fwlink/?linkid=871629
+    - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
+      displayName: 'Select Xamarin SDK version'
+      enabled: false
 
-   - task: NuGetToolInstaller@1
+    - task: NuGetToolInstaller@1
 
-   - task: NuGetCommand@2
-     inputs:
-       restoreSolution: '**/*.sln'
+    - task: NuGetCommand@2
+      inputs:
+        restoreSolution: '**/*.sln'
 
-   - task: XamariniOS@2
-     inputs:
-       solutionFile: '**/*.sln'
-       configuration: 'Release'
-       buildForSimulator: true
-       packageApp: false
+    - task: XamariniOS@2
+      inputs:
+        solutionFile: '**/*.sln'
+        configuration: 'Release'
+        buildForSimulator: true
+        packageApp: false
+        runNugetRestore: true
 
 
 
