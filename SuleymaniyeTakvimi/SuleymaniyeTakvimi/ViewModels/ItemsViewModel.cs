@@ -22,12 +22,10 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command GoToMapCommand { get; }
         public Command<Item> ItemTapped { get; }
         Takvim _takvim;
-        private string today;
         private string city;
         public string Today
         {
             get { return DateTime.Today.ToString("M"); }
-            set { SetProperty(ref today, value); }
         }
 
         public string City
@@ -42,23 +40,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(false);
             City = placemark.FirstOrDefault()?.AdminArea ?? placemark.FirstOrDefault()?.CountryName;
         }
-        //public Takvim Vakit
-        //{
-        //    get
-        //    {
-        //        if (_takvim == null)
-        //        {
-        //            var data = new TakvimData();
-        //            _takvim = data.takvim;
-        //        }
-
-        //        return _takvim;
-        //    }
-        //    set { SetProperty(ref _takvim, value); }
-        //}
         public ItemsViewModel()
         {
-            //Title = "Süleymaniye Vakfı Takvimi";
             Items = new ObservableCollection<Item>();
             var data = new DataService();
             _takvim = data.takvim;
@@ -116,51 +99,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                 if (Preferences.Get(Aksam.Id, "") == "") Preferences.Set(Aksam.Id, _takvim.Aksam);
                 if (Preferences.Get(Yatsi.Id, "") == "") Preferences.Set(Yatsi.Id, _takvim.Yatsi);
                 if (Preferences.Get(YatsiSonu.Id, "") == "") Preferences.Set(YatsiSonu.Id, _takvim.YatsiSonu);
-                //Preferences.Set(FecriKazip.Id + "Etkin", FecriKazip.Etkin);
-                //Preferences.Set(FecriSadik.Id + "Etkin", FecriSadik.Etkin);
-                //Preferences.Set(SabahSonu.Id + "Etkin", SabahSonu.Etkin);
-                //Preferences.Set(Ogle.Id + "Etkin", Ogle.Etkin);
-                //Preferences.Set(Ikindi.Id + "Etkin", Ikindi.Etkin);
-                //Preferences.Set(Aksam.Id + "Etkin", Aksam.Etkin);
-                //Preferences.Set(Yatsi.Id + "Etkin", Yatsi.Etkin);
-                //Preferences.Set(YatsiSonu.Id + "Etkin", YatsiSonu.Etkin);
-                //Preferences.Set(FecriKazip.Id + "Bildiri", FecriKazip.Etkin);
-                //Preferences.Set(FecriSadik.Id + "Bildiri", FecriSadik.Etkin);
-                //Preferences.Set(SabahSonu.Id + "Bildiri", SabahSonu.Etkin);
-                //Preferences.Set(Ogle.Id + "Bildiri", Ogle.Etkin);
-                //Preferences.Set(Ikindi.Id + "Bildiri", Ikindi.Etkin);
-                //Preferences.Set(Aksam.Id + "Bildiri", Aksam.Etkin);
-                //Preferences.Set(Yatsi.Id + "Bildiri", Yatsi.Etkin);
-                //Preferences.Set(YatsiSonu.Id + "Bildiri", YatsiSonu.Etkin);
-                //Preferences.Set(FecriKazip.Id + "Titreme", FecriKazip.Etkin);
-                //Preferences.Set(FecriSadik.Id + "Titreme", FecriSadik.Etkin);
-                //Preferences.Set(SabahSonu.Id + "Titreme", SabahSonu.Etkin);
-                //Preferences.Set(Ogle.Id + "Titreme", Ogle.Etkin);
-                //Preferences.Set(Ikindi.Id + "Titreme", Ikindi.Etkin);
-                //Preferences.Set(Aksam.Id + "Titreme", Aksam.Etkin);
-                //Preferences.Set(Yatsi.Id + "Titreme", Yatsi.Etkin);
-                //Preferences.Set(YatsiSonu.Id + "Titreme", YatsiSonu.Etkin);
-                //Preferences.Set(FecriKazip.Id + "Alarm", FecriKazip.Etkin);
-                //Preferences.Set(FecriSadik.Id + "Alarm", FecriSadik.Etkin);
-                //Preferences.Set(SabahSonu.Id + "Alarm", SabahSonu.Etkin);
-                //Preferences.Set(Ogle.Id + "Alarm", Ogle.Etkin);
-                //Preferences.Set(Ikindi.Id + "Alarm", Ikindi.Etkin);
-                //Preferences.Set(Aksam.Id + "Alarm", Aksam.Etkin);
-                //Preferences.Set(Yatsi.Id + "Alarm", Yatsi.Etkin);
-                //Preferences.Set(YatsiSonu.Id + "Alarm", YatsiSonu.Etkin);
-                //Preferences.Set(FecriKazip.Id + "BildirmeVakti", FecriKazip.Etkin);
-                //Preferences.Set(FecriSadik.Id + "BildirmeVakti", FecriSadik.Etkin);
-                //Preferences.Set(SabahSonu.Id + "BildirmeVakti", SabahSonu.Etkin);
-                //Preferences.Set(Ogle.Id + "BildirmeVakti", Ogle.Etkin);
-                //Preferences.Set(Ikindi.Id + "BildirmeVakti", Ikindi.Etkin);
-                //Preferences.Set(Aksam.Id + "BildirmeVakti", Aksam.Etkin);
-                //Preferences.Set(Yatsi.Id + "BildirmeVakti", Yatsi.Etkin);
-                //Preferences.Set(YatsiSonu.Id + "BildirmeVakti", YatsiSonu.Etkin);
-                //var items = await DataStore.GetItemsAsync(true);
-                //foreach (var item in items)
-                //{
-                //    Items.Add(item);
-                //}
             }
             catch (Exception ex)
             {
@@ -194,11 +132,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                 SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
             }
-        }
-
-        private async void OnAddItem(object obj)
-        {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
         async void OnItemSelected(Item item)

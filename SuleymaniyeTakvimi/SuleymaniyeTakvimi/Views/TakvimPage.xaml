@@ -1,203 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SuleymaniyeTakvimi.Views.TakvimPage"
-             xmlns:vm="clr-namespace:SuleymaniyeTakvimi.ViewModels"  
-             xmlns:model="clr-namespace:SuleymaniyeTakvimi.Models"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:shades="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
-             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
-             Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
+<ContentPage x:Class="SuleymaniyeTakvimi.Views.TakvimPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:SuleymaniyeTakvimi.Models" xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi" xmlns:vm="clr-namespace:SuleymaniyeTakvimi.ViewModels" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
 
     <ContentPage.BindingContext>
         <vm:TakvimViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <!-- Colors -->
-            <Color x:Key="Accent">#96d1ff</Color>
-            <!-- Implicit styles -->
-            <!--<Style TargetType="ContentPage"
-                   ApplyToDerivedTypes="True">
-                <Setter Property="BackgroundColor"
-                        Value="{StaticResource AppBackgroundColor}" />
-            </Style>
-            <Style ApplyToDerivedTypes="True" TargetType="shades:Shadows">
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="Shades">
-                    <shades:ImmutableShades>
-                        <shades:Shade BlurRadius="10"
-                                  Opacity="1"
-                                  Offset="-10,-10"
-                                  Color="White" />
-                        <shades:Shade BlurRadius="10"
-                                  Opacity="1"
-                                  Offset="6, 6"
-                                  Color="#19000000" />
-                    </shades:ImmutableShades>
-                </Setter>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="FontSize"
-                        Value="Medium" />
-                <Setter Property="BackgroundColor"
-                        Value="{StaticResource AppPrimaryColor}" />
-                <Setter Property="TextColor"
-                        Value="{StaticResource SecondaryColor}" />
-                <Setter Property="CornerRadius"
-                        Value="5" />
-            </Style>-->
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding RefreshLocationCommand}" />
+        <ToolbarItem Command="{Binding RefreshLocationCommand}" Text="{x:Static resources:AppResources.KonumYenileButton}" />
     </ContentPage.ToolbarItems>
 
-    <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <!--<Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="1" Margin="0,1,0,1" Grid.Row="0" HasShadow="false" CornerRadius="10">-->
-            <StackLayout BackgroundColor="{StaticResource AppPrimaryColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                    <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
-                    <Label Text="{x:Static resources:AppResources.PageTitle}" TextColor="White" FontSize="32" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="20,0"/>
-                    </ContentView>
-                </StackLayout>
+    <Grid RowDefinitions="Auto, *">
+        <StackLayout Grid.Row="0" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppPrimaryColor}">
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Orientation="Horizontal">
+                <ContentView Padding="0,5,0,10" VerticalOptions="FillAndExpand">
+                    <Label Margin="20,0" VerticalOptions="Center" HorizontalTextAlignment="Center" FontSize="32" TextColor="White" Text="{x:Static resources:AppResources.PageTitle}" />
+                </ContentView>
             </StackLayout>
-            <!--</Frame>-->
-            <Frame BackgroundColor="{StaticResource AppBackgroundColor}" BorderColor="#F0F0F0" Padding="20" Margin="0,0,0,5" Grid.Row="1" HasShadow="false" CornerRadius="10">
-                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-            <!--<yummy:PancakeView BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0" Grid.Row="0" Grid.ColumnSpan="2">
-                    <yummy:PancakeView BackgroundColor="#bc91d7" CornerRadius="60,20,20,60" HorizontalOptions="FillAndExpand" HeightRequest="50" Padding="20,15">
-                        <yummy:PancakeView.Shadow>
-                            <yummy:DropShadow Color="#000000" Offset="10,10" />
-                        </yummy:PancakeView.Shadow>
-                        <yummy:PancakeView.BackgroundGradientStops>
-                    <yummy:GradientStopCollection>
-                        <yummy:GradientStop Color="#FF0000" Offset="0" />
-                        <yummy:GradientStop Color="#00FF00" Offset="0.5" />
-                        <yummy:GradientStop Color="#0000FF" Offset="1" />
-                    </yummy:GradientStopCollection>
-                </yummy:PancakeView.BackgroundGradientStops>-->
-                <Label Text="{x:Static resources:AppResources.FecriKazip}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="{Binding Vakitler.FecriKazip}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
-                    <!--</yummy:PancakeView>
-        </yummy:PancakeView>-->
-                <Label Text="{x:Static resources:AppResources.FecriSadik}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="{Binding Vakitler.FecriSadik}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="1" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="{x:Static resources:AppResources.SabahSonu}" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="{Binding Vakitler.SabahSonu}" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="1" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="{x:Static resources:AppResources.Ogle}" HorizontalOptions="StartAndExpand" Grid.Row="3" Grid.Column="0" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="{Binding Vakitler.Ogle}" HorizontalOptions="StartAndExpand" Grid.Row="3" Grid.Column="1" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="{x:Static resources:AppResources.Ikindi}" HorizontalOptions="StartAndExpand" Grid.Row="4" Grid.Column="0" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="{Binding Vakitler.Ikindi}" HorizontalOptions="StartAndExpand" Grid.Row="4" Grid.Column="1" TextColor="Blue"  FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="{x:Static resources:AppResources.Aksam}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="0" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="{Binding Vakitler.Aksam}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="1" TextColor="Orange"  FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="{x:Static resources:AppResources.Yatsi}" HorizontalOptions="StartAndExpand" Grid.Row="6" Grid.Column="0" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="{Binding Vakitler.Yatsi}" HorizontalOptions="StartAndExpand" Grid.Row="6" Grid.Column="1" TextColor="Gray"  FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="{x:Static resources:AppResources.YatsiSonu}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="{Binding Vakitler.YatsiSonu}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="1" TextColor="LimeGreen"  FontAttributes="Bold" FontSize="Large"/>
-                    <BoxView VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="1" WidthRequest="Infinity" Color="DarkGray" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"></BoxView>
-                <Label Text="{Binding Vakitler.Enlem, StringFormat={x:Static resources:AppResources.Enlem}}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="0" TextColor="LimeGreen"/>
-                <Label Text="{Binding Vakitler.Boylam, StringFormat={x:Static resources:AppResources.Boylam}}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="1" TextColor="LimeGreen"/>
-                <Label Text="{Binding Vakitler.Yukseklik, StringFormat={x:Static resources:AppResources.Yukseklik}}" HorizontalOptions="StartAndExpand" Grid.Row="10" Grid.Column="0" TextColor="LimeGreen"/>
-                <Label Text="{Binding Vakitler.SaatBolgesi, StringFormat={x:Static resources:AppResources.SaatBolgesi}}" HorizontalOptions="StartAndExpand" Grid.Row="10" Grid.Column="1" TextColor="LimeGreen"/>
+        </StackLayout>
+        <Frame Grid.Row="1" Padding="7" BackgroundColor="{StaticResource AppBackgroundColor}" BorderColor="#F0F0F0" CornerRadius="10" HasShadow="false">
+            <pancakeView:PancakeView Padding="15,15,0,0" HorizontalOptions="FillAndExpand" CornerRadius="40,10,10,40">
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Offset="9,9" Color="#000000" Opacity="0.2" BlurRadius="5"/>
+                </pancakeView:PancakeView.Shadow>
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStopCollection>
+                        <pancakeView:GradientStop Offset="0" Color="Bisque" />
+                        <pancakeView:GradientStop Offset="1" Color="LightGoldenrodYellow" />
+                    </pancakeView:GradientStopCollection>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="*, *">
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Blue" Text="{x:Static resources:AppResources.FecriKazip}" />
+                    <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Blue" Text="{Binding Vakitler.FecriKazip}" />
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Orange" Text="{x:Static resources:AppResources.FecriSadik}" />
+                    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Orange" Text="{Binding Vakitler.FecriSadik}" />
+                    <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Gray" Text="{x:Static resources:AppResources.SabahSonu}" />
+                    <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Gray" Text="{Binding Vakitler.SabahSonu}" />
+                    <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="LimeGreen" Text="{x:Static resources:AppResources.Ogle}" />
+                    <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="LimeGreen" Text="{Binding Vakitler.Ogle}" />
+                    <Label Grid.Row="4" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Blue" Text="{x:Static resources:AppResources.Ikindi}" />
+                    <Label Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Blue" Text="{Binding Vakitler.Ikindi}" />
+                    <Label Grid.Row="5" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Orange" Text="{x:Static resources:AppResources.Aksam}" />
+                    <Label Grid.Row="5" Grid.Column="1" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Orange" Text="{Binding Vakitler.Aksam}" />
+                    <Label Grid.Row="6" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Gray" Text="{x:Static resources:AppResources.Yatsi}" />
+                    <Label Grid.Row="6" Grid.Column="1" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="Gray" Text="{Binding Vakitler.Yatsi}" />
+                    <Label Grid.Row="7" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="LimeGreen" Text="{x:Static resources:AppResources.YatsiSonu}" />
+                    <Label Grid.Row="7" Grid.Column="1" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="LimeGreen" Text="{Binding Vakitler.YatsiSonu}" />
+                    <BoxView Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" WidthRequest="Infinity" HeightRequest="1" HorizontalOptions="Center" VerticalOptions="Center" Color="DarkGray" />
+                    <Label Grid.Row="9" Grid.Column="0" HorizontalOptions="StartAndExpand" TextColor="LimeGreen" Text="{Binding Vakitler.Enlem, StringFormat={x:Static resources:AppResources.Enlem}}" />
+                    <Label Grid.Row="9" Grid.Column="1" HorizontalOptions="StartAndExpand" TextColor="LimeGreen" Text="{Binding Vakitler.Boylam, StringFormat={x:Static resources:AppResources.Boylam}}" />
+                    <Label Grid.Row="10" Grid.Column="0" HorizontalOptions="StartAndExpand" TextColor="LimeGreen" Text="{Binding Vakitler.Yukseklik, StringFormat={x:Static resources:AppResources.Yukseklik}}" />
+                    <Label Grid.Row="10" Grid.Column="1" HorizontalOptions="StartAndExpand" TextColor="LimeGreen" Text="{Binding Vakitler.SaatBolgesi, StringFormat={x:Static resources:AppResources.SaatBolgesi}}" />
                 </Grid>
-            </Frame>    
-            <!--<shades:Shadows Grid.Row="1"
-                Grid.Column="0"
-                CornerRadius="40"
-                Shades="{shades:NeumorphismShades}">
-        <ImageButton WidthRequest="60"
-                     HeightRequest="60"
-                     Padding="20"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"
-                     BackgroundColor="#F0F0F3"
-                     CornerRadius="30"
-                     Source="{StaticResource IconPlusGray}" />
-    </shades:Shadows>
-
-    <shades:Shadows Grid.Row="1"
-                Grid.Column="1"
-                CornerRadius="10"
-                Shades="{shades:NeumorphismShades}">
-        <Button Style="{StaticResource TextHeadline}"
-                WidthRequest="120"
-                HeightRequest="60"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                BackgroundColor="#F0F0F3"
-                CornerRadius="10"
-                Text="Reset"
-                TextColor="Gray" />
-    </shades:Shadows>-->
-            <!--<StackLayout>
-                <ActivityIndicator IsVisible="{Binding  IsBusy}" IsRunning="{Binding IsBusy}" Scale="4" VerticalOptions="CenterAndExpand" Color="Black" />
-            </StackLayout>-->
-        </Grid>
-
-</ContentPage>
-<!--<ListView x:Name="TakvimList" ItemsSource="{Binding Vakitler}" SeparatorVisibility="None"
-                  Grid.Row="1" Margin="20,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <ListView.ItemTemplate>
-                <DataTemplate >
-                    <ViewCell>
-    <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
-    <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <StackLayout Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
-            <Label Text="Fecri Kazip:" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
-            -->
-<!--<Label Text="Fecri Sadık:" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
-                                    <Label Text="Sabah Sonu:" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
-                                    <Label Text="Öğle:" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
-                                    <Label Text="İkindi:" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
-                                    <Label Text="Akşam:" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
-                                    <Label Text="Yatsı:" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
-                                    <Label Text="Yatsı Sonu:" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>-->
-<!--
-        </StackLayout>
-        <StackLayout Grid.Column="1" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
-            <Label Text="{Binding Vakitler.FecriKazip}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-            -->
-<!--<Label Text="{Binding Vakitler.FecriSadik}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Vakitler.SabahSonu}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Vakitler.Ogle}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Vakitler.Ikindi}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Vakitler.Aksam}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Vakitler.Yatsi}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Vakitler.YatsiSonu}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>-->
-<!--
-        </StackLayout>
+            </pancakeView:PancakeView>
+        </Frame>
     </Grid>
-</Frame>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
+</ContentPage>

@@ -9,7 +9,6 @@ namespace SuleymaniyeTakvimi.Views
         public ItemDetailPage()
         {
             InitializeComponent();
-            //BindingContext = new ItemDetailViewModel();
         }
     }
 }
