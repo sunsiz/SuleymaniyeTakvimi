@@ -1,10 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="SuleymaniyeTakvimi.Views.OnBoardingPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:models="clr-namespace:SuleymaniyeTakvimi.Models;assembly=SuleymaniyeTakvimi"
-             xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi">
+<ContentPage x:Class="SuleymaniyeTakvimi.Views.OnBoardingPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:models="clr-namespace:SuleymaniyeTakvimi.Models;assembly=SuleymaniyeTakvimi" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi">
     <ContentPage.BindingContext>
         <viewModels:OnBoardingViewModel />
     </ContentPage.BindingContext>
@@ -33,74 +28,41 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <CarouselView x:Name="onBoardingCarousel"
-                          Grid.Row="0"
-                          Grid.RowSpan="3"
-                          Grid.ColumnSpan="3"
-                          IndicatorView="IndicatorView"
-                          Position="{Binding Position}"
-                          ItemsSource="{Binding Items}">
+            <CarouselView x:Name="onBoardingCarousel" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" IndicatorView="IndicatorView" Position="{Binding Position}" ItemsSource="{Binding Items}">
                 <CarouselView.ItemTemplate>
                     <DataTemplate x:DataType="models:OnBoarding">
                         <ContentView>
                             <FlexLayout Direction="Column" JustifyContent="SpaceEvenly">
 
-                                <forms:SvgCachedImage Grid.Row="0"
-                                                      WidthRequest="300"
-                                                      Aspect="AspectFill"
-                                                      FlexLayout.AlignSelf="Center"
-                                                      Source="{Binding ImageUrl}" />
+                                <forms:SvgCachedImage Grid.Row="0" WidthRequest="300" Aspect="AspectFill" FlexLayout.AlignSelf="Center" Source="{Binding ImageUrl}" />
 
-                                <Label Grid.Row="1"
-                                       FontAttributes="Bold"
-                                       FontSize="Title"
-                                       Text="{Binding Title}" />
+                                <Label Grid.Row="1" FontAttributes="Bold" FontSize="Title" Text="{Binding Title}" />
 
-                                <Label Grid.Row="2"
-                                       FontSize="Body"
-                                       Margin="19,7"
-                                       Text="{Binding Content}" />
+                                <Label Grid.Row="2" Margin="19,7" FontSize="Body" Text="{Binding Content}" />
 
                             </FlexLayout>
                         </ContentView>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <IndicatorView x:Name="IndicatorView"
-                           Grid.Row="3"
-                           Grid.Column="1"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
+            <IndicatorView x:Name="IndicatorView" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"
                            IndicatorColor="{StaticResource IndicatorColor}"
-                           IndicatorSize="7"
-                           IndicatorsShape="Circle"
-                           SelectedIndicatorColor="DarkGray" />
+                           IndicatorSize="7" IndicatorsShape="Circle" SelectedIndicatorColor="DarkGray" />
 
-<StackLayout Margin="5" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="5" Grid.Row="3" Grid.Column="0">
-            <Button Grid.Row="3"
-                    Grid.Column="0"
-                    Padding="15"
-                    BackgroundColor="IndianRed"
-                    CornerRadius="15"
-                    FontAttributes="Bold"
-                    FontSize="Medium"
-                    BorderColor="Aqua"
-                    TextColor="{StaticResource SkipButtonColor}"
-                    Command="{Binding SkipCommand}"
-                    Text="{Binding SkipButtonText}" /></StackLayout>
-            <StackLayout Margin="5" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="5" Grid.Row="3" Grid.Column="2">
-            <Button Grid.Row="3"
-                    Grid.Column="2"
-                    Padding="15"
-                    BackgroundColor="Goldenrod"
-                    CornerRadius="15"
-                    FontAttributes="Bold"
-                    FontSize="Medium" 
-                    BorderColor="Aqua"
-                    TextColor="{StaticResource SkipButtonColor}"
-                    Command="{Binding NextCommand}"
-                    Text="{Binding NextButtonText}" /></StackLayout>
+            <StackLayout Grid.Row="3" Grid.Column="0" Margin="5" Padding="5" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                <Button Grid.Row="3" Grid.Column="0" Padding="15" BackgroundColor="IndianRed" BorderColor="Aqua" CornerRadius="15" FontAttributes="Bold"
+                        FontSize="Medium"
+                        TextColor="{StaticResource SkipButtonColor}"
+                        Command="{Binding SkipCommand}"
+                        Text="{Binding SkipButtonText}" />
+            </StackLayout>
+            <StackLayout Grid.Row="3" Grid.Column="2" Margin="5" Padding="5" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                <Button Grid.Row="3" Grid.Column="2" Padding="15" BackgroundColor="Goldenrod" BorderColor="Aqua" CornerRadius="15" FontAttributes="Bold"
+                        FontSize="Medium"
+                        TextColor="{StaticResource SkipButtonColor}"
+                        Command="{Binding NextCommand}"
+                        Text="{Binding NextButtonText}" />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
-<!--  BackgroundColor="{StaticResource NextButtonColor}"  -->

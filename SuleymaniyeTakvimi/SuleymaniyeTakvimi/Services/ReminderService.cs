@@ -19,21 +19,13 @@ namespace SuleymaniyeTakvimi.Services
         {
             DataService data = new DataService();
             data.CheckReminders();
-            //CrossLocalNotifications.Current.Show("Service Running", $"Service running well at {DateTime.Now.ToShortTimeString()}",
-            //    1000);
-            //ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-            //player.Load(GetStreamFromFile("ezan.mp3"));
-            //player.Play();
+            ////Testing Notification - Will display notification every time service running.
+            //CrossLocalNotifications.Current.Show("Service Running", $"Service running well at {DateTime.Now.ToShortTimeString()}", 1000);
+
+            ////Testing play audio - will play audio every period of service.
             //await CrossMediaManager.Current.PlayFromAssembly("ezan.mp3").ConfigureAwait(false);
             return true;
         }
-
-        //Stream GetStreamFromFile(string filename)
-        //{
-        //    var assembly = typeof(App).GetTypeInfo().Assembly;
-        //    var stream = assembly.GetManifestResourceStream("SuleymaniyeTakvimi.Assets." + filename);
-        //    return stream;
-        //}
 
     }
 }

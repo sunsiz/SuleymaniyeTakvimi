@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SuleymaniyeTakvimi.Views.ItemsPage"
-             xmlns:local="clr-namespace:SuleymaniyeTakvimi.ViewModels"  
-             xmlns:model="clr-namespace:SuleymaniyeTakvimi.Models"
-             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
+<ContentPage x:Class="SuleymaniyeTakvimi.Views.ItemsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.ViewModels" xmlns:model="clr-namespace:SuleymaniyeTakvimi.Models" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              x:Name="BrowseItemsPage"
              Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
 
@@ -17,189 +11,52 @@
         <ToolbarItem Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding GoToMapCommand}" />
     </ContentPage.ToolbarItems>-->
     <StackLayout>
-        <!--<pancakeView:PancakeView HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="0" Margin="0,0" Padding="0,0" >
-        <pancakeView:PancakeView.BackgroundGradientStops BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
-            <pancakeView:GradientStop Color="#87a8d0" Offset="0"/>
-            <pancakeView:GradientStop Color="#b9ceeb" Offset="0.75"/>
-            <pancakeView:GradientStop Color="#deecfc" Offset="1"/>
-        </pancakeView:PancakeView.BackgroundGradientStops>-->
-        <!--<pancakeView:PancakeView.Shadow>
-            <pancakeView:DropShadow Color="#000000" Offset="10,10"   />
-        </pancakeView:PancakeView.Shadow>-->
-        <!--<Frame HorizontalOptions="FillAndExpand">
-        <Grid Padding="30,6" Margin="30, 6" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-        <pancakeView:PancakeView Style="{StaticResource card}" Grid.Row="0" Margin="{StaticResource ContentPadding}" Padding="0">
-            <Grid ColumnSpacing="20" ColumnDefinitions="12,*,123,Auto">
-                <BoxView BackgroundColor="{StaticResource Primary}" />
-                <StackLayout Grid.Column="1" Padding="0,4" Spacing="8">
-                    <Label Style="{StaticResource label_section_header}" Text="Fecri Kazip" />
-                </StackLayout>
-                <StackLayout Grid.Column="2" Padding="0,4" Spacing="8">
-                    <Label Style="{StaticResource text_section_header}" Text="{Binding Vakit.FecriKazip}" />
-                </StackLayout>
-                <StackLayout Grid.Column="3" Padding="20,4" Spacing="8">
-                    <Label Text="&#xe855;" FontSize="40" TextColor="Orange"
-                           FontFamily="MaterialIcons" HorizontalOptions="Center" />
-                </StackLayout>
-            </Grid>
-        </pancakeView:PancakeView>
-        <pancakeView:PancakeView Style="{StaticResource card}" Grid.Row="1" Margin="{StaticResource ContentPadding}">
-            <Grid ColumnSpacing="20" ColumnDefinitions="8,*,123,Auto">
-                <BoxView BackgroundColor="{StaticResource Primary}" />
-                <StackLayout Grid.Column="1" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource label_section_header}" Text="Fecri Sadik" />
-                </StackLayout>
-                <StackLayout Grid.Column="2" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource text_section_header}" Text="{Binding Vakit.FecriSadik}" />
-                </StackLayout>
-                <StackLayout Grid.Column="3" Padding="20,10" Spacing="8">
-                    <Label Text="&#xe855;" FontSize="40" TextColor="Orange"
-                           FontFamily="Material" HorizontalOptions="Center" />
-                </StackLayout>
-            </Grid>
-        </pancakeView:PancakeView>
-        <pancakeView:PancakeView Style="{StaticResource card}" Grid.Row="2" Margin="{StaticResource ContentPadding}">
-            <Grid ColumnSpacing="20" ColumnDefinitions="8,*,123,Auto">
-                <BoxView BackgroundColor="{StaticResource Primary}" />
-                <StackLayout Grid.Column="1" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource label_section_header}" Text="Sabah Sonu" />
-                </StackLayout>
-                <StackLayout Grid.Column="2" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource text_section_header}" Text="{Binding Vakit.SabahSonu}" />
-                </StackLayout>
-                <StackLayout Grid.Column="3" Padding="20,10" Spacing="8">
-                    <Label Text="&#xe855;" FontSize="40" TextColor="Orange"
-                           FontFamily="Material" HorizontalOptions="Center" />
-                </StackLayout>
-            </Grid>
-        </pancakeView:PancakeView>
-        <pancakeView:PancakeView Style="{StaticResource card}" Grid.Row="3" Margin="{StaticResource ContentPadding}">
-            <Grid ColumnSpacing="20" ColumnDefinitions="8,*,123,Auto">
-                <BoxView BackgroundColor="{StaticResource Primary}" />
-                <StackLayout Grid.Column="1" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource label_section_header}" Text="Öğle" />
-                </StackLayout>
-                <StackLayout Grid.Column="2" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource text_section_header}" Text="{Binding Vakit.Ogle}" />
-                </StackLayout>
-                <StackLayout Grid.Column="3" Padding="20,10" Spacing="8">
-                    <Label Text="&#xe855;" FontSize="40" TextColor="Orange"
-                           FontFamily="Material" HorizontalOptions="Center" />
-                </StackLayout>
-            </Grid>
-        </pancakeView:PancakeView>
-        <pancakeView:PancakeView Style="{StaticResource card}" Grid.Row="4" Margin="{StaticResource ContentPadding}">
-            <Grid ColumnSpacing="20" ColumnDefinitions="8,*,123,Auto">
-                <BoxView BackgroundColor="{StaticResource Primary}" />
-                <StackLayout Grid.Column="1" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource label_section_header}" Text="İkindi" />
-                </StackLayout>
-                <StackLayout Grid.Column="2" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource text_section_header}" Text="{Binding Vakit.Ikindi}" />
-                </StackLayout>
-                <StackLayout Grid.Column="3" Padding="20,10" Spacing="8">
-                    <Label Text="&#xe855;" FontSize="40" TextColor="Orange"
-                           FontFamily="Material" HorizontalOptions="Center" />
-                </StackLayout>
-            </Grid>
-        </pancakeView:PancakeView>
-        <pancakeView:PancakeView Style="{StaticResource card}" Grid.Row="5" Margin="{StaticResource ContentPadding}">
-            <Grid ColumnSpacing="20" ColumnDefinitions="8,*,123,Auto">
-                <BoxView BackgroundColor="{StaticResource Primary}" />
-                <StackLayout Grid.Column="1" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource label_section_header}" Text="Akşam" />
-                </StackLayout>
-                <StackLayout Grid.Column="2" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource text_section_header}" Text="{Binding Vakit.Aksam}" />
-                </StackLayout>
-                <StackLayout Grid.Column="3" Padding="20,10" Spacing="8">
-                    <Label Text="&#xe855;" FontSize="40" TextColor="Orange"
-                           FontFamily="Material" HorizontalOptions="Center" />
-                </StackLayout>
-            </Grid>
-        </pancakeView:PancakeView>
-        <pancakeView:PancakeView Style="{StaticResource card}" Grid.Row="6" Margin="{StaticResource ContentPadding}">
-            <Grid ColumnSpacing="20" ColumnDefinitions="8,*,123,Auto">
-                <BoxView BackgroundColor="{StaticResource Primary}" />
-                <StackLayout Grid.Column="1" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource label_section_header}" Text="Yatsı" />
-                </StackLayout>
-                <StackLayout Grid.Column="2" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource text_section_header}" Text="{Binding Vakit.Yatsi}" />
-                </StackLayout>
-                <StackLayout Grid.Column="3" Padding="20,10" Spacing="8">
-                    <Label Text="&#xe855;" FontSize="40" TextColor="Orange"
-                           FontFamily="Material" HorizontalOptions="Center" />
-                </StackLayout>
-            </Grid>
-        </pancakeView:PancakeView>
-        <pancakeView:PancakeView Style="{StaticResource card}" Grid.Row="7" Margin="{StaticResource ContentPadding}">
-            <Grid ColumnSpacing="20" ColumnDefinitions="8,*,123,Auto">
-                <BoxView BackgroundColor="{StaticResource Primary}" />
-                <StackLayout Grid.Column="1" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource label_section_header}" Text="Yatsı Sonu" />
-                </StackLayout>
-                <StackLayout Grid.Column="2" Padding="0,10" Spacing="8">
-                    <Label Style="{StaticResource text_section_header}" Text="{Binding Vakit.YatsiSonu}" />
-                </StackLayout>
-                <StackLayout Grid.Column="3" Padding="20,10" Spacing="8">
-                    <Label Text="&#xe855;" FontSize="40" TextColor="Orange"
-                           FontFamily="Material" HorizontalOptions="Center" />
-                </StackLayout>
-            </Grid>
-        </pancakeView:PancakeView>
-        </Grid></Frame>-->
-        <!--</pancakeView:PancakeView>-->
-        <Grid Padding="15" RowDefinitions="Auto,*" ColumnDefinitions="*,Auto" HorizontalOptions="CenterAndExpand">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="18">
-                <pancakeView:PancakeView BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}" Margin="3,7" MinimumWidthRequest="300">
-                    <Label Text="{Binding Today}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="26" Padding="5,0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        <Grid Padding="15" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="Auto,*">
+            <StackLayout Spacing="18" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,7" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                    <Label Margin="10" Padding="5,0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="26" TextColor="#623323"
+                           Text="{Binding Today}" />
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}" Margin="3,7" MinimumWidthRequest="300">
-                    <Button Text="{Binding City}" Margin="10" TextColor="#623323" FontAttributes="Bold" FontSize="24" Padding="5,0" Command="{Binding GoToMapCommand}" BackgroundColor="SandyBrown" HorizontalOptions="Center" />
+                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,7" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                    <Button Margin="10" Padding="5,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="24" TextColor="#623323"
+                            Command="{Binding GoToMapCommand}"
+                            Text="{Binding City}" />
                 </pancakeView:PancakeView>
             </StackLayout>
             <pancakeView:PancakeView Grid.Row="1" Grid.ColumnSpan="2">
-                <CollectionView ItemsSource="{Binding Items}" VerticalScrollBarVisibility="Never" VerticalOptions="CenterAndExpand">
+                <CollectionView VerticalOptions="CenterAndExpand" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid RowDefinitions="Auto">
-                                <!-- Card -->
-                                <pancakeView:PancakeView Style="{StaticResource card}" CornerRadius="25" Margin="5,7" Padding="9">
+                                <!--  Card  -->
+                                <pancakeView:PancakeView Style="{StaticResource card}" Margin="5,7" Padding="9" CornerRadius="25">
                                     <pancakeView:PancakeView.Triggers>
-                                        <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Passed">
+                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Passed">
                                             <Setter Property="BackgroundColor" Value="AntiqueWhite" />
                                         </DataTrigger>
-                                        <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Happening">
+                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Happening">
                                             <Setter Property="BackgroundColor" Value="Gold" />
                                         </DataTrigger>
-                                        <DataTrigger TargetType="pancakeView:PancakeView" Binding="{Binding State}" Value="Waiting">
+                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Waiting">
                                             <Setter Property="BackgroundColor" Value="LightGreen" />
                                         </DataTrigger>
                                     </pancakeView:PancakeView.Triggers>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Adi}" FontAttributes="Bold" TextColor="#623323" FontSize="22" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" Padding="7,0,0,0"/>
-                                        <Label Text="{Binding Vakit}"  TextColor="Brown" FontAttributes="Bold" FontSize="Title" VerticalOptions="Start"/>
-                                        <Label Text="&#xe7f6;" FontFamily="MaterialIcons" HorizontalOptions="End" FontSize="28" Margin="0,0,9,0" TextColor="Chocolate">
+                                        <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="22" TextColor="#623323" Text="{Binding Adi}" />
+                                        <Label VerticalOptions="Start" FontAttributes="Bold" FontSize="Title" TextColor="Brown" Text="{Binding Vakit}" />
+                                        <Label Margin="0,0,9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="28" TextColor="Chocolate" Text="&#xe7f6;">
                                             <Label.Triggers>
-                                                <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="False">
+                                                <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="False">
                                                     <Setter Property="Text" Value="&#xe7f6;" />
                                                 </DataTrigger>
-                                                <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="True">
+                                                <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="True">
                                                     <Setter Property="Text" Value="&#xe7f5;" />
                                                 </DataTrigger>
                                             </Label.Triggers>
                                         </Label>
                                         <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer 
-                                            NumberOfTapsRequired="1"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
-                                            CommandParameter="{Binding .}">
-                                            </TapGestureRecognizer>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}" CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
-                                        <!--<Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" FontSize="32" FontAttributes="Bold"/>
-                                                <Label Text="Enable nested:" FontSize="13" VerticalOptions="CenterAndExpand" />
-                                                <Switch IsToggled="{Binding IsEnabled}" />-->
                                     </StackLayout>
                                 </pancakeView:PancakeView>
                             </Grid>
@@ -209,35 +66,4 @@
             </pancakeView:PancakeView>
         </Grid>
     </StackLayout>
-    <!--
-      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
-      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
-    -->
-    <!--<RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Item">
-                        <Label Text="{Binding Text}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding Description}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </RefreshView>-->
 </ContentPage>

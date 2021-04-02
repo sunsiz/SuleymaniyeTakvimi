@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using Matcha.BackgroundService;
-using Plugin.LocalNotification;
+//using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
@@ -143,23 +143,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     //    await notificationManager.Send(notification).ConfigureAwait(false);
                     //    //Console.WriteLine("Notification Message ID: " + msgId);
                     //});
-                    //try
-                    //{
-                    //    // Use default vibration length
-                    //    Vibration.Vibrate();
-
-                    //    // Or use specified time
-                    //    var duration = TimeSpan.FromSeconds(1);
-                    //    Vibration.Vibrate(duration);
-                    //}
-                    //catch (FeatureNotSupportedException ex)
-                    //{
-                    //    UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor.", "Cihaz desteklemiyor");
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
-                    //}
                 }
                 else
                 {
@@ -274,22 +257,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                         Title = itemAdi = "Yatsı Sonu";
                         break;
                 }
-
-                //string itemIdEtkin = itemId + "Etkin";
-                //string itemIdBildiri = itemId + "Bildiri";
-                //string itemIdTitreme = itemId + "Titreme";
-                //string itemIdAlarm = itemId + "Alarm";
-                //string itemIdBildirmeVakti = itemId + "BildirmeVakti";
                 Vakit = Preferences.Get(itemId, "");
                 Etkin = Preferences.Get(itemId + "Etkin", false);
                 Bildiri = Preferences.Get(itemId + "Bildiri", false);
                 Titreme = Preferences.Get(itemId + "Titreme", false);
                 Alarm = Preferences.Get(itemId + "Alarm", false);
-                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0.00");//when assign "0" for defaultValue, there always thow exception says: java.lang cannot convert boolean to string. So cheating.
-                //var item = await DataStore.GetItemAsync(itemId);
-                //Id = item.Id;
-                //Text = item.Text;
-                //Description = item.Description;
+                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0.00");//when assign "0" for defaultValue, there always throw exception says: java.lang cannot convert boolean to string. So cheating.
             }
             catch (Exception ex)
             {

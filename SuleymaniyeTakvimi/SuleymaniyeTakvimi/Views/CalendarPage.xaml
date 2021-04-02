@@ -21,10 +21,6 @@
 
             <!--  Shedule list structure  -->
             <CollectionView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Start" VerticalScrollBarVisibility="Never" ItemsSource="{Binding schedule}">
-                <!--
-                    SelectionMode="Single"
-                    SelectedItem="{Binding SelectedSchedule}"
-                -->
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
@@ -33,7 +29,7 @@
                             <!--  Vertical Line  -->
                             <BoxView Grid.Row="1" Grid.Column="0" WidthRequest="5" HeightRequest="30" Margin="25,0,78,0" Color="DeepSkyBlue" />
                             <!--  Card  -->
-                            <pancakeView:PancakeView Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource card}" Margin="0,5,30,20" Padding="15" CornerRadius="0,25,0,25">
+                            <pancakeView:PancakeView Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource card}" Margin="0,5,30,20" Padding="12" CornerRadius="0,25,0,25">
                                 <!--<Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" CornerRadius="25" HasShadow="True" Margin="5,0,30,35">-->
                                 <pancakeView:PancakeView.Triggers>
                                     <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Passed">
@@ -50,8 +46,8 @@
                                     <xct:Expander CollapseAnimationEasing="{x:Static Easing.SpringOut}" ExpandAnimationEasing="{x:Static Easing.SpringIn}">
                                         <xct:Expander.Header>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label HeightRequest="35" Margin="7,0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="22" TextColor="#623323" Text="{Binding Title}" />
-                                                <Label Margin="9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="28" TextColor="Chocolate" Text="&#xe7f6;">
+                                                <Label HeightRequest="35" Margin="3,0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="22" TextColor="#623323" Text="{Binding Title}" />
+                                                <Label Margin="7,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="28" TextColor="Chocolate" Text="&#xe7f6;">
                                                     <Label.Triggers>
                                                         <DataTrigger Binding="{Binding ReminderOn}" TargetType="Label" Value="False">
                                                             <Setter Property="Text" Value="&#xe7f6;" />
@@ -61,12 +57,9 @@
                                                         </DataTrigger>
                                                     </Label.Triggers>
                                                 </Label>
-                                                <!--<Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" FontSize="32" FontAttributes="Bold"/>
-                                                <Label Text="Enable nested:" FontSize="13" VerticalOptions="CenterAndExpand" />
-                                                <Switch IsToggled="{Binding IsEnabled}" />-->
                                             </StackLayout>
                                         </xct:Expander.Header>
-                                        <StackLayout Padding="1" Orientation="Vertical">
+                                        <StackLayout Padding="0,5,0,0" Orientation="Vertical">
                                             <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center" Orientation="Horizontal">
                                                 <Switch IsToggled="{Binding ReminderOn}">
                                                     <!--  ThumbColor="DeepSkyBlue"  -->
@@ -85,8 +78,6 @@
                                                 </Switch>
                                                 <Label VerticalTextAlignment="Center" FontSize="16" IsEnabled="{Binding ReminderOn}" TextColor="DarkRed" Text="{x:Static resources:AppResources.TitresimSwitch}" />
                                             </StackLayout>
-                                            <!--<BoxView Grid.Column="1" BackgroundColor="#623323" WidthRequest="3" HorizontalOptions="Start"
-                                                     VerticalOptions="FillAndExpand"/>-->
                                             <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center" Orientation="Horizontal">
                                                 <Switch IsEnabled="{Binding ReminderOn}" IsToggled="{Binding Notification}">
                                                     <!--  Color="DeepSkyBlue"  -->
@@ -96,33 +87,17 @@
                                                 </Switch>
                                                 <Label VerticalTextAlignment="Center" FontSize="16" IsEnabled="{Binding ReminderOn}" TextColor="DarkRed" Text="{x:Static resources:AppResources.BildirimGosterSwitch}" />
                                             </StackLayout>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
+                                            <StackLayout Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                                                 <Switch IsEnabled="{Binding ReminderOn}" IsToggled="{Binding Alarm}">
-                                                    <!--Color="Maroon"-->
+                                                    <!--  Color="Maroon"  -->
                                                     <Switch.Behaviors>
-                                                        <xct:EventToCommandBehavior EventName="Toggled" Command="{Binding Source={x:Reference Page}, Path=BindingContext.AlarmCheckedChanged}" CommandParameter="{Binding .}"/>
+                                                        <xct:EventToCommandBehavior EventName="Toggled" Command="{Binding Source={x:Reference Page}, Path=BindingContext.AlarmCheckedChanged}" CommandParameter="{Binding .}" />
                                                     </Switch.Behaviors>
                                                 </Switch>
-                                                <Label VerticalTextAlignment="Center" FontSize="16" IsEnabled="{Binding ReminderOn}" TextColor="DarkRed" Text="{x:Static resources:AppResources.AlarmSwitch}"/>
+                                                <Label VerticalTextAlignment="Center" FontSize="16" IsEnabled="{Binding ReminderOn}" TextColor="DarkRed" Text="{x:Static resources:AppResources.AlarmSwitch}" />
                                             </StackLayout>
                                         </StackLayout>
                                     </xct:Expander>
-                                    <!--<Label Text="{Binding Description}" TextColor="Silver" FontSize="18"/>-->
-                                    <!--  Features  -->
-                                    <!--<CollectionView ItemsSource="{Binding Features}"
-                                                             Margin="0,20,0,0"
-                                                             HorizontalScrollBarVisibility="Never"
-                                                             HeightRequest="50"
-                                                             ItemsLayout="HorizontalList">
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout Margin="0,0,10,0">
-                                                    <Label Text="{Binding Name}" BackgroundColor="{Binding BGColor}" FontAttributes="Bold" TextColor="{Binding TxColor}" Padding="10" HorizontalOptions="Start"/>
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>-->
-
                                 </StackLayout>
                                 <!--</Frame>-->
                             </pancakeView:PancakeView>

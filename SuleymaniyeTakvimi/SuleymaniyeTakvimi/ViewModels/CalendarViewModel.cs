@@ -16,46 +16,14 @@ namespace SuleymaniyeTakvimi.ViewModels
     class CalendarViewModel : MvvmHelpers.BaseViewModel
     {
         public ObservableCollection<Schedule> schedule { get; set; }
-        //Schedule selectedSchedule;
-        String today;
-        //private ICommand vibreationChecked;
-        //private ICommand notificationChecked;
-        //private ICommand enableReminder;
-        //public ICommand VibrationChecked => vibreationChecked ??= new Command((sch) =>
-        //{
-        //    var theSchedule = (Schedule)sch;
-        //    switch (theSchedule.Title)
-        //    {
-        //        case "Fecri Kazip": Preferences.Set("FKVibration", theSchedule.Vibration); break;
-        //        case "Fecri Sadik": Preferences.Set("FSVibration", theSchedule.Vibration); break;
-        //        case "Sabah Sonu": Preferences.Set("SSVibration", theSchedule.Vibration); break;
-        //        case "Öğle": Preferences.Set("OGVibration", theSchedule.Vibration); break;
-        //        case "İkindi": Preferences.Set("IKVibration", theSchedule.Vibration); break;
-        //        case "Akşam": Preferences.Set("AKVibration", theSchedule.Vibration); break;
-        //        case "Yatsı": Preferences.Set("YAVibration", theSchedule.Vibration); break;
-        //        case "Yatsı Sonu": Preferences.Set("YSVibration", theSchedule.Vibration); break;
-        //    }
-        //});
-        //public ICommand NotificationChecked => notificationChecked ??= new Command(notificationCheckedChanged);
         public ICommand VibrationCheckedChanged { get; private set; }
         public ICommand NotificationCheckedChanged { get; private set; }
         public ICommand AlarmCheckedChanged { get; private set; }
         public ICommand ReminderEnabledChanged { get; private set; }
         public ICommand LoadSchedulesCommand { get; }
-        //public ICommand EnableReminder => enableReminder ??= new Command(() =>
-        //{
-        //    var testing = "";
-        //});
-
-        //public Schedule SelectedSchedule
-        //{
-        //    get => selectedSchedule;
-        //    set => SetProperty(ref selectedSchedule, value);
-        //}
         public string Today
         {
             get => DateTime.Today.ToString("yyyy MMMM dd");
-            set => SetProperty(ref today, value);
         }
 
 
@@ -85,14 +53,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Vibration = Preferences.Get("fecrikazipTitreme", false),
                     Notification = Preferences.Get("fecrikazipBildiri", false),
                     Alarm = Preferences.Get("fecrikazipAlarm", false)
-                    //NotificationOn = Preferences.Get("FKNotification",false),
-                    //Vibration = Preferences.Get("FKVibration",false),
-                    //Notification = Preferences.Get("FKNotification",false)
-                    //NotificationType = Preferences.Get("FKNotification",0)
-                    //Passed = DateTime.Now > DateTime.Parse(takvim.FecriSadik),
-                    //Happening = DateTime.Now > DateTime.Parse(takvim.FecriKazip) &&
-                    //            DateTime.Now < DateTime.Parse(takvim.FecriSadik),
-                    //Waiting = DateTime.Now < DateTime.Parse(takvim.FecriKazip)
                 },
                 new Schedule
                 {
@@ -103,14 +63,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Vibration = Preferences.Get("fecrisadikTitreme", false),
                     Notification = Preferences.Get("fecrisadikBildiri", false),
                     Alarm = Preferences.Get("fecrisadikAlarm", false)
-                    //NotificationOn = Preferences.Get("FSNotification",false),
-                    //Vibration = Preferences.Get("FSVibration",false),
-                    //Notification = Preferences.Get("FSNotification",false)
-                    //NotificationType = Preferences.Get("FSNotification",0)
-                    //Passed = DateTime.Now > DateTime.Parse(takvim.SabahSonu),
-                    //Happening = DateTime.Now > DateTime.Parse(takvim.FecriSadik) &&
-                    //            DateTime.Now < DateTime.Parse(takvim.SabahSonu),
-                    //Waiting = DateTime.Now < DateTime.Parse(takvim.FecriSadik)
                 },
                 new Schedule
                 {
@@ -121,14 +73,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Vibration = Preferences.Get("sabahsonuTitreme", false),
                     Notification = Preferences.Get("SabahsonuBildiri", false),
                     Alarm = Preferences.Get("sabahsonuAlarm", false)
-                    //NotificationOn = Preferences.Get("SSNotification",false),
-                    //Vibration = Preferences.Get("SSVibration",false),
-                    //Notification = Preferences.Get("SSNotification",false)
-                    //NotificationType = Preferences.Get("SSNotification",0)
-                    //Passed = DateTime.Now > DateTime.Parse(takvim.Ogle),
-                    //Happening = DateTime.Now > DateTime.Parse(takvim.SabahSonu) &&
-                    //            DateTime.Now < DateTime.Parse(takvim.Ogle),
-                    //Waiting = DateTime.Now < DateTime.Parse(takvim.SabahSonu)
                 },
                 new Schedule
                 {
@@ -139,14 +83,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Vibration = Preferences.Get("ogleTitreme", false),
                     Notification = Preferences.Get("ogleBildiri", false),
                     Alarm = Preferences.Get("ogleAlarm", false)
-                    //NotificationOn = Preferences.Get("OGNotification",false),
-                    //Vibration = Preferences.Get("OGVibration",false),
-                    //Notification = Preferences.Get("OGNotification",false)
-                    //NotificationType = Preferences.Get("OGNotification",0)
-                    //Passed = DateTime.Now > DateTime.Parse(takvim.Ikindi),
-                    //Happening = DateTime.Now > DateTime.Parse(takvim.Ogle) &&
-                    //            DateTime.Now < DateTime.Parse(takvim.Ikindi),
-                    //Waiting = DateTime.Now < DateTime.Parse(takvim.Ogle)
                 },
                 new Schedule
                 {
@@ -157,14 +93,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Vibration = Preferences.Get("ikindiTitreme", false),
                     Notification = Preferences.Get("ikindiBildiri", false),
                     Alarm = Preferences.Get("ikindiAlarm", false)
-                    //NotificationOn = Preferences.Get("IKNotification",false),
-                    //Vibration = Preferences.Get("IKVibration",false),
-                    //Notification = Preferences.Get("IKNotification",false)
-                    //NotificationType = Preferences.Get("IKNotification",0)
-                    //Passed = DateTime.Now > DateTime.Parse(takvim.Aksam),
-                    //Happening = DateTime.Now > DateTime.Parse(takvim.Ikindi) &&
-                    //            DateTime.Now < DateTime.Parse(takvim.Aksam),
-                    //Waiting = DateTime.Now < DateTime.Parse(takvim.Ikindi)
                 },
                 new Schedule
                 {
@@ -175,14 +103,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Vibration = Preferences.Get("aksamTitreme", false),
                     Notification = Preferences.Get("aksamBildiri", false),
                     Alarm = Preferences.Get("aksamAlarm", false)
-                    //NotificationOn = Preferences.Get("AKNotification",false),
-                    //Vibration = Preferences.Get("AKVibration",false),
-                    //Notification = Preferences.Get("AKNotification",false)
-                    //NotificationType = Preferences.Get("AKNotification",0)
-                    //Passed = DateTime.Now > DateTime.Parse(takvim.Yatsi),
-                    //Happening = DateTime.Now > DateTime.Parse(takvim.Aksam) &&
-                    //            DateTime.Now < DateTime.Parse(takvim.Yatsi),
-                    //Waiting = DateTime.Now < DateTime.Parse(takvim.Aksam)
                 },
                 new Schedule
                 {
@@ -193,14 +113,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Vibration = Preferences.Get("yatsiTitrme", false),
                     Notification = Preferences.Get("yatsiBildiri", false),
                     Alarm = Preferences.Get("yatsiAlarm", false)
-                    //NotificationOn = Preferences.Get("YANotification",false),
-                    //Vibration = Preferences.Get("YAVibration",false),
-                    //Notification = Preferences.Get("YANotification",false)
-                    //NotificationType = Preferences.Get("YANotification",0)
-                    //Passed = DateTime.Now > DateTime.Parse(takvim.YatsiSonu),
-                    //Happening = DateTime.Now > DateTime.Parse(takvim.Yatsi) &&
-                    //            DateTime.Now < DateTime.Parse(takvim.YatsiSonu),
-                    //Waiting = DateTime.Now < DateTime.Parse(takvim.Yatsi)
                 },
                 new Schedule
                 {
@@ -211,14 +123,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Vibration = Preferences.Get("yatsisonuTitreme", false),
                     Notification = Preferences.Get("yatsisonuBildiri", false),
                     Alarm = Preferences.Get("yatsisonuAlarm", false)
-                    //NotificationOn = Preferences.Get("YSNotification",false),
-                    //Vibration = Preferences.Get("YSVibration",false),
-                    //Notification = Preferences.Get("YSNotification",false)
-                    //NotificationType = Preferences.Get("YSNotification",0)
-                    //Passed = DateTime.Now > DateTime.Parse(takvim.FecriKazip),
-                    //Happening = DateTime.Now > DateTime.Parse(takvim.YatsiSonu) &&
-                    //            DateTime.Now < DateTime.Parse(takvim.FecriKazip),
-                    //Waiting = DateTime.Now < DateTime.Parse(takvim.YatsiSonu)
                 }
             };
         }
@@ -234,8 +138,6 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private void ReminderSettingChanged(object obj)
         {
-            //Console.WriteLine(obj.ToString());
-            //When page load the obj value awlways be false, so avoiding it.
             if (!IsBusy)
             {
                 if (obj.GetType() == typeof(Schedule))

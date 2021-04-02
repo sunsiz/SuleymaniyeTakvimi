@@ -15,6 +15,9 @@ namespace SuleymaniyeTakvimi.ViewModels
         private string nextButtonText;
         private string skipButtonText;
 
+        public ICommand NextCommand { get; private set; }
+        public ICommand SkipCommand { get; private set; }
+
         public OnBoardingViewModel()
         {
             SetNextButtonText("SONRA");
@@ -128,8 +131,5 @@ namespace SuleymaniyeTakvimi.ViewModels
                 SetNextButtonText("SONRA");
             }
         }
-
-        public ICommand NextCommand { get; private set; }
-        public ICommand SkipCommand { get; private set; }
     }
 }

@@ -10,7 +10,7 @@ using Android.OS;
 using FFImageLoading;
 using Matcha.BackgroundService.Droid;
 using MediaManager;
-using Plugin.LocalNotification;
+//using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -53,16 +53,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             //NotificationCenter.NotifyNotificationTapped(intent);
             base.OnNewIntent(intent);
-            //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
-            //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
-            //CrossMediaManager.Current.Notification.Enabled = false;
             CrossMediaManager.Current.Stop();
-            //CrossMediaManager.Current.Notification.UpdateNotification();
-            //CrossMediaManager.Current.Queue.Clear();
-            //CrossMediaManager.Current.MediaPlayer = null;
-            //CrossMediaManager.Current.TryDispose();
-            //CrossMediaManager.Current.Dispose();
-            //this.ShinyOnNewIntent(intent);
         }
     }
 }

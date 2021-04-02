@@ -2,7 +2,8 @@
 using SuleymaniyeTakvimi.Views;
 using System;
 using Matcha.BackgroundService;
-using Plugin.LocalNotification;
+using Plugin.LocalNotifications;
+//using Plugin.LocalNotification;
 using SuleymaniyeTakvimi.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -27,7 +28,7 @@ namespace SuleymaniyeTakvimi
         protected override void OnStart()
         {
             SetReminderEnabled();
-            VersionTracking.Track();
+            //VersionTracking.Track();
             if (reminderEnabled) StartBackgroundService();
         }
 
@@ -35,6 +36,7 @@ namespace SuleymaniyeTakvimi
         {
             BackgroundAggregatorService.Add(() => new ReminderService(60));
             BackgroundAggregatorService.StartBackgroundService();
+            //CrossLocalNotifications.Current.Show("Suleymaniye Calendar Service Running", $"Service started at {DateTime.Now.ToShortTimeString()}", 1000);
         }
 
         private void SetReminderEnabled()
@@ -60,9 +62,9 @@ namespace SuleymaniyeTakvimi
             if (Device.RuntimePlatform == Device.iOS) StartBackgroundService();
         }
 
-        private void OnLocalNotificationTapped(NotificationTappedEventArgs e)
-        {
-            // your code goes here
-        }
+        //private void OnLocalNotificationTapped(NotificationTappedEventArgs e)
+        //{
+        //    // your code goes here
+        //}
     }
 }

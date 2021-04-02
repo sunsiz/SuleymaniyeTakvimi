@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Acr.UserDialogs;
 using MediaManager;
-using Plugin.LocalNotification;
+//using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
@@ -22,18 +22,8 @@ namespace SuleymaniyeTakvimi.Services
 
     public class DataService : IDataService
     {
-        //readonly List<Item> items;
         public Takvim konum;
         public Takvim takvim;
-        //public Command GetLocationCommand { get; }
-
-
-        //protected override void OnDisappearing()
-        //{
-        //    if (cts != null && !cts.IsCancellationRequested)
-        //        cts.Cancel();
-        //    base.OnDisappearing();
-        //}
         public DataService()
         {
             takvim = new Takvim()
@@ -53,78 +43,7 @@ namespace SuleymaniyeTakvimi.Services
                 YatsiSonu = Preferences.Get("yatsisonu", "19:31"),
                 Tarih = Preferences.Get("tarih", DateTime.Today.ToString("dd/MM/yyyy"))
             };
-            //var latitude = Application.Current.Properties.ContainsKey("latitude")?Application.Current.Properties["latitude"].ToString():"";
-            //var longitude = Preferences.ContainsKey("longitude") ? Preferences.Get("longitude","") : "";
-            //takvim = Application.Current.Properties.ContainsKey("takvim")
-            //    ? Application.Current.Properties["takvim"] as Takvim
-            //    : new Takvim()
-            //    {
-            //        Enlem = 50.87,
-            //        Boylam = 4.33,
-            //        Yukseklik = 4,
-            //        SaatBolgesi = 1,
-            //        YazKis = 0,
-            //        FecriKazip = "06:28",
-            //        FecriSadik = "07:16",
-            //        SabahSonu = "08:00",
-            //        Ogle = "12:59",
-            //        Ikindi = "15:27",
-            //        Aksam = "17:54",
-            //        Yatsi = "18:41",
-            //        YatsiSonu = "19:31",
-            //        Tarih = DateTime.Today.ToString("dd/MM/yyyy")
-            //        //Enlem = 41, Boylam = 28.9, Yukseklik = 4, SaatBolgesi = 3, YazKis = 0, FecriKazip = "06:32",
-            //        //FecriSadik = "07:19", SabahSonu = "08:03", Ogle = "13:21", Ikindi = "16:09", Aksam = "", Yatsi = "",
-            //        //YatsiSonu = ""
-            //    };
-            //GetLocationCommand = new Command(async () => GetCurrentLocation());
-            //GetCurrentLocation().Wait();
-            //takvim = VakitHesabi();
-            //items = new List<Item>()
-            //{
-            //    new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-            //    new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-            //    new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-            //    new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-            //    new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-            //    new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
-            //};
         }
-
-        //public async Task<bool> AddItemAsync(Item item)
-        //{
-        //    items.Add(item);
-
-        //    return await Task.FromResult(true);
-        //}
-
-        //public async Task<bool> UpdateItemAsync(Item item)
-        //{
-        //    //var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-        //    //items.Remove(oldItem);
-        //    items.Add(item);
-
-        //    return await Task.FromResult(true);
-        //}
-
-        //public async Task<bool> DeleteItemAsync(string id)
-        //{
-        //    //var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-        //    //items.Remove(oldItem);
-
-        //    return await Task.FromResult(true);
-        //}
-
-        //public async Task<Item> GetItemAsync(string adi)
-        //{
-        //    return await Task.FromResult(items.FirstOrDefault(s => s.Adi == adi));
-        //}
-
-        //public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
-        //{
-        //    return await Task.FromResult(items);
-        //}
-
 
         public async Task<Takvim> GetCurrentLocation()
         {
@@ -203,7 +122,6 @@ namespace SuleymaniyeTakvimi.Services
                 //Xml Parsing  
                 takvim = new Takvim();
                 XDocument doc = XDocument.Load(url);
-                //if(doc.Descendants("Takvim")!=null)
                 foreach (var item in doc.Root.Descendants())
                 {
                     switch (item.Name.LocalName)
@@ -251,21 +169,8 @@ namespace SuleymaniyeTakvimi.Services
                     }
                 }
             }
-            //else
-            //{
-            //    var location = await Geolocation.GetLastKnownLocationAsync();
-            //    if (location != null)
-            //    {
-            //        Console.WriteLine(
-            //            $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-            //        konum = new Takvim();
-            //        konum.Enlem = location.Latitude;
-            //        konum.Boylam = location.Longitude;
-            //        konum.Yukseklik = location.Altitude ?? 0;
-            //    }
-            //}
 
-            return takvim;/*await Task.FromResult()*/
+            return takvim;
         }
 
         public async Task<Takvim> GetPrayerTimes(Location location)
@@ -388,7 +293,8 @@ namespace SuleymaniyeTakvimi.Services
 
         private async void CheckAlarm(string vakit)
         {
-            if ((DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString())) == TimeSpan.FromMinutes(0))
+            var kalan = DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString());
+            if (kalan.Minutes == 0)
             {
                 await CrossMediaManager.Current.PlayFromAssembly("ezan.mp3").ConfigureAwait(false);
                 //ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
@@ -405,23 +311,27 @@ namespace SuleymaniyeTakvimi.Services
 
         private void CheckVibration(string vakit)
         {
-            if ((DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString()))==TimeSpan.FromMinutes(0))
-            try
+            var kalan = DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString());
+            if (kalan.Minutes == 0)
             {
-                // Use default vibration length
-                Vibration.Vibrate();
+                try
+                {
+                    // Use default vibration length
+                    Vibration.Vibrate();
 
-                // Or use specified time
-                var duration = TimeSpan.FromSeconds(10);
-                Vibration.Vibrate(duration);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. " + ex.Message, "Cihaz desteklemiyor");
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+                    // Or use specified time
+                    var duration = TimeSpan.FromSeconds(10);
+                    Vibration.Vibrate(duration);
+                }
+                catch (FeatureNotSupportedException ex)
+                {
+                    UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. " + ex.Message,
+                        "Cihaz desteklemiyor");
+                }
+                catch (Exception ex)
+                {
+                    UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+                }
             }
         }
 
