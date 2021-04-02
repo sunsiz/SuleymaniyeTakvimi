@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>SuleymaniyeTakvimi</string>
+	<string>Suleymaniye Takvimi</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.SuleymaniyeTakvimi</string>
 	<key>CFBundleVersion</key>
