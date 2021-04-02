@@ -294,7 +294,7 @@ namespace SuleymaniyeTakvimi.Services
         private async void CheckAlarm(string vakit)
         {
             var kalan = DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString());
-            if (kalan.Minutes == 0)
+            if (kalan.Hours == 0 && kalan.Minutes == 0 && kalan.Seconds <= 30)
             {
                 await CrossMediaManager.Current.PlayFromAssembly("ezan.mp3").ConfigureAwait(false);
                 //ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
@@ -312,7 +312,7 @@ namespace SuleymaniyeTakvimi.Services
         private void CheckVibration(string vakit)
         {
             var kalan = DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString());
-            if (kalan.Minutes == 0)
+            if (kalan.Hours == 0 && kalan.Minutes == 0 && kalan.Seconds <= 30)
             {
                 try
                 {
