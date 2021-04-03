@@ -1,4 +1,4 @@
-name: .NET
+name: Suleymaniye Calendar Xamarin Forms Application
 
 on:
   push:
@@ -28,3 +28,22 @@ jobs:
           xamarin-android-version: 10 # optional
           # Version of Xcode to use with Xamarin.iOS and Xamarin.Mac
           xcode-version: 12.4 # optional
+          
+  Android:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Android
+      run: |
+        nuget restore
+        msbuild SuleymaniyeTakvimi/SuleymaniyeTakvimi.Android/SuleymaniyeTakvimi.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
+        
+  iOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: iOS
+      run: |
+        nuget restore
+        msbuild SuleymaniyeTakvimi/SuleymaniyeTakvimi.iOS/SuleymaniyeTakvimi.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhoneSimulator /p:Configuration=Debug
+
