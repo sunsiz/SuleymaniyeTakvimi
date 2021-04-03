@@ -1,106 +1,65 @@
-name: Suleymaniye Calendar Xamarin Forms Application
+# Xamarin.Android and Xamarin.iOS
+# Build a Xamarin.Android and Xamarin.iOS app.
+# Add steps that test, sign, and distribute the app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/ecosystems/xamarin
 
 jobs:
-  - job: build
 
-    pool:
-     vmImage: macOS-latest
+- job: Android
+  pool:
+    vmImage: 'macOS-10.15'
 
-    steps:
-    - task: actions/checkout@v2
-      inputs:
-          # Version of Mono to select
-          mono-version: 6 # optional
-          # Version of Xamarin.iOS to select
-          xamarin-ios-version: 14 # optional
-          # Version of Xamarin.Mac to select
-          xamarin-mac-version: 7 # optional
-          # Version of Xamarin.Android to select
-          xamarin-android-version: 10 # optional
-          # Version of Xcode to use with Xamarin.iOS and Xamarin.Mac
-          xcode-version: 12 # optional
-          
-  - job: Android
-    pool:
-     vmImage: macos-latest
-    steps:
-    - task: actions/checkout@v1
-      inputs: |
-        nuget restore
-        msbuild SuleymaniyeTakvimi/SuleymaniyeTakvimi.Android/SuleymaniyeTakvimi.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
-        
-  - job: iOS
-    pool:
-     vmImage: macos-latest
-    steps:
-    - task: actions/checkout@v1
-      inputs: |
-        nuget restore
-        msbuild SuleymaniyeTakvimi/SuleymaniyeTakvimi.iOS/SuleymaniyeTakvimi.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhoneSimulator /p:Configuration=Debug
+  variables:
+    buildConfiguration: 'Release'
+    outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
+  steps:
+  - task: NuGetToolInstaller@1
 
-# # Xamarin.Android and Xamarin.iOS
-# # Build a Xamarin.Android and Xamarin.iOS app.
-# # Add steps that test, sign, and distribute the app, save build artifacts, and more:
-# # https://docs.microsoft.com/azure/devops/pipelines/ecosystems/xamarin
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
 
-# jobs:
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: '**/*droid*.csproj'
+      outputDirectory: '$(outputDirectory)'
+      configuration: '$(buildConfiguration)'
+      msbuildVersionOption: '16.0'
 
-# - job: Android
-#   pool:
-#     vmImage: 'macOS-10.15'
+  - task: AndroidSigning@3
+    inputs:
+      apksign: false
+      zipalign: false
+      apkFiles: '$(outputDirectory)/*.apk'
 
-#   variables:
-#     buildConfiguration: 'Release'
-#     outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(outputDirectory)'
 
-#   steps:
-#   - task: NuGetToolInstaller@1
+- job: iOS
+  pool:
+    vmImage: 'macOS-10.15'
 
-#   - task: NuGetCommand@2
-#     inputs:
-#       restoreSolution: '**/*.sln'
+  steps:
+  # To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
+  # https://go.microsoft.com/fwlink/?linkid=871629
+  - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6 
+    displayName: 'Select Xamarin SDK version'
+    enabled: false
 
-#   - task: XamarinAndroid@1
-#     inputs:
-#       projectFile: '**/*droid*.csproj'
-#       outputDirectory: '$(outputDirectory)'
-#       configuration: '$(buildConfiguration)'
-#       msbuildVersionOption: '16.0'
+  - task: NuGetToolInstaller@1
 
-#   - task: AndroidSigning@3
-#     inputs:
-#       apksign: false
-#       zipalign: false
-#       apkFiles: '$(outputDirectory)/*.apk'
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
 
-#   - task: PublishBuildArtifacts@1
-#     inputs:
-#       pathtoPublish: '$(outputDirectory)'
-
-# - job: iOS
-#   pool:
-#     vmImage: 'macOS-10.15'
-
-#   steps:
-#   # To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
-#   # https://go.microsoft.com/fwlink/?linkid=871629
-#   - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6 
-#     displayName: 'Select Xamarin SDK version'
-#     enabled: false
-
-#   - task: NuGetToolInstaller@1
-
-#   - task: NuGetCommand@2
-#     inputs:
-#       restoreSolution: '**/*.sln'
-
-#   - task: XamariniOS@2
-#     inputs:
-#       solutionFile: '**/*.sln'
-#       configuration: 'Release'
-#       buildForSimulator: true
-#       packageApp: false
+  - task: XamariniOS@2
+    inputs:
+      solutionFile: '**/*iOS.csproj'
+      configuration: 'Release'
+      buildForSimulator: true
+      packageApp: false
 
 
 
