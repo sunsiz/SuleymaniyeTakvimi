@@ -11,6 +11,7 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 * Kıble yönünü belirtmek için bir pusula eklenmesi.
 * [Radyo Fıtrat](http://www.radyofitrat.com)'tan çevrimiçi radyo çalabilmesi
 * Sitelerimiz ve sosyal medya bağlantıları
+* Arayüzdeki tarihe tıklayarak tarih değiştirme yada aylık namaz vakitlerini gösterme.
 
 
 
@@ -25,3 +26,4 @@ Suleymaniyetakvimi.com Xamarin mobile application
 * Implement a compass for indicate qibla direction.
 * Online radio from [Radyo Fitrat](http://www.radyofitrat.com)
 * Links for our sites and social media
+* When touch the date let user choose a date or show monthly prayer times.
