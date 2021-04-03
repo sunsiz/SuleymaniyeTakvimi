@@ -7,10 +7,10 @@ jobs:
 
 - job: Android
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'windows-2019'
 
   variables:
-    buildConfiguration: 'Release'
+    buildConfiguration: 'Debug'
     outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
   steps:
@@ -57,9 +57,10 @@ jobs:
   - task: XamariniOS@2
     inputs:
       solutionFile: '**/*iOS.csproj'
-      configuration: 'Release'
+      configuration: 'Debug'
       buildForSimulator: true
       packageApp: false
+      runNugetRestore: true
 
 
 
