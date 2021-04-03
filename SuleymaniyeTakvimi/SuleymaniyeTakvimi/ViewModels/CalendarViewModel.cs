@@ -71,7 +71,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     State = CheckState(DateTime.Parse(takvim.Ogle), DateTime.Parse(takvim.SabahSonu)),
                     ReminderOn = Preferences.Get("sabahsonuEtkin", false),
                     Vibration = Preferences.Get("sabahsonuTitreme", false),
-                    Notification = Preferences.Get("SabahsonuBildiri", false),
+                    Notification = Preferences.Get("sabahsonuBildiri", false),
                     Alarm = Preferences.Get("sabahsonuAlarm", false)
                 },
                 new Schedule
@@ -110,7 +110,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Hour = takvim.Yatsi,
                     State = CheckState(DateTime.Parse(takvim.YatsiSonu), DateTime.Parse(takvim.Yatsi)),
                     ReminderOn = Preferences.Get("yatsiEtkin", false),
-                    Vibration = Preferences.Get("yatsiTitrme", false),
+                    Vibration = Preferences.Get("yatsiTitreme", false),
                     Notification = Preferences.Get("yatsiBildiri", false),
                     Alarm = Preferences.Get("yatsiAlarm", false)
                 },
