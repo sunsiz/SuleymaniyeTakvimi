@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="SuleymaniyeTakvimi.Views.MonthPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi">
+    <!--<ContentPage.BindingContext>
+        <viewModels:MonthViewModel />
+    </ContentPage.BindingContext>-->
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="Auto" RowDefinitions="Auto, *">
+            <!--  monthly time list structure  -->
+            <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" VerticalOptions="Start" VerticalScrollBarVisibility="Never" ItemsSource="{Binding MonthlyTakvim}">
+                <CollectionView.Header>
+                    <StackLayout BackgroundColor="Goldenrod" Orientation="Horizontal">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Tarih" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="Fecri Kazip" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="Fecri Sadik" />
+                        <Label Grid.Row="0" Grid.Column="3" Text="Sabah Sonu" />
+                        <Label Grid.Row="0" Grid.Column="4" Text="Ogle" />
+                        <Label Grid.Row="0" Grid.Column="5" Text="ikindi" />
+                        <Label Grid.Row="0" Grid.Column="6" Text="Aksam" />
+                        <Label Grid.Row="0" Grid.Column="7" Text="Yatsi" />
+                        <Label Grid.Row="0" Grid.Column="8" Text="Yatsi Sonu" />
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     VerticalItemSpacing="1"
+                                     HorizontalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="Auto" RowDefinitions="Auto">
+                            <StackLayout Orientation="Horizontal">
+                                <!--<Label>
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} {1} {2} {3} {4} {5} {6} {7} {8}">
+                                            <Binding Path="Tarih" />
+                                            <Binding Path="FecriKazip" />
+                                            <Binding Path="FecriSadik" />
+                                            <Binding Path="SabahSonu" />
+                                            <Binding Path="Ogle" />
+                                            <Binding Path="Ikindi" />
+                                            <Binding Path="Aksam" />
+                                            <Binding Path="Yatsi" />
+                                            <Binding Path="YatsiSonu" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>-->
+                                <Label Grid.Column="0" Text="{Binding Tarih}" BackgroundColor="RosyBrown" />
+                                <Label Grid.Column="1" Text="{Binding FecriKazip}" />
+                                <Label Grid.Column="2" Text="{Binding FecriSadik}" />
+                                <Label Grid.Column="3" Text="{Binding SabahSonu}" />
+                                <Label Grid.Column="4" Text="{Binding Ogle}" />
+                                <Label Grid.Column="5" Text="{Binding Ikindi}" />
+                                <Label Grid.Column="6" Text="{Binding Aksam}" />
+                                <Label Grid.Column="7" Text="{Binding Yatsi}" />
+                                <Label Grid.Column="8" Text="{Binding YatsiSonu}" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

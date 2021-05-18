@@ -10,6 +10,7 @@ using Android.OS;
 using FFImageLoading;
 using Matcha.BackgroundService.Droid;
 using MediaManager;
+using PeriodicBackgroundService.Android;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
 
@@ -25,6 +26,7 @@ namespace SuleymaniyeTakvimi.Droid
             
             BackgroundAggregator.Init(this);
             base.OnCreate(savedInstanceState);
+            SetAlarmForBackgroundServices(this);
             UserDialogs.Init(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
@@ -54,6 +56,18 @@ namespace SuleymaniyeTakvimi.Droid
             //NotificationCenter.NotifyNotificationTapped(intent);
             base.OnNewIntent(intent);
             CrossMediaManager.Current.Stop();
+        }
+        
+        public static void SetAlarmForBackgroundServices(Context context)
+        {
+            var alarmIntent = new Intent(context.ApplicationContext, typeof(AlarmReceiver));
+            var broadcast = PendingIntent.GetBroadcast(context.ApplicationContext, 0, alarmIntent, PendingIntentFlags.NoCreate);
+            if (broadcast == null)
+            {
+                var pendingIntent = PendingIntent.GetBroadcast(context.ApplicationContext, 0, alarmIntent, 0);
+                var alarmManager = (AlarmManager)context.GetSystemService(Context.AlarmService);
+                alarmManager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, SystemClock.ElapsedRealtime(), 15000, pendingIntent);
+            }
         }
     }
 }
