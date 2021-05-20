@@ -25,7 +25,7 @@ namespace SuleymaniyeTakvimi.Services
     {
         public Takvim konum;
         public Takvim takvim;
-        public ObservableCollection<Takvim> MonthlyTakvim;
+        public IList<Takvim> MonthlyTakvim;
         public DataService()
         {
             takvim = new Takvim()
@@ -445,10 +445,10 @@ namespace SuleymaniyeTakvimi.Services
             //        TimeSpan.FromSeconds(5));
         }
 
-        private ObservableCollection<Takvim> ParseXmlList(XDocument doc)
+        private IList<Takvim> ParseXmlList(XDocument doc)
         {
             Takvim TakvimItem;
-            ObservableCollection<Takvim> monthlyTakvim = new ObservableCollection<Takvim>();
+            IList<Takvim> monthlyTakvim = new ObservableCollection<Takvim>();
             //XDocument doc = XDocument.Parse(xmlResult);
             //if(doc.Descendants("Takvim")!=null)
             foreach (var item in doc.Root.Descendants())
