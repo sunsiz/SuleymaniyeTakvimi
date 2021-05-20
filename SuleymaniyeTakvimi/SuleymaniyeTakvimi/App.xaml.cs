@@ -28,7 +28,7 @@ namespace SuleymaniyeTakvimi
         protected override void OnStart()
         {
             SetReminderEnabled();
-            //VersionTracking.Track();
+            VersionTracking.Track();
             if (reminderEnabled) StartBackgroundService();
         }
 

@@ -1,6 +1,7 @@
 ﻿using SuleymaniyeTakvimi.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace SuleymaniyeTakvimi.Services
     {
         public Takvim konum;
         public Takvim takvim;
+        public IList<Takvim> MonthlyTakvim;
         public DataService()
         {
             takvim = new Takvim()
@@ -402,6 +404,113 @@ namespace SuleymaniyeTakvimi.Services
                     $"{itemAdi} Vakti: {bildiriVakti}",
                     NotificationId, tamVakit);
             }
+        }
+
+
+        public void GetMonthlyPrayerTimes(Location location)
+        {
+            konum = new Takvim();
+            konum.Enlem = location.Latitude;
+            konum.Boylam = location.Longitude;
+            konum.Yukseklik = location.Altitude ?? 0;
+            konum.SaatBolgesi = TimeZoneInfo.Local.BaseUtcOffset.Hours;//.StandardName;
+            konum.YazKis = TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now) ? 1 : 0;
+            konum.Tarih = DateTime.Today.ToString("dd/MM/yyyy");
+
+            var url = "http://servis.suleymaniyetakvimi.com/servis.asmx/VakitHesabiListesi?";
+            url += "Enlem=" + konum.Enlem;
+            url += "&Boylam=" + konum.Boylam;
+            url += "&Yukseklik=" + konum.Yukseklik;
+            url = url.Replace(',', '.');
+            url += "&SaatBolgesi=" + TimeZoneInfo.Local.BaseUtcOffset.Hours;//.StandardName;
+            url += "&yazSaati=" + (TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now) ? 1 : 0);
+            url += "&Tarih=" + DateTime.Today.ToString("dd/MM/yyyy");
+
+            //var client = new HttpClient();
+            //string baseUrl = "http://servis.suleymaniyetakvimi.com/servis.asmx/";
+            //client.BaseAddress = new Uri(baseUrl);
+
+            //var response =
+            //    await client.GetAsync(
+            //            $"VakitHesabiListesi?Enlem={konum.Enlem}&Boylam={konum.Boylam}&Yukseklik={konum.Yukseklik}&SaatBolgesi={konum.SaatBolgesi}&yazSaati={konum.YazKis}&Tarih={konum.Tarih}")
+            //        .ConfigureAwait(true);
+
+            //var xmlResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            XDocument doc = XDocument.Load(url);
+            MonthlyTakvim = ParseXmlList(doc);
+            //if (!string.IsNullOrEmpty(xmlResult) && xmlResult.StartsWith("<?xml"))
+            //    MonthlyTakvim = ParseXmlList(xmlResult);
+            //else
+            //    UserDialogs.Instance.Toast("Namaz vakitlerini internetten alırken bir hata oluştu.",
+            //        TimeSpan.FromSeconds(5));
+        }
+
+        private IList<Takvim> ParseXmlList(XDocument doc)
+        {
+            Takvim TakvimItem;
+            IList<Takvim> monthlyTakvim = new ObservableCollection<Takvim>();
+            //XDocument doc = XDocument.Parse(xmlResult);
+            //if(doc.Descendants("Takvim")!=null)
+            foreach (var item in doc.Root.Descendants())
+            {
+                if (item.Name.LocalName == "TakvimListesi")
+                {
+                    TakvimItem=new Takvim();
+                    foreach (var subitem in item.Descendants())
+                    {
+                        switch (subitem.Name.LocalName)
+                        {
+                            case "Tarih":
+                                TakvimItem.Tarih = subitem.Value;
+                                break;
+                            case "Enlem":
+                                TakvimItem.Enlem = Convert.ToDouble(subitem.Value);
+                                break;
+                            case "Boylam":
+                                TakvimItem.Boylam = Convert.ToDouble(subitem.Value);
+                                break;
+                            case "Yukseklik":
+                                TakvimItem.Yukseklik = Convert.ToDouble(subitem.Value);
+                                break;
+                            case "SaatBolgesi":
+                                TakvimItem.SaatBolgesi = Convert.ToDouble(subitem.Value);
+                                break;
+                            case "YazKis":
+                                TakvimItem.YazKis = Convert.ToDouble(subitem.Value);
+                                break;
+                            case "FecriKazip":
+                                TakvimItem.FecriKazip = subitem.Value;
+                                break;
+                            case "FecriSadik":
+                                TakvimItem.FecriSadik = subitem.Value;
+                                break;
+                            case "SabahSonu":
+                                TakvimItem.SabahSonu = subitem.Value;
+                                break;
+                            case "Ogle":
+                                TakvimItem.Ogle = subitem.Value;
+                                break;
+                            case "Ikindi":
+                                TakvimItem.Ikindi = subitem.Value;
+                                break;
+                            case "Aksam":
+                                TakvimItem.Aksam = subitem.Value;
+                                break;
+                            case "Yatsi":
+                                TakvimItem.Yatsi = subitem.Value;
+                                break;
+                            case "YatsiSonu":
+                                TakvimItem.YatsiSonu = subitem.Value;
+                                break;
+                        }
+                    }
+
+                    monthlyTakvim.Add(TakvimItem);
+                }
+
+            }
+
+            return monthlyTakvim;
         }
     }
 }

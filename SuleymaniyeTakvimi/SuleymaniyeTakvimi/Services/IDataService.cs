@@ -10,5 +10,6 @@ namespace SuleymaniyeTakvimi.Services
     {
         Takvim VakitHesabi();
         Task<Takvim> GetPrayerTimes(Location location);
+        void GetMonthlyPrayerTimes(Location location);
     }
 }

@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:SuleymaniyeTakvimi.Views"
-       Title="Süleymaniye Vakfi Namaz Vakitleri"
-       x:Class="SuleymaniyeTakvimi.AppShell">
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="SuleymaniyeTakvimi.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.Views" Title="Süleymaniye Vakfi Namaz Vakitleri">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
-    
+        
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
@@ -20,29 +16,29 @@
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
+            <!--<Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />-->
         </ResourceDictionary>
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Takvim" Route="TakvimPage" ContentTemplate="{DataTemplate local:TakvimPage}">
+        <ShellContent Title="Takvim" ContentTemplate="{DataTemplate local:TakvimPage}" Route="TakvimPage">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe334;" Size="Title"/>
+                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe334;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
         <ShellContent Title="Takvim 1" ContentTemplate="{DataTemplate local:ItemsPage}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe614;" Size="Title"/>
+                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe614;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
         <ShellContent Title="Takvim 2" ContentTemplate="{DataTemplate local:CalendarPage}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe855;" Size="Title"/>
+                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe855;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
         <!--<ShellContent Title="Takvim 1" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
