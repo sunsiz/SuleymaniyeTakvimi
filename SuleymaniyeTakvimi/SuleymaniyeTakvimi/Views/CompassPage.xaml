@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
+             x:Class="SuleymaniyeTakvimi.Views.CompassPage">
+    <!--<ContentPage.BindingContext>
+        <viewModels:CompassViewModel/>
+    </ContentPage.BindingContext>-->
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="compassImage" Source="kompas"/>
+                <Image HorizontalOptions="Center" VerticalOptions="Center" Rotation="{Binding Heading}" Source="isaretci" x:Name="ImageArrow" Aspect="AspectFit" Scale="0.9"/>
+
+                <StackLayout Grid.Row="1">
+                    <Label x:Name="LabelInfo" TextColor="Blue" Text="{Binding Info}" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Label x:Name="LabelInfo1" TextColor="Blue" Text="{Binding Info1}" VerticalOptions="Center" HorizontalOptions="Center" />
+                </StackLayout>
+            </Grid>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{DynamicResource PrimaryTextColor}"
+                           HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                           AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

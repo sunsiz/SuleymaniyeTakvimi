@@ -9,6 +9,10 @@
      size: 100x100
    - file: "icon_feed.png"
      size: 100x100
+   - file: "kompas.png"
+     size: 1007x944
+   - file: "isaretci.png"
+     size: 406x880
    - file: "welcome.svg"
      size: 400x400
    - file: "show.svg"
@@ -37,6 +41,10 @@
      size: 32x30
    - file: "icon_feed.png"
      size: 32x30
+   - file: "kompas.png"
+     size: 1007x944
+   - file: "isaretci.png"
+     size: 406x880
    - file: "welcome.svg"
      size: 400x400
    - file: "show.svg"

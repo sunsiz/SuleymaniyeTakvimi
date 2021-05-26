@@ -19,6 +19,8 @@
     <None Remove="Assets\icon_about.png" />
     <None Remove="Assets\icon_calendar.png" />
     <None Remove="Assets\icon_feed.png" />
+    <None Remove="Assets\Isaretci.png" />
+    <None Remove="Assets\kompas.png" />
     <None Remove="Assets\notification.svg" />
     <None Remove="Assets\show.svg" />
     <None Remove="Assets\welcome.svg" />
@@ -32,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.9" />
     <PackageReference Include="Matcha.BackgroundService" Version="1.0.5478" />
     <PackageReference Include="Plugin.MediaManager.Forms" Version="0.9.0" />
@@ -51,6 +53,8 @@
     <SharedImage Include="Assets\icon_about.png" />
     <SharedImage Include="Assets\icon_calendar.png" />
     <SharedImage Include="Assets\icon_feed.png" />
+    <SharedImage Include="Assets\isaretci.png" />
+    <SharedImage Include="Assets\kompas.png" />
     <SharedImage Include="Assets\notification.svg" />
     <SharedImage Include="Assets\show.svg" />
     <SharedImage Include="Assets\welcome.svg" />
@@ -73,6 +77,9 @@
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CalendarPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CompassPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MonthPage.xaml">
