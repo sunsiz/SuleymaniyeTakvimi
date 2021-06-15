@@ -2,23 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="SuleymaniyeTakvimi.Views.CompassPage">
     <!--<ContentPage.BindingContext>
         <viewModels:CompassViewModel/>
     </ContentPage.BindingContext>-->
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="Beige">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="compassImage" Source="kompas"/>
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="compassImage" Source="kompas" Margin="0,15"/>
                 <Image HorizontalOptions="Center" VerticalOptions="Center" Rotation="{Binding Heading}" Source="isaretci" x:Name="ImageArrow" Aspect="AspectFit" Scale="0.9"/>
 
                 <StackLayout Grid.Row="1">
-                    <Label x:Name="LabelInfo" TextColor="Blue" Text="{Binding Info}" VerticalOptions="Center" HorizontalOptions="Center" />
-                    <Label x:Name="LabelInfo1" TextColor="Blue" Text="{Binding Info1}" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto" ColumnSpacing="0">
+                        <pancakeView:PancakeView MinimumWidthRequest="300" Margin="15,7" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+                            <Button Margin="5" Padding="5,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="{Binding Konum, StringFormat='Konum: {0}'}" Command="{Binding GoToMapCommand}" />
+                        </pancakeView:PancakeView>
+                        <!--<Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" TextColor="Blue" Text="{Binding Info1}" HorizontalOptions="Center" />-->
+                        <StackLayout Grid.Row="1" Grid.Column="0" Margin="9,0">
+                            <ImageButton HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.fitrat.tv/" Source="fitrattv-logo" BackgroundColor="Beige" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="1" Margin="9,0" Padding="9,0">
+                            <ImageButton HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFit" Scale="1.0" Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" Source="radyofitrat3" BackgroundColor="Beige" />
+                        </StackLayout>
+                    </Grid>
                 </StackLayout>
             </Grid>
         <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{DynamicResource PrimaryTextColor}"

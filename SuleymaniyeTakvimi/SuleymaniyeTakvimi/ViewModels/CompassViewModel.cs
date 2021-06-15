@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Text;
+using System.Windows.Input;
+using Acr.UserDialogs;
 using MvvmHelpers.Commands;
 using Xamarin.Essentials;
 
@@ -17,12 +21,30 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command StartCommand { get; }
         public Command StopCommand { get; }
         public Command LocationCommand { get; }
+        public Command GoToMapCommand { get; }
+        // Launcher.OpenAsync is provided by Xamarin.Essentials.
+        public ICommand TapCommand => new Xamarin.Forms.Command<string>(async (url) => await Launcher.OpenAsync(url));
         public CompassViewModel()
         {
             StartCommand = new Command(Start);
             StopCommand = new Command(Stop);
             LocationCommand = new Command(GetLocation);
             if (!Compass.IsMonitoring) Compass.Start(speed);
+            //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
+            GoToMapCommand = new Command(async () => {
+                var location = new Location(Convert.ToDouble(current_latitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(current_longitude, CultureInfo.InvariantCulture.NumberFormat));
+                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(current_latitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(current_longitude, CultureInfo.InvariantCulture.NumberFormat));
+                var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName };
+
+                try
+                {
+                    await Map.OpenAsync(location, options);
+                }
+                catch (Exception ex)
+                {
+                    UserDialogs.Instance.Toast("Haritayı açarken bir sorun oluştu.\nDetaylar: " + ex.Message);
+                }
+            });
         }
 
         string headingDisplay;
@@ -49,6 +71,13 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             get => info1;
             set => SetProperty(ref info1, value);
+        }
+
+        private string konum;
+        public string Konum
+        {
+            get => konum;
+            set => SetProperty(ref konum, value);
         }
         private void Start()
         {
@@ -100,6 +129,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //Heading = d;// e.Reading.HeadingMagneticNorth;
                 //Info = HeadingDisplay = $"Heading: {Heading}";
                 Info = string.Format("Lat: {0} Long: {1} degree:{2}", current_latitude, current_longitude, Heading);
+                Konum = String.Format("{0:F4}, {1:F4}", current_latitude, current_longitude);
                 PointToQibla(e);
 
             }
