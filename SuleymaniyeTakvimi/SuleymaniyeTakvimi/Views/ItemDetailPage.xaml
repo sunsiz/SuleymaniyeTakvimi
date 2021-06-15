@@ -54,7 +54,7 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                            <Label HorizontalOptions="EndAndExpand" Text="{x:Static resources:AppResources.Vakti}" FontSize="Medium" />
+                            <Label HorizontalOptions="EndAndExpand" Text="{x:Static resources:AppResources.Vakti}" FontSize="Medium"  TextColor="SaddleBrown"/>
                             <Label HorizontalOptions="StartAndExpand" Text="{Binding Vakit}" FontSize="Medium" FontAttributes="Bold" TextColor="MediumSeaGreen"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">

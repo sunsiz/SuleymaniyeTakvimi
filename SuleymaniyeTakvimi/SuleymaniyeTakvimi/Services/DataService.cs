@@ -299,7 +299,7 @@ namespace SuleymaniyeTakvimi.Services
             kalan = kalan + TimeSpan.FromMinutes(Convert.ToInt32(dakikaFarki));
             if (kalan.Hours == 0 && kalan.Minutes == 0 && kalan.Seconds <= 30)
             {
-                await CrossMediaManager.Current.PlayFromAssembly("ezan.mp3").ConfigureAwait(false);
+                await CrossMediaManager.Current.PlayFromAssembly("alarm3.mp3").ConfigureAwait(false);
                 //ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
                 //player.Load(GetStreamFromFile("ezan.mp3"));
                 //player.Play();

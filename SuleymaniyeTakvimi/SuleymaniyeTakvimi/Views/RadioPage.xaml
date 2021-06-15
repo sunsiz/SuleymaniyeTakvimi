@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="SuleymaniyeTakvimi.Views.RadioPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi" Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <viewModels:RadioViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="0" BackgroundColor="#eeeeee" RowDefinitions="Auto,*">
+            <Frame Grid.Row="0" HeightRequest="450" Padding="0" BackgroundColor="#eeeeee">
+                <Image Aspect="AspectFit" Opacity="0.7" Source="radyofitrat" />
+            </Frame>
+            <Frame Grid.Row="1" Margin="0,-25,0,-15" CornerRadius="25" HasShadow="True" BackgroundColor="Ivory">
+                <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, *">
+                    <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="Chocolate" FontSize="22" />
+                                    <Span Text=" Yayın Akışı" FontSize="20" TextColor="Chocolate">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.instagram.com/radyofitrat/" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Grid.Row="0" Grid.Column="1">
+                        <Label Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="75" Opacity="0.8" TextColor="Chocolate" Text="&#xe038;">
+                            <Label.Triggers>
+                                <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="False">
+                                    <Setter Property="Text" Value="&#xe038;" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="True">
+                                    <Setter Property="Text" Value="&#xe035;" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding PlayCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Grid.Row="0" Grid.Column="2" VerticalOptions="Center">
+                        <Label HorizontalTextAlignment="End">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="Chocolate" FontSize="22" />
+                                    <Span Text=" Web Sayfa" FontSize="20" TextColor="Chocolate">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{DynamicResource PrimaryTextColor}"
+                               HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+<!--<Grid Margin="10" BackgroundColor="#eeeeee" RowDefinitions="Auto,*">
+            <StackLayout Grid.Row="0">
+-->
+<!--  Loading label should not render by default.  -->
+<!--<Label x:Name="labelLoading" Text="Loading..." IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />-->
+<!--
+                <WebView HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Navigated="webviewNavigated" Navigating="webviewNavigating" Source="{Binding HtmlSource}" />
+-->
+<!--  ReloadRequested="{Binding ReloadCommand}"  -->
+<!--
+            </StackLayout>
+            <StackLayout Grid.Row="1">
+                <Image HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Aspect="AspectFill" Scale="0.7" Source="radyofitrat" />
+            </StackLayout>
+        </Grid>-->

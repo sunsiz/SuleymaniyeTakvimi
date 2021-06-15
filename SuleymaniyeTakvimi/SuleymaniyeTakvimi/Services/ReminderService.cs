@@ -23,7 +23,7 @@ namespace SuleymaniyeTakvimi.Services
             //CrossLocalNotifications.Current.Show("Service Running", $"Service running well at {DateTime.Now.ToShortTimeString()}", 1000);
 
             ////Testing play audio - will play audio every period of service.
-            //await CrossMediaManager.Current.PlayFromAssembly("ezan.mp3").ConfigureAwait(false);
+            //await CrossMediaManager.Current.PlayFromAssembly("alarm3.mp3").ConfigureAwait(false);
             return true;
         }
 
