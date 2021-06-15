@@ -7,10 +7,10 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 * Kullanıcı ayarlarına göre bildirim, titreşim ve sesle (şu anda ezan) hatırlatma yapabilir.
 * Arayüzdeki tarihe tıklayarak tarih değiştirme yada aylık namaz vakitlerini gösterme.
 * Kıble yönünü belirtmek için bir pusula eklendi.
+* [Radyo Fıtrat](http://www.radyofitrat.com)'tan çevrimiçi radyo çalabilmesi
 
 **Gelecek planlar:**
 
-* [Radyo Fıtrat](http://www.radyofitrat.com)'tan çevrimiçi radyo çalabilmesi
 * Sitelerimiz ve sosyal medya bağlantıları
 
 **Mevcut sorunlar:**
@@ -24,10 +24,10 @@ Suleymaniyetakvimi.com Xamarin mobile application
 * Reminding with notification, vibration and sound (currently ezan) based on user settings.
 * When touch the date let user choose a date or show monthly prayer times.
 * Implementd a compass for indicate qibla direction.
+* Online radio from [Radyo Fitrat](http://www.radyofitrat.com)
 
 **Future Plans:**
 
-* Online radio from [Radyo Fitrat](http://www.radyofitrat.com)
 * Links for our sites and social media
 
 **Existing problems:**
