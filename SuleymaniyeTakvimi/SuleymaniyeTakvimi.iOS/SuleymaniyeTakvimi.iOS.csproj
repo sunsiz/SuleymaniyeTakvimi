@@ -150,7 +150,7 @@
       <Version>1.0.5478</Version>
     </PackageReference>
     <PackageReference Include="Plugin.MediaManager.Forms">
-      <Version>0.9.0</Version>
+      <Version>1.0.9</Version>
     </PackageReference>
     <PackageReference Include="Refractored.MvvmHelpers">
       <Version>1.6.2</Version>
@@ -176,7 +176,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\SuleymaniyeTakvimi\SuleymaniyeTakvimi.csproj">
-      <Project>{D54ECCDD-A785-4F5A-BF37-C0F00FCCB699}</Project>
+      <Project>{122EA7CA-0354-4C02-BAE8-504534B5E602}</Project>
       <Name>SuleymaniyeTakvimi</Name>
     </ProjectReference>
   </ItemGroup>

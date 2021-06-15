@@ -59,7 +59,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             else
             {
                 CheckInternet();
-                var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
+                var mediaItem = await CrossMediaManager.Current.Play("https://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
                 mediaItem.Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
                 mediaItem.MetadataUpdated += OnMediaItemOnMetadataUpdated;
                 CrossMediaManager.Current.StateChanged += Current_StateChanged;
