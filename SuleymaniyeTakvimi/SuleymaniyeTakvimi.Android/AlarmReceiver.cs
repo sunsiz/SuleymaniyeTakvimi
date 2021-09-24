@@ -9,15 +9,15 @@ namespace PeriodicBackgroundService.Android
 		public override void OnReceive(Context context, Intent intent)
 		{
 			var backgroundServiceIntent = new Intent(context, typeof(PeriodicBackgroundService));
-			//if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-			//{
-			//	context.StartForegroundService(backgroundServiceIntent);
-			//}
-			//else
-			//{
-				context.StartService(backgroundServiceIntent);
-			//}
-		}
+            //if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            //{
+            //    context.StartForegroundService(backgroundServiceIntent);
+            //}
+            //else
+            //{
+                context.StartService(backgroundServiceIntent);
+            //}
+        }
 	}
 }
 

@@ -70,7 +70,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ezan Oku.
+        ///   Looks up a localized string similar to Alarm çal.
         /// </summary>
         internal static string AlarmSwitch {
             get {

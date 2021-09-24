@@ -38,6 +38,7 @@
 	<array>
 		<string>audio</string>
 		<string>fetch</string>
+		<string>processing</string>
 	</array>
 	<key>CFBundleLocalizations</key>
 	<array>
@@ -48,5 +49,10 @@
 	<string>tr</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoadsInMedia</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

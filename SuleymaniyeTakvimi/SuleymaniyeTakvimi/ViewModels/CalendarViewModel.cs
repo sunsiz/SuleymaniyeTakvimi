@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FFImageLoading.Forms;
-using Matcha.BackgroundService;
+//using Matcha.BackgroundService;
 using MvvmHelpers.Commands;
 using SuleymaniyeTakvimi.Models;
 using SuleymaniyeTakvimi.Services;
@@ -171,11 +171,11 @@ namespace SuleymaniyeTakvimi.ViewModels
                             break;
                     }
 
-                    if (theSchedule.ReminderOn && BackgroundAggregatorService.Instance == null)
-                    {
-                        BackgroundAggregatorService.Add(() => new ReminderService(60));
-                        BackgroundAggregatorService.StartBackgroundService();
-                    }
+                    //if (theSchedule.ReminderOn && BackgroundAggregatorService.Instance == null)
+                    //{
+                    //    BackgroundAggregatorService.Add(() => new ReminderService(60));
+                    //    BackgroundAggregatorService.StartBackgroundService();
+                    //}
                 }
             }
         }

@@ -26,8 +26,8 @@
                         <StackLayout Grid.Row="1" Grid.Column="0" Margin="9,0">
                             <ImageButton HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.fitrat.tv/" Source="fitrattv-logo" BackgroundColor="Beige" />
                         </StackLayout>
-                        <StackLayout Grid.Row="1" Grid.Column="1" Margin="9,0" Padding="9,0">
-                            <ImageButton HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFit" Scale="1.0" Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" Source="radyofitrat3" BackgroundColor="Beige" />
+                        <StackLayout Grid.Row="1" Grid.Column="1" Margin="9,0" Padding="-29,0,9,0">
+                            <ImageButton HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" Source="radyofitrat3" BackgroundColor="Beige" />
                         </StackLayout>
                     </Grid>
                 </StackLayout>

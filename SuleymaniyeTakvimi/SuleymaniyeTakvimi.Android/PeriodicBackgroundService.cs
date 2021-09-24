@@ -63,12 +63,12 @@ namespace PeriodicBackgroundService.Android
 
 				DataService data = new DataService();
 				data.CheckReminders();
-				////Testing Notification - Will display notification every time service running.
-				//CrossLocalNotifications.Current.Show("Service Running", $"Service running well at {DateTime.Now.ToShortTimeString()}", 1000);
+                ////Testing Notification - Will display notification every time service running.
+                //CrossLocalNotifications.Current.Show("Service Running", $"Service running well at {DateTime.Now.ToShortTimeString()}", 1000);
 
-				////Testing play audio - will play audio every period of service.
-				//await CrossMediaManager.Current.PlayFromAssembly("ezan.mp3").ConfigureAwait(false);
-			}
+                ////Testing play audio - will play audio every period of service.
+                //await CrossMediaManager.Current.PlayFromAssembly("ezan.mp3").ConfigureAwait(false);
+            }
 			catch (Exception e)
 			{
 				Log.WriteLine(LogPriority.Error, Tag, e.ToString());

@@ -8,25 +8,29 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading;
-using Matcha.BackgroundService.Droid;
+//using Matcha.BackgroundService.Droid;
 using MediaManager;
 using PeriodicBackgroundService.Android;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
+using SuleymaniyeTakvimi.Services;
+using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.Droid
 {
     [Activity(Label = "SuleymaniyeTakvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, LaunchMode = LaunchMode.SingleTop)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+
+        bool isStarted = false;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             
-            BackgroundAggregator.Init(this);
+            //BackgroundAggregator.Init(this);
             base.OnCreate(savedInstanceState);
-            SetAlarmForBackgroundServices(this);
+            //SetAlarmForBackgroundServices(this);//Use periodic background service
             UserDialogs.Init(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
@@ -42,7 +46,32 @@ namespace SuleymaniyeTakvimi.Droid
             LoadApplication(new App());
             //NotificationCenter.NotifyNotificationTapped(Intent);
             LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.app_logo;
+            DependencyService.Register<IForegroundServiceControlService, ForegroundService>();
+            if (savedInstanceState != null)
+            {
+                isStarted = savedInstanceState.GetBoolean("has_service_been_started", false);
+            }
+            SetForegroundService();
         }
+
+        private void SetForegroundService()
+        {
+            var startServiceIntent = new Intent(this, typeof(ForegroundService));
+            startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
+
+            var stopServiceIntent = new Intent(this, typeof(ForegroundService));
+            stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+            {
+                StartForegroundService(startServiceIntent);
+            }
+            else
+            {
+                StartService(startServiceIntent);
+            }
+            isStarted = true;
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -56,8 +85,26 @@ namespace SuleymaniyeTakvimi.Droid
             //NotificationCenter.NotifyNotificationTapped(intent);
             base.OnNewIntent(intent);
             CrossMediaManager.Current.Stop();
+            if (intent == null)
+            {
+                return;
+            }
+
+            var bundle = intent.Extras;
+            if (bundle != null)
+            {
+                if (bundle.ContainsKey("has_service_been_started"))
+                {
+                    isStarted = true;
+                }
+            }
         }
-        
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            outState.PutBoolean("has_service_been_started", isStarted);
+            base.OnSaveInstanceState(outState);
+        }
+
         public static void SetAlarmForBackgroundServices(Context context)
         {
             var alarmIntent = new Intent(context.ApplicationContext, typeof(AlarmReceiver));
@@ -66,7 +113,15 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 var pendingIntent = PendingIntent.GetBroadcast(context.ApplicationContext, 0, alarmIntent, 0);
                 var alarmManager = (AlarmManager)context.GetSystemService(Context.AlarmService);
-                alarmManager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, SystemClock.ElapsedRealtime(), 15000, pendingIntent);
+                var triggerTime = (DateTime.Now - DateTime.Parse(TimeSpan.Parse("17:59").ToString())).Milliseconds;
+                alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup, triggerTime, pendingIntent);
+                //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup, SystemClock.ElapsedRealtime(), pendingIntent);
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
+                    alarmManager.SetAlarmClock(new AlarmManager.AlarmClockInfo(triggerTime, pendingIntent), pendingIntent);
+                else if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+                    alarmManager.SetExact(AlarmType.Rtc, triggerTime, pendingIntent);
+                else
+                    alarmManager.Set(AlarmType.Rtc, triggerTime, pendingIntent);
             }
         }
     }

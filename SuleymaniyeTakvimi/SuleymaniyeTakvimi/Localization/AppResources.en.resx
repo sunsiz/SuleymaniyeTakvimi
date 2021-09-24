@@ -121,7 +121,7 @@
     <value>Maghrib</value>
   </data>
   <data name="AlarmSwitch" xml:space="preserve">
-    <value>Play azan</value>
+    <value>Play alarm</value>
   </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
     <value>5 min before</value>

@@ -8,9 +8,9 @@
              xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              x:Class="SuleymaniyeTakvimi.Views.ItemDetailPage"
              Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewModels:ItemDetailViewModel/>
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     <ScrollView VerticalScrollBarVisibility="Never">
         <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18" Margin="9">
             <pancakeView:PancakeView.BackgroundGradientStops>
@@ -143,6 +143,8 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Onbes}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
+                        <Label HorizontalOptions="Start" Text="Alarm Sound" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>
+                        <Picker Title="Bir ses seçin" TitleColor="Green" ItemsSource="{Binding Sounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound, Mode=TwoWay}" SelectedIndex="{Binding SelectedSound.Index}" />
                     </StackLayout>
                 </pancakeView:PancakeView>
             </Grid>

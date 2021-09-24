@@ -4,12 +4,14 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
-using Matcha.BackgroundService;
+using Android.Content;
+//using Matcha.BackgroundService;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Android.Content.PM;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -24,11 +26,36 @@ namespace SuleymaniyeTakvimi.ViewModels
         private bool bildiri;
         private bool alarm;
         private bool etkin;
+        private Sound[] sounds;
+        private Sound _selectedSound;
         public ICommand EnableSwitchToggled { get; private set; }
         public ICommand BildiriCheckedChanged { get; private set; }
         public ICommand TitremeCheckedChanged { get; private set; }
         public ICommand AlarmCheckedChanged { get; private set; }
         public ICommand RadioButtonCheckedChanged { get; private set; }
+        public Command<Sound> SoundSelectedCommand { get; }
+
+        public Sound[] Sounds
+        {
+            get => sounds ??= new[]
+            {
+                new Sound() {Index = 0, fileName = "alarm3", Name = "Kuş Cıvıltısı"},
+                new Sound() {Index = 1, fileName = "horoz", Name = "Horoz Ötüşü"},
+                new Sound() {Index = 2, fileName = "alarm1", Name = "Çalar Saat"},
+                new Sound() {Index = 3, fileName = "ezan", Name = "Ezan Sesi"}
+            };
+            set => SetProperty(ref sounds, value);
+        }
+
+        public Sound SelectedSound
+        {
+            get => _selectedSound;
+            set
+            {
+                SetProperty(ref _selectedSound, value);
+                SoundSelected(value);
+            }
+        }
 
         public ItemDetailViewModel()
         {
@@ -41,6 +68,46 @@ namespace SuleymaniyeTakvimi.ViewModels
             //Titreme = Preferences.Get(itemId + "Titreme", false);
             //Bildiri = Preferences.Get(itemId + "Bildiri", false);
             //Alarm = Preferences.Get(itemId + "Alarm", false);
+            //_selectedSound = SetSelectedSound();
+            SoundSelectedCommand = new Command<Sound>(SoundSelected);
+        }
+
+        public Sound SetSelectedSound()
+        {
+            string name = "Çalar Saat";
+            int index = 2;
+            string file = "alarm1";
+            if (itemId != null)
+            {
+                file = Preferences.Get(itemId + "AlarmSesi", "alarm1");
+                switch (file)
+                {
+                    case "alarm3":
+                        name = "Kuş Cıvıltısı";
+                        index = 0;
+                        break;
+                    case "alarm1":
+                        name = "Çalar Saat";
+                        index = 2;
+                        break;
+                    case "horoz":
+                        name = "Horoz Ötüşü";
+                        index = 1;
+                        break;
+                    case "ezan":
+                        name = "Ezan Sesi";
+                        index = 3;
+                        break;
+                }
+
+            }
+
+            return new Sound() {Index = index, fileName = file, Name = name};
+        }
+
+        private void SoundSelected(Sound sound)
+        {
+            if (itemId != null) Preferences.Set(itemId + "AlarmSesi", sound.fileName);
         }
 
         private void BildirmeVaktiAyari(object obj)
@@ -164,11 +231,17 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
                                   Preferences.Get(itemId + "Etkin", value));
                 Etkin = value;
-                if(value && BackgroundAggregatorService.Instance==null)
-                {
-                    BackgroundAggregatorService.Add(() => new ReminderService(60));
-                    BackgroundAggregatorService.StartBackgroundService();
-                }
+                //if(value && BackgroundAggregatorService.Instance==null)
+                //{
+                //    BackgroundAggregatorService.Add(() => new ReminderService(60));
+                //    BackgroundAggregatorService.StartBackgroundService();
+                //}
+                //if (value)
+                //{
+                //    startServiceIntent = new Intent(,typeof(ForegroundService));
+                //    startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
+                //    StartService(startServiceIntent);
+                //}
             }
         }
 
@@ -180,6 +253,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 IsBusy = true;
                 itemId = value;
                 LoadItem(value);
+                SelectedSound = SetSelectedSound();
                 IsBusy = false;
             }
         }

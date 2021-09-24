@@ -13,12 +13,12 @@
     <StackLayout>
         <Grid Padding="15" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="Auto,*">
             <StackLayout Spacing="18" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,7" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,0" Padding="5,-5" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
                     <Button Margin="10" Padding="5,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="26" TextColor="#623323"
                            Command="{Binding GoToMonthCommand}"
                            Text="{Binding Today}" />
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,7" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,0" Padding="5,-5" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
                     <Button Margin="10" Padding="5,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="24" TextColor="#623323"
                             Command="{Binding GoToMapCommand}"
                             Text="{Binding City}" />

@@ -4,9 +4,9 @@
         <viewModels:RadioViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid Margin="0" BackgroundColor="#eeeeee" RowDefinitions="Auto,*">
+        <Grid Margin="0" BackgroundColor="#eeeeee" RowDefinitions="5*,*">
             <Frame Grid.Row="0" HeightRequest="550" Padding="0" BackgroundColor="#eeeeee">
-                <Image Aspect="AspectFit" Opacity="0.7" Source="radyofitrat" />
+                <Image Aspect="AspectFit" Opacity="0.7" Source="radyofitrat.png" />
             </Frame>
             <Frame Grid.Row="1" Margin="0,-25,0,-15" CornerRadius="25" HasShadow="True" BackgroundColor="Ivory">
                 <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, *">

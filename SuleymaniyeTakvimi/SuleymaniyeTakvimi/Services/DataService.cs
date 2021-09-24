@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Acr.UserDialogs;
 using MediaManager;
+using MediaManager.Playback;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Services;
@@ -283,23 +284,62 @@ namespace SuleymaniyeTakvimi.Services
             if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamTitreme", false)) CheckVibration(takvim.Aksam, Preferences.Get("aksamBildirmeVakti", "0"));
             if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiTitreme", false)) CheckVibration(takvim.Yatsi, Preferences.Get("yatsiBildirmeVakti", "0"));
             if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuTitreme", false)) CheckVibration(takvim.YatsiSonu, Preferences.Get("yatsisonuBildirmeVakti", "0"));
-            if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipAlarm", false)) CheckAlarm(takvim.FecriKazip, Preferences.Get("fecrikazipBildirmeVakti", "0"));
-            if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikAlarm", false)) CheckAlarm(takvim.FecriSadik, Preferences.Get("fecrisadikBildirmeVakti", "0"));
-            if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuAlarm", false)) CheckAlarm(takvim.SabahSonu, Preferences.Get("sabahsonuBildirmeVakti", "0"));
-            if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleAlarm", false)) CheckAlarm(takvim.Ogle, Preferences.Get("ogleBildirmeVakti", "0"));
-            if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiAlarm", false)) CheckAlarm(takvim.Ikindi, Preferences.Get("ikindiBildirmeVakti", "0"));
-            if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamAlarm", false)) CheckAlarm(takvim.Aksam, Preferences.Get("aksamBildirmeVakti", "0"));
-            if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiAlarm", false)) CheckAlarm(takvim.Yatsi, Preferences.Get("yatsiBildirmeVakti", "0"));
-            if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuAlarm", false)) CheckAlarm(takvim.YatsiSonu, Preferences.Get("yatsisonuBildirmeVakti", "0"));
+            if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipAlarm", false)) CheckAlarm(takvim.FecriKazip, Preferences.Get("fecrikazipBildirmeVakti", "0"), "fecrikazip");
+            if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikAlarm", false)) CheckAlarm(takvim.FecriSadik, Preferences.Get("fecrisadikBildirmeVakti", "0"), "fecrisadik");
+            if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuAlarm", false)) CheckAlarm(takvim.SabahSonu, Preferences.Get("sabahsonuBildirmeVakti", "0"), "sabahsonu");
+            if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleAlarm", false)) CheckAlarm(takvim.Ogle, Preferences.Get("ogleBildirmeVakti", "0"), "ogle");
+            if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiAlarm", false)) CheckAlarm(takvim.Ikindi, Preferences.Get("ikindiBildirmeVakti", "0"), "ikindi");
+            if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamAlarm", false)) CheckAlarm(takvim.Aksam, Preferences.Get("aksamBildirmeVakti", "0"), "aksam");
+            if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiAlarm", false)) CheckAlarm(takvim.Yatsi, Preferences.Get("yatsiBildirmeVakti", "0"), "yatsi");
+            if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuAlarm", false)) CheckAlarm(takvim.YatsiSonu, Preferences.Get("yatsisonuBildirmeVakti", "0"), "yatsisonu");
         }
 
-        private async void CheckAlarm(string vakit, string dakikaFarki)
+        public bool CheckRemindersEnabledAny()
+        {
+            return Preferences.Get("fecrikazipEtkin", false) || Preferences.Get("fecrisadikEtkin", false) ||
+                   Preferences.Get("sabahsonuEtkin", false) || Preferences.Get("ogleEtkin", false) ||
+                   Preferences.Get("ikindiEtkin", false) || Preferences.Get("aksamEtkin", false) ||
+                   Preferences.Get("yatsiEtkin", false) || Preferences.Get("yatsisonuEtkin", false);
+        }
+        private async void CheckAlarm(string vakit, string dakikaFarki, string adi)
         {
             var kalan = DateTime.Now - DateTime.Parse(TimeSpan.Parse(vakit).ToString());
             kalan = kalan + TimeSpan.FromMinutes(Convert.ToInt32(dakikaFarki));
             if (kalan.Hours == 0 && kalan.Minutes == 0 && kalan.Seconds <= 30)
             {
-                await CrossMediaManager.Current.PlayFromAssembly("alarm3.mp3").ConfigureAwait(false);
+                var alarmSesi = Preferences.Get(adi + "AlarmSesi", "alarm3");
+                var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(alarmSesi+".mp3").ConfigureAwait(false);
+                CrossMediaManager.Current.Notification.ShowNavigationControls = false;
+                CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;
+                CrossMediaManager.Current.MediaPlayer.ShowPlaybackControls = true;
+                CrossMediaManager.Current.RepeatMode = RepeatMode.All;
+                switch (adi)
+                {
+                    case "fecrikazip":
+                        mediaItem.DisplayTitle = "Fecri Kazip Alarmı";
+                        break;
+                    case "fecrisadik":
+                        mediaItem.DisplayTitle = "Fecri Sadık Alarmı";
+                        break;
+                    case "sabahsonu":
+                        mediaItem.DisplayTitle = "Sabah Sonu Alarmı";
+                        break;
+                    case "ogle":
+                        mediaItem.DisplayTitle = "Öğle Alarmı";
+                        break;
+                    case "ikindi":
+                        mediaItem.DisplayTitle = "İkindi Alarmı";
+                        break;
+                    case "aksam":
+                        mediaItem.DisplayTitle = "Akşam Alarmı";
+                        break;
+                    case "yatsi":
+                        mediaItem.DisplayTitle = "Yatsı Alarmı";
+                        break;
+                    case "yatsisonu":
+                        mediaItem.DisplayTitle = "Yatsı Sonu Alarmı";
+                        break;
+                }
                 //ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
                 //player.Load(GetStreamFromFile("ezan.mp3"));
                 //player.Play();
@@ -354,7 +394,7 @@ namespace SuleymaniyeTakvimi.Services
                         NotificationId = 1003;
                         break;
                     case "fecrisadik":
-                        itemAdi = "Fecri Sadik";
+                        itemAdi = "Fecri Sadık";
                         NotificationId = 1004;
                         break;
                     case "sabahsonu":

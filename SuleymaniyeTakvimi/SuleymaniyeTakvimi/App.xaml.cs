@@ -1,13 +1,17 @@
 ﻿using SuleymaniyeTakvimi.Services;
 using SuleymaniyeTakvimi.Views;
 using System;
-using Matcha.BackgroundService;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+//using Matcha.BackgroundService;
 using Plugin.LocalNotifications;
 //using Plugin.LocalNotification;
 using SuleymaniyeTakvimi.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Device = Xamarin.Forms.Device;
 
 namespace SuleymaniyeTakvimi
 {
@@ -27,6 +31,9 @@ namespace SuleymaniyeTakvimi
 
         protected override void OnStart()
         {
+            AppCenter.Start("android=a40bd6f0-5ad7-4b36-9a89-740333948b82;" +
+                            "ios=f757b6ef-a959-4aac-9404-98dbbd2fb1bb;",
+                typeof(Analytics), typeof(Crashes));
             SetReminderEnabled();
             VersionTracking.Track();
             if (reminderEnabled) StartBackgroundService();
@@ -34,8 +41,8 @@ namespace SuleymaniyeTakvimi
 
         public void StartBackgroundService()
         {
-            BackgroundAggregatorService.Add(() => new ReminderService(60));
-            BackgroundAggregatorService.StartBackgroundService();
+            //BackgroundAggregatorService.Add(() => new ReminderService(60));
+            //BackgroundAggregatorService.StartBackgroundService();
             //CrossLocalNotifications.Current.Show("Suleymaniye Calendar Service Running", $"Service started at {DateTime.Now.ToShortTimeString()}", 1000);
         }
 
@@ -54,7 +61,7 @@ namespace SuleymaniyeTakvimi
 
         protected override void OnSleep()
         {
-            if (!reminderEnabled) BackgroundAggregatorService.StopBackgroundService();
+            //if (!reminderEnabled) BackgroundAggregatorService.StopBackgroundService();
         }
 
         protected override void OnResume()

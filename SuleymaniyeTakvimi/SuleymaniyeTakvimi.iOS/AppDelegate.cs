@@ -1,6 +1,6 @@
 ﻿using System;
 using Foundation;
-using Matcha.BackgroundService.iOS;
+//using Matcha.BackgroundService.iOS;
 using MediaManager;
 using UIKit;
 using UserNotifications;
@@ -22,7 +22,7 @@ namespace SuleymaniyeTakvimi.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            BackgroundAggregator.Init(this);
+            //BackgroundAggregator.Init(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();

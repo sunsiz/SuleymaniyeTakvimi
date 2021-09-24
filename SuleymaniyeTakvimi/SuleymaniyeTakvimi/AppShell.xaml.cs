@@ -11,10 +11,10 @@ namespace SuleymaniyeTakvimi
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemsPage), typeof(ItemsPage));
+            //Routing.RegisterRoute(nameof(ItemsPage), typeof(ItemsPage));
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(MonthPage), typeof(MonthPage));
-            Routing.RegisterRoute(nameof(CompassPage), typeof(CompassPage));
+            //Routing.RegisterRoute(nameof(CompassPage), typeof(CompassPage));
         }
 
     }
