@@ -15,13 +15,13 @@ namespace SuleymaniyeTakvimi.Views
             BindingContext = new ItemDetailViewModel();
         }
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            DataService data = new DataService();
-            if (data.CheckRemindersEnabledAny())
-                DependencyService.Get<IForegroundServiceControlService>().StartService();
-            else DependencyService.Get<IForegroundServiceControlService>().StopService();
-        }
+        //protected override void OnDisappearing()
+        //{
+        //    base.OnDisappearing();
+        //    DataService data = new DataService();
+        //    if (data.CheckRemindersEnabledAny())
+        //        DependencyService.Get<IForegroundServiceControlService>().StartService();
+        //    else DependencyService.Get<IForegroundServiceControlService>().StopService();
+        //}
     }
 }

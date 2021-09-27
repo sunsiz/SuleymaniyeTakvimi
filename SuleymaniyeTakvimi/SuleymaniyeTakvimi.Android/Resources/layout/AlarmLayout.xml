@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:minWidth="25px"
+	android:minHeight="25px"
+	android:layout_width="match_parent"
+	android:layout_height="fill_parent"
+	android:id="@+id/cardView1"
+	android:foregroundGravity="center_horizontal|center_vertical|fill"
+	android:layout_gravity="center_vertical|center|center_horizontal|fill"
+	android:outlineAmbientShadowColor="#ff3e2723"
+	android:outlineSpotShadowColor="#ff33691e"
+	android:outlineProvider="paddedBounds"
+	android:background="#fff9fbe7">
+	<LinearLayout
+		android:orientation="vertical"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/linearLayout1"
+		android:gravity="center_horizontal|center_vertical|center">
+		<TextView
+			android:text="Alarmi durdur"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/textView1"
+			android:layout_margin="19px"
+			android:padding="19px"/>
+        <TextView
+            android:text="Vakit"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTime"
+            android:layout_margin="19px"
+            android:padding="19px"
+            android:textColor="#ff3e2723"
+            android:textSize="45px"
+            android:layout_marginTop="9px" />
+		<Button
+			android:text="Durdur"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/stopButton"
+			android:background="#ff00c853"
+			android:textColor="#ff3e2723"
+			android:padding="39px"
+			android:layout_marginLeft="38px"
+			android:layout_marginRight="38px"
+			android:textSize="38px"
+			android:shadowColor="#ffaeea00" />
+	</LinearLayout>
+</androidx.cardview.widget.CardView>

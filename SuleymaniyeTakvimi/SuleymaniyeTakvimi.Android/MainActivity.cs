@@ -21,8 +21,6 @@ namespace SuleymaniyeTakvimi.Droid
     [Activity(Label = "SuleymaniyeTakvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, LaunchMode = LaunchMode.SingleTop)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-
-        bool isStarted = false;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -46,21 +44,21 @@ namespace SuleymaniyeTakvimi.Droid
             LoadApplication(new App());
             //NotificationCenter.NotifyNotificationTapped(Intent);
             LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.app_logo;
-            DependencyService.Register<IForegroundServiceControlService, ForegroundService>();
-            if (savedInstanceState != null)
-            {
-                isStarted = savedInstanceState.GetBoolean("has_service_been_started", false);
-            }
+            //DependencyService.Register<IForegroundServiceControlService, ForegroundService>();
+            DependencyService.Register<IAlarmService,AlarmForegroundService>();
+            //if (savedInstanceState != null)
+            //{
+            //    isStarted = savedInstanceState.GetBoolean("has_service_been_started", false);
+            //}
             SetForegroundService();
         }
 
         private void SetForegroundService()
         {
-            var startServiceIntent = new Intent(this, typeof(ForegroundService));
+            //var startServiceIntent = new Intent(this, typeof(ForegroundService));
+            var startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
             startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
-
-            var stopServiceIntent = new Intent(this, typeof(ForegroundService));
-            stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
+            
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
             {
                 StartForegroundService(startServiceIntent);
@@ -69,7 +67,6 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 StartService(startServiceIntent);
             }
-            isStarted = true;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -90,20 +87,20 @@ namespace SuleymaniyeTakvimi.Droid
                 return;
             }
 
-            var bundle = intent.Extras;
-            if (bundle != null)
-            {
-                if (bundle.ContainsKey("has_service_been_started"))
-                {
-                    isStarted = true;
-                }
-            }
+            //var bundle = intent.Extras;
+            //if (bundle != null)
+            //{
+            //    if (bundle.ContainsKey("has_service_been_started"))
+            //    {
+            //        isStarted = true;
+            //    }
+            //}
         }
-        protected override void OnSaveInstanceState(Bundle outState)
-        {
-            outState.PutBoolean("has_service_been_started", isStarted);
-            base.OnSaveInstanceState(outState);
-        }
+        //protected override void OnSaveInstanceState(Bundle outState)
+        //{
+        //    outState.PutBoolean("has_service_been_started", isStarted);
+        //    base.OnSaveInstanceState(outState);
+        //}
 
         public static void SetAlarmForBackgroundServices(Context context)
         {

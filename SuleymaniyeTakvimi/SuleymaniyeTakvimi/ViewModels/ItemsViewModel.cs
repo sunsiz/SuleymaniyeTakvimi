@@ -68,6 +68,17 @@ namespace SuleymaniyeTakvimi.ViewModels
             LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
             GetCity();
             GoToMonthCommand=new Command(GoToMonthPage);
+            if (data.CheckRemindersEnabledAny())
+            {
+                if (DateTime.Now < DateTime.Parse(_takvim.FecriKazip) && Preferences.Get("fecrikazipEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.FecriKazip), "fecrikazip" );
+                if (DateTime.Now < DateTime.Parse(_takvim.FecriSadik) && Preferences.Get("fecrisadikEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.FecriSadik), "fecrisadik");
+                if (DateTime.Now < DateTime.Parse(_takvim.SabahSonu) && Preferences.Get("sabahsonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.SabahSonu), "sabahsonu");
+                if (DateTime.Now < DateTime.Parse(_takvim.Ogle) && Preferences.Get("ogleEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.Ogle), "Öğle");
+                if (DateTime.Now < DateTime.Parse(_takvim.Ikindi) && Preferences.Get("ikindiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.Ikindi), "ikindi");
+                if (DateTime.Now < DateTime.Parse(_takvim.Aksam) && Preferences.Get("aksamEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.Aksam), "aksam");
+                if (DateTime.Now < DateTime.Parse(_takvim.Yatsi) && Preferences.Get("yatsiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.Yatsi), "yatsi");
+                if (DateTime.Now < DateTime.Parse(_takvim.YatsiSonu) && Preferences.Get("yatsisonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.YatsiSonu), "yatsisonu");
+            }
         }
 
         async Task ExecuteLoadItemsCommand()

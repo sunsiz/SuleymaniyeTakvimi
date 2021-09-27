@@ -113,6 +113,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmActivity.cs" />
+    <Compile Include="AlarmForegroundService.cs" />
     <Compile Include="AlarmReceiver.cs" />
     <Compile Include="BootBroadcast.cs" />
     <Compile Include="ForegroundService.cs" />
@@ -173,7 +175,11 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AlarmLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\network_security_config.xml" />
   </ItemGroup>
