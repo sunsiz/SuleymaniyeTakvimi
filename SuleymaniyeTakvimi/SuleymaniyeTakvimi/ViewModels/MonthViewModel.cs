@@ -14,6 +14,7 @@ namespace SuleymaniyeTakvimi.ViewModels
     class MonthViewModel: MvvmHelpers.BaseViewModel
     {
         public IList<Takvim> MonthlyTakvim { get; set; }
+        public Command BackCommand { get; }
         public MonthViewModel()
         {
             IsBusy = true;
@@ -28,6 +29,13 @@ namespace SuleymaniyeTakvimi.ViewModels
             data.GetMonthlyPrayerTimes(location);
             MonthlyTakvim = data.MonthlyTakvim;
             IsBusy = false;
+            BackCommand = new Command(GoBack);
+            IsBusy = false;
+        }
+
+        private void GoBack(object obj)
+        {
+            Shell.Current.GoToAsync("..");
         }
     }
 }

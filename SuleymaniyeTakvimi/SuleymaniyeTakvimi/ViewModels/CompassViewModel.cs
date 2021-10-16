@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
+using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
     public class CompassViewModel:MvvmHelpers.BaseViewModel
     {
-
-        double current_latitude = 41.0108267;
-        double current_longitude = 28.9709183;
-        readonly double QiblaLatitude = 21.4224779;
-        readonly double QiblaLongitude = 39.8251832;
+        private double current_latitude = 41.0108267;
+        private double current_longitude = 28.9709183;
+        private double current_altitude = 4;
+        private readonly double QiblaLatitude = 21.4224779;
+        private readonly double QiblaLongitude = 39.8251832;
         internal readonly SensorSpeed speed = SensorSpeed.UI;
         public Command StartCommand { get; }
         public Command StopCommand { get; }
@@ -26,6 +28,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ICommand TapCommand => new Xamarin.Forms.Command<string>(async (url) => await Launcher.OpenAsync(url));
         public CompassViewModel()
         {
+            Title = "Kıble Göstergesi";
             StartCommand = new Command(Start);
             StopCommand = new Command(Stop);
             LocationCommand = new Command(GetLocation);
@@ -47,11 +50,18 @@ namespace SuleymaniyeTakvimi.ViewModels
             });
         }
 
-        string headingDisplay;
-        public string HeadingDisplay
+        string lalongtitude;
+        public string Lalongtitude
         {
-            get => headingDisplay;
-            set => SetProperty(ref headingDisplay, value);
+            get => lalongtitude;
+            set => SetProperty(ref lalongtitude, value);
+        }
+
+        string degaltitude;
+        public string Degaltitude
+        {
+            get => degaltitude;
+            set => SetProperty(ref degaltitude, value);
         }
 
         double heading = 0;
@@ -95,22 +105,27 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         internal async void GetLocation()
         {
-            IsBusy = true;
+            IsBusy = true; 
+            //UserDialogs.Instance.Toast("Konumu almaya çalışıyor", TimeSpan.FromSeconds(3));
             try
             {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromMilliseconds(10));
-                var location = await Geolocation.GetLocationAsync(request);
-                if (location != null)
+                //var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromMilliseconds(3));
+                //var location = await Geolocation.GetLocationAsync(request);
+                DataService data = new();
+                var takvim = data.GetCurrentLocation().Result;
+                if (takvim != null)
                 {
+                    Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
                     current_latitude = location.Latitude;
                     current_longitude = location.Longitude;
+                    current_altitude = location.Altitude ?? 0.0;
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
-            finally { IsBusy = false; }
+            finally { IsBusy = false; /*UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));*/ }
         }
 
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
@@ -128,6 +143,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //var d = GetDegree() - e.Reading.HeadingMagneticNorth;
                 //Heading = d;// e.Reading.HeadingMagneticNorth;
                 //Info = HeadingDisplay = $"Heading: {Heading}";
+                Lalongtitude = $"Enlem: {current_latitude.ToString("F2")}  |  Boylam: {current_longitude.ToString("F2")}";
+                Degaltitude = $"Yükseklik: {current_altitude.ToString("N0")}  |  Açı: {Heading.ToString("F2")}";
                 Info = string.Format("Lat: {0} Long: {1} degree:{2}", current_latitude, current_longitude, Heading);
                 Konum = String.Format("{0:F4}, {1:F4}", current_latitude, current_longitude);
                 PointToQibla(e);

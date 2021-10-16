@@ -26,6 +26,7 @@ namespace SuleymaniyeTakvimi.iOS
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
+            global::Xamarin.Forms.FormsMaterial.Init();
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
             {
                 // Ask the user for permission to get notifications on iOS 10.0+

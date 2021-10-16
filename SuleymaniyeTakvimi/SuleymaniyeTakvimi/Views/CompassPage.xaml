@@ -3,36 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="SuleymaniyeTakvimi.Views.CompassPage">
+             x:Class="SuleymaniyeTakvimi.Views.CompassPage"
+             Visual="Material"
+             Title="{Binding Title}">
     <!--<ContentPage.BindingContext>
         <viewModels:CompassViewModel/>
     </ContentPage.BindingContext>-->
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Beige">
+        <StackLayout BackgroundColor="{StaticResource AppBackgroundColor}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="compassImage" Source="kompas" Margin="0,15"/>
                 <Image HorizontalOptions="Center" VerticalOptions="Center" Rotation="{Binding Heading}" Source="isaretci" x:Name="ImageArrow" Aspect="AspectFit" Scale="0.9"/>
 
                 <StackLayout Grid.Row="1">
-                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto" ColumnSpacing="0">
-                        <pancakeView:PancakeView MinimumWidthRequest="300" Margin="15,7" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
-                            <Button Margin="5" Padding="5,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="{Binding Konum, StringFormat='Konum: {0}'}" Command="{Binding GoToMapCommand}" />
-                        </pancakeView:PancakeView>
+                    <StackLayout>
+                        <!--<pancakeView:PancakeView MinimumWidthRequest="300" Margin="15,7" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand">
+                            <Button Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" BackgroundColor="Gold" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="{Binding Konum, StringFormat='Konum: {0}'}" Command="{Binding GoToMapCommand}" />
+                        </pancakeView:PancakeView>-->
                         <!--<Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" TextColor="Blue" Text="{Binding Info1}" HorizontalOptions="Center" />-->
-                        <StackLayout Grid.Row="1" Grid.Column="0" Margin="9,0">
-                            <ImageButton HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.fitrat.tv/" Source="fitrattv-logo" BackgroundColor="Beige" />
-                        </StackLayout>
-                        <StackLayout Grid.Row="1" Grid.Column="1" Margin="9,0" Padding="-29,0,9,0">
-                            <ImageButton HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" Source="radyofitrat3" BackgroundColor="Beige" />
-                        </StackLayout>
-                    </Grid>
+                        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <ImageButton Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.fitrat.tv/" Source="fitrattv-logo" BackgroundColor="Beige" Padding="-29" />
+                            <ImageButton Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" Source="radyofitrat3" BackgroundColor="Beige" Padding="-29,-19" />
+                        </StackLayout>-->
+                        <pancakeView:PancakeView Margin="25,7" Padding="7" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" CornerRadius="9" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='2,2'}" HorizontalOptions="FillAndExpand">
+                            <FlexLayout Direction="Column" AlignItems="Center">
+                                <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" Text="{Binding Lalongtitude}" />
+                                <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" Text="{Binding Degaltitude}" />
+                                <!--<Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="{Binding Altitude, StringFormat='Yükseklik: {0:F4}'}" />-->
+                                <!--<Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="{Binding Heading, StringFormat='Açı: {0:F4}'}" />-->
+                                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,5" Padding="5,-5" BackgroundColor="{StaticResource PrimaryLightAccent400Color}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                                    <Button Margin="10,5" Padding="5,0" HorizontalOptions="Center" BackgroundColor="{StaticResource PrimaryLightAccent400Color}" FontAttributes="Bold" FontSize="22" TextColor="{StaticResource PrimaryTextColor}"
+                                            Command="{Binding GoToMapCommand}"
+                                            Text="haritada göster" />
+                                </pancakeView:PancakeView>
+                                <!--<pancakeView:PancakeView Margin="15,7" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}" HorizontalOptions="CenterAndExpand">-->
+                                <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <Label Margin="15" Padding="19,9" HorizontalOptions="CenterAndExpand" BackgroundColor="LimeGreen" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="haritada göster" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CompassViewModel}}, Path=GoToMapCommand}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>-->
+                                <!--</pancakeView:PancakeView>-->
+                            </FlexLayout>
+                        </pancakeView:PancakeView>
+                    </StackLayout>
                 </StackLayout>
             </Grid>
-        <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{DynamicResource PrimaryTextColor}"
+        <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{StaticResource PrimaryColor}"
                            HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
                            AbsoluteLayout.LayoutFlags="PositionProportional"
                            AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />

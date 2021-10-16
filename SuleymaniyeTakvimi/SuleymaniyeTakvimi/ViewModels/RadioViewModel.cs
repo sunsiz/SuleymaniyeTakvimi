@@ -55,8 +55,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (CrossMediaManager.Current.IsPlaying())
             {
                 await CrossMediaManager.Current.Stop().ConfigureAwait(true);
-                CrossMediaManager.Current.Notification.Enabled = false;
-                CrossMediaManager.Current.Notification.UpdateNotification();
+                //CrossMediaManager.Current.Notification.Enabled = false;
+                //CrossMediaManager.Current.Notification.UpdateNotification();
                 IsPlaying = false;
             }
             else
@@ -64,9 +64,9 @@ namespace SuleymaniyeTakvimi.ViewModels
                 CheckInternet();
                 var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
                 mediaItem.Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
-                CrossMediaManager.Current.Notification.Enabled = true;
-                CrossMediaManager.Current.Notification.ShowNavigationControls = false;
-                CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;
+                CrossMediaManager.Current.Notification.Enabled = false;
+                //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
+                //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
                 mediaItem.MetadataUpdated += OnMediaItemOnMetadataUpdated;
                 CrossMediaManager.Current.StateChanged += Current_StateChanged;
             }

@@ -1,22 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="SuleymaniyeTakvimi.Views.MonthPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi">
+<ContentPage x:Class="SuleymaniyeTakvimi.Views.MonthPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
+             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
+             Shell.PresentationMode="ModalAnimated">
     <!--<ContentPage.BindingContext>
         <viewModels:MonthViewModel />
     </ContentPage.BindingContext>-->
-    <ContentPage.Content>
-        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-            <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Goldenrod" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="40, *">
+    <ContentPage.Content><StackLayout BackgroundColor="Beige">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal">
+            <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="NavajoWhite" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="35, *" ColumnSpacing="2">
                 <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Tarih" />
                 <Label Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Fecri Kazip" />
-                <Label Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Fecri Sadik" />
+                <Label Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Fecri Sadık" />
                 <Label Grid.Row="0" Grid.Column="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Sabah Sonu" />
-                <Label Grid.Row="0" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Ogle" />
+                <Label Grid.Row="0" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Öğle" />
                 <Label Grid.Row="0" Grid.Column="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="İkindi" />
-                <Label Grid.Row="0" Grid.Column="6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Aksam" />
-                <Label Grid.Row="0" Grid.Column="7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Yatsi" />
-                <Label Grid.Row="0" Grid.Column="8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Yatsi Sonu" />
+                <Label Grid.Row="0" Grid.Column="6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Akşam" />
+                <Label Grid.Row="0" Grid.Column="7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Yatsı" />
+                <Label Grid.Row="0" Grid.Column="8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Yatsı Sonu" />
                 <!--  monthly time list structure  -->
-                <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" WidthRequest="2048" BackgroundColor="Azure" VerticalScrollBarVisibility="Never" ItemsSource="{Binding MonthlyTakvim}">
+                    <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" WidthRequest="2048" BackgroundColor="Beige" VerticalScrollBarVisibility="Never" ItemsSource="{Binding MonthlyTakvim}" Footer="{Binding .}">
                     <!--  CachingStrategy="RecycleElement"  -->
                     <!--<CollectionView.Header>-->
                     <!--<StackLayout BackgroundColor="Goldenrod" Orientation="Horizontal">-->
@@ -71,7 +73,7 @@
                 </CollectionView.ItemsLayout>-->
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid RowSpacing="0" Margin="0" Padding="0" BackgroundColor="BlanchedAlmond" ColumnDefinitions="Auto,*,*,*,*,*,*,*,*">
+                            <Grid RowSpacing="0" ColumnSpacing="0" Margin="0" Padding="0" BackgroundColor="Beige" ColumnDefinitions="Auto,*,*,*,*,*,*,*,*">
                                 <!--<StackLayout Orientation="Horizontal">{}{0}&#x09;&#x09;{1}&#x09;&#x09;{2}&#x09;&#x09;{3}&#x09;&#x09;{4}&#x09;&#x09;{5}&#x09;&#x09;{6}&#x09;&#x09;{7}&#x09;&#x09;{8}-->
                                 <!--<Label TextColor="DarkGreen" TextType="Html">
                                     <Label.Text>
@@ -103,24 +105,35 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>-->
-                                <Label Grid.Column="0" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="DarkGoldenrod" Text="{Binding Tarih}" />
-                                <Label Grid.Column="1" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="DarkKhaki" Text="{Binding FecriKazip}" />
-                                <Label Grid.Column="2" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="NavajoWhite" Text="{Binding FecriSadik}" />
-                                <Label Grid.Column="3" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="LightSkyBlue" Text="{Binding SabahSonu}" />
-                                <Label Grid.Column="4" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="DeepSkyBlue" Text="{Binding Ogle}" />
-                                <Label Grid.Column="5" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="SkyBlue" Text="{Binding Ikindi}" />
-                                <Label Grid.Column="6" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="LightSalmon" Text="{Binding Aksam}" />
-                                <Label Grid.Column="7" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Coral" Text="{Binding Yatsi}" />
-                                <Label Grid.Column="8" Margin="0,2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="DimGray" Text="{Binding YatsiSonu}" />
+                                    <Label Grid.Column="0" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Beige" Text="{Binding Tarih}" Padding="2,0" />
+                                    <Label Grid.Column="1" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Cornsilk" Text="{Binding FecriKazip}" />
+                                    <Label Grid.Column="2" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="LightGoldenrodYellow" Text="{Binding FecriSadik}" />
+                                    <Label Grid.Column="3" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Cornsilk" Text="{Binding SabahSonu}" />
+                                    <Label Grid.Column="4" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="LightGoldenrodYellow" Text="{Binding Ogle}" />
+                                    <Label Grid.Column="5" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Cornsilk" Text="{Binding Ikindi}" />
+                                    <Label Grid.Column="6" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="LightGoldenrodYellow" Text="{Binding Aksam}" />
+                                    <Label Grid.Column="7" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Cornsilk" Text="{Binding Yatsi}" />
+                                    <Label Grid.Column="8" Margin="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="LightGoldenrodYellow" Text="{Binding YatsiSonu}" />
                                 <!--</StackLayout>-->
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                    <CollectionView.Footer>
+                    <CollectionView.FooterTemplate>
+                        <DataTemplate>
+                                <StackLayout BackgroundColor="Beige" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Button Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" BackgroundColor="LimeGreen" HorizontalOptions="Center" HeightRequest="25" Padding="0" WidthRequest="128" />
+                                </StackLayout>
+                            </DataTemplate>
+                    </CollectionView.FooterTemplate>
+                        <!--<CollectionView.Footer>
                         <Label TextType="Html" Text="&lt;/table&gt;" />
-                    </CollectionView.Footer>
+                    </CollectionView.Footer>-->
                 </CollectionView>
             </Grid>
-        </ScrollView>
+            </ScrollView>
+            <!--<StackLayout HorizontalOptions="Center" Orientation="Horizontal" BackgroundColor="Beige">
+                <Button Text="Kapat" Command="{Binding BackCommand}" Margin="0"/>
+            </StackLayout>-->
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -31,12 +31,12 @@ namespace SuleymaniyeTakvimi
 
         protected override void OnStart()
         {
-            AppCenter.Start("android=a40bd6f0-5ad7-4b36-9a89-740333948b82;" +
-                            "ios=f757b6ef-a959-4aac-9404-98dbbd2fb1bb;",
-                typeof(Analytics), typeof(Crashes));
-            SetReminderEnabled();
+            //AppCenter.Start("android=a40bd6f0-5ad7-4b36-9a89-740333948b82;" +
+            //                "ios=f757b6ef-a959-4aac-9404-98dbbd2fb1bb;",
+            //    typeof(Analytics), typeof(Crashes));
+            //SetReminderEnabled();
             VersionTracking.Track();
-            if (reminderEnabled) StartBackgroundService();
+            //if (reminderEnabled) StartBackgroundService();
         }
 
         public void StartBackgroundService()
@@ -66,7 +66,7 @@ namespace SuleymaniyeTakvimi
 
         protected override void OnResume()
         {
-            if (Device.RuntimePlatform == Device.iOS) StartBackgroundService();
+            //if (Device.RuntimePlatform == Device.iOS) StartBackgroundService();
         }
 
         //private void OnLocalNotificationTapped(NotificationTappedEventArgs e)

@@ -10,12 +10,12 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource PrimaryLightColor}" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="White" />
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarTitleColor" Value="White" />
@@ -26,29 +26,34 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Takvim" ContentTemplate="{DataTemplate local:TakvimPage}" Route="TakvimPage">
+        <!--<ShellContent Title="Takvim" ContentTemplate="{DataTemplate local:TakvimPage}" Route="TakvimPage">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe334;" Size="Title" />
             </ShellContent.Icon>
-        </ShellContent>
-        <ShellContent Title="Takvim 1" ContentTemplate="{DataTemplate local:ItemsPage}">
-            <ShellContent.Icon>
-                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe614;" Size="Title" />
-            </ShellContent.Icon>
-        </ShellContent>
-        <ShellContent Title="Takvim 2" ContentTemplate="{DataTemplate local:CalendarPage}">
+        </ShellContent>-->
+        <ShellContent Title="Takvim" ContentTemplate="{DataTemplate local:ItemsPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe855;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Compass" ContentTemplate="{DataTemplate local:CompassPage}">
+        <!--<ShellContent Title="Takvim 2" ContentTemplate="{DataTemplate local:CalendarPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe855;" Size="Title" />
+            </ShellContent.Icon>
+        </ShellContent>-->
+        <ShellContent Title="Kıble" ContentTemplate="{DataTemplate local:CompassPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe87a;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Radio" ContentTemplate="{DataTemplate local:RadioPage}">
+        <ShellContent Title="Radyo" ContentTemplate="{DataTemplate local:RadioPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe03e;" Size="Title" />
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="Hakkında" ContentTemplate="{DataTemplate local:AboutPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xf233;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
         <!--<ShellContent Title="Takvim 1" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />

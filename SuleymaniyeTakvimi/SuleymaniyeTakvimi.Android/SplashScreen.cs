@@ -8,7 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Android.Animation;
+using Android.Util;
+using SuleymaniyeTakvimi.Services;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -19,7 +22,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             base.OnCreate(savedInstanceState);
 
-
+            Log.Info("TimeStamp-SplashScreen-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             SetContentView(Resource.Layout.SplashLayout);
 
             var animation = FindViewById<Com.Airbnb.Lottie.LottieAnimationView>(Resource.Id.animation_view);
@@ -44,7 +47,18 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void OnAnimationStart(Animator? animation)
         {
-            
+            //Task startupWork = new Task(() => { AppInitialize(); });
+            //startupWork.Start();
+        }
+
+        private void AppInitialize()
+        {
+            Log.Info("TimeStamp-AppInitialize-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            DataService data = new();
+            var _takvim = data.GetCurrentLocation();
+            data.VakitHesabi();
+            //data.SetAlarms();
+            Log.Info("TimeStamp-AppInitialize-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
     }
 }

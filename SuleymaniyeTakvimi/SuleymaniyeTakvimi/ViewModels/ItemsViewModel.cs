@@ -10,20 +10,38 @@ using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Threading;
+using Xamarin.Forms.Internals;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
-
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command GoToMapCommand { get; }
         public Command GoToMonthCommand { get; }
+        public Command RefreshLocationCommand { get; }
         public Command<Item> ItemTapped { get; }
-        Takvim _takvim;
+        Takvim _takvim, vakitler;
         private string city;
+
+        public Takvim Vakitler
+        {
+            get
+            {
+                if (vakitler == null)
+                {
+                    var data = new DataService();
+                    vakitler = data.takvim;
+                    //data.CheckNotification();
+                }
+
+                return vakitler;
+            }
+            set { SetProperty(ref vakitler, value); }
+        }
         public string Today
         {
             get { return DateTime.Today.ToString("M"); }
@@ -43,6 +61,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         public ItemsViewModel()
         {
+            Log.Warning("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             Items = new ObservableCollection<Item>();
             var data = new DataService();
             _takvim = data.takvim;
@@ -65,25 +84,21 @@ namespace SuleymaniyeTakvimi.ViewModels
                     UserDialogs.Instance.Toast("Haritayı açarken bir sorun oluştu.\nDetaylar: " + ex.Message);
                 }
             });
-            LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
+            //LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
             GetCity();
             GoToMonthCommand=new Command(GoToMonthPage);
-            if (data.CheckRemindersEnabledAny())
+            RefreshLocationCommand = new Command(async () =>
             {
-                if (DateTime.Now < DateTime.Parse(_takvim.FecriKazip) && Preferences.Get("fecrikazipEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.FecriKazip), "fecrikazip" );
-                if (DateTime.Now < DateTime.Parse(_takvim.FecriSadik) && Preferences.Get("fecrisadikEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.FecriSadik), "fecrisadik");
-                if (DateTime.Now < DateTime.Parse(_takvim.SabahSonu) && Preferences.Get("sabahsonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.SabahSonu), "sabahsonu");
-                if (DateTime.Now < DateTime.Parse(_takvim.Ogle) && Preferences.Get("ogleEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.Ogle), "Öğle");
-                if (DateTime.Now < DateTime.Parse(_takvim.Ikindi) && Preferences.Get("ikindiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.Ikindi), "ikindi");
-                if (DateTime.Now < DateTime.Parse(_takvim.Aksam) && Preferences.Get("aksamEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.Aksam), "aksam");
-                if (DateTime.Now < DateTime.Parse(_takvim.Yatsi) && Preferences.Get("yatsiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.Yatsi), "yatsi");
-                if (DateTime.Now < DateTime.Parse(_takvim.YatsiSonu) && Preferences.Get("yatsisonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(_takvim.YatsiSonu), "yatsisonu");
-            }
+                await GetPrayerTimesAsync().ConfigureAwait(false);
+                await ExecuteLoadItemsCommand().ConfigureAwait(false);
+            });
+            Log.Warning("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
+            Log.Warning("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
 
             try
             {
@@ -112,6 +127,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 if (Preferences.Get(Aksam.Id, "") == "") Preferences.Set(Aksam.Id, _takvim.Aksam);
                 if (Preferences.Get(Yatsi.Id, "") == "") Preferences.Set(Yatsi.Id, _takvim.Yatsi);
                 if (Preferences.Get(YatsiSonu.Id, "") == "") Preferences.Set(YatsiSonu.Id, _takvim.YatsiSonu);
+                GetCity();
+                var today = Today;
             }
             catch (Exception ex)
             {
@@ -119,6 +136,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
             finally
             {
+                Log.Warning("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
                 IsBusy = false;
             }
         }
@@ -158,8 +176,68 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         async void GoToMonthPage(object obj)
         {
+            IsBusy = true;
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(MonthPage)}");
+        }
+
+        async Task GetPrayerTimesAsync()
+        {
+            IsBusy = true;
+            var data = new DataService();
+            try
+            {
+                var takvim = data.GetCurrentLocation().Result;
+                //var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
+                //CancellationTokenSource cts = new CancellationTokenSource();
+                //var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);
+                //if (location != null)
+                if (takvim != null)
+                {
+                    Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
+                    data.konum = new Takvim();
+                    data.konum.Enlem = location.Latitude;
+                    data.konum.Boylam = location.Longitude;
+                    data.konum.Yukseklik = location.Altitude ?? 0;
+                    Vakitler = data.VakitHesabi();
+                    if (Vakitler.Enlem != 0)
+                    {
+                        //Application.Current.Properties["takvim"] = Vakitler;
+                        Preferences.Set("enlem", Vakitler.Enlem);
+                        Preferences.Set("boylam", Vakitler.Boylam);
+                        Preferences.Set("yukseklik", Vakitler.Yukseklik);
+                        Preferences.Set("saatbolgesi", Vakitler.SaatBolgesi);
+                        Preferences.Set("yazkis", Vakitler.YazKis);
+                        Preferences.Set("fecrikazip", Vakitler.FecriKazip);
+                        Preferences.Set("fecrisadik", Vakitler.FecriSadik);
+                        Preferences.Set("sabahsonu", Vakitler.SabahSonu);
+                        Preferences.Set("ogle", Vakitler.Ogle);
+                        Preferences.Set("ikindi", Vakitler.Ikindi);
+                        Preferences.Set("aksam", Vakitler.Aksam);
+                        Preferences.Set("yatsi", Vakitler.Yatsi);
+                        Preferences.Set("yatsisonu", Vakitler.YatsiSonu);
+                        Preferences.Set("tarih", Vakitler.Tarih);
+                        //await Application.Current.SavePropertiesAsync();
+                    }
+
+                    LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast(
+                        "Konum alma başarısız, Lütfen konum hizmetlerinin açık olduğunu kontrol edin!",
+                        TimeSpan.FromSeconds(7));
+                }
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.Alert(exception.Message, "Konuma erişmeye çalışırken bir sorun oluştu.");
+            }
+            finally
+            {
+                UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));
+                IsBusy = false;
+            }
         }
     }
 }

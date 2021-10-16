@@ -9,14 +9,21 @@
             <Thickness x:Key="ContentPadding">3, 7</Thickness>
             <Color x:Key="Primary">DodgerBlue</Color>
             <Color x:Key="AppPrimaryColor">#1976D2</Color>
-            <Color x:Key="AppBackgroundColor">AliceBlue</Color>
-            <Color x:Key="PrimaryColor">Black</Color>
+            <Color x:Key="AppBackgroundColor">#EFEBE9</Color>
+            <Color x:Key="PrimaryColor">#5c3021</Color>
+            <Color x:Key="PrimaryLightColor">#8c5a49</Color> 
+            <Color x:Key="PrimaryDarkColor">#310900</Color>
+            <Color x:Key="PrimaryTextColor">#ffffff</Color>
+            <Color x:Key="PrimaryLightAccent400Color">#8e5e4b</Color>
+            <Color x:Key="PrimaryLightAccent100Color">#e5c3b5</Color>
             <Color x:Key="SecondaryColor">White</Color>
             <Color x:Key="TertiaryColor">Silver</Color>
             <Color x:Key="NavigationBarTextColor">#5D5D5D</Color>
             <Color x:Key="NormalButtonBackgroundColor">#1976D2</Color>
             <Color x:Key="NormalButtonTextColor">#FFFFFF</Color>
             <Color x:Key="HeadingLabelTextColor">#5D5D5D</Color>
+            <Color x:Key="NavigationBarColor">#2E7D32</Color>
+            <Color x:Key="TransparentColor">Transparent</Color>
             <!--  Implicit styles  -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />

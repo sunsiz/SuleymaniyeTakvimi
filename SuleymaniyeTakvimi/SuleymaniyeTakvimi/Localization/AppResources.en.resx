@@ -150,6 +150,12 @@
   <data name="Ikindi" xml:space="preserve">
     <value>Asr</value>
   </data>
+  <data name="Kapat" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Kaydet" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="KonumYenileButton" xml:space="preserve">
     <value>Refresh Location</value>
   </data>

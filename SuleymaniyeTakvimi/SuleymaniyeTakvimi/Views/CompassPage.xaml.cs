@@ -39,6 +39,7 @@ namespace SuleymaniyeTakvimi.Views
                 ((CompassViewModel) BindingContext).StartCommand.Execute(null);
             }
 
+            IsBusy = false;
         }
     }
 }

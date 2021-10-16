@@ -18,6 +18,7 @@ using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace SuleymaniyeTakvimi.Services
 {
@@ -307,7 +308,7 @@ namespace SuleymaniyeTakvimi.Services
             kalan = kalan + TimeSpan.FromMinutes(Convert.ToInt32(dakikaFarki));
             if (kalan.Hours == 0 && kalan.Minutes == 0 && kalan.Seconds <= 30)
             {
-                var alarmSesi = Preferences.Get(adi + "AlarmSesi", "alarm3");
+                var alarmSesi = Preferences.Get(adi + "AlarmSesi", "kus");
                 var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(alarmSesi+".mp3").ConfigureAwait(false);
                 CrossMediaManager.Current.Notification.ShowNavigationControls = false;
                 CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;
@@ -551,6 +552,27 @@ namespace SuleymaniyeTakvimi.Services
             }
 
             return monthlyTakvim;
+        }
+
+        public void SetAlarms()
+        {
+            Log.Warning("TimeStamp-SetAlarms-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            DependencyService.Get<IAlarmService>().CancelAlarm();
+            if (CheckRemindersEnabledAny())
+            {
+                //var testTimeSpan = DateTime.Now.AddMinutes(1).ToString("hh:mm:ss");
+                //DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(testTimeSpan), "test");
+                if (DateTime.Now < DateTime.Parse(takvim.FecriKazip) && Preferences.Get("fecrikazipEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.FecriKazip), "Fecri Kazip");
+                if (DateTime.Now < DateTime.Parse(takvim.FecriSadik) && Preferences.Get("fecrisadikEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.FecriSadik), "Fecri Sadık");
+                if (DateTime.Now < DateTime.Parse(takvim.SabahSonu) && Preferences.Get("sabahsonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.SabahSonu), "Sabah Sonu");
+                if (DateTime.Now < DateTime.Parse(takvim.Ogle) && Preferences.Get("ogleEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.Ogle), "Öğle");
+                if (DateTime.Now < DateTime.Parse(takvim.Ikindi) && Preferences.Get("ikindiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.Ikindi), "İkindi");
+                if (DateTime.Now < DateTime.Parse(takvim.Aksam) && Preferences.Get("aksamEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.Aksam), "Akşam");
+                if (DateTime.Now < DateTime.Parse(takvim.Yatsi) && Preferences.Get("yatsiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.Yatsi), "Yatsı");
+                if (DateTime.Now < DateTime.Parse(takvim.YatsiSonu) && Preferences.Get("yatsisonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.YatsiSonu), "Yatsı Sonu");
+            }
+            //DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(DateTime.Now.AddMinutes(2).ToShortTimeString()), "test");
+            Log.Warning("TimeStamp-SetAlarms-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
     }
 }

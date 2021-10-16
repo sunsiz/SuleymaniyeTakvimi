@@ -28,20 +28,21 @@ namespace SuleymaniyeTakvimi.ViewModels
         private bool etkin;
         private Sound[] sounds;
         private Sound _selectedSound;
-        public ICommand EnableSwitchToggled { get; private set; }
-        public ICommand BildiriCheckedChanged { get; private set; }
-        public ICommand TitremeCheckedChanged { get; private set; }
-        public ICommand AlarmCheckedChanged { get; private set; }
-        public ICommand RadioButtonCheckedChanged { get; private set; }
+        public ICommand EnableSwitchToggled { get; }
+        public ICommand BildiriCheckedChanged { get; }
+        public ICommand TitremeCheckedChanged { get; }
+        public ICommand AlarmCheckedChanged { get; }
+        public ICommand RadioButtonCheckedChanged { get; }
+        public ICommand BackCommand { get; }
         public Command<Sound> SoundSelectedCommand { get; }
 
         public Sound[] Sounds
         {
             get => sounds ??= new[]
             {
-                new Sound() {Index = 0, fileName = "alarm3", Name = "Kuş Cıvıltısı"},
+                new Sound() {Index = 0, fileName = "kus", Name = "Kuş Cıvıltısı"},
                 new Sound() {Index = 1, fileName = "horoz", Name = "Horoz Ötüşü"},
-                new Sound() {Index = 2, fileName = "alarm1", Name = "Çalar Saat"},
+                new Sound() {Index = 2, fileName = "alarm", Name = "Çalar Saat"},
                 new Sound() {Index = 3, fileName = "ezan", Name = "Ezan Sesi"}
             };
             set => SetProperty(ref sounds, value);
@@ -64,6 +65,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             TitremeCheckedChanged = new Command(TitremeAyari);
             AlarmCheckedChanged = new Command(AlarmAyari);
             RadioButtonCheckedChanged = new Command(BildirmeVaktiAyari);
+            BackCommand = new Command(GoBack);
             //Etkin = Preferences.Get(itemId + "Etkin", false);
             //Titreme = Preferences.Get(itemId + "Titreme", false);
             //Bildiri = Preferences.Get(itemId + "Bildiri", false);
@@ -76,17 +78,17 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             string name = "Çalar Saat";
             int index = 2;
-            string file = "alarm1";
+            string file = "alarm";
             if (itemId != null)
             {
-                file = Preferences.Get(itemId + "AlarmSesi", "alarm1");
+                file = Preferences.Get(itemId + "AlarmSesi", "alarm");
                 switch (file)
                 {
-                    case "alarm3":
+                    case "kus":
                         name = "Kuş Cıvıltısı";
                         index = 0;
                         break;
-                    case "alarm1":
+                    case "alarm":
                         name = "Çalar Saat";
                         index = 2;
                         break;
@@ -231,6 +233,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
                                   Preferences.Get(itemId + "Etkin", value));
                 Etkin = value;
+                DataService data = new();
+                data.SetAlarms();
                 //if(value && BackgroundAggregatorService.Instance==null)
                 //{
                 //    BackgroundAggregatorService.Add(() => new ReminderService(60));
@@ -342,6 +346,11 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 Debug.WriteLine("Failed to Load Item\t"+ex.Message);
             }
+        }
+
+        private void GoBack(object obj)
+        {
+            Shell.Current.GoToAsync("..");
         }
     }
 }

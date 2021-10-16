@@ -7,12 +7,13 @@
              xmlns:common="clr-namespace:SuleymaniyeTakvimi;assembly=SuleymaniyeTakvimi"
              xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              x:Class="SuleymaniyeTakvimi.Views.ItemDetailPage"
+             Shell.PresentationMode="ModalAnimated"
              Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
     <!--<ContentPage.BindingContext>
         <viewModels:ItemDetailViewModel/>
     </ContentPage.BindingContext>-->
     <ScrollView VerticalScrollBarVisibility="Never">
-        <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18" Margin="9">
+        <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18,14" Margin="9">
             <pancakeView:PancakeView.BackgroundGradientStops>
                 <pancakeView:GradientStop Color="AliceBlue" Offset="0"/>
                 <pancakeView:GradientStop Color="WhiteSmoke" Offset="1"/>
@@ -21,7 +22,7 @@
                 <pancakeView:DropShadow Color="Coral" BlurRadius="6" Opacity="0.3"/>
             </pancakeView:PancakeView.Shadow>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,2*">
-                <pancakeView:PancakeView CornerRadius="9" Grid.Row="0" Grid.ColumnSpan="2" Margin="14,7">
+                <pancakeView:PancakeView CornerRadius="9" Grid.Row="0" Grid.ColumnSpan="2" Margin="14,4">
                     <pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStop Color="Goldenrod" Offset="0"/>
                         <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
@@ -67,7 +68,7 @@
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView CornerRadius="9" Grid.Row="3" Grid.ColumnSpan="2" Margin="4,4">
+                <pancakeView:PancakeView CornerRadius="9" Grid.Row="3" Grid.ColumnSpan="2" Margin="4,0">
                     <pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStop Color="Khaki" Offset="0"/>
                         <pancakeView:GradientStop Color="LightYellow" Offset="1"/>
@@ -102,7 +103,7 @@
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView CornerRadius="9" Grid.Row="6" Grid.ColumnSpan="2" Margin="4,4">
+                <pancakeView:PancakeView CornerRadius="9" Grid.Row="6" Grid.ColumnSpan="2" Margin="4,0">
                     <pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStop Color="LemonChiffon" Offset="0"/>
                         <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
@@ -111,7 +112,7 @@
                     <pancakeView:PancakeView.Shadow>
                         <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="1,1" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>
-                    <StackLayout HorizontalOptions="FillAndExpand" Padding="14">
+                    <StackLayout HorizontalOptions="FillAndExpand" Padding="14,9">
                         <Label HorizontalOptions="Start" Text="{x:Static resources:AppResources.BildirmeZamani}" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>
                         <RadioButton Content="{x:Static resources:AppResources.Zamaninda}" Value="0" x:Name="Zamaninda" GroupName="zaman" BackgroundColor="Transparent">
                             <RadioButton.Triggers>
@@ -145,6 +146,19 @@
                         </RadioButton>
                         <Label HorizontalOptions="Start" Text="Alarm Sound" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>
                         <Picker Title="Bir ses seçin" TitleColor="Green" ItemsSource="{Binding Sounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound, Mode=TwoWay}" SelectedIndex="{Binding SelectedSound.Index}" />
+                    </StackLayout>
+                </pancakeView:PancakeView>
+                <pancakeView:PancakeView CornerRadius="9" Grid.Row="7" Grid.ColumnSpan="2" Margin="7">
+                    <pancakeView:PancakeView.BackgroundGradientStops>
+                        <pancakeView:GradientStop Color="LimeGreen" Offset="0"/>
+                        <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
+                        <pancakeView:GradientStop Color="MediumSpringGreen" Offset="1"/>
+                    </pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:PancakeView.Shadow>
+                        <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                    </pancakeView:PancakeView.Shadow>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="0">
+                        <Button HorizontalOptions="FillAndExpand" Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" FontSize="18" BackgroundColor="Transparent" Padding="3"/>
                     </StackLayout>
                 </pancakeView:PancakeView>
             </Grid>

@@ -160,6 +160,24 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kapat.
+        /// </summary>
+        internal static string Kapat {
+            get {
+                return ResourceManager.GetString("Kapat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kaydet.
+        /// </summary>
+        internal static string Kaydet {
+            get {
+                return ResourceManager.GetString("Kaydet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Konumu Yenile.
         /// </summary>
         internal static string KonumYenileButton {

@@ -14,10 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\alarm.mp3" />
     <None Remove="Assets\alarm1.mp3" />
     <None Remove="Assets\alarm3.mp3" />
     <None Remove="Assets\app_logo.png" />
+    <None Remove="Assets\ayar.svg" />
     <None Remove="Assets\ezan.mp3" />
+    <None Remove="Assets\facebook.png" />
     <None Remove="Assets\fitratradyo.png" />
     <None Remove="Assets\fitratradyo‏‏1.png" />
     <None Remove="Assets\fitrattv-logo.png" />
@@ -25,61 +28,74 @@
     <None Remove="Assets\icon_about.png" />
     <None Remove="Assets\icon_calendar.png" />
     <None Remove="Assets\icon_feed.png" />
+    <None Remove="Assets\instagram.png" />
     <None Remove="Assets\Isaretci.png" />
+    <None Remove="Assets\kible.svg" />
     <None Remove="Assets\kompas.png" />
+    <None Remove="Assets\kus.mp3" />
     <None Remove="Assets\notification.svg" />
+    <None Remove="Assets\radyo.svg" />
     <None Remove="Assets\radyofitrat.png" />
     <None Remove="Assets\radyofitrat1.png" />
     <None Remove="Assets\radyofitrat3.png" />
     <None Remove="Assets\show.svg" />
+    <None Remove="Assets\takvim.svg" />
+    <None Remove="Assets\twitter.png" />
     <None Remove="Assets\welcome.svg" />
+    <None Remove="Assets\youtube.png" />
     <None Remove="Fonts\MaterialIcons-Regular.ttf" />
     <None Remove="Fonts\typicons.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Assets\alarm1.mp3" />
+    <EmbeddedResource Include="Assets\alarm.mp3" />
     <EmbeddedResource Include="Assets\ezan.mp3" />
     <EmbeddedResource Include="Assets\horoz.mp3" />
+    <EmbeddedResource Include="Assets\kus.mp3" />
     <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
-    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.10" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.534" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.11" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
     <PackageReference Include="Plugin.MediaManager.Forms" Version="1.0.9" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-    <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
+    <PackageReference Include="Resizetizer.NT" Version="0.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Assets\alarm3.mp3" />
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v11.0\Mono.Android.dll</HintPath>
     </Reference>
     <SharedImage Include="Assets\app_logo.png" />
-    <SharedImage Include="Assets\fitratradyo.png" />
-    <SharedImage Include="Assets\fitratradyo‏‏1.png" />
-    <SharedImage Include="Assets\fitrattv-logo.png" />
+    <SharedImage Include="Assets\ayar.svg" />
+    <SharedImage Include="Assets\facebook.png" />
     <SharedImage Include="Assets\icon_about.png" />
     <SharedImage Include="Assets\icon_calendar.png" />
     <SharedImage Include="Assets\icon_feed.png" />
+    <SharedImage Include="Assets\instagram.png" />
     <SharedImage Include="Assets\isaretci.png" />
+    <SharedImage Include="Assets\kible.svg" />
     <SharedImage Include="Assets\kompas.png" />
     <SharedImage Include="Assets\notification.svg" />
+    <SharedImage Include="Assets\radyo.svg" />
     <SharedImage Include="Assets\radyofitrat.png" />
-    <SharedImage Include="Assets\radyofitrat1.png" />
-    <SharedImage Include="Assets\radyofitrat3.png" />
     <SharedImage Include="Assets\show.svg" />
+    <SharedImage Include="Assets\takvim.svg" />
+    <SharedImage Include="Assets\twitter.png" />
     <SharedImage Include="Assets\welcome.svg" />
+    <SharedImage Include="Assets\youtube.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,9 +104,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\TakvimPage.xaml.cs">
-      <DependentUpon>TakvimPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -98,7 +111,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CalendarPage.xaml">
+    <EmbeddedResource Update="Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CompassPage.xaml">

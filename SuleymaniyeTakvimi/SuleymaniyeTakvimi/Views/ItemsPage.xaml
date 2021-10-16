@@ -1,25 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage x:Class="SuleymaniyeTakvimi.Views.ItemsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.ViewModels" xmlns:model="clr-namespace:SuleymaniyeTakvimi.Models" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
-             x:Name="BrowseItemsPage"
+             Visual="Material"
              Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
 
     <!--<ContentPage.BindingContext>
         <local:ItemsViewModel />
     </ContentPage.BindingContext>-->
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding RefreshLocationCommand}" Text="{x:Static resources:AppResources.KonumYenileButton}" />
+    </ContentPage.ToolbarItems>
     <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding GoToMapCommand}" />
     </ContentPage.ToolbarItems>-->
     <StackLayout>
-        <Grid Padding="15" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="Auto,*">
-            <StackLayout Spacing="18" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+        <Grid Padding="15,15,15,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="*,8*">
+            <StackLayout Spacing="9" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0">
                 <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,0" Padding="5,-5" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
-                    <Button Margin="10" Padding="5,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="26" TextColor="#623323"
+                    <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="24" TextColor="#623323"
                            Command="{Binding GoToMonthCommand}"
                            Text="{Binding Today}" />
                 </pancakeView:PancakeView>
                 <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,0" Padding="5,-5" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
-                    <Button Margin="10" Padding="5,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="24" TextColor="#623323"
+                    <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="24" TextColor="#623323"
                             Command="{Binding GoToMapCommand}"
                             Text="{Binding City}" />
                 </pancakeView:PancakeView>
@@ -65,6 +68,10 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </pancakeView:PancakeView>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{StaticResource PrimaryColor}"
+                               HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />
         </Grid>
     </StackLayout>
 </ContentPage>

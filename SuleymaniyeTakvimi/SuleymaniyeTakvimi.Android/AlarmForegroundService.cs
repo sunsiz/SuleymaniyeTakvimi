@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
+using Android.Util;
 using Java.Util;
 using SuleymaniyeTakvimi.Services;
 
@@ -35,12 +38,29 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 calendar.Set(CalendarField.HourOfDay, triggerTimeSpan.Hours);
                 calendar.Set(CalendarField.Minute, triggerTimeSpan.Minutes);
+                calendar.Set(CalendarField.Second, 0);
                 var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
                 activityIntent.PutExtra("name", name);
-                activityIntent.PutExtra("time", triggerTimeSpan.ToString());
-                var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, 0, activityIntent,
+                activityIntent.PutExtra("time", triggerTimeSpan.ToString("hh:mm"));
+                activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
+                //without the reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
+                var requestCode = name switch {
+                    "Fecri Kazip" => 1,
+                    "Fecri Sadık" => 2,
+                    "Sabah Sonu" => 3,
+                    "Öğle" => 4,
+                    "İkindi" => 5,
+                    "Akşam" => 6,
+                    "Yatsı" => 7,
+                    "Yatsı Sonu" => 8,
+                    _ => 0
+                };
+                var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, requestCode, activityIntent,
                     PendingIntentFlags.UpdateCurrent);
+                //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
+                //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
                 alarmManager.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
+                Log.Info("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
             }
         }
 
@@ -66,6 +86,7 @@ namespace SuleymaniyeTakvimi.Droid
                 SetNotification();
                 _notificationManager.Notify(NOTIFICATION_ID, _notification);
             });
+            CancelAlarm();
         }
 
         private void SetNotification()
@@ -131,7 +152,7 @@ namespace SuleymaniyeTakvimi.Droid
             var takvim = data.takvim;
             var currentTime = DateTime.Now.TimeOfDay;
             if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
-                message = "Fecri Kazip (Sahur) için kalan vakit: " +
+                message = "Fecri Kazipin (Sahurun) girmesi için kalan vakit: " +
                           (TimeSpan.Parse(takvim.FecriKazip) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.FecriKazip) && currentTime <= TimeSpan.Parse(takvim.FecriSadik))
                 message = "Fecri Sadık (Sahur bitimi) için kalan vakit: " +
@@ -176,6 +197,13 @@ namespace SuleymaniyeTakvimi.Droid
                     this.StartForeground(NOTIFICATION_ID, _notification);
                     _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
                     _isStarted = true;
+                    Task startupWork = new Task(() =>
+                    {
+                        DataService data = new();
+                        data.SetAlarms();
+                    });
+                    startupWork.Start();
+                    
                 }
             }
             else if (intent.Action.Equals("SuleymaniyeTakvimi.action.STOP_SERVICE"))

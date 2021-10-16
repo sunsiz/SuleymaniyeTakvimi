@@ -13,12 +13,22 @@
      size: 1007x944
    - file: "isaretci.png"
      size: 406x880
-   - file: "welcome.svg"
+   - file: "Takvim.svg"
      size: 400x400
-   - file: "show.svg"
+   - file: "Ayar.svg"
      size: 400x400
-   - file: "notification.svg"
+   - file: "Kible.svg"
      size: 400x400
+   - file: "Radyo.svg"
+     size: 400x400
+   - file: "facebook.png"
+     size: 480x480
+   - file: "twitter.png"
+     size: 480x480
+   - file: "instagram.png"
+     size: 480x480
+   - file: "youtube.png"
+     size: 480x480
   outputs:
    - path: "./drawable-mdpi"
      ratio: 1.0
@@ -45,12 +55,22 @@
      size: 1007x944
    - file: "isaretci.png"
      size: 406x880
-   - file: "welcome.svg"
+   - file: "Takvim.svg"
      size: 400x400
-   - file: "show.svg"
+   - file: "Ayar.svg"
      size: 400x400
-   - file: "notification.svg"
+   - file: "Kible.svg"
      size: 400x400
+   - file: "Radyo.svg"
+     size: 400x400
+   - file: "facebook.png"
+     size: 480x480
+   - file: "twitter.png"
+     size: 480x480
+   - file: "instagram.png"
+     size: 480x480
+   - file: "youtube.png"
+     size: 480x480
   outputs:
    - ratio: 1.0
    - fileSuffix: "@2x"
