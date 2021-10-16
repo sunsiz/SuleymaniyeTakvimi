@@ -8,13 +8,12 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 * Arayüzdeki tarihe tıklayarak tarih değiştirme yada aylık namaz vakitlerini gösterme.
 * Kıble yönünü belirtmek için bir pusula eklendi.
 * [Radyo Fıtrat](http://www.radyofitrat.com)'tan çevrimiçi radyo çalabilmesi
+* Sitelerimiz ve sosyal medya bağlantıları
 
 **Gelecek planlar:**
 
-* Sitelerimiz ve sosyal medya bağlantıları
-
 **Mevcut sorunlar:**
-* Alarm özelliği program kapandığında yada uzun süre arka planda kaldığında çalışmıyor.
+* Alarm özelliği ios te program kapandığında yada uzun süre arka planda kaldığında çalışmıyor.
 
 # Suleymaniye Calendar
 Suleymaniyetakvimi.com Xamarin mobile application
@@ -25,10 +24,10 @@ Suleymaniyetakvimi.com Xamarin mobile application
 * When touch the date let user choose a date or show monthly prayer times.
 * Implementd a compass for indicate qibla direction.
 * Online radio from [Radyo Fitrat](http://www.radyofitrat.com)
+* Links for our sites and social media
 
 **Future Plans:**
 
-* Links for our sites and social media
 
 **Existing problems:**
-* Alarm feature in background not working when app closed or after stay background long time.
+* Alarm featureon IOS in background not working when app closed or after stay background long time.
