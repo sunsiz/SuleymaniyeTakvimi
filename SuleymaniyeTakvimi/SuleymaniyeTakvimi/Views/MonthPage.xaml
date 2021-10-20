@@ -121,7 +121,7 @@
                     <CollectionView.FooterTemplate>
                         <DataTemplate>
                                 <StackLayout BackgroundColor="Beige" HorizontalOptions="Center" VerticalOptions="Center">
-                                    <Button Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" BackgroundColor="LimeGreen" HorizontalOptions="Center" HeightRequest="25" Padding="0" WidthRequest="128" />
+                                    <Button Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" BackgroundColor="{StaticResource PrimaryLightAccent400Color}" HorizontalOptions="Center" HeightRequest="35" Padding="0" WidthRequest="128"  Style="{StaticResource Button}" />
                                 </StackLayout>
                             </DataTemplate>
                     </CollectionView.FooterTemplate>

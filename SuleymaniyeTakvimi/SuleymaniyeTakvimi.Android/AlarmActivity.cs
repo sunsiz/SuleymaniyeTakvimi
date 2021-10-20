@@ -108,15 +108,25 @@ namespace SuleymaniyeTakvimi.Droid
 
         private static void PlayAlarm(string name, string title)
         {
-            IMediaItem mediaItem;
-            var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus");
-            mediaItem = CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".mp3").Result;
-            mediaItem.DisplayTitle = title;
-            CrossMediaManager.Current.Notification.ShowNavigationControls = false;
-            CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;
-            CrossMediaManager.Current.MediaPlayer.ShowPlaybackControls = false;
-            CrossMediaManager.Current.RepeatMode = RepeatMode.All;
-            CrossMediaManager.Current.MediaPlayer.Play(mediaItem);
+            //if (name == "test")
+            //{
+            //    MediaPlayer player = new MediaPlayer();
+            //    player.SetDataSource("http://shaincast.caster.fm:22344/listen.mp3");
+            //    player.Prepare();
+            //    player.Start();
+            //}
+            //else
+            //{
+                IMediaItem mediaItem;
+                var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus");
+                mediaItem = CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".mp3").Result;
+                mediaItem.DisplayTitle = title;
+                CrossMediaManager.Current.Notification.ShowNavigationControls = false;
+                CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;
+                CrossMediaManager.Current.MediaPlayer.ShowPlaybackControls = false;
+                CrossMediaManager.Current.RepeatMode = RepeatMode.All;
+                CrossMediaManager.Current.MediaPlayer.Play(mediaItem);
+            //}
         }
 
         private static void Vibrate()

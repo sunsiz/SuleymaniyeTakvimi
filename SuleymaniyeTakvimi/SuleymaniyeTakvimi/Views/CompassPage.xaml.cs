@@ -32,14 +32,12 @@ namespace SuleymaniyeTakvimi.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _viewModel.GetLocation();
+            //_viewModel.GetLocation();
             if (!DesignMode.IsDesignModeEnabled)
             {
                 ((CompassViewModel) BindingContext).LocationCommand.Execute(null);
                 ((CompassViewModel) BindingContext).StartCommand.Execute(null);
             }
-
-            IsBusy = false;
         }
     }
 }

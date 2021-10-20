@@ -41,7 +41,7 @@ namespace SuleymaniyeTakvimi.Droid
                 calendar.Set(CalendarField.Second, 0);
                 var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
                 activityIntent.PutExtra("name", name);
-                activityIntent.PutExtra("time", triggerTimeSpan.ToString("hh:mm"));
+                activityIntent.PutExtra("time", triggerTimeSpan.ToString());
                 activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
                 //without the reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
                 var requestCode = name switch {
@@ -199,7 +199,7 @@ namespace SuleymaniyeTakvimi.Droid
                     _isStarted = true;
                     Task startupWork = new Task(() =>
                     {
-                        DataService data = new();
+                        DataService data = new DataService();
                         data.SetAlarms();
                     });
                     startupWork.Start();

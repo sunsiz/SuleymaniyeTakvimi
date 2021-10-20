@@ -7,6 +7,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Util;
 using FFImageLoading;
 //using Matcha.BackgroundService.Droid;
 using MediaManager;
@@ -24,6 +25,7 @@ namespace SuleymaniyeTakvimi.Droid
         public static MainActivity instance;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Log.Info("Main Activity", $"Main Activity OnCreate Started: {DateTime.Now.ToString("HH:m:s.f")}");
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             
@@ -53,11 +55,13 @@ namespace SuleymaniyeTakvimi.Droid
             //    isStarted = savedInstanceState.GetBoolean("has_service_been_started", false);
             //}
             instance = this;
-            SetForegroundService();
+            SetAlarmForegroundService();
+            Log.Info("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now.ToString("HH:m:s.f")}");
         }
 
-        internal void SetForegroundService()
+        internal void SetAlarmForegroundService()
         {
+            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now.ToString("HH:m:s.f")}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
             var startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
             startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
@@ -70,6 +74,7 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 StartService(startServiceIntent);
             }
+            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now.ToString("HH:m:s.f")}");
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

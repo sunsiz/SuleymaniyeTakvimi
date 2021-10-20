@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -71,6 +72,9 @@ namespace SuleymaniyeTakvimi.Services
                     konum.Enlem = location.Latitude;
                     konum.Boylam = location.Longitude;
                     konum.Yukseklik = location.Altitude ?? 0;
+                    Preferences.Set("LastLatitude", konum.Enlem);
+                    Preferences.Set("LastLongitude", konum.Boylam);
+                    Preferences.Set("LastAltitude", konum.Yukseklik);
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
@@ -179,7 +183,8 @@ namespace SuleymaniyeTakvimi.Services
 
         public async Task<Takvim> GetPrayerTimes(Location location)
         {
-            konum=new Takvim();
+            Debug.WriteLine("TimeStamp-GetPrayerTimes-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            konum =new Takvim();
             konum.Enlem = location.Latitude;
             konum.Boylam = location.Longitude;
             konum.Yukseklik = location.Altitude ?? 0;
@@ -211,6 +216,7 @@ namespace SuleymaniyeTakvimi.Services
             //        SaatBolgesi = konum.SaatBolgesi, yazSaati = konum.YazKis, Tarih = konum.Tarih
             //    })
             //    .GetJSonAsync<Takvim>().Result;
+            Debug.WriteLine("TimeStamp-GetPrayerTimes-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             return takvim;
         }
 
@@ -560,7 +566,7 @@ namespace SuleymaniyeTakvimi.Services
             DependencyService.Get<IAlarmService>().CancelAlarm();
             if (CheckRemindersEnabledAny())
             {
-                //var testTimeSpan = DateTime.Now.AddMinutes(1).ToString("hh:mm:ss");
+                //var testTimeSpan = DateTime.Now.AddMinutes(1).ToString("HH:mm");
                 //DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(testTimeSpan), "test");
                 if (DateTime.Now < DateTime.Parse(takvim.FecriKazip) && Preferences.Get("fecrikazipEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.FecriKazip), "Fecri Kazip");
                 if (DateTime.Now < DateTime.Parse(takvim.FecriSadik) && Preferences.Get("fecrisadikEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.FecriSadik), "Fecri Sadık");

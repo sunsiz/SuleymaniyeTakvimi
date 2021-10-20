@@ -18,7 +18,7 @@ namespace PeriodicBackgroundService.Android
             // Run your code here
             //MainActivity.SetAlarmForBackgroundServices(context);
             MainActivity main = MainActivity.instance;
-            main.SetForegroundService();
+            main.SetAlarmForegroundService();
 
             wakeLock.Release();
 		}

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              x:Class="SuleymaniyeTakvimi.Views.CompassPage"
              Visual="Material"
              Title="{Binding Title}">
@@ -29,17 +30,18 @@
                             <ImageButton Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.fitrat.tv/" Source="fitrattv-logo" BackgroundColor="Beige" Padding="-29" />
                             <ImageButton Aspect="AspectFit" Scale="0.7" Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" Source="radyofitrat3" BackgroundColor="Beige" Padding="-29,-19" />
                         </StackLayout>-->
-                        <pancakeView:PancakeView Margin="25,7" Padding="7" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" CornerRadius="9" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='2,2'}" HorizontalOptions="FillAndExpand">
+                        <!--<pancakeView:PancakeView Margin="25,7" Padding="7" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" CornerRadius="9" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='2,2'}" HorizontalOptions="FillAndExpand">-->
+                        <Frame Margin="25,7" Padding="7" BorderColor="DarkGray" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" CornerRadius="9" HasShadow="True" HorizontalOptions="FillAndExpand">
                             <FlexLayout Direction="Column" AlignItems="Center">
                                 <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" Text="{Binding Lalongtitude}" />
                                 <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" Text="{Binding Degaltitude}" />
                                 <!--<Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="{Binding Altitude, StringFormat='Yükseklik: {0:F4}'}" />-->
                                 <!--<Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="{Binding Heading, StringFormat='Açı: {0:F4}'}" />-->
-                                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,5" Padding="5,-5" BackgroundColor="{StaticResource PrimaryLightAccent400Color}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                                <!--<pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,5" Padding="5,-5" BackgroundColor="{StaticResource PrimaryLightAccent400Color}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">-->
                                     <Button Margin="10,5" Padding="5,0" HorizontalOptions="Center" BackgroundColor="{StaticResource PrimaryLightAccent400Color}" FontAttributes="Bold" FontSize="22" TextColor="{StaticResource PrimaryTextColor}"
                                             Command="{Binding GoToMapCommand}"
-                                            Text="haritada göster" />
-                                </pancakeView:PancakeView>
+                                            Text="haritada göster" Visual="Material" Style="{StaticResource Button}" />
+                                <!--</pancakeView:PancakeView>-->
                                 <!--<pancakeView:PancakeView Margin="15,7" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}" HorizontalOptions="CenterAndExpand">-->
                                 <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                                     <Label Margin="15" Padding="19,9" HorizontalOptions="CenterAndExpand" BackgroundColor="LimeGreen" FontAttributes="Bold" FontSize="20" TextColor="#623323" Text="haritada göster" />
@@ -49,14 +51,14 @@
                                 </StackLayout>-->
                                 <!--</pancakeView:PancakeView>-->
                             </FlexLayout>
-                        </pancakeView:PancakeView>
+                        </Frame>
                     </StackLayout>
                 </StackLayout>
             </Grid>
         <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{StaticResource PrimaryColor}"
                            HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
                            AbsoluteLayout.LayoutFlags="PositionProportional"
-                           AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />
+                           AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Visual="Material" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

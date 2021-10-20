@@ -70,7 +70,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             ItemTapped = new Command<Item>(OnItemSelected);
 
             //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
-            GoToMapCommand = new Command(async ()=>{
+            GoToMapCommand = new Command(async () =>
+            {
                 var location = new Location(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat),Convert.ToDouble(_takvim.Boylam, CultureInfo.InvariantCulture.NumberFormat));
                 var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem,CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat));
                 var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName};
@@ -85,7 +86,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
             });
             //LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
-            GetCity();
+            //GetCity();
             GoToMonthCommand=new Command(GoToMonthPage);
             RefreshLocationCommand = new Command(async () =>
             {
@@ -127,7 +128,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 if (Preferences.Get(Aksam.Id, "") == "") Preferences.Set(Aksam.Id, _takvim.Aksam);
                 if (Preferences.Get(Yatsi.Id, "") == "") Preferences.Set(Yatsi.Id, _takvim.Yatsi);
                 if (Preferences.Get(YatsiSonu.Id, "") == "") Preferences.Set(YatsiSonu.Id, _takvim.YatsiSonu);
-                GetCity();
+                //GetCity();
                 var today = Today;
             }
             catch (Exception ex)
@@ -150,9 +151,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         public void OnAppearing()
         {
+            Log.Warning("TimeStamp-OnAppearing-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             IsBusy = true;
             SelectedItem = null;
             LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
+            GetCity();
+            Log.Warning("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
         public Item SelectedItem
@@ -187,7 +191,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             var data = new DataService();
             try
             {
-                var takvim = data.GetCurrentLocation().Result;
+                var takvim = await data.GetCurrentLocation().ConfigureAwait(true);
                 //var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
                 //CancellationTokenSource cts = new CancellationTokenSource();
                 //var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);

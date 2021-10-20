@@ -233,7 +233,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Console.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
                                   Preferences.Get(itemId + "Etkin", value));
                 Etkin = value;
-                DataService data = new();
+                DataService data = new DataService();
                 data.SetAlarms();
                 //if(value && BackgroundAggregatorService.Instance==null)
                 //{

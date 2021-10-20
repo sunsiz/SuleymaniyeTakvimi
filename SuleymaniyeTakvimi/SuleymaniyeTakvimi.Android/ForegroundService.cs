@@ -9,10 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Android.Support.V4.App;
+//using Android.Support.V4.App;
 using SuleymaniyeTakvimi.Models;
 using SuleymaniyeTakvimi.Services;
 using Android.Util;
+using AndroidX.Core.App;
+using AndroidX.LocalBroadcastManager.Content;
 using SuleymaniyeTakvimi.Droid;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -52,7 +54,7 @@ namespace SuleymaniyeTakvimi.Droid
                 string msg = GetFormattedRemainingTime();
                 Intent i = new Intent("SuleymaniyeTakvimi.Notification.Action");
                 i.PutExtra("broadcast_message", msg);
-                Android.Support.V4.Content.LocalBroadcastManager.GetInstance(this).SendBroadcast(i);
+                LocalBroadcastManager.GetInstance(this).SendBroadcast(i);
                 handler.PostDelayed(runnable, DELAY_BETWEEN_MESSAGES);
                 CreateNotification();
                 notificationManager.Notify(NOTIFICATION_SERVICE_ID, notification);

@@ -114,8 +114,8 @@
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="Padding" Value="7,1" />
             </Style>
-            <Style x:Key="card" TargetType="pancakeView:PancakeView">
-                <Setter Property="BackgroundColor" Value="#ffffff" />
+            <Style x:Key="Card" TargetType="pancakeView:PancakeView">
+                <Setter Property="BackgroundColor" Value="Ivory" />
                 <Setter Property="CornerRadius" Value="9" />
                 <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}" />
             </Style>
@@ -132,6 +132,11 @@
                         <Setter Property="TextColor" Value="Silver" />
                     </Trigger>
                 </Style.Triggers>
+            </Style>
+            <Style x:Key="Button" TargetType="Button">
+                <Setter Property="CornerRadius" Value="7" />
+                <Setter Property="Visual" Value="Material" />
+                <Setter Property="BorderColor" Value="BurlyWood"></Setter>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
