@@ -4,14 +4,12 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
-using Android.Content;
 //using Matcha.BackgroundService;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Android.Content.PM;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {

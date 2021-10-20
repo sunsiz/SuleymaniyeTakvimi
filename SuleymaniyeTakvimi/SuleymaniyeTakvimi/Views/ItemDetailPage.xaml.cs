@@ -1,8 +1,4 @@
 ﻿using SuleymaniyeTakvimi.ViewModels;
-using System.ComponentModel;
-using Android.Content;
-using Android.Content.PM;
-using SuleymaniyeTakvimi.Services;
 using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.Views

@@ -138,6 +138,12 @@
                 <Setter Property="Visual" Value="Material" />
                 <Setter Property="BorderColor" Value="BurlyWood"></Setter>
             </Style>
+            <Style x:Key="RoundBar" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
+                <Setter Property="CornerRadius" Value="29" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="Silver"></Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

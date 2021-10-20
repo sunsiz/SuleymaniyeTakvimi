@@ -568,6 +568,14 @@ namespace SuleymaniyeTakvimi.Services
             {
                 //var testTimeSpan = DateTime.Now.AddMinutes(1).ToString("HH:mm");
                 //DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(testTimeSpan), "test");
+                Log.Warning("TimeStamp-SetAlarms-fecrikazip", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("fecrikazipEtkin", false));
+                Log.Warning("TimeStamp-SetAlarms-fecrisadik", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("fecrisadikEtkin", false));
+                Log.Warning("TimeStamp-SetAlarms-sabahsonu", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("sabahsonuEtkin", false));
+                Log.Warning("TimeStamp-SetAlarms-ogle", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("ogleEtkin", false));
+                Log.Warning("TimeStamp-SetAlarms-ikindi", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("ikindiEtkin", false));
+                Log.Warning("TimeStamp-SetAlarms-aksam", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("aksamEtkin", false));
+                Log.Warning("TimeStamp-SetAlarms-yatsi", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("yatsiEtkin", false));
+                Log.Warning("TimeStamp-SetAlarms-yatsisonu", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("yatsisonuEtkin", false));
                 if (DateTime.Now < DateTime.Parse(takvim.FecriKazip) && Preferences.Get("fecrikazipEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.FecriKazip), "Fecri Kazip");
                 if (DateTime.Now < DateTime.Parse(takvim.FecriSadik) && Preferences.Get("fecrisadikEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.FecriSadik), "Fecri Sadık");
                 if (DateTime.Now < DateTime.Parse(takvim.SabahSonu) && Preferences.Get("sabahsonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(takvim.SabahSonu), "Sabah Sonu");

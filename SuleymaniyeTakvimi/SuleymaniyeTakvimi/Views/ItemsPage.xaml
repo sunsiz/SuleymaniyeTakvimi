@@ -16,35 +16,40 @@
     <StackLayout>
         <Grid Padding="15,15,15,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="*,8*">
             <StackLayout Spacing="9" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0">
-                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,0" Padding="5,-5" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
-                    <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="24" TextColor="#623323"
+                <Frame Style="{StaticResource RoundBar}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-5" BackgroundColor="Gold" CornerRadius="19">
+                    <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="22" TextColor="#623323"
                            Command="{Binding GoToMonthCommand}"
                            Text="{Binding Today}" />
-                </pancakeView:PancakeView>
-                <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,0" Padding="5,-5" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                </Frame>
+                <Frame Style="{StaticResource RoundBar}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-5" BackgroundColor="SandyBrown" CornerRadius="19">
+                    <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="22" TextColor="#623323"
+                            Command="{Binding GoToMapCommand}"
+                            Text="{Binding City}" />
+                </Frame>
+                <!--<pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,0" Padding="5,-5" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
                     <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="24" TextColor="#623323"
                             Command="{Binding GoToMapCommand}"
                             Text="{Binding City}" />
-                </pancakeView:PancakeView>
+                </pancakeView:PancakeView>-->
             </StackLayout>
-            <pancakeView:PancakeView Grid.Row="1" Grid.ColumnSpan="2">
+            <Frame BackgroundColor="Transparent" BorderColor="Transparent" HasShadow="False" Margin="0,-18" Grid.Row="1" Grid.ColumnSpan="2">
                 <CollectionView VerticalOptions="CenterAndExpand" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid RowDefinitions="Auto">
                                 <!--  Card  -->
-                                <pancakeView:PancakeView Style="{StaticResource Card}" Margin="5,7" Padding="9" CornerRadius="25">
-                                    <pancakeView:PancakeView.Triggers>
-                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Passed">
+                                <Frame Style="{StaticResource RoundBar}" Margin="5" Padding="9" CornerRadius="25">
+                                    <Frame.Triggers>
+                                        <DataTrigger Binding="{Binding State}" TargetType="Frame" Value="Passed">
                                             <Setter Property="BackgroundColor" Value="AntiqueWhite" />
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Happening">
+                                        <DataTrigger Binding="{Binding State}" TargetType="Frame" Value="Happening">
                                             <Setter Property="BackgroundColor" Value="Gold" />
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Waiting">
+                                        <DataTrigger Binding="{Binding State}" TargetType="Frame" Value="Waiting">
                                             <Setter Property="BackgroundColor" Value="LightGreen" />
                                         </DataTrigger>
-                                    </pancakeView:PancakeView.Triggers>
+                                    </Frame.Triggers>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="22" TextColor="#623323" Text="{Binding Adi}" />
                                         <Label VerticalOptions="Start" FontAttributes="Bold" FontSize="Title" TextColor="Brown" Text="{Binding Vakit}" />
@@ -62,12 +67,12 @@
                                             <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}" CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
-                                </pancakeView:PancakeView>
+                                </Frame>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </pancakeView:PancakeView>
+            </Frame>
             <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{StaticResource PrimaryColor}"
                                HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
                                AbsoluteLayout.LayoutFlags="PositionProportional"
