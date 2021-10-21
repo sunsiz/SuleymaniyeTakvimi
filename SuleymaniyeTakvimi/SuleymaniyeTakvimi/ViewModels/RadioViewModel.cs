@@ -71,6 +71,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
             else
             {
+                Title = "İçerik yükleniyor ...";
                 CheckInternet();
                 var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
                 mediaItem.Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
@@ -81,6 +82,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 CrossMediaManager.Current.StateChanged += Current_StateChanged;
             }
 
+            Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
             IsBusy = false;
         }
 
@@ -111,7 +113,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 Debug.WriteLine($"[Radio Player Playing] {DateTime.Now.ToString("HH:m:s.f")}");
                 IsPlaying = true;
-                Title = "Radyo Fıtrat";
+                Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
                 IsBusy = false;
                 return;
             }
@@ -120,7 +122,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 CrossMediaManager.Current.State == MediaPlayerState.Paused)
             {
                 IsPlaying = false;
-                Title = "Radyo Fıtrat";
+                Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
                 IsBusy = false;
                 return;
             }
@@ -128,7 +130,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             //if (CrossMediaManager.Current.State == MediaPlayerState.Failed)
             //{
             IsPlaying = false;
-            Title = "Radyo Fıtrat";
+            Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
             UserDialogs.Instance.Toast(
                     "Radyo oynatirken bir sorun oluştu, lütfen internetin bağlı olduğnu kontrol edin, yada 'Web Sayfa' linkine tıklayarak web syfasından dinleyebilirsiniz.",
                     TimeSpan.FromSeconds(7));

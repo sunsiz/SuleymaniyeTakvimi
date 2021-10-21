@@ -41,6 +41,7 @@
     <None Remove="Assets\show.svg" />
     <None Remove="Assets\takvim.svg" />
     <None Remove="Assets\twitter.png" />
+    <None Remove="Assets\vakiflogo.png" />
     <None Remove="Assets\welcome.svg" />
     <None Remove="Assets\youtube.png" />
     <None Remove="Fonts\MaterialIcons-Regular.ttf" />
@@ -69,7 +70,7 @@
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
   </ItemGroup>
@@ -94,6 +95,7 @@
     <SharedImage Include="Assets\show.svg" />
     <SharedImage Include="Assets\takvim.svg" />
     <SharedImage Include="Assets\twitter.png" />
+    <SharedImage Include="Assets\vakiflogo.png" />
     <SharedImage Include="Assets\welcome.svg" />
     <SharedImage Include="Assets\youtube.png" />
   </ItemGroup>

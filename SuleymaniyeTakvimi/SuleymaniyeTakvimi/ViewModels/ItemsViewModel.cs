@@ -59,7 +59,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(false);
             if (placemark != null)
                 City = placemark.FirstOrDefault()?.AdminArea ?? placemark.FirstOrDefault()?.CountryName;
-            City = City ?? "Şehir";
+            Preferences.Set("sehir",City);
+            City = City ?? Preferences.Get("sehir", "Şehir");
         }
         public ItemsViewModel()
         {

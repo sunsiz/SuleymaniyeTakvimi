@@ -14,15 +14,15 @@
         <ToolbarItem Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding GoToMapCommand}" />
     </ContentPage.ToolbarItems>-->
     <StackLayout>
-        <Grid Padding="15,15,15,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="*,8*">
+        <Grid Padding="10,15,10,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="*,8*">
             <StackLayout Spacing="9" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0">
                 <Frame Style="{StaticResource RoundBar}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-5" BackgroundColor="Gold" CornerRadius="19">
-                    <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="22" TextColor="#623323"
+                    <Button Margin="0" Padding="0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="22" TextColor="#623323"
                            Command="{Binding GoToMonthCommand}"
                            Text="{Binding Today}" />
                 </Frame>
                 <Frame Style="{StaticResource RoundBar}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-5" BackgroundColor="SandyBrown" CornerRadius="19">
-                    <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="22" TextColor="#623323"
+                    <Button Margin="0" Padding="0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="22" TextColor="#623323"
                             Command="{Binding GoToMapCommand}"
                             Text="{Binding City}" />
                 </Frame>
