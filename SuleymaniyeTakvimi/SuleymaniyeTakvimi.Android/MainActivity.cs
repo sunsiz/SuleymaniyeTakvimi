@@ -25,7 +25,7 @@ namespace SuleymaniyeTakvimi.Droid
         public static MainActivity instance;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            Log.Info("Main Activity", $"Main Activity OnCreate Started: {DateTime.Now.ToString("HH:m:s.f")}");
+            Log.Info("Main Activity", $"Main Activity OnCreate Started: {DateTime.Now.ToString("HH:m:s.fff")}");
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             
@@ -37,7 +37,7 @@ namespace SuleymaniyeTakvimi.Droid
             Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
+            //global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
             CrossMediaManager.Current.Init(this);
             //this.ShinyOnCreate();
             //AndroidShinyHost.Init(this, platformBuild: services => services.UseNotifications());
@@ -56,12 +56,12 @@ namespace SuleymaniyeTakvimi.Droid
             //}
             instance = this;
             SetAlarmForegroundService();
-            Log.Info("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now.ToString("HH:m:s.f")}");
+            Log.Info("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now.ToString("HH:m:s.fff")}");
         }
 
         internal void SetAlarmForegroundService()
         {
-            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now.ToString("HH:m:s.f")}");
+            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now.ToString("HH:m:s.fff")}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
             var startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
             startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
@@ -74,7 +74,7 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 StartService(startServiceIntent);
             }
-            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now.ToString("HH:m:s.f")}");
+            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now.ToString("HH:m:s.fff")}");
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

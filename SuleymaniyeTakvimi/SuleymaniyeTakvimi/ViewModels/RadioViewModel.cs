@@ -49,6 +49,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
             CheckInternet();
             IsBusy = false;
+            if (CrossMediaManager.Current.IsPlaying()) IsPlaying = true;
         }
 
         private async void Play()
@@ -109,7 +110,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 return;
             }
 
-            if (CrossMediaManager.Current.State == MediaPlayerState.Playing)
+            if (CrossMediaManager.Current.IsPlaying())
             {
                 Debug.WriteLine($"[Radio Player Playing] {DateTime.Now.ToString("HH:m:s.f")}");
                 IsPlaying = true;
