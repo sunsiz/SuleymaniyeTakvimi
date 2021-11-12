@@ -16,12 +16,12 @@
     <StackLayout>
         <Grid Padding="10,15,10,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="*,8*">
             <StackLayout Spacing="9" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0">
-                <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-5" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-7" BackgroundColor="Gold" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
                     <Button Margin="9,0" Padding="3,0" HorizontalOptions="Center" BackgroundColor="Gold" FontAttributes="Bold" FontSize="22" TextColor="#623323"
                            Command="{Binding GoToMonthCommand}"
                            Text="{Binding Today}" />
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-5" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-7" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
                     <Button Margin="9,0" Padding="3,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="22" TextColor="#623323"
                             Command="{Binding GoToMapCommand}"
                             Text="{Binding City}" />
@@ -38,7 +38,7 @@
                         <DataTemplate>
                             <Grid RowDefinitions="Auto">
                                 <!--  Card  -->
-                                <pancakeView:PancakeView Style="{StaticResource Card}" Margin="5" Padding="9" CornerRadius="25">
+                                <pancakeView:PancakeView Style="{StaticResource Card}" Margin="9,5" Padding="7" CornerRadius="25">
                                     <pancakeView:PancakeView.Triggers>
                                         <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Passed">
                                             <Setter Property="BackgroundColor" Value="AntiqueWhite" />

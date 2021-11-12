@@ -10,7 +10,7 @@
             <Frame Grid.Row="0" HeightRequest="550" Padding="0" BackgroundColor="#eeeeee">
                 <Image Aspect="AspectFit" Opacity="0.7" Source="radyofitrat.png" />
             </Frame>
-            <pancakeView:PancakeView Grid.Row="1" Margin="0,-25,0,-15" CornerRadius="25" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" Shadow="{pancakeView:ShadowMarkup Color=Black, BlurRadius=9, Opacity=0.3, Offset='-4,-4'}">
+            <pancakeView:PancakeView Grid.Row="1" Margin="0,-25,0,-15" CornerRadius="25" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" Shadow="{pancakeView:ShadowMarkup Color={StaticResource PrimaryLightAccent400Color}, BlurRadius=3, Opacity=0.3, Offset='1,-4'}">
                 <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, *" VerticalOptions="Center" Padding="15,0,15,20">
                     <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
                         <Label>

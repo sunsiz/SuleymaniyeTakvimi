@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
+using MediaManager;
+using MediaManager.Library;
+using MediaManager.Playback;
 //using Matcha.BackgroundService;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
@@ -26,6 +29,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private bool etkin;
         private Sound[] sounds;
         private Sound _selectedSound;
+        private string testButtonText;
         public ICommand EnableSwitchToggled { get; }
         public ICommand BildiriCheckedChanged { get; }
         public ICommand TitremeCheckedChanged { get; }
@@ -33,7 +37,13 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ICommand RadioButtonCheckedChanged { get; }
         public ICommand BackCommand { get; }
         public Command<Sound> SoundSelectedCommand { get; }
+        public ICommand TestButtonCommand { get; }
 
+        public string TestButtonText
+        {
+            get => testButtonText;
+            set => SetProperty(ref testButtonText, value);
+        }
         public Sound[] Sounds
         {
             get => sounds ??= new[]
@@ -70,6 +80,28 @@ namespace SuleymaniyeTakvimi.ViewModels
             //Alarm = Preferences.Get(itemId + "Alarm", false);
             //_selectedSound = SetSelectedSound();
             SoundSelectedCommand = new Command<Sound>(SoundSelected);
+            TestButtonCommand = new Command(TestButtonClicked);
+            CrossMediaManager.Current.MediaPlayer.Stop();
+            testButtonText = "Ses Testi";
+        }
+
+        private void TestButtonClicked(object obj)
+        {
+            if (TestButtonText == "Ses Testi")
+            {
+                IMediaItem mediaItem;
+                var alarmSesi = 
+                mediaItem = CrossMediaManager.Current.PlayFromAssembly(SelectedSound.fileName + ".mp3").Result;
+                CrossMediaManager.Current.Notification.Enabled = false;
+                CrossMediaManager.Current.RepeatMode = RepeatMode.All;
+                CrossMediaManager.Current.MediaPlayer.Play(mediaItem);
+                TestButtonText = "Testi Durdur";
+            }
+            else
+            {
+                CrossMediaManager.Current.MediaPlayer.Stop();
+                TestButtonText = "Ses Testi";
+            }
         }
 
         public Sound SetSelectedSound()
@@ -232,7 +264,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                                   Preferences.Get(itemId + "Etkin", value));
                 Etkin = value;
                 DataService data = new DataService();
-                data.SetAlarms();
+                data.SetMonthlyAlarms();
                 //if(value && BackgroundAggregatorService.Instance==null)
                 //{
                 //    BackgroundAggregatorService.Add(() => new ReminderService(60));
@@ -338,7 +370,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Bildiri = Preferences.Get(itemId + "Bildiri", false);
                 Titreme = Preferences.Get(itemId + "Titreme", false);
                 Alarm = Preferences.Get(itemId + "Alarm", false);
-                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0.00");//when assign "0" for defaultValue, there always throw exception says: java.lang cannot convert boolean to string. So cheating.
+                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0");//when assign "0" for defaultValue, there always throw exception says: java.lang cannot convert boolean to string. So cheating.
             }
             catch (Exception ex)
             {
@@ -348,6 +380,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private void GoBack(object obj)
         {
+            CrossMediaManager.Current.MediaPlayer.Stop();
             Shell.Current.GoToAsync("..");
         }
     }

@@ -13,19 +13,18 @@
                         <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="270" y="270" width="60" height="60"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="vakiflogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                                <rect key="frame" x="11" y="236" width="392" height="265"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.20392156862745098" green="0.59607843137254901" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="23" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" priority="1" id="39"/>
-                            <constraint firstItem="23" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" priority="1" id="41"/>
-                        </constraints>
+                        <!--<color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>-->
+                        <color key="backgroundColor" red="0.94392156862745098" green="0.92607843137254901" blue="0.91882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                        <!--<color key="backgroundColor" red="0.90392156862745098" green="0.76607843137254901" blue="0.71882352941176465" alpha="1" colorSpace="calibratedRGB"/>-->
+                        <!--<color key="backgroundColor" red="0.20392156862745098" green="0.59607843137254901" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>-->
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -34,6 +33,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-60.png" width="180" height="180"/>
+        <image name="vakiflogo.png" width="60" height="60"/>
     </resources>
 </document>

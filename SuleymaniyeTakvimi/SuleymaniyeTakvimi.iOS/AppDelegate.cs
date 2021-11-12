@@ -2,8 +2,10 @@
 using Foundation;
 //using Matcha.BackgroundService.iOS;
 using MediaManager;
+using SuleymaniyeTakvimi.Services;
 using UIKit;
 using UserNotifications;
+using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.iOS
 {
@@ -24,7 +26,7 @@ namespace SuleymaniyeTakvimi.iOS
         {
             //BackgroundAggregator.Init(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
-            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
+            //global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
@@ -53,7 +55,7 @@ namespace SuleymaniyeTakvimi.iOS
             // If not asked at startup, user will be asked when showing the first notification.
             //Plugin.LocalNotification.NotificationCenter.AskPermission();
             LoadApplication(new App());
-
+            DependencyService.Register<IAlarmService,AlarmService>();
             return base.FinishedLaunching(app, options);
         }
 

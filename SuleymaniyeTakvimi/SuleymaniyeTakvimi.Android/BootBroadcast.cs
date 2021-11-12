@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Droid;
 
 namespace PeriodicBackgroundService.Android
@@ -10,7 +11,8 @@ namespace PeriodicBackgroundService.Android
 	public class BootBroadcast : BroadcastReceiver
 	{
 		public override void OnReceive(Context context, Intent intent)
-		{
+        {
+            Analytics.TrackEvent("OnReceive in the BootBroadcast");
             PowerManager pm = (PowerManager)context.GetSystemService(Context.PowerService);
             PowerManager.WakeLock wakeLock = pm.NewWakeLock(WakeLockFlags.Partial, "BootBroadcast");
             wakeLock.Acquire();

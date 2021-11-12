@@ -6,6 +6,7 @@ using Android.Graphics;
 using Android.OS;
 using Android.Util;
 using Java.Util;
+using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Services;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -31,11 +32,46 @@ namespace SuleymaniyeTakvimi.Droid
             return null;
         }
 
-        public void SetAlarm(TimeSpan triggerTimeSpan, string name)
+        //public void SetAlarm(TimeSpan triggerTimeSpan, string name)
+        //{
+        //    Analytics.TrackEvent("SetAlarm in the AlarmForegroundService");
+        //    using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService))
+        //    using (var calendar = Calendar.Instance)
+        //    {
+        //        calendar.Set(CalendarField.HourOfDay, triggerTimeSpan.Hours);
+        //        calendar.Set(CalendarField.Minute, triggerTimeSpan.Minutes);
+        //        calendar.Set(CalendarField.Second, 0);
+        //        var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
+        //        activityIntent.PutExtra("name", name);
+        //        activityIntent.PutExtra("time", triggerTimeSpan.ToString());
+        //        activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
+        //        //without the reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
+        //        var requestCode = name switch {
+        //            "Fecri Kazip" => 1,
+        //            "Fecri Sadık" => 2,
+        //            "Sabah Sonu" => 3,
+        //            "Öğle" => 4,
+        //            "İkindi" => 5,
+        //            "Akşam" => 6,
+        //            "Yatsı" => 7,
+        //            "Yatsı Sonu" => 8,
+        //            _ => 0
+        //        };
+        //        var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, requestCode, activityIntent,
+        //            PendingIntentFlags.UpdateCurrent);
+        //        //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
+        //        //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
+        //        alarmManager.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
+        //        Log.Info("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
+        //    }
+        //}
+
+        public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, string name)
         {
             using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService))
             using (var calendar = Calendar.Instance)
             {
+                calendar.Set(date.Year, date.Month, date.Day);
                 calendar.Set(CalendarField.HourOfDay, triggerTimeSpan.Hours);
                 calendar.Set(CalendarField.Minute, triggerTimeSpan.Minutes);
                 calendar.Set(CalendarField.Second, 0);
@@ -44,15 +80,16 @@ namespace SuleymaniyeTakvimi.Droid
                 activityIntent.PutExtra("time", triggerTimeSpan.ToString());
                 activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
                 //without the reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
-                var requestCode = name switch {
-                    "Fecri Kazip" => 1,
-                    "Fecri Sadık" => 2,
-                    "Sabah Sonu" => 3,
-                    "Öğle" => 4,
-                    "İkindi" => 5,
-                    "Akşam" => 6,
-                    "Yatsı" => 7,
-                    "Yatsı Sonu" => 8,
+                var requestCode = name switch
+                {
+                    "Fecri Kazip" => date.DayOfYear + 1000,
+                    "Fecri Sadık" => date.DayOfYear + 2000,
+                    "Sabah Sonu" => date.DayOfYear + 3000,
+                    "Öğle" => date.DayOfYear + 4000,
+                    "İkindi" => date.DayOfYear + 5000,
+                    "Akşam" => date.DayOfYear + 6000,
+                    "Yatsı" => date.DayOfYear + 7000,
+                    "Yatsı Sonu" => date.DayOfYear + 8000,
                     _ => 0
                 };
                 var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, requestCode, activityIntent,
@@ -66,6 +103,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void CancelAlarm()
         {
+            Analytics.TrackEvent("CancelAlarm in the AlarmForegroundService");
             AlarmManager alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService);
             Intent intent = new Intent(Application.Context, typeof(AlarmActivity));
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
@@ -85,6 +123,13 @@ namespace SuleymaniyeTakvimi.Droid
                 _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
                 SetNotification();
                 _notificationManager.Notify(NOTIFICATION_ID, _notification);
+                //renew calendar from web and set alarms for today around 00:00 ~ 00:01
+                //if (DateTime.Now <= DateTime.Today.AddMinutes(1) && DateTime.Now >= DateTime.Today)
+                //{
+                //    DataService data = new DataService();
+                //    data.VakitHesabi();
+                //    data.SetMonthlyAlarms();
+                //}
             });
             CancelAlarm();
         }
@@ -184,6 +229,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
+            Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService");
             if (intent.Action.Equals("SuleymaniyeTakvimi.action.START_SERVICE"))
             {
                 if (_isStarted)
@@ -200,7 +246,7 @@ namespace SuleymaniyeTakvimi.Droid
                     Task startupWork = new Task(() =>
                     {
                         DataService data = new DataService();
-                        data.SetAlarms();
+                        data.SetMonthlyAlarms();
                     });
                     startupWork.Start();
                     

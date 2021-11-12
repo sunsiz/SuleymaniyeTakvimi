@@ -214,7 +214,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     data.konum.Enlem = location.Latitude;
                     data.konum.Boylam = location.Longitude;
                     data.konum.Yukseklik = location.Altitude ?? 0;
-                    Vakitler = data.VakitHesabi();
+                    _takvim = Vakitler = data.VakitHesabi();
                     if (Vakitler.Enlem != 0)
                     {
                         //Application.Current.Properties["takvim"] = Vakitler;

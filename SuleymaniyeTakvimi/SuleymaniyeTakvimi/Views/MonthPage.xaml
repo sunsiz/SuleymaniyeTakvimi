@@ -5,7 +5,7 @@
     <!--<ContentPage.BindingContext>
         <viewModels:MonthViewModel />
     </ContentPage.BindingContext>-->
-    <ContentPage.Content><StackLayout BackgroundColor="Beige">
+    <ContentPage.Content><StackLayout BackgroundColor="Beige" Margin="0,15,0,0">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal">
             <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="NavajoWhite" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="35, *" ColumnSpacing="2">
                 <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Tarih" />

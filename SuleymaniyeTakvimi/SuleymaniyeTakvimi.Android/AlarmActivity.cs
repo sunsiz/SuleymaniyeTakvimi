@@ -17,6 +17,7 @@ using MediaManager.Library;
 using Uri = Android.Net.Uri;
 using Xamarin.Essentials;
 using MediaManager.Playback;
+using Microsoft.AppCenter.Analytics;
 using Plugin.LocalNotifications;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -28,6 +29,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            Analytics.TrackEvent("OnCreate in the AlarmActivity");
             // Create your application here
             SetContentView(Resource.Layout.AlarmLayout);
             //get the current intent
@@ -108,6 +110,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         private static void PlayAlarm(string name, string title)
         {
+            Analytics.TrackEvent("PlayAlarm in the AlarmActivity");
             //if (name == "test")
             //{
             //    MediaPlayer player = new MediaPlayer();
@@ -117,20 +120,30 @@ namespace SuleymaniyeTakvimi.Droid
             //}
             //else
             //{
+            try
+            {
                 IMediaItem mediaItem;
                 var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus");
                 mediaItem = CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".mp3").Result;
-                mediaItem.DisplayTitle = title;
-                CrossMediaManager.Current.Notification.ShowNavigationControls = false;
-                CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;
-                CrossMediaManager.Current.MediaPlayer.ShowPlaybackControls = false;
+                //mediaItem.DisplayTitle = title;
+                //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
+                //CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;
+                //CrossMediaManager.Current.MediaPlayer.ShowPlaybackControls = false;
+                CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 CrossMediaManager.Current.MediaPlayer.Play(mediaItem);
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.Alert($"Alarm çalarken bir sorun oluştu, detaylar:\n{exception.Message}",
+                    "Ses Oynatma Hatası");
+            }
             //}
         }
 
         private static void Vibrate()
         {
+            Analytics.TrackEvent("Vibrate in the AlarmActivity");
             try
             {
                 // Use default vibration length

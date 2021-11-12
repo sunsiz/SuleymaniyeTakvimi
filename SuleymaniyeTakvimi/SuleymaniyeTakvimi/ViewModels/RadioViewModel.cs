@@ -74,7 +74,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 Title = "İçerik yükleniyor ...";
                 CheckInternet();
-                var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
+                var mediaItem = await CrossMediaManager.Current.Play("https://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
                 mediaItem.Title = "Radyo Fıtrat - Fıtrat'ın Sesi";
                 CrossMediaManager.Current.Notification.Enabled = false;
                 //CrossMediaManager.Current.Notification.ShowNavigationControls = false;

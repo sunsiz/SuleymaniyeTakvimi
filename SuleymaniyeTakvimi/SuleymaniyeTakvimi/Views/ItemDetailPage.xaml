@@ -147,6 +147,7 @@
                         </RadioButton>
                         <Label HorizontalOptions="Start" Text="Alarm Sound" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>
                         <Picker Title="Bir ses seçin" TitleColor="Green" ItemsSource="{Binding Sounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound, Mode=TwoWay}" SelectedIndex="{Binding SelectedSound.Index}" />
+                        <Button Text="{Binding TestButtonText}" Command="{Binding TestButtonCommand}" CornerRadius="9" BackgroundColor="{StaticResource PrimaryLightAccent100Color}"></Button>
                     </StackLayout>
                 </pancakeView:PancakeView>
                 <!--<pancakeView:PancakeView CornerRadius="9">-->

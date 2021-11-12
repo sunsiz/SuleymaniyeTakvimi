@@ -70,6 +70,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AlarmService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="UserNotificationCenterDelegate.cs" />
