@@ -10,8 +10,11 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using Acr.UserDialogs;
+using Android.Content.Res;
 using MediaManager;
 using MediaManager.Playback;
 using Microsoft.AppCenter.Analytics;
@@ -90,6 +93,12 @@ namespace SuleymaniyeTakvimi.Services
                 UserDialogs.Instance.Alert("Cihazda konum hizmetleri etkin değil. Öce konum hizmetlerini açmanız lazım!",
                     "Konum Hizmetleri Kapalı");
                 //await App.Current.MainPage.DisplayAlert("Konum Servisi Hatası", "Cihazın konum servisi kapalı, Öce konum servisini açmanız lazım!", "Tamam");
+                if (Preferences.Get("LastLatitude", 0.0) != 0.0 && Preferences.Get("LastLongitude", 0.0) != 0.0)
+                {
+                    konum.Enlem = Preferences.Get("LastLatitude", 0.0);
+                    konum.Boylam = Preferences.Get("LastLongitude", 0.0);
+                    konum.Yukseklik = Preferences.Get("LastAltitude", 0.0);
+                }
             }
             catch (PermissionException pEx)
             {
@@ -112,6 +121,7 @@ namespace SuleymaniyeTakvimi.Services
         public Takvim VakitHesabi()
         {
             Analytics.TrackEvent("VakitHesabi in the DataService");
+            CheckInternet();
             if (konum != null)
             {
                 var url = "http://servis.suleymaniyetakvimi.com/servis.asmx/VakitHesabi?";
@@ -187,6 +197,7 @@ namespace SuleymaniyeTakvimi.Services
         {
             Analytics.TrackEvent("GetPrayerTimes in the DataService");
             Debug.WriteLine("TimeStamp-GetPrayerTimes-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            CheckInternet();
             konum =new Takvim();
             konum.Enlem = location.Latitude;
             konum.Boylam = location.Longitude;
@@ -460,6 +471,7 @@ namespace SuleymaniyeTakvimi.Services
         public void GetMonthlyPrayerTimes(Location location)
         {
             Analytics.TrackEvent("GetMonthlyPrayerTimes in the DataService");
+            CheckInternet();
             konum = new Takvim();
             konum.Enlem = location.Latitude;
             konum.Boylam = location.Longitude;
@@ -489,6 +501,8 @@ namespace SuleymaniyeTakvimi.Services
             //var xmlResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             XDocument doc = XDocument.Load(url);
             MonthlyTakvim = ParseXmlList(doc);
+            //var stream = GetType().Module.Assembly.GetManifestResourceStream("SuleymaniyeTakvimi.ayliktakvim.xml");
+            //stream.
             //if (!string.IsNullOrEmpty(xmlResult) && xmlResult.StartsWith("<?xml"))
             //    MonthlyTakvim = ParseXmlList(xmlResult);
             //else
@@ -640,6 +654,8 @@ namespace SuleymaniyeTakvimi.Services
         {
             Log.Warning("TimeStamp-SetMonthlyAlarms-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             DependencyService.Get<IAlarmService>().CancelAlarm();
+            //var testTimeSpan = DateTime.Now.AddMinutes(2).ToString("HH:mm");
+            //DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Today, TimeSpan.Parse(testTimeSpan), "test");
             if (CheckRemindersEnabledAny())
             {
                 konum = GetCurrentLocation().Result;
@@ -676,6 +692,17 @@ namespace SuleymaniyeTakvimi.Services
             }
             //DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(DateTime.Now.AddMinutes(2).ToShortTimeString()), "test");
             Log.Warning("TimeStamp-SetMonthlyAlarms-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+        }
+
+        private static void CheckInternet()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current != NetworkAccess.Internet)
+            {
+                UserDialogs.Instance.Toast(
+                    "Namaz vakitlerini yenilemek için internete bağlı olmanız gerekiyor, WiFi yada Mobil veriyi açın ve 'KONUMU YENİLE' yi tıklayın.",
+                    TimeSpan.FromSeconds(7));
+            }
         }
     }
 }

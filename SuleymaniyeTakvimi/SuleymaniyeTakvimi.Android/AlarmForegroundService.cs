@@ -71,10 +71,13 @@ namespace SuleymaniyeTakvimi.Droid
             using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService))
             using (var calendar = Calendar.Instance)
             {
-                calendar.Set(date.Year, date.Month, date.Day);
-                calendar.Set(CalendarField.HourOfDay, triggerTimeSpan.Hours);
-                calendar.Set(CalendarField.Minute, triggerTimeSpan.Minutes);
-                calendar.Set(CalendarField.Second, 0);
+                //Log.Info("SetAlarm", $"Before Alarm set the Calendar time is {calendar.Time} for {name}");
+                calendar.Set(date.Year, date.Month-1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
+                //Log.Info("SetAlarm", $"After Alarm set the Calendar time is {calendar.Time} for {name}");
+                //calendar.Set(date.Year, date.Month, date.Day);
+                //calendar.Set(CalendarField.HourOfDay, triggerTimeSpan.Hours);
+                //calendar.Set(CalendarField.Minute, triggerTimeSpan.Minutes);
+                //calendar.Set(CalendarField.Second, 0);
                 var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
                 activityIntent.PutExtra("name", name);
                 activityIntent.PutExtra("time", triggerTimeSpan.ToString());
@@ -181,6 +184,13 @@ namespace SuleymaniyeTakvimi.Droid
         /// <returns>The content intent.</returns>
         PendingIntent BuildIntentToShowMainActivity()
         {
+            //Task startupWork = new Task(() =>
+            //{
+            //    Log.Info("BuildIntentToShowMainActivity", $"Starting Set Alarm at {DateTime.Now}");
+            //    DataService data = new DataService();
+            //    data.SetMonthlyAlarms();
+            //});
+            //startupWork.Start();
             var notificationIntent = new Intent(this, typeof(MainActivity));
             notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
             notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
@@ -245,6 +255,7 @@ namespace SuleymaniyeTakvimi.Droid
                     _isStarted = true;
                     Task startupWork = new Task(() =>
                     {
+                        Log.Info("OnStartCommand", $"Starting Set Alarm at {DateTime.Now}");
                         DataService data = new DataService();
                         data.SetMonthlyAlarms();
                     });

@@ -70,6 +70,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alarm Sesi.
+        /// </summary>
+        internal static string AlarmSound {
+            get {
+                return ResourceManager.GetString("AlarmSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alarm çal.
         /// </summary>
         internal static string AlarmSwitch {
@@ -178,7 +187,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Konumu Yenile.
+        ///   Looks up a localized string similar to Yenile.
         /// </summary>
         internal static string KonumYenileButton {
             get {

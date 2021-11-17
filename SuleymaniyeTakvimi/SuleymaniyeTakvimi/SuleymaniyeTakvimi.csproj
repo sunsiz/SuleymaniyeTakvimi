@@ -18,7 +18,9 @@
     <None Remove="Assets\alarm1.mp3" />
     <None Remove="Assets\alarm3.mp3" />
     <None Remove="Assets\app_logo.png" />
+    <None Remove="Assets\ayar.png" />
     <None Remove="Assets\ayar.svg" />
+    <None Remove="Assets\ayliktakvim.xml" />
     <None Remove="Assets\ezan.mp3" />
     <None Remove="Assets\facebook.png" />
     <None Remove="Assets\fitratradyo.png" />
@@ -30,16 +32,25 @@
     <None Remove="Assets\icon_feed.png" />
     <None Remove="Assets\instagram.png" />
     <None Remove="Assets\Isaretci.png" />
+    <None Remove="Assets\kible.png" />
     <None Remove="Assets\kible.svg" />
+    <None Remove="Assets\kible1.svg" />
+    <None Remove="Assets\kible2.svg" />
     <None Remove="Assets\kompas.png" />
     <None Remove="Assets\kus.mp3" />
     <None Remove="Assets\notification.svg" />
+    <None Remove="Assets\radyo.png" />
     <None Remove="Assets\radyo.svg" />
+    <None Remove="Assets\radyo1.svg" />
     <None Remove="Assets\radyofitrat.png" />
     <None Remove="Assets\radyofitrat1.png" />
     <None Remove="Assets\radyofitrat3.png" />
     <None Remove="Assets\show.svg" />
+    <None Remove="Assets\takvim.png" />
     <None Remove="Assets\takvim.svg" />
+    <None Remove="Assets\takvim1.svg" />
+    <None Remove="Assets\takvim3.svg" />
+    <None Remove="Assets\takvim4.svg" />
     <None Remove="Assets\twitter.png" />
     <None Remove="Assets\vakiflogo.png" />
     <None Remove="Assets\welcome.svg" />
@@ -50,6 +61,9 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\alarm.mp3" />
+    <Content Include="Assets\ayliktakvim.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Assets\ezan.mp3" />
     <EmbeddedResource Include="Assets\horoz.mp3" />
     <EmbeddedResource Include="Assets\kus.mp3" />
@@ -79,21 +93,23 @@
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v11.0\Mono.Android.dll</HintPath>
     </Reference>
-    <SharedImage Include="Assets\app_logo.png" />
-    <SharedImage Include="Assets\ayar.svg" />
+    <SharedImage Include="Assets\app_logo.png">
+      <IsAppIcon></IsAppIcon>
+    </SharedImage>
+    <SharedImage Include="Assets\ayar.png" />
     <SharedImage Include="Assets\facebook.png" />
     <SharedImage Include="Assets\icon_about.png" />
     <SharedImage Include="Assets\icon_calendar.png" />
     <SharedImage Include="Assets\icon_feed.png" />
     <SharedImage Include="Assets\instagram.png" />
     <SharedImage Include="Assets\isaretci.png" />
-    <SharedImage Include="Assets\kible.svg" />
+    <SharedImage Include="Assets\kible.png" />
     <SharedImage Include="Assets\kompas.png" />
     <SharedImage Include="Assets\notification.svg" />
-    <SharedImage Include="Assets\radyo.svg" />
+    <SharedImage Include="Assets\radyo.png" />
     <SharedImage Include="Assets\radyofitrat.png" />
     <SharedImage Include="Assets\show.svg" />
-    <SharedImage Include="Assets\takvim.svg" />
+    <SharedImage Include="Assets\takvim.png" />
     <SharedImage Include="Assets\twitter.png" />
     <SharedImage Include="Assets\vakiflogo.png" />
     <SharedImage Include="Assets\welcome.svg" />

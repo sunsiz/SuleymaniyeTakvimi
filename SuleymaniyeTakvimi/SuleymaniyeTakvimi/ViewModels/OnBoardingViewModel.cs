@@ -38,25 +38,25 @@ namespace SuleymaniyeTakvimi.ViewModels
                 {
                     Title = "Merhaba!",
                     Content = "Süleymaniye Vakfi Takvim uygulamasına Hoş geldiniz.\nTarih tuşuna tıklayarak (Örnek: 14 EKİM) aylık takvimi görebilirsiniz.\nŞehir tuşuna tıklayarak(Örnek: İSTANBUL) konumunuzu haritadan görebilirsiniz.",
-                    ImageUrl = "Takvim"
+                    ImageUrl = "takvim"
                 },
                 new OnBoarding
                 {
                     Title = "Namaz vakti ayarları",
                     Content = "Namaz vakitlerini bulunduğunuz konuma göre gösterir.\nNamaz vakti geldiğinde isterseniz alarm, bildiri veya titreşim ile uyarabilir.",
-                    ImageUrl = "Ayar"
+                    ImageUrl = "ayar"
                 },
                 new OnBoarding
                 {
                     Title = "Kıble göstergesi",
                     Content = "Kıble göstergesi ile, kolayca kıble yönünü belirleyebilirsiniz.",
-                    ImageUrl = "Kible"
+                    ImageUrl = "kible"
                 },
                 new OnBoarding
                 {
                     Title = "Radyo Fıtrat",
                     Content = "Radyo Fıtrat radyomuzu uygulamadan ve isterseniz web sitemizden dinleyebilir, Yayın akışını instagramdan takip edebilirsiniz.",
-                    ImageUrl = "Radyo"
+                    ImageUrl = "radyo"
                 }
             };
         }

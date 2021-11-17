@@ -120,6 +120,9 @@
   <data name="Aksam" xml:space="preserve">
     <value>Akşam</value>
   </data>
+  <data name="AlarmSound" xml:space="preserve">
+    <value>Alarm Sesi</value>
+  </data>
   <data name="AlarmSwitch" xml:space="preserve">
     <value>Alarm çal</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Kaydet</value>
   </data>
   <data name="KonumYenileButton" xml:space="preserve">
-    <value>Konumu Yenile</value>
+    <value>Yenile</value>
   </data>
   <data name="Ogle" xml:space="preserve">
     <value>Öğle</value>

@@ -120,6 +120,9 @@
   <data name="Aksam" xml:space="preserve">
     <value>Maghrib</value>
   </data>
+  <data name="AlarmSound" xml:space="preserve">
+    <value>Alarm Sound</value>
+  </data>
   <data name="AlarmSwitch" xml:space="preserve">
     <value>Play alarm</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Save</value>
   </data>
   <data name="KonumYenileButton" xml:space="preserve">
-    <value>Refresh Location</value>
+    <value>Refresh</value>
   </data>
   <data name="Ogle" xml:space="preserve">
     <value>Dhuhr</value>
