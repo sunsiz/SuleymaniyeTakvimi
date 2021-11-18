@@ -381,6 +381,8 @@ namespace SuleymaniyeTakvimi.ViewModels
         private void GoBack(object obj)
         {
             CrossMediaManager.Current.MediaPlayer.Stop();
+            DataService data = new DataService();
+            data.SetMonthlyAlarms();
             Shell.Current.GoToAsync("..");
         }
     }

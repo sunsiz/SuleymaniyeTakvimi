@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Assets\svgs\**" />
+    <EmbeddedResource Remove="Assets\svgs\**" />
+    <None Remove="Assets\svgs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Services\BackgroundNotificationJob.cs" />
     <Compile Remove="ShinyDelegate.cs" />
     <Compile Remove="Startup.cs" />
@@ -19,7 +25,6 @@
     <None Remove="Assets\alarm3.mp3" />
     <None Remove="Assets\app_logo.png" />
     <None Remove="Assets\ayar.png" />
-    <None Remove="Assets\ayar.svg" />
     <None Remove="Assets\ayliktakvim.xml" />
     <None Remove="Assets\ezan.mp3" />
     <None Remove="Assets\facebook.png" />
@@ -33,23 +38,15 @@
     <None Remove="Assets\instagram.png" />
     <None Remove="Assets\Isaretci.png" />
     <None Remove="Assets\kible.png" />
-    <None Remove="Assets\kible.svg" />
-    <None Remove="Assets\kible1.svg" />
-    <None Remove="Assets\kible2.svg" />
     <None Remove="Assets\kompas.png" />
     <None Remove="Assets\kus.mp3" />
     <None Remove="Assets\notification.svg" />
     <None Remove="Assets\radyo.png" />
-    <None Remove="Assets\radyo.svg" />
-    <None Remove="Assets\radyo1.svg" />
     <None Remove="Assets\radyofitrat.png" />
     <None Remove="Assets\radyofitrat1.png" />
     <None Remove="Assets\radyofitrat3.png" />
     <None Remove="Assets\show.svg" />
     <None Remove="Assets\takvim.png" />
-    <None Remove="Assets\takvim.svg" />
-    <None Remove="Assets\takvim1.svg" />
-    <None Remove="Assets\takvim3.svg" />
     <None Remove="Assets\takvim4.svg" />
     <None Remove="Assets\twitter.png" />
     <None Remove="Assets\vakiflogo.png" />
@@ -82,9 +79,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
   </ItemGroup>
@@ -98,21 +95,15 @@
     </SharedImage>
     <SharedImage Include="Assets\ayar.png" />
     <SharedImage Include="Assets\facebook.png" />
-    <SharedImage Include="Assets\icon_about.png" />
-    <SharedImage Include="Assets\icon_calendar.png" />
-    <SharedImage Include="Assets\icon_feed.png" />
     <SharedImage Include="Assets\instagram.png" />
     <SharedImage Include="Assets\isaretci.png" />
     <SharedImage Include="Assets\kible.png" />
     <SharedImage Include="Assets\kompas.png" />
-    <SharedImage Include="Assets\notification.svg" />
     <SharedImage Include="Assets\radyo.png" />
     <SharedImage Include="Assets\radyofitrat.png" />
-    <SharedImage Include="Assets\show.svg" />
     <SharedImage Include="Assets\takvim.png" />
     <SharedImage Include="Assets\twitter.png" />
     <SharedImage Include="Assets\vakiflogo.png" />
-    <SharedImage Include="Assets\welcome.svg" />
     <SharedImage Include="Assets\youtube.png" />
   </ItemGroup>
 

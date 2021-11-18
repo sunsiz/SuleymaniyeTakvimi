@@ -14,7 +14,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Acr.UserDialogs;
-using Android.Content.Res;
 using MediaManager;
 using MediaManager.Playback;
 using Microsoft.AppCenter.Analytics;
