@@ -91,7 +91,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 IMediaItem mediaItem;
                 var alarmSesi = 
-                mediaItem = CrossMediaManager.Current.PlayFromAssembly(SelectedSound.fileName + ".mp3").Result;
+                mediaItem = CrossMediaManager.Current.PlayFromAssembly(SelectedSound.fileName + ".wav").Result;
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 CrossMediaManager.Current.MediaPlayer.Play(mediaItem);

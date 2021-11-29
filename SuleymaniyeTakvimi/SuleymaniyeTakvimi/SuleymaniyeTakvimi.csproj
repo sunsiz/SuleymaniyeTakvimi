@@ -6,10 +6,14 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
+<!--  <ItemGroup>
     <Compile Remove="Assets\svgs\**" />
     <EmbeddedResource Remove="Assets\svgs\**" />
     <None Remove="Assets\svgs\**" />
+    <None Remove="Assets\horoz.wav" />
+    <None Remove="Assets\kus.wav" />
+    <None Remove="Assets\alarm.wav" />
+    <None Remove="Assets\ezan.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,17 +58,22 @@
     <None Remove="Assets\youtube.png" />
     <None Remove="Fonts\MaterialIcons-Regular.ttf" />
     <None Remove="Fonts\typicons.ttf" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\alarm.mp3" />
-    <Content Include="Assets\ayliktakvim.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="Assets\ezan.mp3" />
     <EmbeddedResource Include="Assets\horoz.mp3" />
     <EmbeddedResource Include="Assets\kus.mp3" />
+    <EmbeddedResource Include="Assets\horoz.wav" />
+    <EmbeddedResource Include="Assets\kus.wav" />
+    <EmbeddedResource Include="Assets\alarm.wav" />
+    <EmbeddedResource Include="Assets\ezan.wav" />
+    <Content Include="Assets\ayliktakvim.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
+    <EmbeddedResource Include="**/*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -105,14 +114,6 @@
     <SharedImage Include="Assets\twitter.png" />
     <SharedImage Include="Assets\vakiflogo.png" />
     <SharedImage Include="Assets\youtube.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Localization\AppResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AppResources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>

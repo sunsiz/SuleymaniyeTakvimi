@@ -54,5 +54,9 @@
 		<key>NSAllowsArbitraryLoadsInMedia</key>
 		<true/>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Alarm kurmak için takvim izni gerekiyor</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Alarm kurmak için takvim izni gerekiyor</string>
 </dict>
 </plist>

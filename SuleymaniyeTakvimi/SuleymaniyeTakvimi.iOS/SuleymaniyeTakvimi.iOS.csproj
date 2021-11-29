@@ -180,4 +180,8 @@
       <Name>SuleymaniyeTakvimi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\kus.wav" />
+    <EmbeddedResource Include="Resources\horoz.wav" />
+  </ItemGroup>
 </Project>

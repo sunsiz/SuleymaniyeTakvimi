@@ -1,4 +1,6 @@
 ﻿using System;
+using Acr.UserDialogs;
+using EventKit;
 using Foundation;
 //using Matcha.BackgroundService.iOS;
 using MediaManager;
@@ -15,6 +17,7 @@ namespace SuleymaniyeTakvimi.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
+        //public static EKEventStore eventStore { get; } = new EKEventStore();
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -55,10 +58,30 @@ namespace SuleymaniyeTakvimi.iOS
             // If not asked at startup, user will be asked when showing the first notification.
             //Plugin.LocalNotification.NotificationCenter.AskPermission();
             LoadApplication(new App());
+            //eventStore.RequestAccess(EKEntityType.Reminder, (bool granted, NSError e) =>
+            //{
+            //    if (!granted)
+            //    {
+            //        UserDialogs.Instance.Alert("User Denied Access to Calendars/Reminders" + e.ToString(), "Access Denied");
+            //    }
+            //});
             DependencyService.Register<IAlarmService,AlarmService>();
+            DataService data = new DataService();
+            data.SetMonthlyAlarms();
             return base.FinishedLaunching(app, options);
         }
 
+        public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+        {
+            // show an alert
+            UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
+            okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+
+            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true, null);
+
+            // reset our badge
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+        }
         //public override void WillEnterForeground(UIApplication uiApplication)
         //{
         //    Plugin.LocalNotification.NotificationCenter.ResetApplicationIconBadgeNumber(uiApplication);
