@@ -159,7 +159,7 @@
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>1.3.0</Version>
+      <Version>1.3.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
       <Version>2.4.11.982</Version>
@@ -181,7 +181,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\kus.wav" />
     <EmbeddedResource Include="Resources\horoz.wav" />
+    <EmbeddedResource Include="Resources\alarm.wav" />
+    <EmbeddedResource Include="Resources\kus.wav" />
+    <EmbeddedResource Include="Resources\ezan.wav" />
   </ItemGroup>
 </Project>

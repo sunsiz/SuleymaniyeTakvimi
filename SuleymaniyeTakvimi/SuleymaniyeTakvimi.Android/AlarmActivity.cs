@@ -124,7 +124,7 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 IMediaItem mediaItem;
                 var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus");
-                mediaItem = CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".mp3").Result;
+                mediaItem = CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").Result;
                 //mediaItem.DisplayTitle = title;
                 //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
                 //CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;

@@ -264,7 +264,9 @@ namespace SuleymaniyeTakvimi.ViewModels
                                   Preferences.Get(itemId + "Etkin", value));
                 Etkin = value;
                 DataService data = new DataService();
-                data.SetMonthlyAlarms();
+                if (Device.RuntimePlatform == Device.Android)
+                    data.SetMonthlyAlarms();
+                else data.SetWeeklyAlarms();
                 //if(value && BackgroundAggregatorService.Instance==null)
                 //{
                 //    BackgroundAggregatorService.Add(() => new ReminderService(60));
@@ -382,7 +384,9 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             CrossMediaManager.Current.MediaPlayer.Stop();
             DataService data = new DataService();
-            data.SetMonthlyAlarms();
+            if (Device.RuntimePlatform == Device.Android)
+                data.SetMonthlyAlarms();
+            else data.SetWeeklyAlarms();
             Shell.Current.GoToAsync("..");
         }
     }

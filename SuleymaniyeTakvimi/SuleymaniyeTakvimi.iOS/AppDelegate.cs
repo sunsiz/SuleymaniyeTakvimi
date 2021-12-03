@@ -65,23 +65,52 @@ namespace SuleymaniyeTakvimi.iOS
             //        UserDialogs.Instance.Alert("User Denied Access to Calendars/Reminders" + e.ToString(), "Access Denied");
             //    }
             //});
-            DependencyService.Register<IAlarmService,AlarmService>();
-            DataService data = new DataService();
-            data.SetMonthlyAlarms();
+            DependencyService.Register<IAlarmService, AlarmService>();
+            SetAlarms();
             return base.FinishedLaunching(app, options);
         }
 
-        public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+        private static void SetAlarms()
         {
-            // show an alert
-            UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
-            okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-
-            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true, null);
-
-            // reset our badge
-            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+            DataService data = new DataService();
+            data.SetWeeklyAlarms();
         }
+
+        public override void WillTerminate(UIApplication uiApplication)
+        {
+            //var result = ConfirmExitAsync().Result;
+            //if (result == true)
+            //{
+
+            //UserDialogs.Instance.Alert("Uygulam kapanıyor.", "Uyarı", "Tamam");
+            Console.WriteLine("WillTerminate Executing.");
+            SetAlarms();
+            base.WillTerminate(uiApplication);
+            //}
+        }
+        public override void DidEnterBackground(UIApplication uiApplication)
+        {
+            //UserDialogs.Instance.Alert("Uygulam arka plana geçiyor ve 30 saniye sonra kapanabilir.", "Uyarı", "Tamam");
+            Console.WriteLine("DidEnterBackground Executing.");
+            SetAlarms();
+            base.DidEnterBackground(uiApplication);
+        }
+        //private static async System.Threading.Tasks.Task<bool> ConfirmExitAsync()
+        //{
+        //    return await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig() { Title = "Uyarı!", Message = "Çıkmak istediğinizden eminmisiniz?", OkText = "Evet", CancelText = "Hayır" });
+        //}
+
+        //public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+        //{
+        //    // show an alert
+        //    UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
+        //    okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+
+        //    UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true, null);
+
+        //    // reset our badge
+        //    UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+        //}
         //public override void WillEnterForeground(UIApplication uiApplication)
         //{
         //    Plugin.LocalNotification.NotificationCenter.ResetApplicationIconBadgeNumber(uiApplication);

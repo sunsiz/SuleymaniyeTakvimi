@@ -61,19 +61,19 @@
   </ItemGroup>-->
 
   <ItemGroup>
-    <EmbeddedResource Include="Assets\alarm.mp3" />
-    <EmbeddedResource Include="Assets\ezan.mp3" />
-    <EmbeddedResource Include="Assets\horoz.mp3" />
-    <EmbeddedResource Include="Assets\kus.mp3" />
+    <EmbeddedResource Remove="Assets\alarm.mp3" />
+    <EmbeddedResource Remove="Assets\ezan.mp3" />
+    <EmbeddedResource Remove="Assets\horoz.mp3" />
+    <EmbeddedResource Remove="Assets\kus.mp3" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Assets\horoz.wav" />
     <EmbeddedResource Include="Assets\kus.wav" />
     <EmbeddedResource Include="Assets\alarm.wav" />
     <EmbeddedResource Include="Assets\ezan.wav" />
-    <Content Include="Assets\ayliktakvim.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\ayliktakvim.xml" />
     <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
-    <EmbeddedResource Include="**/*" />
+    <!--<EmbeddedResource Include="**/*" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -136,5 +136,10 @@
     <EmbeddedResource Update="Views\RadioPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Services\BackgroundNotificationJob.cs" />
+    <Compile Remove="ShinyDelegate.cs" />
+    <Compile Remove="Startup.cs" />
   </ItemGroup>
 </Project>

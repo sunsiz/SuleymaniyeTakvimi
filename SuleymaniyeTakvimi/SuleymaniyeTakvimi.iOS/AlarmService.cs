@@ -5,6 +5,7 @@ using Foundation;
 using SuleymaniyeTakvimi.Services;
 using UIKit;
 using UserNotifications;
+using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.iOS
 {
@@ -30,17 +31,26 @@ namespace SuleymaniyeTakvimi.iOS
             //// set the sound to be the default sound
             //notification.SoundName = UILocalNotification.DefaultSoundName;
             //UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+            var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus") + ".wav";
             var content = new UNMutableNotificationContent();
             content.Title = $"{name} Hatirlatmasi";
             content.Subtitle = "Suleymaniye vakfi takvimi";
             content.Body = GetFormattedRemainingTime();
-            content.Sound = UNNotificationSound.GetSound("horoz.wav");
+            content.Sound = UNNotificationSound.GetSound(alarmSesi);
             //content.Badge = 9;
             // New trigger time
-            NSDateComponents dateComponents = new NSDateComponents() { Year = triggerDateTime.Year, Month = triggerDateTime.Month, Day = triggerDateTime.Day, Hour = triggerDateTime.Hour, Minute = triggerDateTime.Minute, Second = triggerDateTime.Second };
+            NSDateComponents dateComponents = new NSDateComponents() {
+                Calendar = NSCalendar.CurrentCalendar,
+                Year = triggerDateTime.Year,
+                Month = triggerDateTime.Month,
+                Day = triggerDateTime.Day,
+                Hour = triggerDateTime.Hour,
+                Minute = triggerDateTime.Minute,
+                Second = triggerDateTime.Second
+            };
             var trigger = UNCalendarNotificationTrigger.CreateTrigger(dateComponents, false);
             // ID of Notification to be updated
-            var requestID = "SuleymaniyeTakvimiRequest";
+            var requestID = "SuleymaniyeTakvimiRequest"+triggerDateTime.ToString("yyyyMMddhhmmss");
             var request = UNNotificationRequest.FromIdentifier(requestID, content, trigger);
 
             // Add to system to modify existing Notification
@@ -48,8 +58,13 @@ namespace SuleymaniyeTakvimi.iOS
                 if (err != null)
                 {
                     // Do something with error...
-                }
+                    Console.WriteLine("Error: {0}", err);
+                    UserDialogs.Instance.Alert($"hata detayları: {err}", "Alarm kurarken bir hata oluştu", "Tamam");
+                }else Console.WriteLine("Notification Scheduled: {0} \n {1}", request, content);
             });
+            //UNUserNotificationCenter.Current.GetPendingNotificationRequests((req) => {
+                //if (req != null) UserDialogs.Instance.Alert($"request sayisi: {req.Length}", "Zamanlanan bilidiri sayisi", "Tamam");
+            //});
             ////RequestAccess();
             ////EKEventStore eventStore = new EKEventStore();
             //EKReminder reminder = EKReminder.Create(AppDelegate.eventStore);
@@ -77,6 +92,8 @@ namespace SuleymaniyeTakvimi.iOS
 
         public void CancelAlarm()
         {
+            UNUserNotificationCenter.Current.RemoveAllDeliveredNotifications();
+            UNUserNotificationCenter.Current.RemoveAllPendingNotificationRequests();
             ////RequestAccess();
             ////EKEventStore eventStore = new EKEventStore();
             //EKReminder reminder = EKReminder.Create(AppDelegate.eventStore);
