@@ -32,6 +32,8 @@ namespace SuleymaniyeTakvimi.Services
         public Takvim konum;
         public Takvim takvim;
         public IList<Takvim> MonthlyTakvim;
+        private readonly string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ayliktakvim.xml");
+
         public DataService()
         {
             takvim = new Takvim()
@@ -64,7 +66,7 @@ namespace SuleymaniyeTakvimi.Services
 
                 if (location == null)
                 {
-                    var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(5));
+                    var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(5));
                     CancellationTokenSource cts = new CancellationTokenSource();
                     location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);
                 }
@@ -120,6 +122,22 @@ namespace SuleymaniyeTakvimi.Services
         public Takvim VakitHesabi()
         {
             Analytics.TrackEvent("VakitHesabi in the DataService");
+            if (File.Exists(_fileName))
+            {
+                XDocument xmldoc = XDocument.Load(_fileName);
+                var takvims = ParseXmlList(xmldoc);
+                if (takvims != null && DateTime.Parse(takvims[0].Tarih)<=DateTime.Today && DateTime.Parse(takvims[takvims.Count-1].Tarih)>=DateTime.Today)
+                {
+                    foreach (var item in takvims)
+                    {
+                        if (DateTime.Parse(item.Tarih) == DateTime.Today)
+                        {
+                            takvim = item;
+                            return takvim;
+                        }
+                    }
+                }
+            }
             CheckInternet();
             if (konum != null)
             {
@@ -196,6 +214,22 @@ namespace SuleymaniyeTakvimi.Services
         {
             Analytics.TrackEvent("GetPrayerTimes in the DataService");
             Debug.WriteLine("TimeStamp-GetPrayerTimes-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            if (File.Exists(_fileName))
+            {
+                XDocument xmldoc = XDocument.Load(_fileName);
+                var takvims = ParseXmlList(xmldoc);
+                if (takvims != null && DateTime.Parse(takvims[0].Tarih) <= DateTime.Today && DateTime.Parse(takvims[takvims.Count - 1].Tarih) >= DateTime.Today)
+                {
+                    foreach (var item in takvims)
+                    {
+                        if (DateTime.Parse(item.Tarih) == DateTime.Today)
+                        {
+                            takvim = item;
+                            return takvim;
+                        }
+                    }
+                }
+            }
             CheckInternet();
             konum =new Takvim();
             konum.Enlem = location.Latitude;
@@ -470,12 +504,24 @@ namespace SuleymaniyeTakvimi.Services
         public void GetMonthlyPrayerTimes(Location location)
         {
             Analytics.TrackEvent("GetMonthlyPrayerTimes in the DataService");
+            if (File.Exists(_fileName))
+            {
+                XDocument xmldoc=XDocument.Load(_fileName);
+                var takvims = ParseXmlList(xmldoc);
+                if (takvims != null && (DateTime.Parse(takvims[0].Tarih) - DateTime.Today).Days < 10)
+                {
+                    xmldoc = ReadTakvimFile();
+                    MonthlyTakvim = ParseXmlList(xmldoc);
+                    return;
+                }
+            }
+
             CheckInternet();
             konum = new Takvim();
             konum.Enlem = location.Latitude;
             konum.Boylam = location.Longitude;
             konum.Yukseklik = location.Altitude ?? 0;
-            konum.SaatBolgesi = TimeZoneInfo.Local.BaseUtcOffset.Hours;//.StandardName;
+            konum.SaatBolgesi = TimeZoneInfo.Local.BaseUtcOffset.Hours; //.StandardName;
             konum.YazKis = TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now) ? 1 : 0;
             konum.Tarih = DateTime.Today.ToString("dd/MM/yyyy");
 
@@ -484,7 +530,7 @@ namespace SuleymaniyeTakvimi.Services
             url += "&Boylam=" + konum.Boylam;
             url += "&Yukseklik=" + konum.Yukseklik;
             url = url.Replace(',', '.');
-            url += "&SaatBolgesi=" + TimeZoneInfo.Local.BaseUtcOffset.Hours;//.StandardName;
+            url += "&SaatBolgesi=" + TimeZoneInfo.Local.BaseUtcOffset.Hours; //.StandardName;
             url += "&yazSaati=" + (TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now) ? 1 : 0);
             url += "&Tarih=" + DateTime.Today.ToString("dd/MM/yyyy");
 
@@ -500,6 +546,7 @@ namespace SuleymaniyeTakvimi.Services
             //var xmlResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             XDocument doc = XDocument.Load(url);
             MonthlyTakvim = ParseXmlList(doc);
+            WriteTakvimFile(doc.ToString());
             //var stream = GetType().Module.Assembly.GetManifestResourceStream("SuleymaniyeTakvimi.ayliktakvim.xml");
             //stream.
             //if (!string.IsNullOrEmpty(xmlResult) && xmlResult.StartsWith("<?xml"))
@@ -663,8 +710,8 @@ namespace SuleymaniyeTakvimi.Services
         {
             Log.Warning("TimeStamp-SetMonthlyAlarms-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             DependencyService.Get<IAlarmService>().CancelAlarm();
-            var testTimeSpan = DateTime.Now.AddMinutes(1).ToString("HH:mm");
-            DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Today, TimeSpan.Parse(testTimeSpan), "test");
+            //var testTimeSpan = DateTime.Now.AddMinutes(1).ToString("HH:mm");
+            //DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Today, TimeSpan.Parse(testTimeSpan), "test");
             if (CheckRemindersEnabledAny())
             {
                 konum = GetCurrentLocation().Result;
@@ -702,6 +749,8 @@ namespace SuleymaniyeTakvimi.Services
                 else
                 {
                     Log.Warning("Get monthly prayer times failed in the SetMonthlyAlarm method",DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+                    UserDialogs.Instance.Alert("Uygulamaya konuma erişme izni verildiğini ve konum hizmetinin açık olduğunu kontrol edin!",
+                        "Konuma Erişmeye Çalışırken Hata Oluştu");
                 }
                 //var testTimeSpan = DateTime.Now.AddMinutes(1).ToString("HH:mm");
                 //DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(testTimeSpan), "test");
@@ -720,6 +769,32 @@ namespace SuleymaniyeTakvimi.Services
                     "Namaz vakitlerini yenilemek için internete bağlı olmanız gerekiyor, WiFi yada Mobil veriyi açın ve 'KONUMU YENİLE' yi tıklayın.",
                     TimeSpan.FromSeconds(7));
             }
+        }
+        public XDocument ReadTakvimFile()
+        {
+            //using (Stream stream = this.GetType().Assembly.
+            //    GetManifestResourceStream("ayliktakvim.xml"))
+            //{
+            //    using (StreamReader sr = new StreamReader(stream))
+            //    {
+            //        result = sr.ReadToEnd();
+            //    }
+            //}
+            var result = File.ReadAllText(_fileName);
+            var doc = XDocument.Parse(result);
+            return doc;
+        }
+        public void WriteTakvimFile(string fileContent)
+        {
+            //using (Stream stream = this.GetType().Assembly.
+            //    GetManifestResourceStream("SuleymaniyeTakvimi.Assets.ayliktakvim.xml"))
+            //{
+            //    using (StreamWriter sr = new StreamWriter(stream))
+            //    {
+            //        sr.WriteAsync(fileContent);
+            //    }
+            //}
+            File.WriteAllText(_fileName, fileContent);
         }
     }
 }

@@ -111,7 +111,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             string file = "alarm";
             if (itemId != null)
             {
-                file = Preferences.Get(itemId + "AlarmSesi", "alarm");
+                file = Preferences.Get(itemId + "AlarmSesi", file);
                 switch (file)
                 {
                     case "kus":
@@ -131,7 +131,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                         index = 3;
                         break;
                 }
-
             }
 
             return new Sound() {Index = index, fileName = file, Name = name};

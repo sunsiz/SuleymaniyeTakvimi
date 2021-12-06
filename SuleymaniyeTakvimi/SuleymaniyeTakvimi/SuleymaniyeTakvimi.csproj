@@ -71,7 +71,7 @@
     <EmbeddedResource Include="Assets\kus.wav" />
     <EmbeddedResource Include="Assets\alarm.wav" />
     <EmbeddedResource Include="Assets\ezan.wav" />
-    <Content Include="Assets\ayliktakvim.xml" />
+    <EmbeddedResource Include="Assets\ayliktakvim.xml" />
     <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
     <!--<EmbeddedResource Include="**/*" />-->
   </ItemGroup>
@@ -88,7 +88,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />  

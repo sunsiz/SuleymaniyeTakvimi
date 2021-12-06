@@ -113,7 +113,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //var location = await Geolocation.GetLocationAsync(request);
                 DataService data = new DataService();
                 var takvim = data.GetCurrentLocation().Result;
-                if (takvim != null)
+                if (takvim != null && takvim.Enlem > 0 && takvim.Boylam > 0)
                 {
                     Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
                     current_latitude = location.Latitude;

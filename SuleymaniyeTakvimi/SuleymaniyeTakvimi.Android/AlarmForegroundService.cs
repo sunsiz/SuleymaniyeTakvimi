@@ -239,6 +239,12 @@ namespace SuleymaniyeTakvimi.Droid
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
+            if (intent == null || intent.Action == null)
+            {
+                var source = null == intent ? "intent" : "action";
+                Log.Info("OnStartCommand Null Intent Exception",source + " was null, flags=" + flags + " bits=" + flags);
+                return StartCommandResult.RedeliverIntent;
+            }
             Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService");
             if (intent.Action.Equals("SuleymaniyeTakvimi.action.START_SERVICE"))
             {

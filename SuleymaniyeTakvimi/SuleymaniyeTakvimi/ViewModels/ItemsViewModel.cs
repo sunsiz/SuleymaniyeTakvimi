@@ -96,6 +96,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                 await GetPrayerTimesAsync().ConfigureAwait(false);
                 await ExecuteLoadItemsCommand().ConfigureAwait(false);
             });
+            Task.Run( () =>
+            {
+                Log.Warning("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
+                DataService data = new DataService();
+                data.SetMonthlyAlarms();
+            });
             Log.Warning("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
@@ -207,7 +213,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //CancellationTokenSource cts = new CancellationTokenSource();
                 //var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);
                 //if (location != null)
-                if (takvim != null)
+                if (takvim != null && takvim.Enlem > 0 && takvim.Boylam > 0)
                 {
                     Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
                     data.konum = new Takvim();
