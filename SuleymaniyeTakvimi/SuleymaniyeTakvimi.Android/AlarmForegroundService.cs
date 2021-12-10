@@ -263,7 +263,7 @@ namespace SuleymaniyeTakvimi.Droid
                     {
                         Log.Info("OnStartCommand", $"Starting Set Alarm at {DateTime.Now}");
                         DataService data = new DataService();
-                        data.SetMonthlyAlarms();
+                        data.SetWeeklyAlarms();
                     });
                     startupWork.Start();
                     

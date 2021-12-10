@@ -12,6 +12,8 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Threading;
 using Xamarin.Forms.Internals;
+using System.IO;
+using System.Xml.Linq;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -55,11 +57,19 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private async void GetCity()
         {
-            //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
-            var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(false);
+            try
+            {
+                //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
+                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
             if (placemark != null)
                 City = placemark.FirstOrDefault()?.AdminArea ?? placemark.FirstOrDefault()?.CountryName;
-            Preferences.Set("sehir",City);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+
+            if (!string.IsNullOrEmpty(City)) Preferences.Set("sehir", City);
             City = City ?? Preferences.Get("sehir", "Şehir");
         }
         public ItemsViewModel()
@@ -96,11 +106,15 @@ namespace SuleymaniyeTakvimi.ViewModels
                 await GetPrayerTimesAsync().ConfigureAwait(false);
                 await ExecuteLoadItemsCommand().ConfigureAwait(false);
             });
-            Task.Run( () =>
+            Task.Run(async () =>
             {
                 Log.Warning("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
+                //await Task.Delay(3000).ConfigureAwait(true);
                 DataService data = new DataService();
-                data.SetMonthlyAlarms();
+                data.SetWeeklyAlarms();
+                _takvim = data.VakitHesabi();
+                await ExecuteLoadItemsCommand().ConfigureAwait(false);
+                //GetCity();
             });
             Log.Warning("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
@@ -206,6 +220,22 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             IsBusy = true;
             var data = new DataService();
+            //if (File.Exists(data._fileName))
+            //{
+            //    XDocument xmldoc = XDocument.Load(data._fileName);
+            //    var takvims = data.ParseXmlList(xmldoc);
+            //    if (takvims != null && DateTime.Parse(takvims[0].Tarih) <= DateTime.Today && DateTime.Parse(takvims[takvims.Count - 1].Tarih) >= DateTime.Today)
+            //    {
+            //        foreach (var item in takvims)
+            //        {
+            //            if (DateTime.Parse(item.Tarih) == DateTime.Today)
+            //            {
+            //                _takvim = item;
+            //                return;
+            //            }
+            //        }
+            //    }
+            //}
             try
             {
                 var takvim = await data.GetCurrentLocation().ConfigureAwait(true);
@@ -240,7 +270,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                         Preferences.Set("tarih", Vakitler.Tarih);
                         //await Application.Current.SavePropertiesAsync();
                     }
-
+                    GetCity();
                     LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
                 }
                 else

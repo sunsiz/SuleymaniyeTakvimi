@@ -50,13 +50,13 @@ namespace SuleymaniyeTakvimi.Droid
         {
             //Task startupWork = new Task(() => { AppInitialize(); });
             //startupWork.Start();
-            var LastLatitude = Preferences.Get("LastLatitude", 0.0);
-            var LastLongitude = Preferences.Get("LastLongitude", 0.0);
-            if (LastLatitude != 0.0 && LastLongitude!=0.0)
-            {
-                Task StartupWork = new Task(() => AppInitialize());
-                StartupWork.Start();
-            }
+            //var LastLatitude = Preferences.Get("LastLatitude", 0.0);
+            //var LastLongitude = Preferences.Get("LastLongitude", 0.0);
+            //if (LastLatitude != 0.0 && LastLongitude!=0.0)
+            //{
+            //    Task StartupWork = new Task(() => AppInitialize());
+            //    StartupWork.Start();
+            //}
         }
 
         private void AppInitialize()

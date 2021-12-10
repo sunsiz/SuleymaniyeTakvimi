@@ -59,19 +59,11 @@
     <None Remove="Fonts\MaterialIcons-Regular.ttf" />
     <None Remove="Fonts\typicons.ttf" />
   </ItemGroup>-->
-
   <ItemGroup>
-    <EmbeddedResource Remove="Assets\alarm.mp3" />
-    <EmbeddedResource Remove="Assets\ezan.mp3" />
-    <EmbeddedResource Remove="Assets\horoz.mp3" />
-    <EmbeddedResource Remove="Assets\kus.mp3" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\horoz.wav" />
-    <EmbeddedResource Include="Assets\kus.wav" />
     <EmbeddedResource Include="Assets\alarm.wav" />
     <EmbeddedResource Include="Assets\ezan.wav" />
-    <EmbeddedResource Include="Assets\ayliktakvim.xml" />
+    <EmbeddedResource Include="Assets\horoz.wav" />
+    <EmbeddedResource Include="Assets\kus.wav" />
     <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
     <!--<EmbeddedResource Include="**/*" />-->
   </ItemGroup>
@@ -141,5 +133,15 @@
     <Compile Remove="Services\BackgroundNotificationJob.cs" />
     <Compile Remove="ShinyDelegate.cs" />
     <Compile Remove="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\alarm.mp3" />
+    <None Remove="Assets\alarm.wav" />
+    <None Remove="Assets\ezan.mp3" />
+    <None Remove="Assets\ezan.wav" />
+    <None Remove="Assets\horoz.mp3" />
+    <None Remove="Assets\horoz.wav" />
+    <None Remove="Assets\kus.mp3" />
+    <None Remove="Assets\kus.wav" />
   </ItemGroup>
 </Project>

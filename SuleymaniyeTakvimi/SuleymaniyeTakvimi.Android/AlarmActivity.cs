@@ -120,10 +120,38 @@ namespace SuleymaniyeTakvimi.Droid
             //}
             //else
             //{
+            var key = "";
+            switch (name)
+            {
+                case "Fecri Kazip":
+                    key =  "fecrikazip";
+                    break;
+                case "Fecri Sadık":
+                    key = "fecrisadik";
+                    break;
+                case "Sabah Sonu":
+                    key = "sabahsonu";
+                    break;
+                case "Öğle":
+                    key = "ogle";
+                    break;
+                case "İkindi":
+                    key = "ikindi";
+                    break;
+                case "Akşam":
+                    key = "aksam";
+                    break;
+                case "Yatsı":
+                    key = "yatsi";
+                    break;
+                case "Yatsı Sonu":
+                    key = "yatsisonu";
+                    break;
+            }
             try
             {
                 IMediaItem mediaItem;
-                var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus");
+                var alarmSesi = Preferences.Get(key + "AlarmSesi", "kus");
                 mediaItem = CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").Result;
                 //mediaItem.DisplayTitle = title;
                 //CrossMediaManager.Current.Notification.ShowNavigationControls = false;

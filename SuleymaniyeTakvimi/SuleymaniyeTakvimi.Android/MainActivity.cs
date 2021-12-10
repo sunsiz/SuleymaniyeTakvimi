@@ -25,6 +25,7 @@ namespace SuleymaniyeTakvimi.Droid
         public static MainActivity instance;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            //SetTheme(Resource.Style.MainTheme);
             Log.Info("Main Activity", $"Main Activity OnCreate Started: {DateTime.Now.ToString("HH:m:s.fff")}");
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
