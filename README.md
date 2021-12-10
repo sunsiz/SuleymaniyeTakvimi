@@ -5,7 +5,7 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 * Cihazın konumunu alabilir ve ona göre ilgili namaz vakitlerini görüntüleyebilir.
 * Kullanıcı ayarlarına göre bildirim, titreşim ve sesle (şu anda ezan) hatırlatma yapabilir.
-* Arayüzdeki tarihe tıklayarak tarih değiştirme yada aylık namaz vakitlerini gösterme.
+* Arayüzdeki tarihe tıklayarak aylık namaz vakitlerini gösterme, aylık takvim yerel dosyaya kaydediliyor.
 * Kıble yönünü belirtmek için bir pusula eklendi.
 * [Radyo Fıtrat](http://www.radyofitrat.com)'tan çevrimiçi radyo çalabilmesi
 * Sitelerimiz ve sosyal medya bağlantıları
@@ -13,7 +13,7 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 **Gelecek planlar:**
 
 **Mevcut sorunlar:**
-* Alarm özelliği ios te program kapandığında yada uzun süre arka planda kaldığında çalışmıyor.
+* Alarm(bildiri) özelliği ios te sesi doğru çalamıyor.
 
 # Suleymaniye Calendar
 Suleymaniyetakvimi.com Xamarin mobile application
@@ -21,7 +21,7 @@ Suleymaniyetakvimi.com Xamarin mobile application
 **Current Features:**
 * Get device current location and display corresponding prayer times.
 * Reminding with notification, vibration and sound (currently ezan) based on user settings.
-* When touch the date let user choose a date or show monthly prayer times.
+* When touch the date show monthly prayer times, monthly prayer times were saved in local file.
 * Implementd a compass for indicate qibla direction.
 * Online radio from [Radyo Fitrat](http://www.radyofitrat.com)
 * Links for our sites and social media
@@ -30,4 +30,4 @@ Suleymaniyetakvimi.com Xamarin mobile application
 
 
 **Existing problems:**
-* Alarm featureon IOS in background not working when app closed or after stay background long time.
+* Alarm(notification) feature on IOS can not play expected sound most of the time.
