@@ -229,8 +229,6 @@ namespace SuleymaniyeTakvimi.Droid
                     var notificationIntent = new Intent(this, typeof(MainActivity));
                     notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
                     notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
-                    //notificationIntent.PutExtra("has_service_been_started", true);
-
                     var pendingIntent =
                         PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent);
                     pendingIntent.Send();
