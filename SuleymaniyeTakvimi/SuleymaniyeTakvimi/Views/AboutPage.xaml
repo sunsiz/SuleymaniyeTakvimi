@@ -5,16 +5,16 @@
              xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              x:Class="SuleymaniyeTakvimi.Views.AboutPage"
              Visual="Material"
-             Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
+             Title="{Binding Title}">
     <ContentPage.BindingContext>
         <viewModels:AboutViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,8*" BackgroundColor="{StaticResource AppBackgroundColor}">
             <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,9,0,0">
-                <Label HorizontalOptions="CenterAndExpand" FontSize="Title" FontAttributes="Bold" Text="Sosyal medya bağlantılarımız" TextColor="{StaticResource PrimaryLightColor}"></Label>
+                <Label HorizontalOptions="CenterAndExpand" FontSize="Title" FontAttributes="Bold" Text="{x:Static resources:AppResources.SosyalMedyaBaglantisi}" TextColor="{StaticResource PrimaryLightColor}"></Label>
             </StackLayout>
-            <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" FontSize="18" FontAttributes="Bold" Text="Süleymaniye Vakfı" Margin="9,0" VerticalTextAlignment="Center" TextColor="{StaticResource PrimaryDarkColor}">
+            <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" FontSize="18" FontAttributes="Bold" Text="{x:Static resources:AppResources.SuleymaniyeVakfi}" Margin="9,0" VerticalTextAlignment="Center" TextColor="{StaticResource PrimaryDarkColor}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LinkButtonClicked}" CommandParameter="https://www.suleymaniyevakfi.org/"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
@@ -45,7 +45,7 @@
                                    HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Visual="Material" />
-            <WebView BackgroundColor="White" Source="https://suleymaniyetakvimi.com/Include/NamazVakitleri.htm" Navigating="WebView_OnNavigating" Navigated="WebView_OnNavigated" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></WebView>
+                <WebView BackgroundColor="White" Source="{x:Static resources:AppResources.NamazVaktiAciklama}" Navigating="WebView_OnNavigating" Navigated="WebView_OnNavigated" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></WebView>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

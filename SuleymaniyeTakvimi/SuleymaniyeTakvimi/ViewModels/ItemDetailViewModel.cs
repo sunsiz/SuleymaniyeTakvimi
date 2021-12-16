@@ -10,6 +10,7 @@ using MediaManager.Playback;
 //using Matcha.BackgroundService;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
+using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -48,10 +49,10 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             get => sounds ??= new[]
             {
-                new Sound() {Index = 0, fileName = "kus", Name = "Kuş Cıvıltısı"},
-                new Sound() {Index = 1, fileName = "horoz", Name = "Horoz Ötüşü"},
-                new Sound() {Index = 2, fileName = "alarm", Name = "Çalar Saat"},
-                new Sound() {Index = 3, fileName = "ezan", Name = "Ezan Sesi"}
+                new Sound() {Index = 0, fileName = "kus", Name = AppResources.KusCiviltisi},
+                new Sound() {Index = 1, fileName = "horoz", Name = AppResources.HorozOtusu},
+                new Sound() {Index = 2, fileName = "alarm", Name = AppResources.CalarSaat},
+                new Sound() {Index = 3, fileName = "ezan", Name = AppResources.EzanSesi}
             };
             set => SetProperty(ref sounds, value);
         }
@@ -82,12 +83,12 @@ namespace SuleymaniyeTakvimi.ViewModels
             SoundSelectedCommand = new Command<Sound>(SoundSelected);
             TestButtonCommand = new Command(TestButtonClicked);
             CrossMediaManager.Current.MediaPlayer.Stop();
-            testButtonText = "Ses Testi";
+            testButtonText = AppResources.SesTesti;
         }
 
         private void TestButtonClicked(object obj)
         {
-            if (TestButtonText == "Ses Testi")
+            if (TestButtonText == AppResources.SesTesti)
             {
                 IMediaItem mediaItem;
                 var alarmSesi = 
@@ -95,12 +96,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 CrossMediaManager.Current.MediaPlayer.Play(mediaItem);
-                TestButtonText = "Testi Durdur";
+                TestButtonText = AppResources.TestiDurdur;
             }
             else
             {
                 CrossMediaManager.Current.MediaPlayer.Stop();
-                TestButtonText = "Ses Testi";
+                TestButtonText = AppResources.SesTesti;
             }
         }
 
@@ -115,19 +116,19 @@ namespace SuleymaniyeTakvimi.ViewModels
                 switch (file)
                 {
                     case "kus":
-                        name = "Kuş Cıvıltısı";
+                        name = AppResources.KusCiviltisi;
                         index = 0;
                         break;
                     case "alarm":
-                        name = "Çalar Saat";
+                        name = AppResources.CalarSaat;
                         index = 2;
                         break;
                     case "horoz":
-                        name = "Horoz Ötüşü";
+                        name = AppResources.HorozOtusu;
                         index = 1;
                         break;
                     case "ezan":
-                        name = "Ezan Sesi";
+                        name = AppResources.EzanSesi;
                         index = 3;
                         break;
                 }
@@ -148,7 +149,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var radiobutton = obj as RadioButton;
                 Preferences.Set(itemId + "BildirmeVakti", radiobutton.Value.ToString());
-                Console.WriteLine("Value Setted for -> " + itemId + "BildirmeVakti: " +
+                Debug.WriteLine("Value Setted for -> " + itemId + "BildirmeVakti: " +
                                   Preferences.Get(itemId + "BildirmeVakti", radiobutton.Value.ToString()));
                 bildirmeVakti = radiobutton.Value.ToString();
             }
@@ -161,7 +162,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var value = (bool) obj;
                 Preferences.Set(itemId + "Alarm", value);
-                Console.WriteLine("Value Setted for -> " + itemId + "Alarm: " +
+                Debug.WriteLine("Value Setted for -> " + itemId + "Alarm: " +
                                   Preferences.Get(itemId + "Alarm", value));
                 Alarm = value;
             }
@@ -174,7 +175,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var value = (bool) obj;
                 Preferences.Set(itemId + "Titreme", value);
-                Console.WriteLine("Value Setted for -> " + itemId + "Titreme: " +
+                Debug.WriteLine("Value Setted for -> " + itemId + "Titreme: " +
                                   Preferences.Get(itemId + "Titreme", value));
                 Titreme = value;
                 if (value)
@@ -190,11 +191,11 @@ namespace SuleymaniyeTakvimi.ViewModels
                     }
                     catch (FeatureNotSupportedException ex)
                     {
-                        UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. "+ex.Message, "Cihaz desteklemiyor");
+                        UserDialogs.Instance.Alert(AppResources.TitremeyiDesteklemiyor + ex.Message, AppResources.CihazDesteklemiyor);
                     }
                     catch (Exception ex)
                     {
-                        UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+                        UserDialogs.Instance.Alert(ex.Message, AppResources.SorunCikti);
                     }
                 }
             }
@@ -207,14 +208,14 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var value = (bool) obj;
                 Preferences.Set(itemId + "Bildiri", value);
-                Console.WriteLine("Value Setted for -> " + itemId + "Bildiri: " +
+                Debug.WriteLine("Value Setted for -> " + itemId + "Bildiri: " +
                                   Preferences.Get(itemId + "Bildiri", value));
                 Bildiri = value;
                 var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
                 if (value)
                 {
-                    CrossLocalNotifications.Current.Show("Bildiri Ayarı Etkinleşti",
-                        $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.", 1001);
+                    CrossLocalNotifications.Current.Show(AppResources.BildiriEtkinBaslik,
+                        $"{itemAdi} --> {bildiriVakti} {AppResources.BildiriEtkinIcerik}", 1001);
                     CrossLocalNotifications.Current.Cancel(1002);
                     //var notification = new NotificationRequest
                     //{
@@ -244,8 +245,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
                 else
                 {
-                    CrossLocalNotifications.Current.Show("Bildiri Ayarı Devre Dışı",
-                        $"{itemAdi} --> {bildiriVakti} için bildiri devre dışı bırakıldı.", 1002);
+                    CrossLocalNotifications.Current.Show(AppResources.BildiriDevreDisiBaslik,
+                        $"{itemAdi} --> {bildiriVakti} {AppResources.BildiriDevreDisiIcerik}", 1002);
                     CrossLocalNotifications.Current.Cancel(1001);
                 }
             }
@@ -259,7 +260,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var value = (bool) obj;
                 Preferences.Set(itemId + "Etkin", value);
-                Console.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
+                Debug.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
                                   Preferences.Get(itemId + "Etkin", value));
                 Etkin = value;
                 DataService data = new DataService();
@@ -343,28 +344,28 @@ namespace SuleymaniyeTakvimi.ViewModels
                 switch (itemId)
                 {
                     case "fecrikazip":
-                        Title = itemAdi = "Fecri Kazip";
+                        Title = itemAdi = AppResources.FecriKazip;
                         break;
                     case "fecrisadik":
-                        Title = itemAdi = "Fecri Sadik";
+                        Title = itemAdi = AppResources.FecriSadik;
                         break;
                     case "sabahsonu":
-                        Title = itemAdi = "Sabah Sonu";
+                        Title = itemAdi = AppResources.SabahSonu;
                         break;
                     case "ogle":
-                        Title = itemAdi = "Öğle";
+                        Title = itemAdi = AppResources.Ogle;
                         break;
                     case "ikindi":
-                        Title = itemAdi = "İkindi";
+                        Title = itemAdi = AppResources.Ikindi;
                         break;
                     case "aksam":
-                        Title = itemAdi = "Akşam";
+                        Title = itemAdi = AppResources.Aksam;
                         break;
                     case "yatsi":
-                        Title = itemAdi = "Yatsı";
+                        Title = itemAdi = AppResources.Yatsi;
                         break;
                     case "yatsisonu":
-                        Title = itemAdi = "Yatsı Sonu";
+                        Title = itemAdi = AppResources.YatsiSonu;
                         break;
                 }
                 Vakit = Preferences.Get(itemId, "");

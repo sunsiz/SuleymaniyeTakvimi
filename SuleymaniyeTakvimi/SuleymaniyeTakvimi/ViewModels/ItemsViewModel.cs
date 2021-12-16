@@ -14,6 +14,7 @@ using System.Threading;
 using Xamarin.Forms.Internals;
 using System.IO;
 using System.Xml.Linq;
+using SuleymaniyeTakvimi.Localization;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -70,7 +71,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
 
             if (!string.IsNullOrEmpty(City)) Preferences.Set("sehir", City);
-            City = City ?? Preferences.Get("sehir", "Şehir");
+            City = City ?? Preferences.Get("sehir", AppResources.Sehir);
         }
         public ItemsViewModel()
         {
@@ -86,16 +87,16 @@ namespace SuleymaniyeTakvimi.ViewModels
             GoToMapCommand = new Command(async () =>
             {
                 var location = new Location(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat),Convert.ToDouble(_takvim.Boylam, CultureInfo.InvariantCulture.NumberFormat));
-                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem,CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat));
+                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem,CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
                 var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName};
 
                 try
                 {
-                    await Map.OpenAsync(location, options);
+                    await Map.OpenAsync(location, options).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
-                    UserDialogs.Instance.Toast("Haritayı açarken bir sorun oluştu.\nDetaylar: " + ex.Message);
+                    UserDialogs.Instance.Toast(AppResources.HaritaHatasi + ex.Message);
                 }
             });
             //LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
@@ -110,7 +111,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 Log.Warning("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
                 //await Task.Delay(3000).ConfigureAwait(true);
-                DataService data = new DataService();
+                //DataService data = new DataService();
                 data.SetWeeklyAlarms();
                 _takvim = data.VakitHesabi();
                 await ExecuteLoadItemsCommand().ConfigureAwait(false);
@@ -135,14 +136,14 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //var Aksam = new Item() { Id = "aksam", Adi = "Akşam", Vakit = _takvim.Aksam, Etkin = Preferences.Get("aksamEtkin", false), State = CheckState(DateTime.Parse(_takvim.Aksam), DateTime.Parse(_takvim.Yatsi)), Alarm = Preferences.Get("aksamAlarm", false), Bildiri = Preferences.Get("aksamBildiri", false), Titreme = Preferences.Get("aksamTitreme", false), BildirmeVakti = Preferences.Get("aksamBildiriVakti", "0.00") };
                 //var Yatsi = new Item() { Id = "yatsi", Adi = "Yatsı", Vakit = _takvim.Yatsi, Etkin = Preferences.Get("yatsiEtkin", false), State = CheckState(DateTime.Parse(_takvim.Yatsi), DateTime.Parse(_takvim.YatsiSonu)), Alarm = Preferences.Get("yatsiAlarm", false), Bildiri = Preferences.Get("yatsiBildiri", false), Titreme = Preferences.Get("yatsiTitreme", false), BildirmeVakti = Preferences.Get("yatsiBildiriVakti", "0.00") };
                 //var YatsiSonu = new Item() { Id = "yatsisonu", Adi = "Yatsı Sonu", Vakit = _takvim.YatsiSonu, Etkin = Preferences.Get("yatsisonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.YatsiSonu), DateTime.Parse(_takvim.FecriKazip)), Alarm = Preferences.Get("yatsisonuAlarm", false), Bildiri = Preferences.Get("yatsisonuBildiri", false), Titreme = Preferences.Get("yatsisonuTitreme", false), BildirmeVakti = Preferences.Get("yatsisonuBildiriVakti", "0.00") };
-                var FecriKazip = new Item() { Id = "fecrikazip", Adi = "Fecri Kazip", Vakit = _takvim.FecriKazip, Etkin = Preferences.Get("fecrikazipEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriKazip), DateTime.Parse(_takvim.FecriSadik)) };
-                var FecriSadik = new Item() { Id = "fecrisadik", Adi = "Fecri Sadık", Vakit = _takvim.FecriSadik, Etkin = Preferences.Get("fecrisadikEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriSadik), DateTime.Parse(_takvim.SabahSonu))};
-                var SabahSonu = new Item() { Id = "sabahsonu", Adi = "Sabah Sonu", Vakit = _takvim.SabahSonu, Etkin = Preferences.Get("sabahsonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.SabahSonu), DateTime.Parse(_takvim.Ogle))};
-                var Ogle = new Item() { Id = "ogle", Adi = "Öğle", Vakit = _takvim.Ogle, Etkin = Preferences.Get("ogleEtkin", false), State = CheckState(DateTime.Parse(_takvim.Ogle), DateTime.Parse(_takvim.Ikindi))};
-                var Ikindi = new Item() { Id = "ikindi", Adi = "İkindi", Vakit = _takvim.Ikindi, Etkin = Preferences.Get("ikindiEtkin", false), State = CheckState(DateTime.Parse(_takvim.Ikindi), DateTime.Parse(_takvim.Aksam))};
-                var Aksam = new Item() { Id = "aksam", Adi = "Akşam", Vakit = _takvim.Aksam, Etkin = Preferences.Get("aksamEtkin", false), State = CheckState(DateTime.Parse(_takvim.Aksam), DateTime.Parse(_takvim.Yatsi))};
-                var Yatsi = new Item() { Id = "yatsi", Adi = "Yatsı", Vakit = _takvim.Yatsi, Etkin = Preferences.Get("yatsiEtkin", false), State = CheckState(DateTime.Parse(_takvim.Yatsi), DateTime.Parse(_takvim.YatsiSonu))};
-                var YatsiSonu = new Item() { Id = "yatsisonu", Adi = "Yatsı Sonu", Vakit = _takvim.YatsiSonu, Etkin = Preferences.Get("yatsisonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.YatsiSonu), DateTime.Parse(_takvim.FecriKazip))};
+                var FecriKazip = new Item() { Id = "fecrikazip", Adi = AppResources.FecriKazip, Vakit = _takvim.FecriKazip, Etkin = Preferences.Get("fecrikazipEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriKazip), DateTime.Parse(_takvim.FecriSadik)) };
+                var FecriSadik = new Item() { Id = "fecrisadik", Adi = AppResources.FecriSadik, Vakit = _takvim.FecriSadik, Etkin = Preferences.Get("fecrisadikEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriSadik), DateTime.Parse(_takvim.SabahSonu))};
+                var SabahSonu = new Item() { Id = "sabahsonu", Adi = AppResources.SabahSonu, Vakit = _takvim.SabahSonu, Etkin = Preferences.Get("sabahsonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.SabahSonu), DateTime.Parse(_takvim.Ogle))};
+                var Ogle = new Item() { Id = "ogle", Adi = AppResources.Ogle, Vakit = _takvim.Ogle, Etkin = Preferences.Get("ogleEtkin", false), State = CheckState(DateTime.Parse(_takvim.Ogle), DateTime.Parse(_takvim.Ikindi))};
+                var Ikindi = new Item() { Id = "ikindi", Adi = AppResources.Ikindi, Vakit = _takvim.Ikindi, Etkin = Preferences.Get("ikindiEtkin", false), State = CheckState(DateTime.Parse(_takvim.Ikindi), DateTime.Parse(_takvim.Aksam))};
+                var Aksam = new Item() { Id = "aksam", Adi = AppResources.Aksam, Vakit = _takvim.Aksam, Etkin = Preferences.Get("aksamEtkin", false), State = CheckState(DateTime.Parse(_takvim.Aksam), DateTime.Parse(_takvim.Yatsi))};
+                var Yatsi = new Item() { Id = "yatsi", Adi = AppResources.Yatsi, Vakit = _takvim.Yatsi, Etkin = Preferences.Get("yatsiEtkin", false), State = CheckState(DateTime.Parse(_takvim.Yatsi), DateTime.Parse(_takvim.YatsiSonu))};
+                var YatsiSonu = new Item() { Id = "yatsisonu", Adi = AppResources.YatsiSonu, Vakit = _takvim.YatsiSonu, Etkin = Preferences.Get("yatsisonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.YatsiSonu), DateTime.Parse(_takvim.FecriKazip))};
                 Items.Add(FecriKazip);
                 Items.Add(FecriSadik);
                 Items.Add(SabahSonu);
@@ -275,18 +276,16 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
                 else
                 {
-                    UserDialogs.Instance.Toast(
-                        "Konum alma başarısız, Lütfen konum hizmetlerinin açık olduğunu kontrol edin!",
-                        TimeSpan.FromSeconds(7));
+                    UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(7));
                 }
             }
             catch (Exception exception)
             {
-                UserDialogs.Instance.Alert(exception.Message, "Konuma erişmeye çalışırken bir sorun oluştu.");
+                UserDialogs.Instance.Alert(exception.Message, AppResources.KonumHatasi);
             }
             finally
             {
-                UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));
+                UserDialogs.Instance.Toast(AppResources.KonumYenilendi, TimeSpan.FromSeconds(3));
                 IsBusy = false;
             }
         }

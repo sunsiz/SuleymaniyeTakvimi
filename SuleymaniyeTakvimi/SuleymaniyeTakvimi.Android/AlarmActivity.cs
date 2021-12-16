@@ -150,6 +150,7 @@ namespace SuleymaniyeTakvimi.Droid
             }
             try
             {
+                CrossMediaManager.Current.MediaPlayer.Stop();
                 IMediaItem mediaItem;
                 var alarmSesi = Preferences.Get(key + "AlarmSesi", "kus");
                 mediaItem = CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").Result;
@@ -163,8 +164,10 @@ namespace SuleymaniyeTakvimi.Droid
             }
             catch (Exception exception)
             {
-                UserDialogs.Instance.Alert($"Alarm çalarken bir sorun oluştu, detaylar:\n{exception.Message}",
-                    "Ses Oynatma Hatası");
+                Log.Error("AlarmActivity-PlayAlarm",
+                    $"Alarm çalarken bir sorun oluştu, detaylar:\n{exception.Message}");
+                //UserDialogs.Instance.Alert($"Alarm çalarken bir sorun oluştu, detaylar:\n{exception.Message}",
+                //    "Ses Oynatma Hatası");
             }
             //}
         }
@@ -183,18 +186,21 @@ namespace SuleymaniyeTakvimi.Droid
             }
             catch (FeatureNotSupportedException ex)
             {
-                UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. " + ex.Message,
-                    "Cihaz desteklemiyor");
+                Log.Error("AlarmActivity-Vibrate", "Cihazınız titretmeyi desteklemiyor. " + ex.Message);
+                //UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. " + ex.Message,
+                //    "Cihaz desteklemiyor");
             }
             catch (Exception ex)
             {
-                UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
+                Log.Error("AlarmActivity-Vibrate", ex.Message);
+                //UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
             }
         }
 
         private void ShowNotification(string name)
         {
             CrossLocalNotifications.Current.Show($"Süleymaniye Vakfı Takvimi",$"{name} Vakti Hatırlatması", 1994);
+            CheckRemainingReminders();
         }
 
         public override void OnAttachedToWindow()
@@ -208,7 +214,28 @@ namespace SuleymaniyeTakvimi.Droid
         public void OnClick(View v)
         {
             CrossMediaManager.Current.MediaPlayer.Stop();
+            CheckRemainingReminders();
             Finish();
+        }
+
+        private void CheckRemainingReminders()
+        {
+            //Check if less than 2 days schedule remained, open the main window to reschedule weekly laram.
+            var lastAlarmDateStr = Preferences.Get("LastAlarmDate", "Empty");
+            if (lastAlarmDateStr != "Empty")
+            {
+                if ((DateTime.Parse(lastAlarmDateStr) - DateTime.Today).Days < 2)
+                {
+                    var notificationIntent = new Intent(this, typeof(MainActivity));
+                    notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
+                    notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
+                    //notificationIntent.PutExtra("has_service_been_started", true);
+
+                    var pendingIntent =
+                        PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent);
+                    pendingIntent.Send();
+                }
+            }
         }
     }
 }

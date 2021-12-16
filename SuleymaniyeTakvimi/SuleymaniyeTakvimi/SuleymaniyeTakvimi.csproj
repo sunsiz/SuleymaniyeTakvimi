@@ -6,6 +6,12 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Assets\svgs\**" />
+    <EmbeddedResource Remove="Assets\svgs\**" />
+    <None Remove="Assets\svgs\**" />
+  </ItemGroup>
+
 <!--  <ItemGroup>
     <Compile Remove="Assets\svgs\**" />
     <EmbeddedResource Remove="Assets\svgs\**" />
@@ -143,5 +149,12 @@
     <None Remove="Assets\horoz.wav" />
     <None Remove="Assets\kus.mp3" />
     <None Remove="Assets\kus.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Localization\AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Aci" xml:space="preserve">
+    <value>Angle</value>
+  </data>
   <data name="Aksam" xml:space="preserve">
     <value>Maghrib</value>
   </data>
@@ -129,6 +132,18 @@
   <data name="BesDakikaOnceden" xml:space="preserve">
     <value>5 min before</value>
   </data>
+  <data name="BildiriDevreDisiBaslik" xml:space="preserve">
+    <value>Notification Setting Disabled</value>
+  </data>
+  <data name="BildiriDevreDisiIcerik" xml:space="preserve">
+    <value>notification has been disabled.</value>
+  </data>
+  <data name="BildiriEtkinBaslik" xml:space="preserve">
+    <value>Notification Setting Enabled</value>
+  </data>
+  <data name="BildiriEtkinIcerik" xml:space="preserve">
+    <value>notification is enabled.</value>
+  </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
     <value>Show Notification</value>
   </data>
@@ -138,17 +153,50 @@
   <data name="Boylam" xml:space="preserve">
     <value>Longitude: {0:G7}</value>
   </data>
+  <data name="BoylamFormatsiz" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="CalarSaat" xml:space="preserve">
+    <value>Alarm Clock</value>
+  </data>
+  <data name="CihazDesteklemiyor" xml:space="preserve">
+    <value>Device does not support</value>
+  </data>
   <data name="Enlem" xml:space="preserve">
     <value>Latitude: {0:G7}</value>
   </data>
+  <data name="EnlemFormatsiz" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
     <value>Enable</value>
+  </data>
+  <data name="EzanSesi" xml:space="preserve">
+    <value>Adhan (Makkah)</value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
     <value>Sahar</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
     <value>Fajr</value>
+  </data>
+  <data name="FitratinSesi" xml:space="preserve">
+    <value>Radio Fitrah - Voice of Fitrah</value>
+  </data>
+  <data name="Hakkinda" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="HaritadaGoster" xml:space="preserve">
+    <value>Show On Map</value>
+  </data>
+  <data name="HaritaHatasi" xml:space="preserve">
+    <value>There is something happened while opening the map.\nDetailes:</value>
+  </data>
+  <data name="HorozOtusu" xml:space="preserve">
+    <value>Rooster Crows</value>
+  </data>
+  <data name="IcerikYukleniyor" xml:space="preserve">
+    <value>Content Loading ...</value>
   </data>
   <data name="Ikindi" xml:space="preserve">
     <value>Asr</value>
@@ -159,8 +207,38 @@
   <data name="Kaydet" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="Kible" xml:space="preserve">
+    <value>Qibla</value>
+  </data>
+  <data name="KibleGostergesi" xml:space="preserve">
+    <value>Qibla Indicator</value>
+  </data>
+  <data name="KonumHatasi" xml:space="preserve">
+    <value>There is something happened while try to get location</value>
+  </data>
+  <data name="KonumIzniBaslik" xml:space="preserve">
+    <value>No Permission to Access Location</value>
+  </data>
+  <data name="KonumIzniIcerik" xml:space="preserve">
+    <value>For the app to work properly, you need to give permission to access the Location!</value>
+  </data>
+  <data name="KonumKapali" xml:space="preserve">
+    <value>Location services are not enabled on the device. You have to turn on location services first!</value>
+  </data>
+  <data name="KonumKapaliBaslik" xml:space="preserve">
+    <value>Location Services Off</value>
+  </data>
   <data name="KonumYenileButton" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="KonumYenilendi" xml:space="preserve">
+    <value>Location and Times refreshed successfully</value>
+  </data>
+  <data name="KusCiviltisi" xml:space="preserve">
+    <value>Birds Chirping</value>
+  </data>
+  <data name="NamazVaktiAciklama" xml:space="preserve">
+    <value>https://suleymaniyetakvimi.com/Include/NamazVakitleri_en.htm</value>
   </data>
   <data name="Ogle" xml:space="preserve">
     <value>Dhuhr</value>
@@ -171,14 +249,50 @@
   <data name="PageTitle" xml:space="preserve">
     <value>Sulaymaniyah Foundation Calendar</value>
   </data>
+  <data name="Radyo" xml:space="preserve">
+    <value>Radio</value>
+  </data>
+  <data name="RadyoIcinInternet" xml:space="preserve">
+    <value>Internet is required to play the radio, please check that the internet is connected, or you can listen from the web site by clicking the 'Web Site' link.</value>
+  </data>
   <data name="SaatBolgesi" xml:space="preserve">
     <value>Time Zone: GMT {0}</value>
   </data>
   <data name="SabahSonu" xml:space="preserve">
     <value>End of Fajr</value>
   </data>
+  <data name="Sehir" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="SesTesti" xml:space="preserve">
+    <value>Test Sound</value>
+  </data>
+  <data name="SorunCikti" xml:space="preserve">
+    <value>We Encountered a Problem</value>
+  </data>
+  <data name="SosyalMedyaBaglantisi" xml:space="preserve">
+    <value>Our Social Media Links</value>
+  </data>
+  <data name="SuleymaniyeVakfi" xml:space="preserve">
+    <value>Sulaymaniyah Foundation</value>
+  </data>
+  <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
+    <value>Sulaymaniyah Foundation Calendar</value>
+  </data>
   <data name="Takvim" xml:space="preserve">
     <value>Calendar</value>
+  </data>
+  <data name="TakvimIcinInternet" xml:space="preserve">
+    <value>To renew the prayer times, you need to be connected to the internet, turn on WiFi or Mobile data and click 'REFRESH'.</value>
+  </data>
+  <data name="Tarih" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="TestiDurdur" xml:space="preserve">
+    <value>Stop the test</value>
+  </data>
+  <data name="TitremeyiDesteklemiyor" xml:space="preserve">
+    <value>Your device does not support vibrate.</value>
   </data>
   <data name="TitresimSwitch" xml:space="preserve">
     <value>Vibrate</value>
@@ -186,14 +300,26 @@
   <data name="Vakti" xml:space="preserve">
     <value>Time:</value>
   </data>
+  <data name="VaktiHatirlatmasi" xml:space="preserve">
+    <value>Time Reminder</value>
+  </data>
+  <data name="WebSayfa" xml:space="preserve">
+    <value>Web Site</value>
+  </data>
   <data name="Yatsi" xml:space="preserve">
     <value>Isha</value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
     <value>End of Isha</value>
   </data>
+  <data name="YayinAkisi" xml:space="preserve">
+    <value> Stream Schedules</value>
+  </data>
   <data name="Yukseklik" xml:space="preserve">
     <value>Altitude: {0}</value>
+  </data>
+  <data name="YukseklikFormatsiz" xml:space="preserve">
+    <value>Altitude</value>
   </data>
   <data name="Zamaninda" xml:space="preserve">
     <value>On time</value>

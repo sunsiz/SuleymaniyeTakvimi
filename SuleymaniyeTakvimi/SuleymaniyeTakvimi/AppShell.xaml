@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell x:Class="SuleymaniyeTakvimi.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.Views" Title="Süleymaniye Vakfi Namaz Vakitleri">
+<Shell x:Class="SuleymaniyeTakvimi.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.Views"
+       xmlns:localization="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
+       Title="Süleymaniye Vakfi Namaz Vakitleri">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -31,7 +33,7 @@
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe334;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>-->
-        <ShellContent Title="Takvim" ContentTemplate="{DataTemplate local:ItemsPage}">
+        <ShellContent Title="{x:Static localization:AppResources.Takvim}" ContentTemplate="{DataTemplate local:ItemsPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe855;" Size="Title" />
             </ShellContent.Icon>
@@ -41,17 +43,17 @@
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe855;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>-->
-        <ShellContent Title="Kıble" ContentTemplate="{DataTemplate local:CompassPage}">
+        <ShellContent Title="{x:Static localization:AppResources.Kible}" ContentTemplate="{DataTemplate local:CompassPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe87a;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Radyo" ContentTemplate="{DataTemplate local:RadioPage}">
+        <ShellContent Title="{x:Static localization:AppResources.Radyo}" ContentTemplate="{DataTemplate local:RadioPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe03e;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Hakkında" ContentTemplate="{DataTemplate local:AboutPage}">
+        <ShellContent Title="{x:Static localization:AppResources.Hakkinda}" ContentTemplate="{DataTemplate local:AboutPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xf233;" Size="Title" />
             </ShellContent.Icon>

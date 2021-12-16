@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Threading;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
+using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 
@@ -28,7 +30,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ICommand TapCommand => new Xamarin.Forms.Command<string>(async (url) => await Launcher.OpenAsync(url));
         public CompassViewModel()
         {
-            Title = "Kıble Göstergesi";
+            Title = AppResources.KibleGostergesi;
             StartCommand = new Command(Start);
             StopCommand = new Command(Stop);
             LocationCommand = new Command(GetLocation);
@@ -36,32 +38,32 @@ namespace SuleymaniyeTakvimi.ViewModels
             //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
             GoToMapCommand = new Command(async () => {
                 var location = new Location(Convert.ToDouble(current_latitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(current_longitude, CultureInfo.InvariantCulture.NumberFormat));
-                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(current_latitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(current_longitude, CultureInfo.InvariantCulture.NumberFormat));
+                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(current_latitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(current_longitude, CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
                 var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName };
 
                 try
                 {
-                    await Map.OpenAsync(location, options);
+                    await Map.OpenAsync(location, options).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
-                    UserDialogs.Instance.Toast("Haritayı açarken bir sorun oluştu.\nDetaylar: " + ex.Message);
+                    UserDialogs.Instance.Toast(AppResources.HaritaHatasi + ex.Message);
                 }
             });
         }
 
-        string lalongtitude;
-        public string Lalongtitude
+        string latAltitude;
+        public string LatAltitude
         {
-            get => lalongtitude;
-            set => SetProperty(ref lalongtitude, value);
+            get => latAltitude;
+            set => SetProperty(ref latAltitude, value);
         }
 
-        string degaltitude;
-        public string Degaltitude
+        string degLongitude;
+        public string DegLongitude
         {
-            get => degaltitude;
-            set => SetProperty(ref degaltitude, value);
+            get => degLongitude;
+            set => SetProperty(ref degLongitude, value);
         }
 
         double heading = 0;
@@ -123,7 +125,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
             finally { IsBusy = false; /*UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));*/ }
         }
@@ -143,14 +145,14 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //var d = GetDegree() - e.Reading.HeadingMagneticNorth;
                 //Heading = d;// e.Reading.HeadingMagneticNorth;
                 //Info = HeadingDisplay = $"Heading: {Heading}";
-                Lalongtitude = $"Enlem: {current_latitude.ToString("F2")}  |  Boylam: {current_longitude.ToString("F2")}";
-                Degaltitude = $"Yükseklik: {current_altitude.ToString("N0")}  |  Açı: {Heading.ToString("F2")}";
+                LatAltitude = $"{AppResources.EnlemFormatsiz}: {current_latitude.ToString("F2")}  |  {AppResources.YukseklikFormatsiz}: {current_altitude.ToString("N0")}";
+                DegLongitude = $"{AppResources.BoylamFormatsiz}: {current_longitude.ToString("F2")}  |  {AppResources.Aci}: {Heading.ToString("####")}";
                 Info = string.Format("Lat: {0} Long: {1} degree:{2}", current_latitude, current_longitude, Heading);
                 Konum = String.Format("{0:F4}, {1:F4}", current_latitude, current_longitude);
                 PointToQibla(e);
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {Debug.WriteLine(ex.Message); }
         }
 
         internal void PointToQibla(CompassChangedEventArgs e)

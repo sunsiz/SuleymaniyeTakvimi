@@ -8,15 +8,15 @@
     <ContentPage.Content><StackLayout BackgroundColor="Beige" Margin="0,15,0,0">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal">
             <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="NavajoWhite" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="35, *" ColumnSpacing="2">
-                <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Tarih" />
-                <Label Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Fecri Kazip" />
-                <Label Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Fecri Sadık" />
-                <Label Grid.Row="0" Grid.Column="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Sabah Sonu" />
-                <Label Grid.Row="0" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Öğle" />
-                <Label Grid.Row="0" Grid.Column="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="İkindi" />
-                <Label Grid.Row="0" Grid.Column="6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Akşam" />
-                <Label Grid.Row="0" Grid.Column="7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Yatsı" />
-                <Label Grid.Row="0" Grid.Column="8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="Yatsı Sonu" />
+                    <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Tarih}" />
+                    <Label Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.FecriKazip}" />
+                    <Label Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.FecriSadik}" />
+                    <Label Grid.Row="0" Grid.Column="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.SabahSonu}" />
+                    <Label Grid.Row="0" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Ogle}" />
+                    <Label Grid.Row="0" Grid.Column="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Ikindi}" />
+                    <Label Grid.Row="0" Grid.Column="6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Aksam}" />
+                    <Label Grid.Row="0" Grid.Column="7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Yatsi}" />
+                    <Label Grid.Row="0" Grid.Column="8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.YatsiSonu}" />
                 <!--  monthly time list structure  -->
                     <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" WidthRequest="2048" BackgroundColor="Beige" VerticalScrollBarVisibility="Never" ItemsSource="{Binding MonthlyTakvim}" Footer="{Binding .}">
                     <!--  CachingStrategy="RecycleElement"  -->

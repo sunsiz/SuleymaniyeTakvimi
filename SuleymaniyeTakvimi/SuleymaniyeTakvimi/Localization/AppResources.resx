@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Aci" xml:space="preserve">
+    <value>Açı</value>
+  </data>
   <data name="Aksam" xml:space="preserve">
     <value>Akşam</value>
   </data>
@@ -129,6 +132,18 @@
   <data name="BesDakikaOnceden" xml:space="preserve">
     <value>5 dakika önceden</value>
   </data>
+  <data name="BildiriDevreDisiBaslik" xml:space="preserve">
+    <value>Bildiri Ayarı Devre Dışı</value>
+  </data>
+  <data name="BildiriDevreDisiIcerik" xml:space="preserve">
+    <value>için bildiri devre dışı bırakıldı.</value>
+  </data>
+  <data name="BildiriEtkinBaslik" xml:space="preserve">
+    <value>Bildiri Ayarı Etkinleşti</value>
+  </data>
+  <data name="BildiriEtkinIcerik" xml:space="preserve">
+    <value>için bildiri etkinleştirildi.</value>
+  </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
     <value>Bildirim Göster</value>
   </data>
@@ -138,17 +153,50 @@
   <data name="Boylam" xml:space="preserve">
     <value>Boylam: {0:G7}</value>
   </data>
+  <data name="BoylamFormatsiz" xml:space="preserve">
+    <value>Boylam</value>
+  </data>
+  <data name="CalarSaat" xml:space="preserve">
+    <value>Çalar Saat</value>
+  </data>
+  <data name="CihazDesteklemiyor" xml:space="preserve">
+    <value>Cihaz Desteklemiyor</value>
+  </data>
   <data name="Enlem" xml:space="preserve">
     <value>Enlem: {0:G7}</value>
   </data>
+  <data name="EnlemFormatsiz" xml:space="preserve">
+    <value>Enlem</value>
+  </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
     <value>Etkinleştir</value>
+  </data>
+  <data name="EzanSesi" xml:space="preserve">
+    <value>Ezan Sesi</value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
     <value>Fecri Kâzip</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
     <value>Fecr-i Sadık</value>
+  </data>
+  <data name="FitratinSesi" xml:space="preserve">
+    <value>Radyo Fıtrat - Fıtrat'ın Sesi</value>
+  </data>
+  <data name="Hakkinda" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="HaritadaGoster" xml:space="preserve">
+    <value>Haritada Göster</value>
+  </data>
+  <data name="HaritaHatasi" xml:space="preserve">
+    <value>Haritayı açarken bir sorun oluştu.\nDetaylar:</value>
+  </data>
+  <data name="HorozOtusu" xml:space="preserve">
+    <value>Horoz Ötüşü</value>
+  </data>
+  <data name="IcerikYukleniyor" xml:space="preserve">
+    <value>İçerik yükleniyor ...</value>
   </data>
   <data name="Ikindi" xml:space="preserve">
     <value>İkindi</value>
@@ -159,8 +207,38 @@
   <data name="Kaydet" xml:space="preserve">
     <value>Kaydet</value>
   </data>
+  <data name="Kible" xml:space="preserve">
+    <value>Kıble</value>
+  </data>
+  <data name="KibleGostergesi" xml:space="preserve">
+    <value>Kıble Göstergesi</value>
+  </data>
+  <data name="KonumHatasi" xml:space="preserve">
+    <value>Konuma erişmeye çalışırken bir sorun oluştu.</value>
+  </data>
+  <data name="KonumIzniBaslik" xml:space="preserve">
+    <value>Konuma Erişme İzni Yok</value>
+  </data>
+  <data name="KonumIzniIcerik" xml:space="preserve">
+    <value>Uygulamanın normal çalışması için Konuma erişme yetkisi vermeniz lazım!</value>
+  </data>
+  <data name="KonumKapali" xml:space="preserve">
+    <value>Cihazda konum hizmetleri etkin değil. Önce konum hizmetlerini açmanız lazım!</value>
+  </data>
+  <data name="KonumKapaliBaslik" xml:space="preserve">
+    <value>Konum Hizmetleri Kapalı</value>
+  </data>
   <data name="KonumYenileButton" xml:space="preserve">
     <value>Yenile</value>
+  </data>
+  <data name="KonumYenilendi" xml:space="preserve">
+    <value>Konum ve vakitler başarıyla yenilendi</value>
+  </data>
+  <data name="KusCiviltisi" xml:space="preserve">
+    <value>Kuş Cıvıltısı</value>
+  </data>
+  <data name="NamazVaktiAciklama" xml:space="preserve">
+    <value>https://suleymaniyetakvimi.com/Include/NamazVakitleri.htm</value>
   </data>
   <data name="Ogle" xml:space="preserve">
     <value>Öğle</value>
@@ -171,14 +249,50 @@
   <data name="PageTitle" xml:space="preserve">
     <value>Süleymaniye Vakfı Takvimi</value>
   </data>
+  <data name="Radyo" xml:space="preserve">
+    <value>Radyo</value>
+  </data>
+  <data name="RadyoIcinInternet" xml:space="preserve">
+    <value>Radyo oynatmak için internet gerekli, lütfen internetin bağlı olduğunu kontrol edin, yada 'Web Sayfa' linkine tıklayarak web syfasından dinleyebilirsiniz.</value>
+  </data>
   <data name="SaatBolgesi" xml:space="preserve">
     <value>Saat Bölgesi: GMT {0}</value>
   </data>
   <data name="SabahSonu" xml:space="preserve">
     <value>Sabah Sonu</value>
   </data>
+  <data name="Sehir" xml:space="preserve">
+    <value>Şehir</value>
+  </data>
+  <data name="SesTesti" xml:space="preserve">
+    <value>Ses Testi</value>
+  </data>
+  <data name="SorunCikti" xml:space="preserve">
+    <value>Bir Sorunla Karşılaştık</value>
+  </data>
+  <data name="SosyalMedyaBaglantisi" xml:space="preserve">
+    <value>Sosyal medya bağlantılarımız</value>
+  </data>
+  <data name="SuleymaniyeVakfi" xml:space="preserve">
+    <value>Süleymaniye Vakfı</value>
+  </data>
+  <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
+    <value>Süleymaniye Vakfı Takvimi</value>
+  </data>
   <data name="Takvim" xml:space="preserve">
     <value>Takvim</value>
+  </data>
+  <data name="TakvimIcinInternet" xml:space="preserve">
+    <value>Namaz vakitlerini yenilemek için internete bağlı olmanız gerekiyor, WiFi yada Mobil veriyi açın ve 'YENİLE' yi tıklayın.</value>
+  </data>
+  <data name="Tarih" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="TestiDurdur" xml:space="preserve">
+    <value>Testi Durdur</value>
+  </data>
+  <data name="TitremeyiDesteklemiyor" xml:space="preserve">
+    <value>Cihazınız Titretmeyi Desteklemiyor.</value>
   </data>
   <data name="TitresimSwitch" xml:space="preserve">
     <value>Titret</value>
@@ -186,14 +300,26 @@
   <data name="Vakti" xml:space="preserve">
     <value>Vakti:</value>
   </data>
+  <data name="VaktiHatirlatmasi" xml:space="preserve">
+    <value>Vakti Hatırlatması</value>
+  </data>
+  <data name="WebSayfa" xml:space="preserve">
+    <value> Web Sayfa</value>
+  </data>
   <data name="Yatsi" xml:space="preserve">
     <value>Yatsı</value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
     <value>Yatsı Sonu</value>
   </data>
+  <data name="YayinAkisi" xml:space="preserve">
+    <value> Yayın Akışı</value>
+  </data>
   <data name="Yukseklik" xml:space="preserve">
     <value>Yükseklik: {0}</value>
+  </data>
+  <data name="YukseklikFormatsiz" xml:space="preserve">
+    <value>Yükseklik</value>
   </data>
   <data name="Zamaninda" xml:space="preserve">
     <value>Zamanında</value>

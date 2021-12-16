@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage x:Class="SuleymaniyeTakvimi.Views.RadioPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              Title="{Binding Title}" Visual="Material">
     <ContentPage.BindingContext>
         <viewModels:RadioViewModel />
@@ -17,7 +18,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="{StaticResource PrimaryDarkColor}" FontSize="22" />
-                                    <Span Text=" Yayın Akışı" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}">
+                                    <Span Text="{x:Static resources:AppResources.YayinAkisi}" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}">
                                         <Span.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.instagram.com/radyofitrat/" />
                                         </Span.GestureRecognizers>
@@ -46,7 +47,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="{StaticResource PrimaryDarkColor}" FontSize="22" />
-                                    <Span Text=" Web Sayfa" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}">
+                                    <Span Text="{x:Static resources:AppResources.WebSayfa}" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}">
                                         <Span.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" />
                                         </Span.GestureRecognizers>

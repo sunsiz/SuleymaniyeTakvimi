@@ -1,4 +1,5 @@
-﻿using Xamarin.Essentials;
+﻿using SuleymaniyeTakvimi.Localization;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.ViewModels
@@ -9,7 +10,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public AboutViewModel()
         {
-            Title = "Süleymaniye vakfı";
+            Title = AppResources.SuleymaniyeVakfi;
         }
     }
 }

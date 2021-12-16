@@ -61,6 +61,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Açı.
+        /// </summary>
+        internal static string Aci {
+            get {
+                return ResourceManager.GetString("Aci", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Akşam.
         /// </summary>
         internal static string Aksam {
@@ -97,6 +106,42 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bildiri Ayarı Devre Dışı.
+        /// </summary>
+        internal static string BildiriDevreDisiBaslik {
+            get {
+                return ResourceManager.GetString("BildiriDevreDisiBaslik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to için bildiri devre dışı bırakıldı..
+        /// </summary>
+        internal static string BildiriDevreDisiIcerik {
+            get {
+                return ResourceManager.GetString("BildiriDevreDisiIcerik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bildiri Ayarı Etkinleşti.
+        /// </summary>
+        internal static string BildiriEtkinBaslik {
+            get {
+                return ResourceManager.GetString("BildiriEtkinBaslik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to için bildiri etkinleştirildi..
+        /// </summary>
+        internal static string BildiriEtkinIcerik {
+            get {
+                return ResourceManager.GetString("BildiriEtkinIcerik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bildirim Göster.
         /// </summary>
         internal static string BildirimGosterSwitch {
@@ -124,6 +169,33 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Boylam.
+        /// </summary>
+        internal static string BoylamFormatsiz {
+            get {
+                return ResourceManager.GetString("BoylamFormatsiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Çalar Saat.
+        /// </summary>
+        internal static string CalarSaat {
+            get {
+                return ResourceManager.GetString("CalarSaat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cihaz Desteklemiyor.
+        /// </summary>
+        internal static string CihazDesteklemiyor {
+            get {
+                return ResourceManager.GetString("CihazDesteklemiyor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enlem: {0:G7}.
         /// </summary>
         internal static string Enlem {
@@ -133,11 +205,29 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enlem.
+        /// </summary>
+        internal static string EnlemFormatsiz {
+            get {
+                return ResourceManager.GetString("EnlemFormatsiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Etkinleştir.
         /// </summary>
         internal static string EtkinlestirSwitch {
             get {
                 return ResourceManager.GetString("EtkinlestirSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ezan Sesi.
+        /// </summary>
+        internal static string EzanSesi {
+            get {
+                return ResourceManager.GetString("EzanSesi", resourceCulture);
             }
         }
         
@@ -156,6 +246,60 @@ namespace SuleymaniyeTakvimi.Localization {
         internal static string FecriSadik {
             get {
                 return ResourceManager.GetString("FecriSadik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radyo Fıtrat - Fıtrat&apos;ın Sesi.
+        /// </summary>
+        internal static string FitratinSesi {
+            get {
+                return ResourceManager.GetString("FitratinSesi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hakkında.
+        /// </summary>
+        internal static string Hakkinda {
+            get {
+                return ResourceManager.GetString("Hakkinda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Haritada Göster.
+        /// </summary>
+        internal static string HaritadaGoster {
+            get {
+                return ResourceManager.GetString("HaritadaGoster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Haritayı açarken bir sorun oluştu.\nDetaylar:.
+        /// </summary>
+        internal static string HaritaHatasi {
+            get {
+                return ResourceManager.GetString("HaritaHatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horoz Ötüşü.
+        /// </summary>
+        internal static string HorozOtusu {
+            get {
+                return ResourceManager.GetString("HorozOtusu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to İçerik yükleniyor ....
+        /// </summary>
+        internal static string IcerikYukleniyor {
+            get {
+                return ResourceManager.GetString("IcerikYukleniyor", resourceCulture);
             }
         }
         
@@ -187,11 +331,101 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kıble.
+        /// </summary>
+        internal static string Kible {
+            get {
+                return ResourceManager.GetString("Kible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kıble Göstergesi.
+        /// </summary>
+        internal static string KibleGostergesi {
+            get {
+                return ResourceManager.GetString("KibleGostergesi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Konuma erişmeye çalışırken bir sorun oluştu..
+        /// </summary>
+        internal static string KonumHatasi {
+            get {
+                return ResourceManager.GetString("KonumHatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Konuma Erişme İzni Yok.
+        /// </summary>
+        internal static string KonumIzniBaslik {
+            get {
+                return ResourceManager.GetString("KonumIzniBaslik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uygulamanın normal çalışması için Konuma erişme yetkisi vermeniz lazım!.
+        /// </summary>
+        internal static string KonumIzniIcerik {
+            get {
+                return ResourceManager.GetString("KonumIzniIcerik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cihazda konum hizmetleri etkin değil. Önce konum hizmetlerini açmanız lazım!.
+        /// </summary>
+        internal static string KonumKapali {
+            get {
+                return ResourceManager.GetString("KonumKapali", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Konum Hizmetleri Kapalı.
+        /// </summary>
+        internal static string KonumKapaliBaslik {
+            get {
+                return ResourceManager.GetString("KonumKapaliBaslik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yenile.
         /// </summary>
         internal static string KonumYenileButton {
             get {
                 return ResourceManager.GetString("KonumYenileButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Konum ve vakitler başarıyla yenilendi.
+        /// </summary>
+        internal static string KonumYenilendi {
+            get {
+                return ResourceManager.GetString("KonumYenilendi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kuş Cıvıltısı.
+        /// </summary>
+        internal static string KusCiviltisi {
+            get {
+                return ResourceManager.GetString("KusCiviltisi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://suleymaniyetakvimi.com/Include/NamazVakitleri.htm.
+        /// </summary>
+        internal static string NamazVaktiAciklama {
+            get {
+                return ResourceManager.GetString("NamazVaktiAciklama", resourceCulture);
             }
         }
         
@@ -223,6 +457,24 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Radyo.
+        /// </summary>
+        internal static string Radyo {
+            get {
+                return ResourceManager.GetString("Radyo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radyo oynatmak için internet gerekli, lütfen internetin bağlı olduğunu kontrol edin, yada &apos;Web Sayfa&apos; linkine tıklayarak web syfasından dinleyebilirsiniz..
+        /// </summary>
+        internal static string RadyoIcinInternet {
+            get {
+                return ResourceManager.GetString("RadyoIcinInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saat Bölgesi: GMT {0}.
         /// </summary>
         internal static string SaatBolgesi {
@@ -241,11 +493,101 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Şehir.
+        /// </summary>
+        internal static string Sehir {
+            get {
+                return ResourceManager.GetString("Sehir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ses Testi.
+        /// </summary>
+        internal static string SesTesti {
+            get {
+                return ResourceManager.GetString("SesTesti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bir Sorunla Karşılaştık.
+        /// </summary>
+        internal static string SorunCikti {
+            get {
+                return ResourceManager.GetString("SorunCikti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sosyal medya bağlantılarımız.
+        /// </summary>
+        internal static string SosyalMedyaBaglantisi {
+            get {
+                return ResourceManager.GetString("SosyalMedyaBaglantisi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Süleymaniye Vakfı.
+        /// </summary>
+        internal static string SuleymaniyeVakfi {
+            get {
+                return ResourceManager.GetString("SuleymaniyeVakfi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Süleymaniye Vakfı Takvimi.
+        /// </summary>
+        internal static string SuleymaniyeVakfiTakvimi {
+            get {
+                return ResourceManager.GetString("SuleymaniyeVakfiTakvimi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Takvim.
         /// </summary>
         internal static string Takvim {
             get {
                 return ResourceManager.GetString("Takvim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Namaz vakitlerini yenilemek için internete bağlı olmanız gerekiyor, WiFi yada Mobil veriyi açın ve &apos;YENİLE&apos; yi tıklayın..
+        /// </summary>
+        internal static string TakvimIcinInternet {
+            get {
+                return ResourceManager.GetString("TakvimIcinInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tarih.
+        /// </summary>
+        internal static string Tarih {
+            get {
+                return ResourceManager.GetString("Tarih", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testi Durdur.
+        /// </summary>
+        internal static string TestiDurdur {
+            get {
+                return ResourceManager.GetString("TestiDurdur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cihazınız Titretmeyi Desteklemiyor..
+        /// </summary>
+        internal static string TitremeyiDesteklemiyor {
+            get {
+                return ResourceManager.GetString("TitremeyiDesteklemiyor", resourceCulture);
             }
         }
         
@@ -268,6 +610,24 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vakti Hatırlatması.
+        /// </summary>
+        internal static string VaktiHatirlatmasi {
+            get {
+                return ResourceManager.GetString("VaktiHatirlatmasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Web Sayfa.
+        /// </summary>
+        internal static string WebSayfa {
+            get {
+                return ResourceManager.GetString("WebSayfa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yatsı.
         /// </summary>
         internal static string Yatsi {
@@ -286,11 +646,29 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Yayın Akışı.
+        /// </summary>
+        internal static string YayinAkisi {
+            get {
+                return ResourceManager.GetString("YayinAkisi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yükseklik: {0}.
         /// </summary>
         internal static string Yukseklik {
             get {
                 return ResourceManager.GetString("Yukseklik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yükseklik.
+        /// </summary>
+        internal static string YukseklikFormatsiz {
+            get {
+                return ResourceManager.GetString("YukseklikFormatsiz", resourceCulture);
             }
         }
         
