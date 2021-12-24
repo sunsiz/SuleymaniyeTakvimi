@@ -61,7 +61,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             try
             {
                 //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
-                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
+                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(false);
             if (placemark != null)
                 City = placemark.FirstOrDefault()?.AdminArea ?? placemark.FirstOrDefault()?.CountryName;
             }
@@ -79,7 +79,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             Items = new ObservableCollection<Item>();
             var data = new DataService();
             _takvim = data.takvim;
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Item>(OnItemSelected);
 
@@ -105,22 +105,26 @@ namespace SuleymaniyeTakvimi.ViewModels
             RefreshLocationCommand = new Command(async () =>
             {
                 await GetPrayerTimesAsync().ConfigureAwait(false);
-                await ExecuteLoadItemsCommand().ConfigureAwait(false);
+                ExecuteLoadItemsCommand();
             });
             Task.Run(async () =>
             {
+                if (!data.CheckInternet()) return;
                 Log.Warning("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
-                //await Task.Delay(3000).ConfigureAwait(true);
+                await Task.Delay(20000).ConfigureAwait(true);
                 //DataService data = new DataService();
                 data.SetWeeklyAlarms();
                 _takvim = data.VakitHesabi();
-                await ExecuteLoadItemsCommand().ConfigureAwait(false);
+                ExecuteLoadItemsCommand();
+                var location = await data.GetCurrentLocationAsync().ConfigureAwait(false);
+                if (location != null && location.Enlem != 0)
+                    data.GetMonthlyPrayerTimes(new Location(location.Enlem, location.Boylam, location.Yukseklik));
                 //GetCity();
-            });
+            }).ConfigureAwait(false);
             Log.Warning("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
-        private async Task ExecuteLoadItemsCommand()
+        private ObservableCollection<Item> ExecuteLoadItemsCommand()
         {
             IsBusy = true;
             Log.Warning("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
@@ -172,6 +176,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Log.Warning("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
                 IsBusy = false;
             }
+
+            return Items;
         }
         private string CheckState(DateTime current, DateTime next)
         {
@@ -217,7 +223,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             await Shell.Current.GoToAsync($"{nameof(MonthPage)}");
         }
 
-        async Task GetPrayerTimesAsync()
+        private async Task GetPrayerTimesAsync()
         {
             IsBusy = true;
             var data = new DataService();
@@ -237,57 +243,60 @@ namespace SuleymaniyeTakvimi.ViewModels
             //        }
             //    }
             //}
-            try
+            //try
+            //{
+                //var takvim = await data.GetCurrentLocationAsync().ConfigureAwait(false);
+                ////var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
+                ////CancellationTokenSource cts = new CancellationTokenSource();
+                ////var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);
+                ////if (location != null)
+                //if (takvim != null && takvim.Enlem > 0 && takvim.Boylam > 0)
+                //{
+                //    Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
+                //    data.konum = new Takvim
+                //    {
+                //        Enlem = location.Latitude,
+                //        Boylam = location.Longitude,
+                //        Yukseklik = location.Altitude ?? 0
+                //    };
+            _takvim = Vakitler = await data.GetPrayerTimes().ConfigureAwait(false);
+            if (Vakitler.Enlem != 0)
             {
-                var takvim = await data.GetCurrentLocation().ConfigureAwait(true);
-                //var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
-                //CancellationTokenSource cts = new CancellationTokenSource();
-                //var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);
-                //if (location != null)
-                if (takvim != null && takvim.Enlem > 0 && takvim.Boylam > 0)
-                {
-                    Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
-                    data.konum = new Takvim();
-                    data.konum.Enlem = location.Latitude;
-                    data.konum.Boylam = location.Longitude;
-                    data.konum.Yukseklik = location.Altitude ?? 0;
-                    _takvim = Vakitler = data.VakitHesabi();
-                    if (Vakitler.Enlem != 0)
-                    {
-                        //Application.Current.Properties["takvim"] = Vakitler;
-                        Preferences.Set("enlem", Vakitler.Enlem);
-                        Preferences.Set("boylam", Vakitler.Boylam);
-                        Preferences.Set("yukseklik", Vakitler.Yukseklik);
-                        Preferences.Set("saatbolgesi", Vakitler.SaatBolgesi);
-                        Preferences.Set("yazkis", Vakitler.YazKis);
-                        Preferences.Set("fecrikazip", Vakitler.FecriKazip);
-                        Preferences.Set("fecrisadik", Vakitler.FecriSadik);
-                        Preferences.Set("sabahsonu", Vakitler.SabahSonu);
-                        Preferences.Set("ogle", Vakitler.Ogle);
-                        Preferences.Set("ikindi", Vakitler.Ikindi);
-                        Preferences.Set("aksam", Vakitler.Aksam);
-                        Preferences.Set("yatsi", Vakitler.Yatsi);
-                        Preferences.Set("yatsisonu", Vakitler.YatsiSonu);
-                        Preferences.Set("tarih", Vakitler.Tarih);
-                        //await Application.Current.SavePropertiesAsync();
-                    }
-                    GetCity();
-                    LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
-                }
-                else
-                {
-                    UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(7));
-                }
+                //Application.Current.Properties["takvim"] = Vakitler;
+                Preferences.Set("enlem", Vakitler.Enlem);
+                Preferences.Set("boylam", Vakitler.Boylam);
+                Preferences.Set("yukseklik", Vakitler.Yukseklik);
+                Preferences.Set("saatbolgesi", Vakitler.SaatBolgesi);
+                Preferences.Set("yazkis", Vakitler.YazKis);
+                Preferences.Set("fecrikazip", Vakitler.FecriKazip);
+                Preferences.Set("fecrisadik", Vakitler.FecriSadik);
+                Preferences.Set("sabahsonu", Vakitler.SabahSonu);
+                Preferences.Set("ogle", Vakitler.Ogle);
+                Preferences.Set("ikindi", Vakitler.Ikindi);
+                Preferences.Set("aksam", Vakitler.Aksam);
+                Preferences.Set("yatsi", Vakitler.Yatsi);
+                Preferences.Set("yatsisonu", Vakitler.YatsiSonu);
+                Preferences.Set("tarih", Vakitler.Tarih);
+                //await Application.Current.SavePropertiesAsync();
+                GetCity();
+                LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
             }
-            catch (Exception exception)
+            else
             {
-                UserDialogs.Instance.Alert(exception.Message, AppResources.KonumHatasi);
+                UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(7));
             }
-            finally
-            {
-                UserDialogs.Instance.Toast(AppResources.KonumYenilendi, TimeSpan.FromSeconds(3));
-                IsBusy = false;
-            }
+
+            IsBusy = false;
+            //}
+            //catch (Exception exception)
+            //{
+            //    UserDialogs.Instance.Alert(exception.Message, AppResources.KonumHatasi);
+            //}
+            //finally
+            //{
+            //    UserDialogs.Instance.Toast(AppResources.KonumYenilendi, TimeSpan.FromSeconds(3));
+            //    IsBusy = false;
+            //}
         }
     }
 }

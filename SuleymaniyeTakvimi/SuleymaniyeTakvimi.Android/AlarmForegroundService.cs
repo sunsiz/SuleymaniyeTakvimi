@@ -66,7 +66,7 @@ namespace SuleymaniyeTakvimi.Droid
         //    }
         //}
 
-        public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, string name)
+        public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, int timeOffset, string name)
         {
             using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService))
             using (var calendar = Calendar.Instance)
@@ -80,9 +80,9 @@ namespace SuleymaniyeTakvimi.Droid
                 //calendar.Set(CalendarField.Second, 0);
                 var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
                 activityIntent.PutExtra("name", name);
-                activityIntent.PutExtra("time", triggerTimeSpan.ToString());
+                activityIntent.PutExtra("time", (triggerTimeSpan - TimeSpan.FromMinutes(timeOffset)).ToString());
                 activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
-                //without the reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
+                //without the different reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
                 var requestCode = name switch
                 {
                     "Fecri Kazip" => date.DayOfYear + 1000,
@@ -259,8 +259,9 @@ namespace SuleymaniyeTakvimi.Droid
                     this.StartForeground(NOTIFICATION_ID, _notification);
                     _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
                     _isStarted = true;
-                    Task startupWork = new Task(() =>
+                    Task startupWork = new Task(async () =>
                     {
+                        await Task.Delay(45000).ConfigureAwait(true);
                         Log.Info("OnStartCommand", $"Starting Set Alarm at {DateTime.Now}");
                         DataService data = new DataService();
                         data.SetWeeklyAlarms();
@@ -278,6 +279,18 @@ namespace SuleymaniyeTakvimi.Droid
             }
 
             return StartCommandResult.Sticky;
+        }
+        public override void OnDestroy()
+        {
+            // We need to shut things down.
+            //Log.Info(TAG, "OnDestroy: The started service is shutting down.");
+            // Stop the handler.
+            _handler.RemoveCallbacks(_runnable);
+            // Remove the notification from the status bar.
+            //var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+            _notificationManager.Cancel(NOTIFICATION_ID);
+            _isStarted = false;
+            base.OnDestroy();
         }
     }
 }

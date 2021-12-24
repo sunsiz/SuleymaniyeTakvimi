@@ -12,21 +12,21 @@ namespace SuleymaniyeTakvimi.Services
 {
     public class ReminderService//:IPeriodicTask
     {
-        public TimeSpan Interval { get; set; }
-        public ReminderService(int seconds) => Interval = TimeSpan.FromSeconds(seconds);
+        //public TimeSpan Interval { get; set; }
+        //public ReminderService(int seconds) => Interval = TimeSpan.FromSeconds(seconds);
 
-        public async Task<bool> StartJob()
-        {
-            DataService data = new DataService();
-            data.CheckReminders();
-            //Testing Notification - Will display notification every time service running.
-            CrossLocalNotifications.Current.Show("Service Running", $"Service running well at {DateTime.Now.ToShortTimeString()}", 1000);
+        //public async Task<bool> StartJob()
+        //{
+        //    DataService data = new DataService();
+        //    data.CheckReminders();
+        //    //Testing Notification - Will display notification every time service running.
+        //    CrossLocalNotifications.Current.Show("Service Running", $"Service running well at {DateTime.Now.ToShortTimeString()}", 1000);
 
-            //Testing play audio - will play audio every period of service.
-            await CrossMediaManager.Current.PlayFromAssembly("kus.wav").ConfigureAwait(false);
-            //await CrossMediaManager.Current.Play("https://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
-            return true;
-        }
+        //    //Testing play audio - will play audio every period of service.
+        //    await CrossMediaManager.Current.PlayFromAssembly("kus.wav").ConfigureAwait(false);
+        //    //await CrossMediaManager.Current.Play("https://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
+        //    return true;
+        //}
 
     }
 }

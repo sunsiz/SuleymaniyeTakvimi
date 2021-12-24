@@ -175,10 +175,10 @@
     <value>Ezan Sesi</value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
-    <value>Fecri Kâzip</value>
+    <value>Fecr-i Kâzip</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
-    <value>Fecr-i Sadık</value>
+    <value>Fecr-i Sâdık</value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
     <value>Radyo Fıtrat - Fıtrat'ın Sesi</value>
@@ -284,6 +284,9 @@
   </data>
   <data name="TakvimIcinInternet" xml:space="preserve">
     <value>Namaz vakitlerini yenilemek için internete bağlı olmanız gerekiyor, WiFi yada Mobil veriyi açın ve 'YENİLE' yi tıklayın.</value>
+  </data>
+  <data name="TakvimIcinInternetBaslik" xml:space="preserve">
+    <value>İnternet Gerekiyor</value>
   </data>
   <data name="Tarih" xml:space="preserve">
     <value>Tarih</value>

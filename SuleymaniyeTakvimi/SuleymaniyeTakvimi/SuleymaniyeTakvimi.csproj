@@ -137,6 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Services\BackgroundNotificationJob.cs" />
+    <Compile Remove="Services\ForegroundServiceControlService.cs" />
+    <Compile Remove="Services\ReminderService.cs" />
     <Compile Remove="ShinyDelegate.cs" />
     <Compile Remove="Startup.cs" />
   </ItemGroup>

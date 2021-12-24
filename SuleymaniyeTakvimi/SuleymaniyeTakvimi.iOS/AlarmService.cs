@@ -16,7 +16,7 @@ namespace SuleymaniyeTakvimi.iOS
         
         //}
 
-        public void SetAlarm(DateTime today, TimeSpan triggerTimeSpan, string name)
+        public void SetAlarm(DateTime today, TimeSpan triggerTimeSpan, int timeOffset, string name)
         {
             //UILocalNotification notification = new UILocalNotification();
             DateTime triggerDateTime = today;

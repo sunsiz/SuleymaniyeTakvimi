@@ -232,7 +232,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fecri Kâzip.
+        ///   Looks up a localized string similar to Fecr-i Kâzip.
         /// </summary>
         internal static string FecriKazip {
             get {
@@ -241,7 +241,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fecr-i Sadık.
+        ///   Looks up a localized string similar to Fecr-i Sâdık.
         /// </summary>
         internal static string FecriSadik {
             get {
@@ -561,6 +561,15 @@ namespace SuleymaniyeTakvimi.Localization {
         internal static string TakvimIcinInternet {
             get {
                 return ResourceManager.GetString("TakvimIcinInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to İnternet Gerekiyor.
+        /// </summary>
+        internal static string TakvimIcinInternetBaslik {
+            get {
+                return ResourceManager.GetString("TakvimIcinInternetBaslik", resourceCulture);
             }
         }
         

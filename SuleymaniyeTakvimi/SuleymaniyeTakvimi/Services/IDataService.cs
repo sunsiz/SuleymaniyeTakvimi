@@ -9,7 +9,8 @@ namespace SuleymaniyeTakvimi.Services
     public interface IDataService
     {
         Takvim VakitHesabi();
-        Task<Takvim> GetPrayerTimes(Location location);
-        void GetMonthlyPrayerTimes(Location location);
+        Task<Takvim> GetPrayerTimes();
+        IList<Takvim> GetMonthlyPrayerTimes(Location location);
+        void SetWeeklyAlarms();
     }
 }

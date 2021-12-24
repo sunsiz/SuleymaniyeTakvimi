@@ -108,7 +108,7 @@ namespace SuleymaniyeTakvimi.Droid
             }
         }
 
-        private static void PlayAlarm(string name, string title)
+        private static async void PlayAlarm(string name, string title)
         {
             Analytics.TrackEvent("PlayAlarm in the AlarmActivity");
             //if (name == "test")
@@ -153,7 +153,7 @@ namespace SuleymaniyeTakvimi.Droid
                 CrossMediaManager.Current.MediaPlayer.Stop();
                 IMediaItem mediaItem;
                 var alarmSesi = Preferences.Get(key + "AlarmSesi", "kus");
-                mediaItem = CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").Result;
+                mediaItem = await CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").ConfigureAwait(true);
                 //mediaItem.DisplayTitle = title;
                 //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
                 //CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;

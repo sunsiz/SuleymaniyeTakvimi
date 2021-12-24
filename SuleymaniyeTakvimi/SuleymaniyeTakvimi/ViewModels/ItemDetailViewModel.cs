@@ -86,13 +86,13 @@ namespace SuleymaniyeTakvimi.ViewModels
             testButtonText = AppResources.SesTesti;
         }
 
-        private void TestButtonClicked(object obj)
+        private async void TestButtonClicked(object obj)
         {
             if (TestButtonText == AppResources.SesTesti)
             {
                 IMediaItem mediaItem;
                 var alarmSesi = 
-                mediaItem = CrossMediaManager.Current.PlayFromAssembly(SelectedSound.fileName + ".wav").Result;
+                mediaItem = await CrossMediaManager.Current.PlayFromAssembly(SelectedSound.fileName + ".wav").ConfigureAwait(true);
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 CrossMediaManager.Current.MediaPlayer.Play(mediaItem);

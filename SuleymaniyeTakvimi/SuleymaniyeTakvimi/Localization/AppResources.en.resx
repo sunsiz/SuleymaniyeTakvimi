@@ -285,6 +285,9 @@
   <data name="TakvimIcinInternet" xml:space="preserve">
     <value>To renew the prayer times, you need to be connected to the internet, turn on WiFi or Mobile data and click 'REFRESH'.</value>
   </data>
+  <data name="TakvimIcinInternetBaslik" xml:space="preserve">
+    <value>Internet is required</value>
+  </data>
   <data name="Tarih" xml:space="preserve">
     <value>Date</value>
   </data>
