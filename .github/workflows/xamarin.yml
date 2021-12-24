@@ -25,7 +25,7 @@ jobs:
           # Version of Xamarin.Mac to select
           xamarin-mac-version: 7 # optional
           # Version of Xamarin.Android to select
-          xamarin-android-version: 10 # optional
+          xamarin-android-version: 11 # optional
           # Version of Xcode to use with Xamarin.iOS and Xamarin.Mac
           xcode-version: 12.4 # optional
           
