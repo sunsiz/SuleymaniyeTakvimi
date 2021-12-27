@@ -5,9 +5,9 @@ using Android.Widget;
 using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Droid;
 
-namespace PeriodicBackgroundService.Android
+namespace SuleymaniyeTakvimi.Droid
 {
-	[BroadcastReceiver(Enabled = true)]
+	[BroadcastReceiver]
 	[IntentFilter(new[] { Intent.ActionBootCompleted })]
 	public class BootBroadcast : BroadcastReceiver
 	{

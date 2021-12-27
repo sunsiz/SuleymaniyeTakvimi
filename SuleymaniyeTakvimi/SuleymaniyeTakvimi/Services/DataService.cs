@@ -722,14 +722,14 @@ namespace SuleymaniyeTakvimi.Services
                 foreach (Takvim todayTakvim in MonthlyTakvim)
                 {
                     if(DateTime.Parse(todayTakvim.Tarih)>=DateTime.Today){
-                        var fecriKazipZaman = TimeSpan.Parse(todayTakvim.FecriKazip) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get( "fecrikazipBildirmeVakti", 0.0)));
-                        var fecriSadikZaman = TimeSpan.Parse(todayTakvim.FecriSadik) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get("fecrisadikBildirmeVakti", 0.0)));
-                        var sabahSonuZaman = TimeSpan.Parse(todayTakvim.SabahSonu) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get("sabahsonuBildirmeVakti", 0.0)));
-                        var ogleZaman = TimeSpan.Parse(todayTakvim.Ogle) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get("ogleBildirmeVakti", 0.0)));
-                        var ikindiZaman = TimeSpan.Parse(todayTakvim.Ikindi) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get("ikindiBildirmeVakti", 0.0)));
-                        var aksamZaman = TimeSpan.Parse(todayTakvim.Aksam) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get("aksamBildirmeVakti", 0.0)));
-                        var yatsiZaman = TimeSpan.Parse(todayTakvim.Yatsi) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get("yatsiBildirmeVakti", 0.0)));
-                        var yatsiSonuZaman = TimeSpan.Parse(todayTakvim.YatsiSonu) + TimeSpan.FromMinutes(Convert.ToDouble(Preferences.Get("yatsisonuBildirmeVakti", 0.0)));
+                        var fecriKazipZaman = TimeSpan.Parse(todayTakvim.FecriKazip);
+                        var fecriSadikZaman = TimeSpan.Parse(todayTakvim.FecriSadik);
+                        var sabahSonuZaman = TimeSpan.Parse(todayTakvim.SabahSonu);
+                        var ogleZaman = TimeSpan.Parse(todayTakvim.Ogle);
+                        var ikindiZaman = TimeSpan.Parse(todayTakvim.Ikindi);
+                        var aksamZaman = TimeSpan.Parse(todayTakvim.Aksam);
+                        var yatsiZaman = TimeSpan.Parse(todayTakvim.Yatsi);
+                        var yatsiSonuZaman = TimeSpan.Parse(todayTakvim.YatsiSonu);
                         var fecriKazip = DateTime.Parse(todayTakvim.Tarih) + fecriKazipZaman;
                         var fecriSadik = DateTime.Parse(todayTakvim.Tarih) + fecriSadikZaman;
                         var sabahSonu = DateTime.Parse(todayTakvim.Tarih) + sabahSonuZaman;

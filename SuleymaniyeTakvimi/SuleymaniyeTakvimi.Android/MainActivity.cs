@@ -11,7 +11,7 @@ using Android.Util;
 using FFImageLoading;
 //using Matcha.BackgroundService.Droid;
 using MediaManager;
-using PeriodicBackgroundService.Android;
+//using PeriodicBackgroundService.Android;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Services;

@@ -71,6 +71,8 @@ namespace SuleymaniyeTakvimi.Droid
             using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService))
             using (var calendar = Calendar.Instance)
             {
+                var prayerTimeSpan = triggerTimeSpan;
+                triggerTimeSpan -= TimeSpan.FromMinutes(timeOffset);
                 //Log.Info("SetAlarm", $"Before Alarm set the Calendar time is {calendar.Time} for {name}");
                 calendar.Set(date.Year, date.Month-1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
                 //Log.Info("SetAlarm", $"After Alarm set the Calendar time is {calendar.Time} for {name}");
@@ -80,7 +82,7 @@ namespace SuleymaniyeTakvimi.Droid
                 //calendar.Set(CalendarField.Second, 0);
                 var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
                 activityIntent.PutExtra("name", name);
-                activityIntent.PutExtra("time", (triggerTimeSpan - TimeSpan.FromMinutes(timeOffset)).ToString());
+                activityIntent.PutExtra("time", prayerTimeSpan.ToString());
                 activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
                 //without the different reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
                 var requestCode = name switch
