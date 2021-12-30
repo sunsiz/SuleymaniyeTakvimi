@@ -75,11 +75,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         private void LaunchSkipCommand()
         {
-            SkipCommand = new Command(() =>
-            {
-                ExitOnBoarding();
-
-            });
+            SkipCommand = new Command(ExitOnBoarding);
         }
 
         private static void ExitOnBoarding()

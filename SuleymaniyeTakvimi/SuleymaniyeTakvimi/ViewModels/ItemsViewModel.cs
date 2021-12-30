@@ -57,7 +57,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             try
             {
-                //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
+                //Without the Convert.ToDouble conversion it confuses the ',' and '.' when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
                 var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(false);
             if (placemark != null)
                 City = placemark.FirstOrDefault()?.AdminArea ?? placemark.FirstOrDefault()?.CountryName;
@@ -111,9 +111,9 @@ namespace SuleymaniyeTakvimi.ViewModels
                 await Task.Delay(20000).ConfigureAwait(true);
                 //DataService data = new DataService();
                 data.SetWeeklyAlarms();
-                _takvim = data.VakitHesabi();
+                _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
                 ExecuteLoadItemsCommand();
-                var location = await data.GetCurrentLocationAsync().ConfigureAwait(false);
+                var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
                 if (location != null && location.Enlem != 0)
                     data.GetMonthlyPrayerTimes(new Location(location.Enlem, location.Boylam, location.Yukseklik));
                 //GetCity();
@@ -256,7 +256,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //        Boylam = location.Longitude,
                 //        Yukseklik = location.Altitude ?? 0
                 //    };
-            _takvim = Vakitler = await data.GetPrayerTimesAsync().ConfigureAwait(false);
+            _takvim = Vakitler = await data.GetPrayerTimesAsync(true).ConfigureAwait(false);
             if (Vakitler.Enlem != 0)
             {
                 //Application.Current.Properties["takvim"] = Vakitler;

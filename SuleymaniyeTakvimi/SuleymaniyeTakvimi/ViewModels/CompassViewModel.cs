@@ -34,12 +34,12 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (!Compass.IsMonitoring) Compass.Start(Speed);
             //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
             GoToMapCommand = new Command(async () => {
-                var location = new Location(Convert.ToDouble(_currentLatitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_currentLongitude, CultureInfo.InvariantCulture.NumberFormat));
-                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_currentLatitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_currentLongitude, CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
-                var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName };
-
                 try
                 {
+                    var location = new Location(Convert.ToDouble(_currentLatitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_currentLongitude, CultureInfo.InvariantCulture.NumberFormat));
+                    var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_currentLatitude, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_currentLongitude, CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
+                    var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName };
+
                     await Map.OpenAsync(location, options).ConfigureAwait(false);
                 }
                 catch (Exception ex)
@@ -113,7 +113,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromMilliseconds(3));
                 //var location = await Geolocation.GetLocationAsync(request);
                 DataService data = new DataService();
-                var takvim = await data.GetCurrentLocationAsync().ConfigureAwait(false);
+                var takvim = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
                 if (takvim != null && takvim.Enlem > 0 && takvim.Boylam > 0)
                 {
                     Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);

@@ -31,11 +31,13 @@ namespace SuleymaniyeTakvimi.iOS
             //notification.SoundName = UILocalNotification.DefaultSoundName;
             //UIApplication.SharedApplication.ScheduleLocalNotification(notification);
             var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus") + ".wav";
-            var content = new UNMutableNotificationContent();
-            content.Title = $"{name} Hatirlatmasi";
-            content.Subtitle = "Suleymaniye vakfi takvimi";
-            content.Body = GetFormattedRemainingTime();
-            content.Sound = UNNotificationSound.GetSound(alarmSesi);
+            var content = new UNMutableNotificationContent
+            {
+                Title = $"{name} Hatirlatmasi",
+                Subtitle = "Suleymaniye vakfi takvimi",
+                Body = GetFormattedRemainingTime(),
+                Sound = UNNotificationSound.GetSound(alarmSesi)
+            };
             //content.Badge = 9;
             // New trigger time
             NSDateComponents dateComponents = new NSDateComponents() {

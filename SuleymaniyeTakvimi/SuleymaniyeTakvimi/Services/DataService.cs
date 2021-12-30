@@ -47,16 +47,17 @@ namespace SuleymaniyeTakvimi.Services
             };
         }
 
-        public async Task<Takvim> GetCurrentLocationAsync()
+        public async Task<Takvim> GetCurrentLocationAsync(bool refreshLocation)
         {
             Analytics.TrackEvent("GetCurrentLocation in the DataService");
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync().ConfigureAwait(false);
+                Location location = null;
+                if (!refreshLocation) location = await Geolocation.GetLastKnownLocationAsync().ConfigureAwait(false);
 
                 konum = new Takvim();
 
-                if (location == null)
+                if (location == null || refreshLocation)
                 {
                     var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(5));
                     CancellationTokenSource cts = new CancellationTokenSource();
@@ -109,7 +110,7 @@ namespace SuleymaniyeTakvimi.Services
             return konum;
         }
 
-        public Takvim VakitHesabi()
+        public async Task<Takvim> VakitHesabiAsync()
         {
             Analytics.TrackEvent("VakitHesabi in the DataService");
             takvim = new Takvim();
@@ -134,8 +135,10 @@ namespace SuleymaniyeTakvimi.Services
             }
 
             if (!CheckInternet()) return null;
-            if (konum == null) return null;
+            konum ??= await GetCurrentLocationAsync(false).ConfigureAwait(false);
+            if (konum != null)
             {
+                
                 var url = "http://servis.suleymaniyetakvimi.com/servis.asmx/VakitHesabi?";
                 url += "Enlem=" + konum.Enlem;
                 url += "&Boylam=" + konum.Boylam;
@@ -207,7 +210,8 @@ namespace SuleymaniyeTakvimi.Services
             return takvim;
         }
 
-        public async Task<Takvim> GetPrayerTimesAsync()
+        //When refreshLocation true, not using last known location.
+        public async Task<Takvim> GetPrayerTimesAsync(bool refreshLocation)
         {
             Analytics.TrackEvent("GetPrayerTimes in the DataService");
             Debug.WriteLine("TimeStamp-GetPrayerTimes-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
@@ -230,7 +234,8 @@ namespace SuleymaniyeTakvimi.Services
             try
             {
                 if (!CheckInternet()) return null;
-                var location = await GetCurrentLocationAsync().ConfigureAwait(false);
+                Takvim location;
+                location = await GetCurrentLocationAsync(refreshLocation).ConfigureAwait(false);
                 konum = new Takvim
                 {
                     Enlem = location.Enlem,
@@ -546,13 +551,16 @@ namespace SuleymaniyeTakvimi.Services
             }
 
             if (!CheckInternet()) return null;
-            konum = new Takvim();
-            konum.Enlem = location.Latitude;
-            konum.Boylam = location.Longitude;
-            konum.Yukseklik = location.Altitude ?? 0;
-            konum.SaatBolgesi = TimeZoneInfo.Local.BaseUtcOffset.Hours; //.StandardName;
-            konum.YazKis = TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now) ? 1 : 0;
-            konum.Tarih = DateTime.Today.ToString("dd/MM/yyyy");
+            konum = new Takvim
+            {
+                Enlem = location.Latitude,
+                Boylam = location.Longitude,
+                Yukseklik = location.Altitude ?? 0,
+                SaatBolgesi = TimeZoneInfo.Local.BaseUtcOffset.Hours,
+                YazKis = TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now) ? 1 : 0,
+                Tarih = DateTime.Today.ToString("dd/MM/yyyy")
+            };
+            //.StandardName;
 
             var url = "http://servis.suleymaniyetakvimi.com/servis.asmx/VakitHesabiListesi?";
             url += "Enlem=" + konum.Enlem;
@@ -704,7 +712,7 @@ namespace SuleymaniyeTakvimi.Services
                     }
                     else
                     {
-                        konum = await GetCurrentLocationAsync().ConfigureAwait(false);
+                        konum = await GetCurrentLocationAsync(false).ConfigureAwait(false);
                         if (konum != null && konum.Enlem > 0 && konum.Boylam > 0)
                         {
                             MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik));
@@ -719,7 +727,7 @@ namespace SuleymaniyeTakvimi.Services
                 }
                 else
                 {
-                    konum = await GetCurrentLocationAsync().ConfigureAwait(false);
+                    konum = await GetCurrentLocationAsync(false).ConfigureAwait(false);
                     if (konum != null && konum.Enlem > 0 && konum.Boylam > 0)
                     {
                         MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik));
@@ -792,7 +800,7 @@ namespace SuleymaniyeTakvimi.Services
             if (CheckRemindersEnabledAny())
             {
                 //konum = GetCurrentLocation().Result;
-                konum = await GetCurrentLocationAsync().ConfigureAwait(false);
+                konum = await GetCurrentLocationAsync(false).ConfigureAwait(false);
                 if (konum != null && konum.Enlem > 0 && konum.Boylam > 0)
                 {
                     MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik));
