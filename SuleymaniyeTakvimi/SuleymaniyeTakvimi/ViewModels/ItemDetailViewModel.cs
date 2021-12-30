@@ -1,11 +1,9 @@
 ﻿using SuleymaniyeTakvimi.Models;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using MediaManager;
-using MediaManager.Library;
 using MediaManager.Playback;
 //using Matcha.BackgroundService;
 //using Plugin.LocalNotification;
@@ -20,17 +18,17 @@ namespace SuleymaniyeTakvimi.ViewModels
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private string itemId;
-        private string itemAdi;
-        private string vakit;
-        private string bildirmeVakti;
-        private bool titreme;
-        private bool bildiri;
-        private bool alarm;
-        private bool etkin;
-        private Sound[] sounds;
+        private string _itemId;
+        private string _itemAdi;
+        private string _vakit;
+        private string _bildirmeVakti;
+        private bool _titreme;
+        private bool _bildiri;
+        private bool _alarm;
+        private bool _etkin;
+        private Sound[] _sounds;
         private Sound _selectedSound;
-        private string testButtonText;
+        private string _testButtonText;
         public ICommand EnableSwitchToggled { get; }
         public ICommand BildiriCheckedChanged { get; }
         public ICommand TitremeCheckedChanged { get; }
@@ -42,19 +40,19 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public string TestButtonText
         {
-            get => testButtonText;
-            set => SetProperty(ref testButtonText, value);
+            get => _testButtonText;
+            set => SetProperty(ref _testButtonText, value);
         }
         public Sound[] Sounds
         {
-            get => sounds ??= new[]
+            get => _sounds ??= new[]
             {
-                new Sound() {Index = 0, fileName = "kus", Name = AppResources.KusCiviltisi},
-                new Sound() {Index = 1, fileName = "horoz", Name = AppResources.HorozOtusu},
-                new Sound() {Index = 2, fileName = "alarm", Name = AppResources.CalarSaat},
-                new Sound() {Index = 3, fileName = "ezan", Name = AppResources.EzanSesi}
+                new Sound() {Index = 0, FileName = "kus", Name = AppResources.KusCiviltisi},
+                new Sound() {Index = 1, FileName = "horoz", Name = AppResources.HorozOtusu},
+                new Sound() {Index = 2, FileName = "alarm", Name = AppResources.CalarSaat},
+                new Sound() {Index = 3, FileName = "ezan", Name = AppResources.EzanSesi}
             };
-            set => SetProperty(ref sounds, value);
+            set => SetProperty(ref _sounds, value);
         }
 
         public Sound SelectedSound
@@ -83,24 +81,22 @@ namespace SuleymaniyeTakvimi.ViewModels
             SoundSelectedCommand = new Command<Sound>(SoundSelected);
             TestButtonCommand = new Command(TestButtonClicked);
             CrossMediaManager.Current.MediaPlayer.Stop();
-            testButtonText = AppResources.SesTesti;
+            _testButtonText = AppResources.SesTesti;
         }
 
         private async void TestButtonClicked(object obj)
         {
             if (TestButtonText == AppResources.SesTesti)
             {
-                IMediaItem mediaItem;
-                var alarmSesi = 
-                mediaItem = await CrossMediaManager.Current.PlayFromAssembly(SelectedSound.fileName + ".wav").ConfigureAwait(true);
+                var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(SelectedSound.FileName + ".wav").ConfigureAwait(true);
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
-                CrossMediaManager.Current.MediaPlayer.Play(mediaItem);
+                await CrossMediaManager.Current.MediaPlayer.Play(mediaItem).ConfigureAwait(false);
                 TestButtonText = AppResources.TestiDurdur;
             }
             else
             {
-                CrossMediaManager.Current.MediaPlayer.Stop();
+                await CrossMediaManager.Current.MediaPlayer.Stop().ConfigureAwait(false);
                 TestButtonText = AppResources.SesTesti;
             }
         }
@@ -110,9 +106,9 @@ namespace SuleymaniyeTakvimi.ViewModels
             string name = "Çalar Saat";
             int index = 2;
             string file = "alarm";
-            if (itemId != null)
+            if (_itemId != null)
             {
-                file = Preferences.Get(itemId + "AlarmSesi", file);
+                file = Preferences.Get(_itemId + "AlarmSesi", file);
                 switch (file)
                 {
                     case "kus":
@@ -134,12 +130,12 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
             }
 
-            return new Sound() {Index = index, fileName = file, Name = name};
+            return new Sound() {Index = index, FileName = file, Name = name};
         }
 
         private void SoundSelected(Sound sound)
         {
-            if (itemId != null) Preferences.Set(itemId + "AlarmSesi", sound.fileName);
+            if (_itemId != null) Preferences.Set(_itemId + "AlarmSesi", sound.FileName);
         }
 
         private void BildirmeVaktiAyari(object obj)
@@ -148,10 +144,10 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (!IsBusy)
             {
                 var radiobutton = obj as RadioButton;
-                Preferences.Set(itemId + "BildirmeVakti", radiobutton.Value.ToString());
-                Debug.WriteLine("Value Setted for -> " + itemId + "BildirmeVakti: " +
-                                  Preferences.Get(itemId + "BildirmeVakti", radiobutton.Value.ToString()));
-                bildirmeVakti = radiobutton.Value.ToString();
+                Preferences.Set(_itemId + "BildirmeVakti", radiobutton?.Value.ToString());
+                Debug.WriteLine("Value Setted for -> " + _itemId + "BildirmeVakti: " +
+                                  Preferences.Get(_itemId + "BildirmeVakti", radiobutton?.Value.ToString()));
+                _bildirmeVakti = radiobutton?.Value.ToString();
             }
         }
 
@@ -161,9 +157,9 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (!IsBusy)
             {
                 var value = (bool) obj;
-                Preferences.Set(itemId + "Alarm", value);
-                Debug.WriteLine("Value Setted for -> " + itemId + "Alarm: " +
-                                  Preferences.Get(itemId + "Alarm", value));
+                Preferences.Set(_itemId + "Alarm", value);
+                Debug.WriteLine("Value Setted for -> " + _itemId + "Alarm: " +
+                                  Preferences.Get(_itemId + "Alarm", value));
                 Alarm = value;
             }
         }
@@ -174,9 +170,9 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (!IsBusy)
             {
                 var value = (bool) obj;
-                Preferences.Set(itemId + "Titreme", value);
-                Debug.WriteLine("Value Setted for -> " + itemId + "Titreme: " +
-                                  Preferences.Get(itemId + "Titreme", value));
+                Preferences.Set(_itemId + "Titreme", value);
+                Debug.WriteLine("Value Setted for -> " + _itemId + "Titreme: " +
+                                  Preferences.Get(_itemId + "Titreme", value));
                 Titreme = value;
                 if (value)
                 {
@@ -207,15 +203,15 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (!IsBusy)
             {
                 var value = (bool) obj;
-                Preferences.Set(itemId + "Bildiri", value);
-                Debug.WriteLine("Value Setted for -> " + itemId + "Bildiri: " +
-                                  Preferences.Get(itemId + "Bildiri", value));
+                Preferences.Set(_itemId + "Bildiri", value);
+                Debug.WriteLine("Value Setted for -> " + _itemId + "Bildiri: " +
+                                  Preferences.Get(_itemId + "Bildiri", value));
                 Bildiri = value;
                 var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
                 if (value)
                 {
                     CrossLocalNotifications.Current.Show(AppResources.BildiriEtkinBaslik,
-                        $"{itemAdi} --> {bildiriVakti} {AppResources.BildiriEtkinIcerik}", 1001);
+                        $"{_itemAdi} --> {bildiriVakti} {AppResources.BildiriEtkinIcerik}", 1001);
                     CrossLocalNotifications.Current.Cancel(1002);
                     //var notification = new NotificationRequest
                     //{
@@ -246,7 +242,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 else
                 {
                     CrossLocalNotifications.Current.Show(AppResources.BildiriDevreDisiBaslik,
-                        $"{itemAdi} --> {bildiriVakti} {AppResources.BildiriDevreDisiIcerik}", 1002);
+                        $"{_itemAdi} --> {bildiriVakti} {AppResources.BildiriDevreDisiIcerik}", 1002);
                     CrossLocalNotifications.Current.Cancel(1001);
                 }
             }
@@ -259,9 +255,9 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (!IsBusy)
             {
                 var value = (bool) obj;
-                Preferences.Set(itemId + "Etkin", value);
-                Debug.WriteLine("Value Setted for -> " + itemId + "Etkin: " +
-                                  Preferences.Get(itemId + "Etkin", value));
+                Preferences.Set(_itemId + "Etkin", value);
+                Debug.WriteLine("Value Setted for -> " + _itemId + "Etkin: " +
+                                  Preferences.Get(_itemId + "Etkin", value));
                 Etkin = value;
                 DataService data = new DataService();
                 data.SetWeeklyAlarms();
@@ -284,11 +280,11 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public string ItemId
         {
-            get => itemId;
+            get => _itemId;
             set
             {
                 IsBusy = true;
-                itemId = value;
+                _itemId = value;
                 LoadItem(value);
                 SelectedSound = SetSelectedSound();
                 IsBusy = false;
@@ -297,44 +293,44 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public string Vakit
         {
-            get => vakit;
-            set => SetProperty(ref vakit, value);
+            get => _vakit;
+            set => SetProperty(ref _vakit, value);
         }
 
         public string BildirmeVakti
         {
-            get => bildirmeVakti;
-            set => SetProperty(ref bildirmeVakti, value);
+            get => _bildirmeVakti;
+            set => SetProperty(ref _bildirmeVakti, value);
         }
 
         public bool Etkin
         {
-            get => etkin;
-            set => SetProperty(ref etkin, value);
+            get => _etkin;
+            set => SetProperty(ref _etkin, value);
         }
 
         public bool Titreme
         {
-            get => titreme;
-            set => SetProperty(ref titreme, value);
+            get => _titreme;
+            set => SetProperty(ref _titreme, value);
         }
 
         public bool Bildiri
         {
-            get => bildiri;
-            set => SetProperty(ref bildiri, value);
+            get => _bildiri;
+            set => SetProperty(ref _bildiri, value);
         }
 
         public bool Alarm
         {
-            get => alarm;
-            set => SetProperty(ref alarm, value);
+            get => _alarm;
+            set => SetProperty(ref _alarm, value);
         }
 
         public string ItemAdi
         {
-            get => itemAdi;
-            set => SetProperty(ref itemAdi, value);
+            get => _itemAdi;
+            set => SetProperty(ref _itemAdi, value);
         }
 
         public void LoadItem(string itemId)
@@ -344,28 +340,28 @@ namespace SuleymaniyeTakvimi.ViewModels
                 switch (itemId)
                 {
                     case "fecrikazip":
-                        Title = itemAdi = AppResources.FecriKazip;
+                        Title = _itemAdi = AppResources.FecriKazip;
                         break;
                     case "fecrisadik":
-                        Title = itemAdi = AppResources.FecriSadik;
+                        Title = _itemAdi = AppResources.FecriSadik;
                         break;
                     case "sabahsonu":
-                        Title = itemAdi = AppResources.SabahSonu;
+                        Title = _itemAdi = AppResources.SabahSonu;
                         break;
                     case "ogle":
-                        Title = itemAdi = AppResources.Ogle;
+                        Title = _itemAdi = AppResources.Ogle;
                         break;
                     case "ikindi":
-                        Title = itemAdi = AppResources.Ikindi;
+                        Title = _itemAdi = AppResources.Ikindi;
                         break;
                     case "aksam":
-                        Title = itemAdi = AppResources.Aksam;
+                        Title = _itemAdi = AppResources.Aksam;
                         break;
                     case "yatsi":
-                        Title = itemAdi = AppResources.Yatsi;
+                        Title = _itemAdi = AppResources.Yatsi;
                         break;
                     case "yatsisonu":
-                        Title = itemAdi = AppResources.YatsiSonu;
+                        Title = _itemAdi = AppResources.YatsiSonu;
                         break;
                 }
                 Vakit = Preferences.Get(itemId, "");

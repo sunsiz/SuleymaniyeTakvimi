@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using Acr.UserDialogs;
-using EventKit;
 using Foundation;
 using SuleymaniyeTakvimi.Services;
-using UIKit;
 using UserNotifications;
 using Xamarin.Essentials;
 
@@ -50,17 +49,17 @@ namespace SuleymaniyeTakvimi.iOS
             };
             var trigger = UNCalendarNotificationTrigger.CreateTrigger(dateComponents, false);
             // ID of Notification to be updated
-            var requestID = "SuleymaniyeTakvimiRequest"+triggerDateTime.ToString("yyyyMMddhhmmss");
-            var request = UNNotificationRequest.FromIdentifier(requestID, content, trigger);
+            var requestId = "SuleymaniyeTakvimiRequest"+triggerDateTime.ToString("yyyyMMddhhmmss");
+            var request = UNNotificationRequest.FromIdentifier(requestId, content, trigger);
 
             // Add to system to modify existing Notification
             UNUserNotificationCenter.Current.AddNotificationRequest(request, (err) => {
                 if (err != null)
                 {
                     // Do something with error...
-                    Console.WriteLine("Error: {0}", err);
+                    Debug.WriteLine("Error: {0}", err);
                     UserDialogs.Instance.Alert($"hata detayları: {err}", "Alarm kurarken bir hata oluştu", "Tamam");
-                }else Console.WriteLine("Notification Scheduled: {0} \n {1}", request, content);
+                }else Debug.WriteLine("Notification Scheduled: {0} \n {1}", request, content);
             });
             //UNUserNotificationCenter.Current.GetPendingNotificationRequests((req) => {
                 //if (req != null) UserDialogs.Instance.Alert($"request sayisi: {req.Length}", "Zamanlanan bilidiri sayisi", "Tamam");

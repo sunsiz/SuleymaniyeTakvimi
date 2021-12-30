@@ -16,7 +16,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         //HtmlWebViewSource htmlSource;
         public Command PlayCommand { get; }
         // Launcher.OpenAsync is provided by Xamarin.Essentials.
-        public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url).ConfigureAwait(false));
 
         //private ISimpleAudioPlayer _player;
 

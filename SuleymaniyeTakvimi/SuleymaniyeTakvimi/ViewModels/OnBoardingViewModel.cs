@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using SuleymaniyeTakvimi.Models;
 using Xamarin.Forms;
@@ -10,10 +7,10 @@ namespace SuleymaniyeTakvimi.ViewModels
 {
     public class OnBoardingViewModel : MvvmHelpers.BaseViewModel
     {
-        private ObservableCollection<OnBoarding> items;
-        private int position;
-        private string nextButtonText;
-        private string skipButtonText;
+        private ObservableCollection<OnBoarding> _items;
+        private int _position;
+        private string _nextButtonText;
+        private string _skipButtonText;
 
         public ICommand NextCommand { get; private set; }
         public ICommand SkipCommand { get; private set; }
@@ -99,27 +96,27 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public ObservableCollection<OnBoarding> Items
         {
-            get => items;
-            set => SetProperty(ref items, value);
+            get => _items;
+            set => SetProperty(ref _items, value);
         }
 
         public string NextButtonText
         {
-            get => nextButtonText;
-            set => SetProperty(ref nextButtonText, value);
+            get => _nextButtonText;
+            set => SetProperty(ref _nextButtonText, value);
         }
         public string SkipButtonText
         {
-            get => skipButtonText;
-            set => SetProperty(ref skipButtonText, value);
+            get => _skipButtonText;
+            set => SetProperty(ref _skipButtonText, value);
         }
 
         public int Position
         {
-            get => position;
+            get => _position;
             set
             {
-                if (SetProperty(ref position, value))
+                if (SetProperty(ref _position, value))
                 {
                     UpdateNextButtonText();
                 }

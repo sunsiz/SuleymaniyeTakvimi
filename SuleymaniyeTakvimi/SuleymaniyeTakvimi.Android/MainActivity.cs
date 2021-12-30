@@ -4,11 +4,8 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Android.Util;
-using FFImageLoading;
 //using Matcha.BackgroundService.Droid;
 using MediaManager;
 //using PeriodicBackgroundService.Android;
@@ -22,7 +19,7 @@ namespace SuleymaniyeTakvimi.Droid
     [Activity(Label = "SuleymaniyeTakvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, LaunchMode = LaunchMode.SingleTop)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        public static MainActivity instance;
+        public static MainActivity Instance;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             //SetTheme(Resource.Style.MainTheme);
@@ -35,9 +32,9 @@ namespace SuleymaniyeTakvimi.Droid
             //SetAlarmForBackgroundServices(this);//Use periodic background service
             UserDialogs.Init(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
-            Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
+            Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
             //global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
             CrossMediaManager.Current.Init(this);
             //this.ShinyOnCreate();
@@ -55,7 +52,7 @@ namespace SuleymaniyeTakvimi.Droid
             //{
             //    isStarted = savedInstanceState.GetBoolean("has_service_been_started", false);
             //}
-            instance = this;
+            Instance = this;
             SetAlarmForegroundService();
             Log.Info("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now.ToString("HH:m:s.fff")}");
         }
@@ -67,7 +64,7 @@ namespace SuleymaniyeTakvimi.Droid
             var startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
             startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
             
-            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 StartForegroundService(startServiceIntent);
             }
@@ -78,7 +75,7 @@ namespace SuleymaniyeTakvimi.Droid
             Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now.ToString("HH:m:s.fff")}");
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             //AndroidShinyHost.OnRequestPermissionsResult(requestCode, permissions, grantResults);

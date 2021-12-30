@@ -44,22 +44,22 @@
                 <Setter Property="CornerRadius" Value="5" />
             </Style>-->
             <!--  Fonts  -->
-            <OnPlatform x:Key="font_bold" x:TypeArguments="x:String">
+            <OnPlatform x:Key="FontBold" x:TypeArguments="x:String">
                 <On Platform="iOS" Value=".SFUIText-Bold" />
                 <On Platform="Android" Value="sans-serif-medium" />
             </OnPlatform>
 
-            <OnPlatform x:Key="font_semibold" x:TypeArguments="x:String">
+            <OnPlatform x:Key="FontSemibold" x:TypeArguments="x:String">
                 <On Platform="iOS" Value=".SFUIText-Semibold" />
                 <On Platform="Android" Value="sans-serif-medium" />
             </OnPlatform>
 
-            <OnPlatform x:Key="font_medium" x:TypeArguments="x:String">
+            <OnPlatform x:Key="FontMedium" x:TypeArguments="x:String">
                 <On Platform="iOS" Value=".SFUIText-Medium" />
                 <On Platform="Android" Value="sans-serif-medium" />
             </OnPlatform>
 
-            <OnPlatform x:Key="font_regular" x:TypeArguments="x:String">
+            <OnPlatform x:Key="FontRegular" x:TypeArguments="x:String">
                 <On Platform="iOS" Value=".SFUIText" />
                 <On Platform="Android" Value="sans-serif" />
             </OnPlatform>
@@ -98,18 +98,18 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>-->
-            <Style x:Key="label_section_header" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource font_bold}" />
+            <Style x:Key="LabelSectionHeader" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
                 <Setter Property="FontSize" Value="28" />
                 <Setter Property="TextColor" Value="{StaticResource HeadingLabelTextColor}" />
             </Style>
-            <Style x:Key="text_section_header" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource font_bold}" />
+            <Style x:Key="TextSectionHeader" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
                 <Setter Property="FontSize" Value="32" />
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
             </Style>
-            <Style x:Key="span_style" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource font_bold}" />
+            <Style x:Key="SpanStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="Padding" Value="7,1" />

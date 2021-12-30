@@ -18,7 +18,8 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="2*" />
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -28,7 +29,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <CarouselView x:Name="onBoardingCarousel" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" IndicatorView="IndicatorView" Position="{Binding Position}" ItemsSource="{Binding Items}">
+            <CarouselView x:Name="OnBoardingCarousel" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" IndicatorView="IndicatorView" Position="{Binding Position}" ItemsSource="{Binding Items}">
                 <CarouselView.ItemTemplate>
                     <DataTemplate x:DataType="models:OnBoarding">
                         <ContentView>

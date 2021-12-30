@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SuleymaniyeTakvimi.ViewModels;
+﻿using SuleymaniyeTakvimi.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,12 +15,12 @@ namespace SuleymaniyeTakvimi.Views
             InitializeComponent();
             BindingContext = _viewModel = new CompassViewModel();
             Compass.ReadingChanged += Compass_ReadingChanged;
-            if (!Compass.IsMonitoring) Compass.Start(_viewModel.speed);
+            if (!Compass.IsMonitoring) Compass.Start(_viewModel.Speed);
         }
 
         void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
-            compassImage.RotateTo(360 - e.Reading.HeadingMagneticNorth);
+            CompassImage.RotateTo(360 - e.Reading.HeadingMagneticNorth);
             _viewModel.PointToQibla(e);
         }
 

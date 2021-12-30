@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SuleymaniyeTakvimi.Views
@@ -18,13 +12,13 @@ namespace SuleymaniyeTakvimi.Views
             IsBusy = true;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ActivityIndicator.IsRunning = true;
-            ActivityIndicator.IsVisible = true;
-            IsBusy = true;
-        }
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    //ActivityIndicator.IsRunning = true;
+        //    //ActivityIndicator.IsVisible = true;
+        //    //IsBusy = true;
+        //}
 
         public void WebView_OnNavigating(object sender, WebNavigatingEventArgs e)
         {

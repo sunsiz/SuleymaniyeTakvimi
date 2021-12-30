@@ -3,9 +3,9 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 **Uygulama çalışma şekli:**
 * İlk açıldığında cihazın konumunu ve zamanına göre [suleymaniyetakvimi.com](https://www.suleymaniyetakvimi.com) sitesinden bir aylık gelecek namaz vakitlerini alıyor. İndirdiği namaz vakitlerine göre o günlük namaz vakitlerini uygulamada gösteriyor ve kullanıcının seçimlerine uygun şekilde, seçilen namaz vakitleri için alarm, titreme ve bilidirileri bir haftalık zamanlıyor.
-* Alarmların düzgün çalışması için Android'te Foreground Service kullanarak sürekli kalan bilidir göstererek uygulamanın arka planda çalışmasını sağlıyor. Android'te Alarm ve titreme için özel activity gösterek kullanıcının seçtiği sesi çalabiliyor ve titremeyi yapabiliyor. Eğer zamanlamanın son iki gününe geldiyse alarmı kapatırken tekrardan uygulamayı açarak yeniden bir haftalık zamanlama yapılmasını sağlıyor. İOS için sadece bildiri göstererek kullanıcının seçtiği sesle hatırlatma yapar.
+* Alarmların düzgün çalışması için Android'te Foreground Service kullanarak sürekli kalan bildirim göstererek uygulamanın arka planda çalışmasını sağlıyor. Android'te Alarm ve titreme için özel activity gösterek kullanıcının seçtiği sesi çalabiliyor ve titremeyi yapabiliyor. Eğer zamanlamanın son iki gününe geldiyse alarmı kapatırken tekrardan uygulamayı açarak yeniden bir haftalık zamanlama yapılmasını sağlıyor. İOS için sadece bildiri göstererek kullanıcının seçtiği sesle hatırlatma yapar.
 * Konumu bir kere aldıktan sonra kaydederek, sonrasında konum kapalı olsa bile yine de namaz vakitlerini indirip göstermeye devam edebiliyor.
-* Şehir adına tıklayınca konumu haritadan gösterebilir, Bugünun tarihine tıklayınca bir aylık namaz vaiktler takvimini gösteriyor.
+* Şehir adına tıklayınca konumu haritadan gösterebilir, Bugünün tarihine tıklayınca bir aylık namaz vaiktleri takvimini gösterebiliyor.
 
 **Mevcut Özellikler:**
 
@@ -19,7 +19,18 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 
 **Mevcut sorunlar:**
-* Alarm(bildiri) özelliği ios te sesi doğru çalamıyor.
+* Alarm(bildirim) özelliği ios te seçilen sesi çalamayabılıyor.
+
+
+**Ekran Görüntüleri:**
+
+Namaz Vakitleri:    ![Namaz Vakitleri](Images/NamazVakitleri.png "Namaz Vakitleri")
+Alarm Ayarları:     ![Alarm Ayarları](Images/AlarmAyarlari.png "Alarm Ayarları")
+Kıble Gösterici:    ![Kıble Gösterici](Images/KibleGosterici.png "Kıble Gösterici")
+Radyo Sayfası:      ![Radyo Sayfası](Images/Radyo.png "Radyo Sayfası")
+Hakkında sayfası:   ![Hakkında sayfası](Images/Hakkinda.png "Hakkında sayfası")
+Alarm sayfası:      ![Alarm sayfası](Images/Alarm.png "Alarm sayfası")
+
 
 # Suleymaniye Calendar
 Suleymaniyetakvimi.com Xamarin mobile application
@@ -35,4 +46,4 @@ Suleymaniyetakvimi.com Xamarin mobile application
 
 
 **Existing problems:**
-* Alarm(notification) feature on IOS can not play expected sound most of the time.
+* Alarm(notification) feature on IOS can not play selected sound most of the time.

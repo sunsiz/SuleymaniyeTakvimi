@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MvvmHelpers;
+﻿using MvvmHelpers;
 
 namespace SuleymaniyeTakvimi.Models
 {
     class Schedule:ObservableObject
     {
-        private bool reminderOn;
+        private bool _reminderOn;
         public string Title { get; set; }
         public string Hour { get; set; }
         public string State { get; set; }
         public bool ReminderOn
         {
-            get => reminderOn;
-            set => SetProperty(ref reminderOn, value);
+            get => _reminderOn;
+            set => SetProperty(ref _reminderOn, value);
         }
 
         public bool Vibration { get; set; }

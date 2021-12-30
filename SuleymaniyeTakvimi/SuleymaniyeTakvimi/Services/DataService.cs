@@ -207,7 +207,7 @@ namespace SuleymaniyeTakvimi.Services
             return takvim;
         }
 
-        public async Task<Takvim> GetPrayerTimes()
+        public async Task<Takvim> GetPrayerTimesAsync()
         {
             Analytics.TrackEvent("GetPrayerTimes in the DataService");
             Debug.WriteLine("TimeStamp-GetPrayerTimes-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
@@ -542,7 +542,7 @@ namespace SuleymaniyeTakvimi.Services
                     return MonthlyTakvim;
                 }
 
-                if (!CheckInternet()) return takvims;
+                if (!CheckInternet()) return MonthlyTakvim = takvims;
             }
 
             if (!CheckInternet()) return null;
@@ -701,6 +701,20 @@ namespace SuleymaniyeTakvimi.Services
                         //xmldoc = ReadTakvimFile();
                         //MonthlyTakvim = ParseXmlList(xmldoc);
                         MonthlyTakvim = takvims;
+                    }
+                    else
+                    {
+                        konum = await GetCurrentLocationAsync().ConfigureAwait(false);
+                        if (konum != null && konum.Enlem > 0 && konum.Boylam > 0)
+                        {
+                            MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik));
+                            if (MonthlyTakvim == null)
+                            {
+                                await UserDialogs.Instance.AlertAsync(AppResources.TakvimIcinInternet,
+                                    AppResources.TakvimIcinInternetBaslik).ConfigureAwait(true);
+                                return;
+                            }
+                        }
                     }
                 }
                 else

@@ -6,7 +6,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 {
     public class AboutViewModel : MvvmHelpers.BaseViewModel
     {
-        public Command LinkButtonClicked => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        public Command LinkButtonClicked => new Command<string>(async (url) => await Launcher.OpenAsync(url).ConfigureAwait(false));
 
         public AboutViewModel()
         {

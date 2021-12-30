@@ -1,10 +1,7 @@
-﻿using SuleymaniyeTakvimi.Models;
-using SuleymaniyeTakvimi.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -12,7 +9,7 @@ namespace SuleymaniyeTakvimi.ViewModels
     {
         //public IDataService DataService => DependencyService.Get<IDataService>();
 
-        bool _isBusy = false;
+        bool _isBusy;
         public bool IsBusy
         {
             get { return _isBusy; }

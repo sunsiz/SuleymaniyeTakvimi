@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.OS;
 using Android.Util;
 using Java.Util;
@@ -15,10 +14,10 @@ namespace SuleymaniyeTakvimi.Droid
     public class AlarmForegroundService : Service, IAlarmService
     {
         private NotificationManager _notificationManager;
-        private int DELAY_BETWEEN_MESSAGES = 30000;
-        private int NOTIFICATION_ID = 1993;
-        private string NOTIFICATION_CHANNEL_ID = "SuleymaniyeTakvimichannelId";
-        private string channelName = "Suleymaniye Takvimi";
+        private readonly int DELAY_BETWEEN_MESSAGES = 30000;
+        private readonly int NOTIFICATION_ID = 1993;
+        private readonly string NOTIFICATION_CHANNEL_ID = "SuleymaniyeTakvimichannelId";
+        private readonly string channelName = "Suleymaniye Takvimi";
         private readonly string channelDescription = "The Suleymaniye Takvimi notification channel.";
         private Notification _notification;
         private bool _isStarted;
@@ -101,7 +100,7 @@ namespace SuleymaniyeTakvimi.Droid
                     PendingIntentFlags.UpdateCurrent);
                 //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
                 //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
-                alarmManager.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
+                alarmManager?.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
                 Log.Info("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
             }
         }
@@ -112,7 +111,7 @@ namespace SuleymaniyeTakvimi.Droid
             AlarmManager alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService);
             Intent intent = new Intent(Application.Context, typeof(AlarmActivity));
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
-            alarmManager.Cancel(pendingIntent);
+            alarmManager?.Cancel(pendingIntent);
         }
 
         public override void OnCreate()
@@ -282,17 +281,17 @@ namespace SuleymaniyeTakvimi.Droid
 
             return StartCommandResult.Sticky;
         }
-        public override void OnDestroy()
-        {
-            // We need to shut things down.
-            //Log.Info(TAG, "OnDestroy: The started service is shutting down.");
-            // Stop the handler.
-            _handler.RemoveCallbacks(_runnable);
-            // Remove the notification from the status bar.
-            //var notificationManager = (NotificationManager)GetSystemService(NotificationService);
-            _notificationManager.Cancel(NOTIFICATION_ID);
-            _isStarted = false;
-            base.OnDestroy();
-        }
+        //public override void OnDestroy()
+        //{
+        //    // We need to shut things down.
+        //    //Log.Info(TAG, "OnDestroy: The started service is shutting down.");
+        //    // Stop the handler.
+        //    _handler.RemoveCallbacks(_runnable);
+        //    // Remove the notification from the status bar.
+        //    //var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+        //    _notificationManager.Cancel(NOTIFICATION_ID);
+        //    _isStarted = false;
+        //    base.OnDestroy();
+        //}
     }
 }

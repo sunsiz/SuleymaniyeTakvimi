@@ -1,20 +1,12 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Acr.UserDialogs;
-using Android.Media;
-using Android.Provider;
 using Android.Util;
 using MediaManager;
 using MediaManager.Library;
-using Uri = Android.Net.Uri;
 using Xamarin.Essentials;
 using MediaManager.Playback;
 using Microsoft.AppCenter.Analytics;
@@ -34,8 +26,8 @@ namespace SuleymaniyeTakvimi.Droid
             SetContentView(Resource.Layout.AlarmLayout);
             //get the current intent
             Intent intent = this.Intent;
-            var name = intent.GetStringExtra("name");
-            var time = TimeSpan.Parse(intent.GetStringExtra("time"));
+            var name = intent?.GetStringExtra("name");
+            var time = TimeSpan.Parse(intent?.GetStringExtra("time"));
             Log.Info("AlarmActivity", $"Alarm triggered at {DateTime.Now} for {name} and {time}");
             FindViewById<Button>(Resource.Id.stopButton)?.SetOnClickListener(this);
             var label = FindViewById<TextView>(Resource.Id.textView1);
@@ -45,70 +37,70 @@ namespace SuleymaniyeTakvimi.Droid
             switch (name)
             {
                 case "Fecri Kazip":
-                    label.SetText("Fecri Kazip Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"Fecri Kazip Vakti: {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("fecrikazipAlarm", false)) PlayAlarm(name, "Fecri Kazip Alarmı");
+                    label?.SetText("Fecri Kazip Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"Fecri Kazip Vakti: {time}", TextView.BufferType.Normal);
+                    if (Preferences.Get("fecrikazipAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("fecrikazipTitreme", false)) Vibrate();
                     if (Preferences.Get("fecrikazipBildiri", false)) ShowNotification("Fecri Kazip");
                     break;
                 case "Fecri Sadık":
-                    label.SetText("Fecri Sadık Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"Fecri Sadık Vakti: {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("fecrisadikAlarm", false)) PlayAlarm(name, "Fecri Sadık Alarmı");
+                    label?.SetText("Fecri Sadık Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"Fecri Sadık Vakti: {time}", TextView.BufferType.Normal);
+                    if (Preferences.Get("fecrisadikAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("fecrisadikTitreme", false)) Vibrate();
                     if (Preferences.Get("fecrisadikBildiri", false)) ShowNotification("Fecri Sadık");
                     break;
                 case "Sabah Sonu":
-                    label.SetText("Sabah Sonu Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"Sabah Sonu Vakti: {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("sabahsonuAlarm", false)) PlayAlarm(name, "Sabah Sonu Alarmı");
+                    label?.SetText("Sabah Sonu Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"Sabah Sonu Vakti: {time}", TextView.BufferType.Normal);
+                    if (Preferences.Get("sabahsonuAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("sabahsonuTitreme", false)) Vibrate();
                     if (Preferences.Get("sabahsonuBildiri", false)) ShowNotification("Sabah Sonu");
                     break;
                 case "Öğle":
-                    label.SetText("Öğle Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"Öğle Vakti: {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("ogleAlarm", false)) PlayAlarm(name, "Öğle Alarmı");
+                    label?.SetText("Öğle Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"Öğle Vakti: {time}", TextView.BufferType.Normal);
+                    if (Preferences.Get("ogleAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("ogleTitreme", false)) Vibrate();
                     if (Preferences.Get("ogleBildiri", false)) ShowNotification("Öğle");
                     break;
                 case "İkindi":
-                    label.SetText("İkindi Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"İkindi Vakti: {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("ikindiAlarm", false)) PlayAlarm(name, "İkindi Alarmı");
+                    label?.SetText("İkindi Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"İkindi Vakti: {time}", TextView.BufferType.Normal);
+                    if (Preferences.Get("ikindiAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("ikindiTitreme", false)) Vibrate();
                     if (Preferences.Get("ikindiBildiri", false)) ShowNotification("İkindi");
                     break;
                 case "Akşam":
-                    label.SetText("Akşam Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"Akşam Vakti: {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("aksamAlarm", false)) PlayAlarm(name, "Akşam Alarmı");
+                    label?.SetText("Akşam Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"Akşam Vakti: {time}", TextView.BufferType.Normal);
+                    if (Preferences.Get("aksamAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("aksamTitreme", false)) Vibrate();
                     if (Preferences.Get("aksamBildiri", false)) ShowNotification("Akşam");
                     break;
                 case "Yatsı":
-                    label.SetText("Yatsı Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"Yatsı Vakti: {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("yatsiAlarm", false)) PlayAlarm(name, "Yatsı Alarmı");
+                    label?.SetText("Yatsı Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"Yatsı Vakti: {time}", TextView.BufferType.Normal);
+                    if (Preferences.Get("yatsiAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("yatsiTitreme", false)) Vibrate();
                     if (Preferences.Get("yatsiBildiri", false)) ShowNotification("Yatsı");
                     break;
                 case "Yatsı Sonu":
-                    label.SetText("Yatsı Sonu Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"Yatsı Sonu Vakti: {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("yatsisonuAlarm", false)) PlayAlarm(name, "Yatsı Sonu Alarmı");
+                    label?.SetText("Yatsı Sonu Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"Yatsı Sonu Vakti: {time}", TextView.BufferType.Normal);
+                    if (Preferences.Get("yatsisonuAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("yatsisonuTitreme", false)) Vibrate();
                     if (Preferences.Get("yatsisonuBildiri", false)) ShowNotification("Yatsı Sonu");
                     break;
                 default:
-                    label.SetText("Test Alarmı", TextView.BufferType.Normal);
-                    timeLabel.SetText($"şimdiki zaman: {time}", TextView.BufferType.Normal);
-                    PlayAlarm(name, "Test Alarmı");
+                    label?.SetText("Test Alarmı", TextView.BufferType.Normal);
+                    timeLabel?.SetText($"şimdiki zaman: {time}", TextView.BufferType.Normal);
+                    PlayAlarm(name);
                     break;
             }
         }
 
-        private static async void PlayAlarm(string name, string title)
+        private static async void PlayAlarm(string name)
         {
             Analytics.TrackEvent("PlayAlarm in the AlarmActivity");
             //if (name == "test")
@@ -150,7 +142,7 @@ namespace SuleymaniyeTakvimi.Droid
             }
             try
             {
-                CrossMediaManager.Current.MediaPlayer.Stop();
+                await CrossMediaManager.Current.MediaPlayer.Stop().ConfigureAwait(false);
                 IMediaItem mediaItem;
                 var alarmSesi = Preferences.Get(key + "AlarmSesi", "kus");
                 mediaItem = await CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").ConfigureAwait(true);
@@ -160,7 +152,7 @@ namespace SuleymaniyeTakvimi.Droid
                 //CrossMediaManager.Current.MediaPlayer.ShowPlaybackControls = false;
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
-                CrossMediaManager.Current.MediaPlayer.Play(mediaItem);
+                await CrossMediaManager.Current.MediaPlayer.Play(mediaItem).ConfigureAwait(false);
             }
             catch (Exception exception)
             {
@@ -205,10 +197,10 @@ namespace SuleymaniyeTakvimi.Droid
 
         public override void OnAttachedToWindow()
         {
-            Window.AddFlags(WindowManagerFlags.ShowWhenLocked |
-                            WindowManagerFlags.KeepScreenOn |
-                            WindowManagerFlags.DismissKeyguard |
-                            WindowManagerFlags.TurnScreenOn);
+            Window?.AddFlags(WindowManagerFlags.ShowWhenLocked |
+                             WindowManagerFlags.KeepScreenOn |
+                             WindowManagerFlags.DismissKeyguard |
+                             WindowManagerFlags.TurnScreenOn);
         }
 
         public void OnClick(View v)
@@ -231,7 +223,7 @@ namespace SuleymaniyeTakvimi.Droid
                     notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
                     var pendingIntent =
                         PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent);
-                    pendingIntent.Send();
+                    pendingIntent?.Send();
                 }
             }
         }

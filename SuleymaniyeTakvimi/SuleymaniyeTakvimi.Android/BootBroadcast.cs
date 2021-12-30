@@ -3,7 +3,6 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Microsoft.AppCenter.Analytics;
-using SuleymaniyeTakvimi.Droid;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -21,7 +20,7 @@ namespace SuleymaniyeTakvimi.Droid
 
             // Run your code here
             //MainActivity.SetAlarmForBackgroundServices(context);
-            MainActivity main = MainActivity.instance;
+            MainActivity main = MainActivity.Instance;
             main.SetAlarmForegroundService();
 
             wakeLock?.Release();

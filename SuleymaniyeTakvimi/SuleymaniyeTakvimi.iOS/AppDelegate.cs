@@ -1,6 +1,4 @@
-﻿using System;
-using Acr.UserDialogs;
-using EventKit;
+﻿using System.Diagnostics;
 using Foundation;
 //using Matcha.BackgroundService.iOS;
 using MediaManager;
@@ -30,14 +28,14 @@ namespace SuleymaniyeTakvimi.iOS
             //BackgroundAggregator.Init(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             //global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
-            global::Xamarin.Forms.Forms.Init();
-            global::Xamarin.Forms.FormsMaterial.Init();
+            Forms.Init();
+            FormsMaterial.Init();
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
             {
                 // Ask the user for permission to get notifications on iOS 10.0+
                 UNUserNotificationCenter.Current.RequestAuthorization(
                     UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
-                    (approved, error) => { });
+                    (approved, error) => { Debug.WriteLine($"approved {approved}, error:{error}");});
 
                 // Watch for notifications while app is active
                 UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
@@ -83,7 +81,7 @@ namespace SuleymaniyeTakvimi.iOS
             //{
 
             //UserDialogs.Instance.Alert("Uygulam kapanıyor.", "Uyarı", "Tamam");
-            Console.WriteLine("WillTerminate Executing.");
+            Debug.WriteLine("WillTerminate Executing.");
             SetAlarms();
             base.WillTerminate(uiApplication);
             //}
@@ -91,7 +89,7 @@ namespace SuleymaniyeTakvimi.iOS
         public override void DidEnterBackground(UIApplication uiApplication)
         {
             //UserDialogs.Instance.Alert("Uygulam arka plana geçiyor ve 30 saniye sonra kapanabilir.", "Uyarı", "Tamam");
-            Console.WriteLine("DidEnterBackground Executing.");
+            Debug.WriteLine("DidEnterBackground Executing.");
             SetAlarms();
             base.DidEnterBackground(uiApplication);
         }

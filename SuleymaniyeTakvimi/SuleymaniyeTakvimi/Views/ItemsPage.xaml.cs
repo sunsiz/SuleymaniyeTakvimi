@@ -1,15 +1,6 @@
-﻿using SuleymaniyeTakvimi.Models;
-using SuleymaniyeTakvimi.ViewModels;
-using SuleymaniyeTakvimi.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SuleymaniyeTakvimi.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace SuleymaniyeTakvimi.Views
 {

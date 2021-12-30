@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SuleymaniyeTakvimi.Models
+﻿namespace SuleymaniyeTakvimi.Models
 {
     public class Item
     {
