@@ -19,7 +19,7 @@ namespace SuleymaniyeTakvimi.iOS
         {
             //UILocalNotification notification = new UILocalNotification();
             DateTime triggerDateTime = today;
-            triggerDateTime += triggerTimeSpan;
+            triggerDateTime += triggerTimeSpan - TimeSpan.FromMinutes(timeOffset);
             triggerDateTime = DateTime.SpecifyKind(triggerDateTime, DateTimeKind.Utc);
             //notification.FireDate = (NSDate) triggerDateTime;
             //notification.AlertTitle = $"{name} Hatirlatmasi"; // required for Apple Watch notifications
@@ -31,38 +31,48 @@ namespace SuleymaniyeTakvimi.iOS
             //notification.SoundName = UILocalNotification.DefaultSoundName;
             //UIApplication.SharedApplication.ScheduleLocalNotification(notification);
             var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus") + ".wav";
-            var content = new UNMutableNotificationContent
+            try
             {
-                Title = $"{name} Hatirlatmasi",
-                Subtitle = "Suleymaniye vakfi takvimi",
-                Body = GetFormattedRemainingTime(),
-                Sound = UNNotificationSound.GetSound(alarmSesi)
-            };
-            //content.Badge = 9;
-            // New trigger time
-            NSDateComponents dateComponents = new NSDateComponents() {
-                Calendar = NSCalendar.CurrentCalendar,
-                Year = triggerDateTime.Year,
-                Month = triggerDateTime.Month,
-                Day = triggerDateTime.Day,
-                Hour = triggerDateTime.Hour,
-                Minute = triggerDateTime.Minute,
-                Second = triggerDateTime.Second
-            };
-            var trigger = UNCalendarNotificationTrigger.CreateTrigger(dateComponents, false);
-            // ID of Notification to be updated
-            var requestId = "SuleymaniyeTakvimiRequest"+triggerDateTime.ToString("yyyyMMddhhmmss");
-            var request = UNNotificationRequest.FromIdentifier(requestId, content, trigger);
-
-            // Add to system to modify existing Notification
-            UNUserNotificationCenter.Current.AddNotificationRequest(request, (err) => {
-                if (err != null)
+                var content = new UNMutableNotificationContent
                 {
-                    // Do something with error...
-                    Debug.WriteLine("Error: {0}", err);
-                    UserDialogs.Instance.Alert($"hata detayları: {err}", "Alarm kurarken bir hata oluştu", "Tamam");
-                }else Debug.WriteLine("Notification Scheduled: {0} \n {1}", request, content);
-            });
+                    Title = $"{name} Hatirlatmasi",
+                    Subtitle = "Suleymaniye vakfi takvimi",
+                    Body = GetFormattedRemainingTime(),
+                    Sound = UNNotificationSound.GetSound(alarmSesi)
+                };
+                //content.Badge = 9;
+                // New trigger time
+                NSDateComponents dateComponents = new NSDateComponents()
+                {
+                    Calendar = NSCalendar.CurrentCalendar,
+                    Year = triggerDateTime.Year,
+                    Month = triggerDateTime.Month,
+                    Day = triggerDateTime.Day,
+                    Hour = triggerDateTime.Hour,
+                    Minute = triggerDateTime.Minute,
+                    Second = triggerDateTime.Second
+                };
+                var trigger = UNCalendarNotificationTrigger.CreateTrigger(dateComponents, false);
+                // ID of Notification to be updated
+                var requestId = "SuleymaniyeTakvimiRequest" + triggerDateTime.ToString("yyyyMMddhhmmss");
+                var request = UNNotificationRequest.FromIdentifier(requestId, content, trigger);
+
+                // Add to system to modify existing Notification
+                UNUserNotificationCenter.Current.AddNotificationRequest(request, (err) =>
+                {
+                    if (err != null)
+                    {
+                        // Do something with error...
+                        Debug.WriteLine("Error: {0}", err);
+                        UserDialogs.Instance.Alert($"hata detayları: {err}", "Alarm kurarken bir hata oluştu", "Tamam");
+                    }
+                    else Debug.WriteLine("Notification Scheduled: {0} \n {1}", request, content);
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Notification Scheduling Error: {0}", ex.Message);
+            }
             //UNUserNotificationCenter.Current.GetPendingNotificationRequests((req) => {
                 //if (req != null) UserDialogs.Instance.Alert($"request sayisi: {req.Length}", "Zamanlanan bilidiri sayisi", "Tamam");
             //});

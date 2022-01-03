@@ -49,14 +49,29 @@
 	<string>tr</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoadsInMedia</key>
-		<true/>
-	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Alarm kurmak için takvim izni gerekiyor</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>Alarm kurmak için takvim izni gerekiyor</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>suleymaniyetakvimi.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>caster.fm</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>

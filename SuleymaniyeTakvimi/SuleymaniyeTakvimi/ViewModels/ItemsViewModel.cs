@@ -18,7 +18,7 @@ namespace SuleymaniyeTakvimi.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
-        public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<Item> _items;
         public Command LoadItemsCommand { get; }
         public Command GoToMapCommand { get; }
         public Command GoToMonthCommand { get; }
@@ -26,6 +26,8 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command<Item> ItemTapped { get; }
         Takvim _takvim, _vakitler;
         private string _city;
+
+        public ObservableCollection<Item> Items { get => _items; set => SetProperty<ObservableCollection<Item>>(ref _items, value); }
 
         public Takvim Vakitler
         {
@@ -128,7 +130,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
             try
             {
-                Items.Clear();
+                Items = new ObservableCollection<Item>();
                 //var FecriKazip = new Item() { Id = "fecrikazip", Adi = "Fecri Kazip", Vakit = _takvim.FecriKazip, Etkin = Preferences.Get("fecrikazipEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriKazip), DateTime.Parse(_takvim.FecriSadik)), Alarm = Preferences.Get("fecrikazipAlarm",false), Bildiri = Preferences.Get("fecrikazipBildiri",false), Titreme = Preferences.Get("fecrikazipTitreme",false), BildirmeVakti = Preferences.Get("fecrikazipBildiriVakti","0.00")};
                 //var FecriSadik = new Item() { Id = "fecrisadik", Adi = "Fecri Sadık", Vakit = _takvim.FecriSadik, Etkin = Preferences.Get("fecrisadikEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriSadik), DateTime.Parse(_takvim.SabahSonu)), Alarm = Preferences.Get("fecrisadikAlarm", false), Bildiri = Preferences.Get("fecrisadikBildiri", false), Titreme = Preferences.Get("fecrisadikTitreme", false), BildirmeVakti = Preferences.Get("fecrisadikBildiriVakti", "0.00") };
                 //var SabahSonu = new Item() { Id = "sabahsonu", Adi = "Sabah Sonu", Vakit = _takvim.SabahSonu, Etkin = Preferences.Get("sabahsonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.SabahSonu), DateTime.Parse(_takvim.Ogle)), Alarm = Preferences.Get("sabahsonuAlarm", false), Bildiri = Preferences.Get("sabahsonuBildiri", false), Titreme = Preferences.Get("sabahsonuTitreme", false), BildirmeVakti = Preferences.Get("sabahsonuBildiriVakti", "0.00") };

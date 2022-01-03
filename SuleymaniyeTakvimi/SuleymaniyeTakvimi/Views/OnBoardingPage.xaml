@@ -18,9 +18,9 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -37,9 +37,9 @@
 
                                 <forms:SvgCachedImage Grid.Row="0" WidthRequest="300" Aspect="AspectFill" FlexLayout.AlignSelf="Center" Source="{Binding ImageUrl}" />
 
-                                <Label Grid.Row="1" FontAttributes="Bold" FontSize="Title" Text="{Binding Title}" />
+                                <Label Grid.Row="1" Grid.ColumnSpan="3" FontAttributes="Bold" FontSize="Title" Text="{Binding Title}" />
 
-                                <Label Grid.Row="2" Margin="19,7" FontSize="Body" Text="{Binding Content}" />
+                                <Label Grid.Row="2" Grid.ColumnSpan="3" Margin="19,3" FontSize="Body" Text="{Binding Content}" />
 
                             </FlexLayout>
                         </ContentView>

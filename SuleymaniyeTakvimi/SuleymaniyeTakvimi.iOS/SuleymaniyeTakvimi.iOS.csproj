@@ -181,9 +181,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\horoz.wav" />
-    <EmbeddedResource Include="Resources\alarm.wav" />
-    <EmbeddedResource Include="Resources\kus.wav" />
-    <EmbeddedResource Include="Resources\ezan.wav" />
+    <BundleResource Include="Resources\kus.wav" />
+    <BundleResource Include="Resources\alarm.wav" />
+    <BundleResource Include="Resources\ezan.wav" />
+    <BundleResource Include="Resources\horoz.wav" />
   </ItemGroup>
 </Project>
