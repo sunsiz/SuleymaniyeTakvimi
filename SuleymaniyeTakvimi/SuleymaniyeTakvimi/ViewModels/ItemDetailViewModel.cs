@@ -29,6 +29,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private Sound[] _sounds;
         private Sound _selectedSound;
         private string _testButtonText;
+        private bool _isPlaying;
         public ICommand EnableSwitchToggled { get; }
         public ICommand BildiriCheckedChanged { get; }
         public ICommand TitremeCheckedChanged { get; }
@@ -37,6 +38,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ICommand BackCommand { get; }
         public Command<Sound> SoundSelectedCommand { get; }
         public ICommand TestButtonCommand { get; }
+
+        public bool IsPlaying
+        {
+            get => _isPlaying;
+            set => SetProperty(ref _isPlaying, value);
+        }
 
         public string TestButtonText
         {
@@ -81,23 +88,26 @@ namespace SuleymaniyeTakvimi.ViewModels
             SoundSelectedCommand = new Command<Sound>(SoundSelected);
             TestButtonCommand = new Command(TestButtonClicked);
             CrossMediaManager.Current.MediaPlayer.Stop();
-            _testButtonText = AppResources.SesTesti;
+            //_testButtonText = "&#xe038;"; //AppResources.SesTesti;
+            IsPlaying = false;
         }
 
         private async void TestButtonClicked(object obj)
         {
-            if (TestButtonText == AppResources.SesTesti)
+            if (!IsPlaying)//TestButtonText == "&#xe038;"AppResources.SesTesti
             {
                 var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(SelectedSound.FileName + ".wav").ConfigureAwait(true);
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 await CrossMediaManager.Current.MediaPlayer.Play(mediaItem).ConfigureAwait(false);
-                TestButtonText = AppResources.TestiDurdur;
+                //TestButtonText = "&#xe036;"; //AppResources.TestiDurdur;
+                IsPlaying = true;
             }
             else
             {
                 await CrossMediaManager.Current.MediaPlayer.Stop().ConfigureAwait(false);
-                TestButtonText = AppResources.SesTesti;
+                //TestButtonText = "&#xe038;"; //AppResources.SesTesti;
+                IsPlaying = false;
             }
         }
 

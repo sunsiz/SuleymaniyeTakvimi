@@ -141,6 +141,7 @@
     <Compile Remove="Services\ReminderService.cs" />
     <Compile Remove="ShinyDelegate.cs" />
     <Compile Remove="Startup.cs" />
+    <Compile Remove="Typicons.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\alarm.mp3" />

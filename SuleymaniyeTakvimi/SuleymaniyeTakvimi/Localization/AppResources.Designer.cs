@@ -97,6 +97,24 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aylık Takvim.
+        /// </summary>
+        internal static string AylikTakvim {
+            get {
+                return ResourceManager.GetString("AylikTakvim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aylık Takvim Başarıyla Yenilendi.
+        /// </summary>
+        internal static string AylikTakvimYenilendi {
+            get {
+                return ResourceManager.GetString("AylikTakvimYenilendi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 5 dakika önceden.
         /// </summary>
         internal static string BesDakikaOnceden {
@@ -660,6 +678,15 @@ namespace SuleymaniyeTakvimi.Localization {
         internal static string YayinAkisi {
             get {
                 return ResourceManager.GetString("YayinAkisi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yenileniyor.
+        /// </summary>
+        internal static string Yenileniyor {
+            get {
+                return ResourceManager.GetString("Yenileniyor", resourceCulture);
             }
         }
         

@@ -532,10 +532,10 @@ namespace SuleymaniyeTakvimi.Services
         //}
 
 
-        public IList<Takvim> GetMonthlyPrayerTimes(Location location)
+        public IList<Takvim> GetMonthlyPrayerTimes(Location location, bool forceRefresh)
         {
             Analytics.TrackEvent("GetMonthlyPrayerTimes in the DataService");
-            if (File.Exists(FileName))
+            if (File.Exists(FileName) && !forceRefresh)
             {
                 XDocument xmldoc=XDocument.Load(FileName);
                 var takvims = ParseXmlList(xmldoc);
@@ -715,7 +715,7 @@ namespace SuleymaniyeTakvimi.Services
                         konum = await GetCurrentLocationAsync(false).ConfigureAwait(false);
                         if (konum != null && konum.Enlem > 0 && konum.Boylam > 0)
                         {
-                            MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik));
+                            MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik), false);
                             if (MonthlyTakvim == null)
                             {
                                 await UserDialogs.Instance.AlertAsync(AppResources.TakvimIcinInternet,
@@ -730,7 +730,7 @@ namespace SuleymaniyeTakvimi.Services
                     konum = await GetCurrentLocationAsync(false).ConfigureAwait(false);
                     if (konum != null && konum.Enlem > 0 && konum.Boylam > 0)
                     {
-                        MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik));
+                        MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik), false);
                         if (MonthlyTakvim == null)
                         {
                             await UserDialogs.Instance.AlertAsync(AppResources.TakvimIcinInternet,
@@ -803,7 +803,7 @@ namespace SuleymaniyeTakvimi.Services
                 konum = await GetCurrentLocationAsync(false).ConfigureAwait(false);
                 if (konum != null && konum.Enlem > 0 && konum.Boylam > 0)
                 {
-                    MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik));
+                    MonthlyTakvim = GetMonthlyPrayerTimes(new Location(konum.Enlem, konum.Boylam, konum.Yukseklik), false);
                     if (MonthlyTakvim == null)
                     {
                         await UserDialogs.Instance.AlertAsync(AppResources.TakvimIcinInternet,

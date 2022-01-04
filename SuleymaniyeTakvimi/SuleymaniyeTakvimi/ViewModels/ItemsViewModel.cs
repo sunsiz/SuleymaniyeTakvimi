@@ -46,7 +46,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         public string Today
         {
-            get { return DateTime.Today.ToString("M"); }
+            get { return AppResources.AylikTakvim; /*DateTime.Today.ToString("M");*/ }
         }
 
         public string City
@@ -66,7 +66,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
+                Debug.WriteLine(exception);
             }
 
             if (!string.IsNullOrEmpty(City)) Preferences.Set("sehir", City);
@@ -103,8 +103,11 @@ namespace SuleymaniyeTakvimi.ViewModels
             GoToMonthCommand=new Command(GoToMonthPage);
             RefreshLocationCommand = new Command(async () =>
             {
-                await GetPrayerTimesAsync().ConfigureAwait(false);
-                ExecuteLoadItemsCommand();
+                using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
+                {
+                    await GetPrayerTimesAsync().ConfigureAwait(false);
+                    ExecuteLoadItemsCommand();
+                }
             });
             Task.Run(async () =>
             {
@@ -117,7 +120,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 ExecuteLoadItemsCommand();
                 var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
                 if (location != null && location.Enlem != 0)
-                    data.GetMonthlyPrayerTimes(new Location(location.Enlem, location.Boylam, location.Yukseklik));
+                    data.GetMonthlyPrayerTimes(new Location(location.Enlem, location.Boylam, location.Yukseklik), false);
                 //GetCity();
             }).ConfigureAwait(false);
             Log.Warning("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
@@ -224,7 +227,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private async Task GetPrayerTimesAsync()
         {
-            IsBusy = true;
+            //IsBusy = true;
             var data = new DataService();
             //if (File.Exists(data._fileName))
             //{
@@ -285,7 +288,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(7));
             }
 
-            IsBusy = false;
+            //IsBusy = false;
             //}
             //catch (Exception exception)
             //{

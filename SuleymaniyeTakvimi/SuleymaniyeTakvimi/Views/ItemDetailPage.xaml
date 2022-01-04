@@ -144,8 +144,23 @@
                             </RadioButton.Behaviors>
                         </RadioButton>
                         <Label HorizontalOptions="Start" Text="{x:Static resources:AppResources.AlarmSound}" FontSize="Large" HorizontalTextAlignment="End" TextColor="DarkRed"/>
-                        <Picker Title="Bir ses seçin" TitleColor="Green" ItemsSource="{Binding Sounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound, Mode=TwoWay}" SelectedIndex="{Binding SelectedSound.Index}" />
-                        <Button Text="{Binding TestButtonText}" Command="{Binding TestButtonCommand}" CornerRadius="9" BackgroundColor="{StaticResource PrimaryLightAccent100Color}"></Button>
+                        <StackLayout Orientation="Horizontal">
+                            <Picker Title="Bir ses seçin" TitleColor="Green" ItemsSource="{Binding Sounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound, Mode=TwoWay}" SelectedIndex="{Binding SelectedSound.Index}" WidthRequest="200" HorizontalOptions="StartAndExpand" />
+                            <!--<Button Text="{Binding TestButtonText}" Command="{Binding TestButtonCommand}" CornerRadius="9" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" HorizontalOptions="End" FontFamily="MaterialIcons" FontAttributes="Bold" Font="Default"/>-->
+                            <Label Padding="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="35" Opacity="0.8" TextColor="{StaticResource PrimaryDarkColor}" Text="{Binding TestButtonText}">
+                                <Label.Triggers>
+                                    <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="False">
+                                        <Setter Property="Text" Value="&#xe038;" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="True">
+                                        <Setter Property="Text" Value="&#xe047;" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding TestButtonCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
                 <!--<pancakeView:PancakeView CornerRadius="9">-->

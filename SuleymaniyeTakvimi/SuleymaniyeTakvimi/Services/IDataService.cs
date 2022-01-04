@@ -9,7 +9,7 @@ namespace SuleymaniyeTakvimi.Services
     {
         Task<Takvim> VakitHesabiAsync();
         Task<Takvim> GetPrayerTimesAsync(bool refreshLocation);
-        IList<Takvim> GetMonthlyPrayerTimes(Location location);
+        IList<Takvim> GetMonthlyPrayerTimes(Location location, bool forceRefresh);
         void SetWeeklyAlarms();
     }
 }

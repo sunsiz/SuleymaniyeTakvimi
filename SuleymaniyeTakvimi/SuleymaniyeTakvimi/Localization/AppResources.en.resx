@@ -129,6 +129,12 @@
   <data name="AlarmSwitch" xml:space="preserve">
     <value>Play alarm</value>
   </data>
+  <data name="AylikTakvim" xml:space="preserve">
+    <value>Monthly Time</value>
+  </data>
+  <data name="AylikTakvimYenilendi" xml:space="preserve">
+    <value>Monthly Prayer Times Refreshed Successfully</value>
+  </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
     <value>5 min before</value>
   </data>
@@ -317,6 +323,9 @@
   </data>
   <data name="YayinAkisi" xml:space="preserve">
     <value> Stream Schedules</value>
+  </data>
+  <data name="Yenileniyor" xml:space="preserve">
+    <value>Refreshing</value>
   </data>
   <data name="Yukseklik" xml:space="preserve">
     <value>Altitude: {0}</value>

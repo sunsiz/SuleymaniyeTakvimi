@@ -14,18 +14,18 @@
             <pancakeView:PancakeView Grid.Row="1" Margin="0,-25,0,-15" CornerRadius="25" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" Shadow="{pancakeView:ShadowMarkup Color={StaticResource PrimaryLightAccent400Color}, BlurRadius=3, Opacity=0.3, Offset='1,-4'}">
                 <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, *" VerticalOptions="Center" Padding="15,0,15,20">
                     <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
-                        <Label>
+                        <Label VerticalTextAlignment="Start">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="{StaticResource PrimaryDarkColor}" FontSize="22" />
-                                    <Span Text="{x:Static resources:AppResources.YayinAkisi}" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.instagram.com/radyofitrat/" />
-                                        </Span.GestureRecognizers>
+                                    <Span Text="{x:Static resources:AppResources.YayinAkisi}" FontSize="22" TextColor="{StaticResource PrimaryDarkColor}">
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.instagram.com/radyofitrat/" />
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <StackLayout Grid.Row="0" Grid.Column="1">
                         <Label Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="75" Opacity="0.8" TextColor="{StaticResource PrimaryDarkColor}" Text="&#xe038;">
@@ -43,18 +43,18 @@
                         </Label>
                     </StackLayout>
                     <StackLayout Grid.Row="0" Grid.Column="2" VerticalOptions="Center">
-                        <Label HorizontalTextAlignment="End">
+                        <Label HorizontalTextAlignment="End" VerticalTextAlignment="Start">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="{StaticResource PrimaryDarkColor}" FontSize="22" />
-                                    <Span Text="{x:Static resources:AppResources.WebSayfa}" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" />
-                                        </Span.GestureRecognizers>
+                                    <Span Text="{x:Static resources:AppResources.WebSayfa}" FontSize="22" TextColor="{StaticResource PrimaryDarkColor}">
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.radyofitrat.com/" />
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </Grid>
             </pancakeView:PancakeView>
