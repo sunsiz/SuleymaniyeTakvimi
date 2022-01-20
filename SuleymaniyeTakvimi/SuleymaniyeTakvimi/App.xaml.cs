@@ -2,6 +2,7 @@
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using SuleymaniyeTakvimi.Models;
 //using Matcha.BackgroundService;
 //using Plugin.LocalNotification;
 using Xamarin.Essentials;
@@ -30,6 +31,7 @@ namespace SuleymaniyeTakvimi
                 typeof(Analytics), typeof(Crashes));
             //SetReminderEnabled();
             VersionTracking.Track();
+            OnResume();
             //if (reminderEnabled) StartBackgroundService();
         }
 
@@ -53,15 +55,29 @@ namespace SuleymaniyeTakvimi
         //    //reminderEnabled = fecrikazip || fecrisadik || sabahsonu || ogle || ikindi || aksam || yatsi || yatsisonu;
         //}
 
-        //protected override void OnSleep()
-        //{
-        //    //if (!reminderEnabled) BackgroundAggregatorService.StopBackgroundService();
-        //}
+        protected override void OnSleep()
+        {
+            SetTheme();
+            RequestedThemeChanged -= App_RequestedThemeChanged;
+            //if (!reminderEnabled) BackgroundAggregatorService.StopBackgroundService();
+        }
 
-        //protected override void OnResume()
-        //{
-        //    //if (Device.RuntimePlatform == Device.iOS) StartBackgroundService();
-        //}
+        protected override void OnResume()
+        {
+            SetTheme();
+            RequestedThemeChanged += App_RequestedThemeChanged;
+            //if (Device.RuntimePlatform == Device.iOS) StartBackgroundService();
+        }
+
+        private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(SetTheme);
+        }
+
+        private void SetTheme()
+        {
+            Current.UserAppTheme = Theme.Tema == 1 ? OSAppTheme.Light : OSAppTheme.Dark;
+        }
 
         //private void OnLocalNotificationTapped(NotificationTappedEventArgs e)
         //{

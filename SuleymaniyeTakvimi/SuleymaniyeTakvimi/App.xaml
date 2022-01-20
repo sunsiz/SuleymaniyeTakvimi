@@ -7,32 +7,84 @@
         <ResourceDictionary>
             <!--  Values  -->
             <Thickness x:Key="ContentPadding">3, 7</Thickness>
-            <Color x:Key="Primary">DodgerBlue</Color>
-            <Color x:Key="AppPrimaryColor">#1976D2</Color>
+            <!--<Color x:Key="Primary">DodgerBlue</Color>
+            <Color x:Key="AppPrimaryColor">#1976D2</Color>-->
             <Color x:Key="AppBackgroundColor">#EFEBE9</Color>
+            <Color x:Key="AppBackgroundColorDark">#121212</Color>
             <Color x:Key="PrimaryColor">#5c3021</Color>
             <Color x:Key="PrimaryLightColor">#8c5a49</Color> 
             <Color x:Key="PrimaryDarkColor">#310900</Color>
-            <Color x:Key="PrimaryTextColor">#ffffff</Color>
-            <Color x:Key="PrimaryLightAccent400Color">#8e5e4b</Color>
-            <Color x:Key="PrimaryLightAccent100Color">#e5c3b5</Color>
-            <Color x:Key="SecondaryColor">White</Color>
-            <Color x:Key="TertiaryColor">Silver</Color>
-            <Color x:Key="NavigationBarTextColor">#5D5D5D</Color>
+            <Color x:Key="PrimaryTextColor">#000000</Color>
+            <Color x:Key="PrimaryTextColorDark">#ffffff</Color>
+            <Color x:Key="PrimaryAccent50Color">#ffe5d6</Color>
+            <Color x:Key="PrimaryAccent100Color">#e5c3b5</Color>
+            <Color x:Key="PrimaryAccent200Color">#c59d8f</Color>
+            <Color x:Key="PrimaryAccent300Color">#a57968</Color>
+            <Color x:Key="PrimaryAccent400Color">#8e5e4b</Color>
+            <Color x:Key="PrimaryAccent500Color">#774430</Color>
+            <Color x:Key="PrimaryAccent600Color">#6c3b2a</Color>
+            <Color x:Key="PrimaryAccent800Color">#4d241a</Color>
+            <Color x:Key="PrimaryAccent900Color">#3d1710</Color>
+            <Color x:Key="SecondaryColor">#214d5c</Color>
+            <Color x:Key="SecondaryLightColor">#4f7989</Color>
+            <Color x:Key="SecondaryDarkColor">#002532</Color>
+            <Color x:Key="SecondaryTextColor">#ffffff</Color>
+            <Color x:Key="TertiaryColor">#48ae62</Color>
+            <Color x:Key="TertiaryLightColor">#7ce190</Color>
+            <Color x:Key="TertiaryDarkColor">#007e36</Color>
+            <Color x:Key="TertiaryTextColor">#000000</Color>
+            <Color x:Key="DarkElevation2dp">#212121</Color>
+            <Color x:Key="DarkElevation4dp">#272727</Color>
+            <Color x:Key="DarkElevation8dp">#2D2D2D</Color>
+            <Color x:Key="DarkElevation12dp">#323232</Color>
+            <Color x:Key="DarkElevation16dp">#353535</Color>
+            <Color x:Key="DarkElevation24dp">#373737</Color>
+            <Color x:Key="OnPrimaryColor">#000000</Color>
+            <Color x:Key="OnSecondaryColor">#000000</Color>
+            <Color x:Key="OnSurfaceColor">#FFFFFF</Color>
+            <Color x:Key="NavigationBarColorDark">#272727</Color>
+            <Color x:Key="TabBarBackgroundColorDark">#353535</Color>
             <Color x:Key="NormalButtonBackgroundColor">#1976D2</Color>
             <Color x:Key="NormalButtonTextColor">#FFFFFF</Color>
             <Color x:Key="HeadingLabelTextColor">#5D5D5D</Color>
-            <Color x:Key="NavigationBarColor">#2E7D32</Color>
+            <Color x:Key="HeadingLabelTextColorDark">#A2A2A2</Color>
             <Color x:Key="TransparentColor">Transparent</Color>
+            <Color x:Key="CardBackgroundColor">#FFFFF0</Color>
+            <Color x:Key="CardBackgroundColorDark">#B2B2A8</Color>
+
+            <Color x:Key="PastTimeBackgroundColor">AntiqueWhite</Color>
+            <Color x:Key="PastTimeBackgroundColorDark">#222222</Color>
+            <Color x:Key="CurrentTimeBackgroundColor">Gold</Color>
+            <Color x:Key="CurrentTimeBackgroundColorDark">#214d5c</Color>
+            <Color x:Key="FutureTimeBackgroundColor">LightGreen</Color>
+            <Color x:Key="FutureTimeBackgroundColorDark">#003E14</Color>
+            <Color x:Key="TimeTextColor">#A8573C</Color>
+            <Color x:Key="TimeTextColorDark">#CACABF</Color>
+            <Color x:Key="CityBackgroundColor">SandyBrown</Color>
+            <Color x:Key="CityBackgroundColorDark">#002532</Color>
+            <Color x:Key="MonthlyBackgroundColor">Beige</Color>
+            <Color x:Key="DarkSurface">#121212</Color>
+            <Color x:Key="LightSurface">#02FF0266</Color>
+
+            <Color x:Key="NavigationBarLightColor">#FFFFFF</Color>
+            <Color x:Key="BarTextColor">#FFFFFF</Color>
+
+            <Color x:Key="BlackC90">#414142</Color>
+            <Color x:Key="BlackC50">#939598</Color>
+            <Color x:Key="BlackC25">#C8C8C8</Color>
+            <Color x:Key="BlackC05">#F1F1F2</Color>
+            <Color x:Key="Black.20">#33000000</Color>
+
+            <Color x:Key="Primary">#121212</Color>
             <!--  Implicit styles  -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
-                <Setter Property="BarTextColor" Value="{StaticResource NavigationBarTextColor}" />
+                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor}}" />
+                <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource PrimaryAccent100Color}, Dark={StaticResource DarkElevation2dp}}" />
                 <Setter Property="iOsSpecific:NavigationPage.HideNavigationBarSeparator" Value="True" />
             </Style>
 
             <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" />
                 <!--<Setter Property="Page.UseSafeArea" Value="False" />-->
                 <Setter Property="NavigationPage.BackButtonTitle" Value="" />
             </Style>
@@ -49,7 +101,7 @@
                 <On Platform="Android" Value="sans-serif-medium" />
             </OnPlatform>
 
-            <OnPlatform x:Key="FontSemibold" x:TypeArguments="x:String">
+            <!--<OnPlatform x:Key="FontSemibold" x:TypeArguments="x:String">
                 <On Platform="iOS" Value=".SFUIText-Semibold" />
                 <On Platform="Android" Value="sans-serif-medium" />
             </OnPlatform>
@@ -62,7 +114,7 @@
             <OnPlatform x:Key="FontRegular" x:TypeArguments="x:String">
                 <On Platform="iOS" Value=".SFUIText" />
                 <On Platform="Android" Value="sans-serif" />
-            </OnPlatform>
+            </OnPlatform>-->
 
             <!--<OnPlatform x:Key="FontIcon" x:TypeArguments="x:String">
                 <On Platform="iOS" Value="Typicons" />
@@ -100,13 +152,13 @@
             </Style>-->
             <Style x:Key="LabelSectionHeader" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
-                <Setter Property="FontSize" Value="28" />
-                <Setter Property="TextColor" Value="{StaticResource HeadingLabelTextColor}" />
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryAccent100Color}" />
             </Style>
-            <Style x:Key="TextSectionHeader" TargetType="Label">
+            <Style x:Key="IconStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
-                <Setter Property="FontSize" Value="32" />
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryAccent100Color}" />
             </Style>
             <Style x:Key="SpanStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
@@ -114,10 +166,18 @@
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="Padding" Value="7,1" />
             </Style>
+            <Style x:Key="MonthlyTitle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryAccent900Color}, Dark={StaticResource PrimaryAccent100Color}}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=NavajoWhite, Dark={StaticResource DarkElevation24dp}}" />
+            </Style>
+            <Style x:Key="MonthlyLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryTextColor}, Dark={StaticResource PrimaryTextColorDark}}" />
+            </Style>
             <Style x:Key="Card" TargetType="pancakeView:PancakeView">
-                <Setter Property="BackgroundColor" Value="Ivory" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource CardBackgroundColor}, Dark={StaticResource CardBackgroundColorDark}}" />
                 <Setter Property="CornerRadius" Value="9" />
-                <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup Color={StaticResource PrimaryLightAccent400Color}, BlurRadius=5, Opacity=0.5, Offset='2,2'}" />
+                <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup Color={StaticResource PrimaryAccent400Color}, BlurRadius=5, Opacity=0.5, Offset='2,2'}" />
             </Style>
             <Style TargetType="CheckBox">
                 <Style.Triggers>
@@ -133,13 +193,37 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <Style TargetType="RadioButton">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" />
+                                    <Setter Property="Opacity"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" />
+                                    <Setter Property="Opacity"
+                                            Value="0.5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
             <Style x:Key="Button" TargetType="Button">
                 <Setter Property="CornerRadius" Value="7" />
                 <Setter Property="Visual" Value="Material" />
                 <Setter Property="BorderColor" Value="BurlyWood"></Setter>
             </Style>
             <Style x:Key="RoundBar" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" />
                 <Setter Property="CornerRadius" Value="29" />
                 <Setter Property="HasShadow" Value="True" />
                 <Setter Property="BorderColor" Value="Silver"></Setter>

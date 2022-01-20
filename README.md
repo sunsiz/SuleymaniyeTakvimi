@@ -2,20 +2,25 @@
 Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 **Uygulama çalışma şekli:**
-* İlk açıldığında cihazın konumunu ve zamanına göre [suleymaniyetakvimi.com](https://www.suleymaniyetakvimi.com) sitesinden bir aylık gelecek namaz vakitlerini alıyor. İndirdiği namaz vakitlerine göre o günlük namaz vakitlerini uygulamada gösteriyor ve kullanıcının seçimlerine uygun şekilde, seçilen namaz vakitleri için alarm, titreme ve bilidirileri bir haftalık zamanlıyor.
-* Alarmların düzgün çalışması için Android'te Foreground Service kullanarak sürekli kalan bildirim göstererek uygulamanın arka planda çalışmasını sağlıyor. Android'te Alarm ve titreme için özel activity gösterek kullanıcının seçtiği sesi çalabiliyor ve titremeyi yapabiliyor. Eğer zamanlamanın son iki gününe geldiyse alarmı kapatırken tekrardan uygulamayı açarak yeniden bir haftalık zamanlama yapılmasını sağlıyor. İOS için sadece bildiri göstererek kullanıcının seçtiği sesle hatırlatma yapar.
-* Konumu bir kere aldıktan sonra kaydederek, sonrasında konum kapalı olsa bile yine de namaz vakitlerini indirip göstermeye devam edebiliyor.
-* Şehir adına tıklayınca konumu haritadan gösterebilir, Bugünün tarihine tıklayınca bir aylık namaz vaiktleri takvimini gösterebiliyor.
+* Android'te Özel bir 'Activity'i en öne getirp integre alarm uygulaması gibi gösterilebidiği için, İOS teki gibi bildirim göstermek yerine özel 'Activity' ile ses çalma, bidirim ve titremeler çalıştırıldı.
+* Android'te 'Activity' gösteren alarm özelliğinin normal çalışması için uygulamanın kapanmaması gerektiği için 'Foreground Service' kullanarak sürekli çalışması sağlandı. 'Foreground Service'in sürekli kalan bildirimi çinli şirketlerin telefonlarında RAM temizleyince kapanıyor aynı zamanda kullanıcının uygulama için pil kıstlamaması ve arka planda çalışmasına izin vermesi gerekiyor.
+* Alarm (ses çalma, titreme, bildirim) zamanlaması haftalık olarak (aylık olunca cihazı zorlıyor) ayarlandı ve bu bir haftalık zamanlamanın son 2 günü kala, yine bir haftalık zamanlanacak şekilde ayarlandı. Daha hızlı olması için vakitleri aylık takvim dosyasından okuyarak zamanlıyor.
+* Bazı cihazlarda (Xiaomi gibi) 'Foreground Service' kapanıp açılıyor ve zamanlamalar kaybolıyor (uygulama kapnıp açılıyor gibi), o yüzden servis başlarken ve uygulama ana sayfası açılırken her ikisinde zamanlama çalıştırıldı ve uygulamayı yavaşlatmaması için zamanlama geciktirelrek çalıştırıldı.
+* Aylık takvimi cihazın konumu ve zamanına(Tarih ve zaman dilimine) göre [suleymaniyetakvimi.com](https://www.suleymaniyetakvimi.com) sitesinden o günden başlayarak bir aylık gelecek namaz vakitlerini alarak kaydediyor. İndirdiği namaz vakitlerine göre o günlük namaz vakitlerini uygulamada gösteriyor ve kullanıcının seçimlerine uygun şekilde, seçilen namaz vakitleri için alarm, titreme ve bilidirimleri bir haftalık zamanlıyor.
+* İOS için sadece bildiri göstererek kullanıcının seçtiği sesle hatırlatma yapar.
+* Konumu bir kere aldıktan sonra kaydederek, sonrasında konum kapalı olsa bile yine de namaz vakitlerini indirip göstermeye devam edebiliyor. Ana sayfadaki yenile tuşuna tılayarak konumu ve namaz vakitlerini yenileyebiliyor.
+* Şehir adına tıklayınca konumu haritadan gösterebilir, aylık takvime tıklayınca bir aylık namaz vaiktleri takvimini gösterebiliyor.
 
 **Mevcut Özellikler:**
 
 * Cihazın konumunu alabilir ve ona göre günlük veya aylık namaz vakitlerini görüntüleyebilir.
 * Kullanıcı seçtiği ayarlara göre bildirim, titreşim ve sesli hatırlatma yapabilir.
-* Arayüzdeki tarihe tıklayarak aylık namaz vakitlerini gösteriyor, aylık takvim yerel dosyaya kaydediliyor.
+* Arayüzdeki şehir adına tıklayarak haritadaki konumu, aylık takvime tıklayarak aylık namaz vakitlerini gösteriyor, aylık takvim yerel dosyaya kaydediliyor.
 * Kıble yönünü belirtmek için bir pusula eklendi.
 * [Radyo Fıtrat](https://www.radyofitrat.com)'tan çevrimiçi radyo çalabiliyor, radyo web sayfsı ve radyo akışının linklerini gösteriyor.
 * Sitelerimiz ve sosyal medya bağlantıları, Namaz vakitleri hakkındakı yazıyı gösteriyor
 * Cihaz dil ayarlarına göre Türkçe ve İnglizce ara yüzü destekler.
+* Koyu tema ve açık tema modları var
 
 
 **Mevcut sorunlar:**
@@ -37,12 +42,13 @@ Suleymaniyetakvimi.com Xamarin mobile application
 
 **Current Features:**
 * Get device current location and display corresponding daily or monthly prayer times.
-* Reminding with notification, vibration and sound based on user settings.
-* When touch the date show monthly prayer times, monthly prayer times were saved in local file.
+* Reminding with notification, vibration and sound based on user preferences.
+* When touch the Monthly time button show up monthly prayer times, monthly prayer times were saved in local file.
 * Implementd a compass for indicate qibla direction.
 * Online radio from [Radyo Fitrat](https://www.radyofitrat.com) and links for the site and radio schedules.
 * Links for our sites and social media, An article about prayer times.
-* Based on the device language settings support Turkish and English UI.
+* Support Turkish and English UI based on the device language setting.
+* Support dark and light UI mode.
 
 
 **Existing problems:**

@@ -23,9 +23,11 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command GoToMapCommand { get; }
         public Command GoToMonthCommand { get; }
         public Command RefreshLocationCommand { get; }
+        public Command DarkLightModeCommand { get; }
         public Command<Item> ItemTapped { get; }
         Takvim _takvim, _vakitler;
         private string _city;
+        private bool dark;
 
         public ObservableCollection<Item> Items { get => _items; set => SetProperty<ObservableCollection<Item>>(ref _items, value); }
 
@@ -47,6 +49,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         public string Today
         {
             get { return AppResources.AylikTakvim; /*DateTime.Today.ToString("M");*/ }
+        }
+
+        public bool Dark
+        {
+            get => dark;
+            set => SetProperty(ref dark, value);
         }
 
         public string City
@@ -109,6 +117,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     ExecuteLoadItemsCommand();
                 }
             });
+            DarkLightModeCommand = new Command(ChangeTheme);
             Task.Run(async () =>
             {
                 if (!data.CheckInternet()) return;
@@ -123,9 +132,19 @@ namespace SuleymaniyeTakvimi.ViewModels
                     data.GetMonthlyPrayerTimes(new Location(location.Enlem, location.Boylam, location.Yukseklik), false);
                 //GetCity();
             }).ConfigureAwait(false);
+            Dark = Theme.Tema != 1;//0 is dark, 1 is light
             Log.Warning("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
+        private void ChangeTheme(object obj)
+        {
+            //int val = Preferences.Get(nameof(Theme.Tema), 1);
+            //Debug.WriteLine(nameof(Theme.Tema));
+            Theme.Tema = Theme.Tema == 1 ? 0 : 1;
+            Dark = Theme.Tema != 1;
+            Application.Current.UserAppTheme = Theme.Tema == 1 ? OSAppTheme.Light : OSAppTheme.Dark;
+        }
+        
         private ObservableCollection<Item> ExecuteLoadItemsCommand()
         {
             IsBusy = true;
