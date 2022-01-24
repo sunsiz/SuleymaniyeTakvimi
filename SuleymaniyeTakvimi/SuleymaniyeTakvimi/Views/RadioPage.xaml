@@ -27,21 +27,20 @@
                             <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.instagram.com/radyofitrat/" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <StackLayout Grid.Row="0" Grid.Column="1">
-                        <Label Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="75" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="&#xe038;">
-                            <Label.Triggers>
-                                <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="False">
-                                    <Setter Property="Text" Value="&#xe038;" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="True">
-                                    <Setter Property="Text" Value="&#xe035;" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding PlayCommand}" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </StackLayout>
+                    <Label Grid.Row="0" Grid.Column="1" Padding="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="75" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="&#xe038;">
+                        <Label.Triggers>
+                            <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="False">
+                                <Setter Property="Text" Value="&#xe038;" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="True">
+                                <Setter Property="Text" Value="&#xe035;" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding PlayCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
                     <StackLayout Grid.Row="0" Grid.Column="2" VerticalOptions="Center">
                         <Label HorizontalTextAlignment="End" VerticalTextAlignment="Start">
                             <Label.FormattedText>
@@ -65,18 +64,3 @@
         </Grid>
     </ContentPage.Content>
 </ContentPage>
-<!--<Grid Margin="10" BackgroundColor="#eeeeee" RowDefinitions="Auto,*">
-            <StackLayout Grid.Row="0">
--->
-<!--  Loading label should not render by default.  -->
-<!--<Label x:Name="labelLoading" Text="Loading..." IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />-->
-<!--
-                <WebView HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Navigated="webviewNavigated" Navigating="webviewNavigating" Source="{Binding HtmlSource}" />
--->
-<!--  ReloadRequested="{Binding ReloadCommand}"  -->
-<!--
-            </StackLayout>
-            <StackLayout Grid.Row="1">
-                <Image HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Aspect="AspectFill" Scale="0.7" Source="radyofitrat" />
-            </StackLayout>
-        </Grid>-->

@@ -193,7 +193,7 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-            <Style TargetType="RadioButton">
+            <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CheckedStates">
@@ -201,6 +201,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="TextColor"
                                             Value="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
                                     <Setter Property="Opacity"
                                             Value="1" />
                                 </VisualState.Setters>
@@ -209,6 +210,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="TextColor"
                                             Value="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
                                     <Setter Property="Opacity"
                                             Value="0.5" />
                                 </VisualState.Setters>
@@ -221,6 +223,7 @@
                 <Setter Property="CornerRadius" Value="7" />
                 <Setter Property="Visual" Value="Material" />
                 <Setter Property="BorderColor" Value="BurlyWood"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource NormalButtonTextColor}" />
             </Style>
             <Style x:Key="RoundBar" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" />

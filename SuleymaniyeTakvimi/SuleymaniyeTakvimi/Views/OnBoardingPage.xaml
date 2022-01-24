@@ -34,13 +34,9 @@
                     <DataTemplate x:DataType="models:OnBoarding">
                         <ContentView>
                             <FlexLayout Direction="Column" JustifyContent="SpaceEvenly">
-
-                                <forms:SvgCachedImage Grid.Row="0" WidthRequest="300" Aspect="AspectFill" FlexLayout.AlignSelf="Center" Source="{Binding ImageUrl}" />
-
-                                <Label Grid.Row="1" Grid.ColumnSpan="3" FontAttributes="Bold" FontSize="Title" Text="{Binding Title}" />
-
-                                <Label Grid.Row="2" Grid.ColumnSpan="3" Margin="19,3" FontSize="Body" Text="{Binding Content}" />
-
+                                <forms:SvgCachedImage WidthRequest="300" Aspect="AspectFill" FlexLayout.AlignSelf="Center" Source="{Binding ImageUrl}" />
+                                <Label FontAttributes="Bold" FontSize="Title" Text="{Binding Title}" />
+                                <Label Margin="19,3" FontSize="Body" Text="{Binding Content}" />
                             </FlexLayout>
                         </ContentView>
                     </DataTemplate>
@@ -50,15 +46,15 @@
                            IndicatorColor="{StaticResource IndicatorColor}"
                            IndicatorSize="7" IndicatorsShape="Circle" SelectedIndicatorColor="DarkGray" />
 
-            <StackLayout Grid.Row="3" Grid.Column="0" Margin="5" Padding="5" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <Button Grid.Row="3" Grid.Column="0" Padding="15" BackgroundColor="IndianRed" BorderColor="Aqua" CornerRadius="15" FontAttributes="Bold"
+            <StackLayout Grid.Row="3" Grid.Column="0" Margin="5" Padding="5" HorizontalOptions="Center" VerticalOptions="Center">
+                <Button Padding="15" BackgroundColor="IndianRed" BorderColor="Aqua" CornerRadius="15" FontAttributes="Bold"
                         FontSize="Medium"
                         TextColor="{StaticResource SkipButtonColor}"
                         Command="{Binding SkipCommand}"
                         Text="{Binding SkipButtonText}" />
             </StackLayout>
-            <StackLayout Grid.Row="3" Grid.Column="2" Margin="5" Padding="5" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <Button Grid.Row="3" Grid.Column="2" Padding="15" BackgroundColor="Goldenrod" BorderColor="Aqua" CornerRadius="15" FontAttributes="Bold"
+            <StackLayout Grid.Row="3" Grid.Column="2" Margin="5" Padding="5" HorizontalOptions="Center" VerticalOptions="Center">
+                <Button Padding="15" BackgroundColor="Goldenrod" BorderColor="Aqua" CornerRadius="15" FontAttributes="Bold"
                         FontSize="Medium"
                         TextColor="{StaticResource SkipButtonColor}"
                         Command="{Binding NextCommand}"

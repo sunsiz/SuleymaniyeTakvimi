@@ -75,30 +75,30 @@
                     <pancakeView:PancakeView.Shadow>
                         <pancakeView:DropShadow Color="#000" BlurRadius="3" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="14" Grid.ColumnSpan="2">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
-                            <Switch Grid.Row="3" Grid.Column="0" IsToggled="{Binding Bildiri}" IsEnabled="{Binding Etkin}">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="14">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                            <Switch IsToggled="{Binding Bildiri}" IsEnabled="{Binding Etkin}">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding BildiriCheckedChanged}" CommandParameter="{Binding Bildiri}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.BildirimGosterSwitch}" FontSize="Medium" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
+                            <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.BildirimGosterSwitch}" FontSize="Medium" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
-                            <Switch Grid.Row="4" Grid.Column="0" IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                            <Switch IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding TitremeCheckedChanged}" CommandParameter="{Binding Titreme}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.TitresimSwitch}" FontSize="Medium" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
+                            <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.TitresimSwitch}" FontSize="Medium" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2">
-                            <Switch Grid.Row="5" Grid.Column="0" IsToggled="{Binding Alarm}" IsEnabled="{Binding Etkin}"> <!--Color="Maroon"-->
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                            <Switch IsToggled="{Binding Alarm}" IsEnabled="{Binding Etkin}"> <!--Color="Maroon"-->
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding AlarmCheckedChanged}" CommandParameter="{Binding Alarm}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label Grid.Row="5" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.AlarmSwitch}" FontSize="Medium" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
+                            <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.AlarmSwitch}" FontSize="Medium" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
@@ -113,7 +113,7 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout HorizontalOptions="FillAndExpand" Padding="14,9" RadioButtonGroup.GroupName="zaman">
                         <Label HorizontalOptions="Start" Text="{x:Static resources:AppResources.BildirmeZamani}" FontSize="Large" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}"/>
-                        <RadioButton Content="{x:Static resources:AppResources.Zamaninda}" Value="0" x:Name="Zamaninda" BackgroundColor="Transparent">
+                        <RadioButton Content="{x:Static resources:AppResources.Zamaninda}" Value="0" x:Name="Zamaninda" Style="{StaticResource RadioButtonStyle}">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="0">
                                     <Setter TargetName="Zamaninda" Property="IsChecked" Value="True"/>
@@ -123,7 +123,7 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Zamaninda}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <RadioButton Content="{x:Static resources:AppResources.BesDakikaOnceden}" Value="5" x:Name="Bes" BackgroundColor="Transparent">
+                        <RadioButton Content="{x:Static resources:AppResources.BesDakikaOnceden}" Value="5" x:Name="Bes" Style="{StaticResource RadioButtonStyle}">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="5">
                                     <Setter TargetName="Bes" Property="IsChecked" Value="True"/>
@@ -133,7 +133,7 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Bes}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <RadioButton Content="{x:Static resources:AppResources.OnBesDakikaOnceden}" Value="15" x:Name="Onbes" BackgroundColor="Transparent">
+                        <RadioButton Content="{x:Static resources:AppResources.OnBesDakikaOnceden}" Value="15" x:Name="Onbes" Style="{StaticResource RadioButtonStyle}">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="15">
                                     <Setter TargetName="Onbes" Property="IsChecked" Value="True"/>
@@ -172,7 +172,7 @@
                     <pancakeView:PancakeView.Shadow>
                         <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>-->
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="7">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="7">
                     <Button HorizontalOptions="FillAndExpand" Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" FontSize="18" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="3" Visual="Material" Style="{StaticResource Button}"/>
                     </StackLayout>
                 <!--</pancakeView:PancakeView>-->
