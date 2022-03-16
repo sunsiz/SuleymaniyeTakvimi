@@ -31,13 +31,6 @@
         </StackLayout>
     </Shell.TitleView>
 
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding DarkLightModeCommand}" Text="&#xe51c;" StyleClass="MaterialIcons"></ToolbarItem>
-        <ToolbarItem Command="{Binding RefreshLocationCommand}" Text="&#xe627;" StyleClass="MaterialIcons" />--><!--{x:Static resources:AppResources.KonumYenileButton}--><!--
-    </ContentPage.ToolbarItems>-->
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding GoToMapCommand}" />
-    </ContentPage.ToolbarItems>-->
     <Grid Padding="10,15,10,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="*,8*">
         <StackLayout Spacing="9" HorizontalOptions="Center" Orientation="Horizontal" Margin="0">
             <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-7" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
@@ -50,11 +43,7 @@
                         Command="{Binding GoToMapCommand}"
                         Text="{Binding City}" />
             </pancakeView:PancakeView>
-            <!--<pancakeView:PancakeView MinimumWidthRequest="300" Margin="3,0" Padding="5,-5" BackgroundColor="SandyBrown" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
-                    <Button Margin="0,0" Padding="5,0" HorizontalOptions="Center" BackgroundColor="SandyBrown" FontAttributes="Bold" FontSize="24" TextColor="#623323"
-                            Command="{Binding GoToMapCommand}"
-                            Text="{Binding City}" />
-                </pancakeView:PancakeView>-->
+            
         </StackLayout>
         <pancakeView:PancakeView Margin="0" Grid.Row="1" Grid.ColumnSpan="2">
             <CollectionView VerticalOptions="CenterAndExpand" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}">

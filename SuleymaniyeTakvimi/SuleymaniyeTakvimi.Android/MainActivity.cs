@@ -75,7 +75,7 @@ namespace SuleymaniyeTakvimi.Droid
             Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now.ToString("HH:m:s.fff")}");
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             //AndroidShinyHost.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -92,40 +92,6 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 return;
             }
-
-            //var bundle = intent.Extras;
-            //if (bundle != null)
-            //{
-            //    if (bundle.ContainsKey("has_service_been_started"))
-            //    {
-            //        isStarted = true;
-            //    }
-            //}
         }
-        //protected override void OnSaveInstanceState(Bundle outState)
-        //{
-        //    outState.PutBoolean("has_service_been_started", isStarted);
-        //    base.OnSaveInstanceState(outState);
-        //}
-
-        //public static void SetAlarmForBackgroundServices(Context context)
-        //{
-        //    var alarmIntent = new Intent(context.ApplicationContext, typeof(AlarmReceiver));
-        //    var broadcast = PendingIntent.GetBroadcast(context.ApplicationContext, 0, alarmIntent, PendingIntentFlags.NoCreate);
-        //    if (broadcast == null)
-        //    {
-        //        var pendingIntent = PendingIntent.GetBroadcast(context.ApplicationContext, 0, alarmIntent, 0);
-        //        var alarmManager = (AlarmManager)context.GetSystemService(Context.AlarmService);
-        //        var triggerTime = (DateTime.Now - DateTime.Parse(TimeSpan.Parse("17:59").ToString())).Milliseconds;
-        //        alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup, triggerTime, pendingIntent);
-        //        //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup, SystemClock.ElapsedRealtime(), pendingIntent);
-        //        if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
-        //            alarmManager.SetAlarmClock(new AlarmManager.AlarmClockInfo(triggerTime, pendingIntent), pendingIntent);
-        //        else if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
-        //            alarmManager.SetExact(AlarmType.Rtc, triggerTime, pendingIntent);
-        //        else
-        //            alarmManager.Set(AlarmType.Rtc, triggerTime, pendingIntent);
-        //    }
-        //}
     }
 }

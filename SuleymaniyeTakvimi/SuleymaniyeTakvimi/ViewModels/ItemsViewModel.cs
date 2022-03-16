@@ -153,14 +153,6 @@ namespace SuleymaniyeTakvimi.ViewModels
             try
             {
                 Items = new ObservableCollection<Item>();
-                //var FecriKazip = new Item() { Id = "fecrikazip", Adi = "Fecri Kazip", Vakit = _takvim.FecriKazip, Etkin = Preferences.Get("fecrikazipEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriKazip), DateTime.Parse(_takvim.FecriSadik)), Alarm = Preferences.Get("fecrikazipAlarm",false), Bildiri = Preferences.Get("fecrikazipBildiri",false), Titreme = Preferences.Get("fecrikazipTitreme",false), BildirmeVakti = Preferences.Get("fecrikazipBildiriVakti","0.00")};
-                //var FecriSadik = new Item() { Id = "fecrisadik", Adi = "Fecri Sadık", Vakit = _takvim.FecriSadik, Etkin = Preferences.Get("fecrisadikEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriSadik), DateTime.Parse(_takvim.SabahSonu)), Alarm = Preferences.Get("fecrisadikAlarm", false), Bildiri = Preferences.Get("fecrisadikBildiri", false), Titreme = Preferences.Get("fecrisadikTitreme", false), BildirmeVakti = Preferences.Get("fecrisadikBildiriVakti", "0.00") };
-                //var SabahSonu = new Item() { Id = "sabahsonu", Adi = "Sabah Sonu", Vakit = _takvim.SabahSonu, Etkin = Preferences.Get("sabahsonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.SabahSonu), DateTime.Parse(_takvim.Ogle)), Alarm = Preferences.Get("sabahsonuAlarm", false), Bildiri = Preferences.Get("sabahsonuBildiri", false), Titreme = Preferences.Get("sabahsonuTitreme", false), BildirmeVakti = Preferences.Get("sabahsonuBildiriVakti", "0.00") };
-                //var Ogle = new Item() { Id = "ogle", Adi = "Öğle", Vakit = _takvim.Ogle, Etkin = Preferences.Get("ogleEtkin", false), State = CheckState(DateTime.Parse(_takvim.Ogle), DateTime.Parse(_takvim.Ikindi)), Alarm = Preferences.Get("ogleAlarm", false), Bildiri = Preferences.Get("ogleBildiri", false), Titreme = Preferences.Get("ogleTitreme", false), BildirmeVakti = Preferences.Get("ogleBildiriVakti", "0.00") };
-                //var Ikindi = new Item() { Id = "ikindi", Adi = "İkindi", Vakit = _takvim.Ikindi, Etkin = Preferences.Get("ikindiEtkin", false), State = CheckState(DateTime.Parse(_takvim.Ikindi), DateTime.Parse(_takvim.Aksam)), Alarm = Preferences.Get("ikindiAlarm", false), Bildiri = Preferences.Get("ikindiBildiri", false), Titreme = Preferences.Get("ikindiTitreme", false), BildirmeVakti = Preferences.Get("ikindiBildiriVakti", "0.00") };
-                //var Aksam = new Item() { Id = "aksam", Adi = "Akşam", Vakit = _takvim.Aksam, Etkin = Preferences.Get("aksamEtkin", false), State = CheckState(DateTime.Parse(_takvim.Aksam), DateTime.Parse(_takvim.Yatsi)), Alarm = Preferences.Get("aksamAlarm", false), Bildiri = Preferences.Get("aksamBildiri", false), Titreme = Preferences.Get("aksamTitreme", false), BildirmeVakti = Preferences.Get("aksamBildiriVakti", "0.00") };
-                //var Yatsi = new Item() { Id = "yatsi", Adi = "Yatsı", Vakit = _takvim.Yatsi, Etkin = Preferences.Get("yatsiEtkin", false), State = CheckState(DateTime.Parse(_takvim.Yatsi), DateTime.Parse(_takvim.YatsiSonu)), Alarm = Preferences.Get("yatsiAlarm", false), Bildiri = Preferences.Get("yatsiBildiri", false), Titreme = Preferences.Get("yatsiTitreme", false), BildirmeVakti = Preferences.Get("yatsiBildiriVakti", "0.00") };
-                //var YatsiSonu = new Item() { Id = "yatsisonu", Adi = "Yatsı Sonu", Vakit = _takvim.YatsiSonu, Etkin = Preferences.Get("yatsisonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.YatsiSonu), DateTime.Parse(_takvim.FecriKazip)), Alarm = Preferences.Get("yatsisonuAlarm", false), Bildiri = Preferences.Get("yatsisonuBildiri", false), Titreme = Preferences.Get("yatsisonuTitreme", false), BildirmeVakti = Preferences.Get("yatsisonuBildiriVakti", "0.00") };
                 var fecriKazip = new Item() { Id = "fecrikazip", Adi = AppResources.FecriKazip, Vakit = _takvim.FecriKazip, Etkin = Preferences.Get("fecrikazipEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriKazip), DateTime.Parse(_takvim.FecriSadik)) };
                 var fecriSadik = new Item() { Id = "fecrisadik", Adi = AppResources.FecriSadik, Vakit = _takvim.FecriSadik, Etkin = Preferences.Get("fecrisadikEtkin", false), State = CheckState(DateTime.Parse(_takvim.FecriSadik), DateTime.Parse(_takvim.SabahSonu))};
                 var sabahSonu = new Item() { Id = "sabahsonu", Adi = AppResources.SabahSonu, Vakit = _takvim.SabahSonu, Etkin = Preferences.Get("sabahsonuEtkin", false), State = CheckState(DateTime.Parse(_takvim.SabahSonu), DateTime.Parse(_takvim.Ogle))};
@@ -248,38 +240,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             //IsBusy = true;
             var data = new DataService();
-            //if (File.Exists(data._fileName))
-            //{
-            //    XDocument xmldoc = XDocument.Load(data._fileName);
-            //    var takvims = data.ParseXmlList(xmldoc);
-            //    if (takvims != null && DateTime.Parse(takvims[0].Tarih) <= DateTime.Today && DateTime.Parse(takvims[takvims.Count - 1].Tarih) >= DateTime.Today)
-            //    {
-            //        foreach (var item in takvims)
-            //        {
-            //            if (DateTime.Parse(item.Tarih) == DateTime.Today)
-            //            {
-            //                _takvim = item;
-            //                return;
-            //            }
-            //        }
-            //    }
-            //}
-            //try
-            //{
-                //var takvim = await data.GetCurrentLocationAsync().ConfigureAwait(false);
-                ////var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
-                ////CancellationTokenSource cts = new CancellationTokenSource();
-                ////var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(true);
-                ////if (location != null)
-                //if (takvim != null && takvim.Enlem > 0 && takvim.Boylam > 0)
-                //{
-                //    Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
-                //    data.konum = new Takvim
-                //    {
-                //        Enlem = location.Latitude,
-                //        Boylam = location.Longitude,
-                //        Yukseklik = location.Altitude ?? 0
-                //    };
+            
             _takvim = Vakitler = await data.GetPrayerTimesAsync(true).ConfigureAwait(false);
             if (Vakitler.Enlem != 0)
             {
@@ -306,18 +267,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(7));
             }
-
-            //IsBusy = false;
-            //}
-            //catch (Exception exception)
-            //{
-            //    UserDialogs.Instance.Alert(exception.Message, AppResources.KonumHatasi);
-            //}
-            //finally
-            //{
-            //    UserDialogs.Instance.Toast(AppResources.KonumYenilendi, TimeSpan.FromSeconds(3));
-            //    IsBusy = false;
-            //}
+            
         }
     }
 }

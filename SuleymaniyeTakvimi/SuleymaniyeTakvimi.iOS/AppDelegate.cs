@@ -56,13 +56,7 @@ namespace SuleymaniyeTakvimi.iOS
             // If not asked at startup, user will be asked when showing the first notification.
             //Plugin.LocalNotification.NotificationCenter.AskPermission();
             LoadApplication(new App());
-            //eventStore.RequestAccess(EKEntityType.Reminder, (bool granted, NSError e) =>
-            //{
-            //    if (!granted)
-            //    {
-            //        UserDialogs.Instance.Alert("User Denied Access to Calendars/Reminders" + e.ToString(), "Access Denied");
-            //    }
-            //});
+            
             DependencyService.Register<IAlarmService, AlarmService>();
             SetAlarms();
             return base.FinishedLaunching(app, options);
@@ -76,15 +70,10 @@ namespace SuleymaniyeTakvimi.iOS
 
         public override void WillTerminate(UIApplication uiApplication)
         {
-            //var result = ConfirmExitAsync().Result;
-            //if (result == true)
-            //{
-
             //UserDialogs.Instance.Alert("Uygulam kapanıyor.", "Uyarı", "Tamam");
             Debug.WriteLine("WillTerminate Executing.");
             SetAlarms();
             base.WillTerminate(uiApplication);
-            //}
         }
         public override void DidEnterBackground(UIApplication uiApplication)
         {
@@ -93,29 +82,5 @@ namespace SuleymaniyeTakvimi.iOS
             SetAlarms();
             base.DidEnterBackground(uiApplication);
         }
-        //private static async System.Threading.Tasks.Task<bool> ConfirmExitAsync()
-        //{
-        //    return await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig() { Title = "Uyarı!", Message = "Çıkmak istediğinizden eminmisiniz?", OkText = "Evet", CancelText = "Hayır" });
-        //}
-
-        //public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
-        //{
-        //    // show an alert
-        //    UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
-        //    okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-
-        //    UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true, null);
-
-        //    // reset our badge
-        //    UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
-        //}
-        //public override void WillEnterForeground(UIApplication uiApplication)
-        //{
-        //    Plugin.LocalNotification.NotificationCenter.ResetApplicationIconBadgeNumber(uiApplication);
-        //}
-
-        // and add this guy - if you don't use jobs, you won't need it
-        //public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
-        //    => JobManager.OnBackgroundFetch(completionHandler);
     }
 }

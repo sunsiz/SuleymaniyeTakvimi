@@ -31,40 +31,6 @@ namespace SuleymaniyeTakvimi.Droid
             return null;
         }
 
-        //public void SetAlarm(TimeSpan triggerTimeSpan, string name)
-        //{
-        //    Analytics.TrackEvent("SetAlarm in the AlarmForegroundService");
-        //    using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService))
-        //    using (var calendar = Calendar.Instance)
-        //    {
-        //        calendar.Set(CalendarField.HourOfDay, triggerTimeSpan.Hours);
-        //        calendar.Set(CalendarField.Minute, triggerTimeSpan.Minutes);
-        //        calendar.Set(CalendarField.Second, 0);
-        //        var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
-        //        activityIntent.PutExtra("name", name);
-        //        activityIntent.PutExtra("time", triggerTimeSpan.ToString());
-        //        activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
-        //        //without the reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
-        //        var requestCode = name switch {
-        //            "Fecri Kazip" => 1,
-        //            "Fecri Sadık" => 2,
-        //            "Sabah Sonu" => 3,
-        //            "Öğle" => 4,
-        //            "İkindi" => 5,
-        //            "Akşam" => 6,
-        //            "Yatsı" => 7,
-        //            "Yatsı Sonu" => 8,
-        //            _ => 0
-        //        };
-        //        var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, requestCode, activityIntent,
-        //            PendingIntentFlags.UpdateCurrent);
-        //        //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
-        //        //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
-        //        alarmManager.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
-        //        Log.Info("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
-        //    }
-        //}
-
         public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, int timeOffset, string name)
         {
             using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService))
@@ -74,11 +40,6 @@ namespace SuleymaniyeTakvimi.Droid
                 triggerTimeSpan -= TimeSpan.FromMinutes(timeOffset);
                 //Log.Info("SetAlarm", $"Before Alarm set the Calendar time is {calendar.Time} for {name}");
                 calendar.Set(date.Year, date.Month-1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
-                //Log.Info("SetAlarm", $"After Alarm set the Calendar time is {calendar.Time} for {name}");
-                //calendar.Set(date.Year, date.Month, date.Day);
-                //calendar.Set(CalendarField.HourOfDay, triggerTimeSpan.Hours);
-                //calendar.Set(CalendarField.Minute, triggerTimeSpan.Minutes);
-                //calendar.Set(CalendarField.Second, 0);
                 var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
                 activityIntent.PutExtra("name", name);
                 activityIntent.PutExtra("time", prayerTimeSpan.ToString());
@@ -127,13 +88,6 @@ namespace SuleymaniyeTakvimi.Droid
                 _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
                 SetNotification();
                 _notificationManager.Notify(NOTIFICATION_ID, _notification);
-                //renew calendar from web and set alarms for today around 00:00 ~ 00:01
-                //if (DateTime.Now <= DateTime.Today.AddMinutes(1) && DateTime.Now >= DateTime.Today)
-                //{
-                //    DataService data = new DataService();
-                //    data.VakitHesabi();
-                //    data.SetMonthlyAlarms();
-                //}
             });
             CancelAlarm();
         }
@@ -185,13 +139,6 @@ namespace SuleymaniyeTakvimi.Droid
         /// <returns>The content intent.</returns>
         PendingIntent BuildIntentToShowMainActivity()
         {
-            //Task startupWork = new Task(() =>
-            //{
-            //    Log.Info("BuildIntentToShowMainActivity", $"Starting Set Alarm at {DateTime.Now}");
-            //    DataService data = new DataService();
-            //    data.SetMonthlyAlarms();
-            //});
-            //startupWork.Start();
             var notificationIntent = new Intent(this, typeof(MainActivity));
             notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
             notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
@@ -281,17 +228,5 @@ namespace SuleymaniyeTakvimi.Droid
 
             return StartCommandResult.Sticky;
         }
-        //public override void OnDestroy()
-        //{
-        //    // We need to shut things down.
-        //    //Log.Info(TAG, "OnDestroy: The started service is shutting down.");
-        //    // Stop the handler.
-        //    _handler.RemoveCallbacks(_runnable);
-        //    // Remove the notification from the status bar.
-        //    //var notificationManager = (NotificationManager)GetSystemService(NotificationService);
-        //    _notificationManager.Cancel(NOTIFICATION_ID);
-        //    _isStarted = false;
-        //    base.OnDestroy();
-        //}
     }
 }

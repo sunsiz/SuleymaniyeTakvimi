@@ -39,28 +39,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void OnAnimationStart(Animator? animation)
         {
-            //Task startupWork = new Task(() => { AppInitialize(); });
-            //startupWork.Start();
-            //var LastLatitude = Preferences.Get("LastLatitude", 0.0);
-            //var LastLongitude = Preferences.Get("LastLongitude", 0.0);
-            //if (LastLatitude != 0.0 && LastLongitude!=0.0)
-            //{
-            //    Task StartupWork = new Task(() => AppInitialize());
-            //    StartupWork.Start();
-            //}
+            
         }
-
-        //private void AppInitialize()
-        //{
-        //    //Log.Info("TimeStamp-AppInitialize-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
-        //    //DataService data = new DataService();
-        //    ////var _takvim = data.GetCurrentLocation();
-        //    ////data.VakitHesabi();
-        //    ////data.SetAlarms();
-        //    //Location location = new Location(Preferences.Get("LastLatitude", 0.0),
-        //    //    Preferences.Get("LastLongitude", 0.0), Preferences.Get("LastAltitude", 0.0));
-        //    //var takvim = data.GetPrayerTimes(location).Result;
-        //    //Log.Info("TimeStamp-AppInitialize-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
-        //}
     }
 }

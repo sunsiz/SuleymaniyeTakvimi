@@ -6,12 +6,12 @@ using Android.App;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SuleymaniyeTakvimi.Android")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Süleymaniye Vakfı Takvimi")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Süleymaniye Vakfı")]
 [assembly: AssemblyProduct("SuleymaniyeTakvimi.Android")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyTrademark("Süleymaniye Vakfı")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
@@ -21,8 +21,8 @@ using Android.App;
 //      Minor Version 
 //      Build Number
 //      Revision
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
 
 // Add some common permissions, these can be removed if not needed
 //[assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
@@ -30,6 +30,8 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.AccessNetworkState)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessFineLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessCoarseLocation)]
+[assembly: UsesPermission(Android.Manifest.Permission.AccessMediaLocation)]
+[assembly: UsesPermission(Android.Manifest.Permission.AccessMockLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.Vibrate)]
 [assembly: UsesPermission(Android.Manifest.Permission.BatteryStats)]
 [assembly: UsesPermission(Android.Manifest.Permission.ReceiveBootCompleted)]
@@ -38,3 +40,6 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.ForegroundService)]
 [assembly: UsesPermission(Android.Manifest.Permission.UseFullScreenIntent)]
 [assembly: UsesPermission(Android.Manifest.Permission.RequestIgnoreBatteryOptimizations)]
+[assembly: UsesFeature("android.hardware.location", Required = false)]
+[assembly: UsesFeature("android.hardware.location.gps", Required = false)]
+[assembly: UsesFeature("android.hardware.location.network", Required = false)]

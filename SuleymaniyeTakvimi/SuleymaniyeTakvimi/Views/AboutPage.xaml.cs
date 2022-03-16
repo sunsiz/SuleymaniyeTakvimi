@@ -12,14 +12,6 @@ namespace SuleymaniyeTakvimi.Views
             IsBusy = true;
         }
 
-        //protected override void OnAppearing()
-        //{
-        //    base.OnAppearing();
-        //    //ActivityIndicator.IsRunning = true;
-        //    //ActivityIndicator.IsVisible = true;
-        //    //IsBusy = true;
-        //}
-
         public void WebView_OnNavigating(object sender, WebNavigatingEventArgs e)
         {
             ActivityIndicator.IsRunning = true;

@@ -17,10 +17,10 @@ namespace SuleymaniyeTakvimi.Droid
             Analytics.TrackEvent("OnReceive in the BootBroadcast");
             try
             {
-                Toast.MakeText(context, "Süleymaniye Vakfı Takvimi Başlatılıyor! " + intent.Action, ToastLength.Long)?.Show();
-                PowerManager pm = (PowerManager)context.GetSystemService(Context.PowerService);
-                PowerManager.WakeLock wakeLock = pm?.NewWakeLock(WakeLockFlags.Partial, "BootBroadcast");
-                wakeLock?.Acquire();
+                Toast.MakeText(context, "Süleymaniye Vakfı Takvimi Başlatılıyor! " + intent.Action, ToastLength.Short)?.Show();
+                //PowerManager pm = (PowerManager)context.GetSystemService(Context.PowerService);
+                //PowerManager.WakeLock wakeLock = pm?.NewWakeLock(WakeLockFlags.Partial, "BootBroadcast");
+                //wakeLock?.Acquire();
 
                 // Run your code here
                 //MainActivity.SetAlarmForBackgroundServices(context);
@@ -28,7 +28,7 @@ namespace SuleymaniyeTakvimi.Droid
                 main.SetAlarmForegroundService();
 
                 Toast.MakeText(context, "Süleymaniye Vakfı Takvimi Başladı! " + intent.Action, ToastLength.Long)?.Show();
-                wakeLock?.Release();
+                //wakeLock?.Release();
             }
             catch (Exception exception)
             {

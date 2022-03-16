@@ -114,7 +114,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //var location = await Geolocation.GetLocationAsync(request);
                 DataService data = new DataService();
                 var takvim = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
-                if (takvim != null && takvim.Enlem > 0 && takvim.Boylam > 0)
+                if (takvim != null && takvim.Enlem != 0 && takvim.Boylam != 0)
                 {
                     Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
                     _currentLatitude = location.Latitude;

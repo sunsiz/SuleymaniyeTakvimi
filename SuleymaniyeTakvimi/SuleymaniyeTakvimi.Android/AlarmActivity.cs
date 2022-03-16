@@ -103,15 +103,7 @@ namespace SuleymaniyeTakvimi.Droid
         private static async void PlayAlarm(string name)
         {
             Analytics.TrackEvent("PlayAlarm in the AlarmActivity");
-            //if (name == "test")
-            //{
-            //    MediaPlayer player = new MediaPlayer();
-            //    player.SetDataSource("http://shaincast.caster.fm:22344/listen.mp3");
-            //    player.Prepare();
-            //    player.Start();
-            //}
-            //else
-            //{
+            
             var key = "";
             switch (name)
             {
@@ -146,10 +138,6 @@ namespace SuleymaniyeTakvimi.Droid
                 IMediaItem mediaItem;
                 var alarmSesi = Preferences.Get(key + "AlarmSesi", "kus");
                 mediaItem = await CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").ConfigureAwait(true);
-                //mediaItem.DisplayTitle = title;
-                //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
-                //CrossMediaManager.Current.Notification.ShowPlayPauseControls = true;
-                //CrossMediaManager.Current.MediaPlayer.ShowPlaybackControls = false;
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 await CrossMediaManager.Current.MediaPlayer.Play(mediaItem).ConfigureAwait(false);
@@ -158,10 +146,8 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 Log.Error("AlarmActivity-PlayAlarm",
                     $"Alarm çalarken bir sorun oluştu, detaylar:\n{exception.Message}");
-                //UserDialogs.Instance.Alert($"Alarm çalarken bir sorun oluştu, detaylar:\n{exception.Message}",
-                //    "Ses Oynatma Hatası");
+
             }
-            //}
         }
 
         private static void Vibrate()

@@ -89,67 +89,16 @@
                 <Setter Property="NavigationPage.BackButtonTitle" Value="" />
             </Style>
 
-            <!--<Style TargetType="Button">
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="BackgroundColor" Value="{StaticResource NormalButtonBackgroundColor}" />
-                <Setter Property="TextColor" Value="{StaticResource NormalButtonTextColor}" />
-                <Setter Property="CornerRadius" Value="5" />
-            </Style>-->
             <!--  Fonts  -->
             <OnPlatform x:Key="FontBold" x:TypeArguments="x:String">
                 <On Platform="iOS" Value=".SFUIText-Bold" />
                 <On Platform="Android" Value="sans-serif-medium" />
             </OnPlatform>
 
-            <!--<OnPlatform x:Key="FontSemibold" x:TypeArguments="x:String">
-                <On Platform="iOS" Value=".SFUIText-Semibold" />
-                <On Platform="Android" Value="sans-serif-medium" />
-            </OnPlatform>
-
-            <OnPlatform x:Key="FontMedium" x:TypeArguments="x:String">
-                <On Platform="iOS" Value=".SFUIText-Medium" />
-                <On Platform="Android" Value="sans-serif-medium" />
-            </OnPlatform>
-
-            <OnPlatform x:Key="FontRegular" x:TypeArguments="x:String">
-                <On Platform="iOS" Value=".SFUIText" />
-                <On Platform="Android" Value="sans-serif" />
-            </OnPlatform>-->
-
-            <!--<OnPlatform x:Key="FontIcon" x:TypeArguments="x:String">
-                <On Platform="iOS" Value="Typicons" />
-                <On Platform="Android" Value="typicons.ttf" />
-            </OnPlatform>-->
-
             <OnPlatform x:Key="MaterialIcons" x:TypeArguments="x:String">
                 <On Platform="iOS" Value="MaterialIcons" />
                 <On Platform="Android" Value="MaterialIcons-Regular.ttf" />
             </OnPlatform>
-            <!--<OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS" Value="Material Icons" />
-                <On Platform="Android" Value="MaterialIcons-Regular.ttf#Material Design Icons" />
-                <On Platform="UWP" Value="Assets/Fonts/materialdesignicons-webfont.ttf#Material Design Icons" />
-            </OnPlatform>-->
-            <!--<Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Disabled">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
-            </Style>-->
             <Style x:Key="LabelSectionHeader" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
                 <Setter Property="FontSize" Value="26" />

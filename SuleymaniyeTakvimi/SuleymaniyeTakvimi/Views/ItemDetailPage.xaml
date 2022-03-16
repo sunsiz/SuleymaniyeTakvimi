@@ -31,16 +31,7 @@
                         <pancakeView:DropShadow Color="SaddleBrown" BlurRadius="3" Offset="4,4" Opacity="0.6"/>
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
-                        <!--<Label Grid.Row="0" Grid.Column="0" Text="&#xe7f6;" FontFamily="Material" HorizontalOptions="End" FontSize="36" FontAttributes="Bold" Margin="9,10" TextColor="Chocolate" Padding="33,0">
-                <Label.Triggers>
-                    <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="False">
-                        <Setter Property="Text" Value="&#xe7f6;" />
-                    </DataTrigger>
-                    <DataTrigger TargetType="Label" Binding="{Binding Etkin}" Value="True">
-                        <Setter Property="Text" Value="&#xe7f5;" />
-                    </DataTrigger>
-                </Label.Triggers>
-            </Label>-->
+
                         <Label HorizontalOptions="CenterAndExpand" Text="{Binding Title}" FontSize="28" FontAttributes="Bold" TextColor="{AppThemeBinding Light=SaddleBrown, Dark={StaticResource OnSurfaceColor}}"/>
                     </StackLayout>
                 </pancakeView:PancakeView>
@@ -163,15 +154,7 @@
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
-                <!--<pancakeView:PancakeView CornerRadius="9">-->
-                    <!--<pancakeView:PancakeView.BackgroundGradientStops>
-                        <pancakeView:GradientStop Color="LimeGreen" Offset="0"/>
-                        --><!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>--><!--
-                        <pancakeView:GradientStop Color="MediumSpringGreen" Offset="1"/>
-                    </pancakeView:PancakeView.BackgroundGradientStops>
-                    <pancakeView:PancakeView.Shadow>
-                        <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
-                    </pancakeView:PancakeView.Shadow>-->
+                
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="7">
                     <Button HorizontalOptions="FillAndExpand" Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" FontSize="18" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="3" Visual="Material" Style="{StaticResource Button}"/>
                     </StackLayout>

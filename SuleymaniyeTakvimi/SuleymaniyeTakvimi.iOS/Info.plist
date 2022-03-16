@@ -27,7 +27,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.SuleymaniyeTakvimi</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>2.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -48,6 +48,10 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>tr</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Alarm kurmak için takvim izni gerekiyor</string>

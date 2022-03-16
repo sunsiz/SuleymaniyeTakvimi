@@ -20,92 +20,9 @@
                 <Label Grid.Row="0" Grid.Column="8" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.YatsiSonu}" />
                 <!--  monthly time list structure  -->
                 <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" WidthRequest="2048" VerticalScrollBarVisibility="Never" ItemsSource="{Binding MonthlyTakvim}" Footer="{Binding .}" HorizontalOptions="Center">
-                    <!--  CachingStrategy="RecycleElement"  -->
-                    <!--<CollectionView.Header>-->
-                    <!--<StackLayout BackgroundColor="Goldenrod" Orientation="Horizontal">-->
-                    <!--<Label Grid.Row="0" Grid.Column="0" Text="Tarih" />
-                        <Label Grid.Row="0" Grid.Column="1" Text="Fecri Kazip" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="Fecri Sadik" />
-                        <Label Grid.Row="0" Grid.Column="3" Text="Sabah Sonu" />
-                        <Label Grid.Row="0" Grid.Column="4" Text="Ogle" />
-                        <Label Grid.Row="0" Grid.Column="5" Text="ikindi" />
-                        <Label Grid.Row="0" Grid.Column="6" Text="Aksam" />
-                        <Label Grid.Row="0" Grid.Column="7" Text="Yatsi" />
-                        <Label Grid.Row="0" Grid.Column="8" Text="Yatsi Sonu" />-->
-                    <!--<Label>
-                            <Label.Text>
-                                <MultiBinding StringFormat="{}{0} {1} {2} {3} {4} {5} {6} {7} {8}">
-                                    <Binding Path="Tarih" />
-                                    <Binding Path="FecriKazip" />
-                                    <Binding Path="FecriSadik" />
-                                    <Binding Path="SabahSonu" />
-                                    <Binding Path="Ogle" />
-                                    <Binding Path="Ikindi" />
-                                    <Binding Path="Aksam" />
-                                    <Binding Path="Yatsi" />
-                                    <Binding Path="YatsiSonu" />
-                                </MultiBinding>
-                            </Label.Text>
-                        </Label>-->
-
-                    <!--<Label>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Style="{StaticResource span_style}" Text="Tarih" />
-                                    <Span Text="FecriKazip" />
-                                    <Span Text="FecriSadik" />
-                                    <Span Text="SabahSonu" />
-                                    <Span Text="Ogle" />
-                                    <Span Text="Ikindi" />
-                                    <Span Text="Aksam" />
-                                    <Span Text="Yatsi" />
-                                    <Span Text="YatsiSonu" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>-->
-                    <!--<Label TextType="Html" LineBreakMode="NoWrap" BackgroundColor="DarkGoldenrod" Padding="1,3" TextColor="AntiqueWhite" Text="&lt;table&gt;&lt;tr&gt;&lt;th&gt;Tarih&lt;/th&gt;&lt;th&gt;Fecri Kazip&lt;/th&gt;&lt;th&gt;Fecri Sadik&lt;/th&gt;&lt;th&gt;Sabah Sonu&lt;/th&gt;&lt;th&gt;Ogle&lt;/th&gt;&lt;th&gt;Ikindi&lt;/th&gt;&lt;th&gt;Aksam&lt;/th&gt;&lt;th&gt;Yatsi&lt;/th&gt;&lt;th&gt;Yatsi Sonu&lt;/th&gt;&lt;/tr&gt;" />-->
-
-                    <!--</StackLayout>-->
-                    <!--</CollectionView.Header>-->
-                    <!--<CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                     VerticalItemSpacing="1"
-                                     HorizontalItemSpacing="10" />
-                </CollectionView.ItemsLayout>-->
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid RowSpacing="0" ColumnSpacing="0" Margin="0" Padding="0" ColumnDefinitions="Auto,*,*,*,*,*,*,*,*">
-                                <!--<StackLayout Orientation="Horizontal">{}{0}&#x09;&#x09;{1}&#x09;&#x09;{2}&#x09;&#x09;{3}&#x09;&#x09;{4}&#x09;&#x09;{5}&#x09;&#x09;{6}&#x09;&#x09;{7}&#x09;&#x09;{8}-->
-                                <!--<Label TextColor="DarkGreen" TextType="Html">
-                                    <Label.Text>
-                                <MultiBinding StringFormat="{}&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;td&gt;{3}&lt;/td&gt;&lt;td&gt;{4}&lt;/td&gt;&lt;td&gt;{5}&lt;/td&gt;&lt;td&gt;{6}&lt;/td&gt;&lt;td&gt;{7}&lt;/td&gt;&lt;td&gt;{8}&lt;/td&gt;&lt;/tr&gt;">
-                                            <Binding Path="Tarih" />
-                                            <Binding Path="FecriKazip" />
-                                            <Binding Path="FecriSadik" />
-                                            <Binding Path="SabahSonu" />
-                                            <Binding Path="Ogle" />
-                                            <Binding Path="Ikindi" />
-                                            <Binding Path="Aksam" />
-                                            <Binding Path="Yatsi" />
-                                            <Binding Path="YatsiSonu" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>-->
-                                <!--<Label>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Style="{StaticResource span_style}" Text="{Binding Tarih, StringFormat='&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;'}" />
-                                    <Span Text="{Binding FecriKazip, StringFormat='&lt;td&gt;{0}&lt;/td&gt;'}" />
-                                    <Span Text="{Binding FecriSadik, StringFormat='&lt;td&gt;{0}&lt;/td&gt;'}" />
-                                    <Span Text="{Binding SabahSonu, StringFormat='&lt;td&gt;{0}&lt;/td&gt;'}" />
-                                    <Span Text="{Binding Ogle, StringFormat='&lt;td&gt;{0}&lt;/td&gt;'}" />
-                                    <Span Text="{Binding Ikindi, StringFormat='&lt;td&gt;{0}&lt;/td&gt;'}" />
-                                    <Span Text="{Binding Aksam, StringFormat='&lt;td&gt;{0}&lt;/td&gt;'}" />
-                                    <Span Text="{Binding Yatsi, StringFormat='&lt;td&gt;{0}&lt;/td&gt;'}" />
-                                    <Span Text="{Binding YatsiSonu, StringFormat='&lt;td&gt;{0}&lt;/td&gt;&lt;/tr&gt;'}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>-->
                                 <Label Grid.Column="0" Margin="2" Style="{StaticResource MonthlyLabel}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light=Beige, Dark={StaticResource DarkElevation8dp}}" Text="{Binding Tarih}" Padding="2,0" />
                                 <Label Grid.Column="1" Margin="2" Style="{StaticResource MonthlyLabel}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light=Cornsilk, Dark={StaticResource DarkElevation12dp}}" Text="{Binding FecriKazip}" />
                                 <Label Grid.Column="2" Margin="2" Style="{StaticResource MonthlyLabel}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light=LightGoldenrodYellow, Dark={StaticResource DarkElevation16dp}}" Text="{Binding FecriSadik}" />
@@ -127,9 +44,6 @@
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.FooterTemplate>
-                    <!--<CollectionView.Footer>
-                        <Label TextType="Html" Text="&lt;/table&gt;" />
-                    </CollectionView.Footer>-->
                 </CollectionView>
             </Grid>
         </ScrollView>

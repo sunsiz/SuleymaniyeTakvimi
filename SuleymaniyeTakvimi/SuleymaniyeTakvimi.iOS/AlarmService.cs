@@ -10,26 +10,12 @@ namespace SuleymaniyeTakvimi.iOS
 {
     public class AlarmService : IAlarmService
     {
-        //public void SetAlarm(TimeSpan triggerTimeSpan, string name)
-        //{
-        
-        //}
-
         public void SetAlarm(DateTime today, TimeSpan triggerTimeSpan, int timeOffset, string name)
         {
             //UILocalNotification notification = new UILocalNotification();
             DateTime triggerDateTime = today;
             triggerDateTime += triggerTimeSpan - TimeSpan.FromMinutes(timeOffset);
             triggerDateTime = DateTime.SpecifyKind(triggerDateTime, DateTimeKind.Utc);
-            //notification.FireDate = (NSDate) triggerDateTime;
-            //notification.AlertTitle = $"{name} Hatirlatmasi"; // required for Apple Watch notifications
-            ////notification.AlertAction = "View Alert";
-            //notification.AlertBody = GetFormattedRemainingTime();
-            //// modify the badge
-            //notification.ApplicationIconBadgeNumber += 1;
-            //// set the sound to be the default sound
-            //notification.SoundName = UILocalNotification.DefaultSoundName;
-            //UIApplication.SharedApplication.ScheduleLocalNotification(notification);
             var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus") + ".wav";
             try
             {
@@ -73,72 +59,12 @@ namespace SuleymaniyeTakvimi.iOS
             {
                 Debug.WriteLine("Notification Scheduling Error: {0}", ex.Message);
             }
-            //UNUserNotificationCenter.Current.GetPendingNotificationRequests((req) => {
-                //if (req != null) UserDialogs.Instance.Alert($"request sayisi: {req.Length}", "Zamanlanan bilidiri sayisi", "Tamam");
-            //});
-            ////RequestAccess();
-            ////EKEventStore eventStore = new EKEventStore();
-            //EKReminder reminder = EKReminder.Create(AppDelegate.eventStore);
-
-            //reminder.Title = $"{name} vakti Hatırlatması";
-            //// an error for the reminders and calendars
-            //NSError e = new NSError();
-            //// an alarm time
-            //EKAlarm timeToRing = new EKAlarm();
-            //DateTime triggerDateTime = today;
-            //triggerDateTime += triggerTimeSpan;
-            ////if (triggerDateTime.Kind == DateTimeKind.Unspecified)
-            //    triggerDateTime = DateTime.SpecifyKind(triggerDateTime, DateTimeKind.Utc);
-            //timeToRing.AbsoluteDate = (NSDate) triggerDateTime;
-
-            //reminder.AddAlarm(timeToRing);
-
-            //reminder.Notes = GetFormattedRemainingTime();
-
-            ////reminder.Calendar = calendar;
-            //reminder.Calendar = AppDelegate.eventStore.DefaultCalendarForNewReminders;
-
-            //AppDelegate.eventStore.SaveReminder(reminder, true, out e);
         }
 
         public void CancelAlarm()
         {
             UNUserNotificationCenter.Current.RemoveAllDeliveredNotifications();
             UNUserNotificationCenter.Current.RemoveAllPendingNotificationRequests();
-            ////RequestAccess();
-            ////EKEventStore eventStore = new EKEventStore();
-            //EKReminder reminder = EKReminder.Create(AppDelegate.eventStore);
-            
-            //// an error for the reminders and calendars
-            //NSError e = new NSError();
-            //// an alarm time
-            //var alarms = reminder.Alarms;
-            //EKCalendarItem myReminder = AppDelegate.eventStore.GetCalendarItem(reminder.CalendarItemIdentifier);
-
-            //if (alarms != null)
-            //{
-            //    foreach (EKAlarm alarm in alarms)
-            //        reminder.RemoveAlarm(alarm);
-            //}
-            //else //remove reminders in the reminders app
-            //{
-            //    // create our NSPredicate which we'll use for the query
-            //    NSPredicate query = AppDelegate.eventStore.PredicateForReminders(null);
-
-            //    // execute the query
-            //    AppDelegate.eventStore.FetchReminders(
-            //            query, (EKReminder[] items) =>
-            //            {
-            //                // do someting with the items
-            //                if (items != null) foreach (var item in items)
-            //                    {
-            //                        AppDelegate.eventStore.RemoveReminder(item, true, out e);
-
-            //                    }
-            //            });
-            //}
-            
-            //AppDelegate.eventStore.SaveReminder(reminder, true, out e);
         }
 
         private string GetFormattedRemainingTime()
@@ -179,19 +105,5 @@ namespace SuleymaniyeTakvimi.iOS
 
             return message;
         }
-
-        //private void RequestAccess()
-        //{
-        //    //eventStore.RequestAccess(EKEntityType.Event, AccessCompletionHandler);
-        //    eventStore.RequestAccess(EKEntityType.Reminder, AccessCompletionHandler);
-
-        //    void AccessCompletionHandler(bool granted, NSError error)
-        //    {
-        //        if (!granted)
-        //        {
-        //            UserDialogs.Instance.Alert("User Denied Access to Calendars/Reminders" + error.ToString(), "Access Denied");                    
-        //        }
-        //    }
-        //}
     }
 }
