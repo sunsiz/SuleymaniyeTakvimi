@@ -26,7 +26,7 @@ namespace SuleymaniyeTakvimi.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             //BackgroundAggregator.Init(this);
-            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            //FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             //global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             Forms.Init();
             FormsMaterial.Init();

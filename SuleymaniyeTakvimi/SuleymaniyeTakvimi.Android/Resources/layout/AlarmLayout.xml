@@ -24,7 +24,7 @@
         android:background="#fffff8e1"
         android:weightSum="8">
         <ImageView
-            android:src="@drawable/vakiflogo"
+            android:src="@drawable/vakiflogoland"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView1"
@@ -54,7 +54,7 @@
             android:textSize="45px"
             android:layout_weight="0.4" />
         <Button
-            android:text="Durdur"
+            android:text="Kapat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/stopButton"

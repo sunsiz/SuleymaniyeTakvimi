@@ -123,6 +123,12 @@
   <data name="Aksam" xml:space="preserve">
     <value>Akşam</value>
   </data>
+  <data name="AlarmHatasi" xml:space="preserve">
+    <value>Alarm çalarken bir sorun oluştu, detaylar</value>
+  </data>
+  <data name="Alarmi" xml:space="preserve">
+    <value>Alarmı</value>
+  </data>
   <data name="AlarmSound" xml:space="preserve">
     <value>Alarm Sesi</value>
   </data>
@@ -167,6 +173,9 @@
   </data>
   <data name="CihazDesteklemiyor" xml:space="preserve">
     <value>Cihaz Desteklemiyor</value>
+  </data>
+  <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
+    <value>Cihazınız titretmeyi desteklemiyor</value>
   </data>
   <data name="Enlem" xml:space="preserve">
     <value>Enlem: {0:G7}</value>

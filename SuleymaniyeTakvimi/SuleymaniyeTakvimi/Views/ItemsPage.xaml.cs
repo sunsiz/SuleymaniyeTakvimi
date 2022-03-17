@@ -11,10 +11,10 @@ namespace SuleymaniyeTakvimi.Views
         public ItemsPage()
         {
             InitializeComponent();
-            if (VersionTracking.IsFirstLaunchEver)
-            {
-                Navigation.PushModalAsync(new OnBoardingPage());
-            }
+            //if (VersionTracking.IsFirstLaunchEver)
+            //{
+            //    Navigation.PushModalAsync(new OnBoardingPage());
+            //}
             BindingContext = _viewModel = new ItemsViewModel();
         }
 

@@ -123,6 +123,12 @@
   <data name="Aksam" xml:space="preserve">
     <value>Maghrib</value>
   </data>
+  <data name="AlarmHatasi" xml:space="preserve">
+    <value>A problem occurred while the alarm was sounding. Details</value>
+  </data>
+  <data name="Alarmi" xml:space="preserve">
+    <value>Alarm</value>
+  </data>
   <data name="AlarmSound" xml:space="preserve">
     <value>Alarm Sound</value>
   </data>
@@ -167,6 +173,9 @@
   </data>
   <data name="CihazDesteklemiyor" xml:space="preserve">
     <value>Device does not support</value>
+  </data>
+  <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
+    <value>Your device does not support vibrate</value>
   </data>
   <data name="Enlem" xml:space="preserve">
     <value>Latitude: {0:G7}</value>

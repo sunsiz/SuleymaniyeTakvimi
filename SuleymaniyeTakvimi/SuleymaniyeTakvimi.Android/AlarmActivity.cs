@@ -11,10 +11,12 @@ using Xamarin.Essentials;
 using MediaManager.Playback;
 using Microsoft.AppCenter.Analytics;
 using Plugin.LocalNotifications;
+using SuleymaniyeTakvimi.Localization;
+using Android.Graphics;
 
 namespace SuleymaniyeTakvimi.Droid
 {
-    [Activity(Label = "AlarmActivity", Theme = "@style/MyTheme.Alarm")]
+    [Activity(Label = "Süleymaniye Takvimi", Icon = "@mipmap/icon", Theme = "@style/MyTheme.Alarm", NoHistory = true)]
     public class AlarmActivity : Activity, View.IOnClickListener
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,65 +34,68 @@ namespace SuleymaniyeTakvimi.Droid
             FindViewById<Button>(Resource.Id.stopButton)?.SetOnClickListener(this);
             var label = FindViewById<TextView>(Resource.Id.textView1);
             var timeLabel = FindViewById<TextView>(Resource.Id.textViewTime);
+            FindViewById<Button>(Resource.Id.stopButton)?.SetText(AppResources.Kapat, TextView.BufferType.Normal);
+            var layout = FindViewById<LinearLayout>(Resource.Id.linearLayout1);
+            layout.SetBackgroundColor(SuleymaniyeTakvimi.Models.Theme.Tema == 1 ? (Color)Xamarin.Forms.Application.Current.Resources["AppBackgroundColor"] : (Color)Xamarin.Forms.Application.Current.Resources["AppBackgroundColorDark"]);
             //Android.Net.Uri uri = (Android.Net.Uri)intent.GetStringExtra("fileName");
             //uri = uri == null || Uri.Empty.Equals(uri) ? Settings.System.DefaultRingtoneUri : uri;
             switch (name)
             {
                 case "Fecri Kazip":
-                    label?.SetText("Fecri Kazip Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"Fecri Kazip Vakti: {time}", TextView.BufferType.Normal);
+                    label?.SetText(AppResources.FecriKazip + " " + AppResources.Alarmi, TextView.BufferType.Normal);
+                    timeLabel?.SetText($"{AppResources.FecriKazip} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
                     if (Preferences.Get("fecrikazipAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("fecrikazipTitreme", false)) Vibrate();
-                    if (Preferences.Get("fecrikazipBildiri", false)) ShowNotification("Fecri Kazip");
+                    if (Preferences.Get("fecrikazipBildiri", false)) ShowNotification(AppResources.FecriKazip);
                     break;
                 case "Fecri Sadık":
-                    label?.SetText("Fecri Sadık Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"Fecri Sadık Vakti: {time}", TextView.BufferType.Normal);
+                    label?.SetText(AppResources.FecriSadik + " " + AppResources.Alarmi, TextView.BufferType.Normal);
+                    timeLabel?.SetText($"{AppResources.FecriSadik} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
                     if (Preferences.Get("fecrisadikAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("fecrisadikTitreme", false)) Vibrate();
-                    if (Preferences.Get("fecrisadikBildiri", false)) ShowNotification("Fecri Sadık");
+                    if (Preferences.Get("fecrisadikBildiri", false)) ShowNotification(AppResources.FecriSadik);
                     break;
                 case "Sabah Sonu":
-                    label?.SetText("Sabah Sonu Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"Sabah Sonu Vakti: {time}", TextView.BufferType.Normal);
+                    label?.SetText(AppResources.SabahSonu + " " + AppResources.Alarmi, TextView.BufferType.Normal);
+                    timeLabel?.SetText($"{AppResources.SabahSonu} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
                     if (Preferences.Get("sabahsonuAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("sabahsonuTitreme", false)) Vibrate();
-                    if (Preferences.Get("sabahsonuBildiri", false)) ShowNotification("Sabah Sonu");
+                    if (Preferences.Get("sabahsonuBildiri", false)) ShowNotification(AppResources.SabahSonu);
                     break;
                 case "Öğle":
-                    label?.SetText("Öğle Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"Öğle Vakti: {time}", TextView.BufferType.Normal);
+                    label?.SetText(AppResources.Ogle + " " + AppResources.Alarmi, TextView.BufferType.Normal);
+                    timeLabel?.SetText($"{AppResources.Ogle} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
                     if (Preferences.Get("ogleAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("ogleTitreme", false)) Vibrate();
-                    if (Preferences.Get("ogleBildiri", false)) ShowNotification("Öğle");
+                    if (Preferences.Get("ogleBildiri", false)) ShowNotification(AppResources.Ogle);
                     break;
                 case "İkindi":
-                    label?.SetText("İkindi Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"İkindi Vakti: {time}", TextView.BufferType.Normal);
+                    label?.SetText(AppResources.Ikindi + " " + AppResources.Alarmi, TextView.BufferType.Normal);
+                    timeLabel?.SetText($"{AppResources.Ikindi} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
                     if (Preferences.Get("ikindiAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("ikindiTitreme", false)) Vibrate();
-                    if (Preferences.Get("ikindiBildiri", false)) ShowNotification("İkindi");
+                    if (Preferences.Get("ikindiBildiri", false)) ShowNotification(AppResources.Ikindi);
                     break;
                 case "Akşam":
-                    label?.SetText("Akşam Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"Akşam Vakti: {time}", TextView.BufferType.Normal);
+                    label?.SetText(AppResources.Aksam + " " + AppResources.Alarmi, TextView.BufferType.Normal);
+                    timeLabel?.SetText($"{AppResources.Aksam} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
                     if (Preferences.Get("aksamAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("aksamTitreme", false)) Vibrate();
-                    if (Preferences.Get("aksamBildiri", false)) ShowNotification("Akşam");
+                    if (Preferences.Get("aksamBildiri", false)) ShowNotification(AppResources.Aksam);
                     break;
                 case "Yatsı":
-                    label?.SetText("Yatsı Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"Yatsı Vakti: {time}", TextView.BufferType.Normal);
+                    label?.SetText(AppResources.Yatsi + " " + AppResources.Alarmi, TextView.BufferType.Normal);
+                    timeLabel?.SetText($"{AppResources.Yatsi} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
                     if (Preferences.Get("yatsiAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("yatsiTitreme", false)) Vibrate();
-                    if (Preferences.Get("yatsiBildiri", false)) ShowNotification("Yatsı");
+                    if (Preferences.Get("yatsiBildiri", false)) ShowNotification(AppResources.Yatsi);
                     break;
                 case "Yatsı Sonu":
-                    label?.SetText("Yatsı Sonu Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"Yatsı Sonu Vakti: {time}", TextView.BufferType.Normal);
+                    label?.SetText(AppResources.YatsiSonu + " " + AppResources.Alarmi, TextView.BufferType.Normal);
+                    timeLabel?.SetText($"{AppResources.YatsiSonu} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
                     if (Preferences.Get("yatsisonuAlarm", false)) PlayAlarm(name);
                     if (Preferences.Get("yatsisonuTitreme", false)) Vibrate();
-                    if (Preferences.Get("yatsisonuBildiri", false)) ShowNotification("Yatsı Sonu");
+                    if (Preferences.Get("yatsisonuBildiri", false)) ShowNotification(AppResources.YatsiSonu);
                     break;
                 default:
                     label?.SetText("Test Alarmı", TextView.BufferType.Normal);
@@ -145,7 +150,7 @@ namespace SuleymaniyeTakvimi.Droid
             catch (Exception exception)
             {
                 Log.Error("AlarmActivity-PlayAlarm",
-                    $"Alarm çalarken bir sorun oluştu, detaylar:\n{exception.Message}");
+                    $"{AppResources.AlarmHatasi}:\n{exception.Message}");
 
             }
         }
@@ -164,7 +169,7 @@ namespace SuleymaniyeTakvimi.Droid
             }
             catch (FeatureNotSupportedException ex)
             {
-                Log.Error("AlarmActivity-Vibrate", "Cihazınız titretmeyi desteklemiyor. " + ex.Message);
+                Log.Error("AlarmActivity-Vibrate", AppResources.CihazTitretmeyiDesteklemiyor + ex.Message);
                 //UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. " + ex.Message,
                 //    "Cihaz desteklemiyor");
             }
@@ -177,7 +182,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         private void ShowNotification(string name)
         {
-            CrossLocalNotifications.Current.Show($"Süleymaniye Vakfı Takvimi",$"{name} Vakti Hatırlatması", 1994);
+            CrossLocalNotifications.Current.Show($"{AppResources.SuleymaniyeVakfiTakvimi}",$"{name} {AppResources.VaktiHatirlatmasi}", 1994);
             CheckRemainingReminders();
         }
 

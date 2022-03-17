@@ -76,7 +76,6 @@
 
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
-    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
     <PackageReference Include="Plugin.MediaManager.Forms" Version="1.1.0" />
@@ -87,7 +86,6 @@
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
@@ -100,23 +98,22 @@
     <SharedImage Include="Assets\app_logo.png">
       <IsAppIcon></IsAppIcon>
     </SharedImage>
-    <SharedImage Include="Assets\ayar.png" />
     <SharedImage Include="Assets\facebook.png" />
     <SharedImage Include="Assets\instagram.png" />
     <SharedImage Include="Assets\isaretci.png" />
-    <SharedImage Include="Assets\kible.png" />
     <SharedImage Include="Assets\kompas.png" />
-    <SharedImage Include="Assets\radyo.png" />
     <SharedImage Include="Assets\radyofitrat.png" />
-    <SharedImage Include="Assets\takvim.png" />
     <SharedImage Include="Assets\twitter.png" />
     <SharedImage Include="Assets\vakiflogo.png" />
     <SharedImage Include="Assets\youtube.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Localization\AppResources.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Localization\AppResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AboutPage.xaml">
@@ -126,9 +123,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MonthPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\OnBoardingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RadioPage.xaml">

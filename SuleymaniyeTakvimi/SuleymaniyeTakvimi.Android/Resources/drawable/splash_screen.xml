@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
-	<!--<item>
+	<item>
 		<color android:color="@color/splash_background"/>
 	</item>
-	<item android:right="20dp" android:left="20dp">
+	<item>
 		<bitmap
 			android:src="@drawable/vakiflogo"
-			android:gravity="clip_horizontal" />
-	</item>-->
+			android:tileMode="disabled"
+			android:gravity="fill_horizontal" />
+	</item>
 </layer-list>

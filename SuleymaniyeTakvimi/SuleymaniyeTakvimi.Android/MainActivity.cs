@@ -16,7 +16,7 @@ using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.Droid
 {
-    [Activity(Label = "SuleymaniyeTakvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, LaunchMode = LaunchMode.SingleTop)]
+    [Activity(Label = "Süleymaniye Takvimi", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, LaunchMode = LaunchMode.SingleTop)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static MainActivity Instance;
@@ -31,11 +31,11 @@ namespace SuleymaniyeTakvimi.Droid
             base.OnCreate(savedInstanceState);
             //SetAlarmForBackgroundServices(this);//Use periodic background service
             UserDialogs.Init(this);
-            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
+            //FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
-            //global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
+            FormsMaterial.Init(this, savedInstanceState);
             CrossMediaManager.Current.Init(this);
             //this.ShinyOnCreate();
             //AndroidShinyHost.Init(this, platformBuild: services => services.UseNotifications());
