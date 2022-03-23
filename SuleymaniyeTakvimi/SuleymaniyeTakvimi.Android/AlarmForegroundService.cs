@@ -209,7 +209,7 @@ namespace SuleymaniyeTakvimi.Droid
                     _isStarted = true;
                     Task startupWork = new Task(async () =>
                     {
-                        await Task.Delay(35000).ConfigureAwait(true);
+                        await Task.Delay(10000).ConfigureAwait(true);
                         Log.Info("OnStartCommand", $"Starting Set Alarm at {DateTime.Now}");
                         DataService data = new DataService();
                         data.SetWeeklyAlarms();

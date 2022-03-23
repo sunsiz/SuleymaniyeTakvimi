@@ -12,7 +12,6 @@ using MediaManager.Playback;
 using Microsoft.AppCenter.Analytics;
 using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Localization;
-using Android.Graphics;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -32,11 +31,13 @@ namespace SuleymaniyeTakvimi.Droid
             var time = TimeSpan.Parse(intent?.GetStringExtra("time"));
             Log.Info("AlarmActivity", $"Alarm triggered at {DateTime.Now} for {name} and {time}");
             FindViewById<Button>(Resource.Id.stopButton)?.SetOnClickListener(this);
-            var label = FindViewById<TextView>(Resource.Id.textView1);
+            var label = FindViewById<TextView>(Resource.Id.textView);
             var timeLabel = FindViewById<TextView>(Resource.Id.textViewTime);
             FindViewById<Button>(Resource.Id.stopButton)?.SetText(AppResources.Kapat, TextView.BufferType.Normal);
-            var layout = FindViewById<LinearLayout>(Resource.Id.linearLayout1);
-            layout.SetBackgroundColor(SuleymaniyeTakvimi.Models.Theme.Tema == 1 ? (Color)Xamarin.Forms.Application.Current.Resources["AppBackgroundColor"] : (Color)Xamarin.Forms.Application.Current.Resources["AppBackgroundColorDark"]);
+            var layout = FindViewById<LinearLayout>(Resource.Id.linearLayout);
+            var lightColor = (Xamarin.Forms.Color)Xamarin.Forms.Application.Current.Resources["AppBackgroundColor"];
+            var darkColor = (Xamarin.Forms.Color) Xamarin.Forms.Application.Current.Resources["CardBackgroundColorDark"];
+            layout?.SetBackgroundColor(SuleymaniyeTakvimi.Models.Theme.Tema == 1 ? Xamarin.Forms.Platform.Android.ColorExtensions.ToAndroid(lightColor) : Xamarin.Forms.Platform.Android.ColorExtensions.ToAndroid(darkColor));
             //Android.Net.Uri uri = (Android.Net.Uri)intent.GetStringExtra("fileName");
             //uri = uri == null || Uri.Empty.Equals(uri) ? Settings.System.DefaultRingtoneUri : uri;
             switch (name)

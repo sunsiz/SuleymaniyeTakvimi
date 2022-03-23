@@ -52,6 +52,9 @@ namespace SuleymaniyeTakvimi.Services
             Analytics.TrackEvent("GetCurrentLocation in the DataService");
             try
             {
+                //var status = await LocationService.IsLocationPermissionGranted();
+                //var location = await LocationService.GetCurrentLocation();
+
                 Location location = null;
                 if (!refreshLocation) location = await Geolocation.GetLastKnownLocationAsync().ConfigureAwait(false);
 
@@ -509,7 +512,10 @@ namespace SuleymaniyeTakvimi.Services
                 if (File.Exists(FileName))
                 {
                     XDocument xmldoc = XDocument.Load(FileName);
-                    var takvims = ParseXmlList(xmldoc);
+                    var enlem = takvim.Enlem == 0 ? (konum.Enlem == 0 ? Preferences.Get("LastLatitude", 0.0) : konum.Enlem) : takvim.Enlem;
+                    var boylam = takvim.Boylam == 0 ? (konum.Boylam == 0 ? Preferences.Get("LastLongitude", 0.0) : konum.Boylam) : takvim.Boylam;
+                    var yukseklik = takvim.Yukseklik == 0 ? (konum.Yukseklik == 0 ? Preferences.Get("LastAltitude", 0.0) : konum.Yukseklik) : takvim.Yukseklik;
+                    var takvims = ParseXmlList(xmldoc, enlem, boylam, yukseklik);
                     if (takvims != null && (DateTime.Parse(takvims[takvims.Count-1].Tarih) - DateTime.Today).Days > 7 && takvims[0].Enlem!=0)
                     {
                         //xmldoc = ReadTakvimFile();

@@ -122,7 +122,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 if (!data.CheckInternet()) return;
                 Log.Warning("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
-                await Task.Delay(10000).ConfigureAwait(true);
+                await Task.Delay(5000).ConfigureAwait(true);
                 //DataService data = new DataService();
                 data.SetWeeklyAlarms();
                 _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);

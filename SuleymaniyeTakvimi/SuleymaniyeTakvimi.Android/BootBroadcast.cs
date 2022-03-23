@@ -25,9 +25,10 @@ namespace SuleymaniyeTakvimi.Droid
                 // Run your code here
                 //MainActivity.SetAlarmForBackgroundServices(context);
                 MainActivity main = MainActivity.Instance;
+                main.StopAlarmForegroundService();
                 main.SetAlarmForegroundService();
 
-                Toast.MakeText(context, "Süleymaniye Vakfı Takvimi Başladı! " + intent.Action, ToastLength.Long)?.Show();
+                //Toast.MakeText(context, "Süleymaniye Vakfı Takvimi Başladı! " + intent.Action, ToastLength.Long)?.Show();
                 //wakeLock?.Release();
             }
             catch (Exception exception)

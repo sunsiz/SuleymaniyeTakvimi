@@ -30,6 +30,7 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.AccessNetworkState)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessFineLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessCoarseLocation)]
+[assembly: UsesPermission(Android.Manifest.Permission.AccessBackgroundLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessMediaLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessMockLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.Vibrate)]
