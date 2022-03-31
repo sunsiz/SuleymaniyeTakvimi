@@ -79,6 +79,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Akşamın çıkması için kalan vakit:.
+        /// </summary>
+        public static string Aksamincikmasnakalanvakit {
+            get {
+                return ResourceManager.GetString("Aksamincikmasnakalanvakit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alarm çalarken bir sorun oluştu, detaylar.
         /// </summary>
         public static string AlarmHatasi {
@@ -93,6 +102,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string Alarmi {
             get {
                 return ResourceManager.GetString("Alarmi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alarm kurarken bir hata oluştu.
+        /// </summary>
+        public static string Alarmkurarkenhataolustu {
+            get {
+                return ResourceManager.GetString("Alarmkurarkenhataolustu", resourceCulture);
             }
         }
         
@@ -277,6 +295,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecri Kazibin (Sahurun) girmesi için kalan vakit:.
+        /// </summary>
+        public static string FecriKazibingirmesinekalanvakit {
+            get {
+                return ResourceManager.GetString("FecriKazibingirmesinekalanvakit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecr-i Kâzip.
         /// </summary>
         public static string FecriKazip {
@@ -291,6 +318,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string FecriSadik {
             get {
                 return ResourceManager.GetString("FecriSadik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecri Sadık (Sahur bitimi) için kalan vakit:.
+        /// </summary>
+        public static string FecriSadikakalanvakit {
+            get {
+                return ResourceManager.GetString("FecriSadikakalanvakit", resourceCulture);
             }
         }
         
@@ -331,6 +367,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hata detayları:.
+        /// </summary>
+        public static string Hatadetaylari {
+            get {
+                return ResourceManager.GetString("Hatadetaylari", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Horoz Ötüşü.
         /// </summary>
         public static string HorozOtusu {
@@ -354,6 +399,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string Ikindi {
             get {
                 return ResourceManager.GetString("Ikindi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to İkindinin çıkması için kalan vakit:.
+        /// </summary>
+        public static string Ikindinincikmasinakalanvakit {
+            get {
+                return ResourceManager.GetString("Ikindinincikmasinakalanvakit", resourceCulture);
             }
         }
         
@@ -484,6 +538,24 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Öğlenin çıkması için kalan vakit:.
+        /// </summary>
+        public static string Oglenincikmasinakalanvakit {
+            get {
+                return ResourceManager.GetString("Oglenincikmasinakalanvakit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Öğlenin girmesi için kalan vakit:.
+        /// </summary>
+        public static string Ogleningirmesinekalanvakit {
+            get {
+                return ResourceManager.GetString("Ogleningirmesinekalanvakit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 15 dakika önceden.
         /// </summary>
         public static string OnBesDakikaOnceden {
@@ -534,6 +606,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string SabahSonu {
             get {
                 return ResourceManager.GetString("SabahSonu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sabah Sonu için kalan vakit:.
+        /// </summary>
+        public static string SabahSonunakalanvakit {
+            get {
+                return ResourceManager.GetString("SabahSonunakalanvakit", resourceCulture);
             }
         }
         
@@ -619,6 +700,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tamam.
+        /// </summary>
+        public static string Tamam {
+            get {
+                return ResourceManager.GetString("Tamam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tarih.
         /// </summary>
         public static string Tarih {
@@ -687,6 +777,24 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string Yatsi {
             get {
                 return ResourceManager.GetString("Yatsi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yatsının çıkması için kalan vakit:.
+        /// </summary>
+        public static string Yatsinincikmasinakalanvakit {
+            get {
+                return ResourceManager.GetString("Yatsinincikmasinakalanvakit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yatsının çıktığından beri geçen vakit:.
+        /// </summary>
+        public static string Yatsininciktigindangecenvakit {
+            get {
+                return ResourceManager.GetString("Yatsininciktigindangecenvakit", resourceCulture);
             }
         }
         

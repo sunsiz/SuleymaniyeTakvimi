@@ -123,11 +123,17 @@
   <data name="Aksam" xml:space="preserve">
     <value>Akşam</value>
   </data>
+  <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
+    <value>Akşamın çıkması için kalan vakit:</value>
+  </data>
   <data name="AlarmHatasi" xml:space="preserve">
     <value>Alarm çalarken bir sorun oluştu, detaylar</value>
   </data>
   <data name="Alarmi" xml:space="preserve">
     <value>Alarmı</value>
+  </data>
+  <data name="Alarmkurarkenhataolustu" xml:space="preserve">
+    <value>Alarm kurarken bir hata oluştu</value>
   </data>
   <data name="AlarmSound" xml:space="preserve">
     <value>Alarm Sesi</value>
@@ -189,11 +195,17 @@
   <data name="EzanSesi" xml:space="preserve">
     <value>Ezan Sesi</value>
   </data>
+  <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
+    <value>Fecri Kazibin (Sahurun) girmesi için kalan vakit:</value>
+  </data>
   <data name="FecriKazip" xml:space="preserve">
     <value>Fecr-i Kâzip</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
     <value>Fecr-i Sâdık</value>
+  </data>
+  <data name="FecriSadikakalanvakit" xml:space="preserve">
+    <value>Fecri Sadık (Sahur bitimi) için kalan vakit:</value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
     <value>Radyo Fıtrat - Fıtrat'ın Sesi</value>
@@ -207,6 +219,9 @@
   <data name="HaritaHatasi" xml:space="preserve">
     <value>Haritayı açarken bir sorun oluştu.\nDetaylar:</value>
   </data>
+  <data name="Hatadetaylari" xml:space="preserve">
+    <value>Hata detayları:</value>
+  </data>
   <data name="HorozOtusu" xml:space="preserve">
     <value>Horoz Ötüşü</value>
   </data>
@@ -215,6 +230,9 @@
   </data>
   <data name="Ikindi" xml:space="preserve">
     <value>İkindi</value>
+  </data>
+  <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
+    <value>İkindinin çıkması için kalan vakit:</value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>Kapat</value>
@@ -258,6 +276,12 @@
   <data name="Ogle" xml:space="preserve">
     <value>Öğle</value>
   </data>
+  <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
+    <value>Öğlenin çıkması için kalan vakit:</value>
+  </data>
+  <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
+    <value>Öğlenin girmesi için kalan vakit:</value>
+  </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>15 dakika önceden</value>
   </data>
@@ -275,6 +299,9 @@
   </data>
   <data name="SabahSonu" xml:space="preserve">
     <value>Sabah Sonu</value>
+  </data>
+  <data name="SabahSonunakalanvakit" xml:space="preserve">
+    <value>Sabah Sonu için kalan vakit:</value>
   </data>
   <data name="Sehir" xml:space="preserve">
     <value>Şehir</value>
@@ -303,6 +330,9 @@
   <data name="TakvimIcinInternetBaslik" xml:space="preserve">
     <value>İnternet Gerekiyor</value>
   </data>
+  <data name="Tamam" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
   <data name="Tarih" xml:space="preserve">
     <value>Tarih</value>
   </data>
@@ -326,6 +356,12 @@
   </data>
   <data name="Yatsi" xml:space="preserve">
     <value>Yatsı</value>
+  </data>
+  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+    <value>Yatsının çıkması için kalan vakit:</value>
+  </data>
+  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+    <value>Yatsının çıktığından beri geçen vakit:</value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
     <value>Yatsı Sonu</value>

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Acr.UserDialogs;
 using Foundation;
+using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using UserNotifications;
 using Xamarin.Essentials;
@@ -21,9 +22,9 @@ namespace SuleymaniyeTakvimi.iOS
             {
                 var content = new UNMutableNotificationContent
                 {
-                    Title = $"{name} Hatirlatmasi",
-                    Subtitle = "Suleymaniye vakfi takvimi",
-                    Body = GetFormattedRemainingTime(),
+                    Title = $"{name} {AppResources.VaktiHatirlatmasi}",
+                    Subtitle = AppResources.SuleymaniyeVakfiTakvimi,
+                    Body = $"{name} {AppResources.Vakti} {triggerTimeSpan}",//GetFormattedRemainingTime(),
                     Sound = UNNotificationSound.GetSound(alarmSesi)
                 };
                 //content.Badge = 9;
@@ -50,7 +51,7 @@ namespace SuleymaniyeTakvimi.iOS
                     {
                         // Do something with error...
                         Debug.WriteLine("Error: {0}", err);
-                        UserDialogs.Instance.Alert($"hata detayları: {err}", "Alarm kurarken bir hata oluştu", "Tamam");
+                        UserDialogs.Instance.Alert($"{AppResources.Hatadetaylari} {err}", AppResources.Alarmkurarkenhataolustu, AppResources.Tamam);
                     }
                     else Debug.WriteLine("Notification Scheduled: {0} \n {1}", request, content);
                 });
@@ -67,43 +68,43 @@ namespace SuleymaniyeTakvimi.iOS
             UNUserNotificationCenter.Current.RemoveAllPendingNotificationRequests();
         }
 
-        private string GetFormattedRemainingTime()
-        {
-            var message = "";
-            var data = new DataService();
-            var takvim = data.takvim;
-            var currentTime = DateTime.Now.TimeOfDay;
-            if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
-                message = "Fecri Kazipin (Sahurun) girmesi için kalan vakit: " +
-                          (TimeSpan.Parse(takvim.FecriKazip) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.FecriKazip) && currentTime <= TimeSpan.Parse(takvim.FecriSadik))
-                message = "Fecri Sadık (Sahur bitimi) için kalan vakit: " +
-                          (TimeSpan.Parse(takvim.FecriSadik) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.FecriSadik) && currentTime <= TimeSpan.Parse(takvim.SabahSonu))
-                message = "Sabah Sonu için kalan vakit: " +
-                          (TimeSpan.Parse(takvim.SabahSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.SabahSonu) && currentTime <= TimeSpan.Parse(takvim.Ogle))
-                message = "Öğlenin girmesi için kalan vakit: " +
-                          (TimeSpan.Parse(takvim.Ogle) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.Ogle) && currentTime <= TimeSpan.Parse(takvim.Ikindi))
-                message = "Öğlenin çıkması için kalan vakit: " +
-                          (TimeSpan.Parse(takvim.Ikindi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.Ikindi) && currentTime <= TimeSpan.Parse(takvim.Aksam))
-                message = "İkindinin çıkması için kalan vakit: " +
-                          (TimeSpan.Parse(takvim.Aksam) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.Aksam) && currentTime <= TimeSpan.Parse(takvim.Yatsi))
-                message = "Akşamın çıkması için kalan vakit: " +
-                          (TimeSpan.Parse(takvim.Yatsi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.Yatsi) && currentTime <= TimeSpan.Parse(takvim.YatsiSonu))
-            {
-                message = "Yatsının çıkması için kalan vakit: " +
-                          (TimeSpan.Parse(takvim.YatsiSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            }
-            else if (currentTime >= TimeSpan.Parse(takvim.YatsiSonu))
-                message = "Yatsının çıktığından beri geçen vakit: " +
-                          (currentTime - TimeSpan.Parse(takvim.YatsiSonu)).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //private string GetFormattedRemainingTime()
+        //{
+        //    var message = "";
+        //    var data = new DataService();
+        //    var takvim = data.takvim;
+        //    var currentTime = DateTime.Now.TimeOfDay;
+        //    if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
+        //        message = AppResources.FecriKazibingirmesinekalanvakit +
+        //                  (TimeSpan.Parse(takvim.FecriKazip) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //    else if (currentTime >= TimeSpan.Parse(takvim.FecriKazip) && currentTime <= TimeSpan.Parse(takvim.FecriSadik))
+        //        message = AppResources.FecriSadikakalanvakit +
+        //                  (TimeSpan.Parse(takvim.FecriSadik) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //    else if (currentTime >= TimeSpan.Parse(takvim.FecriSadik) && currentTime <= TimeSpan.Parse(takvim.SabahSonu))
+        //        message = AppResources.SabahSonunakalanvakit +
+        //                  (TimeSpan.Parse(takvim.SabahSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //    else if (currentTime >= TimeSpan.Parse(takvim.SabahSonu) && currentTime <= TimeSpan.Parse(takvim.Ogle))
+        //        message = AppResources.Ogleningirmesinekalanvakit +
+        //                  (TimeSpan.Parse(takvim.Ogle) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //    else if (currentTime >= TimeSpan.Parse(takvim.Ogle) && currentTime <= TimeSpan.Parse(takvim.Ikindi))
+        //        message = AppResources.Oglenincikmasinakalanvakit +
+        //                  (TimeSpan.Parse(takvim.Ikindi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //    else if (currentTime >= TimeSpan.Parse(takvim.Ikindi) && currentTime <= TimeSpan.Parse(takvim.Aksam))
+        //        message = AppResources.Ikindinincikmasinakalanvakit +
+        //                  (TimeSpan.Parse(takvim.Aksam) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //    else if (currentTime >= TimeSpan.Parse(takvim.Aksam) && currentTime <= TimeSpan.Parse(takvim.Yatsi))
+        //        message = AppResources.Aksamincikmasnakalanvakit +
+        //                  (TimeSpan.Parse(takvim.Yatsi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //    else if (currentTime >= TimeSpan.Parse(takvim.Yatsi) && currentTime <= TimeSpan.Parse(takvim.YatsiSonu))
+        //    {
+        //        message = AppResources.Yatsinincikmasinakalanvakit +
+        //                  (TimeSpan.Parse(takvim.YatsiSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+        //    }
+        //    else if (currentTime >= TimeSpan.Parse(takvim.YatsiSonu))
+        //        message = AppResources.Yatsininciktigindangecenvakit +
+        //                  (currentTime - TimeSpan.Parse(takvim.YatsiSonu)).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
 
-            return message;
-        }
+        //    return message;
+        //}
     }
 }

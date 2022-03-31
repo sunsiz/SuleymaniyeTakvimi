@@ -123,11 +123,17 @@
   <data name="Aksam" xml:space="preserve">
     <value>Maghrib</value>
   </data>
+  <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
+    <value>Time left for the Maghrib to come out:</value>
+  </data>
   <data name="AlarmHatasi" xml:space="preserve">
     <value>A problem occurred while the alarm was sounding. Details</value>
   </data>
   <data name="Alarmi" xml:space="preserve">
     <value>Alarm</value>
+  </data>
+  <data name="Alarmkurarkenhataolustu" xml:space="preserve">
+    <value>An error occurred while setting the alarm</value>
   </data>
   <data name="AlarmSound" xml:space="preserve">
     <value>Alarm Sound</value>
@@ -189,11 +195,17 @@
   <data name="EzanSesi" xml:space="preserve">
     <value>Adhan (Makkah)</value>
   </data>
+  <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
+    <value>Time left for the Sahar (Suhoor) to enter:</value>
+  </data>
   <data name="FecriKazip" xml:space="preserve">
     <value>Sahar</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
     <value>Fajr</value>
+  </data>
+  <data name="FecriSadikakalanvakit" xml:space="preserve">
+    <value>Time left for Fajr (end of Suhoor):</value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
     <value>Radio Fitrah - Voice of Fitrah</value>
@@ -207,6 +219,9 @@
   <data name="HaritaHatasi" xml:space="preserve">
     <value>There is something happened while opening the map.\nDetailes:</value>
   </data>
+  <data name="Hatadetaylari" xml:space="preserve">
+    <value>Error details:</value>
+  </data>
   <data name="HorozOtusu" xml:space="preserve">
     <value>Rooster Crows</value>
   </data>
@@ -215,6 +230,9 @@
   </data>
   <data name="Ikindi" xml:space="preserve">
     <value>Asr</value>
+  </data>
+  <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
+    <value>Time left for the Asr to come out:</value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>Close</value>
@@ -258,6 +276,12 @@
   <data name="Ogle" xml:space="preserve">
     <value>Dhuhr</value>
   </data>
+  <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
+    <value>Time left for Dhuhr to come out:</value>
+  </data>
+  <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
+    <value>Time left for Dhuhr to enter:</value>
+  </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>15 minutes before</value>
   </data>
@@ -275,6 +299,9 @@
   </data>
   <data name="SabahSonu" xml:space="preserve">
     <value>End of Fajr</value>
+  </data>
+  <data name="SabahSonunakalanvakit" xml:space="preserve">
+    <value>Time left for the End of Fajr:</value>
   </data>
   <data name="Sehir" xml:space="preserve">
     <value>City</value>
@@ -303,6 +330,9 @@
   <data name="TakvimIcinInternetBaslik" xml:space="preserve">
     <value>Internet is required</value>
   </data>
+  <data name="Tamam" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Tarih" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -326,6 +356,12 @@
   </data>
   <data name="Yatsi" xml:space="preserve">
     <value>Isha</value>
+  </data>
+  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+    <value>Time left for Isha to come out:</value>
+  </data>
+  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+    <value>Time elapsed since Isha come out:</value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
     <value>End of Isha</value>

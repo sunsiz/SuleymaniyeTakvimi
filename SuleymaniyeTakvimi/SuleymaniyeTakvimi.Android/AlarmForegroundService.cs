@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Util;
 using Java.Util;
 using Microsoft.AppCenter.Analytics;
+using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -105,7 +106,7 @@ namespace SuleymaniyeTakvimi.Droid
                 };
                 _notificationManager.CreateNotificationChannel(channel);
                 _notification = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
-                    .SetContentTitle("Suleymaniye Vakfi Takvimi")
+                    .SetContentTitle(AppResources.SuleymaniyeVakfiTakvimi)
                     .SetContentText(GetFormattedRemainingTime())
                     .SetSmallIcon(Resource.Drawable.app_logo)
                     .SetContentIntent(BuildIntentToShowMainActivity())
@@ -119,7 +120,7 @@ namespace SuleymaniyeTakvimi.Droid
             else
             {
                 _notification = new Notification.Builder(this)
-                    .SetContentTitle("Suleymaniye Vakfi Takvimi")
+                    .SetContentTitle(AppResources.SuleymaniyeVakfiTakvimi)
                     .SetContentText(GetFormattedRemainingTime())
                     .SetSmallIcon(Resource.Drawable.app_logo)
                     .SetContentIntent(BuildIntentToShowMainActivity())
@@ -155,31 +156,31 @@ namespace SuleymaniyeTakvimi.Droid
             var takvim = data.takvim;
             var currentTime = DateTime.Now.TimeOfDay;
             if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
-                message = "Fecri Kazipin (Sahurun) girmesi için kalan vakit: " +
+                message = AppResources.FecriKazibingirmesinekalanvakit +
                           (TimeSpan.Parse(takvim.FecriKazip) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.FecriKazip) && currentTime <= TimeSpan.Parse(takvim.FecriSadik))
-                message = "Fecri Sadık (Sahur bitimi) için kalan vakit: " +
+                message = AppResources.FecriSadikakalanvakit +
                           (TimeSpan.Parse(takvim.FecriSadik) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.FecriSadik) && currentTime <= TimeSpan.Parse(takvim.SabahSonu))
-                message = "Sabah Sonu için kalan vakit: " +
+                message = AppResources.SabahSonunakalanvakit +
                           (TimeSpan.Parse(takvim.SabahSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.SabahSonu) && currentTime <= TimeSpan.Parse(takvim.Ogle))
-                message = "Öğlenin girmesi için kalan vakit: " +
+                message = AppResources.Ogleningirmesinekalanvakit +
                           (TimeSpan.Parse(takvim.Ogle) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.Ogle) && currentTime <= TimeSpan.Parse(takvim.Ikindi))
-                message = "Öğlenin çıkması için kalan vakit: " +
+                message = AppResources.Oglenincikmasinakalanvakit +
                           (TimeSpan.Parse(takvim.Ikindi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.Ikindi) && currentTime <= TimeSpan.Parse(takvim.Aksam))
-                message = "İkindinin çıkması için kalan vakit: " +
+                message = AppResources.Ikindinincikmasinakalanvakit +
                           (TimeSpan.Parse(takvim.Aksam) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.Aksam) && currentTime <= TimeSpan.Parse(takvim.Yatsi))
-                message = "Akşamın çıkması için kalan vakit: " +
+                message = AppResources.Aksamincikmasnakalanvakit +
                           (TimeSpan.Parse(takvim.Yatsi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.Yatsi) && currentTime <= TimeSpan.Parse(takvim.YatsiSonu))
-                message = "Yatsının çıkması için kalan vakit: " +
+                message = AppResources.Yatsinincikmasinakalanvakit +
                           (TimeSpan.Parse(takvim.YatsiSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
             else if (currentTime >= TimeSpan.Parse(takvim.YatsiSonu))
-                message = "Yatsının çıktığından beri geçen vakit: " +
+                message = AppResources.Yatsininciktigindangecenvakit +
                           (currentTime - TimeSpan.Parse(takvim.YatsiSonu)).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
 
             return message;

@@ -30,8 +30,6 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.AccessNetworkState)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessFineLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessCoarseLocation)]
-[assembly: UsesPermission(Android.Manifest.Permission.AccessBackgroundLocation)]
-[assembly: UsesPermission(Android.Manifest.Permission.AccessMediaLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessMockLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.Vibrate)]
 [assembly: UsesPermission(Android.Manifest.Permission.BatteryStats)]
@@ -44,3 +42,9 @@ using Android.App;
 [assembly: UsesFeature("android.hardware.location", Required = false)]
 [assembly: UsesFeature("android.hardware.location.gps", Required = false)]
 [assembly: UsesFeature("android.hardware.location.network", Required = false)]
+
+#if DEBUG
+[assembly: Application(Debuggable=true)]
+#else
+[assembly: Application(Debuggable = false)]
+#endif
