@@ -82,7 +82,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (CrossMediaManager.Current.State == MediaPlayerState.Loading ||
                 CrossMediaManager.Current.State == MediaPlayerState.Buffering)
             {
-                Debug.WriteLine($"[Radio Player Buffering] {DateTime.Now.ToString("HH:m:s.f")}");
+                Debug.WriteLine($"[Radio Player Buffering] {DateTime.Now:HH:m:s.f}");
                 Title = AppResources.IcerikYukleniyor;
                 IsBusy = true;
                 IsPlaying = false;
@@ -91,7 +91,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
             if (CrossMediaManager.Current.IsPlaying())
             {
-                Debug.WriteLine($"[Radio Player Playing] {DateTime.Now.ToString("HH:m:s.f")}");
+                Debug.WriteLine($"[Radio Player Playing] {DateTime.Now:HH:m:s.f}");
                 IsPlaying = true;
                 Title = AppResources.FitratinSesi;
                 IsBusy = false;

@@ -6,7 +6,6 @@ using Android.Widget;
 using System;
 using Android.Util;
 using MediaManager;
-using MediaManager.Library;
 using Xamarin.Essentials;
 using MediaManager.Playback;
 using Microsoft.AppCenter.Analytics;
@@ -28,7 +27,7 @@ namespace SuleymaniyeTakvimi.Droid
             //get the current intent
             Intent intent = this.Intent;
             var name = intent?.GetStringExtra("name");
-            var time = TimeSpan.Parse(intent?.GetStringExtra("time"));
+            var time = TimeSpan.Parse(intent?.GetStringExtra("time") ?? string.Empty);
             Log.Info("AlarmActivity", $"Alarm triggered at {DateTime.Now} for {name} and {time}");
             FindViewById<Button>(Resource.Id.stopButton)?.SetOnClickListener(this);
             var label = FindViewById<TextView>(Resource.Id.textView);
@@ -37,7 +36,7 @@ namespace SuleymaniyeTakvimi.Droid
             var layout = FindViewById<LinearLayout>(Resource.Id.linearLayout);
             var lightColor = (Xamarin.Forms.Color)Xamarin.Forms.Application.Current.Resources["AppBackgroundColor"];
             var darkColor = (Xamarin.Forms.Color) Xamarin.Forms.Application.Current.Resources["CardBackgroundColorDark"];
-            layout?.SetBackgroundColor(SuleymaniyeTakvimi.Models.Theme.Tema == 1 ? Xamarin.Forms.Platform.Android.ColorExtensions.ToAndroid(lightColor) : Xamarin.Forms.Platform.Android.ColorExtensions.ToAndroid(darkColor));
+            layout?.SetBackgroundColor(Models.Theme.Tema == 1 ? Xamarin.Forms.Platform.Android.ColorExtensions.ToAndroid(lightColor) : Xamarin.Forms.Platform.Android.ColorExtensions.ToAndroid(darkColor));
             //Android.Net.Uri uri = (Android.Net.Uri)intent.GetStringExtra("fileName");
             //uri = uri == null || Uri.Empty.Equals(uri) ? Settings.System.DefaultRingtoneUri : uri;
             switch (name)
@@ -141,9 +140,8 @@ namespace SuleymaniyeTakvimi.Droid
             try
             {
                 await CrossMediaManager.Current.MediaPlayer.Stop().ConfigureAwait(false);
-                IMediaItem mediaItem;
                 var alarmSesi = Preferences.Get(key + "AlarmSesi", "kus");
-                mediaItem = await CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").ConfigureAwait(true);
+                var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".wav").ConfigureAwait(true);
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 await CrossMediaManager.Current.MediaPlayer.Play(mediaItem).ConfigureAwait(false);

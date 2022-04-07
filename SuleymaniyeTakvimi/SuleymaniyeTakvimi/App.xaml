@@ -151,8 +151,8 @@
                                     <Setter Property="TextColor"
                                             Value="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" />
                                     <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
-                                    <Setter Property="Opacity"
-                                            Value="1" />
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Setter Property="HeightRequest" Value="40"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Unchecked">
@@ -160,8 +160,8 @@
                                     <Setter Property="TextColor"
                                             Value="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" />
                                     <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
-                                    <Setter Property="Opacity"
-                                            Value="0.5" />
+                                    <Setter Property="Opacity" Value="0.7" />
+                                    <Setter Property="HeightRequest" Value="40"/>
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -173,6 +173,7 @@
                 <Setter Property="Visual" Value="Material" />
                 <Setter Property="BorderColor" Value="BurlyWood"></Setter>
                 <Setter Property="TextColor" Value="{StaticResource NormalButtonTextColor}" />
+                <Setter Property="HeightRequest" Value="48"/>
             </Style>
             <Style x:Key="RoundBar" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" />

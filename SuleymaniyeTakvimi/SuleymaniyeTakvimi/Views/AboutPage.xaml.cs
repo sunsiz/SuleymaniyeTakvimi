@@ -12,14 +12,14 @@ namespace SuleymaniyeTakvimi.Views
             IsBusy = true;
         }
 
-        public void WebView_OnNavigating(object sender, WebNavigatingEventArgs e)
+        private void WebView_OnNavigating(object sender, WebNavigatingEventArgs e)
         {
             ActivityIndicator.IsRunning = true;
             ActivityIndicator.IsVisible = true;
             IsBusy = true;
         }
 
-        public void WebView_OnNavigated(object sender, WebNavigatedEventArgs e)
+        private void WebView_OnNavigated(object sender, WebNavigatedEventArgs e)
         {
             ActivityIndicator.IsRunning = false;
             ActivityIndicator.IsVisible = false;

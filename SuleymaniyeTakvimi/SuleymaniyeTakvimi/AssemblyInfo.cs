@@ -3,7 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-[assembly: NeutralResourcesLanguage("tr-TR")]
+[assembly: NeutralResourcesLanguage("en-US")]
 [assembly: ExportFont("MaterialIcons-Regular.ttf", Alias = "MaterialIcons")]
 //[assembly: ExportFont("typicons.ttf", Alias = "Typicons")]
 //[assembly: ExportFont("Font Awesome 5 Free-Regular-400.otf", Alias = "FARegular")]

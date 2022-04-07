@@ -44,9 +44,11 @@
 	<array>
 		<string>tr</string>
 		<string>en</string>
+		<string>zh</string>
+		<string>ug</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>tr</string>
+	<string>en</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor</string>
 	<key>NSLocationAlwaysUsageDescription</key>

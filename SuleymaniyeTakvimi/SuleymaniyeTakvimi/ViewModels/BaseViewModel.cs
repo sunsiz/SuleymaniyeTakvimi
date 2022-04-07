@@ -10,17 +10,19 @@ namespace SuleymaniyeTakvimi.ViewModels
         //public IDataService DataService => DependencyService.Get<IDataService>();
 
         bool _isBusy;
+
         public bool IsBusy
         {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
 
         string _title = string.Empty;
+
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
         //public Takvim Vakitler { get; set; }
         protected bool SetProperty<T>(ref T backingStore, T value,
@@ -38,7 +40,8 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
             if (changed == null)

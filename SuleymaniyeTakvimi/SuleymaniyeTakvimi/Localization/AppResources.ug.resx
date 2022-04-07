@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Aci" xml:space="preserve">
+    <value>بۇلۇڭ</value>
+  </data>
+  <data name="Aksam" xml:space="preserve">
+    <value>شام</value>
+  </data>
+  <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
+    <value>شامنىڭ چىقىشىا قالغان ۋاقىت:</value>
+  </data>
+  <data name="AlarmHatasi" xml:space="preserve">
+    <value>قوڭغۇراق چالغاندا بىر مەسىلە چىقتى، تەپسىلاتلار</value>
+  </data>
+  <data name="Alarmi" xml:space="preserve">
+    <value>قوڭغۇراق</value>
+  </data>
+  <data name="Alarmkurarkenhataolustu" xml:space="preserve">
+    <value>قوڭغۇراقلارنى تەڭشەۋاتقاندا بىر خاتالىق يۈز بەردى</value>
+  </data>
+  <data name="AlarmSound" xml:space="preserve">
+    <value>قوڭغۇراق ئاۋازى</value>
+  </data>
+  <data name="AlarmSwitch" xml:space="preserve">
+    <value>قوڭغۇراق چالسۇن</value>
+  </data>
+  <data name="AylikTakvim" xml:space="preserve">
+    <value>ئايلىق كالىندار</value>
+  </data>
+  <data name="AylikTakvimYenilendi" xml:space="preserve">
+    <value>ئايلىق كالىندار مۇۋەپپەقىيەتلىك يېڭىلاندى</value>
+  </data>
+  <data name="BesDakikaOnceden" xml:space="preserve">
+    <value>بەش مىنۇت بۇرۇن</value>
+  </data>
+  <data name="BildiriDevreDisiBaslik" xml:space="preserve">
+    <value>ئۇقتۇرۇش كۆرسىتىش تاقالغان</value>
+  </data>
+  <data name="BildiriDevreDisiIcerik" xml:space="preserve">
+    <value>ئۇقتۇرۇش كۆرسىتىش تاقالدى.</value>
+  </data>
+  <data name="BildiriEtkinBaslik" xml:space="preserve">
+    <value>ئۇقتۇرۇش كۆرسىتىش ئىچىلغان</value>
+  </data>
+  <data name="BildiriEtkinIcerik" xml:space="preserve">
+    <value>ئۇقتۇرۇش كۆرسىتىش ئىچىلدى.</value>
+  </data>
+  <data name="BildirimGosterSwitch" xml:space="preserve">
+    <value>ئۇقتۇرۇش كۆرسىتىش</value>
+  </data>
+  <data name="BildirmeZamani" xml:space="preserve">
+    <value>ئەسكەرتىش ۋاقتى:</value>
+  </data>
+  <data name="Birsessecin" xml:space="preserve">
+    <value>قوڭغۇراق ئاۋازى تاللاڭ</value>
+  </data>
+  <data name="Boylam" xml:space="preserve">
+    <value>ئۇزۇنلۇق: {0:G7}</value>
+  </data>
+  <data name="BoylamFormatsiz" xml:space="preserve">
+    <value>ئۇزۇنلۇق</value>
+  </data>
+  <data name="BugunkuNamazVakitleri" xml:space="preserve">
+    <value>بۈگۈنكى ناماز ۋاقىتلىرى</value>
+  </data>
+  <data name="CalarSaat" xml:space="preserve">
+    <value>قوڭغۇراقلىق سائەت</value>
+  </data>
+  <data name="CihazDesteklemiyor" xml:space="preserve">
+    <value>ئۈسكىنە قوللىمايدۇ</value>
+  </data>
+  <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
+    <value>ئۈسكىنىڭىز تىترەشنى قوللىمايدۇ</value>
+  </data>
+  <data name="Enlem" xml:space="preserve">
+    <value>كەڭلىك: {0:G7}</value>
+  </data>
+  <data name="EnlemFormatsiz" xml:space="preserve">
+    <value>كەڭلىك</value>
+  </data>
+  <data name="EtkinlestirSwitch" xml:space="preserve">
+    <value>ئىچىش</value>
+  </data>
+  <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
+    <value>بۇ ناماز ۋاقتى ئۈچۈن قوڭغۇراق، تىترەش، ئۇقتۇرۇش قاتارلىق ئىقتىدارلارنى ئاكتىپ ھالەتكە كەلتۈرىدۇ</value>
+  </data>
+  <data name="EzanSesi" xml:space="preserve">
+    <value>ئەزان (مەككە)</value>
+  </data>
+  <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
+    <value>زولۇق ۋاقتىنىڭ كىرىشىگە قالغان ۋاقىت:</value>
+  </data>
+  <data name="FecriKazip" xml:space="preserve">
+    <value>زولۇق</value>
+  </data>
+  <data name="FecriSadik" xml:space="preserve">
+    <value>بامدات (باش سۈبھى)</value>
+  </data>
+  <data name="FecriSadikakalanvakit" xml:space="preserve">
+    <value>بامداتنىڭ كىرىشىگە (زولۇقنىڭ توختاش ۋاقتىغا) قالغان ۋاقىت:</value>
+  </data>
+  <data name="FitratinSesi" xml:space="preserve">
+    <value>رادىئو فىترەت - فىترەتنىڭ ساداسى</value>
+  </data>
+  <data name="FitratTV" xml:space="preserve">
+    <value>فىترەت تېلېۋىزىيەسى</value>
+  </data>
+  <data name="FitratTVFacebook" xml:space="preserve">
+    <value>فىترەت تېلېۋىزىيەسى Facebook بېتى</value>
+  </data>
+  <data name="FitratTVTwitter" xml:space="preserve">
+    <value>فىترەت تېلېۋىزىيەسى Twitter بېتى</value>
+  </data>
+  <data name="FitratTVYoutube" xml:space="preserve">
+    <value>فىترەت تېلېۋىزىيەسى Youtube قانىلى</value>
+  </data>
+  <data name="Hakkinda" xml:space="preserve">
+    <value>ھەققمىزدە</value>
+  </data>
+  <data name="HaritadaGoster" xml:space="preserve">
+    <value>خەرىتەدە كۆرسىتىش</value>
+  </data>
+  <data name="HaritaHatasi" xml:space="preserve">
+    <value>خەرتىنى ئىچىۋاتقاندا مەسىلە چىقتى. \n تەپسىلاتلار:</value>
+  </data>
+  <data name="Hatadetaylari" xml:space="preserve">
+    <value>خاتا تەپسىلاتى:</value>
+  </data>
+  <data name="HorozOtusu" xml:space="preserve">
+    <value>خوراز چىللىشى</value>
+  </data>
+  <data name="IcerikYukleniyor" xml:space="preserve">
+    <value>مەزمۇن يۈكلىنىۋاتىدۇ ...</value>
+  </data>
+  <data name="Ikindi" xml:space="preserve">
+    <value>دىگەر ۋاقتى</value>
+  </data>
+  <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
+    <value>دىگەر ۋاقتىنىڭ چىقىشىغا قالغان ۋاقىت:</value>
+  </data>
+  <data name="Kapat" xml:space="preserve">
+    <value>تاقاش</value>
+  </data>
+  <data name="Kaydet" xml:space="preserve">
+    <value>ساقلاش</value>
+  </data>
+  <data name="Kible" xml:space="preserve">
+    <value>قىبلە</value>
+  </data>
+  <data name="KibleGostergesi" xml:space="preserve">
+    <value>قىبلە كۆرسەتكۈچ</value>
+  </data>
+  <data name="KonumHatasi" xml:space="preserve">
+    <value>ئۈسكىنە ئورۇن ئۇچۇرلىرىنى ئوقۇۋاتقاندا خاتالىق چىقتى</value>
+  </data>
+  <data name="KonumIzniBaslik" xml:space="preserve">
+    <value>ئۈسكىنە ئورنىغا ئېرىشىش ھوقۇقى بېرىلمىگەن</value>
+  </data>
+  <data name="KonumIzniIcerik" xml:space="preserve">
+    <value>ئەپنىڭ نورمال ئىشلىشى ئۈچۈن، ئۈسكىنە ئورۇن ئۇچۇرىغا ئېرىشىش ھوقۇقى بېرىشىڭىز كىرەك!</value>
+  </data>
+  <data name="KonumKapali" xml:space="preserve">
+    <value>ئۈسكىنىنىڭ ئورۇن بەلگىلەش مۇلازىمىتى تاقالغان، ئاۋۋال ئورۇن بەلگىلەش مۇلازىمىتىنى ئىچىڭ!</value>
+  </data>
+  <data name="KonumKapaliBaslik" xml:space="preserve">
+    <value>ئورۇن بەلگىلەش مۇلازىمىتى تاقاق</value>
+  </data>
+  <data name="KonumYenileButton" xml:space="preserve">
+    <value>يېڭىلاش</value>
+  </data>
+  <data name="KonumYenilendi" xml:space="preserve">
+    <value>ئۈسكىنە ئورنى ۋە ناماز ۋاقىتلىرى مۇۋەپپەقىيەتلىك يېڭىلاندى</value>
+  </data>
+  <data name="KusCiviltisi" xml:space="preserve">
+    <value>قۇش سايرىشى</value>
+  </data>
+  <data name="NamazVaktiAciklama" xml:space="preserve">
+    <value>https://suleymaniyetakvimi.com/Include/NamazVakitleri_en.htm</value>
+  </data>
+  <data name="Ogle" xml:space="preserve">
+    <value>پىشىن</value>
+  </data>
+  <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
+    <value>پىشىننىڭ چىقىشىغا قالغان ۋاقىت:</value>
+  </data>
+  <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
+    <value>پىشىننىڭ كىرىشىگە قالغان ۋاقىت:</value>
+  </data>
+  <data name="OnBesDakikaOnceden" xml:space="preserve">
+    <value>ئون بەش مىنۇت بۇرۇن</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>سۇلايمانىىيە كالىندارى</value>
+  </data>
+  <data name="Radyo" xml:space="preserve">
+    <value>رادىئو</value>
+  </data>
+  <data name="RadyoFitrat" xml:space="preserve">
+    <value>رادىئو فىترەت</value>
+  </data>
+  <data name="RadyoFitratFaceBook" xml:space="preserve">
+    <value>رادىئو فىترەت Facebook بېتى</value>
+  </data>
+  <data name="RadyoFitratInstagram" xml:space="preserve">
+    <value>رادىئو فىترەت Instagram بېتى</value>
+  </data>
+  <data name="RadyoFitratTwitter" xml:space="preserve">
+    <value>رادىئو فىترەت Twitter بېتى</value>
+  </data>
+  <data name="Tarih" xml:space="preserve">
+    <value>چېسلا</value>
+  </data>
+  <data name="Sehir" xml:space="preserve">
+    <value>شەھەر</value>
+  </data>
+  <data name="SabahSonu" xml:space="preserve">
+    <value>بامداتنىڭ ئاخرى</value>
+  </data>
+  <data name="SabahSonunakalanvakit" xml:space="preserve">
+    <value>بامداتنىڭ ئاخىرلىشىشىغا قالغان ۋاقىت:</value>
+  </data>
+  <data name="SaatBolgesi" xml:space="preserve">
+    <value>ۋاقىت رايونى: GMT {0}</value>
+  </data>
+  <data name="RadyoIcinInternet" xml:space="preserve">
+    <value>رادىئو قويۇش ئۈچۈن ئىنتېرنېت لازىم، تورىڭىزنىڭ ئوچۇق ئىكەنلىكىنى تەكشۈرۈڭ، ياكى «تور بىكەت» ئۇلىنىشىنى بىسىپ تور بەتتىن ئاڭلاڭ.</value>
+  </data>
+  <data name="Tamam" xml:space="preserve">
+    <value>ماقۇل</value>
+  </data>
+  <data name="TakvimIcinInternetBaslik" xml:space="preserve">
+    <value>ئىنتېرنېت لازىم</value>
+  </data>
+  <data name="Takvim" xml:space="preserve">
+    <value>كالىندار</value>
+  </data>
+  <data name="SorunCikti" xml:space="preserve">
+    <value>بىر مەسىلىگە يولۇقتۇق</value>
+  </data>
+  <data name="SesTesti" xml:space="preserve">
+    <value>قوڭغۇراقنى سىناش</value>
+  </data>
+  <data name="SesSecAciklama" xml:space="preserve">
+    <value>بۇ ۋاقىت ئۈچۈن قوڭغۇراق ئاۋازى تاللاڭ</value>
+  </data>
+  <data name="SosyalMedyaBaglantisi" xml:space="preserve">
+    <value>ئىجتمائىي ئالاقە تورى ئۇلىنىشلىرىمىز</value>
+  </data>
+  <data name="SuleymaniyeVakfi" xml:space="preserve">
+    <value>سۇلايمانىيە ۋەخپى</value>
+  </data>
+  <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
+    <value>سۇلايمانىيە ۋەخپى Facebook بېتى</value>
+  </data>
+  <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
+    <value>سۇلايمانىيە ۋەخپى Instagram بېتى</value>
+  </data>
+  <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
+    <value>سۇلايمانىيە ۋەخپى كالىندارى</value>
+  </data>
+  <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
+    <value>سۇلايمانىيە ۋەخپى Twitter بېتى</value>
+  </data>
+  <data name="TestiDurdur" xml:space="preserve">
+    <value>سىناقنى توختىتىش</value>
+  </data>
+  <data name="TitremeyiDesteklemiyor" xml:space="preserve">
+    <value>ئۈسكىنىڭىز تىتەشنى قوللىمايدۇ.</value>
+  </data>
+  <data name="TakvimIcinInternet" xml:space="preserve">
+    <value>ناماز ۋاقىتلىرىنى يېڭىلاش ئۈچۈن، ئىنتېرنېت لازىم، WiFi ياكى تېلېفون تورىنى ئىچىپ، «يېڭىلاش»نى بىسىڭ.</value>
+  </data>
+  <data name="TitresimSwitch" xml:space="preserve">
+    <value>تىترەش</value>
+  </data>
+  <data name="Vakti" xml:space="preserve">
+    <value>ۋاقتى:</value>
+  </data>
+  <data name="VaktiHatirlatmasi" xml:space="preserve">
+    <value>ۋاقتى ئەسكەرتىشى</value>
+  </data>
+  <data name="WebSayfa" xml:space="preserve">
+    <value>تور بىكەت</value>
+  </data>
+  <data name="Yatsi" xml:space="preserve">
+    <value>خۇپتەن</value>
+  </data>
+  <data name="Zamaninda" xml:space="preserve">
+    <value>دەل ۋاقتىدا</value>
+  </data>
+  <data name="YukseklikFormatsiz" xml:space="preserve">
+    <value>ئىگىزلىك</value>
+  </data>
+  <data name="Yukseklik" xml:space="preserve">
+    <value>ئىگىزلىك: {0}</value>
+  </data>
+  <data name="Yenileniyor" xml:space="preserve">
+    <value>يېڭىلىنىۋاتىدۇ</value>
+  </data>
+  <data name="YayinAkisi" xml:space="preserve">
+    <value> رادىئو پىلانلىرى</value>
+  </data>
+  <data name="YatsiSonu" xml:space="preserve">
+    <value>خۇپتەن ئاخىرى</value>
+  </data>
+  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+    <value>خۇپتەننىڭ چىقىشىغا قالغان ۋاقىت:</value>
+  </data>
+  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+    <value>خۇپتەن چىققاندىن بېرى ئۆتكەن ۋاقىت:</value>
+  </data>
+  <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
+    <value>ناماز ۋاقىتلىرىنى توردىن چۈشۈرۈۋاتقاندا خاتالىق كۆرۈلدى.</value>
+  </data>
+</root>

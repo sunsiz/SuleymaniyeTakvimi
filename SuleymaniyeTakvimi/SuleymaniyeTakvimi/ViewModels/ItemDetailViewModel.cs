@@ -36,8 +36,8 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ICommand AlarmCheckedChanged { get; }
         public ICommand RadioButtonCheckedChanged { get; }
         public ICommand BackCommand { get; }
-        public Command<Sound> SoundSelectedCommand { get; }
         public ICommand TestButtonCommand { get; }
+        private Command<Sound> SoundSelectedCommand { get; }
 
         public bool IsPlaying
         {
@@ -111,7 +111,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        public Sound SetSelectedSound()
+        private Sound SetSelectedSound()
         {
             string name = "Çalar Saat";
             int index = 2;
@@ -337,13 +337,13 @@ namespace SuleymaniyeTakvimi.ViewModels
             set => SetProperty(ref _alarm, value);
         }
 
-        public string ItemAdi
-        {
-            get => _itemAdi;
-            set => SetProperty(ref _itemAdi, value);
-        }
+        //public string ItemAdi
+        //{
+        //    get => _itemAdi;
+        //    set => SetProperty(ref _itemAdi, value);
+        //}
 
-        public void LoadItem(string itemId)
+        private void LoadItem(string itemId)
         {
             try
             {

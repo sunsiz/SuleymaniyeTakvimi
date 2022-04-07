@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="SuleymaniyeTakvimi.Views.ItemsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.ViewModels" xmlns:model="clr-namespace:SuleymaniyeTakvimi.Models" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
+<ContentPage x:Class="SuleymaniyeTakvimi.Views.ItemsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.ViewModels"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              Visual="Material" NavigationPage.HasNavigationBar="true"
              Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
 
@@ -8,9 +9,9 @@
     </ContentPage.BindingContext>-->
 
     <Shell.TitleView>
-        <StackLayout Orientation="Horizontal" Margin="10">
-            <Label Style="{StaticResource LabelSectionHeader}" HorizontalOptions="StartAndExpand" FontSize="Title" Text="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}" />
-            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0" FontFamily="MaterialIcons" FontSize="28" Text="&#xe51c;">
+        <StackLayout Orientation="Horizontal" Margin="10" x:DataType="local:ItemsViewModel">
+            <Label Style="{StaticResource LabelSectionHeader}" HorizontalOptions="StartAndExpand" FontSize="Large" Text="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}" />
+            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0" FontFamily="MaterialIcons" FontSize="30" Text="&#xe51c;">
                 <Label.Triggers>
                     <DataTrigger Binding="{Binding Dark}" TargetType="Label" Value="False">
                         <Setter Property="Text" Value="&#xe51c;" /><!--Moon-->
@@ -23,7 +24,7 @@
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding DarkLightModeCommand}" />
                 </Label.GestureRecognizers>
             </Label>
-            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="28" Text="&#xe627;">
+            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="30" Text="&#xe627;">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding RefreshLocationCommand}" />
                 </Label.GestureRecognizers>
@@ -32,21 +33,21 @@
     </Shell.TitleView>
 
     <Grid Padding="10,15,10,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="*,8*">
-        <StackLayout Spacing="9" HorizontalOptions="Center" Orientation="Horizontal" Margin="0">
-            <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-7" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
+        <StackLayout Spacing="9" HorizontalOptions="Center" Orientation="Horizontal" Margin="0" x:DataType="local:ItemsViewModel">
+            <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
                 <Button Margin="9,0" Padding="3,0" HorizontalOptions="Center" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryLightColor}, Dark={StaticResource PrimaryAccent50Color}}"
                         Command="{Binding GoToMonthCommand}"
                         Text="{Binding Today}" />
             </pancakeView:PancakeView>
-            <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0,-7" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
+            <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
                 <Button Margin="9,0" Padding="3,0" HorizontalOptions="Center" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryLightColor}, Dark={StaticResource PrimaryAccent50Color}}"
                         Command="{Binding GoToMapCommand}"
-                        Text="{Binding City}" />
+                        Text="{Binding City}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.Sehir}" />
             </pancakeView:PancakeView>
             
         </StackLayout>
         <pancakeView:PancakeView Margin="0" Grid.Row="1" Grid.ColumnSpan="2">
-            <CollectionView VerticalOptions="CenterAndExpand" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}">
+            <CollectionView VerticalOptions="CenterAndExpand" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.BugunkuNamazVakitleri}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid RowDefinitions="Auto">

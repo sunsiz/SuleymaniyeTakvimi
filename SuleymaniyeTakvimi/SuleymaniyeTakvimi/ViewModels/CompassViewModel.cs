@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
 using SuleymaniyeTakvimi.Localization;
@@ -20,11 +19,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         private readonly double _qiblaLongitude = 39.8251832;
         internal readonly SensorSpeed Speed = SensorSpeed.UI;
         public Command StartCommand { get; }
-        public Command StopCommand { get; }
+        private Command StopCommand { get; }
         public Command LocationCommand { get; }
+
         public Command GoToMapCommand { get; }
         // Launcher.OpenAsync is provided by Xamarin.Essentials.
-        public ICommand TapCommand => new Xamarin.Forms.Command<string>(async (url) => await Launcher.OpenAsync(url).ConfigureAwait(false));
+        //public ICommand TapCommand => new Xamarin.Forms.Command<string>(async (url) => await Launcher.OpenAsync(url).ConfigureAwait(false));
         public CompassViewModel()
         {
             Title = AppResources.KibleGostergesi;
@@ -64,32 +64,33 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
 
         private double _heading;
+
         public double Heading
         {
             get => _heading;
             set => SetProperty(ref _heading, value);
         }
 
-        private string _info;
-        public string Info
-        {
-            get => _info;
-            set => SetProperty(ref _info, value);
-        }
+        //private string _info;
+        //public string Info
+        //{
+        //    get => _info;
+        //    set => SetProperty(ref _info, value);
+        //}
 
-        private string _info1;
-        public string Info1
-        {
-            get => _info1;
-            set => SetProperty(ref _info1, value);
-        }
+        //private string _info1;
+        //public string Info1
+        //{
+        //    get => _info1;
+        //    set => SetProperty(ref _info1, value);
+        //}
 
-        private string _konum;
-        public string Konum
-        {
-            get => _konum;
-            set => SetProperty(ref _konum, value);
-        }
+        //private string _konum;
+        //public string Konum
+        //{
+        //    get => _konum;
+        //    set => SetProperty(ref _konum, value);
+        //}
         private void Start()
         {
             Compass.ReadingChanged += Compass_ReadingChanged;
@@ -104,7 +105,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             Compass.Stop();
         }
 
-        internal async void GetLocation()
+        private async void GetLocation()
         {
             IsBusy = true; 
             //UserDialogs.Instance.Toast("Konumu almaya çalışıyor", TimeSpan.FromSeconds(3));
@@ -113,10 +114,10 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromMilliseconds(3));
                 //var location = await Geolocation.GetLocationAsync(request);
                 DataService data = new DataService();
-                var takvim = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
-                if (takvim != null && takvim.Enlem != 0 && takvim.Boylam != 0)
+                var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
+                if (location != null && location.Latitude != 0 && location.Longitude != 0)
                 {
-                    Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
+                    //Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
                     _currentLatitude = location.Latitude;
                     _currentLongitude = location.Longitude;
                     _currentAltitude = location.Altitude ?? 0.0;
@@ -144,33 +145,38 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //var d = GetDegree() - e.Reading.HeadingMagneticNorth;
                 //Heading = d;// e.Reading.HeadingMagneticNorth;
                 //Info = HeadingDisplay = $"Heading: {Heading}";
-                LatitudeAltitude = $"{AppResources.EnlemFormatsiz}: {_currentLatitude.ToString("F2")}  |  {AppResources.YukseklikFormatsiz}: {_currentAltitude.ToString("N0")}";
-                DegreeLongitude = $"{AppResources.BoylamFormatsiz}: {_currentLongitude.ToString("F2")}  |  {AppResources.Aci}: {Heading.ToString("####")}";
-                Info = string.Format("Lat: {0} Long: {1} degree:{2}", _currentLatitude, _currentLongitude, Heading);
-                Konum = String.Format("{0:F4}, {1:F4}", _currentLatitude, _currentLongitude);
-                PointToQibla(e);
+                LatitudeAltitude =
+                    $"{AppResources.EnlemFormatsiz}: {_currentLatitude:F2}  |  {AppResources.YukseklikFormatsiz}: {_currentAltitude:N0}";
+                DegreeLongitude =
+                    $"{AppResources.BoylamFormatsiz}: {_currentLongitude:F2}  |  {AppResources.Aci}: {Heading:####}";
+                //Info = string.Format("Lat: {0} Long: {1} degree:{2}", _currentLatitude, _currentLongitude, Heading);
+                //Konum = String.Format("{0:F4}, {1:F4}", _currentLatitude, _currentLongitude);
+                //PointToQibla(e);
 
             }
-            catch (Exception ex) {Debug.WriteLine(ex.Message); }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
-        internal void PointToQibla(CompassChangedEventArgs e)
-        {
-            double latitudeFromRadians = _currentLatitude * Math.PI / 180;
-            double longitudeFromRadians = _currentLongitude * Math.PI / 180;
-            double latitudeToRadians = _qiblaLatitude * Math.PI / 180;
-            double longitudeToRadians = _qiblaLongitude * Math.PI / 180;
-            double bearing = Math.Atan2(Math.Sin(longitudeToRadians - longitudeFromRadians) * Math.Cos(latitudeToRadians), (Math.Cos(latitudeFromRadians) * Math.Sin(latitudeToRadians)) - (Math.Sin(latitudeFromRadians) * Math.Cos(latitudeToRadians) * Math.Cos(longitudeToRadians - longitudeFromRadians)));
-            bearing = Mod(bearing, 2 * Math.PI);
-            double bearingDegree = bearing * 180 / Math.PI;
-            //pointer1.Value = bearing_degree;
-            Info1 = $"Lat: {_currentLatitude} Long: {_currentLongitude} degree:{bearingDegree}";
-        }
+        //internal void PointToQibla(CompassChangedEventArgs e)
+        //{
+        //    double latitudeFromRadians = _currentLatitude * Math.PI / 180;
+        //    double longitudeFromRadians = _currentLongitude * Math.PI / 180;
+        //    double latitudeToRadians = _qiblaLatitude * Math.PI / 180;
+        //    double longitudeToRadians = _qiblaLongitude * Math.PI / 180;
+        //    double bearing = Math.Atan2(Math.Sin(longitudeToRadians - longitudeFromRadians) * Math.Cos(latitudeToRadians), (Math.Cos(latitudeFromRadians) * Math.Sin(latitudeToRadians)) - (Math.Sin(latitudeFromRadians) * Math.Cos(latitudeToRadians) * Math.Cos(longitudeToRadians - longitudeFromRadians)));
+        //    bearing = Mod(bearing, 2 * Math.PI);
+        //    double bearingDegree = bearing * 180 / Math.PI;
+        //    //pointer1.Value = bearing_degree;
+        //    //Info1 = $"Lat: {_currentLatitude} Long: {_currentLongitude} degree:{bearingDegree}";
+        //}
 
-        private double Mod(double a, double b)
-        {
-            return a - b * Math.Floor(a / b);
-        }
+        //private double Mod(double a, double b)
+        //{
+        //    return a - b * Math.Floor(a / b);
+        //}
     }
 
     internal class DistanceCalculator
@@ -206,7 +212,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         private static double Modf(double orig, double ipart)
         {
-            return orig - (Math.Floor(orig));
+            return orig - Math.Floor(orig);
         }
     }
 }

@@ -3,7 +3,6 @@ using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Runtime;
 using Android.OS;
 using Android.Util;
 //using Matcha.BackgroundService.Droid;
@@ -21,10 +20,13 @@ namespace SuleymaniyeTakvimi.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static MainActivity Instance;
+        private Intent _startServiceIntent;
+        private Intent _stopServiceIntent;
+
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             //SetTheme(Resource.Style.MainTheme);
-            Log.Info("Main Activity", $"Main Activity OnCreate Started: {DateTime.Now.ToString("HH:m:s.fff")}");
+            Log.Info("Main Activity", $"Main Activity OnCreate Started: {DateTime.Now:HH:m:s.fff}");
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             
@@ -34,7 +36,8 @@ namespace SuleymaniyeTakvimi.Droid
             UserDialogs.Init(this);
             //FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Forms.SetFlags("UseLegacyRenderers");
+            Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
             CrossMediaManager.Current.Init(this);
@@ -48,58 +51,58 @@ namespace SuleymaniyeTakvimi.Droid
             //NotificationCenter.NotifyNotificationTapped(Intent);
             LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.app_logo;
             //DependencyService.Register<IForegroundServiceControlService, ForegroundService>();
-            DependencyService.Register<IAlarmService,AlarmForegroundService>();
+            DependencyService.Register<IAlarmService, AlarmForegroundService>();
             //if (savedInstanceState != null)
             //{
             //    isStarted = savedInstanceState.GetBoolean("has_service_been_started", false);
             //}
             Instance = this;
-            SetAlarmForegroundService();
-            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+            _stopServiceIntent = new Intent(this, typeof(AlarmForegroundService));
+            _startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
+            _startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
+            _stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
             if (status != PermissionStatus.Granted)
-                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-            Log.Info("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now.ToString("HH:m:s.fff")}");
+                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+            StartAlarmForegroundService();
+            Log.Info("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now:HH:m:s.fff} || Permission result:{status}");
         }
 
-        internal void SetAlarmForegroundService()
+        internal void StartAlarmForegroundService()
         {
-            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now.ToString("HH:m:s.fff")}");
+            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
-            var startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
-            startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
             
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
-                StartForegroundService(startServiceIntent);
+                StartForegroundService(_startServiceIntent);
             }
             else
             {
-                StartService(startServiceIntent);
+                StartService(_startServiceIntent);
             }
-            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now.ToString("HH:m:s.fff")}");
+            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
 
         internal void StopAlarmForegroundService()
         {
-            Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Started: {DateTime.Now.ToString("HH:m:s.fff")}");
+            Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
-            var stopServiceIntent = new Intent(this, typeof(AlarmForegroundService));
-            stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
-                StartForegroundService(stopServiceIntent);
+                StartForegroundService(_stopServiceIntent);
             }
             else
             {
-                StartService(stopServiceIntent);
+                StartService(_stopServiceIntent);
             }
-            Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now.ToString("HH:m:s.fff")}");
+            Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             //AndroidShinyHost.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             //this.ShinyRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);

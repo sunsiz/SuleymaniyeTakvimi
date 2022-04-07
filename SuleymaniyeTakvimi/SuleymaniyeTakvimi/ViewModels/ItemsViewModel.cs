@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Xamarin.Essentials;
@@ -18,49 +19,46 @@ namespace SuleymaniyeTakvimi.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
-        public ObservableCollection<Item> _items;
-        public Command LoadItemsCommand { get; }
+        private Command LoadItemsCommand { get; }
         public Command GoToMapCommand { get; }
         public Command GoToMonthCommand { get; }
         public Command RefreshLocationCommand { get; }
         public Command DarkLightModeCommand { get; }
         public Command<Item> ItemTapped { get; }
-        Takvim _takvim, _vakitler;
+        private Takvim _takvim, _vakitler;
         private string _city;
-        private bool dark;
+        private bool _dark;
 
+        private ObservableCollection<Item> _items;
         public ObservableCollection<Item> Items { get => _items; set => SetProperty<ObservableCollection<Item>>(ref _items, value); }
 
-        public Takvim Vakitler
+        private Takvim Vakitler
         {
             get
             {
                 if (_vakitler == null)
                 {
                     var data = new DataService();
-                    _vakitler = data.takvim;
+                    _vakitler = data._takvim;
                     //data.CheckNotification();
                 }
 
                 return _vakitler;
             }
-            set { SetProperty(ref _vakitler, value); }
+            set => SetProperty(ref _vakitler, value);
         }
-        public string Today
-        {
-            get { return AppResources.AylikTakvim; /*DateTime.Today.ToString("M");*/ }
-        }
+        public string Today => AppResources.AylikTakvim; /*DateTime.Today.ToString("M");*/
 
         public bool Dark
         {
-            get => dark;
-            set => SetProperty(ref dark, value);
+            get => _dark;
+            set => SetProperty(ref _dark, value);
         }
 
         public string City
         {
-            get { return _city; }
-            set { SetProperty(ref _city, value); }
+            get => _city;
+            set => SetProperty(ref _city, value);
         }
 
         private async void GetCity()
@@ -78,14 +76,14 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
 
             if (!string.IsNullOrEmpty(City)) Preferences.Set("sehir", City);
-            City = City ?? Preferences.Get("sehir", AppResources.Sehir);
+            City ??= Preferences.Get("sehir", AppResources.Sehir);
         }
         public ItemsViewModel()
         {
             Log.Warning("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             Items = new ObservableCollection<Item>();
             var data = new DataService();
-            _takvim = data.takvim;
+            _takvim = data._takvim;
             LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Item>(OnItemSelected);
@@ -94,8 +92,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             GoToMapCommand = new Command(async () =>
             {
                 var location = new Location(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat),Convert.ToDouble(_takvim.Boylam, CultureInfo.InvariantCulture.NumberFormat));
-                var placemark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem,CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
-                var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName};
+                var placeMark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem,CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
+                var options = new MapLaunchOptions { Name = placeMark.FirstOrDefault()?.Thoroughfare ?? placeMark.FirstOrDefault()?.CountryName};
 
                 try
                 {
@@ -120,19 +118,20 @@ namespace SuleymaniyeTakvimi.ViewModels
             DarkLightModeCommand = new Command(ChangeTheme);
             Task.Run(async () =>
             {
-                if (!data.CheckInternet()) return;
+                if (!data.HaveInternet()) return;
                 Log.Warning("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
-                await Task.Delay(5000).ConfigureAwait(true);
+                await Task.Delay(1000).ConfigureAwait(true);
+                _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
                 //DataService data = new DataService();
                 data.SetWeeklyAlarms();
-                _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
                 ExecuteLoadItemsCommand();
                 var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
-                if (location != null && location.Enlem != 0)
-                    data.GetMonthlyPrayerTimes(new Location(location.Enlem, location.Boylam, location.Yukseklik), false);
+                if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                    data.GetMonthlyPrayerTimes(location, false);
                 //GetCity();
             }).ConfigureAwait(false);
             Dark = Theme.Tema != 1;//0 is dark, 1 is light
+            //Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
             Log.Warning("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
@@ -210,7 +209,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             Log.Warning("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
-        public Item SelectedItem
+        private Item SelectedItem
         {
             get => _selectedItem;
             set

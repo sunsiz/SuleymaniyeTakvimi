@@ -1,12 +1,11 @@
 ﻿using SuleymaniyeTakvimi.ViewModels;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.Views
 {
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        readonly ItemsViewModel _viewModel;
 
         public ItemsPage()
         {

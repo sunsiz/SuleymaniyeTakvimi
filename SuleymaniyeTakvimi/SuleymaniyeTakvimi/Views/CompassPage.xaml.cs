@@ -8,20 +8,19 @@ namespace SuleymaniyeTakvimi.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CompassPage : ContentPage
     {
-        private CompassViewModel _viewModel;
-
         public CompassPage()
         {
+            CompassViewModel viewModel;
             InitializeComponent();
-            BindingContext = _viewModel = new CompassViewModel();
+            BindingContext = viewModel = new CompassViewModel();
             Compass.ReadingChanged += Compass_ReadingChanged;
-            if (!Compass.IsMonitoring) Compass.Start(_viewModel.Speed);
+            if (!Compass.IsMonitoring) Compass.Start(viewModel.Speed);
         }
 
         void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
             CompassImage.RotateTo(360 - e.Reading.HeadingMagneticNorth);
-            _viewModel.PointToQibla(e);
+            //_viewModel.PointToQibla(e);
         }
 
         protected override void OnAppearing()

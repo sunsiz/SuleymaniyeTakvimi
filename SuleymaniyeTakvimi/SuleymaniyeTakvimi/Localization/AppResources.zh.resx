@@ -118,267 +118,315 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Aci" xml:space="preserve">
-    <value>Angle</value>
+    <value>角度</value>
   </data>
   <data name="Aksam" xml:space="preserve">
-    <value>Maghrib</value>
+    <value>昏礼</value>
   </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-    <value>Time left for the Maghrib to come out:</value>
+    <value>距昏礼结束剩余时间：</value>
   </data>
   <data name="AlarmHatasi" xml:space="preserve">
-    <value>A problem occurred while the alarm was sounding. Details</value>
+    <value>闹钟响起时出现问题。细节</value>
   </data>
   <data name="Alarmi" xml:space="preserve">
-    <value>Alarm</value>
+    <value>闹钟</value>
   </data>
   <data name="Alarmkurarkenhataolustu" xml:space="preserve">
-    <value>An error occurred while setting the alarm</value>
+    <value>设置闹钟时出错</value>
   </data>
   <data name="AlarmSound" xml:space="preserve">
-    <value>Alarm Sound</value>
+    <value>闹钟铃声</value>
   </data>
   <data name="AlarmSwitch" xml:space="preserve">
-    <value>Play alarm</value>
+    <value>播放闹钟</value>
   </data>
   <data name="AylikTakvim" xml:space="preserve">
-    <value>Monthly Time</value>
+    <value>礼拜时间月表</value>
   </data>
   <data name="AylikTakvimYenilendi" xml:space="preserve">
-    <value>Monthly Prayer Times Refreshed Successfully</value>
+    <value>成功更新礼拜时间月表</value>
   </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
-    <value>5 min before</value>
+    <value>提前5分钟</value>
   </data>
   <data name="BildiriDevreDisiBaslik" xml:space="preserve">
-    <value>Notification Setting Disabled</value>
+    <value>通知设置已禁用</value>
   </data>
   <data name="BildiriDevreDisiIcerik" xml:space="preserve">
-    <value>notification has been disabled.</value>
+    <value>通知已被禁用。</value>
   </data>
   <data name="BildiriEtkinBaslik" xml:space="preserve">
-    <value>Notification Setting Enabled</value>
+    <value>通知设置已启用</value>
   </data>
   <data name="BildiriEtkinIcerik" xml:space="preserve">
-    <value>notification is enabled.</value>
+    <value>通知已启用。</value>
   </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
-    <value>Show Notification</value>
+    <value>显示通知</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>Reminding Time:</value>
+    <value>提醒时间：</value>
+  </data>
+  <data name="Birsessecin" xml:space="preserve">
+    <value>选择闹钟铃声</value>
   </data>
   <data name="Boylam" xml:space="preserve">
-    <value>Longitude: {0:G7}</value>
+    <value>经度: {0:G7}</value>
   </data>
   <data name="BoylamFormatsiz" xml:space="preserve">
-    <value>Longitude</value>
+    <value>经度</value>
+  </data>
+  <data name="BugunkuNamazVakitleri" xml:space="preserve">
+    <value>今日礼拜时间</value>
   </data>
   <data name="CalarSaat" xml:space="preserve">
-    <value>Alarm Clock</value>
+    <value>闹钟</value>
   </data>
   <data name="CihazDesteklemiyor" xml:space="preserve">
-    <value>Device does not support</value>
+    <value>设备不支持</value>
   </data>
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
-    <value>Your device does not support vibrate</value>
+    <value>您的设备不支持振动</value>
   </data>
   <data name="Enlem" xml:space="preserve">
-    <value>Latitude: {0:G7}</value>
+    <value>维度: {0:G7}</value>
   </data>
   <data name="EnlemFormatsiz" xml:space="preserve">
-    <value>Latitude</value>
+    <value>维度</value>
   </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
-    <value>Enable</value>
+    <value>启用</value>
+  </data>
+  <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
+    <value>为此礼拜时间启用闹钟、振动、通知功能</value>
   </data>
   <data name="EzanSesi" xml:space="preserve">
-    <value>Adhan (Makkah)</value>
+    <value>宣礼（麦加）</value>
   </data>
   <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
-    <value>Time left for the Sahar (Suhoor) to enter:</value>
+    <value>距进入破晓（封斋时间）的剩余时间：</value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
-    <value>Sahar</value>
+    <value>破晓</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
-    <value>Fajr</value>
+    <value>晨礼（黎明）</value>
   </data>
   <data name="FecriSadikakalanvakit" xml:space="preserve">
-    <value>Time left for Fajr (end of Suhoor):</value>
+    <value>距晨礼剩余的时间（封斋结束）：</value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
-    <value>Radio Fitrah - Voice of Fitrah</value>
+    <value>Radio Fitrat （菲特拉电台） - 菲特拉之声</value>
+  </data>
+  <data name="FitratTV" xml:space="preserve">
+    <value>Fitrat TV （菲特拉电视台）</value>
+  </data>
+  <data name="FitratTVFacebook" xml:space="preserve">
+    <value>Fitrat TV （菲特拉电视台） Facebook 页面</value>
+  </data>
+  <data name="FitratTVTwitter" xml:space="preserve">
+    <value>Fitrat TV （菲特拉电视台） Twitter 页面</value>
+  </data>
+  <data name="FitratTVYoutube" xml:space="preserve">
+    <value>Fitrat TV （菲特拉电视台） Youtube 频道</value>
   </data>
   <data name="Hakkinda" xml:space="preserve">
-    <value>About</value>
+    <value>关于</value>
   </data>
   <data name="HaritadaGoster" xml:space="preserve">
-    <value>Show On Map</value>
+    <value>在地图上显示</value>
   </data>
   <data name="HaritaHatasi" xml:space="preserve">
-    <value>There is something happened while opening the map.\nDetailes:</value>
+    <value>打开地图时发生了一些故障。\n详细信息：</value>
   </data>
   <data name="Hatadetaylari" xml:space="preserve">
-    <value>Error details:</value>
+    <value>错误详情：</value>
   </data>
   <data name="HorozOtusu" xml:space="preserve">
-    <value>Rooster Crows</value>
+    <value>公鸡打鸣</value>
   </data>
   <data name="IcerikYukleniyor" xml:space="preserve">
-    <value>Content Loading ...</value>
+    <value>内容载入中...</value>
   </data>
   <data name="Ikindi" xml:space="preserve">
-    <value>Asr</value>
+    <value>哺礼</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-    <value>Time left for the Asr to come out:</value>
+    <value>距哺礼结束剩余的时间：</value>
   </data>
   <data name="Kapat" xml:space="preserve">
-    <value>Close</value>
+    <value>关闭</value>
   </data>
   <data name="Kaydet" xml:space="preserve">
-    <value>Save</value>
+    <value>保存</value>
   </data>
   <data name="Kible" xml:space="preserve">
-    <value>Qibla</value>
+    <value>克尔白（朝拜）</value>
   </data>
   <data name="KibleGostergesi" xml:space="preserve">
-    <value>Qibla Indicator</value>
+    <value>朝拜指标</value>
   </data>
   <data name="KonumHatasi" xml:space="preserve">
-    <value>There is something happened while try to get location</value>
+    <value>尝试获取设备位置时发生了一些故障</value>
   </data>
   <data name="KonumIzniBaslik" xml:space="preserve">
-    <value>No Permission to Access Location</value>
+    <value>无权访问设备位置</value>
   </data>
   <data name="KonumIzniIcerik" xml:space="preserve">
-    <value>For the app to work properly, you need to give permission to access the Location!</value>
+    <value>为了使应用程序正常工作，您需要授予访问设备位置的权限！</value>
   </data>
   <data name="KonumKapali" xml:space="preserve">
-    <value>Location services are not enabled on the device. You have to turn on location services first!</value>
+    <value>设备上未启用定位服务。 首先你需要开启定位服务！</value>
   </data>
   <data name="KonumKapaliBaslik" xml:space="preserve">
-    <value>Location Services Off</value>
+    <value>定位服务关闭</value>
   </data>
   <data name="KonumYenileButton" xml:space="preserve">
-    <value>Refresh</value>
+    <value>更新</value>
   </data>
   <data name="KonumYenilendi" xml:space="preserve">
-    <value>Location and Times refreshed successfully</value>
+    <value>已成功刷新设备位置和礼拜时间</value>
   </data>
   <data name="KusCiviltisi" xml:space="preserve">
-    <value>Birds Chirping</value>
+    <value>鸟鸣</value>
   </data>
   <data name="NamazVaktiAciklama" xml:space="preserve">
     <value>https://suleymaniyetakvimi.com/Include/NamazVakitleri_en.htm</value>
   </data>
+  <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
+    <value>从互联网获取礼拜时间时出错。</value>
+  </data>
   <data name="Ogle" xml:space="preserve">
-    <value>Dhuhr</value>
+    <value>晌礼</value>
   </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-    <value>Time left for Dhuhr to come out:</value>
+    <value>距晌礼结束剩余的时间：</value>
   </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-    <value>Time left for Dhuhr to enter:</value>
+    <value>距进入晌礼时间剩下的时间：</value>
   </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
-    <value>15 minutes before</value>
+    <value>提前15分钟</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
-    <value>Sulaymaniyah Foundation Calendar</value>
+    <value>苏莱马尼亚日历</value>
   </data>
   <data name="Radyo" xml:space="preserve">
-    <value>Radio</value>
+    <value>收音机</value>
+  </data>
+  <data name="RadyoFitrat" xml:space="preserve">
+    <value>Radio Fitrat （菲特拉电台）</value>
+  </data>
+  <data name="RadyoFitratFaceBook" xml:space="preserve">
+    <value>Radio Fitrat （菲特拉电台） Facebook 页面</value>
+  </data>
+  <data name="RadyoFitratInstagram" xml:space="preserve">
+    <value>Radio Fitrat （菲特拉电台） Instagram 页面</value>
+  </data>
+  <data name="RadyoFitratTwitter" xml:space="preserve">
+    <value>Radio Fitrat （菲特拉电台） Twitter 页面</value>
   </data>
   <data name="RadyoIcinInternet" xml:space="preserve">
-    <value>Internet is required to play the radio, please check that the internet is connected, or you can listen from the web site by clicking the 'Web Site' link.</value>
+    <value>播放广播需要互联网，请检查互联网是否已连接，或者您可以通过单击“网页”链接从网页收听。</value>
   </data>
   <data name="SaatBolgesi" xml:space="preserve">
-    <value>Time Zone: GMT {0}</value>
+    <value>时区: GMT {0}</value>
   </data>
   <data name="SabahSonu" xml:space="preserve">
-    <value>End of Fajr</value>
+    <value>晨礼结束</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-    <value>Time left for the End of Fajr:</value>
+    <value>距晨礼结束剩余的时间：</value>
   </data>
   <data name="Sehir" xml:space="preserve">
-    <value>City</value>
+    <value>城市</value>
+  </data>
+  <data name="SesSecAciklama" xml:space="preserve">
+    <value>选择为此时间设置的闹钟铃声</value>
   </data>
   <data name="SesTesti" xml:space="preserve">
-    <value>Test Sound</value>
+    <value>测试闹铃</value>
   </data>
   <data name="SorunCikti" xml:space="preserve">
-    <value>We Encountered a Problem</value>
+    <value>遇到了一个问题</value>
   </data>
   <data name="SosyalMedyaBaglantisi" xml:space="preserve">
-    <value>Our Social Media Links</value>
+    <value>我们的社交媒体链接</value>
   </data>
   <data name="SuleymaniyeVakfi" xml:space="preserve">
-    <value>Sulaymaniyah Foundation</value>
+    <value>苏莱马尼亚基金会</value>
+  </data>
+  <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
+    <value>苏莱曼尼亚基金会 Facebook 页面</value>
+  </data>
+  <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
+    <value>苏莱曼尼亚基金会 Instagram 页面</value>
   </data>
   <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
-    <value>Sulaymaniyah Foundation Calendar</value>
+    <value>苏莱曼尼亚基金会日历</value>
+  </data>
+  <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
+    <value>苏莱曼尼亚基金会 Twitter 页面</value>
   </data>
   <data name="Takvim" xml:space="preserve">
-    <value>Calendar</value>
+    <value>日历</value>
   </data>
   <data name="TakvimIcinInternet" xml:space="preserve">
-    <value>To renew the prayer times, you need to be connected to the internet, turn on WiFi or Mobile data and click 'REFRESH'.</value>
+    <value>为更新礼拜时间，您需要连接到互联网，打开 WiFi 或移动数据，然后单击“刷新”。</value>
   </data>
   <data name="TakvimIcinInternetBaslik" xml:space="preserve">
-    <value>Internet is required</value>
+    <value>需要互联网</value>
   </data>
   <data name="Tamam" xml:space="preserve">
-    <value>OK</value>
+    <value>好的</value>
   </data>
   <data name="Tarih" xml:space="preserve">
-    <value>Date</value>
+    <value>日期</value>
   </data>
   <data name="TestiDurdur" xml:space="preserve">
-    <value>Stop the test</value>
+    <value>停止测试</value>
   </data>
   <data name="TitremeyiDesteklemiyor" xml:space="preserve">
-    <value>Your device does not support vibrate.</value>
+    <value>您的设备不支持振动。</value>
   </data>
   <data name="TitresimSwitch" xml:space="preserve">
-    <value>Vibrate</value>
+    <value>振动</value>
   </data>
   <data name="Vakti" xml:space="preserve">
-    <value>Time:</value>
+    <value>时间：</value>
   </data>
   <data name="VaktiHatirlatmasi" xml:space="preserve">
-    <value>Time Reminder</value>
+    <value>时间提醒</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
-    <value>Web Site</value>
+    <value>网站</value>
   </data>
   <data name="Yatsi" xml:space="preserve">
-    <value>Isha</value>
+    <value>宵礼</value>
   </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-    <value>Time left for Isha to come out:</value>
+    <value>距宵礼结束剩余的时间：</value>
   </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-    <value>Time elapsed since Isha come out:</value>
+    <value>从宵礼结束后经过的时间：</value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
-    <value>End of Isha</value>
+    <value>宵礼结束</value>
   </data>
   <data name="YayinAkisi" xml:space="preserve">
-    <value> Stream Schedules</value>
+    <value> 直播节目表</value>
   </data>
   <data name="Yenileniyor" xml:space="preserve">
-    <value>Refreshing</value>
+    <value>正在刷新</value>
   </data>
   <data name="Yukseklik" xml:space="preserve">
-    <value>Altitude: {0}</value>
+    <value>高度: {0}</value>
   </data>
   <data name="YukseklikFormatsiz" xml:space="preserve">
-    <value>Altitude</value>
+    <value>高度</value>
   </data>
   <data name="Zamaninda" xml:space="preserve">
-    <value>On time</value>
+    <value>准时</value>
   </data>
 </root>

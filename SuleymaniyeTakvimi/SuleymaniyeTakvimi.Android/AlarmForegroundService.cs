@@ -83,6 +83,8 @@ namespace SuleymaniyeTakvimi.Droid
             _notificationManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
             SetNotification();
 
+            this.StartForeground(NOTIFICATION_ID, _notification);
+
             // This Action will run every 30 second as foreground service running.
             _runnable = new Action(() =>
             {
@@ -90,6 +92,8 @@ namespace SuleymaniyeTakvimi.Droid
                 SetNotification();
                 _notificationManager.Notify(NOTIFICATION_ID, _notification);
             });
+            _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
+            _isStarted = true;
             CancelAlarm();
         }
 
@@ -153,7 +157,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             var message = "";
             var data = new DataService();
-            var takvim = data.takvim;
+            var takvim = data._takvim;
             var currentTime = DateTime.Now.TimeOfDay;
             if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
                 message = AppResources.FecriKazibingirmesinekalanvakit +

@@ -1,5 +1,4 @@
-﻿using SuleymaniyeTakvimi.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SuleymaniyeTakvimi.Views
@@ -14,11 +13,11 @@ namespace SuleymaniyeTakvimi.Views
             //BindingContext = _viewModel = new MonthViewModel();
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            //BindingContext = _viewModel = new MonthViewModel();
-            //_viewModel.OnAppearing();
-        }
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    //BindingContext = _viewModel = new MonthViewModel();
+        //    //_viewModel.OnAppearing();
+        //}
     }
 }
