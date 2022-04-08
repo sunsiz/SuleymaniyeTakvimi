@@ -1,70 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
+    <MultilingualFallbackLanguage>en-US</MultilingualFallbackLanguage>
+    <TranslationReport Condition="'$(Configuration)' == 'Release'">true</TranslationReport>
+    <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
+  </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <LangVersion>latest</LangVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Assets\svgs\**" />
     <EmbeddedResource Remove="Assets\svgs\**" />
     <None Remove="Assets\svgs\**" />
   </ItemGroup>
-
-<!--  <ItemGroup>
-    <Compile Remove="Assets\svgs\**" />
-    <EmbeddedResource Remove="Assets\svgs\**" />
-    <None Remove="Assets\svgs\**" />
-    <None Remove="Assets\horoz.wav" />
-    <None Remove="Assets\kus.wav" />
-    <None Remove="Assets\alarm.wav" />
-    <None Remove="Assets\ezan.wav" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Services\BackgroundNotificationJob.cs" />
-    <Compile Remove="ShinyDelegate.cs" />
-    <Compile Remove="Startup.cs" />
-    <Compile Remove="Typicons.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Assets\alarm.mp3" />
-    <None Remove="Assets\alarm1.mp3" />
-    <None Remove="Assets\alarm3.mp3" />
-    <None Remove="Assets\app_logo.png" />
-    <None Remove="Assets\ayar.png" />
-    <None Remove="Assets\ayliktakvim.xml" />
-    <None Remove="Assets\ezan.mp3" />
-    <None Remove="Assets\facebook.png" />
-    <None Remove="Assets\fitratradyo.png" />
-    <None Remove="Assets\fitratradyo‏‏1.png" />
-    <None Remove="Assets\fitrattv-logo.png" />
-    <None Remove="Assets\horoz.mp3" />
-    <None Remove="Assets\icon_about.png" />
-    <None Remove="Assets\icon_calendar.png" />
-    <None Remove="Assets\icon_feed.png" />
-    <None Remove="Assets\instagram.png" />
-    <None Remove="Assets\Isaretci.png" />
-    <None Remove="Assets\kible.png" />
-    <None Remove="Assets\kompas.png" />
-    <None Remove="Assets\kus.mp3" />
-    <None Remove="Assets\notification.svg" />
-    <None Remove="Assets\radyo.png" />
-    <None Remove="Assets\radyofitrat.png" />
-    <None Remove="Assets\radyofitrat1.png" />
-    <None Remove="Assets\radyofitrat3.png" />
-    <None Remove="Assets\show.svg" />
-    <None Remove="Assets\takvim.png" />
-    <None Remove="Assets\takvim4.svg" />
-    <None Remove="Assets\twitter.png" />
-    <None Remove="Assets\vakiflogo.png" />
-    <None Remove="Assets\welcome.svg" />
-    <None Remove="Assets\youtube.png" />
-    <None Remove="Fonts\MaterialIcons-Regular.ttf" />
-    <None Remove="Fonts\typicons.ttf" />
-  </ItemGroup>-->
+  
   <ItemGroup>
     <EmbeddedResource Include="Assets\alarm.wav" />
     <EmbeddedResource Include="Assets\ezan.wav" />
@@ -73,7 +26,6 @@
     <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
     <!--<EmbeddedResource Include="**/*" />-->
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
@@ -86,15 +38,11 @@
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
   </ItemGroup>
-
   <ItemGroup>
-    <Reference Include="Mono.Android">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v11.0\Mono.Android.dll</HintPath>
-    </Reference>
     <SharedImage Include="Assets\app_logo.png">
       <IsAppIcon></IsAppIcon>
     </SharedImage>
@@ -107,7 +55,6 @@
     <SharedImage Include="Assets\vakiflogo.png" />
     <SharedImage Include="Assets\youtube.png" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -115,6 +62,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Localization\AppResources.tr.resx">
       <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localization\AppResources.ug.resx">
+      <DependentUpon>AppResources.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

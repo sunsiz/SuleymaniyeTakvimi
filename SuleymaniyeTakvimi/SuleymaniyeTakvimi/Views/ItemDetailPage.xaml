@@ -6,7 +6,7 @@
              xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
              x:Class="SuleymaniyeTakvimi.Views.ItemDetailPage"
-             Shell.PresentationMode="ModalAnimated"
+             Shell.PresentationMode="ModalAnimated" FlowDirection="{x:Static Device.FlowDirection}"
              Visual="Material" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}"
              Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
     <!--<ContentPage.BindingContext>

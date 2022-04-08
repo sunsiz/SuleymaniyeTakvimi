@@ -4,7 +4,7 @@
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
-             x:Class="SuleymaniyeTakvimi.Views.CompassPage"
+             x:Class="SuleymaniyeTakvimi.Views.CompassPage" FlowDirection="{x:Static Device.FlowDirection}"
              Visual="Material" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}"
              Title="{Binding Title}">
     <!--<ContentPage.BindingContext>

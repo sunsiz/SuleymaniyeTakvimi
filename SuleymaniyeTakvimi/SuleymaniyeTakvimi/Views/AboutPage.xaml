@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
              xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
-             x:Class="SuleymaniyeTakvimi.Views.AboutPage"
+             x:Class="SuleymaniyeTakvimi.Views.AboutPage" FlowDirection="{x:Static Device.FlowDirection}"
              Visual="Material" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}"
              Title="{Binding Title}">
     <ContentPage.BindingContext>

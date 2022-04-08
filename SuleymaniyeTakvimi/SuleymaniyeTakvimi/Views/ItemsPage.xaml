@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage x:Class="SuleymaniyeTakvimi.Views.ItemsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.ViewModels"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
-             Visual="Material" NavigationPage.HasNavigationBar="true"
+             Visual="Material" NavigationPage.HasNavigationBar="true" FlowDirection="{x:Static Device.FlowDirection}"
              Title="{Binding Title, StringFormat={x:Static resources:AppResources.PageTitle}}">
 
     <!--<ContentPage.BindingContext>

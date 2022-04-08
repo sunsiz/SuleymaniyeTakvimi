@@ -16,7 +16,7 @@ namespace SuleymaniyeTakvimi
         public App()
         {
             InitializeComponent();
-
+            
             //Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             DependencyService.Register<DataService>();
             MainPage = new AppShell();
