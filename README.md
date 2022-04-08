@@ -1,4 +1,4 @@
-# Suleymaniye Takvimi
+# Suleymaniye Takvimi [![Build status](https://build.appcenter.ms/v0.1/apps/f227d4b3-61fd-4f14-a8c3-df6b2a0b45bc/branches/master/badge)](https://appcenter.ms)
 Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 **Uygulama çalışma şekli:**
