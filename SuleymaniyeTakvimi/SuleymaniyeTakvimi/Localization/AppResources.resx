@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -53,379 +53,380 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="Aci" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Aci" xml:space="preserve">
     <value>Angle</value>
   </data>
-	<data name="Aksam" xml:space="preserve">
+  <data name="Aksam" xml:space="preserve">
     <value>Maghrib</value>
   </data>
-	<data name="Aksamincikmasnakalanvakit" xml:space="preserve">
+  <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
     <value>Time left for the Maghrib to come out:</value>
   </data>
-	<data name="AlarmHatasi" xml:space="preserve">
+  <data name="AlarmHatasi" xml:space="preserve">
     <value>A problem occurred while the alarm was sounding. Details</value>
   </data>
-	<data name="Alarmi" xml:space="preserve">
+  <data name="Alarmi" xml:space="preserve">
     <value>Alarm</value>
   </data>
-	<data name="Alarmkurarkenhataolustu" xml:space="preserve">
+  <data name="Alarmkurarkenhataolustu" xml:space="preserve">
     <value>An error occurred while setting the alarm</value>
   </data>
-	<data name="AlarmSound" xml:space="preserve">
+  <data name="AlarmSound" xml:space="preserve">
     <value>Alarm Sound</value>
   </data>
-	<data name="AlarmSwitch" xml:space="preserve">
+  <data name="AlarmSwitch" xml:space="preserve">
     <value>Play alarm</value>
   </data>
-	<data name="AylikTakvim" xml:space="preserve">
+  <data name="AylikTakvim" xml:space="preserve">
     <value>Monthly Time</value>
   </data>
-	<data name="AylikTakvimYenilendi" xml:space="preserve">
+  <data name="AylikTakvimYenilendi" xml:space="preserve">
     <value>Monthly Prayer Times Refreshed Successfully</value>
   </data>
-	<data name="BesDakikaOnceden" xml:space="preserve">
+  <data name="BesDakikaOnceden" xml:space="preserve">
     <value>5 min before</value>
   </data>
-	<data name="BildiriDevreDisiBaslik" xml:space="preserve">
+  <data name="BildiriDevreDisiBaslik" xml:space="preserve">
     <value>Notification Setting Disabled</value>
   </data>
-	<data name="BildiriDevreDisiIcerik" xml:space="preserve">
+  <data name="BildiriDevreDisiIcerik" xml:space="preserve">
     <value>notification has been disabled.</value>
   </data>
-	<data name="BildiriEtkinBaslik" xml:space="preserve">
+  <data name="BildiriEtkinBaslik" xml:space="preserve">
     <value>Notification Setting Enabled</value>
   </data>
-	<data name="BildiriEtkinIcerik" xml:space="preserve">
+  <data name="BildiriEtkinIcerik" xml:space="preserve">
     <value>notification is enabled.</value>
   </data>
-	<data name="BildirimGosterSwitch" xml:space="preserve">
+  <data name="BildirimGosterSwitch" xml:space="preserve">
     <value>Show Notification</value>
   </data>
-	<data name="BildirmeZamani" xml:space="preserve">
+  <data name="BildirmeZamani" xml:space="preserve">
     <value>Reminding Time:</value>
   </data>
-	<data name="Birsessecin" xml:space="preserve">
+  <data name="Birsessecin" xml:space="preserve">
     <value>Choose a sound</value>
   </data>
-	<data name="Boylam" xml:space="preserve">
+  <data name="Boylam" xml:space="preserve">
     <value>Longitude: {0:G7}</value>
   </data>
-	<data name="BoylamFormatsiz" xml:space="preserve">
+  <data name="BoylamFormatsiz" xml:space="preserve">
     <value>Longitude</value>
   </data>
-	<data name="BugunkuNamazVakitleri" xml:space="preserve">
+  <data name="BugunkuNamazVakitleri" xml:space="preserve">
     <value>Today's Prayer Times</value>
   </data>
-	<data name="CalarSaat" xml:space="preserve">
+  <data name="CalarSaat" xml:space="preserve">
     <value>Alarm Clock</value>
   </data>
-	<data name="CihazDesteklemiyor" xml:space="preserve">
+  <data name="CihazDesteklemiyor" xml:space="preserve">
     <value>Device does not support</value>
   </data>
-	<data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
+  <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
     <value>Your device does not support vibrate</value>
   </data>
-	<data name="Enlem" xml:space="preserve">
+  <data name="Enlem" xml:space="preserve">
     <value>Latitude: {0:G7}</value>
   </data>
-	<data name="EnlemFormatsiz" xml:space="preserve">
+  <data name="EnlemFormatsiz" xml:space="preserve">
     <value>Latitude</value>
   </data>
-	<data name="EtkinlestirSwitch" xml:space="preserve">
+  <data name="EtkinlestirSwitch" xml:space="preserve">
     <value>Enable</value>
   </data>
-	<data name="EtkinlestirSwitchAciklama" xml:space="preserve">
+  <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
     <value>Enables alarm, vibration, notification feature for this prayer time</value>
   </data>
-	<data name="EzanSesi" xml:space="preserve">
+  <data name="EzanSesi" xml:space="preserve">
     <value>Adhan (Makkah)</value>
   </data>
-	<data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
+  <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
     <value>Time left for the Sahar (Suhoor) to enter:</value>
   </data>
-	<data name="FecriKazip" xml:space="preserve">
+  <data name="FecriKazip" xml:space="preserve">
     <value>Sahar</value>
   </data>
-	<data name="FecriSadik" xml:space="preserve">
+  <data name="FecriSadik" xml:space="preserve">
     <value>Fajr</value>
   </data>
-	<data name="FecriSadikakalanvakit" xml:space="preserve">
+  <data name="FecriSadikakalanvakit" xml:space="preserve">
     <value>Time left for Fajr (end of Suhoor):</value>
   </data>
-	<data name="FitratinSesi" xml:space="preserve">
+  <data name="FitratinSesi" xml:space="preserve">
     <value>Radio Fitrat - Voice of Fitrah</value>
   </data>
-	<data name="FitratTV" xml:space="preserve">
+  <data name="FitratTV" xml:space="preserve">
     <value>Fitrat TV</value>
   </data>
-	<data name="FitratTVFacebook" xml:space="preserve">
+  <data name="FitratTVFacebook" xml:space="preserve">
     <value>Fitrat TV Facebook Page</value>
   </data>
-	<data name="FitratTVTwitter" xml:space="preserve">
+  <data name="FitratTVTwitter" xml:space="preserve">
     <value>Fitrat TV Twitter Page</value>
   </data>
-	<data name="FitratTVYoutube" xml:space="preserve">
+  <data name="FitratTVYoutube" xml:space="preserve">
     <value>Fitrat TV Youtube Channel</value>
   </data>
-	<data name="Hakkinda" xml:space="preserve">
+  <data name="Hakkinda" xml:space="preserve">
     <value>About</value>
   </data>
-	<data name="HaritadaGoster" xml:space="preserve">
+  <data name="HaritadaGoster" xml:space="preserve">
     <value>Show On Map</value>
   </data>
-	<data name="HaritaHatasi" xml:space="preserve">
+  <data name="HaritaHatasi" xml:space="preserve">
     <value>There is something happened while opening the map.\nDetailes:</value>
   </data>
-	<data name="Hatadetaylari" xml:space="preserve">
+  <data name="Hatadetaylari" xml:space="preserve">
     <value>Error details:</value>
   </data>
-	<data name="HorozOtusu" xml:space="preserve">
+  <data name="HorozOtusu" xml:space="preserve">
     <value>Rooster Crows</value>
   </data>
-	<data name="IcerikYukleniyor" xml:space="preserve">
+  <data name="IcerikYukleniyor" xml:space="preserve">
     <value>Content Loading ...</value>
   </data>
-	<data name="Ikindi" xml:space="preserve">
+  <data name="Ikindi" xml:space="preserve">
     <value>Asr</value>
   </data>
-	<data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
+  <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
     <value>Time left for the Asr to come out:</value>
   </data>
-	<data name="Kapat" xml:space="preserve">
+  <data name="Kapat" xml:space="preserve">
     <value>Close</value>
   </data>
-	<data name="Kaydet" xml:space="preserve">
+  <data name="Kaydet" xml:space="preserve">
     <value>Save</value>
   </data>
-	<data name="Kible" xml:space="preserve">
+  <data name="Kible" xml:space="preserve">
     <value>Qibla</value>
   </data>
-	<data name="KibleGostergesi" xml:space="preserve">
+  <data name="KibleGostergesi" xml:space="preserve">
     <value>Qibla Indicator</value>
   </data>
-	<data name="KonumHatasi" xml:space="preserve">
+  <data name="KonumHatasi" xml:space="preserve">
     <value>There is something happened while try to get location</value>
   </data>
-	<data name="KonumIzniBaslik" xml:space="preserve">
+  <data name="KonumIzniBaslik" xml:space="preserve">
     <value>No Permission to Access Location</value>
   </data>
-	<data name="KonumIzniIcerik" xml:space="preserve">
+  <data name="KonumIzniIcerik" xml:space="preserve">
     <value>For the app to work properly, you need to give permission to access the Location!</value>
   </data>
-	<data name="KonumKapali" xml:space="preserve">
+  <data name="KonumKapali" xml:space="preserve">
     <value>Location services are not enabled on the device. You have to turn on location services first!</value>
   </data>
-	<data name="KonumKapaliBaslik" xml:space="preserve">
+  <data name="KonumKapaliBaslik" xml:space="preserve">
     <value>Location Services Off</value>
   </data>
-	<data name="KonumYenileButton" xml:space="preserve">
+  <data name="KonumYenileButton" xml:space="preserve">
     <value>Refresh</value>
   </data>
-	<data name="KonumYenilendi" xml:space="preserve">
+  <data name="KonumYenilendi" xml:space="preserve">
     <value>Location and Times refreshed successfully</value>
   </data>
-	<data name="KusCiviltisi" xml:space="preserve">
+  <data name="KusCiviltisi" xml:space="preserve">
     <value>Birds Chirping</value>
   </data>
-	<data name="NamazVaktiAciklama" xml:space="preserve">
+  <data name="NamazVaktiAciklama" xml:space="preserve">
     <value>https://suleymaniyetakvimi.com/Include/NamazVakitleri_en.htm</value>
   </data>
-	<data name="NamazVaktiAlmaHatasi" xml:space="preserve">
+  <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
     <value>An error occurred while retrieving prayer times from the internet.</value>
   </data>
-	<data name="Ogle" xml:space="preserve">
+  <data name="Ogle" xml:space="preserve">
     <value>Dhuhr</value>
   </data>
-	<data name="Oglenincikmasinakalanvakit" xml:space="preserve">
+  <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
     <value>Time left for Dhuhr to come out:</value>
   </data>
-	<data name="Ogleningirmesinekalanvakit" xml:space="preserve">
+  <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
     <value>Time left for Dhuhr to enter:</value>
   </data>
-	<data name="OnBesDakikaOnceden" xml:space="preserve">
+  <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>15 minutes before</value>
   </data>
-	<data name="PageTitle" xml:space="preserve">
+  <data name="PageTitle" xml:space="preserve">
     <value>Sulaymaniyah Calendar</value>
   </data>
-	<data name="Radyo" xml:space="preserve">
+  <data name="Radyo" xml:space="preserve">
     <value>Radio</value>
   </data>
-	<data name="RadyoFitrat" xml:space="preserve">
+  <data name="RadyoFitrat" xml:space="preserve">
     <value>Radio Fitrat</value>
   </data>
-	<data name="RadyoFitratFaceBook" xml:space="preserve">
+  <data name="RadyoFitratFaceBook" xml:space="preserve">
     <value>Radio Fitrat Facebook Page</value>
   </data>
-	<data name="RadyoFitratInstagram" xml:space="preserve">
+  <data name="RadyoFitratInstagram" xml:space="preserve">
     <value>Radio Fitrat Instagram Page</value>
   </data>
-	<data name="RadyoFitratTwitter" xml:space="preserve">
+  <data name="RadyoFitratTwitter" xml:space="preserve">
     <value>Radio Fitrat Twitter Page</value>
   </data>
-	<data name="RadyoIcinInternet" xml:space="preserve">
+  <data name="RadyoIcinInternet" xml:space="preserve">
     <value>Internet is required to play the radio, please check that the internet is connected, or you can listen from the web site by clicking the 'Web Site' link.</value>
   </data>
-	<data name="SaatBolgesi" xml:space="preserve">
+  <data name="SaatBolgesi" xml:space="preserve">
     <value>Time Zone: GMT {0}</value>
   </data>
-	<data name="SabahSonu" xml:space="preserve">
+  <data name="SabahSonu" xml:space="preserve">
     <value>End of Fajr</value>
   </data>
-	<data name="SabahSonunakalanvakit" xml:space="preserve">
+  <data name="SabahSonunakalanvakit" xml:space="preserve">
     <value>Time left for the End of Fajr:</value>
   </data>
-	<data name="Sehir" xml:space="preserve">
+  <data name="Sehir" xml:space="preserve">
     <value>City</value>
   </data>
-	<data name="SesSecAciklama" xml:space="preserve">
+  <data name="SesSecAciklama" xml:space="preserve">
     <value>Select the sound of the alarm to set for this time</value>
   </data>
-	<data name="SesTesti" xml:space="preserve">
+  <data name="SesTesti" xml:space="preserve">
     <value>Test Sound</value>
   </data>
-	<data name="SorunCikti" xml:space="preserve">
+  <data name="SorunCikti" xml:space="preserve">
     <value>We Encountered a Problem</value>
   </data>
-	<data name="SosyalMedyaBaglantisi" xml:space="preserve">
+  <data name="SosyalMedyaBaglantisi" xml:space="preserve">
     <value>Our Social Media Links</value>
   </data>
-	<data name="SuleymaniyeVakfi" xml:space="preserve">
+  <data name="SuleymaniyeVakfi" xml:space="preserve">
     <value>Sulaymaniyah Foundation</value>
   </data>
-	<data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
+  <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
     <value>Sulaymaniyah Foundation Facebook Page</value>
   </data>
-	<data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
+  <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
     <value>Sulaymaniyah Foundation Instagram Page</value>
   </data>
-	<data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
-    <value>Sulaymaniyah Foundation Calendar</value>
+  <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
+    <value>Sulaymaniyah Calendar</value>
   </data>
-	<data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
+  <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
     <value>Sulaymaniyah Foundation Twitter Page</value>
   </data>
-	<data name="Takvim" xml:space="preserve">
+  <data name="Takvim" xml:space="preserve">
     <value>Calendar</value>
   </data>
-	<data name="TakvimIcinInternet" xml:space="preserve">
+  <data name="TakvimIcinInternet" xml:space="preserve">
     <value>To renew the prayer times, you need to be connected to the internet, turn on WiFi or Mobile data and click 'REFRESH'.</value>
   </data>
-	<data name="TakvimIcinInternetBaslik" xml:space="preserve">
+  <data name="TakvimIcinInternetBaslik" xml:space="preserve">
     <value>Internet is required</value>
   </data>
-	<data name="Tamam" xml:space="preserve">
+  <data name="Tamam" xml:space="preserve">
     <value>OK</value>
   </data>
-	<data name="Tarih" xml:space="preserve">
+  <data name="Tarih" xml:space="preserve">
     <value>Date</value>
   </data>
-	<data name="TestiDurdur" xml:space="preserve">
+  <data name="TestiDurdur" xml:space="preserve">
     <value>Stop the test</value>
   </data>
-	<data name="TitremeyiDesteklemiyor" xml:space="preserve">
+  <data name="TitremeyiDesteklemiyor" xml:space="preserve">
     <value>Your device does not support vibrate.</value>
   </data>
-	<data name="TitresimSwitch" xml:space="preserve">
+  <data name="TitresimSwitch" xml:space="preserve">
     <value>Vibrate</value>
   </data>
-	<data name="Vakti" xml:space="preserve">
+  <data name="Vakti" xml:space="preserve">
     <value>Time:</value>
   </data>
-	<data name="VaktiHatirlatmasi" xml:space="preserve">
+  <data name="VaktiHatirlatmasi" xml:space="preserve">
     <value>Time Reminder</value>
   </data>
-	<data name="WebSayfa" xml:space="preserve">
+  <data name="WebSayfa" xml:space="preserve">
     <value>Web Site</value>
   </data>
-	<data name="Yatsi" xml:space="preserve">
+  <data name="Yatsi" xml:space="preserve">
     <value>Isha</value>
   </data>
-	<data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
     <value>Time left for Isha to come out:</value>
   </data>
-	<data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
     <value>Time elapsed since Isha come out:</value>
   </data>
-	<data name="YatsiSonu" xml:space="preserve">
+  <data name="YatsiSonu" xml:space="preserve">
     <value>End of Isha</value>
   </data>
-	<data name="YayinAkisi" xml:space="preserve">
+  <data name="YayinAkisi" xml:space="preserve">
     <value> Stream Schedules</value>
   </data>
-	<data name="Yenileniyor" xml:space="preserve">
+  <data name="Yenileniyor" xml:space="preserve">
     <value>Refreshing</value>
   </data>
-	<data name="Yukseklik" xml:space="preserve">
+  <data name="Yukseklik" xml:space="preserve">
     <value>Altitude: {0}</value>
   </data>
-	<data name="YukseklikFormatsiz" xml:space="preserve">
+  <data name="YukseklikFormatsiz" xml:space="preserve">
     <value>Altitude</value>
   </data>
-	<data name="Zamaninda" xml:space="preserve">
+  <data name="Zamaninda" xml:space="preserve">
     <value>On time</value>
   </data>
 </root>

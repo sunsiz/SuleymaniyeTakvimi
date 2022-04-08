@@ -6,7 +6,7 @@ using AndroidX.AppCompat.App;
 
 namespace SuleymaniyeTakvimi.Droid
 {
-    [Activity(Label = "Süleymaniye Takvimi", Theme = "@style/MyTheme.Splash", Icon = "@mipmap/icon", MainLauncher = true, NoHistory = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme.Splash", Icon = "@mipmap/icon", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : AppCompatActivity
     {
         static readonly string TAG = "X:" + nameof(SplashActivity);

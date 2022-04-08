@@ -14,7 +14,7 @@ using SuleymaniyeTakvimi.Localization;
 
 namespace SuleymaniyeTakvimi.Droid
 {
-    [Activity(Label = "Süleymaniye Takvimi", Icon = "@mipmap/icon", Theme = "@style/MyTheme.Alarm", NoHistory = true)]
+    [Activity(Label = "@string/app_name", Icon = "@mipmap/icon", Theme = "@style/MyTheme.Alarm", NoHistory = true)]
     public class AlarmActivity : Activity, View.IOnClickListener
     {
         protected override void OnCreate(Bundle savedInstanceState)

@@ -99,11 +99,6 @@
     <PackageReference Include="Refractored.MvvmHelpers">
       <Version>1.6.2</Version>
     </PackageReference>
-    <PackageReference Include="Resizetizer.NT">
-      <Version>0.3.0</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Xam.Plugins.Notifier">
       <Version>3.0.1</Version>
     </PackageReference>
@@ -113,7 +108,7 @@
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
     <PackageReference Include="Xamarin.Forms">
       <Version>5.0.0.2401</Version>
     </PackageReference>
@@ -190,6 +185,49 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\vakiflogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\app_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\instagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\isaretci.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\kompas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\radyofitrat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\youtube.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-tr\kompas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-tr\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-ug\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-zh\Strings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

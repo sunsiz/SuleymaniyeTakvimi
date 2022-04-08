@@ -799,7 +799,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sulaymaniyah Foundation Calendar.
+        ///   Looks up a localized string similar to Sulaymaniyah Calendar.
         /// </summary>
         public static string SuleymaniyeVakfiTakvimi {
             get {
