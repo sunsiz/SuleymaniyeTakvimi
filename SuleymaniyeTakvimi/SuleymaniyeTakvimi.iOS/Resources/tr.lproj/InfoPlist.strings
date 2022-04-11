@@ -1,2 +1,5 @@
 ﻿"CFBundleDisplayName" = "Süleymaniye Takvimi";
 "CFBundleName" = "Süleymaniye Takvimi";
+"NSLocationWhenInUseUsageDescription" = "Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor";
+"NSLocationAlwaysUsageDescription" = "Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Bulunduğunuz konumun namaz vakitlerini göstermek için konum izni gerekiyor";

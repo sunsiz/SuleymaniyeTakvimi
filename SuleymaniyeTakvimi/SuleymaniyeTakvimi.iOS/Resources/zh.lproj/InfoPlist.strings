@@ -1,2 +1,5 @@
 ﻿"CFBundleDisplayName" = "苏莱曼尼亚日历";
 "CFBundleName" = "苏莱曼尼亚日历";
+"NSLocationWhenInUseUsageDescription" = "显示您所在位置的礼拜时间需要定位权限";
+"NSLocationAlwaysUsageDescription" = "显示您所在位置的礼拜时间需要定位权限";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "显示您所在位置的礼拜时间需要定位权限";

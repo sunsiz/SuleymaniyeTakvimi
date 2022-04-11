@@ -74,8 +74,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="UserNotificationCenterDelegate.cs" />
-    <None Include="appcenter-post-clone.sh" />
-    <None Include="appcenter-pre-build.sh" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +81,9 @@
     <BundleResource Include="Resources\tr.lproj\InfoPlist.strings" />
     <BundleResource Include="Resources\ug.lproj\InfoPlist.strings" />
     <BundleResource Include="Resources\zh.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\base.lproj\kompas.png" />
+    <BundleResource Include="Resources\ug.lproj\kompas.png" />
+    <BundleResource Include="Resources\zh.lproj\kompas.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -192,9 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\isaretci.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\kompas.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\radyofitrat.png" />

@@ -79,7 +79,7 @@
             <!--  Implicit styles  -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor}}" />
-                <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource PrimaryAccent100Color}, Dark={StaticResource DarkElevation2dp}}" />
+                <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource PrimaryAccent50Color}, Dark={StaticResource DarkElevation2dp}}" />
                 <Setter Property="iOsSpecific:NavigationPage.HideNavigationBarSeparator" Value="True" />
             </Style>
 

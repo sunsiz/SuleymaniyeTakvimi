@@ -59,6 +59,7 @@ namespace SuleymaniyeTakvimi.iOS
             
             DependencyService.Register<IAlarmService, AlarmService>();
             SetAlarms();
+            app.SetStatusBarStyle(UIStatusBarStyle.LightContent, true);
             return base.FinishedLaunching(app, options);
         }
 

@@ -1,2 +1,5 @@
 ﻿"CFBundleDisplayName" = "Sulaymaniyah Calendar";
 "CFBundleName" = "Sulaymaniyah Calendar";
+"NSLocationWhenInUseUsageDescription" = "Location permission is required to show prayer times for your current location";
+"NSLocationAlwaysUsageDescription" = "Location permission is required to show prayer times for your current location";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Location permission is required to show prayer times for your current location";
