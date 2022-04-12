@@ -10,43 +10,36 @@
         <viewModels:AboutViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,8*">
-            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,9,0,0">
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Vertical">
+            <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto">
+                <!--<StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,9,0,0">
                 <Label HorizontalOptions="CenterAndExpand" FontSize="Title" FontAttributes="Bold" Text="{x:Static resources:AppResources.SosyalMedyaBaglantisi}" TextColor="{AppThemeBinding Light={StaticResource PrimaryTextColor}, Dark={StaticResource PrimaryTextColorDark}}"></Label>
-            </StackLayout>
-            <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" FontSize="18" FontAttributes="Bold" Text="{x:Static resources:AppResources.SuleymaniyeVakfi}" Margin="9,0" VerticalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
+            </StackLayout>-->
+                <!--<Label Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" FontSize="18" FontAttributes="Bold" Text="{x:Static resources:AppResources.SuleymaniyeVakfi}" Margin="9,0" VerticalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LinkButtonClicked}" CommandParameter="https://www.suleymaniyevakfi.org/"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
-            </Label>
-            <ImageButton Grid.Row="1" Grid.Column="1" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="facebook" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.facebook.com/suleymaniyevakfi/" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.SuleymaniyeVakfiFacebook}"></ImageButton>
-            <ImageButton Grid.Row="1" Grid.Column="2" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="twitter" Command="{Binding LinkButtonClicked}" CommandParameter="https://twitter.com/suleymaniye_vkf" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.SuleymaniyeVakfiTwitter}"></ImageButton>
-            <ImageButton Grid.Row="1" Grid.Column="3" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="instagram" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.instagram.com/suleymaniyevakfi" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.SuleymaniyeVakfiInstagram}"></ImageButton>
-            <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource AppBackgroundColorDark}, Dark={StaticResource AppBackgroundColor}}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"></BoxView>
-            <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="CenterAndExpand" FontSize="18" FontAttributes="Bold" Text="{x:Static resources:AppResources.FitratTV}" Margin="9,0" VerticalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding LinkButtonClicked}" CommandParameter="https://www.fitrat.tv/"></TapGestureRecognizer>
-                </Label.GestureRecognizers>
-            </Label>
-            <ImageButton Grid.Row="3" Grid.Column="1" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="facebook" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.facebook.com/fitrattv" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.FitratTVFacebook}"></ImageButton>
-            <ImageButton Grid.Row="3" Grid.Column="2" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="twitter" Command="{Binding LinkButtonClicked}" CommandParameter="https://twitter.com/fitrattv" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.FitratTVTwitter}"></ImageButton>
-            <ImageButton Grid.Row="3" Grid.Column="3" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="youtube" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.youtube.com/fitrattv" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.FitratTVYoutube}"></ImageButton>
-            <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource AppBackgroundColorDark}, Dark={StaticResource AppBackgroundColor}}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4"></BoxView>
-            <Label Grid.Row="5" Grid.Column="0" HorizontalOptions="CenterAndExpand" FontSize="18" FontAttributes="Bold" Text="{x:Static resources:AppResources.RadyoFitrat}" Margin="9,0" VerticalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding LinkButtonClicked}" CommandParameter="https://www.radyofitrat.com/"></TapGestureRecognizer>
-                </Label.GestureRecognizers>
-            </Label>
-            <ImageButton Grid.Row="5" Grid.Column="1" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="facebook" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.facebook.com/RadyoFitrat" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.RadyoFitratFaceBook}"></ImageButton>
-            <ImageButton Grid.Row="5" Grid.Column="2" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="twitter" Command="{Binding LinkButtonClicked}" CommandParameter="https://twitter.com/elrum30" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.RadyoFitratTwitter}"></ImageButton>
-            <ImageButton Grid.Row="5" Grid.Column="3" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="instagram" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.instagram.com/radyofitrat/" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.RadyoFitratInstagram}"></ImageButton>
-            <StackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Margin="0" Padding="0">
-                <ActivityIndicator IsVisible="False" VerticalOptions="Center" Color="{StaticResource PrimaryColor}" x:Name="ActivityIndicator"
-                                   HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
-                                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Visual="Material" />
-                <WebView BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" Source="{x:Static resources:AppResources.NamazVaktiAciklama}" Navigating="WebView_OnNavigating" Navigated="WebView_OnNavigated" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Background="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" />
-            </StackLayout>
-        </Grid>
+            </Label>-->
+                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" VerticalTextAlignment="Start" Padding="20,10,20,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{x:Static resources:AppResources.AciklamaBas}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="22" />
+                            <Span Text="{x:Static resources:AppResources.AciklamaLinkText}" FontAttributes="Bold" FontSize="22" TextColor="DeepSkyBlue" TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LinkButtonClicked}" CommandParameter="{x:Static resources:AppResources.AciklamaLinkURL}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="{x:Static resources:AppResources.AciklamaSon}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="22" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <ImageButton Grid.Row="1" Grid.Column="0" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="app_logo" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.suleymaniyevakfi.org/" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.SuleymaniyeVakfi}"></ImageButton>
+                <ImageButton Grid.Row="1" Grid.Column="1" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="facebook" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.facebook.com/suleymaniyevakfi/" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.SuleymaniyeVakfiFacebook}"></ImageButton>
+                <ImageButton Grid.Row="1" Grid.Column="2" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="twitter" Command="{Binding LinkButtonClicked}" CommandParameter="https://twitter.com/suleymaniye_vkf" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.SuleymaniyeVakfiTwitter}"></ImageButton>
+                <ImageButton Grid.Row="1" Grid.Column="3" HeightRequest="48" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}" HorizontalOptions="CenterAndExpand" Source="instagram" Command="{Binding LinkButtonClicked}" CommandParameter="https://www.instagram.com/suleymaniyevakfi" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.SuleymaniyeVakfiInstagram}"></ImageButton>
+                <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource AppBackgroundColorDark}, Dark={StaticResource AppBackgroundColor}}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"></BoxView>
+                <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" Text="{Binding VersionNumber}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}"></Label>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

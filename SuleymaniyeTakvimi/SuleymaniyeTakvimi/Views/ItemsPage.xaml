@@ -32,65 +32,66 @@
         </StackLayout>
     </Shell.TitleView>
 
-    <Grid Padding="10,15,10,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="*,8*">
-        <StackLayout Spacing="9" HorizontalOptions="Center" Orientation="Horizontal" Margin="0" x:DataType="local:ItemsViewModel">
-            <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
-                <Button Margin="9,0" Padding="3,0" HorizontalOptions="Center" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryLightColor}, Dark={StaticResource PrimaryAccent50Color}}"
-                        Command="{Binding GoToMonthCommand}"
-                        Text="{Binding Today}" />
-            </pancakeView:PancakeView>
-            <pancakeView:PancakeView Style="{StaticResource Card}" MinimumWidthRequest="300" Margin="3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
-                <Button Margin="9,0" Padding="3,0" HorizontalOptions="Center" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryLightColor}, Dark={StaticResource PrimaryAccent50Color}}"
+    <ScrollView HorizontalOptions="Fill" VerticalOptions="Start" Orientation="Vertical">
+        <Grid Padding="10,5,10,0" HorizontalOptions="CenterAndExpand" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+            <StackLayout HorizontalOptions="Center" Orientation="Vertical" Margin="0">
+                <pancakeView:PancakeView Style="{StaticResource Card}" Margin="3,3,3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
+                    <Button Margin="9,0" Padding="9,0" HorizontalOptions="Center" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryLightColor}, Dark={StaticResource PrimaryAccent50Color}}"
                         Command="{Binding GoToMapCommand}"
                         Text="{Binding City}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.Sehir}" />
+                </pancakeView:PancakeView>
+            <pancakeView:PancakeView Margin="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <CollectionView VerticalOptions="Fill" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.BugunkuNamazVakitleri}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="Auto">
+                                <!--  Card  -->
+                                <pancakeView:PancakeView Style="{StaticResource Card}" Margin="9,5" Padding="7" CornerRadius="25">
+                                    <pancakeView:PancakeView.Triggers>
+                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Passed">
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PastTimeBackgroundColor}, Dark={StaticResource PastTimeBackgroundColorDark}}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Happening">
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Waiting">
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FutureTimeBackgroundColor}, Dark={StaticResource FutureTimeBackgroundColorDark}}" />
+                                        </DataTrigger>
+                                    </pancakeView:PancakeView.Triggers>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Adi}" />
+                                        <Label VerticalOptions="Start" FontAttributes="Bold" FontSize="Title" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Vakit}" />
+                                        <Label Margin="0,0,9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="28" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="&#xe7f6;">
+                                            <Label.Triggers>
+                                                <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="False">
+                                                    <Setter Property="Text" Value="&#xe7f6;" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="True">
+                                                    <Setter Property="Text" Value="&#xe7f5;" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}" CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </pancakeView:PancakeView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </pancakeView:PancakeView>
-            
-        </StackLayout>
-        <pancakeView:PancakeView Margin="0" Grid.Row="1" Grid.ColumnSpan="2">
-            <CollectionView VerticalOptions="CenterAndExpand" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.BugunkuNamazVakitleri}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid RowDefinitions="Auto">
-                            <!--  Card  -->
-                            <pancakeView:PancakeView Style="{StaticResource Card}" Margin="9,5" Padding="7" CornerRadius="25">
-                                <pancakeView:PancakeView.Triggers>
-                                    <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Passed">
-                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PastTimeBackgroundColor}, Dark={StaticResource PastTimeBackgroundColorDark}}" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Happening">
-                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding State}" TargetType="pancakeView:PancakeView" Value="Waiting">
-                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FutureTimeBackgroundColor}, Dark={StaticResource FutureTimeBackgroundColorDark}}" />
-                                    </DataTrigger>
-                                </pancakeView:PancakeView.Triggers>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Adi}" />
-                                    <Label VerticalOptions="Start" FontAttributes="Bold" FontSize="Title" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Vakit}" />
-                                    <Label Margin="0,0,9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="28" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="&#xe7f6;">
-                                        <Label.Triggers>
-                                            <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="False">
-                                                <Setter Property="Text" Value="&#xe7f6;" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="True">
-                                                <Setter Property="Text" Value="&#xe7f5;" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}" CommandParameter="{Binding .}" />
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
-                            </pancakeView:PancakeView>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </pancakeView:PancakeView>
-        <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{StaticResource PrimaryColor}"
+                <pancakeView:PancakeView Style="{StaticResource Card}" Margin="3,0,3,5" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
+                    <Button Margin="9,0" Padding="9,0" HorizontalOptions="Center" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryLightColor}, Dark={StaticResource PrimaryAccent50Color}}"
+                    Command="{Binding GoToMonthCommand}"
+                    Text="{Binding Today}" />
+                </pancakeView:PancakeView>
+            </StackLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" Color="{StaticResource PrimaryColor}"
                            HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
                            AbsoluteLayout.LayoutFlags="PositionProportional"
                            AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Visual="Material" />
-    </Grid>
 
+        </Grid>
+    </ScrollView>
 </ContentPage>

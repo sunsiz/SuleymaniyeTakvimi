@@ -262,10 +262,10 @@
     <value>保存</value>
   </data>
   <data name="Kible" xml:space="preserve">
-    <value>克尔白（朝拜）</value>
+    <value>朝拜</value>
   </data>
   <data name="KibleGostergesi" xml:space="preserve">
-    <value>朝拜指标</value>
+    <value>克尔白（朝拜）指标</value>
   </data>
   <data name="KonumHatasi" xml:space="preserve">
     <value>尝试获取设备位置时发生了一些故障</value>
@@ -364,7 +364,7 @@
     <value>苏莱曼尼亚基金会 Instagram 页面</value>
   </data>
   <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
-	  <value>苏莱曼尼亚日历</value>
+    <value>苏莱曼尼亚日历</value>
   </data>
   <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
     <value>苏莱曼尼亚基金会 Twitter 页面</value>
@@ -399,6 +399,9 @@
   <data name="VaktiHatirlatmasi" xml:space="preserve">
     <value>时间提醒</value>
   </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本：</value>
+  </data>
   <data name="WebSayfa" xml:space="preserve">
     <value>网站</value>
   </data>
@@ -428,5 +431,19 @@
   </data>
   <data name="Zamaninda" xml:space="preserve">
     <value>准时</value>
+  </data>
+  <data name="AciklamaLinkURL" xml:space="preserve">
+	  <value>https://www.gulanjingzhidao.com/li-bai-yan-jiu/</value>
+  </data>
+  <data name="AciklamaBas" xml:space="preserve">
+	  <value>穆斯林是安拉给那些臣服于安拉并以他的方式忍受一切困难的人的名字。 他们是不屈不挠地实践宗教的人。
+“谁的话语呼唤真主，行善并说：“我是完全臣服于真主的人之一！” 它可能比说话的人的话更好！”（Fussilet 41/33）
+此应用程序旨在提供安全快速的礼拜和禁食时间。 有关时间计算和禁食时间的更多详细信息，请阅读此处的</value>
+  </data>
+  <data name="AciklamaLinkText" xml:space="preserve">
+	  <value>礼拜时间</value>
+  </data>
+  <data name="AciklamaSon" xml:space="preserve">
+	  <value> 文章。</value>
   </data>
 </root>

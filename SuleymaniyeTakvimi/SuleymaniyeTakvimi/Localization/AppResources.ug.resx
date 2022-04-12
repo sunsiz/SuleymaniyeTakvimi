@@ -364,7 +364,7 @@
     <value>سۇلايمانىيە ۋەخپى Instagram بېتى</value>
   </data>
   <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
-	  <value>سۇلايمانىيە كالىندارى</value>
+    <value>سۇلايمانىيە كالىندارى</value>
   </data>
   <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
     <value>سۇلايمانىيە ۋەخپى Twitter بېتى</value>
@@ -399,6 +399,9 @@
   <data name="VaktiHatirlatmasi" xml:space="preserve">
     <value>ۋاقتى ئەسكەرتىشى</value>
   </data>
+  <data name="Version" xml:space="preserve">
+    <value>نەشرى:</value>
+  </data>
   <data name="WebSayfa" xml:space="preserve">
     <value>تور بىكەت</value>
   </data>
@@ -428,5 +431,19 @@
   </data>
   <data name="Zamaninda" xml:space="preserve">
     <value>دەل ۋاقتىدا</value>
+  </data>
+  <data name="AciklamaLinkURL" xml:space="preserve">
+	  <value>https://www.suleymaniyevakfi.org/ramazan-ve-oruc/namaz-ve-oruc-vakitlerisadece-muslim-olanlar-icin.html</value>
+  </data>
+  <data name="AciklamaLinkText" xml:space="preserve">
+	  <value>ناماز ۋاقىتلىرى</value>
+  </data>
+  <data name="AciklamaBas" xml:space="preserve">
+	  <value>مۇسۇلمان ئاللاھقا تەسلىم بولغان ۋە ئۇنىڭ يولىدىكى بارلىق قىيىنچىلىقلارغا بەرداشلىق بەرگەنلەرگە ئاللاھ بەرگەن ئىسىم. ئۇلار  دىننى ئاللاھقا خالىس قىلغان ھالدا ئېتىقاد قىلىدىغانلاردۇر.
+ئاللاھقا دەۋەت قىلغان، ياخشى ئىش قىلغان ۋە: «مەن مۇسۇلمانلاردىنمەن» دېگەن ئادەمدىنمۇ ياخشى سۆزلۈك ئادەم بارمۇ؟(41-سۈرە فۇسسىلەت، 33- ئايەت)
+بۇ پروگرامما ناماز ۋە روزا ۋاقتلىرىغا بىخەتەر ۋە تېز سۈرئەتتە ئېرىشىش ئۈچۈن لايىھەلەنگەن. ناماز ۋاقىتىنى ۋە روزا تۇتۇش ۋاقتىنى ھېسابلاش توغرىسىدىكى تېخىمۇ تەپسىلىي ئۇچۇرلارنى بۇ يەردىكى </value>
+  </data>
+  <data name="AciklamaSon" xml:space="preserve">
+	  <value> ماقالىسىدىن ئوقۇڭ.</value>
   </data>
 </root>

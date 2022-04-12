@@ -70,6 +70,43 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to People who are submissive to God and stand up to all difficulties for His cause are named “Muslim”. Another pertinent characteristic of those who are “Muslim” is that they implement the rulings of the religion into their lives without any additions to it from their own desires. “Who speaks in a finer way than the one who invokes God, does righteous deeds and says: ‘I am of those who submit themselves to God (i.e. a Muslim)’?” (Fussilat 41:33)
+        ///This application is designed to provide safe and fast access to  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AciklamaBas {
+            get {
+                return ResourceManager.GetString("AciklamaBas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRAYER TIMES FROM THE EQUATOR TO THE POLES.
+        /// </summary>
+        public static string AciklamaLinkText {
+            get {
+                return ResourceManager.GetString("AciklamaLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.islamandquran.org/research/prayer-times-from-the-equator-to-the-poles.html.
+        /// </summary>
+        public static string AciklamaLinkURL {
+            get {
+                return ResourceManager.GetString("AciklamaLinkURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  here..
+        /// </summary>
+        public static string AciklamaSon {
+            get {
+                return ResourceManager.GetString("AciklamaSon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maghrib.
         /// </summary>
         public static string Aksam {
@@ -903,6 +940,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string VaktiHatirlatmasi {
             get {
                 return ResourceManager.GetString("VaktiHatirlatmasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
         

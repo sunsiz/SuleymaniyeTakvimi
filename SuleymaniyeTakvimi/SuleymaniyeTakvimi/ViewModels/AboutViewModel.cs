@@ -1,4 +1,6 @@
 ﻿using SuleymaniyeTakvimi.Localization;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -11,6 +13,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         public AboutViewModel()
         {
             Title = AppResources.SuleymaniyeVakfi;
+            VersionNumber = AppResources.Version + ' ' + AppInfo.VersionString;
         }
+        
+
+        private string versionNumber;
+
+        public string VersionNumber { get => versionNumber; set => SetProperty(ref versionNumber, value); }
     }
 }
