@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
@@ -10,6 +11,7 @@ using MediaManager;
 //using PeriodicBackgroundService.Android;
 //using Plugin.LocalNotification;
 using Plugin.LocalNotifications;
+using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Forms;
 using Xamarin.Essentials;
@@ -52,6 +54,7 @@ namespace SuleymaniyeTakvimi.Droid
             LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.app_logo;
             //DependencyService.Register<IForegroundServiceControlService, ForegroundService>();
             DependencyService.Register<IAlarmService, AlarmForegroundService>();
+            DependencyService.Register<IPermissionService,PermissionService>();
             //if (savedInstanceState != null)
             //{
             //    isStarted = savedInstanceState.GetBoolean("has_service_been_started", false);
@@ -61,11 +64,56 @@ namespace SuleymaniyeTakvimi.Droid
             _startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
             _startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
             _stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
-            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
-            if (status != PermissionStatus.Granted)
-                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+            var status = await HandlePermissionStatus().ConfigureAwait(false);
+
             StartAlarmForegroundService();
             Log.Info("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now:HH:m:s.fff} || Permission result:{status}");
+        }
+
+        public async Task<PermissionStatus> HandlePermissionStatus()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+            if (status == PermissionStatus.Denied)
+            {
+                if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+                {
+                    UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+                }
+
+                var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+                {
+                    AndroidStyleId = 0, CancelText = AppResources.Kapat, Message = AppResources.KonumIzniIcerik,
+                    OkText = AppResources.GotoSettings,
+                    Title = AppResources.KonumIzniBaslik
+                }).ConfigureAwait(false);
+                if (result) OpenApplicationSettingsPage();
+                Log.Debug("Permission Request result:", result.ToString());
+            }
+
+            if (status == PermissionStatus.Disabled)
+            {
+                if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+                {
+                    UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+                }
+
+                var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+                {
+                    AndroidStyleId = 0,
+                    CancelText = AppResources.Kapat,
+                    Message = AppResources.KonumIzniIcerik,
+                    OkText = AppResources.GotoSettings,
+                    Title = AppResources.KonumIzniBaslik
+                }).ConfigureAwait(false);
+                if (result) OpenDeviceLocationSettingsPage();
+                Log.Debug("Permission Request result:", result.ToString());
+            }
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                // Code to run on the main thread
+                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+            });
+            return status;
         }
 
         internal void StartAlarmForegroundService()
@@ -117,6 +165,21 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 return;
             }
+        }
+        public void OpenDeviceLocationSettingsPage()
+        {
+            var intent = new Intent(Android.Provider.Settings.ActionLocationSourceSettings);
+            intent.AddFlags(ActivityFlags.NewTask);
+            Android.App.Application.Context.StartActivity(intent);
+        }
+        public void OpenApplicationSettingsPage()
+        {
+            var intent = new Intent(Android.Provider.Settings.ActionApplicationDetailsSettings);
+            intent.AddFlags(ActivityFlags.NewTask);
+            string package_name = Android.App.Application.Context.PackageName;
+            var uri = Android.Net.Uri.FromParts("package", package_name, null);
+            intent.SetData(uri);
+            Android.App.Application.Context.StartActivity(intent);
         }
     }
 }

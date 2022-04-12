@@ -445,4 +445,7 @@ This application is designed to provide safe and fast access to prayer and fasti
   <data name="AciklamaSon" xml:space="preserve">
 	  <value> here.</value>
   </data>
+  <data name="GotoSettings" xml:space="preserve">
+	  <value>Go to Settings</value>
+  </data>
 </root>

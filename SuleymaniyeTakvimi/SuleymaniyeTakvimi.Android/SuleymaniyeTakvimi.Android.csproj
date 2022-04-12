@@ -124,6 +124,7 @@
     <Compile Include="AlarmForegroundService.cs" />
     <Compile Include="BootBroadcast.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="PermissionService.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />

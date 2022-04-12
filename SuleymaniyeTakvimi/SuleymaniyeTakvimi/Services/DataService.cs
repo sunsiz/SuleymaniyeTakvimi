@@ -62,7 +62,9 @@ namespace SuleymaniyeTakvimi.Services
 
                 if (location == null || refreshLocation)
                 {
-                    var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(5));
+                    var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                    Debug.WriteLine(result);
+                    var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
                     CancellationTokenSource cts = new CancellationTokenSource();
                     location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(false);
                 }
@@ -76,6 +78,11 @@ namespace SuleymaniyeTakvimi.Services
                     Preferences.Set("LastLatitude", location.Latitude);
                     Preferences.Set("LastLongitude", location.Longitude);
                     Preferences.Set("LastAltitude", location.Altitude ?? 0);
+                }
+                else
+                {
+                    var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                    Debug.WriteLine(result);
                 }
             }
             catch (FeatureNotSupportedException fnsEx)

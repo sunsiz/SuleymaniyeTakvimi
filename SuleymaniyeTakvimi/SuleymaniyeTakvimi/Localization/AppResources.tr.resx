@@ -446,4 +446,7 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   <data name="AciklamaSon" xml:space="preserve">
 	  <value> yazısını okuyunuz.</value>
   </data>
+  <data name="GotoSettings" xml:space="preserve">
+	  <value>Ayarlara git</value>
+  </data>
 </root>

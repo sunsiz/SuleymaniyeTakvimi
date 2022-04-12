@@ -3,10 +3,11 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Acr.UserDialogs;
-using MvvmHelpers.Commands;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms;
+using Command = MvvmHelpers.Commands.Command;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -18,6 +19,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private readonly double _qiblaLatitude = 21.4224779;
         private readonly double _qiblaLongitude = 39.8251832;
         internal readonly SensorSpeed Speed = SensorSpeed.UI;
+        private bool askedPermission;
         public Command StartCommand { get; }
         private Command StopCommand { get; }
         public Command LocationCommand { get; }
@@ -30,7 +32,36 @@ namespace SuleymaniyeTakvimi.ViewModels
             Title = AppResources.KibleGostergesi;
             StartCommand = new Command(Start);
             StopCommand = new Command(Stop);
-            LocationCommand = new Command(GetLocation);
+            LocationCommand = new Command(async () =>
+            {
+                IsBusy = true;
+                try
+                {
+                    var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+                    if (status == PermissionStatus.Granted)
+                    {
+                        DataService data = new DataService();
+                        var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
+                        if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                        {
+                            _currentLatitude = location.Latitude;
+                            _currentLongitude = location.Longitude;
+                            _currentAltitude = location.Altitude ?? 0.0;
+                        }
+                    }
+                    else if(askedPermission)
+                    {
+                        var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                        askedPermission = true;
+                        Debug.WriteLine(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+                finally { IsBusy = false; /*UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));*/ }
+            });
             if (!Compass.IsMonitoring) Compass.Start(Speed);
             //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
             GoToMapCommand = new Command(async () => {
@@ -70,27 +101,6 @@ namespace SuleymaniyeTakvimi.ViewModels
             get => _heading;
             set => SetProperty(ref _heading, value);
         }
-
-        //private string _info;
-        //public string Info
-        //{
-        //    get => _info;
-        //    set => SetProperty(ref _info, value);
-        //}
-
-        //private string _info1;
-        //public string Info1
-        //{
-        //    get => _info1;
-        //    set => SetProperty(ref _info1, value);
-        //}
-
-        //private string _konum;
-        //public string Konum
-        //{
-        //    get => _konum;
-        //    set => SetProperty(ref _konum, value);
-        //}
         private void Start()
         {
             Compass.ReadingChanged += Compass_ReadingChanged;
@@ -159,24 +169,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-
-        //internal void PointToQibla(CompassChangedEventArgs e)
-        //{
-        //    double latitudeFromRadians = _currentLatitude * Math.PI / 180;
-        //    double longitudeFromRadians = _currentLongitude * Math.PI / 180;
-        //    double latitudeToRadians = _qiblaLatitude * Math.PI / 180;
-        //    double longitudeToRadians = _qiblaLongitude * Math.PI / 180;
-        //    double bearing = Math.Atan2(Math.Sin(longitudeToRadians - longitudeFromRadians) * Math.Cos(latitudeToRadians), (Math.Cos(latitudeFromRadians) * Math.Sin(latitudeToRadians)) - (Math.Sin(latitudeFromRadians) * Math.Cos(latitudeToRadians) * Math.Cos(longitudeToRadians - longitudeFromRadians)));
-        //    bearing = Mod(bearing, 2 * Math.PI);
-        //    double bearingDegree = bearing * 180 / Math.PI;
-        //    //pointer1.Value = bearing_degree;
-        //    //Info1 = $"Lat: {_currentLatitude} Long: {_currentLongitude} degree:{bearingDegree}";
-        //}
-
-        //private double Mod(double a, double b)
-        //{
-        //    return a - b * Math.Floor(a / b);
-        //}
     }
 
     internal class DistanceCalculator

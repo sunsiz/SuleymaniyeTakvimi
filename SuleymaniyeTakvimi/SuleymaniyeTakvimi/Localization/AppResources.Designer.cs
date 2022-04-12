@@ -440,6 +440,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to Settings.
+        /// </summary>
+        public static string GotoSettings {
+            get {
+                return ResourceManager.GetString("GotoSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string Hakkinda {

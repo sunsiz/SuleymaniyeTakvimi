@@ -446,4 +446,7 @@
   <data name="AciklamaSon" xml:space="preserve">
 	  <value> 文章。</value>
   </data>
+  <data name="GotoSettings" xml:space="preserve">
+	  <value>转到设置</value>
+  </data>
 </root>
