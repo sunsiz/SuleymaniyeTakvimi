@@ -73,6 +73,7 @@
     <Compile Include="AlarmService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="PermissionService.cs" />
     <Compile Include="UserNotificationCenterDelegate.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />

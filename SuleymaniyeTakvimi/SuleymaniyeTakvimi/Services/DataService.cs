@@ -62,8 +62,7 @@ namespace SuleymaniyeTakvimi.Services
 
                 if (location == null || refreshLocation)
                 {
-                    var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
-                    Debug.WriteLine(result);
+                    
                     var request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
                     CancellationTokenSource cts = new CancellationTokenSource();
                     location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(false);
@@ -82,18 +81,19 @@ namespace SuleymaniyeTakvimi.Services
                 else
                 {
                     var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
-                    Debug.WriteLine(result);
+                    Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {result}");
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
             {
                 // Handle not supported on device exception
-                Debug.WriteLine(fnsEx.Message);
+                UserDialogs.Instance.Alert(AppResources.CihazDesteklemiyor, AppResources.CihazDesteklemiyor);
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {fnsEx.Message}");
             }
             catch (FeatureNotEnabledException fneEx)
             {
                 // Handle not enabled on device exception
-                Console.WriteLine(fneEx.Message);
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {fneEx.Message}");
                 UserDialogs.Instance.Alert(AppResources.KonumKapali, AppResources.KonumKapaliBaslik);
                 //await App.Current.MainPage.DisplayAlert("Konum Servisi Hatası", "Cihazın konum servisi kapalı, Öce konum servisini açmanız lazım!", "Tamam");
                 if (Preferences.Get("LastLatitude", 0.0) != 0.0 && Preferences.Get("LastLongitude", 0.0) != 0.0)
@@ -106,15 +106,17 @@ namespace SuleymaniyeTakvimi.Services
             catch (PermissionException pEx)
             {
                 // Handle permission exception
-                Console.WriteLine(pEx.Message);
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {pEx.Message}");
                 //await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
-                UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+                //UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
                 //await App.Current.MainPage.DisplayAlert("Konum Servisi İzni Yok", "Uygulamanın normal çalışması için Konuma erişme yetkisi vermeniz lazım!", "Tamam");
+                var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {result}");
             }
             catch (Exception ex)
             {
                 // Unable to get location
-                Console.WriteLine(ex.Message);
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {ex.Message}");
             }
 
             return location;

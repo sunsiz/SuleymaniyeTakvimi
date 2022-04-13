@@ -32,14 +32,22 @@
         </StackLayout>
     </Shell.TitleView>
 
-        <Grid Padding="10,0" HorizontalOptions="CenterAndExpand" RowDefinitions="50,*,50" ColumnDefinitions="Auto">
-            <pancakeView:PancakeView Grid.Row="0" Style="{StaticResource Card}" WidthRequest="200" HorizontalOptions="Center" Margin="3,7,3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
+    <Grid Padding="10,0" HorizontalOptions="CenterAndExpand" RowDefinitions="50,*" ColumnDefinitions="Auto">
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Margin="0">
+        <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7,3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
                 <Button Margin="9,0" Padding="9,0" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
                         Command="{Binding GoToMapCommand}"
                         Text="{Binding City}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.Sehir}"
                         x:DataType="local:ItemsViewModel" />
             </pancakeView:PancakeView>
-            <pancakeView:PancakeView Margin="0" Padding="0" Grid.Row="1">
+            <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7,3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
+                <Button Margin="9,0" Padding="9,0" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
+                    Command="{Binding GoToMonthCommand}"
+                    Text="{Binding Today}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.AylikTakvim}"
+                    x:DataType="local:ItemsViewModel" />
+            </pancakeView:PancakeView>
+        </StackLayout>
+        <pancakeView:PancakeView Margin="0" Padding="0" Grid.Row="1">
                 <CollectionView VerticalOptions="Fill" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.BugunkuNamazVakitleri}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -84,12 +92,6 @@
                            HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
                            AbsoluteLayout.LayoutFlags="PositionProportional"
                            AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" Visual="Material" />
-            <pancakeView:PancakeView Grid.Row="2" Style="{StaticResource Card}" WidthRequest="200" HorizontalOptions="Center" Margin="3,0,3,7" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
-                <Button Margin="9,0" Padding="9,0" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
-                    Command="{Binding GoToMonthCommand}"
-                    Text="{Binding Today}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.AylikTakvim}"
-                    x:DataType="local:ItemsViewModel" />
-            </pancakeView:PancakeView>
-
+            
         </Grid>
 </ContentPage>

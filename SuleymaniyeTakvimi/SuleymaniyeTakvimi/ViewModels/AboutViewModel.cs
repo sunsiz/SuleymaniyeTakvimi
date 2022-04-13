@@ -13,7 +13,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public AboutViewModel()
         {
             Title = AppResources.SuleymaniyeVakfi;
-            VersionNumber = AppResources.Version + ' ' + AppInfo.VersionString;
+            VersionNumber = AppInfo.Name + " v" + AppInfo.VersionString + " " + AppResources.Version;
         }
         
 

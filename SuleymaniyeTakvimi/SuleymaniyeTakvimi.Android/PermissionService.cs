@@ -10,7 +10,7 @@ namespace SuleymaniyeTakvimi.Droid
         public async Task<PermissionStatus> HandlePermissionAsync()
         {
             MainActivity main = MainActivity.Instance;
-            var status = await main.HandlePermissionStatus().ConfigureAwait(false);
+            var status = await main.HandleLocationPermissionAsync().ConfigureAwait(false);
             return status;
         }
     }

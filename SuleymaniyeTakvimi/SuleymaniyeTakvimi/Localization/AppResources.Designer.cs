@@ -629,15 +629,6 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://suleymaniyetakvimi.com/Include/NamazVakitleri_en.htm.
-        /// </summary>
-        public static string NamazVaktiAciklama {
-            get {
-                return ResourceManager.GetString("NamazVaktiAciklama", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred while retrieving prayer times from the internet..
         /// </summary>
         public static string NamazVaktiAlmaHatasi {
@@ -953,7 +944,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version:.
+        ///   Looks up a localized string similar to version.
         /// </summary>
         public static string Version {
             get {

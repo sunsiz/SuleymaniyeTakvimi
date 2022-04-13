@@ -291,9 +291,6 @@
   <data name="KusCiviltisi" xml:space="preserve">
     <value>Birds Chirping</value>
   </data>
-  <data name="NamazVaktiAciklama" xml:space="preserve">
-    <value>https://suleymaniyetakvimi.com/Include/NamazVakitleri_en.htm</value>
-  </data>
   <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
     <value>An error occurred while retrieving prayer times from the internet.</value>
   </data>
@@ -400,7 +397,7 @@
     <value>Time Reminder</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version:</value>
+	  <value>version</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
     <value>Web Site</value>

@@ -264,7 +264,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
             else
             {
-                UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(7));
+                UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(5));
             }
             
         }

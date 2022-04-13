@@ -64,13 +64,13 @@ namespace SuleymaniyeTakvimi.Droid
             _startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
             _startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
             _stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
-            var status = await HandlePermissionStatus().ConfigureAwait(false);
+            var status = await HandleLocationPermissionAsync().ConfigureAwait(false);
 
             StartAlarmForegroundService();
-            Log.Info("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now:HH:m:s.fff} || Permission result:{status}");
+            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now:HH:m:s.fff} || Permission result:{status}");
         }
 
-        public async Task<PermissionStatus> HandlePermissionStatus()
+        public async Task<PermissionStatus> HandleLocationPermissionAsync()
         {
             var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
             if (status == PermissionStatus.Denied)
@@ -86,8 +86,8 @@ namespace SuleymaniyeTakvimi.Droid
                     OkText = AppResources.GotoSettings,
                     Title = AppResources.KonumIzniBaslik
                 }).ConfigureAwait(false);
-                if (result) OpenApplicationSettingsPage();
-                Log.Debug("Permission Request result:", result.ToString());
+                if (result) AppInfo.ShowSettingsUI();
+                System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
             }
 
             if (status == PermissionStatus.Disabled)
@@ -106,7 +106,7 @@ namespace SuleymaniyeTakvimi.Droid
                     Title = AppResources.KonumIzniBaslik
                 }).ConfigureAwait(false);
                 if (result) OpenDeviceLocationSettingsPage();
-                Log.Debug("Permission Request result:", result.ToString());
+                System.Diagnostics.Debug.WriteLine("Permission Request result:", result.ToString());
             }
             MainThread.BeginInvokeOnMainThread(async () =>
             {
@@ -129,7 +129,7 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 StartService(_startServiceIntent);
             }
-            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
+            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
 
         internal void StopAlarmForegroundService()
@@ -145,7 +145,7 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 StartService(_stopServiceIntent);
             }
-            Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
+            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -176,8 +176,8 @@ namespace SuleymaniyeTakvimi.Droid
         {
             var intent = new Intent(Android.Provider.Settings.ActionApplicationDetailsSettings);
             intent.AddFlags(ActivityFlags.NewTask);
-            string package_name = Android.App.Application.Context.PackageName;
-            var uri = Android.Net.Uri.FromParts("package", package_name, null);
+            string packageName = Android.App.Application.Context.PackageName;
+            var uri = Android.Net.Uri.FromParts("package", packageName, null);
             intent.SetData(uri);
             Android.App.Application.Context.StartActivity(intent);
         }

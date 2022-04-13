@@ -291,9 +291,6 @@
   <data name="KusCiviltisi" xml:space="preserve">
     <value>鸟鸣</value>
   </data>
-  <data name="NamazVaktiAciklama" xml:space="preserve">
-    <value>https://suleymaniyetakvimi.com/Include/NamazVakitleri_en.htm</value>
-  </data>
   <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
     <value>从互联网获取礼拜时间时出错。</value>
   </data>
@@ -400,7 +397,7 @@
     <value>时间提醒</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>版本：</value>
+	  <value>版本</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
     <value>网站</value>
