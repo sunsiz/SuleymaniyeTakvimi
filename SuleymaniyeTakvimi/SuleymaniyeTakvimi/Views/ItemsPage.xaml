@@ -32,7 +32,7 @@
         </StackLayout>
     </Shell.TitleView>
 
-    <Grid Padding="10,0" HorizontalOptions="CenterAndExpand" RowDefinitions="50,*" ColumnDefinitions="Auto">
+    <Grid Padding="10,0" HorizontalOptions="CenterAndExpand" RowDefinitions="55,*" ColumnDefinitions="Auto">
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Margin="0">
         <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7,3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
                 <Button Margin="9,0" Padding="9,0" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" FontAttributes="Bold" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"

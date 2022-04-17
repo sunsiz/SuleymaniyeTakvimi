@@ -47,11 +47,11 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                            <Label HorizontalOptions="EndAndExpand" Text="{x:Static resources:AppResources.Vakti}" FontSize="Medium"  TextColor="SaddleBrown"/>
+                            <Label HorizontalOptions="EndAndExpand" Text="{x:Static resources:AppResources.Vakti}" FontSize="Large"  TextColor="SaddleBrown"/>
                             <Label HorizontalOptions="StartAndExpand" Text="{Binding Vakit}" FontSize="Large" FontAttributes="Bold" TextColor="SeaGreen"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                            <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}" HeightRequest="33" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.EtkinlestirSwitchAciklama}">
+                            <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.EtkinlestirSwitchAciklama}">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding EnableSwitchToggled}" CommandParameter="{Binding Etkin}"/>
                                 </Switch.Behaviors>
@@ -69,16 +69,16 @@
                         <pancakeView:DropShadow Color="#000" BlurRadius="3" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="14">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                            <Switch IsToggled="{Binding Bildiri}" IsEnabled="{Binding Etkin}" HeightRequest="33" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.BildirimGosterSwitch}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
+                            <Switch IsToggled="{Binding Bildiri}" IsEnabled="{Binding Etkin}" HeightRequest="40" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.BildirimGosterSwitch}">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding BildiriCheckedChanged}" CommandParameter="{Binding Bildiri}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.BildirimGosterSwitch}" FontSize="Medium" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
+                            <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.BildirimGosterSwitch}" FontSize="Large" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                            <Switch IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}" HeightRequest="33" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.TitresimSwitch}">
+                            <Switch IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}" HeightRequest="40" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.TitresimSwitch}">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding TitremeCheckedChanged}" CommandParameter="{Binding Titreme}"/>
                                 </Switch.Behaviors>
@@ -86,7 +86,7 @@
                             <Label HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.TitresimSwitch}" FontSize="Medium" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                            <Switch IsToggled="{Binding Alarm}" IsEnabled="{Binding Etkin}" HeightRequest="33" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.AlarmSwitch}">
+                            <Switch IsToggled="{Binding Alarm}" IsEnabled="{Binding Etkin}" HeightRequest="40" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.AlarmSwitch}">
                                 <!--Color="Maroon"-->
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding AlarmCheckedChanged}" CommandParameter="{Binding Alarm}"/>
@@ -98,9 +98,9 @@
                 </pancakeView:PancakeView>
                 <pancakeView:PancakeView CornerRadius="9" Grid.Row="6" Grid.ColumnSpan="2" Margin="4,0">
                     <pancakeView:PancakeView.BackgroundGradientStops>
-                        <pancakeView:GradientStop Color="{AppThemeBinding Light=LemonChiffon, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
+                        <pancakeView:GradientStop Color="{AppThemeBinding Light=LavenderBlush, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
                         <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
-                        <pancakeView:GradientStop Color="{AppThemeBinding Light=LavenderBlush, Dark={StaticResource DarkElevation12dp}}" Offset="1"/>
+                        <pancakeView:GradientStop Color="{AppThemeBinding Light={StaticResource PrimaryAccent50Color}, Dark={StaticResource DarkElevation12dp}}" Offset="1"/>
                     </pancakeView:PancakeView.BackgroundGradientStops>
                     <pancakeView:PancakeView.Shadow>
                         <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="1,1" Opacity="0.3"/>
@@ -139,9 +139,9 @@
                         </RadioButton>
                         <Label HorizontalOptions="Start" Text="{x:Static resources:AppResources.AlarmSound}" FontSize="Large" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}"/>
                         <StackLayout Orientation="Horizontal">
-                            <Picker Title="{x:Static resources:AppResources.Birsessecin}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" ItemsSource="{Binding Sounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound, Mode=TwoWay}" SelectedIndex="{Binding SelectedSound.Index}" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource OnSurfaceColor}, Dark={StaticResource OnPrimaryColor}}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{x:Static resources:AppResources.SesSecAciklama}" />
+                            <Picker Title="{x:Static resources:AppResources.Birsessecin}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" ItemsSource="{Binding Sounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound, Mode=TwoWay}" SelectedIndex="{Binding SelectedSound.Index}" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource OnSurfaceColor}, Dark={StaticResource OnPrimaryColor}}" />
                             <!--<Button Text="{Binding TestButtonText}" Command="{Binding TestButtonCommand}" CornerRadius="9" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" HorizontalOptions="End" FontFamily="MaterialIcons" FontAttributes="Bold" Font="Default"/>-->
-                            <Label Padding="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="35" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Text="{Binding TestButtonText}">
+                            <Label Padding="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="40" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Text="{Binding TestButtonText}">
                                 <Label.Triggers>
                                     <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="False">
                                         <Setter Property="Text" Value="&#xe038;" />

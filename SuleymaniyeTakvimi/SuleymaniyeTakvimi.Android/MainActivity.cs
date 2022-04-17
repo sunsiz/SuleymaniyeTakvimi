@@ -24,6 +24,7 @@ namespace SuleymaniyeTakvimi.Droid
         public static MainActivity Instance;
         private Intent _startServiceIntent;
         private Intent _stopServiceIntent;
+        AlarmForegroundServiceConnection serviceConnection;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -66,7 +67,7 @@ namespace SuleymaniyeTakvimi.Droid
             _stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
             var status = await HandleLocationPermissionAsync().ConfigureAwait(false);
 
-            StartAlarmForegroundService();
+            //StartAlarmForegroundService();
             System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now:HH:m:s.fff} || Permission result:{status}");
         }
 
@@ -166,13 +167,34 @@ namespace SuleymaniyeTakvimi.Droid
                 return;
             }
         }
-        public void OpenDeviceLocationSettingsPage()
+        protected override void OnStart()
+        {
+            base.OnStart();
+            serviceConnection ??= new AlarmForegroundServiceConnection();
+            DoBindService();
+        }
+        protected override void OnStop()
+        {
+            DoUnBindService();
+            base.OnStop();
+        }
+        void DoBindService() {
+            Intent serviceToStart = new Intent(this, typeof(AlarmForegroundService));
+            BindService(serviceToStart, serviceConnection, Bind.AutoCreate);
+        }
+
+        void DoUnBindService() {
+            UnbindService(serviceConnection);
+        }
+
+        private void OpenDeviceLocationSettingsPage()
         {
             var intent = new Intent(Android.Provider.Settings.ActionLocationSourceSettings);
             intent.AddFlags(ActivityFlags.NewTask);
             Android.App.Application.Context.StartActivity(intent);
         }
-        public void OpenApplicationSettingsPage()
+
+        private void OpenApplicationSettingsPage()
         {
             var intent = new Intent(Android.Provider.Settings.ActionApplicationDetailsSettings);
             intent.AddFlags(ActivityFlags.NewTask);
@@ -180,6 +202,34 @@ namespace SuleymaniyeTakvimi.Droid
             var uri = Android.Net.Uri.FromParts("package", packageName, null);
             intent.SetData(uri);
             Android.App.Application.Context.StartActivity(intent);
+        }
+    }
+
+    internal class AlarmForegroundServiceConnection : Java.Lang.Object, IServiceConnection
+    {
+        public bool IsConnected { get; private set; }
+        public AlarmForegroundBinder Binder { get; private set; }
+        public AlarmForegroundServiceConnection()
+        {
+            IsConnected = false;
+            Binder = null;
+        }
+
+
+        public void OnServiceConnected(ComponentName name, IBinder service)
+        {
+            Binder = service as AlarmForegroundBinder;
+            IsConnected = this.Binder != null;
+            if (IsConnected)
+            {
+                Binder?.StartForeground();
+            }
+        }
+
+        public void OnServiceDisconnected(ComponentName name)
+        {
+            IsConnected = false;
+            Binder = null;
         }
     }
 }

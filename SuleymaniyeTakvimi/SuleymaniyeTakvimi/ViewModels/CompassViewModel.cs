@@ -24,6 +24,28 @@ namespace SuleymaniyeTakvimi.ViewModels
         private Command StopCommand { get; }
         public Command LocationCommand { get; }
 
+        private string _latitudeAltitude;
+        public string LatitudeAltitude
+        {
+            get => _latitudeAltitude;
+            set => SetProperty(ref _latitudeAltitude, value);
+        }
+
+        private string _degreeLongitude;
+        public string DegreeLongitude
+        {
+            get => _degreeLongitude;
+            set => SetProperty(ref _degreeLongitude, value);
+        }
+
+        private double _heading;
+
+        public double Heading
+        {
+            get => _heading;
+            set => SetProperty(ref _heading, value);
+        }
+
         public Command GoToMapCommand { get; }
         // Launcher.OpenAsync is provided by Xamarin.Essentials.
         //public ICommand TapCommand => new Xamarin.Forms.Command<string>(async (url) => await Launcher.OpenAsync(url).ConfigureAwait(false));
@@ -49,7 +71,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                             _currentAltitude = location.Altitude ?? 0.0;
                         }
                     }
-                    else if(askedPermission)
+                    else if(!askedPermission)
                     {
                         var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
                         askedPermission = true;
@@ -62,7 +84,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
                 finally { IsBusy = false; /*UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));*/ }
             });
-            if (!Compass.IsMonitoring) Compass.Start(Speed);
+            if (!Compass.IsMonitoring) Compass.Start(Speed, applyLowPassFilter: true);
             //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
             GoToMapCommand = new Command(async () => {
                 try
@@ -78,28 +100,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                     UserDialogs.Instance.Toast(AppResources.HaritaHatasi + ex.Message);
                 }
             });
-        }
-
-        private string _latitudeAltitude;
-        public string LatitudeAltitude
-        {
-            get => _latitudeAltitude;
-            set => SetProperty(ref _latitudeAltitude, value);
-        }
-
-        private string _degreeLongitude;
-        public string DegreeLongitude
-        {
-            get => _degreeLongitude;
-            set => SetProperty(ref _degreeLongitude, value);
-        }
-
-        private double _heading;
-
-        public double Heading
-        {
-            get => _heading;
-            set => SetProperty(ref _heading, value);
         }
         private void Start()
         {
@@ -164,8 +164,15 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //PointToQibla(e);
 
             }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Feature not supported on device
+                UserDialogs.Instance.Alert(AppResources.CihazDesteklemiyor, AppResources.CihazDesteklemiyor);
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Compass_ReadingChanged)}: {fnsEx.Message}");
+            }
             catch (Exception ex)
             {
+                UserDialogs.Instance.Alert(ex.Message);
                 Debug.WriteLine(ex.Message);
             }
         }

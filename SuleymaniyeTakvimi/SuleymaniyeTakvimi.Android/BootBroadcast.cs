@@ -7,7 +7,7 @@ using Debug = System.Diagnostics.Debug;
 namespace SuleymaniyeTakvimi.Droid
 {
     [BroadcastReceiver(Enabled = true)]
-    [IntentFilter(new[] { Intent.ActionBootCompleted, Intent.ActionLockedBootCompleted, Intent.ActionTimeChanged, Intent.ActionTimezoneChanged }, Priority = (int)IntentFilterPriority.HighPriority)]
+    [IntentFilter(new[] { Intent.ActionBootCompleted, Intent.ActionLockedBootCompleted, Intent.ActionMyPackageReplaced, Intent.ActionTimeChanged, Intent.ActionTimezoneChanged }, Priority = (int)IntentFilterPriority.HighPriority)]
     public class BootBroadcast : BroadcastReceiver
     {
         public override void OnReceive(Context context, Intent intent)

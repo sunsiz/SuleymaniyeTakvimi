@@ -28,11 +28,11 @@ namespace SuleymaniyeTakvimi.Services
 
         public DataService()
         {
-            _takvim = new Takvim()
+            _takvim = GetTakvimFromFile() ?? new Takvim()
             {
-                Enlem = Preferences.Get("enlem", 41.0056),
-                Boylam = Preferences.Get("boylam", 28.9767),
-                Yukseklik = Preferences.Get("yukseklik", 4.0),
+                Enlem = Preferences.Get("enlem", 41),
+                Boylam = Preferences.Get("boylam", 29),
+                Yukseklik = Preferences.Get("yukseklik", 114.0),
                 SaatBolgesi = Preferences.Get("saatbolgesi", 3.0),
                 YazKis = Preferences.Get("yazkis", 0.0),
                 FecriKazip = Preferences.Get("fecrikazip", "06:28"),
@@ -67,7 +67,8 @@ namespace SuleymaniyeTakvimi.Services
                     CancellationTokenSource cts = new CancellationTokenSource();
                     location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(false);
                 }
-                if (location != null)
+
+                if (location != null && location.Latitude != 0 && location.Longitude != 0)
                 {
                     Debug.WriteLine(
                         $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
@@ -82,6 +83,8 @@ namespace SuleymaniyeTakvimi.Services
                 {
                     var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
                     Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {result}");
+                    if (result == PermissionStatus.Denied)
+                        UserDialogs.Instance.Toast(AppResources.KonumIzniBaslik, TimeSpan.FromSeconds(5));
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
@@ -112,6 +115,8 @@ namespace SuleymaniyeTakvimi.Services
                 //await App.Current.MainPage.DisplayAlert("Konum Servisi İzni Yok", "Uygulamanın normal çalışması için Konuma erişme yetkisi vermeniz lazım!", "Tamam");
                 var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
                 Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {result}");
+                if (result == PermissionStatus.Denied)
+                    UserDialogs.Instance.Toast(AppResources.KonumIzniBaslik, TimeSpan.FromSeconds(5));
             }
             catch (Exception ex)
             {
@@ -125,26 +130,9 @@ namespace SuleymaniyeTakvimi.Services
         public async Task<Takvim> VakitHesabiAsync()
         {
             Analytics.TrackEvent("VakitHesabi in the DataService");
+            _takvim = GetTakvimFromFile();
+            if (_takvim != null) return _takvim;
             _takvim = new Takvim();
-            if (File.Exists(_fileName))
-            {
-                XDocument xmldoc = XDocument.Load(_fileName);
-                var takvims = ParseXmlList(xmldoc);
-                if (takvims != null && DateTime.Parse(takvims[0].Tarih) <= DateTime.Today && DateTime.Parse(takvims[takvims.Count - 1].Tarih) >= DateTime.Today)
-                {
-                    foreach (var item in takvims)
-                    {
-                        if (DateTime.Parse(item.Tarih) == DateTime.Today)
-                        {
-                            _takvim = item;
-                            _takvim.Enlem = Preferences.Get("LastLatitude", 0.0);
-                            _takvim.Boylam = Preferences.Get("LastLongitude", 0.0);
-                            _takvim.Yukseklik = Preferences.Get("LastAltitude", 0.0);
-                            return _takvim;
-                        }
-                    }
-                }
-            }
 
             if (!HaveInternet()) return null;
             var location = await GetCurrentLocationAsync(false).ConfigureAwait(false);
@@ -220,6 +208,32 @@ namespace SuleymaniyeTakvimi.Services
             }
 
             return _takvim;
+        }
+
+        private Takvim GetTakvimFromFile()
+        {
+            if (File.Exists(_fileName))
+            {
+                XDocument xmldoc = XDocument.Load(_fileName);
+                var takvims = ParseXmlList(xmldoc);
+                if (takvims != null && DateTime.Parse(takvims[0].Tarih) <= DateTime.Today &&
+                    DateTime.Parse(takvims[takvims.Count - 1].Tarih) >= DateTime.Today)
+                {
+                    foreach (var item in takvims)
+                    {
+                        if (DateTime.Parse(item.Tarih) == DateTime.Today)
+                        {
+                            _takvim = item;
+                            _takvim.Enlem = Preferences.Get("LastLatitude", 0.0);
+                            _takvim.Boylam = Preferences.Get("LastLongitude", 0.0);
+                            _takvim.Yukseklik = Preferences.Get("LastAltitude", 0.0);
+                            return _takvim;
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
 
         //When refreshLocation true, force refresh location not using last known location.
@@ -509,24 +523,41 @@ namespace SuleymaniyeTakvimi.Services
 
         public async void SetWeeklyAlarms()
         {
-            Log.Warning("TimeStamp-SetWeeklyAlarms-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            Debug.WriteLine("TimeStamp-SetWeeklyAlarms-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             DependencyService.Get<IAlarmService>().CancelAlarm();
             //var testTimeSpan = DateTime.Now.AddMinutes(1).ToString("HH:mm");
             //DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Today, TimeSpan.Parse(testTimeSpan), 0, "test");
             if (CheckRemindersEnabledAny())
             {
-                if (File.Exists(_fileName))
+                try
                 {
-                    XDocument xmldoc = XDocument.Load(_fileName);
-                    var enlem = _takvim.Enlem == 0 ? Preferences.Get("LastLatitude", 0.0) : _takvim.Enlem;
-                    var boylam = _takvim.Boylam == 0 ? Preferences.Get("LastLongitude", 0.0) : _takvim.Boylam;
-                    var yukseklik = _takvim.Yukseklik == 0 ? Preferences.Get("LastAltitude", 0.0) : _takvim.Yukseklik;
-                    var takvims = ParseXmlList(xmldoc, enlem, boylam, yukseklik);
-                    if (takvims != null && (DateTime.Parse(takvims[takvims.Count-1].Tarih) - DateTime.Today).Days > 7 && takvims[0].Enlem!=0)
+                    if (File.Exists(_fileName))
                     {
-                        //xmldoc = ReadTakvimFile();
-                        //MonthlyTakvim = ParseXmlList(xmldoc);
-                        _monthlyTakvim = takvims;
+                        XDocument xmldoc = XDocument.Load(_fileName);
+                        var enlem = _takvim.Enlem == 0 ? Preferences.Get("LastLatitude", 0.0) : _takvim.Enlem;
+                        var boylam = _takvim.Boylam == 0 ? Preferences.Get("LastLongitude", 0.0) : _takvim.Boylam;
+                        var yukseklik = _takvim.Yukseklik == 0 ? Preferences.Get("LastAltitude", 0.0) : _takvim.Yukseklik;
+                        var takvims = ParseXmlList(xmldoc, enlem, boylam, yukseklik);
+                        if (takvims != null && (DateTime.Parse(takvims[takvims.Count-1].Tarih) - DateTime.Today).Days > 3 && takvims[0].Enlem!=0)
+                        {
+                            //xmldoc = ReadTakvimFile();
+                            //MonthlyTakvim = ParseXmlList(xmldoc);
+                            _monthlyTakvim = takvims;
+                        }
+                        else
+                        {
+                            var location = await GetCurrentLocationAsync(false).ConfigureAwait(false);
+                            if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                            {
+                                _monthlyTakvim = GetMonthlyPrayerTimes(location, false);
+                                if (_monthlyTakvim == null)
+                                {
+                                    await UserDialogs.Instance.AlertAsync(AppResources.TakvimIcinInternet,
+                                        AppResources.TakvimIcinInternetBaslik).ConfigureAwait(true);
+                                    return;
+                                }
+                            }
+                        }
                     }
                     else
                     {
@@ -542,61 +573,51 @@ namespace SuleymaniyeTakvimi.Services
                             }
                         }
                     }
-                }
-                else
-                {
-                    var location = await GetCurrentLocationAsync(false).ConfigureAwait(false);
-                    if (location != null && location.Latitude != 0 && location.Longitude != 0)
+
+                    int dayCounter = 0;
+                    foreach (Takvim todayTakvim in _monthlyTakvim)
                     {
-                        _monthlyTakvim = GetMonthlyPrayerTimes(location, false);
-                        if (_monthlyTakvim == null)
-                        {
-                            await UserDialogs.Instance.AlertAsync(AppResources.TakvimIcinInternet,
-                                AppResources.TakvimIcinInternetBaslik).ConfigureAwait(true);
-                            return;
+                        if(DateTime.Parse(todayTakvim.Tarih)>=DateTime.Today){
+                            var fecriKazipZaman = TimeSpan.Parse(todayTakvim.FecriKazip);
+                            var fecriSadikZaman = TimeSpan.Parse(todayTakvim.FecriSadik);
+                            var sabahSonuZaman = TimeSpan.Parse(todayTakvim.SabahSonu);
+                            var ogleZaman = TimeSpan.Parse(todayTakvim.Ogle);
+                            var ikindiZaman = TimeSpan.Parse(todayTakvim.Ikindi);
+                            var aksamZaman = TimeSpan.Parse(todayTakvim.Aksam);
+                            var yatsiZaman = TimeSpan.Parse(todayTakvim.Yatsi);
+                            var yatsiSonuZaman = TimeSpan.Parse(todayTakvim.YatsiSonu);
+                            var fecriKazip = DateTime.Parse(todayTakvim.Tarih) + fecriKazipZaman;
+                            var fecriSadik = DateTime.Parse(todayTakvim.Tarih) + fecriSadikZaman;
+                            var sabahSonu = DateTime.Parse(todayTakvim.Tarih) + sabahSonuZaman;
+                            var ogle = DateTime.Parse(todayTakvim.Tarih) + ogleZaman;
+                            var ikindi = DateTime.Parse(todayTakvim.Tarih) + ikindiZaman;
+                            var aksam = DateTime.Parse(todayTakvim.Tarih) + aksamZaman;
+                            var yatsi = DateTime.Parse(todayTakvim.Tarih) + yatsiZaman;
+                            var yatsiSonu = DateTime.Parse(todayTakvim.Tarih) + yatsiSonuZaman;
+                            Debug.WriteLine("TimeStamp-SetAlarms-fecrikazip " + fecriKazip.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("fecrikazipEtkin", false) + " --->>> " + (DateTime.Now < fecriKazip));
+                            Debug.WriteLine("TimeStamp-SetAlarms-fecrisadik " + fecriSadik.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("fecrisadikEtkin", false) + " --->>> " + (DateTime.Now < fecriSadik));
+                            Debug.WriteLine("TimeStamp-SetAlarms-sabahsonu " + sabahSonu.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("sabahsonuEtkin", false) + " --->>> " + (DateTime.Now < sabahSonu));
+                            Debug.WriteLine("TimeStamp-SetAlarms-ogle " + ogle.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("ogleEtkin", false) + " --->>> " + (DateTime.Now < ogle));
+                            Debug.WriteLine("TimeStamp-SetAlarms-ikindi " + ikindi.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("ikindiEtkin", false) + " --->>> " + (DateTime.Now < ikindi));
+                            Debug.WriteLine("TimeStamp-SetAlarms-aksam " + aksam.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("aksamEtkin", false) + " --->>> " + (DateTime.Now < aksam));
+                            Debug.WriteLine("TimeStamp-SetAlarms-yatsi " + yatsi.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("yatsiEtkin", false) + " --->>> " + (DateTime.Now < yatsi));
+                            Debug.WriteLine("TimeStamp-SetAlarms-yatsisonu " + yatsiSonu.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("yatsisonuEtkin", false) + " --->>> " + (DateTime.Now < yatsiSonu));
+                            if (DateTime.Now < fecriKazip && Preferences.Get("fecrikazipEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), fecriKazipZaman, Convert.ToInt16(Preferences.Get("fecrikazipBildirmeVakti", 0.0)), "Fecri Kazip");
+                            if (DateTime.Now < fecriSadik && Preferences.Get("fecrisadikEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), fecriSadikZaman, Convert.ToInt16(Preferences.Get("fecrisadikBildirmeVakti", 0.0)), "Fecri Sadık");
+                            if (DateTime.Now < sabahSonu && Preferences.Get("sabahsonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), sabahSonuZaman, Convert.ToInt16(Preferences.Get("sabahsonuBildirmeVakti", 0.0)), "Sabah Sonu");
+                            if (DateTime.Now < ogle && Preferences.Get("ogleEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), ogleZaman, Convert.ToInt16(Preferences.Get("ogleBildirmeVakti", 0.0)), "Öğle");
+                            if (DateTime.Now < ikindi && Preferences.Get("ikindiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), ikindiZaman, Convert.ToInt16(Preferences.Get("ikindiBildirmeVakti", 0.0)), "İkindi");
+                            if (DateTime.Now < aksam && Preferences.Get("aksamEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), aksamZaman, Convert.ToInt16(Preferences.Get("aksamBildirmeVakti", 0.0)), "Akşam");
+                            if (DateTime.Now < yatsi && Preferences.Get("yatsiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), yatsiZaman, Convert.ToInt16(Preferences.Get("yatsiBildirmeVakti", 0.0)), "Yatsı");
+                            if (DateTime.Now < yatsiSonu && Preferences.Get("yatsisonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), yatsiSonuZaman, Convert.ToInt16(Preferences.Get("yatsisonuBildirmeVakti", 0.0)), "Yatsı Sonu");
+                            dayCounter++;
+                            if (dayCounter >= 7) break;
                         }
                     }
                 }
-
-                int dayCounter = 0;
-                foreach (Takvim todayTakvim in _monthlyTakvim)
+                catch (Exception exception)
                 {
-                    if(DateTime.Parse(todayTakvim.Tarih)>=DateTime.Today){
-                        var fecriKazipZaman = TimeSpan.Parse(todayTakvim.FecriKazip);
-                        var fecriSadikZaman = TimeSpan.Parse(todayTakvim.FecriSadik);
-                        var sabahSonuZaman = TimeSpan.Parse(todayTakvim.SabahSonu);
-                        var ogleZaman = TimeSpan.Parse(todayTakvim.Ogle);
-                        var ikindiZaman = TimeSpan.Parse(todayTakvim.Ikindi);
-                        var aksamZaman = TimeSpan.Parse(todayTakvim.Aksam);
-                        var yatsiZaman = TimeSpan.Parse(todayTakvim.Yatsi);
-                        var yatsiSonuZaman = TimeSpan.Parse(todayTakvim.YatsiSonu);
-                        var fecriKazip = DateTime.Parse(todayTakvim.Tarih) + fecriKazipZaman;
-                        var fecriSadik = DateTime.Parse(todayTakvim.Tarih) + fecriSadikZaman;
-                        var sabahSonu = DateTime.Parse(todayTakvim.Tarih) + sabahSonuZaman;
-                        var ogle = DateTime.Parse(todayTakvim.Tarih) + ogleZaman;
-                        var ikindi = DateTime.Parse(todayTakvim.Tarih) + ikindiZaman;
-                        var aksam = DateTime.Parse(todayTakvim.Tarih) + aksamZaman;
-                        var yatsi = DateTime.Parse(todayTakvim.Tarih) + yatsiZaman;
-                        var yatsiSonu = DateTime.Parse(todayTakvim.Tarih) + yatsiSonuZaman;
-                        Debug.WriteLine("TimeStamp-SetAlarms-fecrikazip " + fecriKazip.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("fecrikazipEtkin", false) + " --->>> " + (DateTime.Now < fecriKazip));
-                        Debug.WriteLine("TimeStamp-SetAlarms-fecrisadik " + fecriSadik.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("fecrisadikEtkin", false) + " --->>> " + (DateTime.Now < fecriSadik));
-                        Debug.WriteLine("TimeStamp-SetAlarms-sabahsonu " + sabahSonu.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("sabahsonuEtkin", false) + " --->>> " + (DateTime.Now < sabahSonu));
-                        Debug.WriteLine("TimeStamp-SetAlarms-ogle " + ogle.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("ogleEtkin", false) + " --->>> " + (DateTime.Now < ogle));
-                        Debug.WriteLine("TimeStamp-SetAlarms-ikindi " + ikindi.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("ikindiEtkin", false) + " --->>> " + (DateTime.Now < ikindi));
-                        Debug.WriteLine("TimeStamp-SetAlarms-aksam " + aksam.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("aksamEtkin", false) + " --->>> " + (DateTime.Now < aksam));
-                        Debug.WriteLine("TimeStamp-SetAlarms-yatsi " + yatsi.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("yatsiEtkin", false) + " --->>> " + (DateTime.Now < yatsi));
-                        Debug.WriteLine("TimeStamp-SetAlarms-yatsisonu " + yatsiSonu.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + " --->>>> " + Preferences.Get("yatsisonuEtkin", false) + " --->>> " + (DateTime.Now < yatsiSonu));
-                        if (DateTime.Now < fecriKazip && Preferences.Get("fecrikazipEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), fecriKazipZaman, Convert.ToInt16(Preferences.Get("fecrikazipBildirmeVakti", 0.0)), "Fecri Kazip");
-                        if (DateTime.Now < fecriSadik && Preferences.Get("fecrisadikEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), fecriSadikZaman, Convert.ToInt16(Preferences.Get("fecrisadikBildirmeVakti", 0.0)), "Fecri Sadık");
-                        if (DateTime.Now < sabahSonu && Preferences.Get("sabahsonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), sabahSonuZaman, Convert.ToInt16(Preferences.Get("sabahsonuBildirmeVakti", 0.0)), "Sabah Sonu");
-                        if (DateTime.Now < ogle && Preferences.Get("ogleEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), ogleZaman, Convert.ToInt16(Preferences.Get("ogleBildirmeVakti", 0.0)), "Öğle");
-                        if (DateTime.Now < ikindi && Preferences.Get("ikindiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), ikindiZaman, Convert.ToInt16(Preferences.Get("ikindiBildirmeVakti", 0.0)), "İkindi");
-                        if (DateTime.Now < aksam && Preferences.Get("aksamEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), aksamZaman, Convert.ToInt16(Preferences.Get("aksamBildirmeVakti", 0.0)), "Akşam");
-                        if (DateTime.Now < yatsi && Preferences.Get("yatsiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), yatsiZaman, Convert.ToInt16(Preferences.Get("yatsiBildirmeVakti", 0.0)), "Yatsı");
-                        if (DateTime.Now < yatsiSonu && Preferences.Get("yatsisonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), yatsiSonuZaman, Convert.ToInt16(Preferences.Get("yatsisonuBildirmeVakti", 0.0)), "Yatsı Sonu");
-                        dayCounter++;
-                        if (dayCounter >= 7) break;
-                    }
+                    Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {exception.Message}");
                 }
 
                 Preferences.Set("LastAlarmDate", DateTime.Today.AddDays(7).ToShortDateString());
@@ -606,7 +627,7 @@ namespace SuleymaniyeTakvimi.Services
                 //}
             }
             //DependencyService.Get<IAlarmService>().SetAlarm(TimeSpan.Parse(DateTime.Now.AddMinutes(2).ToShortTimeString()), "test");
-            Log.Warning("TimeStamp-SetWeeklyAlarms-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            Debug.WriteLine("TimeStamp-SetWeeklyAlarms-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
 

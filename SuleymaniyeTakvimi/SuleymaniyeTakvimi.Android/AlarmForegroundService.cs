@@ -25,11 +25,13 @@ namespace SuleymaniyeTakvimi.Droid
         private Handler _handler;
         private Action _runnable;
         
+        public IBinder Binder { get; private set; }
         public override IBinder OnBind(Intent intent)
         {
             // Return null because this is a pure started service. A hybrid service would return a binder that would
             // allow access to the GetFormattedRemainingTime() method.
-            return null;
+            this.Binder = new AlarmForegroundBinder(this);
+            return this.Binder;
         }
 
         public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, int timeOffset, string name)
@@ -63,7 +65,7 @@ namespace SuleymaniyeTakvimi.Droid
                 //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
                 //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
                 alarmManager?.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
-                Log.Info("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
+                System.Diagnostics.Debug.WriteLine("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
             }
         }
 
@@ -195,7 +197,7 @@ namespace SuleymaniyeTakvimi.Droid
             if (intent == null || intent.Action == null)
             {
                 var source = null == intent ? "intent" : "action";
-                Log.Info("OnStartCommand Null Intent Exception",source + " was null, flags=" + flags + " bits=" + flags);
+                System.Diagnostics.Debug.WriteLine("OnStartCommand Null Intent Exception: " + source + " was null, flags=" + flags + " bits=" + flags);
                 return StartCommandResult.RedeliverIntent;
             }
             Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService");
@@ -214,8 +216,8 @@ namespace SuleymaniyeTakvimi.Droid
                     _isStarted = true;
                     Task startupWork = new Task(async () =>
                     {
-                        await Task.Delay(10000).ConfigureAwait(true);
-                        Log.Info("OnStartCommand", $"Starting Set Alarm at {DateTime.Now}");
+                        await Task.Delay(12000).ConfigureAwait(true);
+                        System.Diagnostics.Debug.WriteLine("OnStartCommand: " + $"Starting Set Alarm at {DateTime.Now}");
                         DataService data = new DataService();
                         data.SetWeeklyAlarms();
                     });
@@ -232,6 +234,22 @@ namespace SuleymaniyeTakvimi.Droid
             }
 
             return StartCommandResult.Sticky;
+        }
+    }
+
+    internal class AlarmForegroundBinder : Binder
+    {
+        public AlarmForegroundService Service { get; private set; }
+        public AlarmForegroundBinder(AlarmForegroundService service)
+        {
+            this.Service = service;
+        }
+
+        public void StartForeground()
+        {
+            var _startServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
+            _startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
+            Service.OnStartCommand(_startServiceIntent, StartCommandFlags.Redelivery, 2020);
         }
     }
 }

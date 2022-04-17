@@ -80,7 +80,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         public ItemsViewModel()
         {
-            Log.Warning("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            Debug.WriteLine("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             Items = new ObservableCollection<Item>();
             var data = new DataService();
             _takvim = data._takvim;
@@ -119,9 +119,12 @@ namespace SuleymaniyeTakvimi.ViewModels
             Task.Run(async () =>
             {
                 if (!data.HaveInternet()) return;
-                Log.Warning("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
-                await Task.Delay(1000).ConfigureAwait(true);
+                Debug.WriteLine("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
+                await Task.Delay(2000).ConfigureAwait(true);
+                //if (Math.Abs(_takvim.Yukseklik - 114) < 0.00001 && Math.Abs(_takvim.Enlem - 42) < 0.00001 &&
+                //    Math.Abs(_takvim.Boylam - 29) < 0.00001)
                 _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
+                //if (_takvim == null) UserDialogs.Instance.Toast(AppResources.TakvimIcinInternet);
                 //DataService data = new DataService();
                 data.SetWeeklyAlarms();
                 ExecuteLoadItemsCommand();
@@ -132,7 +135,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }).ConfigureAwait(false);
             Dark = Theme.Tema != 1;//0 is dark, 1 is light
             //Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
-            Log.Warning("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            Debug.WriteLine("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
         private void ChangeTheme(object obj)
@@ -147,7 +150,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private ObservableCollection<Item> ExecuteLoadItemsCommand()
         {
             IsBusy = true;
-            Log.Warning("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            Debug.WriteLine("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
 
             try
             {
@@ -185,7 +188,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
             finally
             {
-                Log.Warning("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+                Debug.WriteLine("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
                 IsBusy = false;
             }
 
@@ -201,12 +204,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         public void OnAppearing()
         {
-            Log.Warning("TimeStamp-OnAppearing-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            Debug.WriteLine("TimeStamp-OnAppearing-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             IsBusy = true;
             SelectedItem = null;
             GetCity();
             LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
-            Log.Warning("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            Debug.WriteLine("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
         private Item SelectedItem
