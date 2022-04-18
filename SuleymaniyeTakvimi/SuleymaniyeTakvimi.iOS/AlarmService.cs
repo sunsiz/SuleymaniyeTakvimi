@@ -68,6 +68,16 @@ namespace SuleymaniyeTakvimi.iOS
             UNUserNotificationCenter.Current.RemoveAllPendingNotificationRequests();
         }
 
+        public void StartAlarmForegroundService()
+        {
+            
+        }
+
+        public void StopAlarmForegroundService()
+        {
+            
+        }
+
         //private string GetFormattedRemainingTime()
         //{
         //    var message = "";

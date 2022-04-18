@@ -120,9 +120,9 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 if (!data.HaveInternet()) return;
                 Debug.WriteLine("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
-                await Task.Delay(2000).ConfigureAwait(true);
-                //if (Math.Abs(_takvim.Yukseklik - 114) < 0.00001 && Math.Abs(_takvim.Enlem - 42) < 0.00001 &&
-                //    Math.Abs(_takvim.Boylam - 29) < 0.00001)
+                await Task.Delay(2000).ConfigureAwait(false);
+                //if (Math.Abs(_takvim.Yukseklik - 114) < 0.0001 && Math.Abs(_takvim.Enlem - 42) < 0.0001 &&
+                //    Math.Abs(_takvim.Boylam - 29) < 0.0001)
                 _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
                 //if (_takvim == null) UserDialogs.Instance.Toast(AppResources.TakvimIcinInternet);
                 //DataService data = new DataService();
@@ -209,6 +209,12 @@ namespace SuleymaniyeTakvimi.ViewModels
             SelectedItem = null;
             GetCity();
             LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
+            Task.Run(async () =>
+            {
+                await Task.Delay(5000).ConfigureAwait(false);
+                DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
+            });
+                
             Debug.WriteLine("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 

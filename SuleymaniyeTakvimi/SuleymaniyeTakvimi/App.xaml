@@ -58,7 +58,7 @@
             <Color x:Key="CurrentTimeBackgroundColorDark">#626262</Color>
             <Color x:Key="FutureTimeBackgroundColor">#FFF8DC</Color>
             <Color x:Key="FutureTimeBackgroundColorDark">#424242</Color>
-            <Color x:Key="TimeTextColor">#4d241a</Color>
+            <Color x:Key="TimeTextColor">#A0522D</Color>
             <Color x:Key="TimeTextColorDark">#F5F5DC</Color>
             <Color x:Key="CityBackgroundColor">#14828C</Color>
             <Color x:Key="CityBackgroundColorDark">#002532</Color>

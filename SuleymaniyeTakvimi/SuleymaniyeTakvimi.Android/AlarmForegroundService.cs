@@ -8,6 +8,7 @@ using Java.Util;
 using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
+using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -25,13 +26,11 @@ namespace SuleymaniyeTakvimi.Droid
         private Handler _handler;
         private Action _runnable;
         
-        public IBinder Binder { get; private set; }
         public override IBinder OnBind(Intent intent)
         {
             // Return null because this is a pure started service. A hybrid service would return a binder that would
             // allow access to the GetFormattedRemainingTime() method.
-            this.Binder = new AlarmForegroundBinder(this);
-            return this.Binder;
+            return null;
         }
 
         public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, int timeOffset, string name)
@@ -235,21 +234,46 @@ namespace SuleymaniyeTakvimi.Droid
 
             return StartCommandResult.Sticky;
         }
-    }
-
-    internal class AlarmForegroundBinder : Binder
-    {
-        public AlarmForegroundService Service { get; private set; }
-        public AlarmForegroundBinder(AlarmForegroundService service)
+        
+        public void StartAlarmForegroundService()
         {
-            this.Service = service;
-        }
-
-        public void StartForeground()
-        {
+            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
+            //var startServiceIntent = new Intent(this, typeof(ForegroundService));
+            
             var _startServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
             _startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
-            Service.OnStartCommand(_startServiceIntent, StartCommandFlags.Redelivery, 2020);
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+                {
+                    Application.Context?.StartForegroundService(_startServiceIntent);
+                }
+                else
+                {
+                    Application.Context?.StartService(_startServiceIntent);
+                }
+            });
+            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
+        }
+
+        public void StopAlarmForegroundService()
+        {
+            Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
+            //var startServiceIntent = new Intent(this, typeof(ForegroundService));
+            var _stopServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
+            _stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+                {
+                    Application.Context?.StartForegroundService(_stopServiceIntent);
+                }
+                else
+                {
+                    Application.Context?.StartService(_stopServiceIntent);
+                }
+            });
+            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
     }
 }

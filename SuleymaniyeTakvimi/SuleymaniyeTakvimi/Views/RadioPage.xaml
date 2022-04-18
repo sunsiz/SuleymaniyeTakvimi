@@ -17,8 +17,8 @@
                         <Label VerticalTextAlignment="Start">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" FontSize="22" />
-                                    <Span Text="{x:Static resources:AppResources.YayinAkisi}" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}">
+                                    <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="22" />
+                                    <Span Text="{x:Static resources:AppResources.YayinAkisi}" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>
@@ -45,8 +45,8 @@
                         <Label HorizontalTextAlignment="End" VerticalTextAlignment="Start">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" FontSize="22" />
-                                    <Span Text="{x:Static resources:AppResources.WebSayfa}" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}">
+                                    <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="22" />
+                                    <Span Text="{x:Static resources:AppResources.WebSayfa}" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>

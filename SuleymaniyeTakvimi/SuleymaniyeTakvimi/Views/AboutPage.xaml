@@ -23,13 +23,13 @@
                 <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" VerticalTextAlignment="Start" Padding="20,10,20,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{x:Static resources:AppResources.AciklamaBas}" TextColor="{AppThemeBinding Light={StaticResource SecondaryColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="22" />
-                            <Span Text="{x:Static resources:AppResources.AciklamaLinkText}" FontAttributes="Bold" FontSize="22" TextColor="DeepSkyBlue" TextDecorations="Underline">
+                            <Span Text="{x:Static resources:AppResources.AciklamaBas}" TextColor="{AppThemeBinding Light={StaticResource SecondaryColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="20" />
+                            <Span Text="{x:Static resources:AppResources.AciklamaLinkText}" FontAttributes="Bold" FontSize="20" TextColor="DeepSkyBlue" TextDecorations="Underline">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding LinkButtonClicked}" CommandParameter="{x:Static resources:AppResources.AciklamaLinkURL}" />
                                 </Span.GestureRecognizers>
                             </Span>
-                            <Span Text="{x:Static resources:AppResources.AciklamaSon}" TextColor="{AppThemeBinding Light={StaticResource SecondaryColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="22" />
+                            <Span Text="{x:Static resources:AppResources.AciklamaSon}" TextColor="{AppThemeBinding Light={StaticResource SecondaryColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="20" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>

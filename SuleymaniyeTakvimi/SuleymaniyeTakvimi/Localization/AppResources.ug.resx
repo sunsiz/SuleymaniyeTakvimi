@@ -130,7 +130,7 @@
     <value>قوڭغۇراق چالغاندا بىر مەسىلە چىقتى، تەپسىلاتلار</value>
   </data>
   <data name="Alarmi" xml:space="preserve">
-    <value>قوڭغۇراق</value>
+	  <value>ئەسكەرتىشى</value>
   </data>
   <data name="Alarmkurarkenhataolustu" xml:space="preserve">
     <value>قوڭغۇراقلارنى تەڭشەۋاتقاندا بىر خاتالىق يۈز بەردى</value>
@@ -250,10 +250,10 @@
     <value>مەزمۇن يۈكلىنىۋاتىدۇ ...</value>
   </data>
   <data name="Ikindi" xml:space="preserve">
-    <value>دىگەر ۋاقتى</value>
+	  <value>ئەسىر ۋاقتى</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-    <value>دىگەر ۋاقتىنىڭ چىقىشىغا قالغان ۋاقىت:</value>
+	  <value>ئەسىر ۋاقتىنىڭ چىقىشىغا قالغان ۋاقىت:</value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>تاقاش</value>
@@ -433,7 +433,7 @@
     <value>https://www.musulmanlar.com/?p=2252</value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
-    <value>بەش ۋاخ ناماز رىسالىسى</value>
+	  <value>ناماز ۋە روزا ۋاقىتلىرى (تۈركچە)</value>
   </data>
   <data name="AciklamaBas" xml:space="preserve">
     <value>مۇسۇلمان ئاللاھقا تەسلىم بولغان ۋە ئۇنىڭ يولىدىكى بارلىق قىيىنچىلىقلارغا بەرداشلىق بەرگەنلەرگە ئاللاھ بەرگەن ئىسىم. ئۇلار  دىننى ئاللاھقا خالىس قىلغان ھالدا ئېتىقاد قىلىدىغانلاردۇر.
