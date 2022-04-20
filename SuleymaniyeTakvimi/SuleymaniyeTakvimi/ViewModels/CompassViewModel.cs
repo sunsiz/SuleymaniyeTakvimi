@@ -13,9 +13,9 @@ namespace SuleymaniyeTakvimi.ViewModels
 {
     public class CompassViewModel:MvvmHelpers.BaseViewModel
     {
-        private double _currentLatitude = 41.0108267;
-        private double _currentLongitude = 28.9709183;
-        private double _currentAltitude = 4;
+        private double _currentLatitude = 41.0;
+        private double _currentLongitude = 29.0;
+        private double _currentAltitude = 114;
         private readonly double _qiblaLatitude = 21.4224779;
         private readonly double _qiblaLongitude = 39.8251832;
         internal readonly SensorSpeed Speed = SensorSpeed.UI;
@@ -84,7 +84,25 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
                 finally { IsBusy = false; /*UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));*/ }
             });
-            if (!Compass.IsMonitoring) Compass.Start(Speed, applyLowPassFilter: true);
+            if (!Compass.IsMonitoring)
+            {
+                try
+                {
+                    Compass.Start(Speed, applyLowPassFilter: true);
+                }
+                catch (FeatureNotSupportedException fnsEx)
+                {
+                    // Feature not supported on device
+                    UserDialogs.Instance.Alert(AppResources.CihazDesteklemiyor, AppResources.CihazDesteklemiyor);
+                    Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Compass_ReadingChanged)}: {fnsEx.Message}");
+                }
+                catch (Exception ex)
+                {
+                    UserDialogs.Instance.Alert(ex.Message);
+                    Debug.WriteLine(ex.Message);
+                }
+            }
+
             //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
             GoToMapCommand = new Command(async () => {
                 try

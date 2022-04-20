@@ -160,33 +160,42 @@ namespace SuleymaniyeTakvimi.Droid
             var data = new DataService();
             var takvim = data._takvim;
             var currentTime = DateTime.Now.TimeOfDay;
-            if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
-                message = AppResources.FecriKazibingirmesinekalanvakit +
-                          (TimeSpan.Parse(takvim.FecriKazip) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.FecriKazip) && currentTime <= TimeSpan.Parse(takvim.FecriSadik))
-                message = AppResources.FecriSadikakalanvakit +
-                          (TimeSpan.Parse(takvim.FecriSadik) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.FecriSadik) && currentTime <= TimeSpan.Parse(takvim.SabahSonu))
-                message = AppResources.SabahSonunakalanvakit +
-                          (TimeSpan.Parse(takvim.SabahSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.SabahSonu) && currentTime <= TimeSpan.Parse(takvim.Ogle))
-                message = AppResources.Ogleningirmesinekalanvakit +
-                          (TimeSpan.Parse(takvim.Ogle) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.Ogle) && currentTime <= TimeSpan.Parse(takvim.Ikindi))
-                message = AppResources.Oglenincikmasinakalanvakit +
-                          (TimeSpan.Parse(takvim.Ikindi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.Ikindi) && currentTime <= TimeSpan.Parse(takvim.Aksam))
-                message = AppResources.Ikindinincikmasinakalanvakit +
-                          (TimeSpan.Parse(takvim.Aksam) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.Aksam) && currentTime <= TimeSpan.Parse(takvim.Yatsi))
-                message = AppResources.Aksamincikmasnakalanvakit +
-                          (TimeSpan.Parse(takvim.Yatsi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.Yatsi) && currentTime <= TimeSpan.Parse(takvim.YatsiSonu))
-                message = AppResources.Yatsinincikmasinakalanvakit +
-                          (TimeSpan.Parse(takvim.YatsiSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
-            else if (currentTime >= TimeSpan.Parse(takvim.YatsiSonu))
-                message = AppResources.Yatsininciktigindangecenvakit +
-                          (currentTime - TimeSpan.Parse(takvim.YatsiSonu)).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+            try
+            {
+                if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
+                    message = AppResources.FecriKazibingirmesinekalanvakit +
+                              (TimeSpan.Parse(takvim.FecriKazip) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+                else if (currentTime >= TimeSpan.Parse(takvim.FecriKazip) && currentTime <= TimeSpan.Parse(takvim.FecriSadik))
+                    message = AppResources.FecriSadikakalanvakit +
+                              (TimeSpan.Parse(takvim.FecriSadik) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+                else if (currentTime >= TimeSpan.Parse(takvim.FecriSadik) && currentTime <= TimeSpan.Parse(takvim.SabahSonu))
+                    message = AppResources.SabahSonunakalanvakit +
+                              (TimeSpan.Parse(takvim.SabahSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+                else if (currentTime >= TimeSpan.Parse(takvim.SabahSonu) && currentTime <= TimeSpan.Parse(takvim.Ogle))
+                    message = AppResources.Ogleningirmesinekalanvakit +
+                              (TimeSpan.Parse(takvim.Ogle) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+                else if (currentTime >= TimeSpan.Parse(takvim.Ogle) && currentTime <= TimeSpan.Parse(takvim.Ikindi))
+                    message = AppResources.Oglenincikmasinakalanvakit +
+                              (TimeSpan.Parse(takvim.Ikindi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+                else if (currentTime >= TimeSpan.Parse(takvim.Ikindi) && currentTime <= TimeSpan.Parse(takvim.Aksam))
+                    message = AppResources.Ikindinincikmasinakalanvakit +
+                              (TimeSpan.Parse(takvim.Aksam) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+                else if (currentTime >= TimeSpan.Parse(takvim.Aksam) && currentTime <= TimeSpan.Parse(takvim.Yatsi))
+                    message = AppResources.Aksamincikmasnakalanvakit +
+                              (TimeSpan.Parse(takvim.Yatsi) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+                else if (currentTime >= TimeSpan.Parse(takvim.Yatsi) && currentTime <= TimeSpan.Parse(takvim.YatsiSonu))
+                    message = AppResources.Yatsinincikmasinakalanvakit +
+                              (TimeSpan.Parse(takvim.YatsiSonu) - currentTime).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+                else if (currentTime >= TimeSpan.Parse(takvim.YatsiSonu))
+                    message = AppResources.Yatsininciktigindangecenvakit +
+                              (currentTime - TimeSpan.Parse(takvim.YatsiSonu)).Add(TimeSpan.FromMinutes(1)).ToString(@"hh\:mm");
+            }
+            catch (Exception exception)
+            {
+                System.Diagnostics.Debug.WriteLine($"GetFormattedRemainingTime exception: {exception.Message}. Location: {takvim.Enlem}, {takvim.Boylam}");
+                Log.Error("GetFormattedRemainingTime",$"GetFormattedRemainingTime exception: {exception.Message}. Location: {takvim.Enlem}, {takvim.Boylam}");
+                message = AppResources.KonumIzniIcerik;
+            }
 
             return message;
         }
@@ -253,7 +262,7 @@ namespace SuleymaniyeTakvimi.Droid
                     Application.Context?.StartService(_startServiceIntent);
                 }
             });
-            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
+            System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
 
         public void StopAlarmForegroundService()
@@ -273,7 +282,7 @@ namespace SuleymaniyeTakvimi.Droid
                     Application.Context?.StartService(_stopServiceIntent);
                 }
             });
-            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
+            System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
     }
 }

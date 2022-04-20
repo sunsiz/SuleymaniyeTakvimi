@@ -3,9 +3,9 @@
 	<item>
 		<color android:color="@color/splash_background"/>
 	</item>
-	<item android:left="1dp" android:right="1dp" android:top="16dp" android:bottom="16dp">
+	<item android:left="-16dp" android:right="-16dp" android:top="36dp" android:bottom="36dp">
 		<bitmap
-			android:src="@drawable/vakif_logo"
+			android:src="@drawable/vakiflogo"
 			android:tileMode="disabled"
 			android:gravity="fill_horizontal" />
 	</item>

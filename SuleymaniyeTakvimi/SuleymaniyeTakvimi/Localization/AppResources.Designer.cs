@@ -233,7 +233,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Notification.
+        ///   Looks up a localized string similar to Show notification.
         /// </summary>
         public static string BildirimGosterSwitch {
             get {

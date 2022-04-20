@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Acr.UserDialogs;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Models;
@@ -25,18 +26,23 @@ namespace SuleymaniyeTakvimi.ViewModels
             var data = new DataService();
             var konum = data._takvim;
             var location = new Location()
-                {Latitude = konum.Enlem, Longitude = konum.Boylam, Altitude = konum.Yukseklik};
+                { Latitude = konum.Enlem, Longitude = konum.Boylam, Altitude = konum.Yukseklik };
             //Task.Run(async () =>
             //{
             //    await data.GetMonthlyPrayerTimes(location).ConfigureAwait(true);
             //});
             //data.GetMonthlyPrayerTimes(location);
             //MonthlyTakvim = data.MonthlyTakvim;
-            MonthlyTakvim = data.GetMonthlyPrayerTimes(location, false);
+            if (location.Latitude != 0.0 && location.Longitude != 0.0)
+            {
+                MonthlyTakvim = data.GetMonthlyPrayerTimes(location, false);
             if(MonthlyTakvim==null){
                 UserDialogs.Instance.Alert(AppResources.TakvimIcinInternet, AppResources.TakvimIcinInternetBaslik);
                 return;
             }
+            }
+            else
+                UserDialogs.Instance.Toast(AppResources.KonumIzniIcerik, TimeSpan.FromSeconds(3));
             BackCommand = new Command(GoBack);
             RefreshCommand = new Command(async () =>
             {

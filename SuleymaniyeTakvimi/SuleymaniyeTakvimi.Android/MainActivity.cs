@@ -22,8 +22,8 @@ namespace SuleymaniyeTakvimi.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static MainActivity Instance;
-        private Intent _startServiceIntent;
-        private Intent _stopServiceIntent;
+        //private Intent _startServiceIntent;
+        //private Intent _stopServiceIntent;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -60,10 +60,10 @@ namespace SuleymaniyeTakvimi.Droid
             //    isStarted = savedInstanceState.GetBoolean("has_service_been_started", false);
             //}
             Instance = this;
-            _stopServiceIntent = new Intent(this, typeof(AlarmForegroundService));
-            _startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
-            _startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
-            _stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
+            //_stopServiceIntent = new Intent(this, typeof(AlarmForegroundService));
+            //_startServiceIntent = new Intent(this, typeof(AlarmForegroundService));
+            //_startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
+            //_stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
             //var status = await HandleLocationPermissionAsync().ConfigureAwait(false);
 
             //StartAlarmForegroundService();
@@ -123,37 +123,37 @@ namespace SuleymaniyeTakvimi.Droid
             return status;
         }
 
-        internal void StartAlarmForegroundService()
-        {
-            Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
-            //var startServiceIntent = new Intent(this, typeof(ForegroundService));
+        //internal void StartAlarmForegroundService()
+        //{
+        //    Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
+        //    //var startServiceIntent = new Intent(this, typeof(ForegroundService));
             
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-            {
-                StartForegroundService(_startServiceIntent);
-            }
-            else
-            {
-                StartService(_startServiceIntent);
-            }
-            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
-        }
+        //    if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+        //    {
+        //        StartForegroundService(_startServiceIntent);
+        //    }
+        //    else
+        //    {
+        //        StartService(_startServiceIntent);
+        //    }
+        //    System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
+        //}
 
-        internal void StopAlarmForegroundService()
-        {
-            Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
-            //var startServiceIntent = new Intent(this, typeof(ForegroundService));
+        //internal void StopAlarmForegroundService()
+        //{
+        //    Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
+        //    //var startServiceIntent = new Intent(this, typeof(ForegroundService));
 
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-            {
-                StartForegroundService(_stopServiceIntent);
-            }
-            else
-            {
-                StartService(_stopServiceIntent);
-            }
-            System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
-        }
+        //    if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+        //    {
+        //        StartForegroundService(_stopServiceIntent);
+        //    }
+        //    else
+        //    {
+        //        StartService(_stopServiceIntent);
+        //    }
+        //    System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
+        //}
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
@@ -181,14 +181,14 @@ namespace SuleymaniyeTakvimi.Droid
             Android.App.Application.Context.StartActivity(intent);
         }
 
-        private void OpenApplicationSettingsPage()
-        {
-            var intent = new Intent(Android.Provider.Settings.ActionApplicationDetailsSettings);
-            intent.AddFlags(ActivityFlags.NewTask);
-            string packageName = Android.App.Application.Context.PackageName;
-            var uri = Android.Net.Uri.FromParts("package", packageName, null);
-            intent.SetData(uri);
-            Android.App.Application.Context.StartActivity(intent);
-        }
+        //private void OpenApplicationSettingsPage()
+        //{
+        //    var intent = new Intent(Android.Provider.Settings.ActionApplicationDetailsSettings);
+        //    intent.AddFlags(ActivityFlags.NewTask);
+        //    string packageName = Android.App.Application.Context.PackageName;
+        //    var uri = Android.Net.Uri.FromParts("package", packageName, null);
+        //    intent.SetData(uri);
+        //    Android.App.Application.Context.StartActivity(intent);
+        //}
     }
 }

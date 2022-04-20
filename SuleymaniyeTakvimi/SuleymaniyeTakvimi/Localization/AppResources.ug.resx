@@ -130,7 +130,7 @@
     <value>قوڭغۇراق چالغاندا بىر مەسىلە چىقتى، تەپسىلاتلار</value>
   </data>
   <data name="Alarmi" xml:space="preserve">
-	  <value>ئەسكەرتىشى</value>
+    <value>ئەسكەرتىشى</value>
   </data>
   <data name="Alarmkurarkenhataolustu" xml:space="preserve">
     <value>قوڭغۇراقلارنى تەڭشەۋاتقاندا بىر خاتالىق يۈز بەردى</value>
@@ -211,7 +211,7 @@
     <value>زولۇق</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
-    <value>بامدات (باش سۈبھى)</value>
+    <value>بامدات</value>
   </data>
   <data name="FecriSadikakalanvakit" xml:space="preserve">
     <value>بامداتنىڭ كىرىشىگە (زولۇقنىڭ توختىشىغا) قالغان ۋاقىت:</value>
@@ -250,10 +250,10 @@
     <value>مەزمۇن يۈكلىنىۋاتىدۇ ...</value>
   </data>
   <data name="Ikindi" xml:space="preserve">
-	  <value>ئەسىر ۋاقتى</value>
+    <value>ئەسىر</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-	  <value>ئەسىر ۋاقتىنىڭ چىقىشىغا قالغان ۋاقىت:</value>
+    <value>ئەسىرنىڭ چىقىشىغا قالغان ۋاقىت:</value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>تاقاش</value>
@@ -295,19 +295,19 @@
     <value>ناماز ۋاقىتلىرىنى توردىن چۈشۈرۈۋاتقاندا خاتالىق كۆرۈلدى.</value>
   </data>
   <data name="Ogle" xml:space="preserve">
-    <value>پىشىن</value>
+    <value>پېشىن</value>
   </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-    <value>پىشىننىڭ چىقىشىغا قالغان ۋاقىت:</value>
+    <value>پېشىننىڭ چىقىشىغا قالغان ۋاقىت:</value>
   </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-    <value>پىشىننىڭ كىرىشىگە قالغان ۋاقىت:</value>
+    <value>پېشىننىڭ كىرىشىگە قالغان ۋاقىت:</value>
   </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>ئون بەش مىنۇت بۇرۇن</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
-    <value>سۇلايمانىىيە كالىندارى</value>
+    <value>سۇلايمانىيە كالىندارى</value>
   </data>
   <data name="Radyo" xml:space="preserve">
     <value>رادىئو</value>
@@ -331,7 +331,7 @@
     <value>ۋاقىت رايونى: GMT {0}</value>
   </data>
   <data name="SabahSonu" xml:space="preserve">
-    <value>بامداتنىڭ ئاخرى</value>
+    <value>بامداتنىڭ ئاخىرى</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
     <value>بامداتنىڭ ئاخىرلىشىشىغا قالغان ۋاقىت:</value>
@@ -385,7 +385,7 @@
     <value>سىناقنى توختىتىش</value>
   </data>
   <data name="TitremeyiDesteklemiyor" xml:space="preserve">
-    <value>ئۈسكىنىڭىز تىتەشنى قوللىمايدۇ.</value>
+    <value>ئۈسكىنىڭىز تىترەشنى قوللىمايدۇ.</value>
   </data>
   <data name="TitresimSwitch" xml:space="preserve">
     <value>تىترەش</value>
@@ -397,7 +397,7 @@
     <value>ۋاقتى ئەسكەرتىشى</value>
   </data>
   <data name="Version" xml:space="preserve">
-	  <value>نەشرى</value>
+    <value>نەشرى</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
     <value>تور بىكەت</value>
@@ -433,7 +433,7 @@
     <value>https://www.musulmanlar.com/?p=2252</value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
-	  <value>ناماز ۋە روزا ۋاقىتلىرى (تۈركچە)</value>
+    <value>ناماز ۋە روزا ۋاقىتلىرى (تۈركچە)</value>
   </data>
   <data name="AciklamaBas" xml:space="preserve">
     <value>مۇسۇلمان ئاللاھقا تەسلىم بولغان ۋە ئۇنىڭ يولىدىكى بارلىق قىيىنچىلىقلارغا بەرداشلىق بەرگەنلەرگە ئاللاھ بەرگەن ئىسىم. ئۇلار  دىننى ئاللاھقا خالىس قىلغان ھالدا ئېتىقاد قىلىدىغانلاردۇر.

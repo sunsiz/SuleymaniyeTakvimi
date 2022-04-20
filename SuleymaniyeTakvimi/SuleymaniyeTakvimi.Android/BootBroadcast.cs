@@ -2,6 +2,8 @@
 using Android.App;
 using Android.Content;
 using Microsoft.AppCenter.Analytics;
+using SuleymaniyeTakvimi.Services;
+using Xamarin.Forms;
 using Debug = System.Diagnostics.Debug;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -22,10 +24,11 @@ namespace SuleymaniyeTakvimi.Droid
 
                 // Run your code here
                 //MainActivity.SetAlarmForBackgroundServices(context);
-                MainActivity main = MainActivity.Instance;
-                main.StopAlarmForegroundService();
-                main.StartAlarmForegroundService();
-
+                //MainActivity main = MainActivity.Instance;
+                //main.StopAlarmForegroundService();
+                //main.StartAlarmForegroundService();
+                DependencyService.Get<IAlarmService>().StopAlarmForegroundService();
+                DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
                 //Toast.MakeText(context, "Süleymaniye Vakfı Takvimi Başladı! " + intent.Action, ToastLength.Long)?.Show();
                 //wakeLock?.Release();
             }

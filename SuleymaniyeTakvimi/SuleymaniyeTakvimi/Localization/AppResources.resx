@@ -163,7 +163,7 @@
     <value>notification is enabled.</value>
   </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
-    <value>Show Notification</value>
+    <value>Show notification</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
     <value>Reminding Time:</value>
@@ -397,7 +397,7 @@
     <value>Time Reminder</value>
   </data>
   <data name="Version" xml:space="preserve">
-	  <value>version</value>
+    <value>version</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
     <value>Web Site</value>
@@ -430,19 +430,19 @@
     <value>On time</value>
   </data>
   <data name="AciklamaBas" xml:space="preserve">
-	  <value>People who are submissive to God and stand up to all difficulties for His cause are named “Muslim”. Another pertinent characteristic of those who are “Muslim” is that they implement the rulings of the religion into their lives without any additions to it from their own desires. “Who speaks in a finer way than the one who invokes God, does righteous deeds and says: ‘I am of those who submit themselves to God (i.e. a Muslim)’?” (Fussilat 41:33)
+    <value>People who are submissive to God and stand up to all difficulties for His cause are named “Muslim”. Another pertinent characteristic of those who are “Muslim” is that they implement the rulings of the religion into their lives without any additions to it from their own desires. “Who speaks in a finer way than the one who invokes God, does righteous deeds and says: ‘I am of those who submit themselves to God (i.e. a Muslim)’?” (Fussilat 41:33)
 This application is designed to provide safe and fast access to prayer and fasting times. For more detailed information about time calculations and fasting times, read the article </value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
-	  <value>PRAYER TIMES FROM THE EQUATOR TO THE POLES</value>
+    <value>PRAYER TIMES FROM THE EQUATOR TO THE POLES</value>
   </data>
   <data name="AciklamaLinkURL" xml:space="preserve">
-	  <value>https://www.islamandquran.org/research/prayer-times-from-the-equator-to-the-poles.html</value>
+    <value>https://www.islamandquran.org/research/prayer-times-from-the-equator-to-the-poles.html</value>
   </data>
   <data name="AciklamaSon" xml:space="preserve">
-	  <value> here.</value>
+    <value> here.</value>
   </data>
   <data name="GotoSettings" xml:space="preserve">
-	  <value>Go to Settings</value>
+    <value>Go to Settings</value>
   </data>
 </root>

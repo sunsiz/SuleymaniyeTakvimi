@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal" Margin="0,20,0,0">
-            <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="35, *" ColumnSpacing="2">
+            <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="35, *, 52" ColumnSpacing="2">
                 <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Tarih}" />
                 <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.FecriKazip}" />
                 <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.FecriSadik}" />
@@ -19,7 +19,7 @@
                 <Label Grid.Row="0" Grid.Column="7" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Yatsi}" />
                 <Label Grid.Row="0" Grid.Column="8" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.YatsiSonu}" />
                 <!--  monthly time list structure  -->
-                <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" WidthRequest="2048" VerticalScrollBarVisibility="Never" ItemsSource="{Binding MonthlyTakvim}" Footer="{Binding .}" HorizontalOptions="Center">
+                <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" WidthRequest="2048" VerticalScrollBarVisibility="Never" ItemsSource="{Binding MonthlyTakvim}" HorizontalOptions="Center">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid RowSpacing="0" ColumnSpacing="0" Margin="0" Padding="0" ColumnDefinitions="Auto,*,*,*,*,*,*,*,*">
@@ -36,17 +36,12 @@
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                    <CollectionView.FooterTemplate>
-                        <DataTemplate>
-                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Orientation="Horizontal">
-                                <Button Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" HeightRequest="40" Margin="15,2" Padding="-5" WidthRequest="128"  Style="{StaticResource Button}" />
-                                <Button Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding RefreshCommand}" BackgroundColor="{StaticResource TertiaryDarkColor}" HeightRequest="40" Margin="15,2" Padding="-5" WidthRequest="128"  Style="{StaticResource Button}" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.FooterTemplate>
                 </CollectionView>
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="9" HorizontalOptions="Center" VerticalOptions="Center" Orientation="Horizontal">
+                    <Button Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" HeightRequest="48" Margin="15,2" Padding="-5" WidthRequest="128"  Style="{StaticResource Button}" />
+                    <Button Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding RefreshCommand}" BackgroundColor="{StaticResource TertiaryDarkColor}" HeightRequest="40" Margin="15,2" Padding="-5" WidthRequest="128"  Style="{StaticResource Button}" />
+                </StackLayout>
             </Grid>
         </ScrollView>
-
     </ContentPage.Content>
 </ContentPage>
