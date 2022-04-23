@@ -12,6 +12,9 @@ using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -26,7 +29,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private bool _bildiri;
         private bool _alarm;
         private bool _etkin;
-        private Sound[] _sounds;
+        private ObservableCollection<Sound> _availableSounds = new ObservableCollection<Sound>(Enumerable.Empty<Sound>());
         private Sound _selectedSound;
         private string _testButtonText;
         private bool _isPlaying;
@@ -37,7 +40,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ICommand RadioButtonCheckedChanged { get; }
         public ICommand BackCommand { get; }
         public ICommand TestButtonCommand { get; }
-        private Command<Sound> SoundSelectedCommand { get; }
+        //private Command<Sound> SoundSelectedCommand { get; }
 
         public bool IsPlaying
         {
@@ -50,46 +53,79 @@ namespace SuleymaniyeTakvimi.ViewModels
             get => _testButtonText;
             set => SetProperty(ref _testButtonText, value);
         }
-        public Sound[] Sounds
+        public ObservableCollection<Sound> AvailableSounds
         {
-            get => _sounds ??= new[]
-            {
-                new Sound() {Index = 0, FileName = "kus", Name = AppResources.KusCiviltisi},
-                new Sound() {Index = 1, FileName = "horoz", Name = AppResources.HorozOtusu},
-                new Sound() {Index = 2, FileName = "alarm", Name = AppResources.CalarSaat},
-                new Sound() {Index = 3, FileName = "ezan", Name = AppResources.EzanSesi}
-            };
-            set => SetProperty(ref _sounds, value);
+            get => _availableSounds;
+            set => SetProperty(ref _availableSounds, value);
         }
 
         public Sound SelectedSound
         {
             get => _selectedSound;
-            set
-            {
-                SetProperty(ref _selectedSound, value);
-                SoundSelected(value);
-            }
+            set => SetProperty(ref _selectedSound, value);
+            //SoundSelected(value);
         }
 
         public ItemDetailViewModel()
         {
+            Title = AppResources.PageTitle;
             EnableSwitchToggled = new Command(Etkinlestir);
             BildiriCheckedChanged = new Command(BildiriAyari);
             TitremeCheckedChanged = new Command(TitremeAyari);
             AlarmCheckedChanged = new Command(AlarmAyari);
             RadioButtonCheckedChanged = new Command(BildirmeVaktiAyari);
             BackCommand = new Command(GoBack);
+            LoadSounds();
             //Etkin = Preferences.Get(itemId + "Etkin", false);
             //Titreme = Preferences.Get(itemId + "Titreme", false);
             //Bildiri = Preferences.Get(itemId + "Bildiri", false);
             //Alarm = Preferences.Get(itemId + "Alarm", false);
             //_selectedSound = SetSelectedSound();
-            SoundSelectedCommand = new Command<Sound>(SoundSelected);
+            //SoundSelectedCommand = new Command<Sound>(SoundSelected);
             TestButtonCommand = new Command(TestButtonClicked);
             CrossMediaManager.Current.MediaPlayer.Stop();
             //_testButtonText = "&#xe038;"; //AppResources.SesTesti;
             IsPlaying = false;
+        }
+
+        private void LoadSounds()
+        {
+            _availableSounds=new ObservableCollection<Sound>()
+            {
+                new Sound() {FileName = "kus", Name = AppResources.KusCiviltisi},/*Index = 0, */
+                new Sound() {FileName = "horoz", Name = AppResources.HorozOtusu},/*Index = 1, */
+                new Sound() {FileName = "alarm", Name = AppResources.CalarSaat}, /*Index = 2, */
+                new Sound() {FileName = "ezan", Name = AppResources.EzanSesi}    /*Index = 3, */
+            };
+            //string name = "Çalar Saat";
+            //int index = 2;
+            string file = "alarm";
+            if (_itemId != null)
+            {
+                file = Preferences.Get(_itemId + "AlarmSesi", file);
+                //switch (file)
+                //{
+                //    case "kus":
+                //        name = AppResources.KusCiviltisi;
+                //        //index = 0;
+                //        break;
+                //    case "alarm":
+                //        name = AppResources.CalarSaat;
+                //        //index = 2;
+                //        break;
+                //    case "horoz":
+                //        name = AppResources.HorozOtusu;
+                //        //index = 1;
+                //        break;
+                //    case "ezan":
+                //        name = AppResources.EzanSesi;
+                //        //index = 3;
+                //        break;
+                //}
+            }
+
+            SelectedSound = AvailableSounds.FirstOrDefault(n => n.FileName == file);
+            //new Sound() { FileName = file, Name = name };/*Index = index, */
         }
 
         private async void TestButtonClicked(object obj)
@@ -111,42 +147,42 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        private Sound SetSelectedSound()
-        {
-            string name = "Çalar Saat";
-            int index = 2;
-            string file = "alarm";
-            if (_itemId != null)
-            {
-                file = Preferences.Get(_itemId + "AlarmSesi", file);
-                switch (file)
-                {
-                    case "kus":
-                        name = AppResources.KusCiviltisi;
-                        index = 0;
-                        break;
-                    case "alarm":
-                        name = AppResources.CalarSaat;
-                        index = 2;
-                        break;
-                    case "horoz":
-                        name = AppResources.HorozOtusu;
-                        index = 1;
-                        break;
-                    case "ezan":
-                        name = AppResources.EzanSesi;
-                        index = 3;
-                        break;
-                }
-            }
+        //private Sound SetSelectedSound()
+        //{
+        //    string name = "Çalar Saat";
+        //    int index = 2;
+        //    string file = "alarm";
+        //    if (_itemId != null)
+        //    {
+        //        file = Preferences.Get(_itemId + "AlarmSesi", file);
+        //        switch (file)
+        //        {
+        //            case "kus":
+        //                name = AppResources.KusCiviltisi;
+        //                index = 0;
+        //                break;
+        //            case "alarm":
+        //                name = AppResources.CalarSaat;
+        //                index = 2;
+        //                break;
+        //            case "horoz":
+        //                name = AppResources.HorozOtusu;
+        //                index = 1;
+        //                break;
+        //            case "ezan":
+        //                name = AppResources.EzanSesi;
+        //                index = 3;
+        //                break;
+        //        }
+        //    }
 
-            return new Sound() {Index = index, FileName = file, Name = name};
-        }
+        //    return new Sound() {Index = index, FileName = file, Name = name};
+        ////}
 
-        private void SoundSelected(Sound sound)
-        {
-            if (_itemId != null) Preferences.Set(_itemId + "AlarmSesi", sound.FileName);
-        }
+        //private void SoundSelected(Sound sound)
+        //{
+        //    if (_itemId != null) Preferences.Set(_itemId + "AlarmSesi", sound.FileName);
+        //}
 
         private void BildirmeVaktiAyari(object obj)
         {
@@ -197,7 +233,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     }
                     catch (FeatureNotSupportedException ex)
                     {
-                        UserDialogs.Instance.Alert(AppResources.TitremeyiDesteklemiyor + ex.Message, AppResources.CihazDesteklemiyor);
+                        UserDialogs.Instance.Alert(AppResources.TitremeyiDesteklemiyor + ex.Message, AppResources.CihazTitretmeyiDesteklemiyor);
                     }
                     catch (Exception ex)
                     {
@@ -296,7 +332,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 IsBusy = true;
                 _itemId = value;
                 LoadItem(value);
-                SelectedSound = SetSelectedSound();
+                //SelectedSound = SetSelectedSound();
                 IsBusy = false;
             }
         }
@@ -380,6 +416,41 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Titreme = Preferences.Get(itemId + "Titreme", false);
                 Alarm = Preferences.Get(itemId + "Alarm", false);
                 BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0");//when assign "0" for defaultValue, there always throw exception says: java.lang cannot convert boolean to string. So cheating.
+
+                //string name = "Çalar Saat";
+                ////int index = 2;
+                //string file = "alarm";
+                //if (_itemId != null)
+                //{
+                //    file = Preferences.Get(_itemId + "AlarmSesi", file);
+                //    switch (file)
+                //    {
+                //        case "kus":
+                //            name = AppResources.KusCiviltisi;
+                //            //index = 0;
+                //            break;
+                //        case "alarm":
+                //            name = AppResources.CalarSaat;
+                //            //index = 2;
+                //            break;
+                //        case "horoz":
+                //            name = AppResources.HorozOtusu;
+                //            //index = 1;
+                //            break;
+                //        case "ezan":
+                //            name = AppResources.EzanSesi;
+                //            //index = 3;
+                //            break;
+                //    }
+                //}
+
+                //SelectedSound = new Sound() { FileName = file, Name = name };/*Index = index, */
+                string file = "alarm";
+                if (_itemId != null)
+                {
+                    file = Preferences.Get(_itemId + "AlarmSesi", file);
+                    SelectedSound = AvailableSounds.FirstOrDefault(n => n.FileName == file);
+                }
             }
             catch (Exception ex)
             {
@@ -392,6 +463,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             CrossMediaManager.Current.MediaPlayer.Stop();
             DataService data = new DataService();
             data.SetWeeklyAlarms();
+            if (_itemId != null && _selectedSound!=null) Preferences.Set(_itemId + "AlarmSesi", _selectedSound.FileName);
             //if (Device.RuntimePlatform == Device.Android)
             //    data.SetMonthlyAlarms();
             //else data.SetWeeklyAlarms();

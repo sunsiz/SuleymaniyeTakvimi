@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using SuleymaniyeTakvimi.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SuleymaniyeTakvimi.Views
@@ -9,7 +10,7 @@ namespace SuleymaniyeTakvimi.Views
         public AboutPage()
         {
             InitializeComponent();
-            IsBusy = true;
+            //IsBusy = true;
         }
 
         private void WebView_OnNavigating(object sender, WebNavigatingEventArgs e)

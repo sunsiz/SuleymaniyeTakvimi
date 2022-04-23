@@ -1,4 +1,8 @@
-﻿using SuleymaniyeTakvimi.ViewModels;
+﻿using System;
+using System.Diagnostics;
+using Acr.UserDialogs;
+using SuleymaniyeTakvimi.Localization;
+using SuleymaniyeTakvimi.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,7 +18,21 @@ namespace SuleymaniyeTakvimi.Views
             InitializeComponent();
             BindingContext = viewModel = new CompassViewModel();
             Compass.ReadingChanged += Compass_ReadingChanged;
-            if (!Compass.IsMonitoring) Compass.Start(viewModel.Speed);
+            try
+            {
+                if (!Compass.IsMonitoring) Compass.Start(viewModel.Speed);
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Feature not supported on device
+                //UserDialogs.Instance.Alert(AppResources.CihazDesteklemiyor, AppResources.CihazDesteklemiyor);
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Compass_ReadingChanged)}: {fnsEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.Alert(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)

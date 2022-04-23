@@ -23,6 +23,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command StartCommand { get; }
         private Command StopCommand { get; }
         public Command LocationCommand { get; }
+        public Command RefreshLocationCommand { get; }
 
         private string _latitudeAltitude;
         public string LatitudeAltitude
@@ -54,53 +55,59 @@ namespace SuleymaniyeTakvimi.ViewModels
             Title = AppResources.KibleGostergesi;
             StartCommand = new Command(Start);
             StopCommand = new Command(Stop);
+            _currentLatitude = Preferences.Get("LastLatitude", 0.0);
+            _currentLongitude = Preferences.Get("LastLongitude", 0.0);
+            _currentAltitude = Preferences.Get("LastAltitude", 0.0);
             LocationCommand = new Command(async () =>
             {
                 IsBusy = true;
                 try
                 {
-                    var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
-                    if (status == PermissionStatus.Granted)
+                    if (_currentLatitude==0.0 && _currentLongitude==0.0 && _currentAltitude==0.0)
                     {
-                        DataService data = new DataService();
-                        var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
-                        if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                        var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+                        if (status == PermissionStatus.Granted)
                         {
-                            _currentLatitude = location.Latitude;
-                            _currentLongitude = location.Longitude;
-                            _currentAltitude = location.Altitude ?? 0.0;
+                            DataService data = new DataService();
+                            var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
+                            if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                            {
+                                _currentLatitude = location.Latitude;
+                                _currentLongitude = location.Longitude;
+                                _currentAltitude = location.Altitude ?? 0.0;
+                            }
                         }
-                    }
-                    else if(!askedPermission)
-                    {
-                        var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
-                        askedPermission = true;
-                        Debug.WriteLine(result);
+                        else if(!askedPermission)
+                        {
+                            var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                            askedPermission = true;
+                            Debug.WriteLine(result);
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
                 }
-                finally { IsBusy = false; /*UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));*/ }
+                finally { IsBusy = false; }
             });
-            if (!Compass.IsMonitoring)
+            try
             {
-                try
+                if (!Compass.IsMonitoring)
                 {
                     Compass.Start(Speed, applyLowPassFilter: true);
                 }
-                catch (FeatureNotSupportedException fnsEx)
-                {
-                    // Feature not supported on device
-                    UserDialogs.Instance.Alert(AppResources.CihazDesteklemiyor, AppResources.CihazDesteklemiyor);
-                    Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Compass_ReadingChanged)}: {fnsEx.Message}");
-                }
-                catch (Exception ex)
-                {
-                    UserDialogs.Instance.Alert(ex.Message);
-                    Debug.WriteLine(ex.Message);
-                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Feature not supported on device
+                UserDialogs.Instance.Toast(AppResources.CihazPusulaDesteklemiyor, TimeSpan.FromSeconds(4));
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Compass_ReadingChanged)}: {fnsEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.Alert(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
 
             //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
@@ -118,7 +125,26 @@ namespace SuleymaniyeTakvimi.ViewModels
                     UserDialogs.Instance.Toast(AppResources.HaritaHatasi + ex.Message);
                 }
             });
+            RefreshLocationCommand = new Command(async () =>
+            {
+                using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
+                {
+                    var data = new DataService();
+                    var location = await data.GetCurrentLocationAsync(true).ConfigureAwait(false);
+                    if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                    {
+                        _currentLatitude = location.Latitude;
+                        _currentLongitude = location.Longitude;
+                        _currentAltitude = location.Altitude ?? 0.0;
+                    }
+                }
+            });
+            LatitudeAltitude =
+                $"{AppResources.EnlemFormatsiz}: {_currentLatitude:F2}  |  {AppResources.YukseklikFormatsiz}: {_currentAltitude:N0}";
+            DegreeLongitude =
+                $"{AppResources.BoylamFormatsiz}: {_currentLongitude:F2}  |  {AppResources.Aci}: {Heading:####}";
         }
+
         private void Start()
         {
             Compass.ReadingChanged += Compass_ReadingChanged;
@@ -133,30 +159,30 @@ namespace SuleymaniyeTakvimi.ViewModels
             Compass.Stop();
         }
 
-        private async void GetLocation()
-        {
-            IsBusy = true; 
-            //UserDialogs.Instance.Toast("Konumu almaya çalışıyor", TimeSpan.FromSeconds(3));
-            try
-            {
-                //var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromMilliseconds(3));
-                //var location = await Geolocation.GetLocationAsync(request);
-                DataService data = new DataService();
-                var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
-                if (location != null && location.Latitude != 0 && location.Longitude != 0)
-                {
-                    //Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
-                    _currentLatitude = location.Latitude;
-                    _currentLongitude = location.Longitude;
-                    _currentAltitude = location.Altitude ?? 0.0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-            finally { IsBusy = false; /*UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));*/ }
-        }
+        //private async void GetLocation()
+        //{
+        //    IsBusy = true; 
+        //    //UserDialogs.Instance.Toast("Konumu almaya çalışıyor", TimeSpan.FromSeconds(3));
+        //    try
+        //    {
+        //        //var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromMilliseconds(3));
+        //        //var location = await Geolocation.GetLocationAsync(request);
+        //        DataService data = new DataService();
+        //        var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
+        //        if (location != null && location.Latitude != 0 && location.Longitude != 0)
+        //        {
+        //            //Location location = new Location(takvim.Enlem, takvim.Boylam, takvim.Yukseklik);
+        //            _currentLatitude = location.Latitude;
+        //            _currentLongitude = location.Longitude;
+        //            _currentAltitude = location.Altitude ?? 0.0;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine(ex.Message);
+        //    }
+        //    finally { IsBusy = false; /*UserDialogs.Instance.Toast("Konum başarıyla yenilendi", TimeSpan.FromSeconds(3));*/ }
+        //}
 
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
@@ -185,7 +211,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             catch (FeatureNotSupportedException fnsEx)
             {
                 // Feature not supported on device
-                UserDialogs.Instance.Alert(AppResources.CihazDesteklemiyor, AppResources.CihazDesteklemiyor);
+                UserDialogs.Instance.Alert(AppResources.CihazPusulaDesteklemiyor, AppResources.CihazPusulaDesteklemiyor);
                 Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Compass_ReadingChanged)}: {fnsEx.Message}");
             }
             catch (Exception ex)

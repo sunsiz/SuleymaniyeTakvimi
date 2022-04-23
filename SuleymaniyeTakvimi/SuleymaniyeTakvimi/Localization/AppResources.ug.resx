@@ -142,10 +142,10 @@
     <value>قوڭغۇراق چالسۇن</value>
   </data>
   <data name="AylikTakvim" xml:space="preserve">
-    <value>ئايلىق كالىندار</value>
+    <value>ئايلىق كالېندار</value>
   </data>
   <data name="AylikTakvimYenilendi" xml:space="preserve">
-    <value>ئايلىق كالىندار مۇۋەپپەقىيەتلىك يېڭىلاندى</value>
+    <value>ئايلىق كالېندار مۇۋەپپەقىيەتلىك يېڭىلاندى</value>
   </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
     <value>بەش مىنۇت بۇرۇن</value>
@@ -183,8 +183,8 @@
   <data name="CalarSaat" xml:space="preserve">
     <value>قوڭغۇراقلىق سائەت</value>
   </data>
-  <data name="CihazDesteklemiyor" xml:space="preserve">
-    <value>ئۈسكىنە قوللىمايدۇ</value>
+  <data name="CihazGPSDesteklemiyor" xml:space="preserve">
+    <value>ئۈسكىنىڭىز GPS نى قوللىمايدۇ</value>
   </data>
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
     <value>ئۈسكىنىڭىز تىترەشنى قوللىمايدۇ</value>
@@ -307,7 +307,7 @@
     <value>ئون بەش مىنۇت بۇرۇن</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
-    <value>سۇلايمانىيە كالىندارى</value>
+    <value>سۇلايمانىيە كالېندارى</value>
   </data>
   <data name="Radyo" xml:space="preserve">
     <value>رادىئو</value>
@@ -331,7 +331,7 @@
     <value>ۋاقىت رايونى: GMT {0}</value>
   </data>
   <data name="SabahSonu" xml:space="preserve">
-    <value>بامداتنىڭ ئاخىرى</value>
+    <value>كۈن چىقىش</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
     <value>بامداتنىڭ ئاخىرلىشىشىغا قالغان ۋاقىت:</value>
@@ -361,13 +361,13 @@
     <value>سۇلايمانىيە ۋەخپى Instagram بېتى</value>
   </data>
   <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
-    <value>سۇلايمانىيە كالىندارى</value>
+    <value>سۇلايمانىيە كالېندارى</value>
   </data>
   <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
     <value>سۇلايمانىيە ۋەخپى Twitter بېتى</value>
   </data>
   <data name="Takvim" xml:space="preserve">
-    <value>كالىندار</value>
+    <value>كالېندار</value>
   </data>
   <data name="TakvimIcinInternet" xml:space="preserve">
     <value>ناماز ۋاقىتلىرىنى يېڭىلاش ئۈچۈن، ئىنتېرنېت لازىم، WiFi ياكى تېلېفون تورىنى ئىچىپ، «يېڭىلاش»نى بىسىڭ.</value>
@@ -445,5 +445,44 @@
   </data>
   <data name="GotoSettings" xml:space="preserve">
     <value>تەڭشەكلەرنى ئىچىش</value>
+  </data>
+  <data name="UygulamaDiliniSecin" xml:space="preserve">
+    <value>ئەپ تىلنى تاللاڭ</value>
+  </data>
+  <data name="UygulamaDili" xml:space="preserve">
+    <value>ئەپ تىلى</value>
+  </data>
+  <data name="UygulamaTema" xml:space="preserve">
+    <value>ئەپ ئۇسلۇبى</value>
+  </data>
+  <data name="UygulamaTemasiniSecin" xml:space="preserve">
+    <value>ئەپ ئۇسلۇبىنى تاللاڭ</value>
+  </data>
+  <data name="KoyuTema" xml:space="preserve">
+    <value>توق ئۇسلۇب</value>
+  </data>
+  <data name="AcikTema" xml:space="preserve">
+    <value>ئاچ ئۇسلۇب</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>ئىنگىلىزچە</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>تۈركچە</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>خەنزۇچە</value>
+  </data>
+  <data name="Uyghur" xml:space="preserve">
+    <value>ئۇيغۇرچە</value>
+  </data>
+  <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
+    <value>ئۈسكۈنىڭىز Compass نى قوللىمايدۇ</value>
+  </data>
+  <data name="AylikTakvimeErisemedi" xml:space="preserve">
+	  <value>ئايلىق كالېندارنى زىيارەت قىلالمىدى ، تورنىڭ ئوچۇق ۋە ئورۇن مۇلازىمىتىنىڭ ئاكتىپ ئىكەنلىكىنى تەكشۈرۈڭ!</value>
+  </data>
+  <data name="KaydetVeUygula" xml:space="preserve">
+	  <value>ساقلاش ۋە قوللىنىش</value>
   </data>
 </root>

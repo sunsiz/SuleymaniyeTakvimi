@@ -11,6 +11,7 @@ namespace SuleymaniyeTakvimi
             //Routing.RegisterRoute(nameof(ItemsPage), typeof(ItemsPage));
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(MonthPage), typeof(MonthPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
             //Routing.RegisterRoute(nameof(CompassPage), typeof(CompassPage));
         }
 

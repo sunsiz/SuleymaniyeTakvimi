@@ -105,12 +105,12 @@
             </OnPlatform>
             <Style x:Key="LabelSectionHeader" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
-                <Setter Property="FontSize" Value="26" />
-                <Setter Property="TextColor" Value="{StaticResource PrimaryAccent100Color}" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="{StaticResource NavigationBarLightColor}" />
             </Style>
             <Style x:Key="IconStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
-                <Setter Property="FontSize" Value="28" />
+                <Setter Property="FontSize" Value="22" />
                 <Setter Property="TextColor" Value="{StaticResource PrimaryAccent100Color}" />
             </Style>
             <Style x:Key="SpanStyle" TargetType="Label">
@@ -156,7 +156,7 @@
                                             Value="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" />
                                     <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
                                     <Setter Property="Opacity" Value="1" />
-                                    <Setter Property="HeightRequest" Value="40"/>
+                                    <Setter Property="HeightRequest" Value="48"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Unchecked">
@@ -165,7 +165,7 @@
                                             Value="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" />
                                     <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
                                     <Setter Property="Opacity" Value="0.7" />
-                                    <Setter Property="HeightRequest" Value="40"/>
+                                    <Setter Property="HeightRequest" Value="48"/>
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

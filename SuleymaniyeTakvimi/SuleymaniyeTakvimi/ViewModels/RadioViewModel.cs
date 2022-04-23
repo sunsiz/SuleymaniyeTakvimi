@@ -33,7 +33,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             Title = AppResources.IcerikYukleniyor;
             PlayCommand = new Command(Play);
             Title = AppResources.FitratinSesi;
-            CheckInternet();
+            _ = CheckInternet();
             //_player = CrossSimpleAudioPlayer.Current;
             IsBusy = false;
             if (CrossMediaManager.Current.IsPlaying()) IsPlaying = true;
@@ -53,14 +53,17 @@ namespace SuleymaniyeTakvimi.ViewModels
             else
             {
                 Title = AppResources.IcerikYukleniyor;
-                CheckInternet();
-                var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
-                mediaItem.Title = AppResources.FitratinSesi;
-                CrossMediaManager.Current.Notification.Enabled = false;
-                //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
-                //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
-                mediaItem.MetadataUpdated += OnMediaItemOnMetadataUpdated;
-                CrossMediaManager.Current.StateChanged += Current_StateChanged;
+                if (CheckInternet())
+                {
+                    var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3")
+                        .ConfigureAwait(true);
+                    mediaItem.Title = AppResources.FitratinSesi;
+                    CrossMediaManager.Current.Notification.Enabled = false;
+                    //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
+                    //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
+                    mediaItem.MetadataUpdated += OnMediaItemOnMetadataUpdated;
+                    CrossMediaManager.Current.StateChanged += Current_StateChanged;
+                }
             }
 
             Title = AppResources.FitratinSesi;
@@ -68,13 +71,16 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         
 
-        private static void CheckInternet()
+        private static bool CheckInternet()
         {
             var current = Connectivity.NetworkAccess;
             if (current != NetworkAccess.Internet)
             {
-                UserDialogs.Instance.Toast(AppResources.RadyoIcinInternet, TimeSpan.FromSeconds(7));
+                UserDialogs.Instance.Toast(AppResources.RadyoIcinInternet, TimeSpan.FromSeconds(5));
+                return false;
             }
+
+            return true;
         }
 
         private void Current_StateChanged(object sender, MediaManager.Playback.StateChangedEventArgs e)

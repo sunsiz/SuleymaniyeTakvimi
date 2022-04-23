@@ -1,8 +1,11 @@
-﻿using SuleymaniyeTakvimi.Services;
+﻿using System.Globalization;
+using SuleymaniyeTakvimi.Services;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Models;
+using Xamarin.CommunityToolkit.Helpers;
 //using Matcha.BackgroundService;
 //using Plugin.LocalNotification;
 using Xamarin.Essentials;
@@ -15,6 +18,30 @@ namespace SuleymaniyeTakvimi
         //private bool reminderEnabled = false;
         public App()
         {
+            LocalizationResourceManager.Current.PropertyChanged += (sender, e) => AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
+            LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
+            var language = Preferences.Get("SelectedLanguage", "zz");
+            if(language=="zz"){
+                switch (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+                {
+                    case "tr":
+                        language = "tr";
+                        break;
+                    case "zh":
+                        language = "zh";
+                        break;
+                    case "ug":
+                        language = "ug";
+                        break;
+                    case "en":
+                        language = "en";
+                        break;
+                    default:
+                        language = "en";
+                        break;
+                }
+            }
+            LocalizationResourceManager.Current.CurrentCulture = new CultureInfo(language);
             InitializeComponent();
             
             //Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);

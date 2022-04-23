@@ -1,11 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage x:Class="SuleymaniyeTakvimi.Views.RadioPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
-             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi" FlowDirection="{x:Static Device.FlowDirection}"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             FlowDirection="{x:Static Device.FlowDirection}"
              Title="{Binding Title}" Visual="Material" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}">
     <ContentPage.BindingContext>
         <viewModels:RadioViewModel />
     </ContentPage.BindingContext>
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal" Margin="10">
+            <Label Style="{StaticResource LabelSectionHeader}" HorizontalOptions="StartAndExpand" FontSize="18" Text="{behaviors:Translate FitratinSesi}" VerticalTextAlignment="Center" />
+        </StackLayout>
+    </Shell.TitleView>
     <ContentPage.Content>
         <Grid Margin="0" RowDefinitions="5*,*">
             <Frame Grid.Row="0" HeightRequest="550" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}">
@@ -14,11 +19,11 @@
             <pancakeView:PancakeView Grid.Row="1" Margin="0,-25,0,-15" CornerRadius="25" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent100Color}, Dark={StaticResource DarkElevation2dp}}" Shadow="{pancakeView:ShadowMarkup Color={StaticResource PrimaryAccent400Color}, BlurRadius=3, Opacity=0.3, Offset='1,-4'}">
                 <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, *" VerticalOptions="Center" Padding="15,0,15,20">
                     <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
-                        <Label VerticalTextAlignment="Start">
+                        <Label VerticalTextAlignment="Center">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="22" />
-                                    <Span Text="{x:Static resources:AppResources.YayinAkisi}" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
+                                    <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="16" />
+                                    <Span Text="{behaviors:Translate YayinAkisi}" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>
@@ -27,7 +32,7 @@
                             <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.instagram.com/radyofitrat/" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <Label Grid.Row="0" Grid.Column="1" Padding="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="75" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="&#xe038;">
+                    <Label Grid.Row="0" Grid.Column="1" Padding="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="55" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="&#xe038;">
                         <Label.Triggers>
                             <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="False">
                                 <Setter Property="Text" Value="&#xe038;" />
@@ -42,11 +47,11 @@
                     </Label>
 
                     <StackLayout Grid.Row="0" Grid.Column="2" VerticalOptions="Center">
-                        <Label HorizontalTextAlignment="End" VerticalTextAlignment="Start">
+                        <Label HorizontalTextAlignment="End" VerticalTextAlignment="Center">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="22" />
-                                    <Span Text="{x:Static resources:AppResources.WebSayfa}" FontSize="22" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
+                                    <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="16" />
+                                    <Span Text="{behaviors:Translate WebSayfa}" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>

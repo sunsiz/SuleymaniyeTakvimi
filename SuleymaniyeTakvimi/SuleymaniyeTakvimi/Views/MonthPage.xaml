@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage x:Class="SuleymaniyeTakvimi.Views.MonthPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
-             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi" FlowDirection="{x:Static Device.FlowDirection}"
+             xmlns:resources="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi" FlowDirection="{x:Static Device.FlowDirection}" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}"
              Shell.PresentationMode="ModalAnimated">
     <ContentPage.BindingContext>
@@ -9,15 +9,15 @@
     <ContentPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal" Margin="0,20,0,0">
             <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="35, *, 52" ColumnSpacing="2">
-                <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Tarih}" />
-                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.FecriKazip}" />
-                <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.FecriSadik}" />
-                <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.SabahSonu}" />
-                <Label Grid.Row="0" Grid.Column="4" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Ogle}" />
-                <Label Grid.Row="0" Grid.Column="5" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Ikindi}" />
-                <Label Grid.Row="0" Grid.Column="6" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Aksam}" />
-                <Label Grid.Row="0" Grid.Column="7" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.Yatsi}" />
-                <Label Grid.Row="0" Grid.Column="8" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{x:Static resources:AppResources.YatsiSonu}" />
+                <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate Tarih}" />
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate FecriKazip}" />
+                <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate FecriSadik}" />
+                <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate SabahSonu}" />
+                <Label Grid.Row="0" Grid.Column="4" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate Ogle}" />
+                <Label Grid.Row="0" Grid.Column="5" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate Ikindi}" />
+                <Label Grid.Row="0" Grid.Column="6" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate Aksam}" />
+                <Label Grid.Row="0" Grid.Column="7" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate Yatsi}" />
+                <Label Grid.Row="0" Grid.Column="8" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate YatsiSonu}" />
                 <!--  monthly time list structure  -->
                 <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" WidthRequest="2048" VerticalScrollBarVisibility="Never" ItemsSource="{Binding MonthlyTakvim}" HorizontalOptions="Center">
                     <CollectionView.ItemTemplate>
@@ -38,8 +38,8 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <StackLayout Grid.Row="2" Grid.ColumnSpan="9" HorizontalOptions="Center" VerticalOptions="Center" Orientation="Horizontal">
-                    <Button Text="{x:Static resources:AppResources.Kapat}" Command="{Binding BackCommand}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" HeightRequest="48" Margin="15,2" Padding="-5" WidthRequest="128"  Style="{StaticResource Button}" />
-                    <Button Text="{x:Static resources:AppResources.KonumYenileButton}" Command="{Binding RefreshCommand}" BackgroundColor="{StaticResource TertiaryDarkColor}" HeightRequest="40" Margin="15,2" Padding="-5" WidthRequest="128"  Style="{StaticResource Button}" />
+                    <Button Text="{behaviors:Translate Kapat}" Command="{Binding BackCommand}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" HeightRequest="48" Margin="15,2" WidthRequest="128" FontSize="14" Style="{StaticResource Button}" />
+                    <Button Text="{behaviors:Translate KonumYenileButton}" Command="{Binding RefreshCommand}" BackgroundColor="{StaticResource TertiaryDarkColor}" HeightRequest="40" Margin="15,2" WidthRequest="128" FontSize="14" Style="{StaticResource Button}" />
                 </StackLayout>
             </Grid>
         </ScrollView>

@@ -1,4 +1,5 @@
 ﻿using SuleymaniyeTakvimi.Localization;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
@@ -9,16 +10,15 @@ namespace SuleymaniyeTakvimi.ViewModels
     public class AboutViewModel : MvvmHelpers.BaseViewModel
     {
         public Command LinkButtonClicked => new Command<string>(async (url) => await Launcher.OpenAsync(url).ConfigureAwait(false));
+        
+        private string _versionNumber;
+
+        public string VersionNumber { get => _versionNumber; set => SetProperty(ref _versionNumber, value); }
 
         public AboutViewModel()
         {
             Title = AppResources.SuleymaniyeVakfi;
-            VersionNumber = AppInfo.Name + " v" + AppInfo.VersionString + " " + AppResources.Version;
+            VersionNumber = " v" + AppInfo.VersionString + " ";
         }
-        
-
-        private string versionNumber;
-
-        public string VersionNumber { get => versionNumber; set => SetProperty(ref versionNumber, value); }
     }
 }

@@ -107,6 +107,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Light theme.
+        /// </summary>
+        public static string AcikTema {
+            get {
+                return ResourceManager.GetString("AcikTema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maghrib.
         /// </summary>
         public static string Aksam {
@@ -175,6 +184,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string AylikTakvim {
             get {
                 return ResourceManager.GetString("AylikTakvim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can not Access the Monthly Calendar, Please check your internet is accessible and location service is active!.
+        /// </summary>
+        public static string AylikTakvimeErisemedi {
+            get {
+                return ResourceManager.GetString("AylikTakvimeErisemedi", resourceCulture);
             }
         }
         
@@ -296,11 +314,29 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Device does not support.
+        ///   Looks up a localized string similar to Chinese.
         /// </summary>
-        public static string CihazDesteklemiyor {
+        public static string Chinese {
             get {
-                return ResourceManager.GetString("CihazDesteklemiyor", resourceCulture);
+                return ResourceManager.GetString("Chinese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your device does not support GPS.
+        /// </summary>
+        public static string CihazGPSDesteklemiyor {
+            get {
+                return ResourceManager.GetString("CihazGPSDesteklemiyor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your device does not support Compass.
+        /// </summary>
+        public static string CihazPusulaDesteklemiyor {
+            get {
+                return ResourceManager.GetString("CihazPusulaDesteklemiyor", resourceCulture);
             }
         }
         
@@ -310,6 +346,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string CihazTitretmeyiDesteklemiyor {
             get {
                 return ResourceManager.GetString("CihazTitretmeyiDesteklemiyor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
             }
         }
         
@@ -539,6 +584,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save and Apply.
+        /// </summary>
+        public static string KaydetVeUygula {
+            get {
+                return ResourceManager.GetString("KaydetVeUygula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Qibla.
         /// </summary>
         public static string Kible {
@@ -616,6 +670,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string KonumYenilendi {
             get {
                 return ResourceManager.GetString("KonumYenilendi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark theme.
+        /// </summary>
+        public static string KoyuTema {
+            get {
+                return ResourceManager.GetString("KoyuTema", resourceCulture);
             }
         }
         
@@ -922,6 +985,60 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string TitresimSwitch {
             get {
                 return ResourceManager.GetString("TitresimSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turkish.
+        /// </summary>
+        public static string Turkish {
+            get {
+                return ResourceManager.GetString("Turkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uyghur.
+        /// </summary>
+        public static string Uyghur {
+            get {
+                return ResourceManager.GetString("Uyghur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App language.
+        /// </summary>
+        public static string UygulamaDili {
+            get {
+                return ResourceManager.GetString("UygulamaDili", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose app language.
+        /// </summary>
+        public static string UygulamaDiliniSecin {
+            get {
+                return ResourceManager.GetString("UygulamaDiliniSecin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App theme.
+        /// </summary>
+        public static string UygulamaTema {
+            get {
+                return ResourceManager.GetString("UygulamaTema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose app theme.
+        /// </summary>
+        public static string UygulamaTemasiniSecin {
+            get {
+                return ResourceManager.GetString("UygulamaTemasiniSecin", resourceCulture);
             }
         }
         

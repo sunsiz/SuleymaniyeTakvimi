@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell x:Class="SuleymaniyeTakvimi.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.Views"
-       xmlns:localization="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi"
+       xmlns:localization="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
        Title="Süleymaniye Vakfi Namaz Vakitleri">
 
     <!--
@@ -28,22 +28,22 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="{x:Static localization:AppResources.Takvim}" ContentTemplate="{DataTemplate local:ItemsPage}">
+        <ShellContent Title="{behaviors:Translate Takvim}" ContentTemplate="{DataTemplate local:ItemsPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe855;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="{x:Static localization:AppResources.Kible}" ContentTemplate="{DataTemplate local:CompassPage}">
+        <ShellContent Title="{behaviors:Translate Kible}" ContentTemplate="{DataTemplate local:CompassPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe87a;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="{x:Static localization:AppResources.Radyo}" ContentTemplate="{DataTemplate local:RadioPage}">
+        <ShellContent Title="{behaviors:Translate Radyo}" ContentTemplate="{DataTemplate local:RadioPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xe03e;" Size="Title" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="{x:Static localization:AppResources.Hakkinda}" ContentTemplate="{DataTemplate local:AboutPage}">
+        <ShellContent Title="{behaviors:Translate Hakkinda}" ContentTemplate="{DataTemplate local:AboutPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource MaterialIcons}" Glyph="&#xf233;" Size="Title" />
             </ShellContent.Icon>

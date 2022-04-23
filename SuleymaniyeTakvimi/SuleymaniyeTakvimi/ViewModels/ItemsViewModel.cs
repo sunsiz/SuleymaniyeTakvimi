@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -24,6 +25,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command GoToMonthCommand { get; }
         public Command RefreshLocationCommand { get; }
         public Command DarkLightModeCommand { get; }
+        public Command SettingsCommand { get; }
         public Command<Item> ItemTapped { get; }
         private Takvim _takvim, _vakitler;
         private string _city;
@@ -47,7 +49,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
             set => SetProperty(ref _vakitler, value);
         }
-        public string Today => AppResources.AylikTakvim; /*DateTime.Today.ToString("M");*/
+        //public string Today => AppResources.AylikTakvim; /*DateTime.Today.ToString("M");*/
 
         public bool Dark
         {
@@ -81,6 +83,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ItemsViewModel()
         {
             Debug.WriteLine("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            Title = AppResources.PageTitle;
             Items = new ObservableCollection<Item>();
             var data = new DataService();
             _takvim = data._takvim;
@@ -106,13 +109,19 @@ namespace SuleymaniyeTakvimi.ViewModels
             });
             //LoadItemsCommand.Execute(ExecuteLoadItemsCommand());
             //GetCity();
-            GoToMonthCommand=new Command(GoToMonthPage);
+            GoToMonthCommand = new Command(GoToMonthPage);
+            SettingsCommand = new Command(Settings);
             RefreshLocationCommand = new Command(async () =>
             {
                 using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
                 {
                     await GetPrayerTimesAsync().ConfigureAwait(false);
                     ExecuteLoadItemsCommand();
+                    await Task.Run(() =>
+                    {
+                        var location = new Location(_takvim.Enlem, _takvim.Boylam, _takvim.Yukseklik);
+                        data.GetMonthlyPrayerTimes(location, true);
+                    }).ConfigureAwait(true);
                 }
             });
             DarkLightModeCommand = new Command(ChangeTheme);
@@ -121,16 +130,17 @@ namespace SuleymaniyeTakvimi.ViewModels
                 if (!data.HaveInternet()) return;
                 Debug.WriteLine("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
                 await Task.Delay(2000).ConfigureAwait(false);
-                //if (Math.Abs(_takvim.Yukseklik - 114) < 0.0001 && Math.Abs(_takvim.Enlem - 42) < 0.0001 &&
-                //    Math.Abs(_takvim.Boylam - 29) < 0.0001)
-                _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
+                if (_takvim.Yukseklik == 114.0 && _takvim.Enlem == 41.0 && _takvim.Boylam == 29.0)
+                {
+                    _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
+                    var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
+                    if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                        data.GetMonthlyPrayerTimes(location, false);
+                }
                 //if (_takvim == null) UserDialogs.Instance.Toast(AppResources.TakvimIcinInternet);
                 //DataService data = new DataService();
                 data.SetWeeklyAlarms();
                 ExecuteLoadItemsCommand();
-                var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
-                if (location != null && location.Latitude != 0 && location.Longitude != 0)
-                    data.GetMonthlyPrayerTimes(location, false);
                 //GetCity();
             }).ConfigureAwait(false);
             Dark = Theme.Tema != 1;//0 is dark, 1 is light
@@ -214,7 +224,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 await Task.Delay(5000).ConfigureAwait(false);
                 DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
             });
-                
+            Title = AppResources.PageTitle;
             Debug.WriteLine("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
@@ -240,7 +250,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         async void GoToMonthPage(object obj)
         {
             IsBusy = true;
-            // This will push the ItemDetailPage onto the navigation stack
+            // This will push the MonthPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(MonthPage)}").ConfigureAwait(false);
         }
 
@@ -275,7 +285,13 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(5));
             }
-            
+        }
+
+        private async void Settings(object obj)
+        {
+            IsBusy = true;
+            // This will push the SettingsPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(SettingsPage)}").ConfigureAwait(false);
         }
     }
 }

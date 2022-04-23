@@ -183,8 +183,8 @@
   <data name="CalarSaat" xml:space="preserve">
     <value>Alarm Clock</value>
   </data>
-  <data name="CihazDesteklemiyor" xml:space="preserve">
-    <value>Device does not support</value>
+  <data name="CihazGPSDesteklemiyor" xml:space="preserve">
+    <value>Your device does not support GPS</value>
   </data>
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
     <value>Your device does not support vibrate</value>
@@ -444,5 +444,44 @@ This application is designed to provide safe and fast access to prayer and fasti
   </data>
   <data name="GotoSettings" xml:space="preserve">
     <value>Go to Settings</value>
+  </data>
+  <data name="UygulamaDiliniSecin" xml:space="preserve">
+    <value>Choose app language</value>
+  </data>
+  <data name="UygulamaDili" xml:space="preserve">
+    <value>App language</value>
+  </data>
+  <data name="UygulamaTemasiniSecin" xml:space="preserve">
+    <value>Choose app theme</value>
+  </data>
+  <data name="UygulamaTema" xml:space="preserve">
+    <value>App theme</value>
+  </data>
+  <data name="AcikTema" xml:space="preserve">
+    <value>Light theme</value>
+  </data>
+  <data name="KoyuTema" xml:space="preserve">
+    <value>Dark theme</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>Turkish</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>Chinese</value>
+  </data>
+  <data name="Uyghur" xml:space="preserve">
+    <value>Uyghur</value>
+  </data>
+  <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
+    <value>Your device does not support Compass</value>
+  </data>
+  <data name="AylikTakvimeErisemedi" xml:space="preserve">
+	  <value>Can not Access the Monthly Calendar, Please check your internet is accessible and location service is active!</value>
+  </data>
+  <data name="KaydetVeUygula" xml:space="preserve">
+	  <value>Save and Apply</value>
   </data>
 </root>
