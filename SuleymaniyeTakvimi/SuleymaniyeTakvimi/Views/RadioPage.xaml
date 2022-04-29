@@ -19,11 +19,11 @@
             <pancakeView:PancakeView Grid.Row="1" Margin="0,-25,0,-15" CornerRadius="25" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent100Color}, Dark={StaticResource DarkElevation2dp}}" Shadow="{pancakeView:ShadowMarkup Color={StaticResource PrimaryAccent400Color}, BlurRadius=3, Opacity=0.3, Offset='1,-4'}">
                 <Grid RowDefinitions="Auto" ColumnDefinitions="*, Auto, *" VerticalOptions="Center" Padding="15,0,15,20">
                     <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
-                        <Label VerticalTextAlignment="Center">
+                        <Label VerticalTextAlignment="Center" Style="{DynamicResource LabelStyle}">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="16" />
-                                    <Span Text="{behaviors:Translate YayinAkisi}" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
+                                    <Span Text="&#xea4f;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="20" />
+                                    <Span Text="{behaviors:Translate YayinAkisi}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>
@@ -47,11 +47,11 @@
                     </Label>
 
                     <StackLayout Grid.Row="0" Grid.Column="2" VerticalOptions="Center">
-                        <Label HorizontalTextAlignment="End" VerticalTextAlignment="Center">
+                        <Label HorizontalTextAlignment="End" VerticalTextAlignment="Center" Style="{DynamicResource LabelStyle}">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="16" />
-                                    <Span Text="{behaviors:Translate WebSayfa}" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
+                                    <Span Text="&#xe894;" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" FontSize="20" />
+                                    <Span Text="{behaviors:Translate WebSayfa}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}">
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>

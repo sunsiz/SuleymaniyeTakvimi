@@ -23,7 +23,7 @@ namespace SuleymaniyeTakvimi.Services
         private Takvim _konum;
         public Takvim _takvim;
         private IList<Takvim> _monthlyTakvim;
-        private readonly string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ayliktakvim.xml");
+        public readonly string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ayliktakvim.xml");
 
         public DataService()
         {
@@ -233,7 +233,17 @@ namespace SuleymaniyeTakvimi.Services
                 }
             }
 
-            return null;
+            PrepareMonthlyPrayerTimes();
+
+            return _takvim;
+        }
+
+        public async Task<Takvim> PrepareMonthlyPrayerTimes()
+        {
+            var location = await GetCurrentLocationAsync(true).ConfigureAwait(false);
+            GetMonthlyPrayerTimes(location, true);
+            _takvim = GetTakvimFromFile();
+            return _takvim;
         }
 
         //When refreshLocation true, force refresh location not using last known location.

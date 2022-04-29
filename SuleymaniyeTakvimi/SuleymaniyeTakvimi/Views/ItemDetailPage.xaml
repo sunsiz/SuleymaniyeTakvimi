@@ -32,7 +32,7 @@
                         <pancakeView:DropShadow Color="SaddleBrown" BlurRadius="3" Offset="4,4" Opacity="0.6"/>
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14">
-                        <Label HorizontalOptions="CenterAndExpand" Text="{Binding Title}" FontSize="22" FontAttributes="Bold" TextColor="{AppThemeBinding Light=SaddleBrown, Dark={StaticResource OnSurfaceColor}}"/>
+                        <Label HorizontalOptions="CenterAndExpand" Text="{Binding Title}" FontSize="22" FontAttributes="Bold" TextColor="{AppThemeBinding Light=SaddleBrown, Dark={StaticResource OnSurfaceColor}}" Visual="Material"/>
                     </StackLayout>
                 </pancakeView:PancakeView>
                 <pancakeView:PancakeView CornerRadius="9" Grid.Row="1" Grid.ColumnSpan="2" Margin="4,4" VerticalOptions="Center">
@@ -45,16 +45,16 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="14,1">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                            <Label HorizontalOptions="EndAndExpand" Text="{behaviors:Translate Vakti}" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center"/>
-                            <Label HorizontalOptions="StartAndExpand" Text="{Binding Vakit}" FontSize="16" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center"/>
+                            <Label HorizontalOptions="EndAndExpand" Text="{behaviors:Translate Vakti}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Visual="Material"/>
+                            <Label HorizontalOptions="StartAndExpand" Text="{Binding Vakit}" Style="{DynamicResource LabelStyle}" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Visual="Material"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                            <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate EtkinlestirSwitchAciklama}">
+                            <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate EtkinlestirSwitchAciklama}" Visual="Material">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding EnableSwitchToggled}" CommandParameter="{Binding Etkin}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate EtkinlestirSwitch}" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Padding="7,0"/>
+                            <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate EtkinlestirSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Padding="7,0" Visual="Material"/>
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
@@ -68,29 +68,29 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="14,1">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
-                            <Switch IsToggled="{Binding Bildiri}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate BildirimGosterSwitch}">
+                            <Switch IsToggled="{Binding Bildiri}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate BildirimGosterSwitch}" Visual="Material">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding BildiriCheckedChanged}" CommandParameter="{Binding Bildiri}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label HorizontalOptions="Start" Text="{behaviors:Translate BildirimGosterSwitch}" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center"/>
+                            <Label HorizontalOptions="Start" Text="{behaviors:Translate BildirimGosterSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Visual="Material"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                            <Switch IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate TitresimSwitch}">
+                            <Switch IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate TitresimSwitch}" Visual="Material">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding TitremeCheckedChanged}" CommandParameter="{Binding Titreme}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label HorizontalOptions="Start" Text="{behaviors:Translate TitresimSwitch}" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center"/>
+                            <Label HorizontalOptions="Start" Text="{behaviors:Translate TitresimSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Visual="Material"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                            <Switch IsToggled="{Binding Alarm}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AlarmSwitch}">
+                            <Switch IsToggled="{Binding Alarm}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AlarmSwitch}" Visual="Material">
                                 <!--Color="Maroon"-->
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding AlarmCheckedChanged}" CommandParameter="{Binding Alarm}"/>
                                 </Switch.Behaviors>
                             </Switch>
-                            <Label HorizontalOptions="Start" Text="{behaviors:Translate AlarmSwitch}" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center"/>
+                            <Label HorizontalOptions="Start" Text="{behaviors:Translate AlarmSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Visual="Material"/>
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
@@ -104,8 +104,8 @@
                         <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="1,1" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout HorizontalOptions="FillAndExpand" Padding="14,5" RadioButtonGroup.GroupName="zaman">
-                        <Label HorizontalOptions="Start" Text="{behaviors:Translate BildirmeZamani}" FontSize="16" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}"/>
-                        <RadioButton Content="{behaviors:Translate Zamaninda}" Value="0" x:Name="Zamaninda" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Zamaninda}">
+                        <Label HorizontalOptions="Start" Text="{behaviors:Translate BildirmeZamani}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}" Visual="Material"/>
+                        <RadioButton Content="{behaviors:Translate Zamaninda}" Value="0" x:Name="Zamaninda" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Zamaninda}" Visual="Material">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="0">
                                     <Setter TargetName="Zamaninda" Property="IsChecked" Value="True"/>
@@ -115,7 +115,7 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Zamaninda}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <RadioButton Content="{behaviors:Translate BesDakikaOnceden}" Value="5" x:Name="Bes" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate BesDakikaOnceden}">
+                        <RadioButton Content="{behaviors:Translate BesDakikaOnceden}" Value="5" x:Name="Bes" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate BesDakikaOnceden}" Visual="Material">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="5">
                                     <Setter TargetName="Bes" Property="IsChecked" Value="True"/>
@@ -125,7 +125,7 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Bes}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <RadioButton Content="{behaviors:Translate OnBesDakikaOnceden}" Value="15" x:Name="Onbes" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate OnBesDakikaOnceden}">
+                        <RadioButton Content="{behaviors:Translate OnBesDakikaOnceden}" Value="15" x:Name="Onbes" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate OnBesDakikaOnceden}" Visual="Material">
                             <RadioButton.Triggers>
                                 <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="15">
                                     <Setter TargetName="Onbes" Property="IsChecked" Value="True"/>
@@ -135,11 +135,11 @@
                                 <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Onbes}"/>
                             </RadioButton.Behaviors>
                         </RadioButton>
-                        <Label HorizontalOptions="Start" Text="{behaviors:Translate AlarmSound}" FontSize="16" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}"/>
+                        <Label HorizontalOptions="Start" Text="{behaviors:Translate AlarmSound}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}" Visual="Material"/>
                         <StackLayout Orientation="Horizontal">
-                            <Picker ItemsSource="{Binding AvailableSounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound}" HorizontalOptions="FillAndExpand" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" BackgroundColor="{AppThemeBinding Light={StaticResource OnSurfaceColor}, Dark={StaticResource OnPrimaryColor}}" />
+                            <Picker Title="{behaviors:Translate Birsessecin}" Style="{DynamicResource PickerStyle}" ItemsSource="{Binding AvailableSounds}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound}" HorizontalOptions="FillAndExpand" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource DarkElevation2dp}}" Visual="Material" />
                             <!--<Button Text="{Binding TestButtonText}" Command="{Binding TestButtonCommand}" CornerRadius="9" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" HorizontalOptions="End" FontFamily="MaterialIcons" FontAttributes="Bold" Font="Default"/>-->
-                            <Label Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="45" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Text="{Binding TestButtonText}">
+                            <Label Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="45" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Text="{Binding TestButtonText}" Visual="Material">
                                 <Label.Triggers>
                                     <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="False">
                                         <Setter Property="Text" Value="&#xe038;" />
@@ -157,7 +157,7 @@
                 </pancakeView:PancakeView>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="7">
-                    <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate Kapat}" Command="{Binding BackCommand}" FontSize="14" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="3" Visual="Material" Style="{StaticResource Button}"/>
+                    <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate Kapat}" Command="{Binding BackCommand}" Style="{DynamicResource ButtonStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="3" Visual="Material"/>
                 </StackLayout>
                 <!--</pancakeView:PancakeView>-->
             </Grid>

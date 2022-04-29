@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace SuleymaniyeTakvimi.ViewModels
         private bool _dark;
 
         private ObservableCollection<Item> _items;
+        private string _remainingTime;
+
         public ObservableCollection<Item> Items { get => _items; set => SetProperty<ObservableCollection<Item>>(ref _items, value); }
 
         private Takvim Vakitler
@@ -57,6 +60,12 @@ namespace SuleymaniyeTakvimi.ViewModels
             set => SetProperty(ref _dark, value);
         }
 
+        public string RemainingTime
+        {
+            get => _remainingTime;
+            set => SetProperty(ref _remainingTime, value);
+        }
+
         public string City
         {
             get => _city;
@@ -80,6 +89,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (!string.IsNullOrEmpty(City)) Preferences.Set("sehir", City);
             City ??= Preferences.Get("sehir", AppResources.Sehir);
         }
+
         public ItemsViewModel()
         {
             Debug.WriteLine("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
@@ -94,12 +104,11 @@ namespace SuleymaniyeTakvimi.ViewModels
             //Without the Convert.ToDouble conversion it confuses the , and . when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
             GoToMapCommand = new Command(async () =>
             {
-                var location = new Location(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat),Convert.ToDouble(_takvim.Boylam, CultureInfo.InvariantCulture.NumberFormat));
-                var placeMark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem,CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
-                var options = new MapLaunchOptions { Name = placeMark.FirstOrDefault()?.Thoroughfare ?? placeMark.FirstOrDefault()?.CountryName};
-
                 try
                 {
+                   var location = new Location(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat),Convert.ToDouble(_takvim.Boylam, CultureInfo.InvariantCulture.NumberFormat));
+                    var placeMark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem,CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam,CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(true);
+                    var options = new MapLaunchOptions { Name = placeMark.FirstOrDefault()?.Thoroughfare ?? placeMark.FirstOrDefault()?.CountryName};
                     await Map.OpenAsync(location, options).ConfigureAwait(false);
                 }
                 catch (Exception ex)
@@ -121,6 +130,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     {
                         var location = new Location(_takvim.Enlem, _takvim.Boylam, _takvim.Yukseklik);
                         data.GetMonthlyPrayerTimes(location, true);
+                        data.SetWeeklyAlarms();
                     }).ConfigureAwait(true);
                 }
             });
@@ -129,7 +139,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 if (!data.HaveInternet()) return;
                 Debug.WriteLine("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
-                await Task.Delay(2000).ConfigureAwait(false);
+                await Task.Delay(3000).ConfigureAwait(false);
+                if (!File.Exists(data._fileName)) _takvim = await data.PrepareMonthlyPrayerTimes().ConfigureAwait(false);
                 if (_takvim.Yukseklik == 114.0 && _takvim.Enlem == 41.0 && _takvim.Boylam == 29.0)
                 {
                     _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
@@ -222,10 +233,89 @@ namespace SuleymaniyeTakvimi.ViewModels
             Task.Run(async () =>
             {
                 await Task.Delay(5000).ConfigureAwait(false);
-                DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
+                if(Preferences.Get("ForegroundServiceEnabled",true))DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
             });
             Title = AppResources.PageTitle;
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                // Do something
+                RemainingTime = GetRemainingTime();
+                return true; // True = Repeat again, False = Stop the timer
+            });
             Debug.WriteLine("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+        }
+
+        private string GetRemainingTime()
+        {
+            var currentTime = DateTime.Now.TimeOfDay;
+            try
+            {
+                if (currentTime < TimeSpan.Parse(_takvim.FecriKazip))
+                    return AppResources.FecriKazibingirmesinekalanvakit + " " +
+                              (TimeSpan.Parse(_takvim.FecriKazip) - currentTime).ToString(@"hh\:mm\:ss");
+                if (currentTime >= TimeSpan.Parse(_takvim.FecriKazip) && currentTime <= TimeSpan.Parse(_takvim.FecriSadik))
+                    return AppResources.FecriSadikakalanvakit + " " +
+                           (TimeSpan.Parse(_takvim.FecriSadik) - currentTime).ToString(@"hh\:mm\:ss");
+                if (currentTime >= TimeSpan.Parse(_takvim.FecriSadik) && currentTime <= TimeSpan.Parse(_takvim.SabahSonu))
+                    return AppResources.SabahSonunakalanvakit + " " +
+                           (TimeSpan.Parse(_takvim.SabahSonu) - currentTime).ToString(@"hh\:mm\:ss");
+                if (currentTime >= TimeSpan.Parse(_takvim.SabahSonu) && currentTime <= TimeSpan.Parse(_takvim.Ogle))
+                    return AppResources.Ogleningirmesinekalanvakit + " " +
+                           (TimeSpan.Parse(_takvim.Ogle) - currentTime).ToString(@"hh\:mm\:ss");
+                if (currentTime >= TimeSpan.Parse(_takvim.Ogle) && currentTime <= TimeSpan.Parse(_takvim.Ikindi))
+                    return AppResources.Oglenincikmasinakalanvakit + " " +
+                           (TimeSpan.Parse(_takvim.Ikindi) - currentTime).ToString(@"hh\:mm\:ss");
+                if (currentTime >= TimeSpan.Parse(_takvim.Ikindi) && currentTime <= TimeSpan.Parse(_takvim.Aksam))
+                    return AppResources.Ikindinincikmasinakalanvakit + " " +
+                           (TimeSpan.Parse(_takvim.Aksam) - currentTime).ToString(@"hh\:mm\:ss");
+                if (currentTime >= TimeSpan.Parse(_takvim.Aksam) && currentTime <= TimeSpan.Parse(_takvim.Yatsi))
+                    return AppResources.Aksamincikmasnakalanvakit + " " +
+                           (TimeSpan.Parse(_takvim.Yatsi) - currentTime).ToString(@"hh\:mm\:ss");
+                if (currentTime >= TimeSpan.Parse(_takvim.Yatsi) && currentTime <= TimeSpan.Parse(_takvim.YatsiSonu))
+                    return AppResources.Yatsinincikmasinakalanvakit + " " +
+                           (TimeSpan.Parse(_takvim.YatsiSonu) - currentTime).ToString(@"hh\:mm\:ss");
+                if (currentTime >= TimeSpan.Parse(_takvim.YatsiSonu))
+                    return AppResources.Yatsininciktigindangecenvakit + " " +
+                           (currentTime - TimeSpan.Parse(_takvim.YatsiSonu)).ToString(@"hh\:mm\:ss");
+                //if (currentTime < TimeSpan.Parse(_takvim.FecriKazip))
+                //    return (TimeSpan.Parse(_takvim.FecriKazip) - currentTime).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\:ss");
+                //if (currentTime >= TimeSpan.Parse(_takvim.FecriKazip) &&
+                //    currentTime <= TimeSpan.Parse(_takvim.FecriSadik))
+                //    return (TimeSpan.Parse(_takvim.FecriSadik) - currentTime).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\:ss");
+                //if (currentTime >= TimeSpan.Parse(_takvim.FecriSadik) &&
+                //    currentTime <= TimeSpan.Parse(_takvim.SabahSonu))
+                //    return (TimeSpan.Parse(_takvim.SabahSonu) - currentTime).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\\\:ss");
+                //if (currentTime >= TimeSpan.Parse(_takvim.SabahSonu) &&
+                //    currentTime <= TimeSpan.Parse(_takvim.Ogle))
+                //    return (TimeSpan.Parse(_takvim.Ogle) - currentTime).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\:ss");
+                //if (currentTime >= TimeSpan.Parse(_takvim.Ogle) && currentTime <= TimeSpan.Parse(_takvim.Ikindi))
+                //    return (TimeSpan.Parse(_takvim.Ikindi) - currentTime).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\:ss");
+                //if (currentTime >= TimeSpan.Parse(_takvim.Ikindi) && currentTime <= TimeSpan.Parse(_takvim.Aksam))
+                //    return (TimeSpan.Parse(_takvim.Aksam) - currentTime).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\:ss");
+                //if (currentTime >= TimeSpan.Parse(_takvim.Aksam) && currentTime <= TimeSpan.Parse(_takvim.Yatsi))
+                //    return (TimeSpan.Parse(_takvim.Yatsi) - currentTime).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\:ss");
+                //if (currentTime >= TimeSpan.Parse(_takvim.Yatsi) &&
+                //    currentTime <= TimeSpan.Parse(_takvim.YatsiSonu))
+                //    return (TimeSpan.Parse(_takvim.YatsiSonu) - currentTime).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\:ss");
+                //if (currentTime >= TimeSpan.Parse(_takvim.YatsiSonu))
+                //    return (TimeSpan.Parse("23:59")-currentTime + TimeSpan.Parse(_takvim.FecriKazip)).Add(TimeSpan.FromMinutes(1))
+                //        .ToString(@"hh\:mm\:ss");
+            }
+            catch (Exception exception)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"GetFormattedRemainingTime exception: {exception.Message}. Location: {_takvim.Enlem}, {_takvim.Boylam}");
+            }
+
+            return "";
         }
 
         private Item SelectedItem

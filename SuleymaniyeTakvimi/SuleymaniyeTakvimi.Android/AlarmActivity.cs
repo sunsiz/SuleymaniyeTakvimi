@@ -25,8 +25,8 @@ namespace SuleymaniyeTakvimi.Droid
             // Create your application here
             SetContentView(Resource.Layout.AlarmLayout);
             //get the current intent
-            Intent intent = this.Intent;
-            var name = intent?.GetStringExtra("name");
+            var intent = this.Intent;
+            var name = intent?.GetStringExtra("name")?? string.Empty;
             var time = TimeSpan.Parse(intent?.GetStringExtra("time") ?? string.Empty);
             Log.Info("AlarmActivity", $"Alarm triggered at {DateTime.Now} for {name} and {time}");
             FindViewById<Button>(Resource.Id.stopButton)?.SetOnClickListener(this);
@@ -216,6 +216,20 @@ namespace SuleymaniyeTakvimi.Droid
                     pendingIntent?.Send();
                 }
             }
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            var minute = Preferences.Get("AlarmDuration", 5);
+            Xamarin.Forms.Device.StartTimer(TimeSpan.FromMinutes(minute), () =>
+            {
+                // Do something
+                CrossMediaManager.Current.MediaPlayer.Stop();
+                CheckRemainingReminders();
+                Finish();
+                return false; // True = Repeat again, False = Stop the timer
+            });
         }
     }
 }

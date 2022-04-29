@@ -80,7 +80,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PRAYER TIMES FROM THE EQUATOR TO THE POLES.
+        ///   Looks up a localized string similar to Prayer Times From The Equator To The Poles.
         /// </summary>
         public static string AciklamaLinkText {
             get {
@@ -125,7 +125,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for the Maghrib to come out:.
+        ///   Looks up a localized string similar to Time left for the Maghrib to end:.
         /// </summary>
         public static string Aksamincikmasnakalanvakit {
             get {
@@ -170,11 +170,29 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alarm duration: .
+        /// </summary>
+        public static string AlarmSuresi {
+            get {
+                return ResourceManager.GetString("AlarmSuresi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play alarm.
         /// </summary>
         public static string AlarmSwitch {
             get {
                 return ResourceManager.GetString("AlarmSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arabic.
+        /// </summary>
+        public static string Arabic {
+            get {
+                return ResourceManager.GetString("Arabic", resourceCulture);
             }
         }
         
@@ -202,6 +220,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string AylikTakvimYenilendi {
             get {
                 return ResourceManager.GetString("AylikTakvimYenilendi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Azerbaijani.
+        /// </summary>
+        public static string Azerbaijani {
+            get {
+                return ResourceManager.GetString("Azerbaijani", resourceCulture);
             }
         }
         
@@ -260,6 +287,24 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable sticky notification.
+        /// </summary>
+        public static string BildirimKapatma {
+            get {
+                return ResourceManager.GetString("BildirimKapatma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We recommend that you do not turn this setting off. If you disable it, alarms may not ring on time. If your alarms are not ringing, please check the application settings. In these settings, in the &quot;Other permissions&quot; section, check that the &quot;Start in the Background&quot; permission is selected. Make sure that the &quot;No Restrictions&quot; setting in the &quot;Battery saving&quot; section is selected. Now if you want to check these permissions, click the button below..
+        /// </summary>
+        public static string BildirimUyari {
+            get {
+                return ResourceManager.GetString("BildirimUyari", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reminding Time:.
         /// </summary>
         public static string BildirmeZamani {
@@ -274,15 +319,6 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string Birsessecin {
             get {
                 return ResourceManager.GetString("Birsessecin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Longitude: {0:G7}.
-        /// </summary>
-        public static string Boylam {
-            get {
-                return ResourceManager.GetString("Boylam", resourceCulture);
             }
         }
         
@@ -350,20 +386,29 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  minutes.
+        /// </summary>
+        public static string Dakika {
+            get {
+                return ResourceManager.GetString("Dakika", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deutsch.
+        /// </summary>
+        public static string Deutsch {
+            get {
+                return ResourceManager.GetString("Deutsch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Latitude: {0:G7}.
-        /// </summary>
-        public static string Enlem {
-            get {
-                return ResourceManager.GetString("Enlem", resourceCulture);
             }
         }
         
@@ -404,7 +449,16 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for the Sahar (Suhoor) to enter:.
+        ///   Looks up a localized string similar to Farsi.
+        /// </summary>
+        public static string Farsi {
+            get {
+                return ResourceManager.GetString("Farsi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time left for the Sahar (Suhoor) to begin:.
         /// </summary>
         public static string FecriKazibingirmesinekalanvakit {
             get {
@@ -485,6 +539,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        public static string French {
+            get {
+                return ResourceManager.GetString("French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go to Settings.
         /// </summary>
         public static string GotoSettings {
@@ -503,7 +566,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show On Map.
+        ///   Looks up a localized string similar to Show Location On Map.
         /// </summary>
         public static string HaritadaGoster {
             get {
@@ -557,11 +620,20 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for the Asr to come out:.
+        ///   Looks up a localized string similar to Time left for the Asr to end:.
         /// </summary>
         public static string Ikindinincikmasinakalanvakit {
             get {
                 return ResourceManager.GetString("Ikindinincikmasinakalanvakit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remaining Time: .
+        /// </summary>
+        public static string KalanSure {
+            get {
+                return ResourceManager.GetString("KalanSure", resourceCulture);
             }
         }
         
@@ -580,6 +652,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string Kaydet {
             get {
                 return ResourceManager.GetString("Kaydet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save and Close.
+        /// </summary>
+        public static string KaydetVeKapat {
+            get {
+                return ResourceManager.GetString("KaydetVeKapat", resourceCulture);
             }
         }
         
@@ -692,6 +773,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kyrgyz.
+        /// </summary>
+        public static string Kyrgyz {
+            get {
+                return ResourceManager.GetString("Kyrgyz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while retrieving prayer times from the internet..
         /// </summary>
         public static string NamazVaktiAlmaHatasi {
@@ -710,7 +800,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for Dhuhr to come out:.
+        ///   Looks up a localized string similar to Time left for Dhuhr to end:.
         /// </summary>
         public static string Oglenincikmasinakalanvakit {
             get {
@@ -719,7 +809,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for Dhuhr to enter:.
+        ///   Looks up a localized string similar to Time left for Dhuhr to begin:.
         /// </summary>
         public static string Ogleningirmesinekalanvakit {
             get {
@@ -800,11 +890,11 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time Zone: GMT {0}.
+        ///   Looks up a localized string similar to Russian.
         /// </summary>
-        public static string SaatBolgesi {
+        public static string Russian {
             get {
-                return ResourceManager.GetString("SaatBolgesi", resourceCulture);
+                return ResourceManager.GetString("Russian", resourceCulture);
             }
         }
         
@@ -1043,6 +1133,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uzbek.
+        /// </summary>
+        public static string Uzbek {
+            get {
+                return ResourceManager.GetString("Uzbek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time:.
         /// </summary>
         public static string Vakti {
@@ -1070,7 +1169,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Web Site.
+        ///   Looks up a localized string similar to  Web Site.
         /// </summary>
         public static string WebSayfa {
             get {
@@ -1088,7 +1187,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for Isha to come out:.
+        ///   Looks up a localized string similar to Time left for Isha to end:.
         /// </summary>
         public static string Yatsinincikmasinakalanvakit {
             get {
@@ -1097,7 +1196,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time elapsed since Isha come out:.
+        ///   Looks up a localized string similar to Time elapsed since Isha end:.
         /// </summary>
         public static string Yatsininciktigindangecenvakit {
             get {
@@ -1124,20 +1223,20 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font Size: .
+        /// </summary>
+        public static string YaziBoyutu {
+            get {
+                return ResourceManager.GetString("YaziBoyutu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refreshing.
         /// </summary>
         public static string Yenileniyor {
             get {
                 return ResourceManager.GetString("Yenileniyor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Altitude: {0}.
-        /// </summary>
-        public static string Yukseklik {
-            get {
-                return ResourceManager.GetString("Yukseklik", resourceCulture);
             }
         }
         

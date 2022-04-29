@@ -43,11 +43,11 @@
                     <CollectionView.Header>
                         <StackLayout>
                             <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7,3,0" Padding="3" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
-                               <Label Margin="5,0" Padding="9" HorizontalOptions="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" FontAttributes="Bold" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Sehir}" x:DataType="local:ItemsViewModel">
+                               <Label Margin="5,0" Padding="9" HorizontalOptions="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Sehir}" x:DataType="local:ItemsViewModel" Style="{DynamicResource LabelStyle}">
                                    <Label.FormattedText>
                                        <FormattedString>
-                                           <Span Text="&#xe55e;" FontFamily="MaterialIcons" />
-                                           <Span Text="{Binding City}">
+                                           <Span Text="&#xe55e;" FontFamily="MaterialIcons" FontSize="20" />
+                                           <Span Text="{Binding City}" TextTransform="Uppercase">
                                            </Span>
                                        </FormattedString>
                                    </Label.FormattedText>
@@ -75,8 +75,8 @@
                                         </DataTrigger>
                                     </pancakeView:PancakeView.Triggers>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Adi}" />
-                                        <Label VerticalOptions="Start" FontAttributes="Bold" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Vakit}" />
+                                        <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Adi}" Style="{DynamicResource LabelStyle}" />
+                                        <Label VerticalOptions="Start" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Vakit}" Style="{DynamicResource LabelStyle}" />
                                         <Label Margin="0,0,9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="20" TextColor="{AppThemeBinding Light={StaticResource TimeTextColor}, Dark={StaticResource TimeTextColorDark}}" Text="&#xe7f6;">
                                             <Label.Triggers>
                                                 <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="False">
@@ -98,10 +98,21 @@
                     <CollectionView.Footer>
                         <StackLayout>
                             <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7,3,0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
-                                <Button Margin="9,0" Padding="9,0" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
-                                    Command="{Binding GoToMonthCommand}"
+                                <Button Margin="9,0" Padding="9,0" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
+                                    Command="{Binding GoToMonthCommand}" TextTransform="None" Style="{DynamicResource ButtonStyle}"
                                     Text="{behaviors:Translate AylikTakvim}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AylikTakvim}"
                                     x:DataType="local:ItemsViewModel" />
+                            </pancakeView:PancakeView>
+                            <pancakeView:PancakeView Style="{StaticResource Card}" Margin="9,5" Padding="7" CornerRadius="25" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}">
+                            <Label HorizontalOptions="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Style="{DynamicResource LabelStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <!--<Span Text="&#xe855;" FontFamily="MaterialIcons" FontSize="20" />
+                                        <Span Text="{behaviors:Translate KalanSure}" />-->
+                                        <Span Text="{Binding RemainingTime}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
                             </pancakeView:PancakeView>
                         </StackLayout>
                     </CollectionView.Footer>

@@ -124,13 +124,13 @@
     <value>شام</value>
   </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-    <value>شامنىڭ چىقىشىا قالغان ۋاقىت:</value>
+	  <value>شامنىڭ چىقىشىغا قالغان ۋاقىت:</value>
   </data>
   <data name="AlarmHatasi" xml:space="preserve">
-    <value>قوڭغۇراق چالغاندا بىر مەسىلە چىقتى، تەپسىلاتلار</value>
+	  <value>قوڭغۇراق جىرىڭلىغاندا بىر خاتالىق كۆرۈلدى، تەپسىلاتلار</value>
   </data>
   <data name="Alarmi" xml:space="preserve">
-    <value>ئەسكەرتىشى</value>
+	  <value>ۋاقتى</value>
   </data>
   <data name="Alarmkurarkenhataolustu" xml:space="preserve">
     <value>قوڭغۇراقلارنى تەڭشەۋاتقاندا بىر خاتالىق يۈز بەردى</value>
@@ -139,7 +139,7 @@
     <value>قوڭغۇراق ئاۋازى</value>
   </data>
   <data name="AlarmSwitch" xml:space="preserve">
-    <value>قوڭغۇراق چالسۇن</value>
+    <value>قوڭغۇراق جىرىڭلسۇن</value>
   </data>
   <data name="AylikTakvim" xml:space="preserve">
     <value>ئايلىق كالېندار</value>
@@ -171,9 +171,6 @@
   <data name="Birsessecin" xml:space="preserve">
     <value>قوڭغۇراق ئاۋازى تاللاڭ</value>
   </data>
-  <data name="Boylam" xml:space="preserve">
-    <value>ئۇزۇنلۇق: {0:G7}</value>
-  </data>
   <data name="BoylamFormatsiz" xml:space="preserve">
     <value>ئۇزۇنلۇق</value>
   </data>
@@ -188,9 +185,6 @@
   </data>
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
     <value>ئۈسكىنىڭىز تىترەشنى قوللىمايدۇ</value>
-  </data>
-  <data name="Enlem" xml:space="preserve">
-    <value>كەڭلىك: {0:G7}</value>
   </data>
   <data name="EnlemFormatsiz" xml:space="preserve">
     <value>كەڭلىك</value>
@@ -235,10 +229,10 @@
     <value>ھەققمىزدە</value>
   </data>
   <data name="HaritadaGoster" xml:space="preserve">
-    <value>خەرىتەدە كۆرسىتىش</value>
+    <value>ئورۇننى خەرىتەدە كۆرسىتىش</value>
   </data>
   <data name="HaritaHatasi" xml:space="preserve">
-    <value>خەرتىنى ئىچىۋاتقاندا مەسىلە چىقتى. \n تەپسىلاتلار:</value>
+    <value>خەرىتىنى ئىچىۋاتقاندا مەسىلە چىقتى. \n تەپسىلاتلار:</value>
   </data>
   <data name="Hatadetaylari" xml:space="preserve">
     <value>خاتا تەپسىلاتى:</value>
@@ -250,10 +244,10 @@
     <value>مەزمۇن يۈكلىنىۋاتىدۇ ...</value>
   </data>
   <data name="Ikindi" xml:space="preserve">
-    <value>ئەسىر</value>
+	  <value>دىگەر</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-    <value>ئەسىرنىڭ چىقىشىغا قالغان ۋاقىت:</value>
+	  <value>دىگەرنىڭ چىقىشىغا قالغان ۋاقىت:</value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>تاقاش</value>
@@ -268,7 +262,7 @@
     <value>قىبلە كۆرسەتكۈچ</value>
   </data>
   <data name="KonumHatasi" xml:space="preserve">
-    <value>ئۈسكىنە ئورۇن ئۇچۇرلىرىنى ئوقۇۋاتقاندا خاتالىق چىقتى</value>
+    <value>ئۈسكىنە ئورۇن ئۇچۇرلىرىنى ئوقۇۋاتقاندا خاتالىق كۆرۈلدى</value>
   </data>
   <data name="KonumIzniBaslik" xml:space="preserve">
     <value>ئۈسكىنە ئورنىغا ئېرىشىش ھوقۇقى بېرىلمىگەن</value>
@@ -327,9 +321,6 @@
   <data name="RadyoIcinInternet" xml:space="preserve">
     <value>رادىئو قويۇش ئۈچۈن ئىنتېرنېت لازىم، تورىڭىزنىڭ ئوچۇق ئىكەنلىكىنى تەكشۈرۈڭ، ياكى «تور بىكەت» ئۇلىنىشىنى بىسىپ تور بەتتىن ئاڭلاڭ.</value>
   </data>
-  <data name="SaatBolgesi" xml:space="preserve">
-    <value>ۋاقىت رايونى: GMT {0}</value>
-  </data>
   <data name="SabahSonu" xml:space="preserve">
     <value>كۈن چىقىش</value>
   </data>
@@ -346,7 +337,7 @@
     <value>قوڭغۇراقنى سىناش</value>
   </data>
   <data name="SorunCikti" xml:space="preserve">
-    <value>بىر مەسىلىگە يولۇقتۇق</value>
+	  <value>بىر خاتالىق كۆرۈلدى</value>
   </data>
   <data name="SosyalMedyaBaglantisi" xml:space="preserve">
     <value>ئىجتمائىي ئالاقە تورى ئۇلىنىشلىرىمىز</value>
@@ -376,7 +367,7 @@
     <value>ئىنتېرنېت لازىم</value>
   </data>
   <data name="Tamam" xml:space="preserve">
-    <value>ماقۇل</value>
+	  <value>جەزملەش</value>
   </data>
   <data name="Tarih" xml:space="preserve">
     <value>چېسلا</value>
@@ -400,7 +391,7 @@
     <value>نەشرى</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
-    <value>تور بىكەت</value>
+    <value> تور بىكەت</value>
   </data>
   <data name="Yatsi" xml:space="preserve">
     <value>خۇپتەن</value>
@@ -420,9 +411,6 @@
   <data name="Yenileniyor" xml:space="preserve">
     <value>يېڭىلىنىۋاتىدۇ</value>
   </data>
-  <data name="Yukseklik" xml:space="preserve">
-    <value>ئىگىزلىك: {0}</value>
-  </data>
   <data name="YukseklikFormatsiz" xml:space="preserve">
     <value>ئىگىزلىك</value>
   </data>
@@ -430,7 +418,7 @@
     <value>دەل ۋاقتىدا</value>
   </data>
   <data name="AciklamaLinkURL" xml:space="preserve">
-    <value>https://www.musulmanlar.com/?p=2252</value>
+    <value>https://www.suleymaniyevakfi.org/ramazan-ve-oruc/namaz-ve-oruc-vakitlerisadece-muslim-olanlar-icin.html</value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
     <value>ناماز ۋە روزا ۋاقىتلىرى (تۈركچە)</value>
@@ -477,12 +465,57 @@
     <value>ئۇيغۇرچە</value>
   </data>
   <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
-    <value>ئۈسكۈنىڭىز Compass نى قوللىمايدۇ</value>
+	  <value>ئۈسكۈنىڭىز كومپاسنى قوللىمايدۇ</value>
   </data>
   <data name="AylikTakvimeErisemedi" xml:space="preserve">
-	  <value>ئايلىق كالېندارنى زىيارەت قىلالمىدى ، تورنىڭ ئوچۇق ۋە ئورۇن مۇلازىمىتىنىڭ ئاكتىپ ئىكەنلىكىنى تەكشۈرۈڭ!</value>
+    <value>ئايلىق كالېندارنى زىيارەت قىلالمىدى ، تورنىڭ ئوچۇق ۋە ئورۇن مۇلازىمىتىنىڭ ئاكتىپ ئىكەنلىكىنى تەكشۈرۈڭ!</value>
   </data>
   <data name="KaydetVeUygula" xml:space="preserve">
-	  <value>ساقلاش ۋە قوللىنىش</value>
+    <value>ساقلاش ۋە قوللىنىش</value>
+  </data>
+  <data name="KalanSure" xml:space="preserve">
+    <value>قالغان ۋاقىت: </value>
+  </data>
+  <data name="AlarmSuresi" xml:space="preserve">
+    <value>قوڭغۇراق جىرىڭلاش ۋاقتى: </value>
+  </data>
+  <data name="Dakika" xml:space="preserve">
+    <value> مىنۇت</value>
+  </data>
+  <data name="YaziBoyutu" xml:space="preserve">
+    <value>خەت چوڭلۇقى: </value>
+  </data>
+  <data name="BildirimKapatma" xml:space="preserve">
+    <value>مۇقىم ئۇقتۇرۇشنى ئىچىش</value>
+  </data>
+  <data name="BildirimUyari" xml:space="preserve">
+    <value>بۇ تەڭشەكنى تاقىۋەتمەسلىكىڭىزنى تەۋسىيە قىلىمىز. ئەگەر تاقىۋەتسىڭىز ئەپ ۋاقتىدا ئەسكەرتەلمەسلىكى مۇمكىن. ئەگەر ئاكتىپ ھالەتتىمۇ يەنىلا ئەسكەرتەلمىسە، ئۇنداقتا ئەپ تەڭشىكىنى تەكشۈرۈپ، «باشقا ئىجازەتلەر» قىسمىدا «ئارقا سۇپىدا باشلاش» ئىجازەتىنىڭ بېرىلگەنلىكىنى جەزملەشتۈرۈڭ، ھەمدە «باتارېيە تېجەش» قىسمىدا «چەكلىمە يوق» نىڭ تاللانغانلىقىنى جەزملەشتۈرۈڭ. ھازىر بۇ ئىجازەتلەرنى تەكشۈرمەكچى بولسىڭىز ، تۆۋەندىكى كۇنۇپكىنى بېسىڭ.</value>
+  </data>
+  <data name="KaydetVeKapat" xml:space="preserve">
+    <value>ساقلاش ۋە تاقاش</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+	  <value>ئەرەبچە</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+	  <value>رۇسچە</value>
+  </data>
+  <data name="Deutsch" xml:space="preserve">
+	  <value>نېمىسچە</value>
+  </data>
+  <data name="French" xml:space="preserve">
+	  <value>فرانسۇزچە</value>
+  </data>
+  <data name="Farsi" xml:space="preserve">
+	  <value>پارسچە</value>
+  </data>
+  <data name="Azerbaijani" xml:space="preserve">
+	  <value>ئەزەربەيجانچە</value>
+  </data>
+  <data name="Kyrgyz" xml:space="preserve">
+	  <value>قىرغىزچە</value>
+  </data>
+  <data name="Uzbek" xml:space="preserve">
+	  <value>ئۆزبېكچە</value>
   </data>
 </root>

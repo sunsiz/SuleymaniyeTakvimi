@@ -43,6 +43,7 @@ namespace SuleymaniyeTakvimi
             }
             LocalizationResourceManager.Current.CurrentCulture = new CultureInfo(language);
             InitializeComponent();
+            Current.Resources["DefaultFontSize"] = Preferences.Get("FontSize", 14);
             
             //Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             DependencyService.Register<DataService>();
@@ -69,6 +70,7 @@ namespace SuleymaniyeTakvimi
         {
             SetTheme();
             RequestedThemeChanged += App_RequestedThemeChanged;
+            Current.Resources["DefaultFontSize"] = Preferences.Get("FontSize", 14);
         }
 
         private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)

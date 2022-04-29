@@ -113,12 +113,12 @@
                 <Setter Property="FontSize" Value="22" />
                 <Setter Property="TextColor" Value="{StaticResource PrimaryAccent100Color}" />
             </Style>
-            <Style x:Key="SpanStyle" TargetType="Label">
+            <!--<Style x:Key="SpanStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="Padding" Value="7,1" />
-            </Style>
+            </Style>-->
             <Style x:Key="MonthlyTitle" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryAccent900Color}, Dark={StaticResource PrimaryAccent100Color}}" />
@@ -139,12 +139,23 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-            <Style TargetType="Label">
+            <x:Double x:Key="DefaultFontSize">14</x:Double>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+            </Style>
+            <Style x:Key="SpanStyle" TargetType="Span">
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+            </Style>
+            <Style x:Key="PickerStyle" TargetType="Picker">
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+            </Style>
+            <Style x:Key="LabelStyle" TargetType="Label">
                 <Style.Triggers>
                     <Trigger TargetType="Label" Property="IsEnabled" Value="False">
                         <Setter Property="TextColor" Value="Silver" />
                     </Trigger>
                 </Style.Triggers>
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
             </Style>
             <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -171,6 +182,7 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
             </Style>
             <Style x:Key="Button" TargetType="Button">
                 <Setter Property="CornerRadius" Value="7" />

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              Shell.PresentationMode="ModalAnimated" FlowDirection="{x:Static Device.FlowDirection}"
              Visual="Material" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}"
              x:Class="SuleymaniyeTakvimi.Views.SettingsPage">
@@ -10,6 +11,7 @@
         <viewModels:SettingsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Vertical">
         <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18,14" Margin="9">
             <pancakeView:PancakeView.BackgroundGradientStops>
                 <pancakeView:GradientStop Color="{AppThemeBinding Light=AliceBlue, Dark={StaticResource AppBackgroundColorDark}}" Offset="0"/>
@@ -19,34 +21,122 @@
                 <pancakeView:DropShadow Color="Coral" BlurRadius="6" Opacity="0.3"/>
             </pancakeView:PancakeView.Shadow>
         <StackLayout>
-            <Label HorizontalOptions="Start" Text="{behaviors:Translate UygulamaDili}" FontSize="16" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}" />
-            <Picker ItemsSource="{Binding SupportedLanguages}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedLanguage}" Title="{behaviors:Translate UygulamaDiliniSecin}" HorizontalOptions="FillAndExpand" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" BackgroundColor="{AppThemeBinding Light={StaticResource OnSurfaceColor}, Dark={StaticResource OnPrimaryColor}}" />
-            <Button Text="{behaviors:Translate KaydetVeUygula}" Command="{Binding ChangeLanguageCommand}"  BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}" Style="{StaticResource Button}"/>
-            <Label HorizontalOptions="Start" Text="{behaviors:Translate UygulamaTema}" FontSize="16" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}" />
-            <RadioButton Content="{behaviors:Translate AcikTema}" Value="1" x:Name="AcikTema" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AcikTema}" FontSize="16">
-                <RadioButton.Triggers>
-                    <DataTrigger TargetType="RadioButton" Binding="{Binding CurrentTheme}" Value="1">
-                        <Setter TargetName="AcikTema" Property="IsChecked" Value="True"/>
-                    </DataTrigger>
-                </RadioButton.Triggers>
-                <RadioButton.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference AcikTema}"/>
-                </RadioButton.Behaviors>
-            </RadioButton>
-            <RadioButton Content="{behaviors:Translate KoyuTema}" Value="0" x:Name="KoyuTema" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate KoyuTema}" FontSize="16">
-                <RadioButton.Triggers>
-                    <DataTrigger TargetType="RadioButton" Binding="{Binding CurrentTheme}" Value="0">
-                        <Setter TargetName="KoyuTema" Property="IsChecked" Value="True"/>
-                    </DataTrigger>
-                </RadioButton.Triggers>
-                <RadioButton.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference KoyuTema}"/>
-                </RadioButton.Behaviors>
-            </RadioButton>
+            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Padding="9,5">
+                    <Label HorizontalOptions="Start" Text="{behaviors:Translate UygulamaDili}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Visual="Material" />
+                    <Picker ItemsSource="{Binding SupportedLanguages}" Style="{DynamicResource PickerStyle}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedLanguage}" Title="{behaviors:Translate UygulamaDiliniSecin}" HorizontalOptions="FillAndExpand" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource DarkElevation2dp}}" Visual="Material" />
+                    <Button Text="{behaviors:Translate KaydetVeUygula}" Command="{Binding ChangeLanguageCommand}" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" Style="{DynamicResource ButtonStyle}" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}" Visual="Material"/>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" Offset="0"/>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Padding="9,5">
+                    <Label HorizontalOptions="Start" Text="{behaviors:Translate UygulamaTema}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Visual="Material" />
+                    <RadioButton Content="{behaviors:Translate AcikTema}" Value="1" x:Name="AcikTema" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AcikTema}">
+                        <RadioButton.Triggers>
+                            <DataTrigger TargetType="RadioButton" Binding="{Binding CurrentTheme}" Value="1">
+                                <Setter TargetName="AcikTema" Property="IsChecked" Value="True"/>
+                            </DataTrigger>
+                        </RadioButton.Triggers>
+                        <RadioButton.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference AcikTema}"/>
+                        </RadioButton.Behaviors>
+                    </RadioButton>
+                    <RadioButton Content="{behaviors:Translate KoyuTema}" Value="0" x:Name="KoyuTema" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate KoyuTema}">
+                        <RadioButton.Triggers>
+                            <DataTrigger TargetType="RadioButton" Binding="{Binding CurrentTheme}" Value="0">
+                                <Setter TargetName="KoyuTema" Property="IsChecked" Value="True"/>
+                            </DataTrigger>
+                        </RadioButton.Triggers>
+                        <RadioButton.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference KoyuTema}"/>
+                        </RadioButton.Behaviors>
+                    </RadioButton>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Padding="9,5">
+                    <Label HorizontalOptions="Start" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Visual="Material">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{behaviors:Translate YaziBoyutu}" />
+                                <Span Text="{Binding FontSize}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Slider HorizontalOptions="FillAndExpand" HeightRequest="48" Maximum="24" Minimum="12" Value="{Binding FontSize}" MaximumTrackColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Visual="Material"/>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" Offset="0"/>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Padding="9,5">
+                    <Label HorizontalOptions="Start" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Visual="Material">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{behaviors:Translate AlarmSuresi}" />
+                                <Span Text="{Binding AlarmDuration}" />
+                                <Span Text="{behaviors:Translate Dakika}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Slider HorizontalOptions="FillAndExpand" HeightRequest="48" Maximum="30" Minimum="1" Value="{Binding AlarmDuration}" MaximumTrackColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Visual="Material"/>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center" >
+                <pancakeView:PancakeView.IsVisible>
+                    <OnPlatform x:TypeArguments="system:Boolean">
+                        <On Platform="Android" Value="True" />
+                        <On Platform="iOS" Value="False" />
+                    </OnPlatform>
+                </pancakeView:PancakeView.IsVisible>
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Padding="9,5">
+                    <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate BildirimKapatma}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" Visual="Material"/>
+                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                        <Switch HorizontalOptions="Start" HeightRequest="48" IsToggled="{Binding ForegroundServiceEnabled}" Visual="Material" />
+                        <Label HorizontalOptions="End" Text="{behaviors:Translate EtkinlestirSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Visual="Material"/>
+                    </StackLayout>
+                    <Label HorizontalOptions="FillAndExpand" Text="{behaviors:Translate BildirimUyari}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource OnSurfaceColor}}" VerticalTextAlignment="Center" Visual="Material"/>
+                    <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate GotoSettings}" Command="{Binding GotoSettingsCommand}" Style="{DynamicResource ButtonStyle}"  BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}" Visual="Material" />
+                </StackLayout>
+            </pancakeView:PancakeView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0" Margin="7">
-                <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate Kapat}" Command="{Binding BackCommand}" FontSize="14" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="3" Visual="Material" Style="{StaticResource Button}"/>
+                <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate KaydetVeKapat}" Command="{Binding BackCommand}" Style="{DynamicResource ButtonStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="3" Visual="Material" />
             </StackLayout>
         </StackLayout>
             </pancakeView:PancakeView>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>

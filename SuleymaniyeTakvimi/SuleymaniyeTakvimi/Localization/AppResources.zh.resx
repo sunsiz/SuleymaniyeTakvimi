@@ -171,9 +171,6 @@
   <data name="Birsessecin" xml:space="preserve">
     <value>选择闹钟铃声</value>
   </data>
-  <data name="Boylam" xml:space="preserve">
-    <value>经度: {0:G7}</value>
-  </data>
   <data name="BoylamFormatsiz" xml:space="preserve">
     <value>经度</value>
   </data>
@@ -184,13 +181,10 @@
     <value>闹钟</value>
   </data>
   <data name="CihazGPSDesteklemiyor" xml:space="preserve">
-    <value>设备不支持GPS</value>
+	  <value>您的设备不支持GPS</value>
   </data>
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
     <value>您的设备不支持振动</value>
-  </data>
-  <data name="Enlem" xml:space="preserve">
-    <value>维度: {0:G7}</value>
   </data>
   <data name="EnlemFormatsiz" xml:space="preserve">
     <value>维度</value>
@@ -235,7 +229,7 @@
     <value>关于</value>
   </data>
   <data name="HaritadaGoster" xml:space="preserve">
-    <value>在地图上显示</value>
+	  <value>在地图上显示位置</value>
   </data>
   <data name="HaritaHatasi" xml:space="preserve">
     <value>打开地图时发生了一些故障。\n详细信息：</value>
@@ -327,9 +321,6 @@
   <data name="RadyoIcinInternet" xml:space="preserve">
     <value>播放广播需要互联网，请检查互联网是否已连接，或者您可以通过单击“网页”链接从网页收听。</value>
   </data>
-  <data name="SaatBolgesi" xml:space="preserve">
-    <value>时区: GMT {0}</value>
-  </data>
   <data name="SabahSonu" xml:space="preserve">
     <value>晨礼结束</value>
   </data>
@@ -400,7 +391,7 @@
     <value>版本</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
-    <value>网站</value>
+	  <value> 网站</value>
   </data>
   <data name="Yatsi" xml:space="preserve">
     <value>宵礼</value>
@@ -420,9 +411,6 @@
   <data name="Yenileniyor" xml:space="preserve">
     <value>正在刷新</value>
   </data>
-  <data name="Yukseklik" xml:space="preserve">
-    <value>高度: {0}</value>
-  </data>
   <data name="YukseklikFormatsiz" xml:space="preserve">
     <value>高度</value>
   </data>
@@ -433,18 +421,18 @@
     <value>https://www.gulanjingzhidao.com/li-bai-yan-jiu/</value>
   </data>
   <data name="AciklamaBas" xml:space="preserve">
-    <value>穆斯林是安拉给那些臣服于安拉并以他的方式忍受一切困难的人的名字。 他们是不屈不挠地实践宗教的人。
-“谁的话语呼唤真主，行善并说：“我是完全臣服于真主的人之一！” 它可能比说话的人的话更好！”（Fussilet 41/33）
-此应用程序旨在提供安全快速的礼拜和禁食时间。 有关时间计算和禁食时间的更多详细信息，请阅读此处的</value>
+	  <value>"穆斯林是安拉给那些臣服于安拉并以他的方式忍受一切困难的人的名字。 他们是不屈不挠地实践宗教的人。
+“召人信仰真主，力行善功，并且说：「我确是穆斯林」的人，在言辞方面，有谁比他更优美呢？”（奉绥来特  41/33）
+此应用程序旨在提供安全快速的礼拜和禁食时间。 有关时间计算和禁食时间的更多详细信息，请点击此处"</value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
-    <value>礼拜时间</value>
+	  <value>礼拜研究</value>
   </data>
   <data name="AciklamaSon" xml:space="preserve">
     <value> 文章。</value>
   </data>
   <data name="GotoSettings" xml:space="preserve">
-    <value>转到设置</value>
+	  <value>打开设置</value>
   </data>
   <data name="UygulamaDiliniSecin" xml:space="preserve">
     <value>选择应用语言</value>
@@ -459,7 +447,7 @@
     <value>选择应用主题</value>
   </data>
   <data name="KoyuTema" xml:space="preserve">
-    <value>深色模式</value>
+	  <value>夜间模式</value>
   </data>
   <data name="AcikTema" xml:space="preserve">
     <value>浅色主题</value>
@@ -477,12 +465,57 @@
     <value>维吾尔语</value>
   </data>
   <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
-    <value>设备不支持指南针</value>
+	  <value>您的设备不支持指南针</value>
   </data>
   <data name="AylikTakvimeErisemedi" xml:space="preserve">
 	  <value>无法访问月历，请检查您的互联网是否可以访问并且定位服务是否处于活动状态！</value>
   </data>
   <data name="KaydetVeUygula" xml:space="preserve">
 	  <value>保存并应用</value>
+  </data>
+  <data name="KalanSure" xml:space="preserve">
+	  <value>剩余时间：</value>
+  </data>
+  <data name="AlarmSuresi" xml:space="preserve">
+	  <value>闹钟时长： </value>
+  </data>
+  <data name="Dakika" xml:space="preserve">
+	  <value> 分钟</value>
+  </data>
+  <data name="YaziBoyutu" xml:space="preserve">
+	  <value>字体大小： </value>
+  </data>
+  <data name="BildirimKapatma" xml:space="preserve">
+	  <value>启用粘性通知</value>
+  </data>
+  <data name="BildirimUyari" xml:space="preserve">
+	  <value>建议您不要关闭此设置。 若您禁用，闹钟可能不会按时响起。 若您已启用，但闹钟仍未响铃，请检查应用程序设置并确保在“其他权限”部分中授予“在后台启动”权限，也在“省电模式”部分中确保选择“无限制”。现在，如果您想检查这些权限，请单击下面的按钮。</value>
+  </data>
+  <data name="KaydetVeKapat" xml:space="preserve">
+	  <value>保存并关闭</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+	  <value>阿拉伯语</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+	  <value>俄语</value>
+  </data>
+  <data name="Deutsch" xml:space="preserve">
+	  <value>德语</value>
+  </data>
+  <data name="French" xml:space="preserve">
+	  <value>法语</value>
+  </data>
+  <data name="Farsi" xml:space="preserve">
+	  <value>波斯语</value>
+  </data>
+  <data name="Azerbaijani" xml:space="preserve">
+	  <value>阿塞拜疆语</value>
+  </data>
+  <data name="Kyrgyz" xml:space="preserve">
+	  <value>吉尔吉斯语</value>
+  </data>
+  <data name="Uzbek" xml:space="preserve">
+	  <value>乌兹别克语</value>
   </data>
 </root>

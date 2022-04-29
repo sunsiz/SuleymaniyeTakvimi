@@ -1,4 +1,5 @@
 ﻿using SuleymaniyeTakvimi.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.Views
@@ -20,6 +21,7 @@ namespace SuleymaniyeTakvimi.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            App.Current.Resources["DefaultFontSize"] = Preferences.Get("FontSize", 14);
             _viewModel.OnAppearing();
         }
     }

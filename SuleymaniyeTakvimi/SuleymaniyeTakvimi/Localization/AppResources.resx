@@ -124,7 +124,7 @@
     <value>Maghrib</value>
   </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-    <value>Time left for the Maghrib to come out:</value>
+	  <value>Time left for the Maghrib to end:</value>
   </data>
   <data name="AlarmHatasi" xml:space="preserve">
     <value>A problem occurred while the alarm was sounding. Details</value>
@@ -136,7 +136,7 @@
     <value>An error occurred while setting the alarm</value>
   </data>
   <data name="AlarmSound" xml:space="preserve">
-    <value>Alarm Sound</value>
+	  <value>Alarm Sound</value>
   </data>
   <data name="AlarmSwitch" xml:space="preserve">
     <value>Play alarm</value>
@@ -166,13 +166,10 @@
     <value>Show notification</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>Reminding Time:</value>
+	  <value>Reminding Time:</value>
   </data>
   <data name="Birsessecin" xml:space="preserve">
     <value>Choose a sound</value>
-  </data>
-  <data name="Boylam" xml:space="preserve">
-    <value>Longitude: {0:G7}</value>
   </data>
   <data name="BoylamFormatsiz" xml:space="preserve">
     <value>Longitude</value>
@@ -189,9 +186,6 @@
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
     <value>Your device does not support vibrate</value>
   </data>
-  <data name="Enlem" xml:space="preserve">
-    <value>Latitude: {0:G7}</value>
-  </data>
   <data name="EnlemFormatsiz" xml:space="preserve">
     <value>Latitude</value>
   </data>
@@ -205,7 +199,7 @@
     <value>Adhan (Makkah)</value>
   </data>
   <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
-    <value>Time left for the Sahar (Suhoor) to enter:</value>
+	  <value>Time left for the Sahar (Suhoor) to begin:</value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
     <value>Sahar</value>
@@ -235,7 +229,7 @@
     <value>About</value>
   </data>
   <data name="HaritadaGoster" xml:space="preserve">
-    <value>Show On Map</value>
+	  <value>Show Location On Map</value>
   </data>
   <data name="HaritaHatasi" xml:space="preserve">
     <value>There is something happened while opening the map.\nDetailes:</value>
@@ -253,7 +247,7 @@
     <value>Asr</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-    <value>Time left for the Asr to come out:</value>
+	  <value>Time left for the Asr to end:</value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>Close</value>
@@ -298,10 +292,10 @@
     <value>Dhuhr</value>
   </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-    <value>Time left for Dhuhr to come out:</value>
+	  <value>Time left for Dhuhr to end:</value>
   </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-    <value>Time left for Dhuhr to enter:</value>
+	  <value>Time left for Dhuhr to begin:</value>
   </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>15 minutes before</value>
@@ -326,9 +320,6 @@
   </data>
   <data name="RadyoIcinInternet" xml:space="preserve">
     <value>Internet is required to play the radio, please check that the internet is connected, or you can listen from the web site by clicking the 'Web Site' link.</value>
-  </data>
-  <data name="SaatBolgesi" xml:space="preserve">
-    <value>Time Zone: GMT {0}</value>
   </data>
   <data name="SabahSonu" xml:space="preserve">
     <value>End of Fajr</value>
@@ -400,16 +391,16 @@
     <value>version</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
-    <value>Web Site</value>
+	  <value> Web Site</value>
   </data>
   <data name="Yatsi" xml:space="preserve">
     <value>Isha</value>
   </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-    <value>Time left for Isha to come out:</value>
+	  <value>Time left for Isha to end:</value>
   </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-    <value>Time elapsed since Isha come out:</value>
+	  <value>Time elapsed since Isha end:</value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
     <value>End of Isha</value>
@@ -419,9 +410,6 @@
   </data>
   <data name="Yenileniyor" xml:space="preserve">
     <value>Refreshing</value>
-  </data>
-  <data name="Yukseklik" xml:space="preserve">
-    <value>Altitude: {0}</value>
   </data>
   <data name="YukseklikFormatsiz" xml:space="preserve">
     <value>Altitude</value>
@@ -434,7 +422,7 @@
 This application is designed to provide safe and fast access to prayer and fasting times. For more detailed information about time calculations and fasting times, read the article </value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
-    <value>PRAYER TIMES FROM THE EQUATOR TO THE POLES</value>
+	  <value>Prayer Times From The Equator To The Poles</value>
   </data>
   <data name="AciklamaLinkURL" xml:space="preserve">
     <value>https://www.islamandquran.org/research/prayer-times-from-the-equator-to-the-poles.html</value>
@@ -483,5 +471,50 @@ This application is designed to provide safe and fast access to prayer and fasti
   </data>
   <data name="KaydetVeUygula" xml:space="preserve">
 	  <value>Save and Apply</value>
+  </data>
+  <data name="KalanSure" xml:space="preserve">
+	  <value>Remaining Time: </value>
+  </data>
+  <data name="AlarmSuresi" xml:space="preserve">
+	  <value>Alarm duration: </value>
+  </data>
+  <data name="Dakika" xml:space="preserve">
+	  <value> minutes</value>
+  </data>
+  <data name="YaziBoyutu" xml:space="preserve">
+	  <value>Font Size: </value>
+  </data>
+  <data name="BildirimKapatma" xml:space="preserve">
+	  <value>Enable sticky notification</value>
+  </data>
+  <data name="BildirimUyari" xml:space="preserve">
+	  <value>We recommend that you do not turn this setting off. If you disable it, alarms may not ring on time. If your alarms are not ringing, please check the application settings. In these settings, in the "Other permissions" section, check that the "Start in the Background" permission is selected. Make sure that the "No Restrictions" setting in the "Battery saving" section is selected. Now if you want to check these permissions, click the button below.</value>
+  </data>
+  <data name="KaydetVeKapat" xml:space="preserve">
+	  <value>Save and Close</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+	  <value>Arabic</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+	  <value>Russian</value>
+  </data>
+  <data name="Deutsch" xml:space="preserve">
+	  <value>Deutsch</value>
+  </data>
+  <data name="French" xml:space="preserve">
+	  <value>French</value>
+  </data>
+  <data name="Farsi" xml:space="preserve">
+	  <value>Farsi</value>
+  </data>
+  <data name="Azerbaijani" xml:space="preserve">
+	  <value>Azerbaijani</value>
+  </data>
+  <data name="Kyrgyz" xml:space="preserve">
+	  <value>Kyrgyz</value>
+  </data>
+  <data name="Uzbek" xml:space="preserve">
+	  <value>Uzbek</value>
   </data>
 </root>

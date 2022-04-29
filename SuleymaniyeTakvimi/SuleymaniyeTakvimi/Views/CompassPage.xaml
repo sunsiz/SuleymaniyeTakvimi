@@ -20,6 +20,7 @@
             </Label>
         </StackLayout>
     </Shell.TitleView>
+
     <ContentPage.Content>
         <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}">
             <Grid x:DataType="viewModels:CompassViewModel">
@@ -33,10 +34,10 @@
                 <StackLayout Grid.Row="1">
                     <pancakeView:PancakeView Margin="25,7" Padding="7" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent100Color}, Dark={StaticResource DarkElevation2dp}}" CornerRadius="9" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.5, Offset='2,2'}" HorizontalOptions="FillAndExpand">
                         <FlexLayout Direction="Column" AlignItems="Center">
-                            <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="{Binding LatitudeAltitude}" />
-                            <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="{Binding DegreeLongitude}" />
+                            <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="{Binding LatitudeAltitude}" />
+                            <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="{Binding DegreeLongitude}" />
                             <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3" Padding="9" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" CornerRadius="29" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
-                                <Label Padding="9,3" HorizontalOptions="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" FontAttributes="Bold" FontSize="14" TextColor="{StaticResource PrimaryAccent50Color}" Text="{behaviors:Translate HaritadaGoster}" />
+                                <Label Padding="9,3" HorizontalOptions="Center" VerticalTextAlignment="Center" Style="{DynamicResource LabelStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" FontAttributes="Bold" TextColor="{StaticResource PrimaryAccent50Color}" Text="{behaviors:Translate HaritadaGoster}" />
                                 <pancakeView:PancakeView.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding GoToMapCommand}" />
                                 </pancakeView:PancakeView.GestureRecognizers>
