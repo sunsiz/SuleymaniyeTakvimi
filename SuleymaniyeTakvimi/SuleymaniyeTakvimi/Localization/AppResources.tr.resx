@@ -124,7 +124,7 @@
     <value>Akşam</value>
   </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-    <value>Akşam vaktinin bitmesine kalan süre:</value>
+	  <value>Akşam vaktinin bitmesine kalan süre: </value>
   </data>
   <data name="AlarmHatasi" xml:space="preserve">
     <value>Alarm çalarken bir sorun oluştu, detaylar</value>
@@ -154,13 +154,13 @@
     <value>Bildiri Ayarı Devre Dışı</value>
   </data>
   <data name="BildiriDevreDisiIcerik" xml:space="preserve">
-    <value>için bildiri devre dışı bırakıldı.</value>
+	  <value> için bildiri devre dışı bırakıldı.</value>
   </data>
   <data name="BildiriEtkinBaslik" xml:space="preserve">
     <value>Bildiri Ayarı Etkinleşti</value>
   </data>
   <data name="BildiriEtkinIcerik" xml:space="preserve">
-    <value>için bildiri etkinleştirildi.</value>
+	  <value> için bildiri etkinleştirildi.</value>
   </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
     <value>Bildirim Göster</value>
@@ -199,16 +199,16 @@
     <value>Ezan Sesi</value>
   </data>
   <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
-    <value>Fecr-i Kâzibin (Sahur başlaması)na kalan süre:</value>
+	  <value>Fecr-i Kâzibin (Sahur başlaması)na kalan süre: </value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
-    <value>Fecr-i Kâzip</value>
+	  <value>Seher (Fecr-i Kâzip)</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
-    <value>Fecr-i Sâdık</value>
+	  <value>Sabah (Fecr-i Sâdık) İmsak</value>
   </data>
   <data name="FecriSadikakalanvakit" xml:space="preserve">
-    <value>Fecr-i Sâdık (Sahur bitimi)ne kalan süre:</value>
+	  <value>Fecr-i Sâdık (Sahur bitimi)ne kalan süre: </value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
     <value>Radyo Fıtrat - Fıtrat'ın Sesi</value>
@@ -247,7 +247,7 @@
     <value>İkindi</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-    <value>İkindi vaktinin bitmesine kalan süre:</value>
+	  <value>İkindi vaktinin bitmesine kalan süre: </value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>Kapat</value>
@@ -292,10 +292,10 @@
     <value>Öğle</value>
   </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-    <value>Öğle'nin çıkmasına kalan süre:</value>
+	  <value>Öğle'nin çıkmasına kalan süre: </value>
   </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-    <value>Öğle'nin girmesine kalan süre:</value>
+	  <value>Öğle'nin girmesine kalan süre: </value>
   </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>15 dakika önceden</value>
@@ -325,7 +325,7 @@
     <value>Sabah Sonu</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-    <value>Sabah Sonu için kalan süre:</value>
+	  <value>Sabah Sonu için kalan süre: </value>
   </data>
   <data name="Sehir" xml:space="preserve">
     <value>Şehir</value>
@@ -382,13 +382,13 @@
     <value>Titret</value>
   </data>
   <data name="Vakti" xml:space="preserve">
-    <value>Vakti:</value>
+    <value>Vakti: </value>
   </data>
   <data name="VaktiHatirlatmasi" xml:space="preserve">
     <value>Vakti Hatırlatması</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>sürüm</value>
+	  <value>sürüm</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
 	  <value> Web Sayfa</value>
@@ -397,7 +397,7 @@
     <value>Yatsı</value>
   </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-    <value>Yatsı vaktinin bitmesine kalan süre:</value>
+	  <value>Yatsı vaktinin bitmesine kalan süre: </value>
   </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
     <value>Yatsı'nın çıkmasından bu yana: </value>
@@ -514,5 +514,8 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   </data>
   <data name="Uzbek" xml:space="preserve">
 	  <value>Özbekçe</value>
+  </data>
+  <data name="Azerbaijani" xml:space="preserve">
+	  <value>Azerice</value>
   </data>
 </root>

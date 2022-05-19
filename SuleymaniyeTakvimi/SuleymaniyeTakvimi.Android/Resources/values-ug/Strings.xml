@@ -3,12 +3,13 @@
 	<string name="app_name">سۇلايمانىيە كالىندارى</string>
 	<string name="app_widget_description">سۇلايمانىيە كالېندارى ناماز ۋاقتىلىرى</string>
 	<string name="refresh">مەزمۇننى يېڭىلاش</string>
-	<string name="fecri_kazip">زولۇق:  </string>
-	<string name="fecri_sadik">بامدات:  </string>
-	<string name="sabah_sonu">كۈن چىقىش:  </string>
-	<string name="ogle">پېشىن:  </string>
-	<string name="ikindi">ئەسىر:  </string>
-	<string name="aksam">شام:  </string>
-	<string name="yatsi">خۇپتەن:  </string>
-	<string name="yatsi_sonu">خۇپتەن ئاخىرى:  </string>
+	<string name="refreshed">ناماز ۋاقتى مۇۋەپپەقىيەتلىك يېڭىلاندى</string>
+	<string name="fecri_kazip">زولۇق</string>
+	<string name="fecri_sadik">بامدات</string>
+	<string name="sabah_sonu">كۈن چىقىش</string>
+	<string name="ogle">پېشىن</string>
+	<string name="ikindi">ئەسىر</string>
+	<string name="aksam">شام</string>
+	<string name="yatsi">خۇپتەن</string>
+	<string name="yatsi_sonu">خۇپتەن ئاخىرى</string>
 </resources>

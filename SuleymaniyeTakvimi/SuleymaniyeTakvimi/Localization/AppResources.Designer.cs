@@ -70,8 +70,8 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to People who are submissive to God and stand up to all difficulties for His cause are named “Muslim”. Another pertinent characteristic of those who are “Muslim” is that they implement the rulings of the religion into their lives without any additions to it from their own desires. “Who speaks in a finer way than the one who invokes God, does righteous deeds and says: ‘I am of those who submit themselves to God (i.e. a Muslim)’?” (Fussilat 41:33)
-        ///This application is designed to provide safe and fast access to  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to People who are submissive to God and stand up to all difficulties for His cause are named “Muslim”. Another pertinent characteristic of those who are “Muslim” is that they apply the commandments of God into their lives without any additions to it from their own desires. “Who speaks in a finer way than the one who invokes God, does righteous deeds and says: ‘I am of those who submit themselves to God (i.e. a Muslim)’?” (Fussilat 41:33)
+        ///This application is designed to provide safe and fast access to prayer a [rest of string was truncated]&quot;;.
         /// </summary>
         public static string AciklamaBas {
             get {
@@ -98,7 +98,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  here..
+        ///   Looks up a localized string similar to  should be read..
         /// </summary>
         public static string AciklamaSon {
             get {
@@ -125,7 +125,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for the Maghrib to end:.
+        ///   Looks up a localized string similar to Time remaining until the end of Maghrib: .
         /// </summary>
         public static string Aksamincikmasnakalanvakit {
             get {
@@ -134,7 +134,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A problem occurred while the alarm was sounding. Details.
+        ///   Looks up a localized string similar to Problem occurred while the alarm plays. Details.
         /// </summary>
         public static string AlarmHatasi {
             get {
@@ -161,7 +161,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alarm Sound.
+        ///   Looks up a localized string similar to Alarm Ringtone.
         /// </summary>
         public static string AlarmSound {
             get {
@@ -179,7 +179,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play alarm.
+        ///   Looks up a localized string similar to Play the alarm.
         /// </summary>
         public static string AlarmSwitch {
             get {
@@ -197,7 +197,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monthly Time.
+        ///   Looks up a localized string similar to Monthly Calendar.
         /// </summary>
         public static string AylikTakvim {
             get {
@@ -206,7 +206,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can not Access the Monthly Calendar, Please check your internet is accessible and location service is active!.
+        ///   Looks up a localized string similar to Can not access the Monthly Calendar. Please check that you are connected to the internet and your location service is active!.
         /// </summary>
         public static string AylikTakvimeErisemedi {
             get {
@@ -215,7 +215,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monthly Prayer Times Refreshed Successfully.
+        ///   Looks up a localized string similar to Monthly Calendar Refreshed Successfully.
         /// </summary>
         public static string AylikTakvimYenilendi {
             get {
@@ -233,7 +233,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5 min before.
+        ///   Looks up a localized string similar to 5 minutes before.
         /// </summary>
         public static string BesDakikaOnceden {
             get {
@@ -242,7 +242,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notification Setting Disabled.
+        ///   Looks up a localized string similar to Notifications Disabled.
         /// </summary>
         public static string BildiriDevreDisiBaslik {
             get {
@@ -251,7 +251,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to notification has been disabled..
+        ///   Looks up a localized string similar to  prayer notification disabled..
         /// </summary>
         public static string BildiriDevreDisiIcerik {
             get {
@@ -260,7 +260,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notification Setting Enabled.
+        ///   Looks up a localized string similar to Notifications Enabled.
         /// </summary>
         public static string BildiriEtkinBaslik {
             get {
@@ -269,7 +269,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to notification is enabled..
+        ///   Looks up a localized string similar to  prayer notification enabled..
         /// </summary>
         public static string BildiriEtkinIcerik {
             get {
@@ -287,7 +287,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable sticky notification.
+        ///   Looks up a localized string similar to Enable sticky notifications.
         /// </summary>
         public static string BildirimKapatma {
             get {
@@ -296,7 +296,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We recommend that you do not turn this setting off. If you disable it, alarms may not ring on time. If your alarms are not ringing, please check the application settings. In these settings, in the &quot;Other permissions&quot; section, check that the &quot;Start in the Background&quot; permission is selected. Make sure that the &quot;No Restrictions&quot; setting in the &quot;Battery saving&quot; section is selected. Now if you want to check these permissions, click the button below..
+        ///   Looks up a localized string similar to We recommend that you do not turn this setting off. If you turn it off, alarms may not ring on time. If your alarms do not ring, please check the application settings: In the &quot;Other permissions&quot; section, check that the &quot;Start in the Background&quot; option is selected. Make sure that the &quot;No Restrictions&quot; setting in the &quot;Battery saving&quot; section is on. To check these permissions now, click the button below..
         /// </summary>
         public static string BildirimUyari {
             get {
@@ -305,7 +305,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminding Time:.
+        ///   Looks up a localized string similar to Reminder Time:.
         /// </summary>
         public static string BildirmeZamani {
             get {
@@ -314,7 +314,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose a sound.
+        ///   Looks up a localized string similar to Choose a ringtone.
         /// </summary>
         public static string Birsessecin {
             get {
@@ -368,7 +368,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your device does not support Compass.
+        ///   Looks up a localized string similar to Your device does not support compass.
         /// </summary>
         public static string CihazPusulaDesteklemiyor {
             get {
@@ -377,7 +377,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your device does not support vibrate.
+        ///   Looks up a localized string similar to Your device does not support vibration.
         /// </summary>
         public static string CihazTitretmeyiDesteklemiyor {
             get {
@@ -395,7 +395,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deutsch.
+        ///   Looks up a localized string similar to German.
         /// </summary>
         public static string Deutsch {
             get {
@@ -431,7 +431,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enables alarm, vibration, notification feature for this prayer time.
+        ///   Looks up a localized string similar to Enables the alarm, vibration, and notification features for this prayer time.
         /// </summary>
         public static string EtkinlestirSwitchAciklama {
             get {
@@ -440,7 +440,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adhan (Makkah).
+        ///   Looks up a localized string similar to Adhan.
         /// </summary>
         public static string EzanSesi {
             get {
@@ -458,7 +458,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for the Sahar (Suhoor) to begin:.
+        ///   Looks up a localized string similar to Remaining time for False Fajr (the beginning of Suhoor): .
         /// </summary>
         public static string FecriKazibingirmesinekalanvakit {
             get {
@@ -467,7 +467,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sahar.
+        ///   Looks up a localized string similar to False Fajr (Sahar &amp; Suhoor time).
         /// </summary>
         public static string FecriKazip {
             get {
@@ -485,7 +485,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for Fajr (end of Suhoor):.
+        ///   Looks up a localized string similar to Remaining time for Fajr (the end of Suhoor): .
         /// </summary>
         public static string FecriSadikakalanvakit {
             get {
@@ -494,7 +494,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Radio Fitrat - Voice of Fitrah.
+        ///   Looks up a localized string similar to Radio Fitrat - The Voice of Fitrah.
         /// </summary>
         public static string FitratinSesi {
             get {
@@ -575,7 +575,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is something happened while opening the map.\nDetailes:.
+        ///   Looks up a localized string similar to Problem occurred while opening the map.\nDetails:.
         /// </summary>
         public static string HaritaHatasi {
             get {
@@ -593,7 +593,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rooster Crows.
+        ///   Looks up a localized string similar to Rooster Crowing.
         /// </summary>
         public static string HorozOtusu {
             get {
@@ -620,7 +620,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for the Asr to end:.
+        ///   Looks up a localized string similar to Time remaining until the end of Asr: .
         /// </summary>
         public static string Ikindinincikmasinakalanvakit {
             get {
@@ -683,7 +683,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qibla Indicator.
+        ///   Looks up a localized string similar to Qibla Direction.
         /// </summary>
         public static string KibleGostergesi {
             get {
@@ -692,7 +692,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is something happened while try to get location.
+        ///   Looks up a localized string similar to Problem occurred trying to get location.
         /// </summary>
         public static string KonumHatasi {
             get {
@@ -701,7 +701,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Permission to Access Location.
+        ///   Looks up a localized string similar to No Permission to Access the Location.
         /// </summary>
         public static string KonumIzniBaslik {
             get {
@@ -710,7 +710,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For the app to work properly, you need to give permission to access the Location!.
+        ///   Looks up a localized string similar to For normal operation of the application, you need to give permission to access the Location!.
         /// </summary>
         public static string KonumIzniIcerik {
             get {
@@ -746,7 +746,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Location and Times refreshed successfully.
+        ///   Looks up a localized string similar to Location and prayer times refreshed successfully.
         /// </summary>
         public static string KonumYenilendi {
             get {
@@ -764,7 +764,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Birds Chirping.
+        ///   Looks up a localized string similar to Birds.
         /// </summary>
         public static string KusCiviltisi {
             get {
@@ -782,7 +782,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while retrieving prayer times from the internet..
+        ///   Looks up a localized string similar to An error occurred while retrieving the prayer times from the internet..
         /// </summary>
         public static string NamazVaktiAlmaHatasi {
             get {
@@ -800,7 +800,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for Dhuhr to end:.
+        ///   Looks up a localized string similar to Time remaining until the end of Dhuhr: .
         /// </summary>
         public static string Oglenincikmasinakalanvakit {
             get {
@@ -809,7 +809,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for Dhuhr to begin:.
+        ///   Looks up a localized string similar to Remaining time for Dhuhr: .
         /// </summary>
         public static string Ogleningirmesinekalanvakit {
             get {
@@ -827,7 +827,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sulaymaniyah Calendar.
+        ///   Looks up a localized string similar to Suleymaniye Calendar.
         /// </summary>
         public static string PageTitle {
             get {
@@ -881,7 +881,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Internet is required to play the radio, please check that the internet is connected, or you can listen from the web site by clicking the &apos;Web Site&apos; link..
+        ///   Looks up a localized string similar to Internet connection required to play the radio, please check your Internet connection. Alternatively, you can listen to the radio by clicking the &apos;Web Site&apos; link..
         /// </summary>
         public static string RadyoIcinInternet {
             get {
@@ -908,7 +908,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for the End of Fajr:.
+        ///   Looks up a localized string similar to Time remaining until the end of Fajr: .
         /// </summary>
         public static string SabahSonunakalanvakit {
             get {
@@ -926,7 +926,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the sound of the alarm to set for this time.
+        ///   Looks up a localized string similar to Select the alarm ringtone for this prayer time.
         /// </summary>
         public static string SesSecAciklama {
             get {
@@ -935,7 +935,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test Sound.
+        ///   Looks up a localized string similar to Sound Test.
         /// </summary>
         public static string SesTesti {
             get {
@@ -962,7 +962,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sulaymaniyah Foundation.
+        ///   Looks up a localized string similar to Suleymaniye Foundation.
         /// </summary>
         public static string SuleymaniyeVakfi {
             get {
@@ -971,7 +971,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sulaymaniyah Foundation Facebook Page.
+        ///   Looks up a localized string similar to Suleymaniye Foundation Facebook Page.
         /// </summary>
         public static string SuleymaniyeVakfiFacebook {
             get {
@@ -980,7 +980,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sulaymaniyah Foundation Instagram Page.
+        ///   Looks up a localized string similar to Suleymaniye Foundation Instagram Page.
         /// </summary>
         public static string SuleymaniyeVakfiInstagram {
             get {
@@ -989,7 +989,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sulaymaniyah Calendar.
+        ///   Looks up a localized string similar to Suleymaniye Calendar.
         /// </summary>
         public static string SuleymaniyeVakfiTakvimi {
             get {
@@ -998,7 +998,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sulaymaniyah Foundation Twitter Page.
+        ///   Looks up a localized string similar to Suleymaniye Foundation Twitter Page.
         /// </summary>
         public static string SuleymaniyeVakfiTwitter {
             get {
@@ -1016,7 +1016,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To renew the prayer times, you need to be connected to the internet, turn on WiFi or Mobile data and click &apos;REFRESH&apos;..
+        ///   Looks up a localized string similar to To renew the prayer times, you need to be connected to the internet. Turn on WiFi or Mobile data and click &apos;REFRESH&apos;..
         /// </summary>
         public static string TakvimIcinInternet {
             get {
@@ -1025,7 +1025,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Internet is required.
+        ///   Looks up a localized string similar to Internet Connection Required.
         /// </summary>
         public static string TakvimIcinInternetBaslik {
             get {
@@ -1052,7 +1052,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stop the test.
+        ///   Looks up a localized string similar to Stop the Test.
         /// </summary>
         public static string TestiDurdur {
             get {
@@ -1061,7 +1061,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your device does not support vibrate..
+        ///   Looks up a localized string similar to Your device does not support vibration..
         /// </summary>
         public static string TitremeyiDesteklemiyor {
             get {
@@ -1106,7 +1106,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose app language.
+        ///   Looks up a localized string similar to Choose the app language.
         /// </summary>
         public static string UygulamaDiliniSecin {
             get {
@@ -1124,7 +1124,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose app theme.
+        ///   Looks up a localized string similar to Choose the app theme.
         /// </summary>
         public static string UygulamaTemasiniSecin {
             get {
@@ -1142,7 +1142,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time:.
+        ///   Looks up a localized string similar to Time: .
         /// </summary>
         public static string Vakti {
             get {
@@ -1187,7 +1187,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time left for Isha to end:.
+        ///   Looks up a localized string similar to Time remaining until the end of Isha: .
         /// </summary>
         public static string Yatsinincikmasinakalanvakit {
             get {
@@ -1196,7 +1196,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time elapsed since Isha end:.
+        ///   Looks up a localized string similar to Time elapsed since the end of Isha: .
         /// </summary>
         public static string Yatsininciktigindangecenvakit {
             get {
@@ -1214,7 +1214,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Stream Schedules.
+        ///   Looks up a localized string similar to  Program Schedule.
         /// </summary>
         public static string YayinAkisi {
             get {

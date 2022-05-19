@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -52,13 +53,13 @@ namespace SuleymaniyeTakvimi.ViewModels
                 { new Language(AppResources.English, "en") },
                 { new Language(AppResources.Farsi, "fa") },
                 { new Language(AppResources.French, "fr") },
-                { new Language(AppResources.Kyrgyz, "ky") },
+                //{ new Language(AppResources.Kyrgyz, "ky") },
                 { new Language(AppResources.Russian, "ru") },
                 { new Language(AppResources.Turkish, "tr") },
                 { new Language(AppResources.Uyghur, "ug") },
-                { new Language(AppResources.Uzbek, "uz") }
+                //{ new Language(AppResources.Uzbek, "uz") }
             };
-            SelectedLanguage = SupportedLanguages.FirstOrDefault(pro => pro.CI == LocalizationResourceManager.Current.CurrentCulture.TwoLetterISOLanguageName);
+            SelectedLanguage = SupportedLanguages.FirstOrDefault(lan => lan.CI == LocalizationResourceManager.Current.CurrentCulture.TwoLetterISOLanguageName);
         }
 
         public bool Dark { get=>_dark; private set=>SetProperty(ref _dark,value); }
@@ -77,6 +78,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
             }
         }
+
+        public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform==DevicePlatform.iOS);
         public int CurrentTheme
         {
             get => _currentTheme;
@@ -111,7 +114,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             });
             BackCommand = new Command(GoBack);
             GotoSettingsCommand = new Command(() => { AppInfo.ShowSettingsUI(); });
-            _alarmDuration = Preferences.Get("AlarmDuration", 5);
+            _alarmDuration = Preferences.Get("AlarmDuration", 4);
             _foregroundServiceEnabled = Preferences.Get("ForegroundServiceEnabled", true);
             IsBusy = false;
         }

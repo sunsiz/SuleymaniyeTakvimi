@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<string name="app_name">Календарь Сулеймания</string>
+	<string name="app_widget_description">Календарь Сулеймания Времена намаза</string>
+	<string name="refresh">Обновить содержимое</string>
+	<string name="refreshed">Время молитвы успешно обновлено</string>
+	<string name="fecri_kazip">Фаджри-кязиб</string>
+	<string name="fecri_sadik">Фаджри-садик</string>
+	<string name="sabah_sonu">Конец Фаджра</string>
+	<string name="ogle">Зухр</string>
+	<string name="ikindi">Аср</string>
+	<string name="aksam">Магриб намаз</string>
+	<string name="yatsi">Иша</string>
+	<string name="yatsi_sonu">Конец Иша</string>
+</resources>

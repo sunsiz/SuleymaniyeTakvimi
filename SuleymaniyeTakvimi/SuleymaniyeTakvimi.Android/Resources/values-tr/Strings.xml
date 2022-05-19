@@ -3,12 +3,13 @@
 	<string name="app_name">Süleymaniye Takvimi</string>
 	<string name="app_widget_description">Süleymaniye Takvimi Namaz Vakitleri</string>
 	<string name="refresh">İçeriği yenile</string>
-	<string name="fecri_kazip">Fecr-i Kâzip:  </string>
-	<string name="fecri_sadik">Fecr-i Sâdık:  </string>
-	<string name="sabah_sonu">Sabah Sonu:  </string>
-	<string name="ogle">Öğle:  </string>
-	<string name="ikindi">İkindi:  </string>
-	<string name="aksam">Akşam:  </string>
-	<string name="yatsi">Yatsı:  </string>
-	<string name="yatsi_sonu">Yatsı Sonu:  </string>
+	<string name="refreshed">Namaz vakitleri başarıyla yenilendi</string>
+	<string name="fecri_kazip">Seher (Fecr-i Kâzip)</string>
+	<string name="fecri_sadik">Sabah (Fecr-i Sâdık) İmsak</string>
+	<string name="sabah_sonu">Sabah Sonu</string>
+	<string name="ogle">Öğle</string>
+	<string name="ikindi">İkindi</string>
+	<string name="aksam">Akşam</string>
+	<string name="yatsi">Yatsı</string>
+	<string name="yatsi_sonu">Yatsı Sonu</string>
 </resources>

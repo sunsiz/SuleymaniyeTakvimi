@@ -23,19 +23,19 @@
     <EmbeddedResource Include="Assets\ezan.wav" />
     <EmbeddedResource Include="Assets\horoz.wav" />
     <EmbeddedResource Include="Assets\kus.wav" />
-    <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\MaterialIcons.ttf" />
     <!--<EmbeddedResource Include="**/*" />-->
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.564" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
-    <PackageReference Include="Plugin.MediaManager.Forms" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.1" />
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="1.1.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +67,6 @@
     <EmbeddedResource Update="Localization\AppResources.fr.resx">
       <DependentUpon>AppResources.resx</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Update="Localization\AppResources.ky-kg.resx">
-      <DependentUpon>AppResources.resx</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Update="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
@@ -81,9 +78,6 @@
       <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Localization\AppResources.ug.resx">
-      <DependentUpon>AppResources.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Localization\AppResources.uz.resx">
       <DependentUpon>AppResources.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AboutPage.xaml">
@@ -113,12 +107,18 @@
   <ItemGroup>
     <None Remove="Assets\alarm.mp3" />
     <None Remove="Assets\alarm.wav" />
+    <None Remove="Assets\alarm3.wav" />
     <None Remove="Assets\ezan.mp3" />
     <None Remove="Assets\ezan.wav" />
     <None Remove="Assets\horoz.mp3" />
     <None Remove="Assets\horoz.wav" />
     <None Remove="Assets\kus.mp3" />
     <None Remove="Assets\kus.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v11.0\Mono.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Localization\AppResources.Designer.cs">

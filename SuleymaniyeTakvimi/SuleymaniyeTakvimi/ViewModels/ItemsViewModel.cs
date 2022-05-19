@@ -147,6 +147,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
                     if (location != null && location.Latitude != 0 && location.Longitude != 0)
                         data.GetMonthlyPrayerTimes(location, false);
+                    RefreshLocationCommand.Execute(null);
                 }
                 //if (_takvim == null) UserDialogs.Instance.Toast(AppResources.TakvimIcinInternet);
                 //DataService data = new DataService();
@@ -192,14 +193,22 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Items.Add(aksam);
                 Items.Add(yatsi);
                 Items.Add(yatsiSonu);
-                if (Preferences.Get(fecriKazip.Id, "") == "") Preferences.Set(fecriKazip.Id, _takvim.FecriKazip);
-                if (Preferences.Get(fecriSadik.Id, "") == "") Preferences.Set(fecriSadik.Id, _takvim.FecriSadik);
-                if (Preferences.Get(sabahSonu.Id, "") == "") Preferences.Set(sabahSonu.Id, _takvim.SabahSonu);
-                if (Preferences.Get(ogle.Id, "") == "") Preferences.Set(ogle.Id, _takvim.Ogle);
-                if (Preferences.Get(ikindi.Id, "") == "") Preferences.Set(ikindi.Id, _takvim.Ikindi);
-                if (Preferences.Get(aksam.Id, "") == "") Preferences.Set(aksam.Id, _takvim.Aksam);
-                if (Preferences.Get(yatsi.Id, "") == "") Preferences.Set(yatsi.Id, _takvim.Yatsi);
-                if (Preferences.Get(yatsiSonu.Id, "") == "") Preferences.Set(yatsiSonu.Id, _takvim.YatsiSonu);
+                Preferences.Set(fecriKazip.Id, _takvim.FecriKazip);
+                Preferences.Set(fecriSadik.Id, _takvim.FecriSadik);
+                Preferences.Set(sabahSonu.Id, _takvim.SabahSonu);
+                Preferences.Set(ogle.Id, _takvim.Ogle);
+                Preferences.Set(ikindi.Id, _takvim.Ikindi);
+                Preferences.Set(aksam.Id, _takvim.Aksam);
+                Preferences.Set(yatsi.Id, _takvim.Yatsi);
+                Preferences.Set(yatsiSonu.Id, _takvim.YatsiSonu);
+                //if (Preferences.Get(fecriKazip.Id, "") == "") Preferences.Set(fecriKazip.Id, _takvim.FecriKazip);
+                //if (Preferences.Get(fecriSadik.Id, "") == "") Preferences.Set(fecriSadik.Id, _takvim.FecriSadik);
+                //if (Preferences.Get(sabahSonu.Id, "") == "") Preferences.Set(sabahSonu.Id, _takvim.SabahSonu);
+                //if (Preferences.Get(ogle.Id, "") == "") Preferences.Set(ogle.Id, _takvim.Ogle);
+                //if (Preferences.Get(ikindi.Id, "") == "") Preferences.Set(ikindi.Id, _takvim.Ikindi);
+                //if (Preferences.Get(aksam.Id, "") == "") Preferences.Set(aksam.Id, _takvim.Aksam);
+                //if (Preferences.Get(yatsi.Id, "") == "") Preferences.Set(yatsi.Id, _takvim.Yatsi);
+                //if (Preferences.Get(yatsiSonu.Id, "") == "") Preferences.Set(yatsiSonu.Id, _takvim.YatsiSonu);
                 //GetCity();
                 //var today = Today;
             }
@@ -236,6 +245,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 if(Preferences.Get("ForegroundServiceEnabled",true))DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
             });
             Title = AppResources.PageTitle;
+            IsBusy = false;
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 // Do something
@@ -251,31 +261,31 @@ namespace SuleymaniyeTakvimi.ViewModels
             try
             {
                 if (currentTime < TimeSpan.Parse(_takvim.FecriKazip))
-                    return AppResources.FecriKazibingirmesinekalanvakit + " " +
+                    return AppResources.FecriKazibingirmesinekalanvakit +
                               (TimeSpan.Parse(_takvim.FecriKazip) - currentTime).ToString(@"hh\:mm\:ss");
                 if (currentTime >= TimeSpan.Parse(_takvim.FecriKazip) && currentTime <= TimeSpan.Parse(_takvim.FecriSadik))
-                    return AppResources.FecriSadikakalanvakit + " " +
+                    return AppResources.FecriSadikakalanvakit +
                            (TimeSpan.Parse(_takvim.FecriSadik) - currentTime).ToString(@"hh\:mm\:ss");
                 if (currentTime >= TimeSpan.Parse(_takvim.FecriSadik) && currentTime <= TimeSpan.Parse(_takvim.SabahSonu))
-                    return AppResources.SabahSonunakalanvakit + " " +
+                    return AppResources.SabahSonunakalanvakit +
                            (TimeSpan.Parse(_takvim.SabahSonu) - currentTime).ToString(@"hh\:mm\:ss");
                 if (currentTime >= TimeSpan.Parse(_takvim.SabahSonu) && currentTime <= TimeSpan.Parse(_takvim.Ogle))
-                    return AppResources.Ogleningirmesinekalanvakit + " " +
+                    return AppResources.Ogleningirmesinekalanvakit +
                            (TimeSpan.Parse(_takvim.Ogle) - currentTime).ToString(@"hh\:mm\:ss");
                 if (currentTime >= TimeSpan.Parse(_takvim.Ogle) && currentTime <= TimeSpan.Parse(_takvim.Ikindi))
-                    return AppResources.Oglenincikmasinakalanvakit + " " +
+                    return AppResources.Oglenincikmasinakalanvakit +
                            (TimeSpan.Parse(_takvim.Ikindi) - currentTime).ToString(@"hh\:mm\:ss");
                 if (currentTime >= TimeSpan.Parse(_takvim.Ikindi) && currentTime <= TimeSpan.Parse(_takvim.Aksam))
-                    return AppResources.Ikindinincikmasinakalanvakit + " " +
+                    return AppResources.Ikindinincikmasinakalanvakit +
                            (TimeSpan.Parse(_takvim.Aksam) - currentTime).ToString(@"hh\:mm\:ss");
                 if (currentTime >= TimeSpan.Parse(_takvim.Aksam) && currentTime <= TimeSpan.Parse(_takvim.Yatsi))
-                    return AppResources.Aksamincikmasnakalanvakit + " " +
+                    return AppResources.Aksamincikmasnakalanvakit +
                            (TimeSpan.Parse(_takvim.Yatsi) - currentTime).ToString(@"hh\:mm\:ss");
                 if (currentTime >= TimeSpan.Parse(_takvim.Yatsi) && currentTime <= TimeSpan.Parse(_takvim.YatsiSonu))
-                    return AppResources.Yatsinincikmasinakalanvakit + " " +
+                    return AppResources.Yatsinincikmasinakalanvakit +
                            (TimeSpan.Parse(_takvim.YatsiSonu) - currentTime).ToString(@"hh\:mm\:ss");
                 if (currentTime >= TimeSpan.Parse(_takvim.YatsiSonu))
-                    return AppResources.Yatsininciktigindangecenvakit + " " +
+                    return AppResources.Yatsininciktigindangecenvakit +
                            (currentTime - TimeSpan.Parse(_takvim.YatsiSonu)).ToString(@"hh\:mm\:ss");
                 //if (currentTime < TimeSpan.Parse(_takvim.FecriKazip))
                 //    return (TimeSpan.Parse(_takvim.FecriKazip) - currentTime).Add(TimeSpan.FromMinutes(1))
@@ -342,6 +352,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             IsBusy = true;
             // This will push the MonthPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(MonthPage)}").ConfigureAwait(false);
+            IsBusy = false;
         }
 
         private async Task GetPrayerTimesAsync()
@@ -382,6 +393,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             IsBusy = true;
             // This will push the SettingsPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(SettingsPage)}").ConfigureAwait(false);
+            IsBusy = false;
         }
     }
 }

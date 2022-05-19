@@ -3,12 +3,13 @@
 	<string name="app_name">Sulaymaniyah Calendar</string>
 	<string name="app_widget_description">Sulaymaniyah Calendar Prayer Times</string>
 	<string name="refresh">Refresh content</string>
-	<string name="fecri_kazip">Sahar:  </string>
-	<string name="fecri_sadik">Fajr:  </string>
-	<string name="sabah_sonu">End of Fajr:  </string>
-	<string name="ogle">Dhuhr:  </string>
-	<string name="ikindi">Asr:  </string>
-	<string name="aksam">Maghrib:  </string>
-	<string name="yatsi">Isha:  </string>
-	<string name="yatsi_sonu">End of Isha:  </string>
+	<string name="refreshed">Prayer times successfully renewed</string>
+	<string name="fecri_kazip">Sahar</string>
+	<string name="fecri_sadik">Fajr</string>
+	<string name="sabah_sonu">End of Fajr</string>
+	<string name="ogle">Dhuhr</string>
+	<string name="ikindi">Asr</string>
+	<string name="aksam">Maghrib</string>
+	<string name="yatsi">Isha</string>
+	<string name="yatsi_sonu">End of Isha</string>
 </resources>

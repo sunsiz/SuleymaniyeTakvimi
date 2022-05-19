@@ -101,7 +101,7 @@
 
             <OnPlatform x:Key="MaterialIcons" x:TypeArguments="x:String">
                 <On Platform="iOS" Value="MaterialIcons" />
-                <On Platform="Android" Value="MaterialIcons-Regular.ttf" />
+                <On Platform="Android" Value="MaterialIcons.ttf" />
             </OnPlatform>
             <Style x:Key="LabelSectionHeader" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontBold}" />

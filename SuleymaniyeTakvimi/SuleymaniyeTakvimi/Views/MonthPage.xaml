@@ -7,8 +7,14 @@
         <viewModels:MonthViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal" Margin="0,20,0,0">
-            <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="35, *, 52" ColumnSpacing="2">
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal">
+            <ScrollView.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android, WinPhone">0</On>
+                    <On Platform="iOS">0,30,0,0</On>
+                </OnPlatform>
+            </ScrollView.Margin>
+            <Grid RowSpacing="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ColumnDefinitions="80,80,80,80,80,80,80,80,80" RowDefinitions="70, *, 52" ColumnSpacing="2">
                 <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate Tarih}" />
                 <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate FecriKazip}" />
                 <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource MonthlyTitle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{behaviors:Translate FecriSadik}" />

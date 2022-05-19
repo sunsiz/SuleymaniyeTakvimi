@@ -1,14 +1,416 @@
-﻿<root>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>1.3</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Aci" xml:space="preserve">
+		<value>Направление</value>
+	</data>
+  <data name="AciklamaBas" xml:space="preserve">
+		<value>Мусульманин – это имя, которое Аллах дал тем, кто покорился Ему и терпеливо переносит все трудности на Его пути. Это те, которые практикуют истинную религию, ничего не привнося в нее от себя.
+«Чья речь прекраснее, чем речь того, кто призывает к Аллаху, поступает праведно и говорит: «Поистине, я – мусульманин?!» (Фуссилят 41/33). 
+Эта программа предназначена для обеспечения безопасного и быстрого доступа к временам намаза и поста. Для получения более подробной информации о расчете времени и времени поста  читайте статью </value>
+	</data>
+  <data name="AciklamaLinkText" xml:space="preserve">
+		<value>Времена намаза и поста: от экватора до полюсов</value>
+	</data>
+  <data name="AciklamaSon" xml:space="preserve">
+		<value> </value>
+	</data>
+  <data name="AcikTema" xml:space="preserve">
+		<value>Дневной режим</value>
+	</data>
+  <data name="Aksam" xml:space="preserve">
+		<value>Магриб намаз</value>
+	</data>
+  <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
+		<value>Время до окончания Магриб (вечернего намаза): </value>
+	</data>
+  <data name="AlarmHatasi" xml:space="preserve">
+		<value>Во время звонка будильника возникла ошибка, подробности</value>
+	</data>
+  <data name="Alarmi" xml:space="preserve">
+		<value>Будильник</value>
+	</data>
+  <data name="Alarmkurarkenhataolustu" xml:space="preserve">
+		<value>Во время установки будильника возникла ошибка</value>
+	</data>
+  <data name="AlarmSound" xml:space="preserve">
+		<value>Голос будильника</value>
+	</data>
+  <data name="AlarmSuresi" xml:space="preserve">
+		<value>Время будильника: </value>
+	</data>
+  <data name="AlarmSwitch" xml:space="preserve">
+		<value>Звонок будильника</value>
+	</data>
+  <data name="AylikTakvim" xml:space="preserve">
+		<value>Ежемесячный календарь</value>
+	</data>
+  <data name="Arabic" xml:space="preserve">
+		<value>На арабском</value>
+	</data>
+  <data name="AylikTakvimeErisemedi" xml:space="preserve">
+		<value>Не удается получить доступ к ежемесячному календарю. Пожалуйста, проверьте, доступен ли ваш Интернет и активна ли служба определения местоположения!</value>
+	</data>
+  <data name="AylikTakvimYenilendi" xml:space="preserve">
+		<value>Ежемесячный календарь успешно обновлен</value>
+	</data>
+  <data name="BesDakikaOnceden" xml:space="preserve">
+		<value>За пять минут раньше</value>
+	</data>
+  <data name="BildiriDevreDisiBaslik" xml:space="preserve">
+		<value>Настройка уведомлений отключена</value>
+	</data>
+  <data name="BildiriDevreDisiIcerik" xml:space="preserve">
+		<value> уведомление отключено.</value>
+	</data>
+  <data name="BildiriEtkinBaslik" xml:space="preserve">
+		<value>Настройка уведомлений включена</value>
+	</data>
+  <data name="BildiriEtkinIcerik" xml:space="preserve">
+		<value> уведомление включено.</value>
+	</data>
+  <data name="BildirimGosterSwitch" xml:space="preserve">
+		<value>Показать уведомление</value>
+	</data>
+  <data name="BildirimKapatma" xml:space="preserve">
+		<value>Включить закрепленные уведомления</value>
+	</data>
+  <data name="Azerbaijani" xml:space="preserve">
+		<value>На азербайджанском</value>
+	</data>
+  <data name="BildirimUyari" xml:space="preserve">
+		<value>Мы рекомендуем не отключать этот параметр. Если его отключить, то будильник не сможет сработать вовремя. Если ваши будильники не звонят, проверьте настройки приложения. В этих настройках в разделе «Другие разрешения» проверьте, что выбрано разрешение «Запуск в фоновом режиме». Убедитесь, что в разделе «Экономия заряда батареи» выбран параметр «Без ограничений». Теперь, если вы хотите проверить эти разрешения, нажмите кнопку ниже.</value>
+	</data>
+  <data name="BildirmeZamani" xml:space="preserve">
+		<value>Время напоминания:</value>
+	</data>
+  <data name="Birsessecin" xml:space="preserve">
+		<value>Выбирете звук</value>
+	</data>
+  <data name="BoylamFormatsiz" xml:space="preserve">
+		<value>Долгота</value>
+	</data>
+  <data name="BugunkuNamazVakitleri" xml:space="preserve">
+		<value>Времена намаза на сегодня</value>
+	</data>
+  <data name="CalarSaat" xml:space="preserve">
+		<value>Будильник</value>
+	</data>
+  <data name="Chinese" xml:space="preserve">
+		<value>На китайском</value>
+	</data>
+  <data name="CihazGPSDesteklemiyor" xml:space="preserve">
+		<value>Устройство не поддерживает GPS</value>
+	</data>
+  <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
+		<value>Устройство не поддерживает компас</value>
+	</data>
+  <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
+		<value>Устройство не поддерживает вибрацию</value>
+	</data>
+  <data name="Dakika" xml:space="preserve">
+		<value> минут</value>
+	</data>
+  <data name="English" xml:space="preserve">
+		<value>На английском</value>
+	</data>
+  <data name="Deutsch" xml:space="preserve">
+		<value>На немецком</value>
+	</data>
+  <data name="EnlemFormatsiz" xml:space="preserve">
+		<value>Широта</value>
+	</data>
+  <data name="EtkinlestirSwitch" xml:space="preserve">
+		<value>Активировать</value>
+	</data>
+  <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
+		<value>Активировать будильник, вибрацию и функцию уведомления о времени этого намаза</value>
+	</data>
+  <data name="EzanSesi" xml:space="preserve">
+		<value>Азан</value>
+	</data>
+  <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
+		<value>Время до Фаджри-кязиба (ложный рассвет, начало сухура): </value>
+	</data>
+  <data name="FecriKazip" xml:space="preserve">
+		<value>Фаджри-кязиб</value>
+	</data>
+  <data name="FecriSadik" xml:space="preserve">
+		<value>Фаджри-садик</value>
+	</data>
+  <data name="Farsi" xml:space="preserve">
+		<value>На фарси</value>
+	</data>
+  <data name="FecriSadikakalanvakit" xml:space="preserve">
+		<value>Время до Фаджри-садика (истинный рассвет, окончания сухура) Имсак: </value>
+	</data>
+  <data name="FitratinSesi" xml:space="preserve">
+		<value>Радио Фитрат - Голос Фитрата</value>
+	</data>
+  <data name="FitratTV" xml:space="preserve">
+		<value>Фитрат ТВ</value>
+	</data>
+  <data name="FitratTVFacebook" xml:space="preserve">
+		<value>Фитрат ТВ на фейсбуке</value>
+	</data>
+  <data name="FitratTVTwitter" xml:space="preserve">
+		<value>Фитрат ТВ в твиттере</value>
+	</data>
+  <data name="FitratTVYoutube" xml:space="preserve">
+		<value>Фитрат ТВ на ютубе</value>
+	</data>
+  <data name="GotoSettings" xml:space="preserve">
+		<value>Пройдите в настройки</value>
+	</data>
+  <data name="Hakkinda" xml:space="preserve">
+		<value>О приложении</value>
+	</data>
+  <data name="French" xml:space="preserve">
+		<value>На французском</value>
+	</data>
+  <data name="HaritadaGoster" xml:space="preserve">
+		<value>Показать местоположение на карте</value>
+	</data>
+  <data name="HaritaHatasi" xml:space="preserve">
+		<value>Не удалось открыть карту.\nПодробности:</value>
+	</data>
+  <data name="Hatadetaylari" xml:space="preserve">
+		<value>Подробности об ошибке:</value>
+	</data>
+  <data name="HorozOtusu" xml:space="preserve">
+		<value>Голос петуха</value>
+	</data>
+  <data name="IcerikYukleniyor" xml:space="preserve">
+		<value>Загрузка приложения...</value>
+	</data>
+  <data name="Ikindi" xml:space="preserve">
+		<value>Аср</value>
+	</data>
+  <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
+		<value>Время, до окончания Аср (после обеденного намаза): </value>
+	</data>
+  <data name="KalanSure" xml:space="preserve">
+		<value>Оставшееся время: </value>
+	</data>
+  <data name="Kapat" xml:space="preserve">
+		<value>Закрыть</value>
+	</data>
+  <data name="Kaydet" xml:space="preserve">
+		<value>Сохранить</value>
+	</data>
+  <data name="KaydetVeKapat" xml:space="preserve">
+		<value>Сохранить и закрыть</value>
+	</data>
+  <data name="KaydetVeUygula" xml:space="preserve">
+		<value>Сохранить и применить</value>
+	</data>
+  <data name="Kible" xml:space="preserve">
+		<value>Кибла</value>
+	</data>
+  <data name="KibleGostergesi" xml:space="preserve">
+		<value>Указатель киблы</value>
+	</data>
+  <data name="KonumHatasi" xml:space="preserve">
+		<value>Произошла ошибка при получении доступа к местоположению</value>
+	</data>
+  <data name="KonumIzniBaslik" xml:space="preserve">
+		<value>Нет доступа к местоположению</value>
+	</data>
+  <data name="KonumIzniIcerik" xml:space="preserve">
+		<value>Для нормальной работы приложения необходимо дать разрешение на доступ к Location!</value>
+	</data>
+  <data name="KonumKapali" xml:space="preserve">
+		<value>Службы определения местоположения на устройстве не включены. Сначала вам нужно включить службы определения местоположения!</value>
+	</data>
+  <data name="KonumKapaliBaslik" xml:space="preserve">
+		<value>Службы определения местоположения отключены</value>
+	</data>
+  <data name="KonumYenileButton" xml:space="preserve">
+		<value>Обновить</value>
+	</data>
+  <data name="KonumYenilendi" xml:space="preserve">
+		<value>Местоположение и времена намазов успешно обновлены</value>
+	</data>
+  <data name="KoyuTema" xml:space="preserve">
+		<value>Ночной режим</value>
+	</data>
+  <data name="KusCiviltisi" xml:space="preserve">
+		<value>Щебетание птиц</value>
+	</data>
+  <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
+		<value>Произошла ошибка при загрузке времен намаза из интернета.</value>
+	</data>
+  <data name="Ogle" xml:space="preserve">
+		<value>Зухр</value>
+	</data>
+  <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
+		<value>Время до окончания Зухр (обеденного намаза): </value>
+	</data>
+  <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
+		<value>Время до наступления Зухр (обеденного намаза): </value>
+	</data>
+  <data name="OnBesDakikaOnceden" xml:space="preserve">
+		<value>За 15 минут раньше</value>
+	</data>
+  <data name="PageTitle" xml:space="preserve">
+		<value>Календарь Сулеймания</value>
+	</data>
+  <data name="Radyo" xml:space="preserve">
+		<value>Радио</value>
+	</data>
+  <data name="Kyrgyz" xml:space="preserve">
+		<value>На кыргызском</value>
+	</data>
+  <data name="RadyoFitrat" xml:space="preserve">
+		<value>Радио Фитрат</value>
+	</data>
+  <data name="RadyoFitratFaceBook" xml:space="preserve">
+		<value>Радио Фитрат на фейсбуке</value>
+	</data>
+  <data name="RadyoFitratInstagram" xml:space="preserve">
+		<value>Радио Фитрат в инстаграме</value>
+	</data>
+  <data name="RadyoFitratTwitter" xml:space="preserve">
+		<value>Радио Фитрат в твиттере</value>
+	</data>
+  <data name="RadyoIcinInternet" xml:space="preserve">
+		<value>Для воспроизведения радио требуется интернет. Убедитесь, что интернет подключен, или вы можете слушать с веб-страницы, нажав ссылку «Веб-страница».</value>
+	</data>
+  <data name="SabahSonu" xml:space="preserve">
+		<value>Конец Фаджра</value>
+	</data>
+  <data name="SabahSonunakalanvakit" xml:space="preserve">
+		<value>Время, до окончания Фаджр (утреннего намаза): </value>
+	</data>
+  <data name="Sehir" xml:space="preserve">
+		<value>Город</value>
+	</data>
+  <data name="Russian" xml:space="preserve">
+		<value>На русском</value>
+	</data>
+  <data name="SesSecAciklama" xml:space="preserve">
+		<value>Выбирите звук будильника для этого времени намаза</value>
+	</data>
+  <data name="SesTesti" xml:space="preserve">
+		<value>Тест звука</value>
+	</data>
+  <data name="SorunCikti" xml:space="preserve">
+		<value>Мы столкнулись с проблемой</value>
+	</data>
+  <data name="SosyalMedyaBaglantisi" xml:space="preserve">
+		<value>Наши ссылки в социальных сетях</value>
+	</data>
+  <data name="SuleymaniyeVakfi" xml:space="preserve">
+		<value>Фонд Сулеймания</value>
+	</data>
+  <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
+		<value>Фонд Сулеймания на фейсбуке</value>
+	</data>
+  <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
+		<value>Фонд Сулеймания в инстаграме</value>
+	</data>
+  <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
+		<value>Календарь Сулеймания</value>
+	</data>
+  <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
+		<value>Фонд Сулеймания в твиттере</value>
+	</data>
+  <data name="Takvim" xml:space="preserve">
+		<value>Календарь</value>
+	</data>
+  <data name="TakvimIcinInternet" xml:space="preserve">
+		<value>Чтобы обновить времена намазов, необходимо подключение к интернету или Wi-Fi, или включить мобильные данные и нажать «ОБНОВИТЬ».</value>
+	</data>
+  <data name="TakvimIcinInternetBaslik" xml:space="preserve">
+		<value>Интернет отсутствует</value>
+	</data>
+  <data name="Tamam" xml:space="preserve">
+		<value>Отлично</value>
+	</data>
+  <data name="Tarih" xml:space="preserve">
+		<value>Дата</value>
+	</data>
+  <data name="TestiDurdur" xml:space="preserve">
+		<value>Остановить загрузку тест</value>
+	</data>
+  <data name="TitremeyiDesteklemiyor" xml:space="preserve">
+		<value>Устройство не поддерживает вибрацию.</value>
+	</data>
+  <data name="TitresimSwitch" xml:space="preserve">
+		<value>Вибрация</value>
+	</data>
+  <data name="Turkish" xml:space="preserve">
+		<value>На турецком</value>
+	</data>
+  <data name="Uyghur" xml:space="preserve">
+		<value>На уйгурском</value>
+	</data>
+  <data name="UygulamaDili" xml:space="preserve">
+		<value>Язык для приложения</value>
+	</data>
+  <data name="UygulamaDiliniSecin" xml:space="preserve">
+		<value>Выбирите язык для приложения</value>
+	</data>
+  <data name="UygulamaTema" xml:space="preserve">
+		<value>Тема для приложения</value>
+	</data>
+  <data name="UygulamaTemasiniSecin" xml:space="preserve">
+		<value>Выбирите тему для приложения</value>
+	</data>
+  <data name="Vakti" xml:space="preserve">
+		<value>Вермя: </value>
+	</data>
+  <data name="VaktiHatirlatmasi" xml:space="preserve">
+		<value>Напоминание времени</value>
+	</data>
+  <data name="Version" xml:space="preserve">
+		<value>версия</value>
+	</data>
+  <data name="Uzbek" xml:space="preserve">
+		<value>На узбекском</value>
+	</data>
+  <data name="WebSayfa" xml:space="preserve">
+		<value> Web страница</value>
+	</data>
+  <data name="Yatsi" xml:space="preserve">
+		<value>Иша</value>
+	</data>
+  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+		<value>Время, оставшееся до окончания Иша (после вечернего намаза): </value>
+	</data>
+  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+		<value>После завершения Иша (после вечернего намаза): </value>
+	</data>
+  <data name="YatsiSonu" xml:space="preserve">
+		<value>Конец Иша</value>
+	</data>
+  <data name="YayinAkisi" xml:space="preserve">
+		<value> Вещание</value>
+	</data>
+  <data name="YaziBoyutu" xml:space="preserve">
+		<value>Размер шрифта: </value>
+	</data>
+  <data name="Yenileniyor" xml:space="preserve">
+		<value>Обновляется</value>
+	</data>
+  <data name="YukseklikFormatsiz" xml:space="preserve">
+		<value>Возвышенность</value>
+	</data>
+  <data name="Zamaninda" xml:space="preserve">
+		<value>Вовремя</value>
+	</data>
+  <data name="AciklamaLinkURL" xml:space="preserve">
+		<value>https://www.fatva.net/%d0%b2%d1%80%d0%b5%d0%bc%d0%b5%d0%bd%d0%b0-%d0%bd%d0%b0%d0%bc%d0%b0%d0%b7%d0%b0-%d0%b8-%d0%bf%d0%be%d1%81%d1%82%d0%b0-%d0%be%d1%82-%d1%8d%d0%ba%d0%b2%d0%b0%d1%82%d0%be%d1%80%d0%b0-%d0%b4%d0%be-2</value>
+	</data>
 </root>

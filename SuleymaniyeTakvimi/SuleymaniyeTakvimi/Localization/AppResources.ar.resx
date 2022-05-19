@@ -1,14 +1,415 @@
-﻿<root>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>1.3</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Aci" xml:space="preserve">
+		<value>زاوية</value>
+	</data>
+  <data name="AciklamaBas" xml:space="preserve">
+		<value>يُدعى الأشخاص الذين يخضعون لله ويقفون في وجه كل الصعوبات من أجل قضيته "مسلمون". ومن خصائص "المسلمين" أنهم يطبقون أحكام الدين في حياتهم دون أي إضافة إليها من رغباتهم. "وَمَنْ أَحْسَنُ قَوْلًا مِّمَّن دَعَآ إِلَى ٱللَّهِ وَعَمِلَ صَٰلِحًا وَقَالَ إِنَّنِى مِنَ ٱلْمُسْلِمِينَ"؟ (فصلت 41:33)
+تم تصميم هذا التطبيق لتوفير وصول آمن وسريع لأوقات الصلاة والصيام. لمزيد من المعلومات التفصيلية حول حسابات الوقت وأوقات الصيام ، اقرأ المقال </value>
+	</data>
+  <data name="AciklamaLinkText" xml:space="preserve">
+		<value>أوقات الصلوات في القرآن الكريم</value>
+	</data>
+  <data name="AciklamaLinkURL" xml:space="preserve">
+		<value>https://www.hablullah.com/?p=1591</value>
+	</data>
+  <data name="AciklamaSon" xml:space="preserve">
+		<value>.</value>
+	</data>
+  <data name="AcikTema" xml:space="preserve">
+		<value>مظهر فاتح اللون</value>
+	</data>
+  <data name="Aksam" xml:space="preserve">
+		<value>المغرب</value>
+	</data>
+  <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
+		<value>الوقت المتبقي لانتهاء المغرب: </value>
+	</data>
+  <data name="AlarmHatasi" xml:space="preserve">
+		<value>حدثت مشكلة بينما كان الإنذار يدق. تفاصيل</value>
+	</data>
+  <data name="Alarmi" xml:space="preserve">
+		<value>المنبه</value>
+	</data>
+  <data name="Alarmkurarkenhataolustu" xml:space="preserve">
+		<value>حدث خطأ أثناء ضبط المنبه</value>
+	</data>
+  <data name="AlarmSound" xml:space="preserve">
+		<value>صوت المنبه</value>
+	</data>
+  <data name="AlarmSuresi" xml:space="preserve">
+		<value>مدة التنبيه: </value>
+	</data>
+  <data name="AlarmSwitch" xml:space="preserve">
+		<value>تشغيل صوت التنبيه</value>
+	</data>
+  <data name="Arabic" xml:space="preserve">
+		<value>العربية</value>
+	</data>
+  <data name="AylikTakvim" xml:space="preserve">
+		<value>الوقت الشهري</value>
+	</data>
+  <data name="AylikTakvimeErisemedi" xml:space="preserve">
+		<value>لا يمكن الوصول إلى التقويم الشهري ، يرجى التحقق من إمكانية الوصول إلى الإنترنت وأن خدمة تحديد الموقع نشطة!</value>
+	</data>
+  <data name="AylikTakvimYenilendi" xml:space="preserve">
+		<value>تم تحديث مواقيت الصلاة الشهرية بنجاح</value>
+	</data>
+  <data name="Azerbaijani" xml:space="preserve">
+		<value>الأذربيجانية</value>
+	</data>
+  <data name="BesDakikaOnceden" xml:space="preserve">
+		<value>5 دقائق مقدما</value>
+	</data>
+  <data name="BildiriDevreDisiBaslik" xml:space="preserve">
+		<value>إعداد الإعلام معطل</value>
+	</data>
+  <data name="BildiriDevreDisiIcerik" xml:space="preserve">
+		<value> تم تعطيل الإخطار.</value>
+	</data>
+  <data name="BildiriEtkinBaslik" xml:space="preserve">
+		<value>تمكين إعداد الإعلام</value>
+	</data>
+  <data name="BildiriEtkinIcerik" xml:space="preserve">
+		<value> تم تمكين الإعلام.</value>
+	</data>
+  <data name="BildirimGosterSwitch" xml:space="preserve">
+		<value>إظهار الإخطار</value>
+	</data>
+  <data name="BildirimKapatma" xml:space="preserve">
+		<value>تفعيل الإشعارات اللاصقة</value>
+	</data>
+  <data name="BildirimUyari" xml:space="preserve">
+		<value>نوصي بعدم إيقاف تشغيل هذا الإعداد. إذا قمت بتعطيله ، فقد لا ترن الإنذارات في الوقت المحدد. إذا لم تكن إنذاراتك ترن ، فيرجى التحقق من إعدادات التطبيق. في هذه الإعدادات ، في قسم "أذونات أخرى" ، تحقق من تحديد إذن "البدء في الخلفية". تأكد من تحديد الإعداد "بلا قيود" في قسم "توفير شحن البطارية". الآن إذا كنت تريد التحقق من هذه الأذونات ، فانقر فوق الزر أدناه.</value>
+	</data>
+  <data name="BildirmeZamani" xml:space="preserve">
+		<value>وقت التذكير:</value>
+	</data>
+  <data name="Birsessecin" xml:space="preserve">
+		<value>اختر صوتًا</value>
+	</data>
+  <data name="BoylamFormatsiz" xml:space="preserve">
+		<value>خط الطول</value>
+	</data>
+  <data name="BugunkuNamazVakitleri" xml:space="preserve">
+		<value>مواقيت الصلاة اليوم</value>
+	</data>
+  <data name="CalarSaat" xml:space="preserve">
+		<value>منبه الساعة</value>
+	</data>
+  <data name="Chinese" xml:space="preserve">
+		<value>الصينية</value>
+	</data>
+  <data name="CihazGPSDesteklemiyor" xml:space="preserve">
+		<value>جهازك لا يدعم GPS</value>
+	</data>
+  <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
+		<value>جهازك لا يدعم البوصلة</value>
+	</data>
+  <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
+		<value>جهازك لا يدعم الاهتزاز</value>
+	</data>
+  <data name="Dakika" xml:space="preserve">
+		<value> دقائق</value>
+	</data>
+  <data name="Deutsch" xml:space="preserve">
+		<value>الألمانية</value>
+	</data>
+  <data name="English" xml:space="preserve">
+		<value>الإنجليزية</value>
+	</data>
+  <data name="EnlemFormatsiz" xml:space="preserve">
+		<value>خط العرض</value>
+	</data>
+  <data name="EtkinlestirSwitch" xml:space="preserve">
+		<value>تفعيل</value>
+	</data>
+  <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
+		<value>تتيح خاصية التنبيه والاهتزاز والإخطار لوقت الصلاة هذا</value>
+	</data>
+  <data name="EzanSesi" xml:space="preserve">
+		<value>الأذان (مكة)</value>
+	</data>
+  <data name="Farsi" xml:space="preserve">
+		<value>الفارسية</value>
+	</data>
+  <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
+		<value>الوقت المتبقي لبداية السحور: </value>
+	</data>
+  <data name="FecriKazip" xml:space="preserve">
+		<value>الفجر الكاذب</value>
+	</data>
+  <data name="FecriSadik" xml:space="preserve">
+		<value>الفجر الصادق</value>
+	</data>
+  <data name="FecriSadikakalanvakit" xml:space="preserve">
+		<value>الوقت المتبقي على الفجر (نهاية السحور): </value>
+	</data>
+  <data name="FitratinSesi" xml:space="preserve">
+		<value>راديو الفطرة - صوت الفطرة</value>
+	</data>
+  <data name="FitratTV" xml:space="preserve">
+		<value>الفطرة (تلفزيون)</value>
+	</data>
+  <data name="FitratTVFacebook" xml:space="preserve">
+		<value>الفطرة (تلفزيون) صفحة الفيسبوك</value>
+	</data>
+  <data name="FitratTVTwitter" xml:space="preserve">
+		<value>الفطرة (تلفزيون) صفحة تويتر</value>
+	</data>
+  <data name="FitratTVYoutube" xml:space="preserve">
+		<value>الفطرة (تلفزيون) قناة يوتيوب</value>
+	</data>
+  <data name="French" xml:space="preserve">
+		<value>الفرنسية</value>
+	</data>
+  <data name="GotoSettings" xml:space="preserve">
+		<value>اذهب للاعدادات</value>
+	</data>
+  <data name="Hakkinda" xml:space="preserve">
+		<value>معلومات عنا</value>
+	</data>
+  <data name="HaritadaGoster" xml:space="preserve">
+		<value>إظهار الموقع على الخريطة</value>
+	</data>
+  <data name="HaritaHatasi" xml:space="preserve">
+		<value>حدث شيء ما أثناء فتح الخريطة! n\تفاصيل:</value>
+	</data>
+  <data name="Hatadetaylari" xml:space="preserve">
+		<value>تفاصيل الخطأ:</value>
+	</data>
+  <data name="HorozOtusu" xml:space="preserve">
+		<value>صياح الديك</value>
+	</data>
+  <data name="IcerikYukleniyor" xml:space="preserve">
+		<value>تحميل المحتوى ...</value>
+	</data>
+  <data name="Ikindi" xml:space="preserve">
+		<value>العصر</value>
+	</data>
+  <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
+		<value>الوقت المتبقي لانتهاء العصر: </value>
+	</data>
+  <data name="KalanSure" xml:space="preserve">
+		<value>الوقت المتبقي: </value>
+	</data>
+  <data name="Kapat" xml:space="preserve">
+		<value>أغلق</value>
+	</data>
+  <data name="Kaydet" xml:space="preserve">
+		<value>احفظ</value>
+	</data>
+  <data name="KaydetVeKapat" xml:space="preserve">
+		<value>احفظ و أغلق</value>
+	</data>
+  <data name="KaydetVeUygula" xml:space="preserve">
+		<value>حفظ و تطبيق</value>
+	</data>
+  <data name="Kible" xml:space="preserve">
+		<value>القبلة</value>
+	</data>
+  <data name="KibleGostergesi" xml:space="preserve">
+		<value>مؤشر القبلة</value>
+	</data>
+  <data name="KonumHatasi" xml:space="preserve">
+		<value>حدث شيء ما أثناء محاولة الوصول الى الموقع</value>
+	</data>
+  <data name="KonumIzniBaslik" xml:space="preserve">
+		<value>لا يوجد إذن للوصول إلى الموقع</value>
+	</data>
+  <data name="KonumIzniIcerik" xml:space="preserve">
+		<value>لكي يعمل التطبيق بشكل صحيح ، تحتاج إلى منح إذن للوصول إلى الموقع!</value>
+	</data>
+  <data name="KonumKapali" xml:space="preserve">
+		<value>لم يتم تمكين خدمات الموقع على الجهاز. يجب عليك تشغيل خدمات الموقع أولاً!</value>
+	</data>
+  <data name="KonumKapaliBaslik" xml:space="preserve">
+		<value>خدمات الموقع معطلة</value>
+	</data>
+  <data name="KonumYenileButton" xml:space="preserve">
+		<value>تحديث</value>
+	</data>
+  <data name="KonumYenilendi" xml:space="preserve">
+		<value>تم تحديث الموقع والأوقات بنجاح</value>
+	</data>
+  <data name="KoyuTema" xml:space="preserve">
+		<value>مظهر مظلم</value>
+	</data>
+  <data name="KusCiviltisi" xml:space="preserve">
+		<value>زقزقة العصافير</value>
+	</data>
+  <data name="Kyrgyz" xml:space="preserve">
+		<value>القرغيزية</value>
+	</data>
+  <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
+		<value>حدث خطأ أثناء استرجاع مواقيت الصلاة من الإنترنت.</value>
+	</data>
+  <data name="Ogle" xml:space="preserve">
+		<value>الظهر</value>
+	</data>
+  <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
+		<value>الوقت المتبقي لانتهاء الظهر: </value>
+	</data>
+  <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
+		<value>الوقت المتبقي لبداية الظهر: </value>
+	</data>
+  <data name="OnBesDakikaOnceden" xml:space="preserve">
+		<value>15 دقيقة مقدما</value>
+	</data>
+  <data name="PageTitle" xml:space="preserve">
+		<value>تقويم السليمانية</value>
+	</data>
+  <data name="RadyoFitrat" xml:space="preserve">
+		<value>راديو الفطرة</value>
+	</data>
+  <data name="RadyoFitratFaceBook" xml:space="preserve">
+		<value>راديو الفطرة صفحة الفيسبوك</value>
+	</data>
+  <data name="RadyoFitratInstagram" xml:space="preserve">
+		<value>راديو الفطرة صفحة انستغرام</value>
+	</data>
+  <data name="RadyoFitratTwitter" xml:space="preserve">
+		<value>راديو الفطرة صفحة تويتر</value>
+	</data>
+  <data name="RadyoIcinInternet" xml:space="preserve">
+		<value>الإنترنت مطلوب لتشغيل الراديو ، يرجى التحقق من اتصال الإنترنت ، أو يمكنك الاستماع من موقع الويب بالنقر فوق ارتباط "موقع الويب".</value>
+	</data>
+  <data name="Russian" xml:space="preserve">
+		<value>الروسية</value>
+	</data>
+  <data name="SabahSonu" xml:space="preserve">
+		<value>نهاية الفجر</value>
+	</data>
+  <data name="SabahSonunakalanvakit" xml:space="preserve">
+		<value>الوقت المتبقي لنهاية الفجر: </value>
+	</data>
+  <data name="Sehir" xml:space="preserve">
+		<value>المدينة</value>
+	</data>
+  <data name="SesSecAciklama" xml:space="preserve">
+		<value>حدد صوت التنبيه لضبط لهذا الوقت</value>
+	</data>
+  <data name="SesTesti" xml:space="preserve">
+		<value>اختبار الصوت</value>
+	</data>
+  <data name="SorunCikti" xml:space="preserve">
+		<value>لقد واجهنا مشكلة</value>
+	</data>
+  <data name="SosyalMedyaBaglantisi" xml:space="preserve">
+		<value>روابط وسائل التواصل الاجتماعي الخاصة بنا</value>
+	</data>
+  <data name="SuleymaniyeVakfi" xml:space="preserve">
+		<value>وقف السليمانية</value>
+	</data>
+  <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
+		<value>وقف السليمانية صفحة الفيسبوك</value>
+	</data>
+  <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
+		<value>وقف السليمانية صفحة انستغرام</value>
+	</data>
+  <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
+		<value>تقويم السليمانية</value>
+	</data>
+  <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
+		<value>وقف السليمانية صفحة تويتر</value>
+	</data>
+  <data name="Takvim" xml:space="preserve">
+		<value>تقويم</value>
+	</data>
+  <data name="TakvimIcinInternet" xml:space="preserve">
+		<value>لتجديد أوقات الصلاة ، يجب أن تكون متصلاً بالإنترنت وتشغيل WiFi أو بيانات الهاتف المحمول والنقر فوق "تحديث".</value>
+	</data>
+  <data name="TakvimIcinInternetBaslik" xml:space="preserve">
+		<value>مطلوب الإنترنت</value>
+	</data>
+  <data name="Tamam" xml:space="preserve">
+		<value>موافق</value>
+	</data>
+  <data name="Tarih" xml:space="preserve">
+		<value>التاريخ</value>
+	</data>
+  <data name="TestiDurdur" xml:space="preserve">
+		<value>توقف عن الاختبار</value>
+	</data>
+  <data name="TitremeyiDesteklemiyor" xml:space="preserve">
+		<value>جهازك لا يدعم الاهتزاز.</value>
+	</data>
+  <data name="TitresimSwitch" xml:space="preserve">
+		<value>اهتزاز</value>
+	</data>
+  <data name="Turkish" xml:space="preserve">
+		<value>التركية</value>
+	</data>
+  <data name="Uyghur" xml:space="preserve">
+		<value>الأويغورية</value>
+	</data>
+  <data name="UygulamaDili" xml:space="preserve">
+		<value>لغة التطبيق</value>
+	</data>
+  <data name="UygulamaDiliniSecin" xml:space="preserve">
+		<value>اختر لغة التطبيق</value>
+	</data>
+  <data name="UygulamaTema" xml:space="preserve">
+		<value>مظهر التطبيق</value>
+	</data>
+  <data name="UygulamaTemasiniSecin" xml:space="preserve">
+		<value>اختر مظهر التطبيق</value>
+	</data>
+  <data name="Uzbek" xml:space="preserve">
+		<value>الأوزبكية</value>
+	</data>
+  <data name="Vakti" xml:space="preserve">
+		<value>الوقت: </value>
+	</data>
+  <data name="VaktiHatirlatmasi" xml:space="preserve">
+		<value>تذكير الوقت</value>
+	</data>
+  <data name="WebSayfa" xml:space="preserve">
+		<value> الموقع الكتروني</value>
+	</data>
+  <data name="Yatsi" xml:space="preserve">
+		<value>العشاء</value>
+	</data>
+  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+		<value>الوقت المتبقي لانتهاء العشاء: </value>
+	</data>
+  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+		<value>الوقت المنقضي على انتهاء العشاء: </value>
+	</data>
+  <data name="YatsiSonu" xml:space="preserve">
+		<value>نهاية العشاء</value>
+	</data>
+  <data name="YayinAkisi" xml:space="preserve">
+		<value> جدول البث</value>
+	</data>
+  <data name="YaziBoyutu" xml:space="preserve">
+		<value>حجم الخط: </value>
+	</data>
+  <data name="Yenileniyor" xml:space="preserve">
+		<value>يتم تحديثه</value>
+	</data>
+  <data name="YukseklikFormatsiz" xml:space="preserve">
+		<value>ارتفاع</value>
+	</data>
+  <data name="Zamaninda" xml:space="preserve">
+		<value>في الوقت المناسب</value>
+	</data>
+  <data name="Radyo" xml:space="preserve">
+		<value>الراديو</value>
+	</data>
+  <data name="Version" xml:space="preserve">
+		<value>  </value>
+	</data>
 </root>

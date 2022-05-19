@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<string name="app_name">Süleymaniyyə təqvimi</string>
+	<string name="app_widget_description">Süleymaniyyə təqvimi Namaz vaxtları</string>
+	<string name="refresh">Məzmunu təzələ</string>
+	<string name="refreshed">Namaz vaxtları müvəffəqiyyətlə yeniləndi</string>
+	<string name="fecri_kazip">Fəcri Kazib</string>
+	<string name="fecri_sadik">Fəcri Sadiq</string>
+	<string name="sabah_sonu">Sübh Sonu</string>
+	<string name="ogle">Günorta</string>
+	<string name="ikindi">İkindi</string>
+	<string name="aksam">Axşam</string>
+	<string name="yatsi">Xüftən</string>
+	<string name="yatsi_sonu">Xüftən sonu</string>
+</resources>

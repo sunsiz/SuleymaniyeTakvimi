@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<string name="app_name">تقويم السليمانية</string>
+	<string name="app_widget_description">تقويم السليمانية أوقات الصلاة</string>
+	<string name="refresh">تحديث المحتوى</string>
+	<string name="refreshed">تم تجديد أوقات الصلاة بنجاح</string>
+	<string name="fecri_kazip">الفجر الكاذب</string>
+	<string name="fecri_sadik">الفجر الصادق </string>
+	<string name="sabah_sonu">نهاية الفجر</string>
+	<string name="ogle">الظهر</string>
+	<string name="ikindi">العصر</string>
+	<string name="aksam">المغرب</string>
+	<string name="yatsi">العشاء</string>
+	<string name="yatsi_sonu">نهاية العشاء</string>
+</resources>

@@ -382,7 +382,7 @@
     <value>振动</value>
   </data>
   <data name="Vakti" xml:space="preserve">
-    <value>时间：</value>
+    <value>时间： </value>
   </data>
   <data name="VaktiHatirlatmasi" xml:space="preserve">
     <value>时间提醒</value>
@@ -418,12 +418,12 @@
     <value>准时</value>
   </data>
   <data name="AciklamaLinkURL" xml:space="preserve">
-    <value>https://www.gulanjingzhidao.com/li-bai-yan-jiu/</value>
+    <value>https://www.gulanjingzhidao.com/li-bai-yan-jiu</value>
   </data>
   <data name="AciklamaBas" xml:space="preserve">
 	  <value>"穆斯林是安拉给那些臣服于安拉并以他的方式忍受一切困难的人的名字。 他们是不屈不挠地实践宗教的人。
 “召人信仰真主，力行善功，并且说：「我确是穆斯林」的人，在言辞方面，有谁比他更优美呢？”（奉绥来特  41/33）
-此应用程序旨在提供安全快速的礼拜和禁食时间。 有关时间计算和禁食时间的更多详细信息，请点击此处"</value>
+此应用程序旨在提供安全快速的礼拜和禁食时间。 有关时间计算和禁食时间的更多详细信息，请点击此处" </value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
 	  <value>礼拜研究</value>
@@ -474,7 +474,7 @@
 	  <value>保存并应用</value>
   </data>
   <data name="KalanSure" xml:space="preserve">
-	  <value>剩余时间：</value>
+	  <value>剩余时间： </value>
   </data>
   <data name="AlarmSuresi" xml:space="preserve">
 	  <value>闹钟时长： </value>
@@ -483,7 +483,7 @@
 	  <value> 分钟</value>
   </data>
   <data name="YaziBoyutu" xml:space="preserve">
-	  <value>字体大小： </value>
+	  <value>字体大小：</value>
   </data>
   <data name="BildirimKapatma" xml:space="preserve">
 	  <value>启用粘性通知</value>

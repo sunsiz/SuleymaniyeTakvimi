@@ -90,12 +90,16 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private void LoadSounds()
         {
-            _availableSounds=new ObservableCollection<Sound>()
+            _availableSounds = new ObservableCollection<Sound>()
             {
-                new Sound() {FileName = "kus", Name = AppResources.KusCiviltisi},/*Index = 0, */
-                new Sound() {FileName = "horoz", Name = AppResources.HorozOtusu},/*Index = 1, */
-                new Sound() {FileName = "alarm", Name = AppResources.CalarSaat}, /*Index = 2, */
-                new Sound() {FileName = "ezan", Name = AppResources.EzanSesi}    /*Index = 3, */
+                new Sound() { FileName = "kus", Name = AppResources.KusCiviltisi }, /*Index = 0, */
+                new Sound() { FileName = "horoz", Name = AppResources.HorozOtusu }, /*Index = 1, */
+                new Sound() { FileName = "alarm", Name = AppResources.CalarSaat }, /*Index = 2, */
+                new Sound() { FileName = "ezan", Name = AppResources.EzanSesi }, /*Index = 3, */
+                //new Sound() { FileName = "alarm2", Name = AppResources.CalarSaat + " 1" }, /*Index = 4, */
+                //new Sound() { FileName = "beep1", Name = AppResources.CalarSaat + " 2" }, /*Index = 5, */
+                //new Sound() { FileName = "beep2", Name = AppResources.CalarSaat + " 3" }, /*Index = 6, */
+                //new Sound() { FileName = "beep3", Name = AppResources.CalarSaat + " 4" } /*Index = 7, */
             };
             //string name = "Çalar Saat";
             //int index = 2;
@@ -146,43 +150,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                 IsPlaying = false;
             }
         }
-
-        //private Sound SetSelectedSound()
-        //{
-        //    string name = "Çalar Saat";
-        //    int index = 2;
-        //    string file = "alarm";
-        //    if (_itemId != null)
-        //    {
-        //        file = Preferences.Get(_itemId + "AlarmSesi", file);
-        //        switch (file)
-        //        {
-        //            case "kus":
-        //                name = AppResources.KusCiviltisi;
-        //                index = 0;
-        //                break;
-        //            case "alarm":
-        //                name = AppResources.CalarSaat;
-        //                index = 2;
-        //                break;
-        //            case "horoz":
-        //                name = AppResources.HorozOtusu;
-        //                index = 1;
-        //                break;
-        //            case "ezan":
-        //                name = AppResources.EzanSesi;
-        //                index = 3;
-        //                break;
-        //        }
-        //    }
-
-        //    return new Sound() {Index = index, FileName = file, Name = name};
-        ////}
-
-        //private void SoundSelected(Sound sound)
-        //{
-        //    if (_itemId != null) Preferences.Set(_itemId + "AlarmSesi", sound.FileName);
-        //}
 
         private void BildirmeVaktiAyari(object obj)
         {
@@ -321,6 +288,11 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //    startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
                 //    StartService(startServiceIntent);
                 //}
+                //if (value && !Preferences.Get(_itemId + "Bildiri", false) && !Preferences.Get(_itemId + "Titreme", false) && !Preferences.Get(_itemId + "Alarm", false))
+                //{
+                //    SetProperty(ref _alarm, true);
+                //    Preferences.Set(_itemId + "Alarm", true);
+                //}
             }
         }
 
@@ -413,8 +385,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Vakit = Preferences.Get(itemId, "");
                 Etkin = Preferences.Get(itemId + "Etkin", false);
                 Bildiri = Preferences.Get(itemId + "Bildiri", false);
-                Titreme = Preferences.Get(itemId + "Titreme", false);
-                Alarm = Preferences.Get(itemId + "Alarm", false);
+                Titreme = Preferences.Get(itemId + "Titreme", true);
+                Alarm = Preferences.Get(itemId + "Alarm", true);
                 BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0");//when assign "0" for defaultValue, there always throw exception says: java.lang cannot convert boolean to string. So cheating.
 
                 //string name = "Çalar Saat";
@@ -469,5 +441,42 @@ namespace SuleymaniyeTakvimi.ViewModels
             //else data.SetWeeklyAlarms();
             Shell.Current.GoToAsync("..");
         }
+
+        //private Sound SetSelectedSound()
+        //{
+        //    string name = "Çalar Saat";
+        //    int index = 2;
+        //    string file = "alarm";
+        //    if (_itemId != null)
+        //    {
+        //        file = Preferences.Get(_itemId + "AlarmSesi", file);
+        //        switch (file)
+        //        {
+        //            case "kus":
+        //                name = AppResources.KusCiviltisi;
+        //                index = 0;
+        //                break;
+        //            case "alarm":
+        //                name = AppResources.CalarSaat;
+        //                index = 2;
+        //                break;
+        //            case "horoz":
+        //                name = AppResources.HorozOtusu;
+        //                index = 1;
+        //                break;
+        //            case "ezan":
+        //                name = AppResources.EzanSesi;
+        //                index = 3;
+        //                break;
+        //        }
+        //    }
+
+        //    return new Sound() {Index = index, FileName = file, Name = name};
+        ////}
+
+        //private void SoundSelected(Sound sound)
+        //{
+        //    if (_itemId != null) Preferences.Set(_itemId + "AlarmSesi", sound.FileName);
+        //}
     }
 }

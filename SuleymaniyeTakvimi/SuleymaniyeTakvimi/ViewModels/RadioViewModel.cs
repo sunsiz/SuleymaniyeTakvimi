@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using MediaManager;
+using MediaManager.Library;
 using MediaManager.Media;
 using MediaManager.Player;
 using SuleymaniyeTakvimi.Localization;
@@ -46,6 +48,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (CrossMediaManager.Current.IsPlaying())
             {
                 await CrossMediaManager.Current.Stop().ConfigureAwait(true);
+                CrossMediaManager.Current.Notification.Enabled = false;
+                CrossMediaManager.Current.Notification.UpdateNotification();
                 //CrossMediaManager.Current.Notification.Enabled = false;
                 //CrossMediaManager.Current.Notification.UpdateNotification();
                 IsPlaying = false;
@@ -55,10 +59,24 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Title = AppResources.IcerikYukleniyor;
                 if (CheckInternet())
                 {
-                    var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3")
-                        .ConfigureAwait(true);
+                    var radioFitrat = new Radio()
+                    {
+                        Description = AppResources.FitratinSesi,
+                        Title = AppResources.RadyoFitrat,
+                        Genre = "Islam",
+                        Uri = "http://shaincast.caster.fm:22344/listen.mp3",
+                        ImageUri = "https://radyofitrat.com/img/fitratlogoRadyo.png",
+                        MediaItems = new List<IMediaItem>(1){new MediaItem("http://shaincast.caster.fm:22344/listen.mp3")}
+                    };
+                    var mediaItem = await CrossMediaManager.Current.Play(radioFitrat).ConfigureAwait(true);
+                    //var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
                     mediaItem.Title = AppResources.FitratinSesi;
-                    CrossMediaManager.Current.Notification.Enabled = false;
+                    mediaItem.Album = AppResources.RadyoFitrat;
+                    mediaItem.Author = AppResources.RadyoFitrat;
+                    mediaItem.Artist = AppResources.RadyoFitrat;
+                    mediaItem.ImageUri = "https://radyofitrat.com/img/fitratlogoRadyo.png";
+                    //CrossMediaManager.Current.Notification.Enabled = false;
+                    CrossMediaManager.Current.Notification.UpdateNotification();
                     //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
                     //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
                     mediaItem.MetadataUpdated += OnMediaItemOnMetadataUpdated;

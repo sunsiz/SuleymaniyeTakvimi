@@ -3,12 +3,13 @@
 	<string name="app_name">苏莱曼尼亚日历</string>
 	<string name="app_widget_description">苏莱曼尼亚日历礼拜时间</string>
 	<string name="refresh">刷新内容</string>
-	<string name="fecri_kazip">破晓：  </string>
-	<string name="fecri_sadik">晨礼（黎明）：  </string>
-	<string name="sabah_sonu">晨礼结束：  </string>
-	<string name="ogle">晌礼：  </string>
-	<string name="ikindi">哺礼：  </string>
-	<string name="aksam">昏礼：  </string>
-	<string name="yatsi">宵礼：  </string>
-	<string name="yatsi_sonu">宵礼结束：  </string>
+	<string name="refreshed">礼拜时间成功更新</string>
+	<string name="fecri_kazip">破晓</string>
+	<string name="fecri_sadik">晨礼（黎明）</string>
+	<string name="sabah_sonu">晨礼结束</string>
+	<string name="ogle">晌礼</string>
+	<string name="ikindi">哺礼</string>
+	<string name="aksam">昏礼</string>
+	<string name="yatsi">宵礼</string>
+	<string name="yatsi_sonu">宵礼结束</string>
 </resources>

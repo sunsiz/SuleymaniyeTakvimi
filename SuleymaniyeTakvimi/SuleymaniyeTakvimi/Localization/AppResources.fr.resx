@@ -1,14 +1,415 @@
-﻿<root>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>1.3</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AciklamaBas" xml:space="preserve">
+		<value>Les personnes qui se soumettent à Allah et font tout ce qu'elles peuvent pour se conformer aux instructions divines sont appelées «musulmans». Parmi les caractéristiques des musulmans, il y a le fait qu'ils appliquent les règles de la religion telles qu'elles sont, sans aucune addition ni soustraction. «Et qui profère plus belles paroles que celui qui appelle à Allah, fait bonne œuvre et dit: « Je suis du nombre des Musulmans ? » (FUSSILAT 41:33)
+Cette application est conçue pour fournir un accès sûr et rapide aux heures de prière et de jeûne. Pour des informations plus détaillées sur les calculs des temps de la prière, lisez l'article </value>
+	</data>
+  <data name="AciklamaLinkURL" xml:space="preserve">
+		<value>https://www.islametmusulmans.com/2017/06/30/les-horaires-de-la-priere-2</value>
+	</data>
+  <data name="AciklamaLinkText" xml:space="preserve">
+		<value>Les horaires de la prière</value>
+	</data>
+  <data name="AciklamaSon" xml:space="preserve">
+		<value> .</value>
+	</data>
+  <data name="AcikTema" xml:space="preserve">
+		<value>Thème claire</value>
+	</data>
+  <data name="Aksam" xml:space="preserve">
+		<value>Maghreb</value>
+	</data>
+  <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
+		<value>Temps restant pour la fin du Maghreb: </value>
+	</data>
+  <data name="AlarmHatasi" xml:space="preserve">
+		<value>Un problème est survenu pendant que l'alarme sonnait. Détails</value>
+	</data>
+  <data name="Alarmi" xml:space="preserve">
+		<value>Alarme</value>
+	</data>
+  <data name="Alarmkurarkenhataolustu" xml:space="preserve">
+		<value>Une erreur s'est produite lors du réglage de l'alarme</value>
+	</data>
+  <data name="AlarmSound" xml:space="preserve">
+		<value>Son d'alarme</value>
+	</data>
+  <data name="AlarmSuresi" xml:space="preserve">
+		<value>Durée de l'alarme: </value>
+	</data>
+  <data name="AlarmSwitch" xml:space="preserve">
+		<value>Activer le son de l'alarme</value>
+	</data>
+  <data name="Arabic" xml:space="preserve">
+		<value>Arabe</value>
+	</data>
+  <data name="AylikTakvim" xml:space="preserve">
+		<value>Temps mensuel</value>
+	</data>
+  <data name="AylikTakvimeErisemedi" xml:space="preserve">
+		<value>Impossible d'accéder au calendrier mensuel, veuillez vérifier qu'internet est accessible et que le service de localisation est actif !</value>
+	</data>
+  <data name="AylikTakvimYenilendi" xml:space="preserve">
+		<value>Les horaires de prière mensuels ont été mis à jour avec succès</value>
+	</data>
+  <data name="Azerbaijani" xml:space="preserve">
+		<value>Azerbaïdjanais</value>
+	</data>
+  <data name="BesDakikaOnceden" xml:space="preserve">
+		<value>5 minutes à l'avance</value>
+	</data>
+  <data name="BildiriDevreDisiBaslik" xml:space="preserve">
+		<value>Le paramètre de notification est désactivé</value>
+	</data>
+  <data name="BildiriDevreDisiIcerik" xml:space="preserve">
+		<value> la notification est désactivée.</value>
+	</data>
+  <data name="BildiriEtkinBaslik" xml:space="preserve">
+		<value>Activez le paramètre de notification</value>
+	</data>
+  <data name="BildiriEtkinIcerik" xml:space="preserve">
+		<value> la notification est activée.</value>
+	</data>
+  <data name="BildirimGosterSwitch" xml:space="preserve">
+		<value>Montrer la notification</value>
+	</data>
+  <data name="BildirimKapatma" xml:space="preserve">
+		<value>Activez la notification collante</value>
+	</data>
+  <data name="BildirimUyari" xml:space="preserve">
+		<value>Nous vous recommandons de ne pas désactiver ce paramètre. Si vous le désactivez, les alarmes peuvent ne pas sonner à l'heure. Si vos alarmes ne sonnent pas, veuillez vérifier les paramètres de l'application. Dans ces paramètres, dans la section "Autres autorisations", vérifiez que l'autorisation "Démarrer en arrière-plan" est sélectionnée. Assurez-vous que le paramètre "Aucune restriction" est sélectionné dans la section "Économiseur de batterie". Maintenant, si vous souhaitez vérifier ces autorisations, cliquez sur le bouton ci-dessous.</value>
+	</data>
+  <data name="BildirmeZamani" xml:space="preserve">
+		<value>Heure de rappel :</value>
+	</data>
+  <data name="Birsessecin" xml:space="preserve">
+		<value>Choisissez un son</value>
+	</data>
+  <data name="BoylamFormatsiz" xml:space="preserve">
+		<value>Longitude</value>
+	</data>
+  <data name="BugunkuNamazVakitleri" xml:space="preserve">
+		<value>Horaires de prière d'aujourd'hui</value>
+	</data>
+  <data name="CalarSaat" xml:space="preserve">
+		<value>Alarme</value>
+	</data>
+  <data name="Chinese" xml:space="preserve">
+		<value>Chinois</value>
+	</data>
+  <data name="CihazGPSDesteklemiyor" xml:space="preserve">
+		<value>Votre appareil ne prend pas en charge le GPS</value>
+	</data>
+  <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
+		<value>Votre appareil ne prend pas en charge la boussole</value>
+	</data>
+  <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
+		<value>Votre appareil ne supporte pas les vibrations</value>
+	</data>
+  <data name="Dakika" xml:space="preserve">
+		<value> minutes</value>
+	</data>
+  <data name="Deutsch" xml:space="preserve">
+		<value>Allemagne</value>
+	</data>
+  <data name="English" xml:space="preserve">
+		<value>Anglais</value>
+	</data>
+  <data name="EnlemFormatsiz" xml:space="preserve">
+		<value>Latitude</value>
+	</data>
+  <data name="EtkinlestirSwitch" xml:space="preserve">
+		<value>La mise en oeuvre</value>
+	</data>
+  <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
+		<value>Permet la fonction d'alarme, de vibration et de notification pour ce temps de prière</value>
+	</data>
+  <data name="EzanSesi" xml:space="preserve">
+		<value>Azan (La Mecque)</value>
+	</data>
+  <data name="Farsi" xml:space="preserve">
+		<value>Persan</value>
+	</data>
+  <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
+		<value>Temps restant pour le début du Suhoor: </value>
+	</data>
+  <data name="FecriKazip" xml:space="preserve">
+		<value>Crépuscule</value>
+	</data>
+  <data name="FecriSadik" xml:space="preserve">
+		<value>Fajr sadiq (véridique)</value>
+	</data>
+  <data name="FecriSadikakalanvakit" xml:space="preserve">
+		<value>Temps restant jusqu'au Fajr (fin du sahour): </value>
+	</data>
+  <data name="FitratinSesi" xml:space="preserve">
+		<value>Radio Fitrat</value>
+	</data>
+  <data name="FitratTV" xml:space="preserve">
+		<value>Fitrat TV</value>
+	</data>
+  <data name="FitratTVFacebook" xml:space="preserve">
+		<value>Fitrat TV Page Facebook</value>
+	</data>
+  <data name="FitratTVTwitter" xml:space="preserve">
+		<value>Fitrat TV Page Twitter</value>
+	</data>
+  <data name="FitratTVYoutube" xml:space="preserve">
+		<value>Fitrat TV YouTube</value>
+	</data>
+  <data name="French" xml:space="preserve">
+		<value>Français</value>
+	</data>
+  <data name="GotoSettings" xml:space="preserve">
+		<value>Aller aux paramètres</value>
+	</data>
+  <data name="Hakkinda" xml:space="preserve">
+		<value>À propos</value>
+	</data>
+  <data name="HaritadaGoster" xml:space="preserve">
+		<value>Afficher l'emplacement sur la carte</value>
+	</data>
+  <data name="HaritaHatasi" xml:space="preserve">
+		<value>Quelque chose s'est produit lors de l'ouverture de la carte. \ndes détails:</value>
+	</data>
+  <data name="Hatadetaylari" xml:space="preserve">
+		<value>Détails de l'erreur:</value>
+	</data>
+  <data name="HorozOtusu" xml:space="preserve">
+		<value>Coq chante</value>
+	</data>
+  <data name="IcerikYukleniyor" xml:space="preserve">
+		<value>Chargement du contenu...</value>
+	</data>
+  <data name="Ikindi" xml:space="preserve">
+		<value>Asr</value>
+	</data>
+  <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
+		<value>Temps restant pour finir l’Asr: </value>
+	</data>
+  <data name="KalanSure" xml:space="preserve">
+		<value>le temps restant: </value>
+	</data>
+  <data name="Kapat" xml:space="preserve">
+		<value>Fermer</value>
+	</data>
+  <data name="Kaydet" xml:space="preserve">
+		<value>Enregistrer</value>
+	</data>
+  <data name="KaydetVeKapat" xml:space="preserve">
+		<value>Enregistrer et fermer</value>
+	</data>
+  <data name="KaydetVeUygula" xml:space="preserve">
+		<value>Enregistrer et appliquer</value>
+	</data>
+  <data name="Kible" xml:space="preserve">
+		<value>Qibla</value>
+	</data>
+  <data name="KibleGostergesi" xml:space="preserve">
+		<value>Indicateur Qibla</value>
+	</data>
+  <data name="KonumHatasi" xml:space="preserve">
+		<value>Quelque chose s'est produit en essayant d'obtenir l'emplacement</value>
+	</data>
+  <data name="KonumIzniBaslik" xml:space="preserve">
+		<value>Il n'y a aucune permission d'accéder au emplacement</value>
+	</data>
+  <data name="KonumIzniIcerik" xml:space="preserve">
+		<value>Pour que l'application fonctionne correctement, vous devez autoriser l'accès au emplacement!</value>
+	</data>
+  <data name="KonumKapali" xml:space="preserve">
+		<value>Les services de localisation ne sont pas activés sur l'appareil. Vous devez d'abord activer les services de localisation!</value>
+	</data>
+  <data name="KonumKapaliBaslik" xml:space="preserve">
+		<value>Les services du emplacement sont en panne</value>
+	</data>
+  <data name="KonumYenileButton" xml:space="preserve">
+		<value>Mise à jour</value>
+	</data>
+  <data name="KonumYenilendi" xml:space="preserve">
+		<value>Emplacement et horaires mis à jour avec succès</value>
+	</data>
+  <data name="KoyuTema" xml:space="preserve">
+		<value>Thème sombre</value>
+	</data>
+  <data name="KusCiviltisi" xml:space="preserve">
+		<value>Piaulement</value>
+	</data>
+  <data name="Kyrgyz" xml:space="preserve">
+		<value>Kirghize</value>
+	</data>
+  <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
+		<value>Une erreur s'est produite lors de la récupération des horaires de prière sur Internet.</value>
+	</data>
+  <data name="Ogle" xml:space="preserve">
+		<value>Dhuhr</value>
+	</data>
+  <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
+		<value>Temps restant pour finir Dhuhr: </value>
+	</data>
+  <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
+		<value>Temps restant jusqu'à Duhur: </value>
+	</data>
+  <data name="OnBesDakikaOnceden" xml:space="preserve">
+		<value>15 minutes à l'avance</value>
+	</data>
+  <data name="PageTitle" xml:space="preserve">
+		<value>Calendrier de Süleymaniye</value>
+	</data>
+  <data name="Radyo" xml:space="preserve">
+		<value>Radio</value>
+	</data>
+  <data name="RadyoFitrat" xml:space="preserve">
+		<value>Radio Fitrat</value>
+	</data>
+  <data name="RadyoFitratFaceBook" xml:space="preserve">
+		<value>Radio Fitrat Page Facebook</value>
+	</data>
+  <data name="RadyoFitratInstagram" xml:space="preserve">
+		<value>Radio Fitrat Page Instagram</value>
+	</data>
+  <data name="RadyoFitratTwitter" xml:space="preserve">
+		<value>Radio Fitrat Page Twitter</value>
+	</data>
+  <data name="RadyoIcinInternet" xml:space="preserve">
+		<value>Internet est nécessaire pour écouter la radio, veuillez vérifier la connexion Internet, ou vous pouvez écouter à partir du site Web en cliquant sur le lien "site Web".</value>
+	</data>
+  <data name="Russian" xml:space="preserve">
+		<value>Russe</value>
+	</data>
+  <data name="SabahSonu" xml:space="preserve">
+		<value>Fin du Fajr</value>
+	</data>
+  <data name="SabahSonunakalanvakit" xml:space="preserve">
+		<value>Temps restant jusqu'à la fin du Fajr: </value>
+	</data>
+  <data name="Sehir" xml:space="preserve">
+		<value>Ville</value>
+	</data>
+  <data name="SesSecAciklama" xml:space="preserve">
+		<value>Sélectionnez le son de l'alarme à régler pour cette heure</value>
+	</data>
+  <data name="SesTesti" xml:space="preserve">
+		<value>Test de son</value>
+	</data>
+  <data name="SorunCikti" xml:space="preserve">
+		<value>Nous avons rencontré un problème</value>
+	</data>
+  <data name="SosyalMedyaBaglantisi" xml:space="preserve">
+		<value>Nos liens sur les réseaux sociaux</value>
+	</data>
+  <data name="SuleymaniyeVakfi" xml:space="preserve">
+		<value>Fondation de Süleymaniye</value>
+	</data>
+  <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
+		<value>Fondation de Süleymaniye Page Facebook</value>
+	</data>
+  <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
+		<value>Fondation de Süleymaniye Page Instagram</value>
+	</data>
+  <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
+		<value>Calendrier de Süleymaniye</value>
+	</data>
+  <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
+		<value>Fondation de Süleymaniye Page Twitter</value>
+	</data>
+  <data name="Takvim" xml:space="preserve">
+		<value>Calendrier</value>
+	</data>
+  <data name="TakvimIcinInternet" xml:space="preserve">
+		<value>Pour renouveler les heures de prière, vous devez être connecté à Internet, activer le Wi-Fi ou les données mobiles et cliquer sur Actualiser.</value>
+	</data>
+  <data name="TakvimIcinInternetBaslik" xml:space="preserve">
+		<value>Internet est requis</value>
+	</data>
+  <data name="Tamam" xml:space="preserve">
+		<value>D'accord</value>
+	</data>
+  <data name="Tarih" xml:space="preserve">
+		<value>Date</value>
+	</data>
+  <data name="TestiDurdur" xml:space="preserve">
+		<value>Arrêtez de tester</value>
+	</data>
+  <data name="TitremeyiDesteklemiyor" xml:space="preserve">
+		<value>Votre appareil ne prend pas en charge les vibrations.</value>
+	</data>
+  <data name="TitresimSwitch" xml:space="preserve">
+		<value>Remuer</value>
+	</data>
+  <data name="Turkish" xml:space="preserve">
+		<value>Turc</value>
+	</data>
+  <data name="Uyghur" xml:space="preserve">
+		<value>Ouïghour</value>
+	</data>
+  <data name="UygulamaDili" xml:space="preserve">
+		<value>Langue de l'application</value>
+	</data>
+  <data name="UygulamaDiliniSecin" xml:space="preserve">
+		<value>Choisissez la langue de l'application</value>
+	</data>
+  <data name="UygulamaTema" xml:space="preserve">
+		<value>Apparence de l'application</value>
+	</data>
+  <data name="UygulamaTemasiniSecin" xml:space="preserve">
+		<value>Choisissez l'apparence de l'application</value>
+	</data>
+  <data name="Uzbek" xml:space="preserve">
+		<value>Ouzbek</value>
+	</data>
+  <data name="Vakti" xml:space="preserve">
+		<value>le temps: </value>
+	</data>
+  <data name="VaktiHatirlatmasi" xml:space="preserve">
+		<value>Rappel de l'heure</value>
+	</data>
+  <data name="Version" xml:space="preserve">
+		<value>version</value>
+	</data>
+  <data name="WebSayfa" xml:space="preserve">
+		<value> Site Web</value>
+	</data>
+  <data name="Yatsi" xml:space="preserve">
+		<value>Icha</value>
+	</data>
+  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+		<value>Temps restant pour la fin de l’Icha: </value>
+	</data>
+  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+		<value>Temps écoulé de la fin de l’Icha: </value>
+	</data>
+  <data name="YatsiSonu" xml:space="preserve">
+		<value>Fin de l’Icha</value>
+	</data>
+  <data name="YayinAkisi" xml:space="preserve">
+		<value> Calendrier de diffusion</value>
+	</data>
+  <data name="YaziBoyutu" xml:space="preserve">
+		<value>Taille de police: </value>
+	</data>
+  <data name="Yenileniyor" xml:space="preserve">
+		<value>En cours de renouvellement</value>
+	</data>
+  <data name="YukseklikFormatsiz" xml:space="preserve">
+		<value>Hauteur</value>
+	</data>
+  <data name="Zamaninda" xml:space="preserve">
+		<value>En temps voulu</value>
+	</data>
+  <data name="Aci" xml:space="preserve">
+		<value>l' angle</value>
+	</data>
 </root>

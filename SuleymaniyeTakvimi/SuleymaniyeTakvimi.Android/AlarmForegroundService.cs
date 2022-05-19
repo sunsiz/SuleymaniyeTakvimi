@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Appwidget;
 using Android.Content;
 using Android.OS;
 using Android.Util;
+using Android.Widget;
 using Java.Util;
 using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Localization;
@@ -25,6 +27,7 @@ namespace SuleymaniyeTakvimi.Droid
         private bool _isStarted;
         private Handler _handler;
         private Action _runnable;
+        private int counter = 0;
         
         public override IBinder OnBind(Intent intent)
         {
@@ -35,7 +38,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, int timeOffset, string name)
         {
-            using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService))
+            using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(AlarmService))
             using (var calendar = Calendar.Instance)
             {
                 var prayerTimeSpan = triggerTimeSpan;
@@ -46,6 +49,11 @@ namespace SuleymaniyeTakvimi.Droid
                 activityIntent.PutExtra("name", name);
                 activityIntent.PutExtra("time", prayerTimeSpan.ToString());
                 activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
+                var intent = new Intent(Application.Context, typeof(AlarmReceiver));
+                intent.PutExtra("name", name);
+                intent.PutExtra("time", prayerTimeSpan.ToString());
+                intent.AddFlags(ActivityFlags.IncludeStoppedPackages);
+                intent.AddFlags(ActivityFlags.ReceiverForeground);
                 //without the different reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
                 var requestCode = name switch
                 {
@@ -61,9 +69,16 @@ namespace SuleymaniyeTakvimi.Droid
                 };
                 var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, requestCode, activityIntent,
                     PendingIntentFlags.UpdateCurrent);
+                var pendingIntent = PendingIntent.GetBroadcast(Application.Context, requestCode, intent,
+                    PendingIntentFlags.UpdateCurrent);
                 //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
                 //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
-                alarmManager?.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
+                if (Build.VERSION.SdkInt <= BuildVersionCodes.P)
+                    alarmManager?.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
+                else
+                    alarmManager?.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
+                //else
+                //    alarmManager?.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
                 System.Diagnostics.Debug.WriteLine("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
             }
         }
@@ -84,7 +99,7 @@ namespace SuleymaniyeTakvimi.Droid
             _notificationManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
             SetNotification();
 
-            this.StartForeground(NOTIFICATION_ID, _notification);
+            if(Preferences.Get("ForegroundServiceEnabled",true))this.StartForeground(NOTIFICATION_ID, _notification);
 
             // This Action will run every 30 second as foreground service running.
             _runnable = new Action(() =>
@@ -92,6 +107,13 @@ namespace SuleymaniyeTakvimi.Droid
                 _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
                 SetNotification();
                 _notificationManager.Notify(NOTIFICATION_ID, _notification);
+                counter++;
+                if (counter != 60) return; //When the 60th time (30 minute) refresh widget manually.
+                //AppWidgetManager.GetInstance(ApplicationContext)?.UpdateAppWidget(
+                //    new ComponentName(ApplicationContext, Java.Lang.Class.FromType(typeof(AppWidget)).Name),
+                //    new RemoteViews(ApplicationContext.PackageName, Resource.Layout.Widget));
+                ApplicationContext.StartService(new Intent(ApplicationContext, typeof(WidgetService)));
+                counter = 0;
             });
             _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
             _isStarted = true;
@@ -100,10 +122,13 @@ namespace SuleymaniyeTakvimi.Droid
 
         private void SetNotification()
         {
+            Notification.BigTextStyle textStyle = new Notification.BigTextStyle();
+            textStyle.BigText(GetTodaysPrayerTimes());
+            textStyle.SetSummaryText(AppResources.BugunkuNamazVakitleri);
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 var channelNameJava = new Java.Lang.String(channelName);
-                var channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelNameJava, NotificationImportance.Low)
+                var channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelNameJava, NotificationImportance.Default)
                 {
                     Description = channelDescription,
                     LightColor = 1,
@@ -111,8 +136,10 @@ namespace SuleymaniyeTakvimi.Droid
                 };
                 _notificationManager.CreateNotificationChannel(channel);
                 _notification = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
-                    .SetContentTitle(AppResources.SuleymaniyeVakfiTakvimi)
-                    .SetContentText(GetFormattedRemainingTime())
+                    //.SetContentTitle(AppResources.SuleymaniyeVakfiTakvimi)
+                    //.SetContentText(GetFormattedRemainingTime())
+                    .SetContentTitle(GetFormattedRemainingTime())
+                    .SetStyle(textStyle)
                     .SetSmallIcon(Resource.Drawable.app_logo)
                     .SetContentIntent(BuildIntentToShowMainActivity())
                     .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
@@ -125,8 +152,10 @@ namespace SuleymaniyeTakvimi.Droid
             else
             {
                 _notification = new Notification.Builder(this)
-                    .SetContentTitle(AppResources.SuleymaniyeVakfiTakvimi)
-                    .SetContentText(GetFormattedRemainingTime())
+                    //.SetContentTitle(AppResources.SuleymaniyeVakfiTakvimi)
+                    //.SetContentText(GetFormattedRemainingTime())
+                    .SetContentTitle(GetFormattedRemainingTime())
+                    .SetStyle(textStyle)
                     .SetSmallIcon(Resource.Drawable.app_logo)
                     .SetContentIntent(BuildIntentToShowMainActivity())
                     .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
@@ -145,6 +174,11 @@ namespace SuleymaniyeTakvimi.Droid
         /// <returns>The content intent.</returns>
         PendingIntent BuildIntentToShowMainActivity()
         {
+            //Intent myIntent = new Intent();
+            //myIntent.SetAction(Android.Provider.Settings.ActionIgnoreBatteryOptimizationSettings);
+            ////myIntent.SetData(Android.Net.Uri.FromParts("package", PackageName, null));
+            //myIntent.AddFlags(ActivityFlags.NewTask);
+            //StartActivity(myIntent);
             var notificationIntent = new Intent(this, typeof(MainActivity));
             notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
             notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
@@ -197,6 +231,22 @@ namespace SuleymaniyeTakvimi.Droid
                 message = AppResources.KonumIzniIcerik;
             }
 
+            return message;
+        }
+
+        private string GetTodaysPrayerTimes()
+        {
+            var message = "";
+            var data = new DataService();
+            var takvim = data._takvim;
+            message += AppResources.FecriKazip + ": " + takvim.FecriKazip + "\n";
+            message += AppResources.FecriSadik + ": " + takvim.FecriSadik + "\n";
+            message += AppResources.SabahSonu + ": " + takvim.SabahSonu + "\n";
+            message += AppResources.Ogle + ": " + takvim.Ogle + "\n";
+            message += AppResources.Ikindi + ": " + takvim.Ikindi + "\n";
+            message += AppResources.Aksam + ": " + takvim.Aksam + "\n";
+            message += AppResources.Yatsi + ": " + takvim.Yatsi + "\n";
+            message += AppResources.YatsiSonu + ": " + takvim.YatsiSonu;
             return message;
         }
 
