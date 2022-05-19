@@ -26,6 +26,46 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 **Mevcut sorunlar:**
 * Alarm(bildirim) özelliği ios te seçilen sesi çalamayabılıyor.
 
+**Yayin notları:**
+
+*2.0.8 sürümündeki yenilikler:*
+* Arapça, Azerice, Almanca, Farsça, Fransızca ve Rusça dil destekleri eklendi.
+* Android 10 ve sonraki sürümlerde sistem kısıtlamalarından dolayı alarm çalma penceresi bildirim gösterme ve bildirim sesiyle değiştirildi.
+* Artık yapışkan bildirimde tüm namaz vakitleri gösteriliyor.
+* Widget özelliği eklendi.
+
+*2.0.7 sürümündeki yenilikler:*
+* Kullanıcılar arayüz yazı büyüklüğünü ayarlardan değiştirebilirler.
+* Alarm başladıktan sonra keniliğinden kapanma süresini ayarlardan değiştirebilir.
+* Ayarlara sürekli kalan yapışkan bildirimi kapatma seçeneği eklendi.
+* Ana ekrana kalan süreyi gösteren bir özellik eklendi.
+
+*2.0.6 sürümündeki yenilikler:*
+* Cihaz pusulayı desteklemediğinde oluşan kilitlenme düzeltildi.
+* Tekrar tekrar alarm sesi seçildiğinde oluşan donma sorunu düzeltildi.
+* Konum davranışı iyileştirildi: Yenile düğmesiyle yenilenmedikçe, artık ilk kez alındıktan sonra konum sormuyor.
+* Ayarlar sayfasında uygulama dilini seç seçeneği eklendi.
+* Tema değişikliği ayarlar sayfasına taşındı.
+* Yazı boyutları küçültüldü.
+
+*2.0.5 sürümündeki yenilikler:*
+* geçersiz konumdan dolayı kapanış düzeltildi.
+
+*2.0.4 sürümündeki yenilikler:*
+* Bazı nadir hatalar düzeltildi, konum ve namaz vakitlerini gösterme iyileştirildi.
+
+*2.0.3 sürümündeki yenilikler:*
+* Hakkında sayfası yeniden tasarlandı, renkler daha iyileştirildi, konum izni alma özelliği iyileştiridi.
+
+*2.0.2 sürümündeki yenilikler:*
+* Şimdilik Türkçe, İngilizce ve Çince dil tercümeleri mevcuttur, yakında başka dillerde eklenecek.
+
+*2.0.1 sürümündeki yenilikler:*
+* Alarm kurarken bazen oluşan ani kapanma olayı düzeltildi.
+
+*2.0 sürümündeki yenilikler:*
+* Uygulama yeniden tasarlandı ve yeni Özellikler eklendi.
+
 
 **Ekran Görüntüleri:**
 
@@ -53,3 +93,44 @@ Suleymaniyetakvimi.com Xamarin mobile application
 
 **Existing problems:**
 * Alarm(notification) feature on IOS can not play selected sound most of the time.
+
+**Release notes:**
+
+*What's new in version 2.0.8:*
+* Added Arabic, Azerbaijani, German, Persian, French, Russian language support.
+* Alarm window replaced with notification and notification ringtone in Android 10 and later version, because the system restriction.
+* Steaky notification now include all prayer times.
+* Added Widget support.
+
+*What's new in version 2.0.7:*
+* Users can change the interface font size from the settings.
+* After the alarm starts, you can change the automatic shutdown time from the settings.
+* Added option to turn off sticky notification in settings.
+* Added a feature that displays the remaining time to the main screen.
+
+*What's new in 2.0.6:*
+* Fixed crashing when device not support compass.
+* Fixed freezing when repeatedly choose alarm sound.
+* Location behavior improved: now never asking location after get it first time, unless refresh it with refresh button.
+* Added choose app language option in settings page.
+* Theme changing moved to settings page.
+* Font sizes decreased.
+
+*What's new in version 2.0.5:*
+* Fixed crashing over invalid location.
+
+*What's new in version 2.0.4:*
+* Fixed some rare errors, improved location and display prayer times related features.
+
+*What's new in version 2.0.3:*
+* Redesigned About page, improved colors and location permission request process.
+
+*What's new in version 2.0.2:*
+* Changed Default language for non translated languages to English.
+* Currently support English, Turkish, Chinese and more will come.
+
+*What's new in version 2.0.1:*
+* Fixed an issue that crashing when setup alarms sometimes.
+
+*What's new in version 2.0:*
+* Completely redesigned the application and add new features.
