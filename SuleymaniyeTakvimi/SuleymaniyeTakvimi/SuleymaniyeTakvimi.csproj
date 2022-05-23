@@ -19,10 +19,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <EmbeddedResource Include="Assets\alarm.wav" />
-    <EmbeddedResource Include="Assets\ezan.wav" />
-    <EmbeddedResource Include="Assets\horoz.wav" />
-    <EmbeddedResource Include="Assets\kus.wav" />
+    <EmbeddedResource Include="Assets\alarm.mp3" />
+    <EmbeddedResource Include="Assets\ezan.mp3" />
+    <EmbeddedResource Include="Assets\horoz.mp3" />
+    <EmbeddedResource Include="Assets\kus.mp3" />
     <EmbeddedResource Include="Fonts\MaterialIcons.ttf" />
     <!--<EmbeddedResource Include="**/*" />-->
   </ItemGroup>
@@ -106,14 +106,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\alarm.mp3" />
-    <None Remove="Assets\alarm.wav" />
     <None Remove="Assets\alarm3.wav" />
     <None Remove="Assets\ezan.mp3" />
-    <None Remove="Assets\ezan.wav" />
     <None Remove="Assets\horoz.mp3" />
-    <None Remove="Assets\horoz.wav" />
     <None Remove="Assets\kus.mp3" />
-    <None Remove="Assets\kus.wav" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">

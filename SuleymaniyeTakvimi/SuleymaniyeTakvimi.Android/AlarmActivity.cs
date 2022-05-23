@@ -29,7 +29,8 @@ namespace SuleymaniyeTakvimi.Droid
             //get the current intent
             var intent = this.Intent;
             var name = intent?.GetStringExtra("name")?? string.Empty;
-            var time = TimeSpan.Parse(intent?.GetStringExtra("time") ?? string.Empty);
+            var time = intent?.GetStringExtra("time") ?? string.Empty;
+            //var timeSpan = TimeSpan.Parse(time);
             Log.Info("AlarmActivity", $"Alarm triggered at {DateTime.Now} for {name} and {time}");
             FindViewById<Button>(Resource.Id.stopButton)?.SetOnClickListener(this);
             var label = FindViewById<TextView>(Resource.Id.textView);
