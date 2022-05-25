@@ -56,6 +56,11 @@
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding GoToMapCommand}" />
                                 </pancakeView:PancakeView.GestureRecognizers>
                             </pancakeView:PancakeView>
+                            <StackLayout.Triggers><!-- without this when change to right to left layout the collectionview head and foot block displayed mirrored way on ios. -->
+                                <DataTrigger TargetType="StackLayout" Binding="{Binding Source={RelativeSource AncestorType={x:Type Page}}, Path=FlowDirection}" Value="RightToLeft">
+                                    <Setter Property="RotationY" Value="{OnPlatform Android=0, iOS=180}" />
+                                </DataTrigger>
+                            </StackLayout.Triggers>
                         </StackLayout>
                     </CollectionView.Header>
                     <CollectionView.ItemTemplate>
@@ -96,24 +101,30 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                     <CollectionView.Footer>
-                        <StackLayout>
+                        <StackLayout Orientation="Vertical">
                             <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7,3,0" Padding="5" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
-                                <Button Margin="9,0" Padding="9,0" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
-                                    Command="{Binding GoToMonthCommand}" TextTransform="None" Style="{DynamicResource ButtonStyle}"
-                                    Text="{behaviors:Translate AylikTakvim}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AylikTakvim}"
-                                    x:DataType="local:ItemsViewModel" />
+                                <Label Margin="9,0" Padding="9" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
+                                    Text="{behaviors:Translate AylikTakvim}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AylikTakvim}" x:DataType="local:ItemsViewModel" />
+                                <pancakeView:PancakeView.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding GoToMonthCommand}" x:DataType="local:ItemsViewModel"/>
+                            </pancakeView:PancakeView.GestureRecognizers>
                             </pancakeView:PancakeView>
                             <pancakeView:PancakeView Style="{StaticResource Card}" Margin="9,5" Padding="7" CornerRadius="25" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}">
-                            <Label HorizontalOptions="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Style="{DynamicResource LabelStyle}">
-                                <Label.FormattedText>
+                            <Label HorizontalOptions="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Style="{DynamicResource LabelStyle}" Text="{Binding RemainingTime}" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource White}}"/>
+                                <!--<Label.FormattedText>
                                     <FormattedString>
-                                        <!--<Span Text="&#xe855;" FontFamily="MaterialIcons" FontSize="20" />
-                                        <Span Text="{behaviors:Translate KalanSure}" />-->
+                                        <Span Text="&#xe855;" FontFamily="MaterialIcons" FontSize="20" />
+                                        <Span Text="{behaviors:Translate KalanSure}" />
                                         <Span Text="{Binding RemainingTime}" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource White}}" />
                                     </FormattedString>
                                 </Label.FormattedText>
-                            </Label>
+                            </Label>-->
                             </pancakeView:PancakeView>
+                            <StackLayout.Triggers>
+                                <DataTrigger TargetType="StackLayout" Binding="{Binding Source={RelativeSource AncestorType={x:Type Page}}, Path=FlowDirection}" Value="RightToLeft">
+                                    <Setter Property="RotationY" Value="{OnPlatform Android=0, iOS=180}" />
+                                </DataTrigger>
+                            </StackLayout.Triggers>
                         </StackLayout>
                     </CollectionView.Footer>
                 </CollectionView>

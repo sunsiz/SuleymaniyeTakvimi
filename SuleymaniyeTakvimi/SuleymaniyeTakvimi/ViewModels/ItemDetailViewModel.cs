@@ -136,7 +136,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             if (!IsPlaying)//TestButtonText == "&#xe038;"AppResources.SesTesti
             {
-                var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(SelectedSound.FileName + ".wav").ConfigureAwait(true);
+                var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(SelectedSound.FileName + ".mp3").ConfigureAwait(true);
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 await CrossMediaManager.Current.MediaPlayer.Play(mediaItem).ConfigureAwait(false);

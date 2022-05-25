@@ -17,15 +17,30 @@ namespace SuleymaniyeTakvimi.iOS
             DateTime triggerDateTime = today;
             triggerDateTime += triggerTimeSpan - TimeSpan.FromMinutes(timeOffset);
             triggerDateTime = DateTime.SpecifyKind(triggerDateTime, DateTimeKind.Utc);
-            var alarmSesi = Preferences.Get(name + "AlarmSesi", "kus") + ".wav";
             try
             {
+                var title = "";
+                var body = "";
+                var sound = "";
+                switch (name)
+                {
+                    case "Fecri Kazip": title = $"{AppResources.FecriKazip} {AppResources.VaktiHatirlatmasi}";body = $"{AppResources.FecriKazip} {AppResources.Vakti} {triggerTimeSpan}"; sound = "fecrikazip"; break;
+                    case "Fecri Sadık": title = $"{ AppResources.FecriSadik} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.FecriSadik} {AppResources.Vakti} {triggerTimeSpan}"; sound = "fecrisadik"; break;
+                    case "Sabah Sonu": title = $"{AppResources.SabahSonu} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.SabahSonu} {AppResources.Vakti} {triggerTimeSpan}"; sound = "sabahsonu"; break;
+                    case "Öğle": title = $"{AppResources.Ogle} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.Ogle} {AppResources.Vakti} {triggerTimeSpan}"; sound = "ogle"; break;
+                    case "İkindi": title = $"{AppResources.Ikindi} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.Ikindi} {AppResources.Vakti} {triggerTimeSpan}"; sound = "ikindi"; break;
+                    case "Akşam": title = $"{AppResources.Aksam} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.Aksam} {AppResources.Vakti} {triggerTimeSpan}"; sound = "aksam"; break;
+                    case "Yatsı": title = $"{AppResources.Yatsi} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.Yatsi} {AppResources.Vakti} {triggerTimeSpan}"; sound = "yatsi"; break;
+                    case "Yatsı Sonu": title = $"{AppResources.YatsiSonu} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.YatsiSonu} {AppResources.Vakti} {triggerTimeSpan}"; sound = "yatsisonu"; break;
+                    default: title = $"Test Alarm"; body = $"{AppResources.Vakti} {triggerTimeSpan}"; sound = "sabahsonu"; break;
+                }
+                var alarmSesi = Preferences.Get(sound + "AlarmSesi", "kus") + ".wav";
                 var content = new UNMutableNotificationContent
                 {
-                    Title = $"{name} {AppResources.VaktiHatirlatmasi}",
+                    Title = title,
                     Subtitle = AppResources.SuleymaniyeVakfiTakvimi,
-                    Body = $"{name} {AppResources.Vakti} {triggerTimeSpan}",//GetFormattedRemainingTime(),
-                    Sound = UNNotificationSound.GetSound(alarmSesi)
+                    Body = body,//GetFormattedRemainingTime(),
+                    Sound = UNNotificationSound.GetCriticalSound(alarmSesi, 1.0f)//UNNotificationSound.GetSound(alarmSesi)
                 };
                 //content.Badge = 9;
                 // New trigger time
