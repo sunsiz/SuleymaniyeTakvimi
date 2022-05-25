@@ -23,7 +23,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     permissions:
       actions: read
       contents: read
@@ -55,8 +55,8 @@ jobs:
         
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+    #- name: Autobuild
+    #  uses: github/codeql-action/autobuild@v2
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
@@ -67,6 +67,47 @@ jobs:
     # - run: |
     #   echo "Run, Build Application using script"
     #   ./location_of_script_within_repo/buildscript.sh
+
+  build:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Xamarin
+      # You may pin to the exact commit or the version.
+      # uses: maxim-lobanov/setup-xamarin@00b44a3ef9e2d1953010956de2022e8d095a196c
+      uses: maxim-lobanov/setup-xamarin@v1
+      with:
+          # Version of Mono to select
+          mono-version: 6 # optional
+          # Version of Xamarin.iOS to select
+          xamarin-ios-version: 14 # optional
+          # Version of Xamarin.Mac to select
+          xamarin-mac-version: 7 # optional
+          # Version of Xamarin.Android to select
+          xamarin-android-version: 11 # optional
+          # Version of Xcode to use with Xamarin.iOS and Xamarin.Mac
+          xcode-version: 12.4 # optional
+          
+  Android:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Android
+      run: |
+        nuget restore
+        msbuild SuleymaniyeTakvimi/SuleymaniyeTakvimi.Android/SuleymaniyeTakvimi.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
+        
+  iOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: iOS
+      run: |
+        nuget restore
+        msbuild SuleymaniyeTakvimi/SuleymaniyeTakvimi.iOS/SuleymaniyeTakvimi.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhoneSimulator /p:Configuration=Debug
+
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
