@@ -1,16 +1,19 @@
 # Suleymaniye Takvimi [![Build status](https://build.appcenter.ms/v0.1/apps/f227d4b3-61fd-4f14-a8c3-df6b2a0b45bc/branches/master/badge)](https://appcenter.ms)
 Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
-**Uygulama çalışma şekli:**
-* Android'te Özel bir 'Activity'i en öne getirp integre alarm uygulaması gibi gösterilebidiği için, İOS teki gibi bildirim göstermek yerine özel 'Activity' ile ses çalma, bidirim ve titremeler çalıştırıldı.
-* Android'te [arka planda çalışma kısıtlandığı](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/services/#background-execution-limits-in-android-80) ve [Doze mode](https://devblogs.microsoft.com/xamarin/understanding-androids-doze-functionality/) uygulandığı için ['Foreground Service'](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/services/foreground-services) kullanarak uygulamanın sürekli çalışması sağlandı. Ama 'Foreground Service'in sürekli kalan bildirimi çinli şirketlerin telefonlarında RAM temizleyince kapanıyor aynı zamanda kullanıcının uygulama için pil kıstlamaması ve arka planda çalışmasına izin vermesi gerekiyor.
-* Alarm (ses çalma, titreme, bildirim) zamanlaması haftalık olarak (aylık olunca cihazı zorlıyor) ayarlandı ve bu bir haftalık zamanlamanın son 2 günü kala, yine bir haftalık zamanlanacak şekilde ayarlandı. Daha hızlı olması için vakitleri aylık takvim dosyasından okuyarak zamanlıyor.
-* Bazı cihazlarda (Xiaomi gibi) 'Foreground Service' kapanıp açılıyor ve zamanlamalar kaybolıyor (uygulama kapnıp açılıyor gibi), o yüzden servis başlarken ve uygulama ana sayfası açılırken her ikisinde zamanlama çalıştırıldı ve uygulamayı yavaşlatmaması için zamanlama geciktirelrek çalıştırıldı.
-* Aylık takvimi cihazın konumu ve zamanına(Tarih ve zaman dilimine) göre [suleymaniyetakvimi.com](https://www.suleymaniyetakvimi.com) sitesinden o günden başlayarak bir aylık gelecek namaz vakitlerini alarak kaydediyor. İndirdiği namaz vakitlerine göre o günlük namaz vakitlerini uygulamada gösteriyor ve kullanıcının seçimlerine uygun şekilde, seçilen namaz vakitleri için alarm, titreme ve bilidirimleri bir haftalık zamanlıyor.
-* İOS için sadece bildiri göstererek kullanıcının seçtiği sesle hatırlatma yapar.
-* Konumu bir kere aldıktan sonra kaydederek, sonrasında konum kapalı olsa bile yine de namaz vakitlerini indirip göstermeye devam edebiliyor. Ana sayfadaki yenile tuşuna tıklayarak konumu ve namaz vakitlerini yenileyebiliyor.
-* Şehir adına tıklayınca konumu haritadan gösterebilir, aylık takvime tıklayınca bir aylık namaz vaiktleri takvimini gösterebiliyor.
+## Özellikler:
 
+* Günlük namaz vakitleri
+* Aylık namaz vakitleri
+* Alarm
+* Bildirim
+* Titreşim
+* Kıble göstergesi
+* Online Radyo [Radyo Fıtrat](https://www.radyofitrat.com)
+* Almanca, Arapça, Azerice, Çince, Farsça, Fransızca, İnglizce, Rusça, Türkçe ve Uygurca dil desteği
+* Koyu va Açık temalar
+* Uygulama widget'ı
+<!--
 **Mevcut Özellikler:**
 
 * Cihazın konumunu alabilir ve ona göre günlük veya aylık namaz vakitlerini görüntüleyebilir.
@@ -24,7 +27,10 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 * Android için widget özelliği eklendi.
 
 
-**Yayin notları:**
+**Yayın notları:**
+-->
+
+## Yayın notları:
 
 *2.0.8 sürümündeki yenilikler:*
 * Arapça, Azerice, Almanca, Farsça, Fransızca ve Rusça dil destekleri eklendi.
@@ -66,6 +72,10 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 
 **Ekran Görüntüleri:**
+<!--
+|   Namaz  Vakitleri   |   Alarm   Ayarları   |   Kıble  Gösterici   |    Radyo  Sayfası    |   Hakkında sayfası   |    Alarm  sayfası    |     App   Widget     |
+| :------------------: | :------------------: | :------------------: | :------------------: | :------------------: | :------------------: | :------------------: |
+| ![Namaz Vakitleri](Images/NamazVakitleri.png "Namaz Vakitleri") | ![Alarm Ayarları](Images/AlarmAyarlari.png "Alarm Ayarları") | ![Kıble Gösterici](Images/KibleGosterici.png "Kıble Gösterici") | ![Radyo Sayfası](Images/Radyo.png "Radyo Sayfası") | ![Hakkında sayfası](Images/Hakkinda.png "Hakkında sayfası") | ![Alarm sayfası](Images/Alarm.png "Alarm sayfası") | ![App widget](Images/Widget.png "App widget") |
 
 Namaz Vakitleri:    ![Namaz Vakitleri](Images/NamazVakitleri.png "Namaz Vakitleri")
 Alarm Ayarları:     ![Alarm Ayarları](Images/AlarmAyarlari.png "Alarm Ayarları")
@@ -73,11 +83,48 @@ Kıble Gösterici:    ![Kıble Gösterici](Images/KibleGosterici.png "Kıble Gö
 Radyo Sayfası:      ![Radyo Sayfası](Images/Radyo.png "Radyo Sayfası")
 Hakkında sayfası:   ![Hakkında sayfası](Images/Hakkinda.png "Hakkında sayfası")
 Alarm sayfası:      ![Alarm sayfası](Images/Alarm.png "Alarm sayfası")
+-->
+|   Uygulama  Sayfası   |     Kısa Açıklama     |   Ekran Görüntüleri   |
+| :-------------------: | :-------------------: | :-------------------: |
+|    **Namaz Vakitleri**    |    Günlük namaz vakitleri    | ![Namaz Vakitleri](Images/NamazVakitleri.png "Namaz Vakitleri") |
+|    **Alarm  Ayarları**    |    Her namaz vaktının alarm ayarları    | ![Alarm Ayarları](Images/AlarmAyarlari.png "Alarm Ayarları") |
+|    **Kıble Gösterici**    |    Kıble gösterici (cihaz pusula desteklemiyorsa çalışmıyor)    | ![Kıble Gösterici](Images/KibleGosterici.png "Kıble Gösterici") |
+|     **Radyo Sayfası**     |     Radyo Fıtrat online radyo     | ![Radyo Sayfası](Images/Radyo.png "Radyo Sayfası") |
+|   **Hakkında  sayfası**   |   Uygulama ve namaz vakitleri hakkında   | ![Hakkında sayfası](Images/Hakkinda.png "Hakkında sayfası") |
+|     **Alarm sayfası**     |     Alarm çaldığında gözüken pencere (Android 10 ve sonraki sürümlerde sadece bildiri gösteriliyor)     | ![Alarm sayfası](Images/Alarm.png "Alarm sayfası") |
+|   **Ayarlar   sayfası**   |      Uygulama dili, alarm süresi, yazı boyutu, ... ayarları     | ![Ayarlar sayfası](Images/Setting.png "Ayarlar sayfası") |
+|   **Uygulama Widget'ı**   |      Uygulama widget'ı ön izlemesi     | ![App widget](Images/Widget.png "App widget") |
 
+
+**Uygulama geliştirme notları:**
+* Android'te Özel bir 'Activity'i en öne getirp integre alarm uygulaması gibi gösterilebidiği için, İOS teki gibi sadece bildirim göstermek yerine özel 'Activity' ile ses çalma, bidirim ve titremeler çalıştırıldı. Android 10 ve sonraki sürümlerde uygulama ön planda değilken böyle bir activity göstermeyi yasakladığı için, bu sistemlerde sadece bildirim gösterildi.
+* Android'te [arka planda çalışma kısıtlandığı](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/services/#background-execution-limits-in-android-80) ve [Doze mode](https://devblogs.microsoft.com/xamarin/understanding-androids-doze-functionality/) uygulandığı için ['Foreground Service'](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/services/foreground-services) kullanarak uygulamanın sürekli çalışması sağlandı. Ama 'Foreground Service'in sürekli kalan bildirimi bazı telefonlarda (özellikle çoğu çinli şirketlerin telefonlarında) RAM temizleyince kapanıyor aynı zamanda kullanıcının uygulama için pil kıstlamaması ve arka planda çalışmasına izin vermesi gerekiyor.
+* Aylık takvimi cihazın konumu ve zamanına(Tarih ve zaman dilimine) göre [suleymaniyetakvimi.com](https://www.suleymaniyetakvimi.com) sitesinden o günden başlayarak bir aylık gelecek namaz vakitlerini alarak kaydediyor. İndirdiği namaz vakitlerine göre o günlük namaz vakitlerini uygulamada gösteriyor ve kullanıcının seçimlerine uygun şekilde, seçilen namaz vakitleri için zamanlama yapıyor.
+* Alarm (ses çalma, titreme, bildirim) zamanlaması haftalık olarak (aylık olunca cihazı zorlıyor) ayarlandı ve bu bir haftalık zamanlamanın son 2 günü kala, yine bir haftalık zamanlanacak şekilde ayarlandı. Daha hızlı olması için vakitleri aylık takvim dosyasından okuyarak zamanlıyor.
+* Bazı cihazlarda (Xiaomi gibi) 'Foreground Service' kapanıp açılıyor ve zamanlamalar kaybolıyor (uygulama kapnıp açılıyor gibi), o yüzden servis başlarken ve uygulama ana sayfası açılırken her ikisinde zamanlama çalıştırıldı ve uygulamayı yavaşlatmaması için zamanlama geciktirelrek çalıştırıldı.
+* İOS için sadece bildiri göstererek kullanıcının seçtiği sesle hatırlatma yapar.
+* Konumu bir kere aldıktan sonra kaydederek, sonrasında konum kapalı olsa bile yine de namaz vakitlerini indirip göstermeye devam edebiliyor. Ana sayfadaki yenile tuşuna tıklayarak konumu ve namaz vakitlerini yenileyebiliyor, böyle yenilerken konum yenilendiği için aylık namaz vakilerini de yeniliyor ve yeniden zamanlama yapıyor.
+* Kıble göstergesi sayfasında kaydedilen konumun koordinatları gösteriyor ve üstteki yenile tuşuna tıklayınca konumu yeniliyor.
+* Şehir adına tıklayınca kaydedilen konumu haritadan gösteriyor, aylık takvime tıklayınca bir aylık namaz vaiktleri takvimini gösteriyor.
+---
+<br>
 
 # Suleymaniye Calendar
 Suleymaniyetakvimi.com Xamarin mobile application
 
+## Features:
+
+* Daily prayer times
+* Monthly prayer times
+* Alarm
+* Notification
+* Vibration
+* Qibla indicator
+* Online radio [Radyo Fıtrat](https://www.radyofitrat.com)
+* Arabic, Azerbaijani, Chinese, English, French, German, Persian, Russian, Turkish and Uyghur language support
+* Dark and Light theme
+* App widget
+<!--
 **Current Features:**
 * Get device current location and display corresponding daily or monthly prayer times.
 * Reminding with notification, vibration and sound based on user preferences.
@@ -91,6 +138,9 @@ Suleymaniyetakvimi.com Xamarin mobile application
 
 
 **Release notes:**
+-->
+
+## Release notes:
 
 *What's new in version 2.0.8:*
 * Added Arabic, Azerbaijani, German, Persian, French, Russian language support.

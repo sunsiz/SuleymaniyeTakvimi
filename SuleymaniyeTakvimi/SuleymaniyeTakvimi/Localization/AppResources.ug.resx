@@ -166,7 +166,7 @@
     <value>ئۇقتۇرۇش كۆرسىتىش</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>ئەسكەرتىش ۋاقتى:</value>
+	  <value>ئەسكەرتىش ۋاقتى: </value>
   </data>
   <data name="Birsessecin" xml:space="preserve">
     <value>قوڭغۇراق ئاۋازى تاللاڭ</value>
@@ -517,5 +517,14 @@
   </data>
   <data name="Uzbek" xml:space="preserve">
     <value>ئۆزبېكچە</value>
+  </data>
+  <data name="DakikaOnceden" xml:space="preserve">
+	  <value> مىنۇت بۇرۇن</value>
+  </data>
+  <data name="AlarmTekrarlari" xml:space="preserve">
+	  <value>قوڭغۇراق ئاۋازى قايتىلاش سانى:</value>
+  </data>
+  <data name="Kere" xml:space="preserve">
+	  <value> قېتىم</value>
   </data>
 </root>

@@ -17,15 +17,17 @@ namespace SuleymaniyeTakvimi.Droid
     [Service]
     public class WidgetService : IntentService
     {
+        private bool _fromService;
         public override void OnStart (Intent intent, int startId)
         {
+            _fromService = intent.GetBooleanExtra("FromService", false);
             // Build the widget update for today
-            RemoteViews updateViews = buildUpdate (this);
+            var updateViews = BuildUpdate (this);
 
             // Push update for this widget to the home screen
-            ComponentName thisWidget = new ComponentName (this, Java.Lang.Class.FromType (typeof (AppWidget)).Name);
-            AppWidgetManager manager = AppWidgetManager.GetInstance (this);
-            manager.UpdateAppWidget (thisWidget, updateViews);
+            var thisWidget = new ComponentName (this, Java.Lang.Class.FromType (typeof (AppWidget)).Name);
+            var manager = AppWidgetManager.GetInstance (this);
+            manager?.UpdateAppWidget (thisWidget, updateViews);
         }
         public override IBinder OnBind(Intent intent)
         {
@@ -36,20 +38,19 @@ namespace SuleymaniyeTakvimi.Droid
         protected override void OnHandleIntent(Intent intent)
         {
             // Build the widget update for today
-            RemoteViews updateViews = buildUpdate (this);
+            var updateViews = BuildUpdate (this);
 
             // Push update for this widget to the home screen
-            ComponentName thisWidget = new ComponentName (this, Java.Lang.Class.FromType (typeof (AppWidget)).Name);
+            var thisWidget = new ComponentName (this, Java.Lang.Class.FromType (typeof (AppWidget)).Name);
             AppWidgetManager manager = AppWidgetManager.GetInstance (this);
-            manager.UpdateAppWidget (thisWidget, updateViews);
+            manager?.UpdateAppWidget (thisWidget, updateViews);
         }
 
-        // Build a widget update to show the current Wiktionary
-        // "Word of the day." Will block until the online API returns.
-        public RemoteViews buildUpdate (Context context)
+        // Build a widget update to show daily prayer times
+        private RemoteViews BuildUpdate (Context context)
         {
             LocalizationResourceManager.Current.PropertyChanged += (sender, e) => AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
-            LocalizationResourceManager.Current.Init(Localization.AppResources.ResourceManager);
+            LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
             var language = Xamarin.Essentials.Preferences.Get("SelectedLanguage", "tr");
             //get default local for first initialization
             //String defaultLanguage = context.Resources.Configuration.Locale.Language;
@@ -57,8 +58,17 @@ namespace SuleymaniyeTakvimi.Droid
             //check language preference everytime onCreate of all activities, if there is no choise set default language
             Locale newLocaleLanguage = new Locale(language);
             //finally setdefault language/locale according to newLocaleLanguage.
-            Locale.SetDefault(Locale.Category.Display, newLocaleLanguage);
-            configuration.Locale = newLocaleLanguage;
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
+            {
+                Locale.SetDefault(Locale.Category.Display, newLocaleLanguage);
+                configuration.SetLocale(newLocaleLanguage);
+            }
+            else
+            {
+                Locale.Default = newLocaleLanguage;
+                configuration.Locale = newLocaleLanguage;
+            }
+
             context.Resources?.UpdateConfiguration(configuration, context.Resources.DisplayMetrics);
             LocalizationResourceManager.Current.CurrentCulture = new CultureInfo(language);
             var data = new DataService();
@@ -84,6 +94,70 @@ namespace SuleymaniyeTakvimi.Droid
             updateViews.SetTextViewText(Resource.Id.widgetYatsiVakit, takvim.Yatsi);
             updateViews.SetTextViewText(Resource.Id.widgetYatsiSonuVakit, takvim.YatsiSonu);
             updateViews.SetTextViewText(Resource.Id.widgetLastRefreshed, DateTime.Now.ToString("HH:mm:ss"));
+            //var currentTime = DateTime.Now.TimeOfDay;
+            //try
+            //{
+            //    if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
+            //    {
+            //        updateViews.SetTextColor(Resource.Id.widgetFecriKazip, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetFecriKazip, (int)ComplexUnitType.Sp, 16);
+            //        updateViews.SetTextColor(Resource.Id.widgetFecriKazipVakit, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetFecriKazipVakit, (int)ComplexUnitType.Sp, 16);
+            //    }
+            //    else if (currentTime >= TimeSpan.Parse(takvim.FecriKazip) && currentTime <= TimeSpan.Parse(takvim.FecriSadik))
+            //    {
+            //        updateViews.SetTextColor(Resource.Id.widgetFecriSadik, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetFecriSadik, (int)ComplexUnitType.Sp, 16);
+            //        updateViews.SetTextColor(Resource.Id.widgetFecriSadikVakit, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetFecriSadikVakit, (int)ComplexUnitType.Sp, 16);
+            //    }
+            //    else if (currentTime >= TimeSpan.Parse(takvim.FecriSadik) && currentTime <= TimeSpan.Parse(takvim.SabahSonu))
+            //    {
+            //        updateViews.SetTextColor(Resource.Id.widgetSabahSonu, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetSabahSonu, (int)ComplexUnitType.Sp, 16);
+            //        updateViews.SetTextColor(Resource.Id.widgetSabahSonuVakit, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetSabahSonuVakit, (int)ComplexUnitType.Sp, 16);
+            //    }
+            //    else if (currentTime >= TimeSpan.Parse(takvim.SabahSonu) && currentTime <= TimeSpan.Parse(takvim.Ogle))
+            //    {
+            //        updateViews.SetTextColor(Resource.Id.widgetOgle, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetOgle, (int)ComplexUnitType.Sp, 16);
+            //        updateViews.SetTextColor(Resource.Id.widgetOgleVakti, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetOgleVakti, (int)ComplexUnitType.Sp, 16);
+            //    }
+            //    else if (currentTime >= TimeSpan.Parse(takvim.Ogle) && currentTime <= TimeSpan.Parse(takvim.Ikindi))
+            //    {
+            //        updateViews.SetTextColor(Resource.Id.widgetIkindi, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetIkindi, (int)ComplexUnitType.Sp, 16);
+            //        updateViews.SetTextColor(Resource.Id.widgetIkindiVakit, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetIkindiVakit, (int)ComplexUnitType.Sp, 16);
+            //    }
+            //    else if (currentTime >= TimeSpan.Parse(takvim.Ikindi) && currentTime <= TimeSpan.Parse(takvim.Aksam))
+            //    {
+            //        updateViews.SetTextColor(Resource.Id.widgetAksam, Color.Brown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetAksam, (int)ComplexUnitType.Sp, 16);
+            //        updateViews.SetTextColor(Resource.Id.widgetAksamVakit, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetAksamVakit, (int)ComplexUnitType.Sp, 18);
+            //    }
+            //    else if (currentTime >= TimeSpan.Parse(takvim.Aksam) && currentTime <= TimeSpan.Parse(takvim.Yatsi))
+            //    {
+            //        updateViews.SetTextColor(Resource.Id.widgetYatsi, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetYatsi, (int)ComplexUnitType.Sp, 16);
+            //        updateViews.SetTextColor(Resource.Id.widgetYatsiVakit, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetYatsiVakit, (int)ComplexUnitType.Sp, 16);
+            //    }
+            //    else if (currentTime >= TimeSpan.Parse(takvim.Yatsi) && currentTime <= TimeSpan.Parse(takvim.YatsiSonu))
+            //    {
+            //        updateViews.SetTextColor(Resource.Id.widgetYatsiSonu, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetYatsiSonu, (int)ComplexUnitType.Sp, 16);
+            //        updateViews.SetTextColor(Resource.Id.widgetYatsiSonuVakit, Color.SaddleBrown);
+            //        updateViews.SetTextViewTextSize(Resource.Id.widgetYatsiSonuVakit, (int)ComplexUnitType.Sp, 16);
+            //    }
+            //}
+            //catch (Exception exception)
+            //{
+            //    System.Diagnostics.Debug.WriteLine($"GetFormattedRemainingTime exception: {exception.Message}. Location: {takvim.Enlem}, {takvim.Boylam}");
+            //}
             //updateViews.SetTextViewText(Resource.Id.widgetAppName, AppResources.SuleymaniyeVakfiTakvimi);
             //updateViews.SetTextViewText(Resource.Id.widgetFecriKazip, AppResources.FecriKazip);
             //updateViews.SetTextViewText(Resource.Id.widgetFecriSadik, AppResources.FecriSadik);
@@ -111,7 +185,7 @@ namespace SuleymaniyeTakvimi.Droid
             //    updateViews.SetOnClickPendingIntent (Resource.Id.widget, pendingIntent);
             //}
             updateViews.SetOnClickPendingIntent(Resource.Id.widgetRefreshIcon, GetPendingSelfIntent(context, "android.appwidget.action.APPWIDGET_UPDATE"));
-            Toast.MakeText(context, Resource.String.refreshed, ToastLength.Short)?.Show();
+            if(!_fromService)Toast.MakeText(context, Resource.String.refreshed, ToastLength.Short)?.Show();
             return updateViews;
         }
         private PendingIntent GetPendingSelfIntent(Context context, string action)

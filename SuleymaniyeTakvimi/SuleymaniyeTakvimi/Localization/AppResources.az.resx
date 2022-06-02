@@ -93,8 +93,8 @@
   <data name="BildirimUyari" xml:space="preserve">
 		<value>Bu parametri söndürməməyi tövsiyə edirik. Əgər qeyri-aktiv buraxarsanız zəng vaxtında çalmaya bilər. Əgər zənginiz çalmırsa xahiş olunur program parametrlərinə baxın: Bu parametrlərdə “Digər iznlər” bölümündə “Arxa planda başlat” izninin seçilmiş olduğunu yoxlayın. “Batareya qoruyucusu” bölümündə olan “Məhdudiyyət yox” parametrinin seçilmiş olduğundan əmin olun. İndi bu iznləri yoxlamaq istərsəniz aşağıdakı düyməyə basın.</value>
 	</data>
-  <data name="BildirmeZamani" xml:space="preserve">
-		<value>Xatırlatma Zamanı:</value>
+	<data name="BildirmeZamani" xml:space="preserve">
+		<value>Xatırlatma Zamanı: </value>
 	</data>
   <data name="Birsessecin" xml:space="preserve">
 		<value>Bir səs seçin</value>
@@ -410,5 +410,14 @@
 	</data>
   <data name="Uyghur" xml:space="preserve">
 		<value>Uygurca</value>
+	</data>
+	<data name="DakikaOnceden" xml:space="preserve">
+		<value> dəqiqə əvvəlcədən</value>
+	</data>
+	<data name="AlarmTekrarlari" xml:space="preserve">
+		<value>Zəng siqnalın təkrar sayı: </value>
+	</data>
+	<data name="Kere" xml:space="preserve">
+		<value> dəfə</value>
 	</data>
 </root>

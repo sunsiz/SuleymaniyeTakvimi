@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using Foundation;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
-using UIKit;
 using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.iOS

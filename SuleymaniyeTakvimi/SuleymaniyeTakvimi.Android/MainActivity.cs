@@ -5,7 +5,6 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Util;
 //using Matcha.BackgroundService.Droid;
 using MediaManager;
 //using PeriodicBackgroundService.Android;
@@ -25,7 +24,7 @@ namespace SuleymaniyeTakvimi.Droid
         //private Intent _startServiceIntent;
         //private Intent _stopServiceIntent;
 
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             //SetTheme(Resource.Style.MainTheme);
             System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity OnCreate Started: {DateTime.Now:HH:m:s.fff}");
@@ -117,7 +116,6 @@ namespace SuleymaniyeTakvimi.Droid
                         System.Diagnostics.Debug.WriteLine("Permission Request result:", result.ToString());
                         break;
                     }
-                    default: break;
                 }
             });
             return status;

@@ -1,17 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android.Graphics;
 using Android.Media;
 using AndroidX.Core.App;
-using Java.Lang;
 using SuleymaniyeTakvimi.Localization;
 using Uri = Android.Net.Uri;
 using Xamarin.Essentials;
@@ -22,20 +15,20 @@ namespace SuleymaniyeTakvimi.Droid
     [BroadcastReceiver]
     public class AlarmReceiver : BroadcastReceiver
     {
-        private NotificationManager notificationManager;
-        private readonly int NOTIFICATION_ID = 2022;
-        private readonly string ALARM_BIRD_CHANNEL_ID = "SuleymaniyeTakvimialarmbirdchannelId";
-        private readonly string ALARM_ROOSTER_CHANNEL_ID = "SuleymaniyeTakvimialarmroosterchannelId";
-        private readonly string ALARM_ADHAN_CHANNEL_ID = "SuleymaniyeTakvimialarmadhanchannelId";
-        private readonly string ALARM_ALARM_CHANNEL_ID = "SuleymaniyeTakvimialarmalarmchannelId";
-        private readonly string birdsChannelName = "Suleymaniye Takvimi Alarm Birds";
-        private readonly string roosterChannelName = "Suleymaniye Takvimi Alarm Rooster";
-        private readonly string adhanChannelName = "Suleymaniye Takvimi Alarm Adhan";
-        private readonly string alarmChannelName = "Suleymaniye Takvimi Alarm Alarm";
-        private readonly string birdsChannelDescription = "The Suleymaniye Takvimi birds alarm channel.";
-        private readonly string roosterChannelDescription = "The Suleymaniye Takvimi rooster alarm channel.";
-        private readonly string adhanChannelDescription = "The Suleymaniye Takvimi adhan alarm channel.";
-        private readonly string alarmChannelDescription = "The Suleymaniye Takvimi alarm alarm channel.";
+        private NotificationManager _notificationManager;
+        private readonly int _notificationId = 2022;
+        private readonly string _alarmBirdChannelId = "SuleymaniyeTakvimialarmbirdchannelId";
+        private readonly string _alarmRoosterChannelId = "SuleymaniyeTakvimialarmroosterchannelId";
+        private readonly string _alarmAdhanChannelId = "SuleymaniyeTakvimialarmadhanchannelId";
+        private readonly string _alarmAlarmChannelId = "SuleymaniyeTakvimialarmalarmchannelId";
+        private readonly string _birdsChannelName = "Suleymaniye Takvimi Alarm Birds";
+        private readonly string _roosterChannelName = "Suleymaniye Takvimi Alarm Rooster";
+        private readonly string _adhanChannelName = "Suleymaniye Takvimi Alarm Adhan";
+        private readonly string _alarmChannelName = "Suleymaniye Takvimi Alarm Alarm";
+        private readonly string _birdsChannelDescription = "The Suleymaniye Takvimi birds alarm channel.";
+        private readonly string _roosterChannelDescription = "The Suleymaniye Takvimi rooster alarm channel.";
+        private readonly string _adhanChannelDescription = "The Suleymaniye Takvimi adhan alarm channel.";
+        private readonly string _alarmChannelDescription = "The Suleymaniye Takvimi alarm alarm channel.";
         public override void OnReceive(Context context, Intent intent)
         {
             try
@@ -43,7 +36,7 @@ namespace SuleymaniyeTakvimi.Droid
                 var name = intent?.GetStringExtra("name") ?? string.Empty;
                 var time = TimeSpan.Parse(intent?.GetStringExtra("time") ?? string.Empty);
                 //Toast.MakeText(context, "Received intent! " + name + ": " + time, ToastLength.Short).Show();
-                notificationManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
+                _notificationManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
                 PendingIntent fullScreenPendingIntent = PendingIntent.GetActivity(context, 0,
                     new Intent(context, typeof(AlarmActivity)), PendingIntentFlags.UpdateCurrent);
                 //var sound = GetRingtoneFileName(context, name);
@@ -53,55 +46,58 @@ namespace SuleymaniyeTakvimi.Droid
                 var alarmSound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm}");
                 var alarmAttributes = new AudioAttributes.Builder()
                     .SetContentType(AudioContentType.Sonification)
-                    .SetUsage(AudioUsageKind.Notification).Build();
+                    .SetUsage(AudioUsageKind.NotificationRingtone).Build();
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
                 {
-                    var birdsAlarmChannelNameJava = new String(birdsChannelName);
-                    var roosterAlarmChannelNameJava = new String(roosterChannelName);
-                    var adhanAlarmChannelNameJava = new String(adhanChannelName);
-                    var alarmAlarmChannelNameJava = new String(alarmChannelName);
-                    var birdsAlarmChannel = new NotificationChannel(ALARM_BIRD_CHANNEL_ID, birdsAlarmChannelNameJava, NotificationImportance.Max)
+                    var birdsAlarmChannelNameJava = new String(_birdsChannelName);
+                    var roosterAlarmChannelNameJava = new String(_roosterChannelName);
+                    var adhanAlarmChannelNameJava = new String(_adhanChannelName);
+                    var alarmAlarmChannelNameJava = new String(_alarmChannelName);
+                    var birdsAlarmChannel = new NotificationChannel(_alarmBirdChannelId, birdsAlarmChannelNameJava, NotificationImportance.Max)
                     {
-                        Description = birdsChannelDescription
+                        Description = _birdsChannelDescription
                     };
-                    var roosterAlarmChannel = new NotificationChannel(ALARM_ROOSTER_CHANNEL_ID, roosterAlarmChannelNameJava, NotificationImportance.Max)
+                    var roosterAlarmChannel = new NotificationChannel(_alarmRoosterChannelId, roosterAlarmChannelNameJava, NotificationImportance.Max)
                     {
-                        Description = roosterChannelDescription
+                        Description = _roosterChannelDescription
                     };
-                    var adhanAlarmChannel = new NotificationChannel(ALARM_ADHAN_CHANNEL_ID, adhanAlarmChannelNameJava, NotificationImportance.Max)
+                    var adhanAlarmChannel = new NotificationChannel(_alarmAdhanChannelId, adhanAlarmChannelNameJava, NotificationImportance.Max)
                     {
-                        Description = adhanChannelDescription
+                        Description = _adhanChannelDescription
                     };
-                    var alarmAlarmChannel = new NotificationChannel(ALARM_ALARM_CHANNEL_ID, alarmAlarmChannelNameJava, NotificationImportance.Max)
+                    var alarmAlarmChannel = new NotificationChannel(_alarmAlarmChannelId, alarmAlarmChannelNameJava, NotificationImportance.Max)
                     {
-                        Description = alarmChannelDescription
+                        Description = _alarmChannelDescription
                     };
                     birdsAlarmChannel.SetSound(birdsSound, alarmAttributes);
                     roosterAlarmChannel.SetSound(roosterSound, alarmAttributes);
                     adhanAlarmChannel.SetSound(adhanSound, alarmAttributes);
                     alarmAlarmChannel.SetSound(alarmSound, alarmAttributes);
-                    notificationManager?.CreateNotificationChannel(birdsAlarmChannel);
-                    notificationManager?.CreateNotificationChannel(roosterAlarmChannel);
-                    notificationManager?.CreateNotificationChannel(adhanAlarmChannel);
-                    notificationManager?.CreateNotificationChannel(alarmAlarmChannel);
+                    _notificationManager?.CreateNotificationChannel(birdsAlarmChannel);
+                    _notificationManager?.CreateNotificationChannel(roosterAlarmChannel);
+                    _notificationManager?.CreateNotificationChannel(adhanAlarmChannel);
+                    _notificationManager?.CreateNotificationChannel(alarmAlarmChannel);
                 }
 
                 //Uri sound = Uri.Parse("android.resource://" + context.PackageName + "/" + Resource.Raw.horoz);
-                var alarmID = GetAlamID(context, name);
+                var alarmId = GetAlamId(name);
                 NotificationCompat.Builder notificationBuilder = null;
-                switch (alarmID)
+                switch (alarmId)
                 {
                     case "kus":
-                        notificationBuilder = new NotificationCompat.Builder(context, ALARM_BIRD_CHANNEL_ID).SetSound(birdsSound);
+                        notificationBuilder = new NotificationCompat.Builder(context, _alarmBirdChannelId).SetSound(birdsSound);
                         break;
                     case "horoz":
-                        notificationBuilder = new NotificationCompat.Builder(context, ALARM_ROOSTER_CHANNEL_ID).SetSound(roosterSound);
+                        notificationBuilder = new NotificationCompat.Builder(context, _alarmRoosterChannelId).SetSound(roosterSound);
                         break;
                     case "ezan":
-                        notificationBuilder = new NotificationCompat.Builder(context, ALARM_ADHAN_CHANNEL_ID).SetSound(adhanSound);
+                        notificationBuilder = new NotificationCompat.Builder(context, _alarmAdhanChannelId).SetSound(adhanSound);
                         break;
                     case "alarm":
-                        notificationBuilder = new NotificationCompat.Builder(context, ALARM_ALARM_CHANNEL_ID).SetSound(alarmSound);
+                        notificationBuilder = new NotificationCompat.Builder(context, _alarmAlarmChannelId).SetSound(alarmSound);
+                        break;
+                    default:
+                        notificationBuilder = new NotificationCompat.Builder(context, _alarmAlarmChannelId).SetSound(alarmSound);
                         break;
                 }
                 notificationBuilder.SetSmallIcon(Resource.Drawable.app_logo)
@@ -134,16 +130,16 @@ namespace SuleymaniyeTakvimi.Droid
                 //        .SetFullScreenIntent(fullScreenPendingIntent, true);
                 
                 Notification alarmlNotification = notificationBuilder.Build();
-                notificationManager.Notify(NOTIFICATION_ID,alarmlNotification);
+                _notificationManager.Notify(_notificationId,alarmlNotification);
             }
-            catch (System.Exception exception)
+            catch (Exception exception)
             {
                 Console.WriteLine(exception);
                 throw;
             }
         }
 
-        private string GetAlamID(Context context, string? name)
+        private string GetAlamId(string name)
         {
             var fileName = "";
             if (name != null)
@@ -174,7 +170,7 @@ namespace SuleymaniyeTakvimi.Droid
             //};
         }
 
-        private string GetContent(string? name, TimeSpan time)
+        private string GetContent(string name, TimeSpan time)
         {
             if (name != null)
                 return name switch
@@ -193,7 +189,7 @@ namespace SuleymaniyeTakvimi.Droid
             return "";
         }
 
-        private string GetTitle(string? name)
+        private string GetTitle(string name)
         {
             if (name != null)
                 return name switch

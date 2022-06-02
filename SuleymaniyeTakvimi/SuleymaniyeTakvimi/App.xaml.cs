@@ -24,17 +24,35 @@ namespace SuleymaniyeTakvimi
             if(language=="zz"){
                 switch (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
                 {
+                    case "ar":
+                        language = "ar";
+                        break;
+                    case "az":
+                        language = "az";
+                        break;
+                    case "de":
+                        language = "de";
+                        break;
+                    case "en":
+                        language = "en";
+                        break;
+                    case "fa":
+                        language = "fa";
+                        break;
+                    case "fr":
+                        language = "fr";
+                        break;
+                    case "ru":
+                        language = "ru";
+                        break;
                     case "tr":
                         language = "tr";
-                        break;
-                    case "zh":
-                        language = "zh";
                         break;
                     case "ug":
                         language = "ug";
                         break;
-                    case "en":
-                        language = "en";
+                    case "zh":
+                        language = "zh";
                         break;
                     default:
                         language = "en";

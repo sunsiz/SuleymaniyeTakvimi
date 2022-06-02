@@ -1,7 +1,4 @@
 ﻿using SuleymaniyeTakvimi.Localization;
-using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

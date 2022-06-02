@@ -1,12 +1,8 @@
 ﻿using SuleymaniyeTakvimi.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
@@ -19,8 +15,8 @@ namespace SuleymaniyeTakvimi.ViewModels
 {
     public class SettingsViewModel:BaseViewModel
     {
-        IList<Language> supportedLanguages = Enumerable.Empty<Language>().ToList();
-        private Language selectedLanguage = new Language(AppResources.English, "en");
+        IList<Language> _supportedLanguages = Enumerable.Empty<Language>().ToList();
+        private Language _selectedLanguage = new Language(AppResources.English, "en");
         public ICommand ChangeLanguageCommand { get; }
         public ICommand BackCommand { get; }
         public ICommand GotoSettingsCommand { get; }
@@ -32,31 +28,31 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public Language SelectedLanguage
         {
-            get => selectedLanguage;
-            set => SetProperty(ref selectedLanguage, value);
+            get => _selectedLanguage;
+            set => SetProperty(ref _selectedLanguage, value);
         }
 
         public IList<Language> SupportedLanguages
         {
-            get => supportedLanguages;
-            private set => SetProperty(ref supportedLanguages, value);
+            get => _supportedLanguages;
+            private set => SetProperty(ref _supportedLanguages, value);
         }
 
         void LoadLanguages()
         {
             SupportedLanguages = new List<Language>()
             {
-                { new Language(AppResources.Arabic, "ar") },
-                { new Language(AppResources.Azerbaijani, "az") },
-                { new Language(AppResources.Chinese, "zh") },
-                { new Language(AppResources.Deutsch, "de") },
-                { new Language(AppResources.English, "en") },
-                { new Language(AppResources.Farsi, "fa") },
-                { new Language(AppResources.French, "fr") },
+                new Language(AppResources.Arabic, "ar"),
+                new Language(AppResources.Azerbaijani, "az"),
+                new Language(AppResources.Chinese, "zh"),
+                new Language(AppResources.Deutsch, "de"),
+                new Language(AppResources.English, "en"),
+                new Language(AppResources.Farsi, "fa"),
+                new Language(AppResources.French, "fr"),
                 //{ new Language(AppResources.Kyrgyz, "ky") },
-                { new Language(AppResources.Russian, "ru") },
-                { new Language(AppResources.Turkish, "tr") },
-                { new Language(AppResources.Uyghur, "ug") },
+                new Language(AppResources.Russian, "ru"),
+                new Language(AppResources.Turkish, "tr"),
+                new Language(AppResources.Uyghur, "ug"),
                 //{ new Language(AppResources.Uzbek, "uz") }
             };
             SelectedLanguage = SupportedLanguages.FirstOrDefault(lan => lan.CI == LocalizationResourceManager.Current.CurrentCulture.TwoLetterISOLanguageName);

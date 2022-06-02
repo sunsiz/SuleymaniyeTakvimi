@@ -31,8 +31,8 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="Aksam" xml:space="preserve">
 		<value>Maghreb</value>
 	</data>
-  <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-		<value>Temps restant pour la fin du Maghreb: </value>
+	<data name="Aksamincikmasnakalanvakit" xml:space="preserve">
+		<value>Temps restant pour la fin du Maghreb : </value>
 	</data>
   <data name="AlarmHatasi" xml:space="preserve">
 		<value>Un problème est survenu pendant que l'alarme sonnait. Détails</value>
@@ -46,8 +46,8 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="AlarmSound" xml:space="preserve">
 		<value>Son d'alarme</value>
 	</data>
-  <data name="AlarmSuresi" xml:space="preserve">
-		<value>Durée de l'alarme: </value>
+	<data name="AlarmSuresi" xml:space="preserve">
+		<value>Durée de l'alarme : </value>
 	</data>
   <data name="AlarmSwitch" xml:space="preserve">
 		<value>Activer le son de l'alarme</value>
@@ -91,8 +91,8 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="BildirimUyari" xml:space="preserve">
 		<value>Nous vous recommandons de ne pas désactiver ce paramètre. Si vous le désactivez, les alarmes peuvent ne pas sonner à l'heure. Si vos alarmes ne sonnent pas, veuillez vérifier les paramètres de l'application. Dans ces paramètres, dans la section "Autres autorisations", vérifiez que l'autorisation "Démarrer en arrière-plan" est sélectionnée. Assurez-vous que le paramètre "Aucune restriction" est sélectionné dans la section "Économiseur de batterie". Maintenant, si vous souhaitez vérifier ces autorisations, cliquez sur le bouton ci-dessous.</value>
 	</data>
-  <data name="BildirmeZamani" xml:space="preserve">
-		<value>Heure de rappel :</value>
+	<data name="BildirmeZamani" xml:space="preserve">
+		<value>Heure de rappel: </value>
 	</data>
   <data name="Birsessecin" xml:space="preserve">
 		<value>Choisissez un son</value>
@@ -151,8 +151,8 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="FecriSadik" xml:space="preserve">
 		<value>Fajr sadiq (véridique)</value>
 	</data>
-  <data name="FecriSadikakalanvakit" xml:space="preserve">
-		<value>Temps restant jusqu'au Fajr (fin du sahour): </value>
+	<data name="FecriSadikakalanvakit" xml:space="preserve">
+		<value>Temps restant jusqu'au Fajr (fin du sahour) : </value>
 	</data>
   <data name="FitratinSesi" xml:space="preserve">
 		<value>Radio Fitrat</value>
@@ -181,11 +181,11 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="HaritadaGoster" xml:space="preserve">
 		<value>Afficher l'emplacement sur la carte</value>
 	</data>
-  <data name="HaritaHatasi" xml:space="preserve">
-		<value>Quelque chose s'est produit lors de l'ouverture de la carte. \ndes détails:</value>
+	<data name="HaritaHatasi" xml:space="preserve">
+		<value>Quelque chose s'est produit lors de l'ouverture de la carte. \ndes détails :</value>
 	</data>
-  <data name="Hatadetaylari" xml:space="preserve">
-		<value>Détails de l'erreur:</value>
+	<data name="Hatadetaylari" xml:space="preserve">
+		<value>Détails de l'erreur :</value>
 	</data>
   <data name="HorozOtusu" xml:space="preserve">
 		<value>Coq chante</value>
@@ -199,8 +199,8 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
 		<value>Temps restant pour finir l’Asr: </value>
 	</data>
-  <data name="KalanSure" xml:space="preserve">
-		<value>le temps restant: </value>
+	<data name="KalanSure" xml:space="preserve">
+		<value>le temps restant : </value>
 	</data>
   <data name="Kapat" xml:space="preserve">
 		<value>Fermer</value>
@@ -292,8 +292,8 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="SabahSonu" xml:space="preserve">
 		<value>Fin du Fajr</value>
 	</data>
-  <data name="SabahSonunakalanvakit" xml:space="preserve">
-		<value>Temps restant jusqu'à la fin du Fajr: </value>
+	<data name="SabahSonunakalanvakit" xml:space="preserve">
+		<value>Temps restant jusqu'à la fin du Fajr : </value>
 	</data>
   <data name="Sehir" xml:space="preserve">
 		<value>Ville</value>
@@ -370,8 +370,8 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="Uzbek" xml:space="preserve">
 		<value>Ouzbek</value>
 	</data>
-  <data name="Vakti" xml:space="preserve">
-		<value>le temps: </value>
+	<data name="Vakti" xml:space="preserve">
+		<value>le temps : </value>
 	</data>
   <data name="VaktiHatirlatmasi" xml:space="preserve">
 		<value>Rappel de l'heure</value>
@@ -385,11 +385,11 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="Yatsi" xml:space="preserve">
 		<value>Icha</value>
 	</data>
-  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-		<value>Temps restant pour la fin de l’Icha: </value>
+	<data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+		<value>Temps restant pour la fin de l’Icha : </value>
 	</data>
-  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-		<value>Temps écoulé de la fin de l’Icha: </value>
+	<data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+		<value>Temps écoulé de la fin de l’Icha : </value>
 	</data>
   <data name="YatsiSonu" xml:space="preserve">
 		<value>Fin de l’Icha</value>
@@ -411,5 +411,14 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
 	</data>
   <data name="Aci" xml:space="preserve">
 		<value>l' angle</value>
+	</data>
+	<data name="DakikaOnceden" xml:space="preserve">
+		<value> minutes à l'avance</value>
+	</data>
+	<data name="AlarmTekrarlari" xml:space="preserve">
+		<value>La sonnerie d'alarme se répète : </value>
+	</data>
+	<data name="Kere" xml:space="preserve">
+		<value> fois</value>
 	</data>
 </root>

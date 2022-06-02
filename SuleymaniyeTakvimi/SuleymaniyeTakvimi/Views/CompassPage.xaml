@@ -42,6 +42,7 @@
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding GoToMapCommand}" />
                                 </pancakeView:PancakeView.GestureRecognizers>
                             </pancakeView:PancakeView>
+                            <!--<Label Margin="5" Padding="5,0" x:Name="LabelTest" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" />-->
                         </FlexLayout>
                     </pancakeView:PancakeView>
                 </StackLayout>

@@ -19,7 +19,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private readonly double _qiblaLatitude = 21.4224779;
         private readonly double _qiblaLongitude = 39.8251832;
         internal readonly SensorSpeed Speed = SensorSpeed.UI;
-        private bool askedPermission;
+        private bool _askedPermission;
         public Command StartCommand { get; }
         private Command StopCommand { get; }
         public Command LocationCommand { get; }
@@ -77,10 +77,10 @@ namespace SuleymaniyeTakvimi.ViewModels
                                 _currentAltitude = location.Altitude ?? 0.0;
                             }
                         }
-                        else if(!askedPermission)
+                        else if(!_askedPermission)
                         {
                             var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
-                            askedPermission = true;
+                            _askedPermission = true;
                             Debug.WriteLine(result);
                         }
                     }
@@ -235,27 +235,29 @@ namespace SuleymaniyeTakvimi.ViewModels
             double fromLat = position.Latitude * KDegreesToRadians;
 
             double dlon = toLong - fromLong;
-            double y = Math.Sin(dlon) * Math.Cos(toLat);
-            double x = Math.Cos(fromLat) * Math.Sin(toLat) - Math.Sin(fromLat) * Math.Cos(toLat) * Math.Cos(dlon);
+            //double y = Math.Sin(dlon) * Math.Cos(toLat);
+            //double x = Math.Cos(fromLat) * Math.Sin(toLat) - Math.Sin(fromLat) * Math.Cos(toLat) * Math.Cos(dlon);
+            double y = Math.Sin(dlon);
+            double x = Math.Cos(fromLat) * Math.Tan(toLat) - Math.Sin(fromLat) * Math.Cos(dlon);
 
             double direction = Math.Atan2(y, x);
 
             // convert to degrees
             direction *= KRadiansToDegrees;
             // normalize
-            double fraction = Modf(direction + 360.0, direction);
-            direction += fraction;
+            //double fraction = Modf(direction + 360.0, direction);
+            //direction += fraction;
 
-            if (direction > 360)
-            {
-                direction -= 360;
-            }
+            //if (direction > 360)
+            //{
+            //    direction -= 360;
+            //}
 
             return direction;
         }
-        private static double Modf(double orig, double ipart)
-        {
-            return orig - Math.Floor(orig);
-        }
+        //private static double Modf(double orig, double ipart)
+        //{
+        //    return orig - Math.Floor(orig);
+        //}
     }
 }

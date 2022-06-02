@@ -10,6 +10,6 @@
 	<string name="ogle">Mittag</string>
 	<string name="ikindi">Nachmittag</string>
 	<string name="aksam">Abend</string>
-	<string name="yatsi">Nacht</string>
-	<string name="yatsi_sonu">Ende der Nacht</string>
+	<string name="yatsi">Nachtdämmerung</string>
+	<string name="yatsi_sonu">Ende der Nachtdämmerung</string>
 </resources>

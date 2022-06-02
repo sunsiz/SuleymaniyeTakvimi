@@ -12,7 +12,6 @@ using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -24,7 +23,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private string _itemId;
         private string _itemAdi;
         private string _vakit;
-        private string _bildirmeVakti;
+        private int _bildirmeVakti;
         private bool _titreme;
         private bool _bildiri;
         private bool _alarm;
@@ -33,11 +32,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         private Sound _selectedSound;
         private string _testButtonText;
         private bool _isPlaying;
+        //private int _alarmRepeats;
         public ICommand EnableSwitchToggled { get; }
         public ICommand BildiriCheckedChanged { get; }
         public ICommand TitremeCheckedChanged { get; }
         public ICommand AlarmCheckedChanged { get; }
-        public ICommand RadioButtonCheckedChanged { get; }
+        //public ICommand RadioButtonCheckedChanged { get; }
         public ICommand BackCommand { get; }
         public ICommand TestButtonCommand { get; }
         //private Command<Sound> SoundSelectedCommand { get; }
@@ -66,6 +66,17 @@ namespace SuleymaniyeTakvimi.ViewModels
             //SoundSelected(value);
         }
 
+        //public int AlarmRepeats
+        //{
+        //    get => _alarmRepeats;
+        //    set
+        //    {
+        //        SetProperty(ref _alarmRepeats, value);
+        //        Preferences.Set(ItemId + "AlarmTekrarlari", value);
+        //    }
+        //}
+        //public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform==DevicePlatform.iOS);
+
         public ItemDetailViewModel()
         {
             Title = AppResources.PageTitle;
@@ -73,7 +84,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             BildiriCheckedChanged = new Command(BildiriAyari);
             TitremeCheckedChanged = new Command(TitremeAyari);
             AlarmCheckedChanged = new Command(AlarmAyari);
-            RadioButtonCheckedChanged = new Command(BildirmeVaktiAyari);
+            //RadioButtonCheckedChanged = new Command(BildirmeVaktiAyari);
             BackCommand = new Command(GoBack);
             LoadSounds();
             //Etkin = Preferences.Get(itemId + "Etkin", false);
@@ -92,10 +103,10 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             _availableSounds = new ObservableCollection<Sound>()
             {
-                new Sound() { FileName = "kus", Name = AppResources.KusCiviltisi }, /*Index = 0, */
-                new Sound() { FileName = "horoz", Name = AppResources.HorozOtusu }, /*Index = 1, */
-                new Sound() { FileName = "alarm", Name = AppResources.CalarSaat }, /*Index = 2, */
-                new Sound() { FileName = "ezan", Name = AppResources.EzanSesi }, /*Index = 3, */
+                new Sound(fileName: "kus", name: AppResources.KusCiviltisi), /*Index = 0, */
+                new Sound(fileName: "horoz", name: AppResources.HorozOtusu), /*Index = 1, */
+                new Sound(fileName: "alarm", name: AppResources.CalarSaat), /*Index = 2, */
+                new Sound(fileName: "ezan", name: AppResources.EzanSesi), /*Index = 3, */
                 //new Sound() { FileName = "alarm2", Name = AppResources.CalarSaat + " 1" }, /*Index = 4, */
                 //new Sound() { FileName = "beep1", Name = AppResources.CalarSaat + " 2" }, /*Index = 5, */
                 //new Sound() { FileName = "beep2", Name = AppResources.CalarSaat + " 3" }, /*Index = 6, */
@@ -151,18 +162,18 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        private void BildirmeVaktiAyari(object obj)
-        {
-            //When page load the obj value awlways be false, so avoiding it.
-            if (!IsBusy)
-            {
-                var radiobutton = obj as RadioButton;
-                Preferences.Set(_itemId + "BildirmeVakti", radiobutton?.Value.ToString());
-                Debug.WriteLine("Value Setted for -> " + _itemId + "BildirmeVakti: " +
-                                  Preferences.Get(_itemId + "BildirmeVakti", radiobutton?.Value.ToString()));
-                _bildirmeVakti = radiobutton?.Value.ToString();
-            }
-        }
+        //private void BildirmeVaktiAyari(object obj)
+        //{
+        //    //When page load the obj value awlways be false, so avoiding it.
+        //    //if (!IsBusy)
+        //    //{
+        //    //    var radiobutton = obj as RadioButton;
+        //    //    Preferences.Set(_itemId + "BildirmeVakti", radiobutton?.Value.ToString());
+        //    //    Debug.WriteLine("Value Setted for -> " + _itemId + "BildirmeVakti: " +
+        //    //                      Preferences.Get(_itemId + "BildirmeVakti", radiobutton?.Value.ToString()));
+        //    //    _bildirmeVakti = radiobutton?.Value.ToString();
+        //    //}
+        //}
 
         private void AlarmAyari(object obj)
         {
@@ -315,10 +326,14 @@ namespace SuleymaniyeTakvimi.ViewModels
             set => SetProperty(ref _vakit, value);
         }
 
-        public string BildirmeVakti
+        public int BildirmeVakti
         {
             get => _bildirmeVakti;
-            set => SetProperty(ref _bildirmeVakti, value);
+            set
+            {
+                SetProperty(ref _bildirmeVakti, value);
+                Preferences.Set(ItemId + "BildirmeVakti", _bildirmeVakti);
+            }
         }
 
         public bool Etkin
@@ -387,8 +402,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Bildiri = Preferences.Get(itemId + "Bildiri", false);
                 Titreme = Preferences.Get(itemId + "Titreme", true);
                 Alarm = Preferences.Get(itemId + "Alarm", true);
-                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", "0");//when assign "0" for defaultValue, there always throw exception says: java.lang cannot convert boolean to string. So cheating.
-
+                BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", 0);//when assign "0" for defaultValue, there always throw exception says: java.lang cannot convert boolean to string. So cheating.
+                //AlarmRepeats = Preferences.Get(itemId + "AlarmTekrarlari", 1);
                 //string name = "Çalar Saat";
                 ////int index = 2;
                 //string file = "alarm";

@@ -188,6 +188,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alarm ringtone repeats: .
+        /// </summary>
+        public static string AlarmTekrarlari {
+            get {
+                return ResourceManager.GetString("AlarmTekrarlari", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arabic.
         /// </summary>
         public static string Arabic {
@@ -305,7 +314,7 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder Time:.
+        ///   Looks up a localized string similar to Reminder Time: .
         /// </summary>
         public static string BildirmeZamani {
             get {
@@ -391,6 +400,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string Dakika {
             get {
                 return ResourceManager.GetString("Dakika", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  minutes before.
+        /// </summary>
+        public static string DakikaOnceden {
+            get {
+                return ResourceManager.GetString("DakikaOnceden", resourceCulture);
             }
         }
         
@@ -670,6 +688,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string KaydetVeUygula {
             get {
                 return ResourceManager.GetString("KaydetVeUygula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  times.
+        /// </summary>
+        public static string Kere {
+            get {
+                return ResourceManager.GetString("Kere", resourceCulture);
             }
         }
         

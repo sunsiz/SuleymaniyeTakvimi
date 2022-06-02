@@ -166,7 +166,7 @@
     <value>Bildirim Göster</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>Hatırlatma Zamanı:</value>
+	  <value>Hatırlatma Zamanı: </value>
   </data>
   <data name="Birsessecin" xml:space="preserve">
     <value>Bir ses seçin</value>
@@ -517,5 +517,14 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   </data>
   <data name="Azerbaijani" xml:space="preserve">
 	  <value>Azerice</value>
+  </data>
+  <data name="DakikaOnceden" xml:space="preserve">
+	  <value> dakika önceden</value>
+  </data>
+  <data name="AlarmTekrarlari" xml:space="preserve">
+	  <value>Alarm sesi tekrarlama sayısı: </value>
+  </data>
+  <data name="Kere" xml:space="preserve">
+	  <value> kere</value>
   </data>
 </root>

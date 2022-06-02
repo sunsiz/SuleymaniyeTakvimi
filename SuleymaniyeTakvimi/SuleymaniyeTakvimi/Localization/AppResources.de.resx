@@ -94,8 +94,8 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
   <data name="BildirimUyari" xml:space="preserve">
 		<value>Wir empfehlen, diese Einstellung nicht zu deaktivieren. Wenn Sie es deaktivieren, klingelt der Wecker möglicherweise nicht rechtzeitig. Wenn Ihre Wecker nicht klingeln, überprüfen Sie bitte die Anwendungseinstellungen. Überprüfen Sie in diesen Einstellungen im Abschnitt "Andere Berechtigungen", ob die Berechtigung "Im Hintergrund starten" ausgewählt ist. Stellen Sie sicher, dass die Einstellung „Keine Einschränkungen“ im Bereich „Batteriesparen“ ausgewählt ist. Wenn Sie diese Berechtigungen jetzt überprüfen möchten, klicken Sie auf die Schaltfläche unten.</value>
 	</data>
-  <data name="BildirmeZamani" xml:space="preserve">
-		<value>Erinnerungszeit:</value>
+	<data name="BildirmeZamani" xml:space="preserve">
+		<value>Erinnerungszeit: </value>
 	</data>
   <data name="Birsessecin" xml:space="preserve">
 		<value>Wähle einen Ton</value>
@@ -385,17 +385,17 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
   <data name="WebSayfa" xml:space="preserve">
 		<value> Webseite</value>
 	</data>
-  <data name="Yatsi" xml:space="preserve">
-		<value>Die Nacht</value>
+	<data name="Yatsi" xml:space="preserve">
+		<value>Die Nachtdämmerung</value>
 	</data>
-  <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-		<value>Verbleibende Zeit bis zum Ende der Nacht: </value>
+	<data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
+		<value>Verbleibende Zeit bis zum Ende der Nachtdämmerung: </value>
 	</data>
-  <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-		<value>Verstrichene Zeit seit dem Ende der Nacht: </value>
+	<data name="Yatsininciktigindangecenvakit" xml:space="preserve">
+		<value>Verstrichene Zeit seit dem Ende der Nachtdämmerung: </value>
 	</data>
-  <data name="YatsiSonu" xml:space="preserve">
-		<value>Ende der Nacht</value>
+	<data name="YatsiSonu" xml:space="preserve">
+		<value>Ende der Nachtdämmerung</value>
 	</data>
   <data name="YayinAkisi" xml:space="preserve">
 		<value> Stream-Zeitpläne</value>
@@ -411,5 +411,14 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
 	</data>
   <data name="Zamaninda" xml:space="preserve">
 		<value>Pünktlich</value>
+	</data>
+	<data name="DakikaOnceden" xml:space="preserve">
+		<value> minuten vorher</value>
+	</data>
+	<data name="AlarmTekrarlari" xml:space="preserve">
+		<value>Alarmklingelton wiederholt sich: </value>
+	</data>
+	<data name="Kere" xml:space="preserve">
+		<value> mal</value>
 	</data>
 </root>

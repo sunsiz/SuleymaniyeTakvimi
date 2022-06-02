@@ -94,8 +94,8 @@
   <data name="BildirimUyari" xml:space="preserve">
 		<value>نوصي بعدم إيقاف تشغيل هذا الإعداد. إذا قمت بتعطيله ، فقد لا ترن الإنذارات في الوقت المحدد. إذا لم تكن إنذاراتك ترن ، فيرجى التحقق من إعدادات التطبيق. في هذه الإعدادات ، في قسم "أذونات أخرى" ، تحقق من تحديد إذن "البدء في الخلفية". تأكد من تحديد الإعداد "بلا قيود" في قسم "توفير شحن البطارية". الآن إذا كنت تريد التحقق من هذه الأذونات ، فانقر فوق الزر أدناه.</value>
 	</data>
-  <data name="BildirmeZamani" xml:space="preserve">
-		<value>وقت التذكير:</value>
+	<data name="BildirmeZamani" xml:space="preserve">
+		<value>وقت التذكير: </value>
 	</data>
   <data name="Birsessecin" xml:space="preserve">
 		<value>اختر صوتًا</value>
@@ -411,5 +411,14 @@
 	</data>
   <data name="Version" xml:space="preserve">
 		<value>  </value>
+	</data>
+	<data name="DakikaOnceden" xml:space="preserve">
+		<value> دقائق مقدما</value>
+	</data>
+	<data name="AlarmTekrarlari" xml:space="preserve">
+		<value>تتكرر نغمة رنين التنبيه: </value>
+	</data>
+	<data name="Kere" xml:space="preserve">
+		<value> مرات</value>
 	</data>
 </root>

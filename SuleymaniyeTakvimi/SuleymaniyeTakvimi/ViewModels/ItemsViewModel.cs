@@ -7,13 +7,10 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using SuleymaniyeTakvimi.Localization;
 
 namespace SuleymaniyeTakvimi.ViewModels
@@ -25,12 +22,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command GoToMapCommand { get; }
         public Command GoToMonthCommand { get; }
         public Command RefreshLocationCommand { get; }
-        public Command DarkLightModeCommand { get; }
+        //public Command DarkLightModeCommand { get; }
         public Command SettingsCommand { get; }
         public Command<Item> ItemTapped { get; }
         private Takvim _takvim, _vakitler;
         private string _city;
-        private bool _dark;
+        //private bool _dark;
 
         private ObservableCollection<Item> _items;
         private string _remainingTime;
@@ -54,11 +51,11 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
         //public string Today => AppResources.AylikTakvim; /*DateTime.Today.ToString("M");*/
 
-        public bool Dark
-        {
-            get => _dark;
-            set => SetProperty(ref _dark, value);
-        }
+        //public bool Dark
+        //{
+        //    get => _dark;
+        //    set => SetProperty(ref _dark, value);
+        //}
 
         public string RemainingTime
         {
@@ -134,7 +131,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     }).ConfigureAwait(true);
                 }
             });
-            DarkLightModeCommand = new Command(ChangeTheme);
+            //DarkLightModeCommand = new Command(ChangeTheme);
             Task.Run(async () =>
             {
                 if (!data.HaveInternet()) return;
@@ -155,19 +152,19 @@ namespace SuleymaniyeTakvimi.ViewModels
                 ExecuteLoadItemsCommand();
                 //GetCity();
             }).ConfigureAwait(false);
-            Dark = Theme.Tema != 1;//0 is dark, 1 is light
+            //Dark = Theme.Tema != 1;//0 is dark, 1 is light
             //Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
             Debug.WriteLine("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
-        private void ChangeTheme(object obj)
-        {
-            //int val = Preferences.Get(nameof(Theme.Tema), 1);
-            //Debug.WriteLine(nameof(Theme.Tema));
-            Theme.Tema = Theme.Tema == 1 ? 0 : 1;
-            Dark = Theme.Tema != 1;
-            Application.Current.UserAppTheme = Theme.Tema == 1 ? OSAppTheme.Light : OSAppTheme.Dark;
-        }
+        //private void ChangeTheme(object obj)
+        //{
+        //    //int val = Preferences.Get(nameof(Theme.Tema), 1);
+        //    //Debug.WriteLine(nameof(Theme.Tema));
+        //    Theme.Tema = Theme.Tema == 1 ? 0 : 1;
+        //    Dark = Theme.Tema != 1;
+        //    Application.Current.UserAppTheme = Theme.Tema == 1 ? OSAppTheme.Light : OSAppTheme.Dark;
+        //}
         
         private ObservableCollection<Item> ExecuteLoadItemsCommand()
         {

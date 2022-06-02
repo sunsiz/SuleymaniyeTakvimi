@@ -19,9 +19,9 @@ namespace SuleymaniyeTakvimi.iOS
             triggerDateTime = DateTime.SpecifyKind(triggerDateTime, DateTimeKind.Utc);
             try
             {
-                var title = "";
-                var body = "";
-                var sound = "";
+                string title;
+                string body;
+                string sound;
                 switch (name)
                 {
                     case "Fecri Kazip": title = $"{AppResources.FecriKazip} {AppResources.VaktiHatirlatmasi}";body = $"{AppResources.FecriKazip} {AppResources.Vakti} {triggerTimeSpan}"; sound = "fecrikazip"; break;
@@ -32,7 +32,7 @@ namespace SuleymaniyeTakvimi.iOS
                     case "Akşam": title = $"{AppResources.Aksam} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.Aksam} {AppResources.Vakti} {triggerTimeSpan}"; sound = "aksam"; break;
                     case "Yatsı": title = $"{AppResources.Yatsi} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.Yatsi} {AppResources.Vakti} {triggerTimeSpan}"; sound = "yatsi"; break;
                     case "Yatsı Sonu": title = $"{AppResources.YatsiSonu} {AppResources.VaktiHatirlatmasi}"; body = $"{AppResources.YatsiSonu} {AppResources.Vakti} {triggerTimeSpan}"; sound = "yatsisonu"; break;
-                    default: title = $"Test Alarm"; body = $"{AppResources.Vakti} {triggerTimeSpan}"; sound = "sabahsonu"; break;
+                    default: title = "Test Alarm"; body = $"{AppResources.Vakti} {triggerTimeSpan}"; sound = "sabahsonu"; break;
                 }
                 var alarmSesi = Preferences.Get(sound + "AlarmSesi", "kus") + ".wav";
                 var content = new UNMutableNotificationContent

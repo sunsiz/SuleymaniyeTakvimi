@@ -166,7 +166,7 @@
     <value>显示通知</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-    <value>提醒时间：</value>
+	  <value>提醒时间： </value>
   </data>
   <data name="Birsessecin" xml:space="preserve">
     <value>选择闹钟铃声</value>
@@ -517,5 +517,14 @@
   </data>
   <data name="Uzbek" xml:space="preserve">
 	  <value>乌兹别克语</value>
+  </data>
+  <data name="DakikaOnceden" xml:space="preserve">
+	  <value> 分钟提前</value>
+  </data>
+  <data name="AlarmTekrarlari" xml:space="preserve">
+	  <value>闹钟铃声重复： </value>
+  </data>
+  <data name="Kere" xml:space="preserve">
+	  <value> 次</value>
   </data>
 </root>

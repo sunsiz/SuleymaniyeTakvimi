@@ -1,11 +1,6 @@
-﻿using System;
-using Acr.UserDialogs;
-using Android.App;
+﻿using Android.App;
 using Android.Appwidget;
 using Android.Content;
-using Android.Widget;
-using SuleymaniyeTakvimi.Models;
-using SuleymaniyeTakvimi.Services;
 
 namespace SuleymaniyeTakvimi.Droid
 {

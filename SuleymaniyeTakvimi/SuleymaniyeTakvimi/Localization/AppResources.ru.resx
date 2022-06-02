@@ -1,416 +1,530 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>1.3</value>
+    <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Aci" xml:space="preserve">
-		<value>Направление</value>
-	</data>
+    <value>Направление</value>
+  </data>
   <data name="AciklamaBas" xml:space="preserve">
-		<value>Мусульманин – это имя, которое Аллах дал тем, кто покорился Ему и терпеливо переносит все трудности на Его пути. Это те, которые практикуют истинную религию, ничего не привнося в нее от себя.
+    <value>Мусульманин – это имя, которое Аллах дал тем, кто покорился Ему и терпеливо переносит все трудности на Его пути. Это те, которые практикуют истинную религию, ничего не привнося в нее от себя.
 «Чья речь прекраснее, чем речь того, кто призывает к Аллаху, поступает праведно и говорит: «Поистине, я – мусульманин?!» (Фуссилят 41/33). 
 Эта программа предназначена для обеспечения безопасного и быстрого доступа к временам намаза и поста. Для получения более подробной информации о расчете времени и времени поста  читайте статью </value>
-	</data>
+  </data>
   <data name="AciklamaLinkText" xml:space="preserve">
-		<value>Времена намаза и поста: от экватора до полюсов</value>
-	</data>
+    <value>Времена намаза и поста: от экватора до полюсов</value>
+  </data>
   <data name="AciklamaSon" xml:space="preserve">
-		<value> </value>
-	</data>
+    <value> </value>
+  </data>
   <data name="AcikTema" xml:space="preserve">
-		<value>Дневной режим</value>
-	</data>
+    <value>Дневной режим</value>
+  </data>
   <data name="Aksam" xml:space="preserve">
-		<value>Магриб намаз</value>
-	</data>
+    <value>Магриб</value>
+  </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-		<value>Время до окончания Магриб (вечернего намаза): </value>
-	</data>
+    <value>Время до окончания Магриб (вечернего намаза): </value>
+  </data>
   <data name="AlarmHatasi" xml:space="preserve">
-		<value>Во время звонка будильника возникла ошибка, подробности</value>
-	</data>
+    <value>Во время звонка будильника возникла ошибка, подробности</value>
+  </data>
   <data name="Alarmi" xml:space="preserve">
-		<value>Будильник</value>
-	</data>
+    <value>Будильник</value>
+  </data>
   <data name="Alarmkurarkenhataolustu" xml:space="preserve">
-		<value>Во время установки будильника возникла ошибка</value>
-	</data>
+    <value>Во время установки будильника возникла ошибка</value>
+  </data>
   <data name="AlarmSound" xml:space="preserve">
-		<value>Голос будильника</value>
-	</data>
+    <value>Голос будильника</value>
+  </data>
   <data name="AlarmSuresi" xml:space="preserve">
-		<value>Время будильника: </value>
-	</data>
+    <value>Время будильника: </value>
+  </data>
   <data name="AlarmSwitch" xml:space="preserve">
-		<value>Звонок будильника</value>
-	</data>
+    <value>Звонок будильника</value>
+  </data>
   <data name="AylikTakvim" xml:space="preserve">
-		<value>Ежемесячный календарь</value>
-	</data>
+    <value>Ежемесячный календарь</value>
+  </data>
   <data name="Arabic" xml:space="preserve">
-		<value>На арабском</value>
-	</data>
+    <value>На арабском</value>
+  </data>
   <data name="AylikTakvimeErisemedi" xml:space="preserve">
-		<value>Не удается получить доступ к ежемесячному календарю. Пожалуйста, проверьте, доступен ли ваш Интернет и активна ли служба определения местоположения!</value>
-	</data>
+    <value>Не удается получить доступ к ежемесячному календарю. Пожалуйста, проверьте, доступен ли ваш Интернет и активна ли служба определения местоположения!</value>
+  </data>
   <data name="AylikTakvimYenilendi" xml:space="preserve">
-		<value>Ежемесячный календарь успешно обновлен</value>
-	</data>
+    <value>Ежемесячный календарь успешно обновлен</value>
+  </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
-		<value>За пять минут раньше</value>
-	</data>
+    <value>За пять минут раньше</value>
+  </data>
   <data name="BildiriDevreDisiBaslik" xml:space="preserve">
-		<value>Настройка уведомлений отключена</value>
-	</data>
+    <value>Настройка уведомлений отключена</value>
+  </data>
   <data name="BildiriDevreDisiIcerik" xml:space="preserve">
-		<value> уведомление отключено.</value>
-	</data>
+    <value> уведомление отключено.</value>
+  </data>
   <data name="BildiriEtkinBaslik" xml:space="preserve">
-		<value>Настройка уведомлений включена</value>
-	</data>
+    <value>Настройка уведомлений включена</value>
+  </data>
   <data name="BildiriEtkinIcerik" xml:space="preserve">
-		<value> уведомление включено.</value>
-	</data>
+    <value> уведомление включено.</value>
+  </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
-		<value>Показать уведомление</value>
-	</data>
+    <value>Показать уведомление</value>
+  </data>
   <data name="BildirimKapatma" xml:space="preserve">
-		<value>Включить закрепленные уведомления</value>
-	</data>
+    <value>Включить закрепленные уведомления</value>
+  </data>
   <data name="Azerbaijani" xml:space="preserve">
-		<value>На азербайджанском</value>
-	</data>
+    <value>На азербайджанском</value>
+  </data>
   <data name="BildirimUyari" xml:space="preserve">
-		<value>Мы рекомендуем не отключать этот параметр. Если его отключить, то будильник не сможет сработать вовремя. Если ваши будильники не звонят, проверьте настройки приложения. В этих настройках в разделе «Другие разрешения» проверьте, что выбрано разрешение «Запуск в фоновом режиме». Убедитесь, что в разделе «Экономия заряда батареи» выбран параметр «Без ограничений». Теперь, если вы хотите проверить эти разрешения, нажмите кнопку ниже.</value>
-	</data>
+    <value>Мы рекомендуем не отключать этот параметр. Если его отключить, то будильник не сможет сработать вовремя. Если ваши будильники не звонят, проверьте настройки приложения. В этих настройках в разделе «Другие разрешения» проверьте, что выбрано разрешение «Запуск в фоновом режиме». Убедитесь, что в разделе «Экономия заряда батареи» выбран параметр «Без ограничений». Теперь, если вы хотите проверить эти разрешения, нажмите кнопку ниже.</value>
+  </data>
   <data name="BildirmeZamani" xml:space="preserve">
-		<value>Время напоминания:</value>
-	</data>
+	  <value>Время напоминания: </value>
+  </data>
   <data name="Birsessecin" xml:space="preserve">
-		<value>Выбирете звук</value>
-	</data>
+    <value>Выбирете звук</value>
+  </data>
   <data name="BoylamFormatsiz" xml:space="preserve">
-		<value>Долгота</value>
-	</data>
+    <value>Долгота</value>
+  </data>
   <data name="BugunkuNamazVakitleri" xml:space="preserve">
-		<value>Времена намаза на сегодня</value>
-	</data>
+    <value>Времена намаза на сегодня</value>
+  </data>
   <data name="CalarSaat" xml:space="preserve">
-		<value>Будильник</value>
-	</data>
+    <value>Будильник</value>
+  </data>
   <data name="Chinese" xml:space="preserve">
-		<value>На китайском</value>
-	</data>
+    <value>На китайском</value>
+  </data>
   <data name="CihazGPSDesteklemiyor" xml:space="preserve">
-		<value>Устройство не поддерживает GPS</value>
-	</data>
+    <value>Устройство не поддерживает GPS</value>
+  </data>
   <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
-		<value>Устройство не поддерживает компас</value>
-	</data>
+    <value>Устройство не поддерживает компас</value>
+  </data>
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
-		<value>Устройство не поддерживает вибрацию</value>
-	</data>
+    <value>Устройство не поддерживает вибрацию</value>
+  </data>
   <data name="Dakika" xml:space="preserve">
-		<value> минут</value>
-	</data>
+    <value> минут</value>
+  </data>
   <data name="English" xml:space="preserve">
-		<value>На английском</value>
-	</data>
+    <value>На английском</value>
+  </data>
   <data name="Deutsch" xml:space="preserve">
-		<value>На немецком</value>
-	</data>
+    <value>На немецком</value>
+  </data>
   <data name="EnlemFormatsiz" xml:space="preserve">
-		<value>Широта</value>
-	</data>
+    <value>Широта</value>
+  </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
-		<value>Активировать</value>
-	</data>
+    <value>Активировать</value>
+  </data>
   <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
-		<value>Активировать будильник, вибрацию и функцию уведомления о времени этого намаза</value>
-	</data>
+    <value>Активировать будильник, вибрацию и функцию уведомления о времени этого намаза</value>
+  </data>
   <data name="EzanSesi" xml:space="preserve">
-		<value>Азан</value>
-	</data>
+    <value>Азан</value>
+  </data>
   <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
-		<value>Время до Фаджри-кязиба (ложный рассвет, начало сухура): </value>
-	</data>
+    <value>Время до Фаджри-кязиба (ложный рассвет, начало сухура): </value>
+  </data>
   <data name="FecriKazip" xml:space="preserve">
-		<value>Фаджри-кязиб</value>
-	</data>
+    <value>Фаджри-кязиб</value>
+  </data>
   <data name="FecriSadik" xml:space="preserve">
-		<value>Фаджри-садик</value>
-	</data>
+    <value>Фаджри-садик</value>
+  </data>
   <data name="Farsi" xml:space="preserve">
-		<value>На фарси</value>
-	</data>
+    <value>На фарси</value>
+  </data>
   <data name="FecriSadikakalanvakit" xml:space="preserve">
-		<value>Время до Фаджри-садика (истинный рассвет, окончания сухура) Имсак: </value>
-	</data>
+    <value>Время до Фаджри-садика (истинный рассвет, окончания сухура) Имсак: </value>
+  </data>
   <data name="FitratinSesi" xml:space="preserve">
-		<value>Радио Фитрат - Голос Фитрата</value>
-	</data>
+    <value>Радио Фитрат - Голос Фитрата</value>
+  </data>
   <data name="FitratTV" xml:space="preserve">
-		<value>Фитрат ТВ</value>
-	</data>
+    <value>Фитрат ТВ</value>
+  </data>
   <data name="FitratTVFacebook" xml:space="preserve">
-		<value>Фитрат ТВ на фейсбуке</value>
-	</data>
+    <value>Фитрат ТВ на фейсбуке</value>
+  </data>
   <data name="FitratTVTwitter" xml:space="preserve">
-		<value>Фитрат ТВ в твиттере</value>
-	</data>
+    <value>Фитрат ТВ в твиттере</value>
+  </data>
   <data name="FitratTVYoutube" xml:space="preserve">
-		<value>Фитрат ТВ на ютубе</value>
-	</data>
+    <value>Фитрат ТВ на ютубе</value>
+  </data>
   <data name="GotoSettings" xml:space="preserve">
-		<value>Пройдите в настройки</value>
-	</data>
+    <value>Пройдите в настройки</value>
+  </data>
   <data name="Hakkinda" xml:space="preserve">
-		<value>О приложении</value>
-	</data>
+    <value>О приложении</value>
+  </data>
   <data name="French" xml:space="preserve">
-		<value>На французском</value>
-	</data>
+    <value>На французском</value>
+  </data>
   <data name="HaritadaGoster" xml:space="preserve">
-		<value>Показать местоположение на карте</value>
-	</data>
+    <value>Показать местоположение на карте</value>
+  </data>
   <data name="HaritaHatasi" xml:space="preserve">
-		<value>Не удалось открыть карту.\nПодробности:</value>
-	</data>
+    <value>Не удалось открыть карту.\nПодробности:</value>
+  </data>
   <data name="Hatadetaylari" xml:space="preserve">
-		<value>Подробности об ошибке:</value>
-	</data>
+    <value>Подробности об ошибке:</value>
+  </data>
   <data name="HorozOtusu" xml:space="preserve">
-		<value>Голос петуха</value>
-	</data>
+    <value>Голос петуха</value>
+  </data>
   <data name="IcerikYukleniyor" xml:space="preserve">
-		<value>Загрузка приложения...</value>
-	</data>
+    <value>Загрузка приложения...</value>
+  </data>
   <data name="Ikindi" xml:space="preserve">
-		<value>Аср</value>
-	</data>
+    <value>Аср</value>
+  </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-		<value>Время, до окончания Аср (после обеденного намаза): </value>
-	</data>
+    <value>Время, до окончания Аср (после обеденного намаза): </value>
+  </data>
   <data name="KalanSure" xml:space="preserve">
-		<value>Оставшееся время: </value>
-	</data>
+    <value>Оставшееся время: </value>
+  </data>
   <data name="Kapat" xml:space="preserve">
-		<value>Закрыть</value>
-	</data>
+    <value>Закрыть</value>
+  </data>
   <data name="Kaydet" xml:space="preserve">
-		<value>Сохранить</value>
-	</data>
+    <value>Сохранить</value>
+  </data>
   <data name="KaydetVeKapat" xml:space="preserve">
-		<value>Сохранить и закрыть</value>
-	</data>
+    <value>Сохранить и закрыть</value>
+  </data>
   <data name="KaydetVeUygula" xml:space="preserve">
-		<value>Сохранить и применить</value>
-	</data>
+    <value>Сохранить и применить</value>
+  </data>
   <data name="Kible" xml:space="preserve">
-		<value>Кибла</value>
-	</data>
+    <value>Кибла</value>
+  </data>
   <data name="KibleGostergesi" xml:space="preserve">
-		<value>Указатель киблы</value>
-	</data>
+    <value>Указатель киблы</value>
+  </data>
   <data name="KonumHatasi" xml:space="preserve">
-		<value>Произошла ошибка при получении доступа к местоположению</value>
-	</data>
+    <value>Произошла ошибка при получении доступа к местоположению</value>
+  </data>
   <data name="KonumIzniBaslik" xml:space="preserve">
-		<value>Нет доступа к местоположению</value>
-	</data>
+    <value>Нет доступа к местоположению</value>
+  </data>
   <data name="KonumIzniIcerik" xml:space="preserve">
-		<value>Для нормальной работы приложения необходимо дать разрешение на доступ к Location!</value>
-	</data>
+    <value>Для нормальной работы приложения необходимо дать разрешение на доступ к Location!</value>
+  </data>
   <data name="KonumKapali" xml:space="preserve">
-		<value>Службы определения местоположения на устройстве не включены. Сначала вам нужно включить службы определения местоположения!</value>
-	</data>
+    <value>Службы определения местоположения на устройстве не включены. Сначала вам нужно включить службы определения местоположения!</value>
+  </data>
   <data name="KonumKapaliBaslik" xml:space="preserve">
-		<value>Службы определения местоположения отключены</value>
-	</data>
+    <value>Службы определения местоположения отключены</value>
+  </data>
   <data name="KonumYenileButton" xml:space="preserve">
-		<value>Обновить</value>
-	</data>
+    <value>Обновить</value>
+  </data>
   <data name="KonumYenilendi" xml:space="preserve">
-		<value>Местоположение и времена намазов успешно обновлены</value>
-	</data>
+    <value>Местоположение и времена намазов успешно обновлены</value>
+  </data>
   <data name="KoyuTema" xml:space="preserve">
-		<value>Ночной режим</value>
-	</data>
+    <value>Ночной режим</value>
+  </data>
   <data name="KusCiviltisi" xml:space="preserve">
-		<value>Щебетание птиц</value>
-	</data>
+    <value>Щебетание птиц</value>
+  </data>
   <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
-		<value>Произошла ошибка при загрузке времен намаза из интернета.</value>
-	</data>
+    <value>Произошла ошибка при загрузке времен намаза из интернета.</value>
+  </data>
   <data name="Ogle" xml:space="preserve">
-		<value>Зухр</value>
-	</data>
+    <value>Зухр</value>
+  </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-		<value>Время до окончания Зухр (обеденного намаза): </value>
-	</data>
+    <value>Время до окончания Зухр (обеденного намаза): </value>
+  </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-		<value>Время до наступления Зухр (обеденного намаза): </value>
-	</data>
+    <value>Время до наступления Зухр (обеденного намаза): </value>
+  </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
-		<value>За 15 минут раньше</value>
-	</data>
+    <value>За 15 минут раньше</value>
+  </data>
   <data name="PageTitle" xml:space="preserve">
-		<value>Календарь Сулеймания</value>
-	</data>
+    <value>Календарь Сулеймания</value>
+  </data>
   <data name="Radyo" xml:space="preserve">
-		<value>Радио</value>
-	</data>
+    <value>Радио</value>
+  </data>
   <data name="Kyrgyz" xml:space="preserve">
-		<value>На кыргызском</value>
-	</data>
+    <value>На кыргызском</value>
+  </data>
   <data name="RadyoFitrat" xml:space="preserve">
-		<value>Радио Фитрат</value>
-	</data>
+    <value>Радио Фитрат</value>
+  </data>
   <data name="RadyoFitratFaceBook" xml:space="preserve">
-		<value>Радио Фитрат на фейсбуке</value>
-	</data>
+    <value>Радио Фитрат на фейсбуке</value>
+  </data>
   <data name="RadyoFitratInstagram" xml:space="preserve">
-		<value>Радио Фитрат в инстаграме</value>
-	</data>
+    <value>Радио Фитрат в инстаграме</value>
+  </data>
   <data name="RadyoFitratTwitter" xml:space="preserve">
-		<value>Радио Фитрат в твиттере</value>
-	</data>
+    <value>Радио Фитрат в твиттере</value>
+  </data>
   <data name="RadyoIcinInternet" xml:space="preserve">
-		<value>Для воспроизведения радио требуется интернет. Убедитесь, что интернет подключен, или вы можете слушать с веб-страницы, нажав ссылку «Веб-страница».</value>
-	</data>
+    <value>Для воспроизведения радио требуется интернет. Убедитесь, что интернет подключен, или вы можете слушать с веб-страницы, нажав ссылку «Веб-страница».</value>
+  </data>
   <data name="SabahSonu" xml:space="preserve">
-		<value>Конец Фаджра</value>
-	</data>
+    <value>Конец Фаджра</value>
+  </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-		<value>Время, до окончания Фаджр (утреннего намаза): </value>
-	</data>
+    <value>Время, до окончания Фаджр (утреннего намаза): </value>
+  </data>
   <data name="Sehir" xml:space="preserve">
-		<value>Город</value>
-	</data>
+    <value>Город</value>
+  </data>
   <data name="Russian" xml:space="preserve">
-		<value>На русском</value>
-	</data>
+    <value>На русском</value>
+  </data>
   <data name="SesSecAciklama" xml:space="preserve">
-		<value>Выбирите звук будильника для этого времени намаза</value>
-	</data>
+    <value>Выбирите звук будильника для этого времени намаза</value>
+  </data>
   <data name="SesTesti" xml:space="preserve">
-		<value>Тест звука</value>
-	</data>
+    <value>Тест звука</value>
+  </data>
   <data name="SorunCikti" xml:space="preserve">
-		<value>Мы столкнулись с проблемой</value>
-	</data>
+    <value>Мы столкнулись с проблемой</value>
+  </data>
   <data name="SosyalMedyaBaglantisi" xml:space="preserve">
-		<value>Наши ссылки в социальных сетях</value>
-	</data>
+    <value>Наши ссылки в социальных сетях</value>
+  </data>
   <data name="SuleymaniyeVakfi" xml:space="preserve">
-		<value>Фонд Сулеймания</value>
-	</data>
+    <value>Фонд Сулеймания</value>
+  </data>
   <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
-		<value>Фонд Сулеймания на фейсбуке</value>
-	</data>
+    <value>Фонд Сулеймания на фейсбуке</value>
+  </data>
   <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
-		<value>Фонд Сулеймания в инстаграме</value>
-	</data>
+    <value>Фонд Сулеймания в инстаграме</value>
+  </data>
   <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
-		<value>Календарь Сулеймания</value>
-	</data>
+    <value>Календарь Сулеймания</value>
+  </data>
   <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
-		<value>Фонд Сулеймания в твиттере</value>
-	</data>
+    <value>Фонд Сулеймания в твиттере</value>
+  </data>
   <data name="Takvim" xml:space="preserve">
-		<value>Календарь</value>
-	</data>
+    <value>Календарь</value>
+  </data>
   <data name="TakvimIcinInternet" xml:space="preserve">
-		<value>Чтобы обновить времена намазов, необходимо подключение к интернету или Wi-Fi, или включить мобильные данные и нажать «ОБНОВИТЬ».</value>
-	</data>
+    <value>Чтобы обновить времена намазов, необходимо подключение к интернету или Wi-Fi, или включить мобильные данные и нажать «ОБНОВИТЬ».</value>
+  </data>
   <data name="TakvimIcinInternetBaslik" xml:space="preserve">
-		<value>Интернет отсутствует</value>
-	</data>
+    <value>Интернет отсутствует</value>
+  </data>
   <data name="Tamam" xml:space="preserve">
-		<value>Отлично</value>
-	</data>
+    <value>Отлично</value>
+  </data>
   <data name="Tarih" xml:space="preserve">
-		<value>Дата</value>
-	</data>
+    <value>Дата</value>
+  </data>
   <data name="TestiDurdur" xml:space="preserve">
-		<value>Остановить загрузку тест</value>
-	</data>
+    <value>Остановить загрузку тест</value>
+  </data>
   <data name="TitremeyiDesteklemiyor" xml:space="preserve">
-		<value>Устройство не поддерживает вибрацию.</value>
-	</data>
+    <value>Устройство не поддерживает вибрацию.</value>
+  </data>
   <data name="TitresimSwitch" xml:space="preserve">
-		<value>Вибрация</value>
-	</data>
+    <value>Вибрация</value>
+  </data>
   <data name="Turkish" xml:space="preserve">
-		<value>На турецком</value>
-	</data>
+    <value>На турецком</value>
+  </data>
   <data name="Uyghur" xml:space="preserve">
-		<value>На уйгурском</value>
-	</data>
+    <value>На уйгурском</value>
+  </data>
   <data name="UygulamaDili" xml:space="preserve">
-		<value>Язык для приложения</value>
-	</data>
+    <value>Язык для приложения</value>
+  </data>
   <data name="UygulamaDiliniSecin" xml:space="preserve">
-		<value>Выбирите язык для приложения</value>
-	</data>
+    <value>Выбирите язык для приложения</value>
+  </data>
   <data name="UygulamaTema" xml:space="preserve">
-		<value>Тема для приложения</value>
-	</data>
+    <value>Тема для приложения</value>
+  </data>
   <data name="UygulamaTemasiniSecin" xml:space="preserve">
-		<value>Выбирите тему для приложения</value>
-	</data>
+    <value>Выбирите тему для приложения</value>
+  </data>
   <data name="Vakti" xml:space="preserve">
-		<value>Вермя: </value>
-	</data>
+    <value>Вермя: </value>
+  </data>
   <data name="VaktiHatirlatmasi" xml:space="preserve">
-		<value>Напоминание времени</value>
-	</data>
+    <value>Напоминание времени</value>
+  </data>
   <data name="Version" xml:space="preserve">
-		<value>версия</value>
-	</data>
+    <value>версия</value>
+  </data>
   <data name="Uzbek" xml:space="preserve">
-		<value>На узбекском</value>
-	</data>
+    <value>На узбекском</value>
+  </data>
   <data name="WebSayfa" xml:space="preserve">
-		<value> Web страница</value>
-	</data>
+    <value> Web страница</value>
+  </data>
   <data name="Yatsi" xml:space="preserve">
-		<value>Иша</value>
-	</data>
+    <value>Иша</value>
+  </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-		<value>Время, оставшееся до окончания Иша (после вечернего намаза): </value>
-	</data>
+    <value>Время, оставшееся до окончания Иша (после вечернего намаза): </value>
+  </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-		<value>После завершения Иша (после вечернего намаза): </value>
-	</data>
+    <value>После завершения Иша (после вечернего намаза): </value>
+  </data>
   <data name="YatsiSonu" xml:space="preserve">
-		<value>Конец Иша</value>
-	</data>
+    <value>Конец Иша</value>
+  </data>
   <data name="YayinAkisi" xml:space="preserve">
-		<value> Вещание</value>
-	</data>
+    <value> Вещание</value>
+  </data>
   <data name="YaziBoyutu" xml:space="preserve">
-		<value>Размер шрифта: </value>
-	</data>
+    <value>Размер шрифта: </value>
+  </data>
   <data name="Yenileniyor" xml:space="preserve">
-		<value>Обновляется</value>
-	</data>
+    <value>Обновляется</value>
+  </data>
   <data name="YukseklikFormatsiz" xml:space="preserve">
-		<value>Возвышенность</value>
-	</data>
+    <value>Возвышенность</value>
+  </data>
   <data name="Zamaninda" xml:space="preserve">
-		<value>Вовремя</value>
-	</data>
+    <value>Вовремя</value>
+  </data>
   <data name="AciklamaLinkURL" xml:space="preserve">
-		<value>https://www.fatva.net/%d0%b2%d1%80%d0%b5%d0%bc%d0%b5%d0%bd%d0%b0-%d0%bd%d0%b0%d0%bc%d0%b0%d0%b7%d0%b0-%d0%b8-%d0%bf%d0%be%d1%81%d1%82%d0%b0-%d0%be%d1%82-%d1%8d%d0%ba%d0%b2%d0%b0%d1%82%d0%be%d1%80%d0%b0-%d0%b4%d0%be-2</value>
-	</data>
+    <value>https://www.fatva.net/%d0%b2%d1%80%d0%b5%d0%bc%d0%b5%d0%bd%d0%b0-%d0%bd%d0%b0%d0%bc%d0%b0%d0%b7%d0%b0-%d0%b8-%d0%bf%d0%be%d1%81%d1%82%d0%b0-%d0%be%d1%82-%d1%8d%d0%ba%d0%b2%d0%b0%d1%82%d0%be%d1%80%d0%b0-%d0%b4%d0%be-2</value>
+  </data>
+  <data name="DakikaOnceden" xml:space="preserve">
+	  <value> минут раньше</value>
+  </data>
+  <data name="AlarmTekrarlari" xml:space="preserve">
+	  <value>Повторяется сигнал будильника: </value>
+  </data>
+  <data name="Kere" xml:space="preserve">
+	  <value> раз</value>
+  </data>
 </root>

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Android.App;
-using Android.Appwidget;
 using Android.Content;
 using Android.OS;
 using Android.Util;
-using Android.Widget;
 using Java.Util;
 using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Localization;
@@ -27,7 +25,7 @@ namespace SuleymaniyeTakvimi.Droid
         private bool _isStarted;
         private Handler _handler;
         private Action _runnable;
-        private int counter = 0;
+        private int _counter;
         
         public override IBinder OnBind(Intent intent)
         {
@@ -107,13 +105,15 @@ namespace SuleymaniyeTakvimi.Droid
                 _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
                 SetNotification();
                 _notificationManager.Notify(NOTIFICATION_ID, _notification);
-                counter++;
-                if (counter != 60) return; //When the 60th time (30 minute) refresh widget manually.
+                _counter++;
+                if (_counter != 60) return; //When the 60th time (30 minute) refresh widget manually.
                 //AppWidgetManager.GetInstance(ApplicationContext)?.UpdateAppWidget(
                 //    new ComponentName(ApplicationContext, Java.Lang.Class.FromType(typeof(AppWidget)).Name),
                 //    new RemoteViews(ApplicationContext.PackageName, Resource.Layout.Widget));
-                ApplicationContext.StartService(new Intent(ApplicationContext, typeof(WidgetService)));
-                counter = 0;
+                var intent = new Intent(ApplicationContext, typeof(WidgetService));
+                intent.PutExtra("FromService", true);
+                ApplicationContext.StartService(intent);
+                _counter = 0;
             });
             _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
             _isStarted = true;
@@ -299,17 +299,17 @@ namespace SuleymaniyeTakvimi.Droid
             Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
             
-            var _startServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
-            _startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
+            var startServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
+            startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
                 {
-                    Application.Context?.StartForegroundService(_startServiceIntent);
+                    Application.Context?.StartForegroundService(startServiceIntent);
                 }
                 else
                 {
-                    Application.Context?.StartService(_startServiceIntent);
+                    Application.Context?.StartService(startServiceIntent);
                 }
             });
             System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
@@ -319,17 +319,17 @@ namespace SuleymaniyeTakvimi.Droid
         {
             Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
-            var _stopServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
-            _stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
+            var stopServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
+            stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
                 {
-                    Application.Context?.StartForegroundService(_stopServiceIntent);
+                    Application.Context?.StartForegroundService(stopServiceIntent);
                 }
                 else
                 {
-                    Application.Context?.StartService(_stopServiceIntent);
+                    Application.Context?.StartService(stopServiceIntent);
                 }
             });
             System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");

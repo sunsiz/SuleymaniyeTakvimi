@@ -45,8 +45,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:layout_marginLeft="-5dp"
                     android:layout_gravity="center_vertical|center_horizontal"
-                    android:textSize="@dimen/abc_text_size_menu_material"
+                    android:textSize="15dp"
 		            android:gravity="start" />
                 <TextView
                     android:id="@+id/widgetLastRefreshed"
@@ -57,7 +58,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_gravity="center_vertical|end"
-                    android:textSize="@dimen/abc_text_size_caption_material" />
+                    android:textSize="12dp" />
                 <ImageView
                     android:id="@+id/widgetRefreshIcon"
                     android:src="@drawable/refresh"
@@ -85,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="start"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/widgetFecriKazipVakit"
                     android:textColor="#121212"
@@ -93,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -109,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/widgetFecriSadikVakit"
                     android:textColor="#121212"
@@ -117,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -133,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/widgetSabahSonuVakit"
                     android:textColor="#121212"
@@ -141,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -157,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/widgetOgleVakti"
                     android:textColor="#121212"
@@ -165,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -181,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/widgetIkindiVakit"
                     android:textColor="#121212"
@@ -189,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -205,7 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/widgetAksamVakit"
                     android:textColor="#121212"
@@ -213,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -229,7 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/widgetYatsiVakit"
                     android:textColor="#121212"
@@ -237,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -253,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/widgetYatsiSonuVakit"
                     android:textColor="#121212"
@@ -261,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="15dp" />
             </LinearLayout>
         </GridLayout>
     </FrameLayout>

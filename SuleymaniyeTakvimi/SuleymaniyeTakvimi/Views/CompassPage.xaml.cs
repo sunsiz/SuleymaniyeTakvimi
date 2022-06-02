@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Acr.UserDialogs;
-using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -39,6 +38,7 @@ namespace SuleymaniyeTakvimi.Views
         {
             CompassImage.RotateTo(360 - e.Reading.HeadingMagneticNorth);
             //_viewModel.PointToQibla(e);
+            //LabelTest.Text = e.Reading.HeadingMagneticNorth.ToString();
         }
 
         protected override void OnAppearing()

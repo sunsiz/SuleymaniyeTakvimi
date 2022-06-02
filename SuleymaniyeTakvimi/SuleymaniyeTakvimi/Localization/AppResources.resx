@@ -166,7 +166,7 @@
     <value>Show notification</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-	  <value>Reminder Time:</value>
+	  <value>Reminder Time: </value>
   </data>
   <data name="Birsessecin" xml:space="preserve">
 	  <value>Choose a ringtone</value>
@@ -516,5 +516,14 @@ This application is designed to provide safe and fast access to prayer and fasti
   </data>
   <data name="Uzbek" xml:space="preserve">
 	  <value>Uzbek</value>
+  </data>
+  <data name="DakikaOnceden" xml:space="preserve">
+	  <value> minutes before</value>
+  </data>
+  <data name="AlarmTekrarlari" xml:space="preserve">
+	  <value>Alarm ringtone repeats: </value>
+  </data>
+  <data name="Kere" xml:space="preserve">
+	  <value> times</value>
   </data>
 </root>

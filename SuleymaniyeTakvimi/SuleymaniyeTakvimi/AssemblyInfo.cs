@@ -1,4 +1,3 @@
-using System.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
