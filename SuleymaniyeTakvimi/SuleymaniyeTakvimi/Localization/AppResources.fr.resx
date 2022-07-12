@@ -421,4 +421,10 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
 	<data name="Kere" xml:space="preserve">
 		<value> fois</value>
 	</data>
+	<data name="BildirimNamazVakitleri" xml:space="preserve">
+		<value>Afficher les heures de prière dans la notification</value>
+	</data>
+	<data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+		<value>Remarque : Cela peut prendre une demi-minute pour prendre effet</value>
+	</data>
 </root>

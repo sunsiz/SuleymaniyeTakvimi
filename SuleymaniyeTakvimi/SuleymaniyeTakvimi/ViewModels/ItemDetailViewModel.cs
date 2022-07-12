@@ -7,13 +7,14 @@ using MediaManager;
 using MediaManager.Playback;
 //using Matcha.BackgroundService;
 //using Plugin.LocalNotification;
-using Plugin.LocalNotifications;
+//using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
+//using Plugin.LocalNotification;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -75,7 +76,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         //        Preferences.Set(ItemId + "AlarmTekrarlari", value);
         //    }
         //}
-        //public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform==DevicePlatform.iOS);
+        public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform == DevicePlatform.iOS || Etkin);
 
         public ItemDetailViewModel()
         {
@@ -107,6 +108,10 @@ namespace SuleymaniyeTakvimi.ViewModels
                 new Sound(fileName: "horoz", name: AppResources.HorozOtusu), /*Index = 1, */
                 new Sound(fileName: "alarm", name: AppResources.CalarSaat), /*Index = 2, */
                 new Sound(fileName: "ezan", name: AppResources.EzanSesi), /*Index = 3, */
+                new Sound(fileName: "alarm2", name: AppResources.CalarSaat + " 1"), /*Index = 4, */
+                new Sound(fileName: "beep1", name: AppResources.CalarSaat + " 2"), /*Index = 5, */
+                new Sound(fileName: "beep2", name: AppResources.CalarSaat + " 3"), /*Index = 6, */
+                new Sound(fileName: "beep3", name: AppResources.CalarSaat + " 4") /*Index = 7, */
                 //new Sound() { FileName = "alarm2", Name = AppResources.CalarSaat + " 1" }, /*Index = 4, */
                 //new Sound() { FileName = "beep1", Name = AppResources.CalarSaat + " 2" }, /*Index = 5, */
                 //new Sound() { FileName = "beep2", Name = AppResources.CalarSaat + " 3" }, /*Index = 6, */
@@ -147,8 +152,9 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             if (!IsPlaying)//TestButtonText == "&#xe038;"AppResources.SesTesti
             {
-                var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(SelectedSound.FileName + ".mp3").ConfigureAwait(true);
+                var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(SelectedSound.FileName + ".mp3");
                 CrossMediaManager.Current.Notification.Enabled = false;
+                CrossMediaManager.Current.Notification.ShowNavigationControls = false;
                 CrossMediaManager.Current.RepeatMode = RepeatMode.All;
                 await CrossMediaManager.Current.MediaPlayer.Play(mediaItem).ConfigureAwait(false);
                 //TestButtonText = "&#xe036;"; //AppResources.TestiDurdur;
@@ -231,44 +237,60 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Debug.WriteLine("Value Setted for -> " + _itemId + "Bildiri: " +
                                   Preferences.Get(_itemId + "Bildiri", value));
                 Bildiri = value;
-                var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
-                if (value)
-                {
-                    CrossLocalNotifications.Current.Show(AppResources.BildiriEtkinBaslik,
-                        $"{_itemAdi} --> {bildiriVakti} {AppResources.BildiriEtkinIcerik}", 1001);
-                    CrossLocalNotifications.Current.Cancel(1002);
-                    //var notification = new NotificationRequest
-                    //{
-                    //    NotificationId = 100,
-                    //    Title = itemAdi + " Vakti Bildirimi",
-                    //    Description = itemAdi + " Vakti: " + Vakit,
-                    //    ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
-                    //    NotifyTime =  DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
-                    //};
-                    //NotificationCenter.Current.Show(notification);
-                    //var notification = new Notification
-                    //{
-                    //    Id = new Random().Next(101,999),
-                    //    Title = "Bildiri Ayarı Etkinleşti",
-                    //    Message = $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.",
-                    //    //ScheduleDate = DateTimeOffset.Parse(bildiriVakti.ToString()),
-                    //    //ScheduleDate = DateTime.Now.AddSeconds(2)
-                    //};
-                    //ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
-                    //Task.Run(async () =>
-                    //{
-                    //    var notificationManager = ShinyHost.Resolve<INotificationManager>();
-                    //    var state= await notificationManager.RequestAccess();
-                    //    await notificationManager.Send(notification).ConfigureAwait(false);
-                    //    //Console.WriteLine("Notification Message ID: " + msgId);
-                    //});
-                }
-                else
-                {
-                    CrossLocalNotifications.Current.Show(AppResources.BildiriDevreDisiBaslik,
-                        $"{_itemAdi} --> {bildiriVakti} {AppResources.BildiriDevreDisiIcerik}", 1002);
-                    CrossLocalNotifications.Current.Cancel(1001);
-                }
+                //var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
+                //if (value)
+                //{
+                //    var notification = new NotificationRequest
+                //    {
+                //        NotificationId = 1001,
+                //        Title = AppResources.BildiriEtkinBaslik,
+                //        Description = $"{_itemAdi} --> {bildiriVakti} {AppResources.BildiriEtkinIcerik}"
+                //    };
+                //    NotificationCenter.Current.Show(notification);
+                //    NotificationCenter.Current.Cancel(1002);
+                //    //CrossLocalNotifications.Current.Show(AppResources.BildiriEtkinBaslik,
+                //    //    $"{_itemAdi} --> {bildiriVakti} {AppResources.BildiriEtkinIcerik}", 1001);
+                //    //CrossLocalNotifications.Current.Cancel(1002);
+                //    //var notification = new NotificationRequest
+                //    //{
+                //    //    NotificationId = 100,
+                //    //    Title = itemAdi + " Vakti Bildirimi",
+                //    //    Description = itemAdi + " Vakti: " + Vakit,
+                //    //    ReturningData = itemAdi + " Bildirimi", // Returning data when tapped on notification.
+                //    //    NotifyTime =  DateTime.Parse(bildiriVakti.ToString())//DateTime.Now.AddSeconds(10) // Used for Scheduling local notification, if not specified notification will show immediately.
+                //    //};
+                //    //NotificationCenter.Current.Show(notification);
+                //    //var notification = new Notification
+                //    //{
+                //    //    Id = new Random().Next(101,999),
+                //    //    Title = "Bildiri Ayarı Etkinleşti",
+                //    //    Message = $"{itemAdi} --> {bildiriVakti} için bildiri etkinleştirildi.",
+                //    //    //ScheduleDate = DateTimeOffset.Parse(bildiriVakti.ToString()),
+                //    //    //ScheduleDate = DateTime.Now.AddSeconds(2)
+                //    //};
+                //    //ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+                //    //Task.Run(async () =>
+                //    //{
+                //    //    var notificationManager = ShinyHost.Resolve<INotificationManager>();
+                //    //    var state= await notificationManager.RequestAccess();
+                //    //    await notificationManager.Send(notification).ConfigureAwait(false);
+                //    //    //Console.WriteLine("Notification Message ID: " + msgId);
+                //    //});
+                //}
+                //else
+                //{
+                //    //CrossLocalNotifications.Current.Show(AppResources.BildiriDevreDisiBaslik,
+                //    //    $"{_itemAdi} --> {bildiriVakti} {AppResources.BildiriDevreDisiIcerik}", 1002);
+                //    //CrossLocalNotifications.Current.Cancel(1001);
+                //    var notification = new NotificationRequest
+                //    {
+                //        NotificationId = 1002,
+                //        Title = AppResources.BildiriDevreDisiBaslik,
+                //        Description = $"{_itemAdi} --> {bildiriVakti} {AppResources.BildiriDevreDisiIcerik}"
+                //    };
+                //    NotificationCenter.Current.Show(notification);
+                //    NotificationCenter.Current.Cancel(1001);
+                //}
             }
         }
 
@@ -278,13 +300,20 @@ namespace SuleymaniyeTakvimi.ViewModels
             //When page load the obj value awlways be false, so avoiding it.
             if (!IsBusy)
             {
-                var value = (bool) obj;
+                var value = (bool)obj;
                 Preferences.Set(_itemId + "Etkin", value);
                 Debug.WriteLine("Value Setted for -> " + _itemId + "Etkin: " +
-                                  Preferences.Get(_itemId + "Etkin", value));
+                                Preferences.Get(_itemId + "Etkin", value));
                 Etkin = value;
-                DataService data = new DataService();
-                data.SetWeeklyAlarms();
+                if (value)
+                {
+                    Preferences.Set(_itemId + "Bildiri", Preferences.Get(_itemId + "Bildiri", true));
+                    Preferences.Set(_itemId + "Titreme", Preferences.Get(_itemId + "Titreme", true));
+                    Preferences.Set(_itemId + "Alarm", Preferences.Get(_itemId + "Alarm", false));
+                }
+            
+            //DataService data = new DataService();
+                //data.SetWeeklyAlarms();
                 //if (Device.RuntimePlatform == Device.Android)
                 //    data.SetMonthlyAlarms();
                 //else data.SetWeeklyAlarms();
@@ -399,9 +428,9 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
                 Vakit = Preferences.Get(itemId, "");
                 Etkin = Preferences.Get(itemId + "Etkin", false);
-                Bildiri = Preferences.Get(itemId + "Bildiri", false);
+                Bildiri = Preferences.Get(itemId + "Bildiri", true);
                 Titreme = Preferences.Get(itemId + "Titreme", true);
-                Alarm = Preferences.Get(itemId + "Alarm", true);
+                Alarm = Preferences.Get(itemId + "Alarm", false);
                 BildirmeVakti = Preferences.Get(itemId + "BildirmeVakti", 0);//when assign "0" for defaultValue, there always throw exception says: java.lang cannot convert boolean to string. So cheating.
                 //AlarmRepeats = Preferences.Get(itemId + "AlarmTekrarlari", 1);
                 //string name = "Çalar Saat";
@@ -445,16 +474,20 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        private void GoBack(object obj)
+        public void GoBack(object obj)
         {
-            CrossMediaManager.Current.MediaPlayer.Stop();
-            DataService data = new DataService();
-            data.SetWeeklyAlarms();
-            if (_itemId != null && _selectedSound!=null) Preferences.Set(_itemId + "AlarmSesi", _selectedSound.FileName);
-            //if (Device.RuntimePlatform == Device.Android)
-            //    data.SetMonthlyAlarms();
-            //else data.SetWeeklyAlarms();
-            Shell.Current.GoToAsync("..");
+            using (UserDialogs.Instance.Loading(null,null,null,true,MaskType.Gradient))
+            {
+                CrossMediaManager.Current.MediaPlayer.Stop();
+                DataService data = new DataService();
+                data.SetWeeklyAlarms();
+                if (_itemId != null && _selectedSound != null)
+                    Preferences.Set(_itemId + "AlarmSesi", _selectedSound.FileName);
+                //if (Device.RuntimePlatform == Device.Android)
+                //    data.SetMonthlyAlarms();
+                //else data.SetWeeklyAlarms();
+                Shell.Current.GoToAsync("..");
+            }
         }
 
         //private Sound SetSelectedSound()

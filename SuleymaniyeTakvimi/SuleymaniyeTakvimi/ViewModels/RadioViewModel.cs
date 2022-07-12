@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using MediaManager;
@@ -16,7 +17,7 @@ namespace SuleymaniyeTakvimi.ViewModels
     public class RadioViewModel:MvvmHelpers.BaseViewModel
     {
         //HtmlWebViewSource htmlSource;
-        public Command PlayCommand { get; }
+        public ICommand PlayCommand { get; }
         // Launcher.OpenAsync is provided by Xamarin.Essentials.
         public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url).ConfigureAwait(false));
 
@@ -47,7 +48,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             
             if (CrossMediaManager.Current.IsPlaying())
             {
-                await CrossMediaManager.Current.Stop().ConfigureAwait(true);
+                await CrossMediaManager.Current.Stop();
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.Notification.UpdateNotification();
                 //CrossMediaManager.Current.Notification.Enabled = false;
@@ -75,6 +76,9 @@ namespace SuleymaniyeTakvimi.ViewModels
                     mediaItem.Author = AppResources.RadyoFitrat;
                     mediaItem.Artist = AppResources.RadyoFitrat;
                     mediaItem.ImageUri = "https://radyofitrat.com/img/fitratlogoRadyo.png";
+                    //CrossMediaManager.Current.StepSizeBackward = TimeSpan.FromSeconds(0);
+                    //CrossMediaManager.Current.StepSizeForward = TimeSpan.FromSeconds(0);
+                    //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
                     //CrossMediaManager.Current.Notification.Enabled = false;
                     CrossMediaManager.Current.Notification.UpdateNotification();
                     //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
@@ -142,7 +146,8 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private void OnMediaItemOnMetadataUpdated(object sender, MetadataChangedEventArgs args)
         {
-            
+            Debug.WriteLine(args.MediaItem.Extras);
+            Debug.WriteLine(args.MediaItem.Album);
         }
     }
 }

@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Acr.UserDialogs.Infrastructure;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 //using Matcha.BackgroundService.Droid;
 using MediaManager;
+//using Plugin.LocalNotification;
+//using Plugin.LocalNotification.Platform.Droid;
 //using PeriodicBackgroundService.Android;
 //using Plugin.LocalNotification;
-using Plugin.LocalNotifications;
+//using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using Log = Android.Util.Log;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -45,12 +49,12 @@ namespace SuleymaniyeTakvimi.Droid
             //this.ShinyOnCreate();
             //AndroidShinyHost.Init(this, platformBuild: services => services.UseNotifications());
             //Shiny.Notifications.AndroidOptions.DefaultSmallIconResourceName = "app_logo.png";
-            // Must create a Notification Channel when API >= 26
+            //Must create a Notification Channel when API >= 26
             // you can created multiple Notification Channels with different names.
             //NotificationCenter.CreateNotificationChannel();
             LoadApplication(new App());
             //NotificationCenter.NotifyNotificationTapped(Intent);
-            LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.app_logo;
+            //LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.app_logo;
             //DependencyService.Register<IForegroundServiceControlService, ForegroundService>();
             DependencyService.Register<IAlarmService, AlarmForegroundService>();
             DependencyService.Register<IPermissionService,PermissionService>();
@@ -69,56 +73,106 @@ namespace SuleymaniyeTakvimi.Droid
             System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now:HH:m:s.fff} || Permission result:");
         }
 
+        
         public async Task<PermissionStatus> HandleLocationPermissionAsync()
         {
-            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
-            MainThread.BeginInvokeOnMainThread(async () =>
+            //UserDialogs.Instance.Toast("Running the handle permission task", TimeSpan.FromSeconds(3));
+            PermissionStatus status;/* = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>()*/;
+            //UserDialogs.Instance.Alert($"Running the handle permission task and result is {status}");
+            //MainThread.BeginInvokeOnMainThread(async () =>
+            //{
+            // Code to run on the main thread
+            status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            if (status == PermissionStatus.Granted)
+                return status;
+            //if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+            //{
+            //    UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+            //}
+            else if (status == PermissionStatus.Denied)
             {
-                // Code to run on the main thread
-                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
-                switch (status)
+                if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
                 {
-                    case PermissionStatus.Unknown:
-                        break;
-                    case PermissionStatus.Denied:
-                    {
-                        if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
-                        {
-                            UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
-                        }
-
-                        var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
-                        {
-                            AndroidStyleId = 0, CancelText = AppResources.Kapat, Message = AppResources.KonumIzniIcerik,
-                            OkText = AppResources.GotoSettings,
-                            Title = AppResources.KonumIzniBaslik
-                        }).ConfigureAwait(false);
-                        if (result) AppInfo.ShowSettingsUI();
-                        System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
-                        break;
-                    }
-                    case PermissionStatus.Disabled:
-                    {
-                        if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
-                        {
-                            UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
-                        }
-
-                        var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
-                        {
-                            AndroidStyleId = 0,
-                            CancelText = AppResources.Kapat,
-                            Message = AppResources.KonumIzniIcerik,
-                            OkText = AppResources.GotoSettings,
-                            Title = AppResources.KonumIzniBaslik
-                        }).ConfigureAwait(false);
-                        if (result) OpenDeviceLocationSettingsPage();
-                        System.Diagnostics.Debug.WriteLine("Permission Request result:", result.ToString());
-                        break;
-                    }
+                    UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
                 }
-            });
+
+                var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+                {
+                    AndroidStyleId = 0,
+                    CancelText = AppResources.Kapat,
+                    Message = AppResources.KonumIzniIcerik,
+                    OkText = AppResources.GotoSettings,
+                    Title = AppResources.KonumIzniBaslik
+                }).ConfigureAwait(false);
+                if (result) AppInfo.ShowSettingsUI();
+                System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
+            }
+            else if (status == PermissionStatus.Disabled)
+            {
+
+                var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+                {
+                    AndroidStyleId = 0,
+                    CancelText = AppResources.Kapat,
+                    Message = AppResources.KonumIzniIcerik,
+                    OkText = AppResources.GotoSettings,
+                    Title = AppResources.KonumIzniBaslik
+                }).ConfigureAwait(false);
+                if (result) OpenDeviceLocationSettingsPage();
+                System.Diagnostics.Debug.WriteLine("Permission Request result:", result.ToString());
+            }
+        //});
+            status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
             return status;
+            //var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+            //UserDialogs.Instance.Alert($"Running the handle permission task and result is {status}");
+            //MainThread.BeginInvokeOnMainThread(async () =>
+            //{
+            //    // Code to run on the main thread
+            //    status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+            //    switch (status)
+            //    {
+            //        case PermissionStatus.Unknown:
+            //            break;
+            //        case PermissionStatus.Denied:
+            //        {
+            //            if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+            //            {
+            //                UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+            //            }
+
+            //            var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+            //            {
+            //                AndroidStyleId = 0, CancelText = AppResources.Kapat, Message = AppResources.KonumIzniIcerik,
+            //                OkText = AppResources.GotoSettings,
+            //                Title = AppResources.KonumIzniBaslik
+            //            }).ConfigureAwait(false);
+            //            if (result) AppInfo.ShowSettingsUI();
+            //            System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
+            //            break;
+            //        }
+            //        case PermissionStatus.Disabled:
+            //        {
+            //            if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+            //            {
+            //                UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+            //            }
+
+            //            var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+            //            {
+            //                AndroidStyleId = 0,
+            //                CancelText = AppResources.Kapat,
+            //                Message = AppResources.KonumIzniIcerik,
+            //                OkText = AppResources.GotoSettings,
+            //                Title = AppResources.KonumIzniBaslik
+            //            }).ConfigureAwait(false);
+            //            if (result) OpenDeviceLocationSettingsPage();
+            //            System.Diagnostics.Debug.WriteLine("Permission Request result:", result.ToString());
+            //            break;
+            //        }
+            //    }
+            //});
+            //return status;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)

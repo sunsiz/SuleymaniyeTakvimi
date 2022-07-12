@@ -23,6 +23,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginVertical="-10dip"
+				android:layout_marginHorizontal="-5dip"
+                android:paddingHorizontal="1dip"
+                android:paddingVertical="-3dip"
                 android:id="@+id/topLinearLayout">
                 <ImageView
                     android:id="@+id/widgetAppIcon"
@@ -56,13 +60,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dip"
-                    android:layout_marginRight="5dip"
+                    android:layout_marginRight="3dip"
                     android:layout_gravity="center_vertical|end"
                     android:textSize="12dp" />
                 <ImageView
                     android:id="@+id/widgetRefreshIcon"
                     android:src="@drawable/refresh"
-                    android:layout_marginLeft="5dip"
+                    android:layout_marginLeft="3dip"
                     android:layout_marginTop="5dip"
                     android:layout_gravity="center_vertical|end"
                     android:baselineAlignBottom="false"
@@ -76,8 +80,8 @@
                 android:id="@+id/fecriKazipLinearLayout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingStart="20dip"
-                android:paddingEnd="20dip">
+                android:paddingHorizontal="10dip"
+                android:paddingVertical="-3dip">
                 <TextView
                     android:id="@+id/widgetFecriKazip"
                     android:text="@string/fecri_kazip"
@@ -86,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="start"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/widgetFecriKazipVakit"
                     android:textColor="#121212"
@@ -94,15 +98,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="15dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/fecriSadikLinearLayout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingStart="20dip"
-                android:paddingEnd="20dip">
+                android:paddingHorizontal="10dip"
+                android:paddingVertical="-3dip">
                 <TextView
                     android:id="@+id/widgetFecriSadik"
                     android:text="@string/fecri_sadik"
@@ -110,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/widgetFecriSadikVakit"
                     android:textColor="#121212"
@@ -118,15 +122,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="15dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/sabahSonuLinearLayout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingEnd="20dip"
-                android:paddingStart="20dip">
+                android:paddingHorizontal="10dip"
+                android:paddingVertical="-3dip">
                 <TextView
                     android:id="@+id/widgetSabahSonu"
                     android:text="@string/sabah_sonu"
@@ -134,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/widgetSabahSonuVakit"
                     android:textColor="#121212"
@@ -142,15 +146,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="15dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/ogleLinearLayout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingStart="20dip"
-                android:paddingEnd="20dip">
+                android:paddingHorizontal="10dip"
+                android:paddingVertical="-3dip">
                 <TextView
                     android:id="@+id/widgetOgle"
                     android:text="@string/ogle"
@@ -158,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/widgetOgleVakti"
                     android:textColor="#121212"
@@ -166,15 +170,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="15dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/ikindiLinearLayout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingEnd="20dip"
-                android:paddingStart="20dip">
+                android:paddingHorizontal="10dip"
+                android:paddingVertical="-3dip">
                 <TextView
                     android:id="@+id/widgetIkindi"
                     android:text="@string/ikindi"
@@ -182,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/widgetIkindiVakit"
                     android:textColor="#121212"
@@ -190,15 +194,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="15dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/aksamLinearLayout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingStart="20dip"
-                android:paddingEnd="20dip">
+                android:paddingHorizontal="10dip"
+                android:paddingVertical="-3dip">
                 <TextView
                     android:id="@+id/widgetAksam"
                     android:text="@string/aksam"
@@ -206,7 +210,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/widgetAksamVakit"
                     android:textColor="#121212"
@@ -214,15 +218,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="15dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/yatsiLinearLayout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingEnd="20dip"
-                android:paddingStart="20dip">
+                android:paddingHorizontal="10dip"
+                android:paddingVertical="-3dip">
                 <TextView
                     android:id="@+id/widgetYatsi"
                     android:text="@string/yatsi"
@@ -230,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/widgetYatsiVakit"
                     android:textColor="#121212"
@@ -238,15 +242,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="15dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/yatsiSonuLinearLayout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:paddingEnd="20dip"
-                android:paddingStart="20dip">
+                android:paddingHorizontal="10dip"
+                android:paddingVertical="-3dip">
                 <TextView
                     android:id="@+id/widgetYatsiSonu"
                     android:text="@string/yatsi_sonu"
@@ -254,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/widgetYatsiSonuVakit"
                     android:textColor="#121212"
@@ -262,7 +266,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="end"
-                    android:textSize="15dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
         </GridLayout>
     </FrameLayout>

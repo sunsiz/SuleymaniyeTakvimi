@@ -421,4 +421,10 @@
 	<data name="Kere" xml:space="preserve">
 		<value> مرات</value>
 	</data>
+	<data name="BildirimNamazVakitleri" xml:space="preserve">
+		<value>إظهار أوقات الصلاة في الإخطار</value>
+	</data>
+	<data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+		<value>ملاحظة: قد يستغرق الأمر نصف دقيقة حتى يصبح ساري المفعول</value>
+	</data>
 </root>

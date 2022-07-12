@@ -422,4 +422,10 @@
 	<data name="Kere" xml:space="preserve">
 		<value> بار</value>
 	</data>
+	<data name="BildirimNamazVakitleri" xml:space="preserve">
+		<value>نمایش اوقات نماز در اطلاع رسانی</value>
+	</data>
+	<data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+		<value>توجه: ممکن است نیم دقیقه طول بکشد تا اثر کند</value>
+	</data>
 </root>

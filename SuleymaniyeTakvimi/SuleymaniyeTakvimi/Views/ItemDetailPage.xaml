@@ -83,7 +83,7 @@
                             </Switch>
                             <Label HorizontalOptions="Start" Text="{behaviors:Translate TitresimSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" VerticalTextAlignment="Center" Visual="Material"/>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" IsVisible="{Binding IsNecessary}">
                             <Switch IsToggled="{Binding Alarm}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AlarmSwitch}" Visual="Material">
                                 <!--Color="Maroon"-->
                                 <Switch.Behaviors>
@@ -103,7 +103,7 @@
                     <pancakeView:PancakeView.Shadow>
                         <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="1,1" Opacity="0.3"/>
                     </pancakeView:PancakeView.Shadow>
-                    <StackLayout HorizontalOptions="FillAndExpand" Padding="14,5" RadioButtonGroup.GroupName="zaman">
+                    <StackLayout HorizontalOptions="FillAndExpand" Padding="14,5"> <!--RadioButtonGroup.GroupName="zaman"-->
                         <Label HorizontalOptions="Start" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}" Visual="Material"  x:Name="LabelAlarmStartTime">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -182,7 +182,7 @@
                 </pancakeView:PancakeView>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="7">
-                    <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate Kapat}" Command="{Binding BackCommand}" Style="{DynamicResource ButtonStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="5" Visual="Material"/>
+                    <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate Kapat}" Command="{Binding BackCommand}" Style="{DynamicResource ButtonStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="7" Visual="Material"/>
                 </StackLayout>
                 <!--</pancakeView:PancakeView>-->
             </Grid>

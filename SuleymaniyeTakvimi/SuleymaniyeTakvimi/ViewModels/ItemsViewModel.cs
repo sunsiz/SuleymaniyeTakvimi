@@ -28,6 +28,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private Takvim _takvim, _vakitler;
         private string _city;
         //private bool _dark;
+        private DataService data;
 
         private ObservableCollection<Item> _items;
         private string _remainingTime;
@@ -40,7 +41,6 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 if (_vakitler == null)
                 {
-                    var data = new DataService();
                     _vakitler = data._takvim;
                     //data.CheckNotification();
                 }
@@ -92,7 +92,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             Debug.WriteLine("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             Title = AppResources.PageTitle;
             Items = new ObservableCollection<Item>();
-            var data = new DataService();
+            data = new DataService();
             _takvim = data._takvim;
             LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
 
@@ -122,23 +122,36 @@ namespace SuleymaniyeTakvimi.ViewModels
                 using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
                 {
                     await GetPrayerTimesAsync().ConfigureAwait(false);
-                    ExecuteLoadItemsCommand();
                     await Task.Run(() =>
                     {
                         var location = new Location(_takvim.Enlem, _takvim.Boylam, _takvim.Yukseklik);
                         data.GetMonthlyPrayerTimes(location, true);
                         data.SetWeeklyAlarms();
-                    }).ConfigureAwait(true);
+                    }).ConfigureAwait(false);
                 }
+                ExecuteLoadItemsCommand();
             });
             //DarkLightModeCommand = new Command(ChangeTheme);
+            //CheckLocationInfo(data, 3000);
+            if (!Preferences.Get("LocationSaved", false))
+                CheckLocationInfo(3000);
+            //CheckLocationInfo(data, 60000);
+            //Dark = Theme.Tema != 1;//0 is dark, 1 is light
+            //Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
+            Debug.WriteLine("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+        }
+
+        private void CheckLocationInfo(int timeDelay)
+        {
+            if (!DependencyService.Get<IPermissionService>().IsLocationServiceEnabled()) return;
             Task.Run(async () =>
             {
                 if (!data.HaveInternet()) return;
-                Debug.WriteLine("TimeStamp-ItemsViewModel-SetAlarms", $"Starting Set Alarm at {DateTime.Now}");
-                await Task.Delay(3000).ConfigureAwait(false);
-                if (!File.Exists(data._fileName)) _takvim = await data.PrepareMonthlyPrayerTimes().ConfigureAwait(false);
-                if (_takvim.Yukseklik == 114.0 && _takvim.Enlem == 41.0 && _takvim.Boylam == 29.0)
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(CheckLocationInfo)}: Starting at {DateTime.Now}");
+                await Task.Delay(timeDelay).ConfigureAwait(false);
+                var takvim = data._takvim;
+                /*if (!File.Exists(data._fileName)) */takvim = await data.PrepareMonthlyPrayerTimes().ConfigureAwait(false);
+                if ((takvim.Yukseklik == 114.0 && takvim.Enlem == 41.0 && takvim.Boylam == 29.0) || (takvim.Yukseklik == 0 && takvim.Enlem == 0 && takvim.Boylam == 0))
                 {
                     _takvim = await data.VakitHesabiAsync().ConfigureAwait(false);
                     var location = await data.GetCurrentLocationAsync(false).ConfigureAwait(false);
@@ -146,15 +159,13 @@ namespace SuleymaniyeTakvimi.ViewModels
                         data.GetMonthlyPrayerTimes(location, false);
                     RefreshLocationCommand.Execute(null);
                 }
+
                 //if (_takvim == null) UserDialogs.Instance.Toast(AppResources.TakvimIcinInternet);
                 //DataService data = new DataService();
                 data.SetWeeklyAlarms();
                 ExecuteLoadItemsCommand();
                 //GetCity();
             }).ConfigureAwait(false);
-            //Dark = Theme.Tema != 1;//0 is dark, 1 is light
-            //Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
-            Debug.WriteLine("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
         //private void ChangeTheme(object obj)
@@ -170,7 +181,8 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             IsBusy = true;
             Debug.WriteLine("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
-
+            
+            data.InitTakvim();
             try
             {
                 Items = new ObservableCollection<Item>();
@@ -229,9 +241,26 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (DateTime.Now < current) state = "Waiting";
             return state;
         }
+
         public void OnAppearing()
         {
             Debug.WriteLine("TimeStamp-OnAppearing-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            if (!Preferences.Get("LocationSaved", false))
+            {
+
+                var result = DependencyService.Get<IPermissionService>().HandlePermissionAsync()
+                    .ConfigureAwait(false);
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(OnAppearing)}: {result}");
+                //Task.Run(async () =>
+                //{
+                //    var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync()
+                //        .ConfigureAwait(false);
+                //    Debug.WriteLine($"**** {this.GetType().Name}.{nameof(OnAppearing)}: {result}");
+                //    if (result == PermissionStatus.Denied)
+                //        UserDialogs.Instance.Toast(AppResources.KonumIzniBaslik, TimeSpan.FromSeconds(5));
+                //});
+            }
+
             IsBusy = true;
             SelectedItem = null;
             GetCity();
@@ -239,7 +268,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             Task.Run(async () =>
             {
                 await Task.Delay(5000).ConfigureAwait(false);
-                if(Preferences.Get("ForegroundServiceEnabled",true))DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
+                if (Preferences.Get("ForegroundServiceEnabled", true))
+                    DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
             });
             Title = AppResources.PageTitle;
             IsBusy = false;
@@ -249,6 +279,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 RemainingTime = GetRemainingTime();
                 return true; // True = Repeat again, False = Stop the timer
             });
+            //CheckLocationInfo(3000);
             Debug.WriteLine("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
@@ -355,7 +386,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private async Task GetPrayerTimesAsync()
         {
             //IsBusy = true;
-            var data = new DataService();
+            //var data = new DataService();
             
             _takvim = Vakitler = await data.GetPrayerTimesAsync(true).ConfigureAwait(false);
             if (Vakitler.Enlem != 0)
@@ -381,7 +412,10 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
             else
             {
-                UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(5));
+                if ((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 12))
+                    UserDialogs.Instance.Toast(AppResources.KonumIzniIcerik, TimeSpan.FromSeconds(5));
+                else
+                    UserDialogs.Instance.Toast(AppResources.KonumKapali, TimeSpan.FromSeconds(5));
             }
         }
 

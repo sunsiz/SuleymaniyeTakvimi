@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 using Android.Graphics;
 using Android.Media;
 using Android.Util;
+using AndroidX.Core.App;
 using Xamarin.Essentials;
 using Microsoft.AppCenter.Analytics;
-using Plugin.LocalNotifications;
+//using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Localization;
 using Uri = Android.Net.Uri;
 
@@ -59,7 +60,7 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipTitreme", true))
                         Vibrate();
                     if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipBildiri", false))
-                        ShowNotification(AppResources.FecriKazip);
+                        ShowNotification(name, time);
                     break;
                 case "Fecri Sadık":
                     label?.SetText(AppResources.FecriSadik + " " + AppResources.Alarmi, TextView.BufferType.Normal);
@@ -70,7 +71,7 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikTitreme", true))
                         Vibrate();
                     if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikBildiri", false))
-                        ShowNotification(AppResources.FecriSadik);
+                        ShowNotification(name, time);
                     break;
                 case "Sabah Sonu":
                     label?.SetText(AppResources.SabahSonu + " " + AppResources.Alarmi, TextView.BufferType.Normal);
@@ -81,7 +82,7 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuTitreme", true))
                         Vibrate();
                     if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuBildiri", false))
-                        ShowNotification(AppResources.SabahSonu);
+                        ShowNotification(name, time);
                     break;
                 case "Öğle":
                     label?.SetText(AppResources.Ogle + " " + AppResources.Alarmi, TextView.BufferType.Normal);
@@ -89,7 +90,7 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleAlarm", true)) PlayAlarm(name);
                     if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleTitreme", true)) Vibrate();
                     if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleBildiri", false))
-                        ShowNotification(AppResources.Ogle);
+                        ShowNotification(name, time);
                     break;
                 case "İkindi":
                     label?.SetText(AppResources.Ikindi + " " + AppResources.Alarmi, TextView.BufferType.Normal);
@@ -98,7 +99,7 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiAlarm", true)) PlayAlarm(name);
                     if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiTitreme", true)) Vibrate();
                     if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiBildiri", false))
-                        ShowNotification(AppResources.Ikindi);
+                        ShowNotification(name, time);
                     break;
                 case "Akşam":
                     label?.SetText(AppResources.Aksam + " " + AppResources.Alarmi, TextView.BufferType.Normal);
@@ -106,7 +107,7 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamAlarm", true)) PlayAlarm(name);
                     if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamTitreme", true)) Vibrate();
                     if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamBildiri", false))
-                        ShowNotification(AppResources.Aksam);
+                        ShowNotification(name, time);
                     break;
                 case "Yatsı":
                     label?.SetText(AppResources.Yatsi + " " + AppResources.Alarmi, TextView.BufferType.Normal);
@@ -114,7 +115,7 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiAlarm", true)) PlayAlarm(name);
                     if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiTitreme", true)) Vibrate();
                     if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiBildiri", false))
-                        ShowNotification(AppResources.Yatsi);
+                        ShowNotification(name, time);
                     break;
                 case "Yatsı Sonu":
                     label?.SetText(AppResources.YatsiSonu + " " + AppResources.Alarmi, TextView.BufferType.Normal);
@@ -125,7 +126,7 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuTitreme", true))
                         Vibrate();
                     if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuBildiri", false))
-                        ShowNotification(AppResources.YatsiSonu);
+                        ShowNotification(name, time);
                     break;
                 default:
                     label?.SetText("Test Alarmı", TextView.BufferType.Normal);
@@ -271,10 +272,18 @@ namespace SuleymaniyeTakvimi.Droid
             }
         }
 
-        private void ShowNotification(string name)
+        private void ShowNotification(string name, string time)
         {
-            CrossLocalNotifications.Current.Show($"{AppResources.SuleymaniyeVakfiTakvimi}",$"{name} {AppResources.VaktiHatirlatmasi}", 1994);
-            CheckRemainingReminders();
+            //CrossLocalNotifications.Current.Show($"{AppResources.SuleymaniyeVakfiTakvimi}",$"{name} {AppResources.VaktiHatirlatmasi}", 1994);
+            AlarmReceiver notificationHelper = new AlarmReceiver();
+            var intent = new Intent(Application.Context, typeof(AlarmReceiver));
+            intent.PutExtra("name", name);
+            intent.PutExtra("time", time);
+            intent.AddFlags(ActivityFlags.IncludeStoppedPackages);
+            intent.AddFlags(ActivityFlags.ReceiverForeground);
+            notificationHelper.OnReceive(ApplicationContext, intent);
+            StopAlarm();
+            //CheckRemainingReminders();
         }
 
         public override void OnAttachedToWindow()
@@ -288,11 +297,17 @@ namespace SuleymaniyeTakvimi.Droid
         public void OnClick(View v)
         {
             //CrossMediaManager.Current.MediaPlayer.Stop();
+            StopAlarm();
+        }
+
+        private void StopAlarm()
+        {
             if (_player != null && _player.IsPlaying)
             {
                 _player.Stop();
                 _player.Reset();
             }
+
             CheckRemainingReminders();
             Finish();
         }
@@ -308,8 +323,10 @@ namespace SuleymaniyeTakvimi.Droid
                     var notificationIntent = new Intent(this, typeof(MainActivity));
                     notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
                     notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
-                    var pendingIntent =
-                        PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent);
+                    var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
+                        ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
+                        : PendingIntentFlags.UpdateCurrent;
+                    var pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent, pendingIntentFlags);
                     pendingIntent?.Send();
                 }
             }
@@ -323,13 +340,14 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 await Task.Delay(minute*60000).ConfigureAwait(false);
                 //await CrossMediaManager.Current.MediaPlayer.Stop();
-                if (_player != null && _player.IsPlaying)
-                {
-                    _player.Stop();
-                    _player.Reset();
-                }
-                CheckRemainingReminders();
-                Finish();
+                //if (_player != null && _player.IsPlaying)
+                //{
+                //    _player.Stop();
+                //    _player.Reset();
+                //}
+                //CheckRemainingReminders();
+                //Finish();
+                StopAlarm();
                 return false;
             });
             //Xamarin.Forms.Device.StartTimer(TimeSpan.FromMinutes(minute), () =>

@@ -22,9 +22,15 @@ namespace SuleymaniyeTakvimi.Services
         private Takvim _konum;
         public Takvim _takvim;
         private IList<Takvim> _monthlyTakvim;
+        private bool askedLocationPermission;
         public readonly string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ayliktakvim.xml");
 
         public DataService()
+        {
+            InitTakvim();
+        }
+
+        public void InitTakvim()
         {
             _takvim = GetTakvimFromFile() ?? new Takvim()
             {
@@ -49,6 +55,18 @@ namespace SuleymaniyeTakvimi.Services
         {
             Analytics.TrackEvent("GetCurrentLocation in the DataService");
             var location = new Location(0,0);
+            if (!askedLocationPermission)
+            {
+                //var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                var status = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                if (status != PermissionStatus.Granted)
+                {
+                    // Notify user permission was denied
+                    UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+                    askedLocationPermission = true;
+                    return location;
+                }
+            }
             try
             {
                 //var status = await LocationService.IsLocationPermissionGranted();
@@ -76,13 +94,16 @@ namespace SuleymaniyeTakvimi.Services
                     Preferences.Set("LastLatitude", location.Latitude);
                     Preferences.Set("LastLongitude", location.Longitude);
                     Preferences.Set("LastAltitude", location.Altitude ?? 0);
+                    Preferences.Set("LocationSaved", true);
                 }
                 else
                 {
-                    var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
-                    Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {result}");
-                    if (result == PermissionStatus.Denied)
-                        UserDialogs.Instance.Toast(AppResources.KonumIzniBaslik, TimeSpan.FromSeconds(5));
+                    if (!DependencyService.Get<IPermissionService>().IsLocationServiceEnabled())
+                        UserDialogs.Instance.Toast(AppResources.KonumKapaliBaslik, TimeSpan.FromSeconds(5));
+                    //var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                    //Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {result}");
+                    //if (result == PermissionStatus.Denied)
+                    //    UserDialogs.Instance.Toast(AppResources.KonumIzniBaslik, TimeSpan.FromSeconds(5));
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
@@ -112,10 +133,10 @@ namespace SuleymaniyeTakvimi.Services
                 //await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                 //UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
                 //await App.Current.MainPage.DisplayAlert("Konum Servisi İzni Yok", "Uygulamanın normal çalışması için Konuma erişme yetkisi vermeniz lazım!", "Tamam");
-                var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
-                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {result}");
-                if (result == PermissionStatus.Denied)
-                    UserDialogs.Instance.Toast(AppResources.KonumIzniBaslik, TimeSpan.FromSeconds(5));
+                //var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                //Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)}: {result}");
+                //if (result == PermissionStatus.Denied)
+                //    UserDialogs.Instance.Toast(AppResources.KonumIzniBaslik, TimeSpan.FromSeconds(5));
             }
             catch (Exception ex)
             {
@@ -213,22 +234,29 @@ namespace SuleymaniyeTakvimi.Services
         {
             if (File.Exists(_fileName))
             {
-                XDocument xmldoc = XDocument.Load(_fileName);
-                var takvims = ParseXmlList(xmldoc);
-                if (takvims != null && DateTime.Parse(takvims[0].Tarih) <= DateTime.Today &&
-                    DateTime.Parse(takvims[takvims.Count - 1].Tarih) >= DateTime.Today)
+                try
                 {
-                    foreach (var item in takvims)
+                    XDocument xmldoc = XDocument.Load(_fileName);
+                    var takvims = ParseXmlList(xmldoc);
+                    if (takvims != null && DateTime.Parse(takvims[0].Tarih) <= DateTime.Today &&
+                        DateTime.Parse(takvims[takvims.Count - 1].Tarih) >= DateTime.Today)
                     {
-                        if (DateTime.Parse(item.Tarih) == DateTime.Today)
+                        foreach (var item in takvims)
                         {
-                            _takvim = item;
-                            _takvim.Enlem = Preferences.Get("LastLatitude", 0.0);
-                            _takvim.Boylam = Preferences.Get("LastLongitude", 0.0);
-                            _takvim.Yukseklik = Preferences.Get("LastAltitude", 0.0);
-                            return _takvim;
+                            if (DateTime.Parse(item.Tarih) == DateTime.Today)
+                            {
+                                _takvim = item;
+                                _takvim.Enlem = Preferences.Get("LastLatitude", 0.0);
+                                _takvim.Boylam = Preferences.Get("LastLongitude", 0.0);
+                                _takvim.Yukseklik = Preferences.Get("LastAltitude", 0.0);
+                                return _takvim;
+                            }
                         }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
                 }
             }
 

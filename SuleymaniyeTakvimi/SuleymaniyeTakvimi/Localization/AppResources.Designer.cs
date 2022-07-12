@@ -305,6 +305,24 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show prayer times in notification.
+        /// </summary>
+        public static string BildirimNamazVakitleri {
+            get {
+                return ResourceManager.GetString("BildirimNamazVakitleri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: It may take half a minute to take effect.
+        /// </summary>
+        public static string BildirimNamazVakitleriUyari {
+            get {
+                return ResourceManager.GetString("BildirimNamazVakitleriUyari", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We recommend that you do not turn this setting off. If you turn it off, alarms may not ring on time. If your alarms do not ring, please check the application settings: In the &quot;Other permissions&quot; section, check that the &quot;Start in the Background&quot; option is selected. Make sure that the &quot;No Restrictions&quot; setting in the &quot;Battery saving&quot; section is on. To check these permissions now, click the button below..
         /// </summary>
         public static string BildirimUyari {

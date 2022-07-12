@@ -527,4 +527,10 @@
   <data name="Kere" xml:space="preserve">
 	  <value> قېتىم</value>
   </data>
+  <data name="BildirimNamazVakitleri" xml:space="preserve">
+	  <value>ناماز ۋاقتىنى ئۇقتۇرۇشتا كۆرسىتىش</value>
+  </data>
+  <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+	  <value>ئەسكەرتىش: كۈچكە ئىگە بولۇش ئۈچۈن يېرىم مىنۇت ۋاقىت كېتىشى مۇمكىن</value>
+  </data>
 </root>

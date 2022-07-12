@@ -396,7 +396,7 @@
     <value>Конец Фаджра</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-    <value>Время, до окончания Фаджр (утреннего намаза): </value>
+	  <value>Время до окончания Фаджр (утреннего намаза): </value>
   </data>
   <data name="Sehir" xml:space="preserve">
     <value>Город</value>
@@ -411,7 +411,7 @@
     <value>Тест звука</value>
   </data>
   <data name="SorunCikti" xml:space="preserve">
-    <value>Мы столкнулись с проблемой</value>
+	  <value>Возникла проблемa</value>
   </data>
   <data name="SosyalMedyaBaglantisi" xml:space="preserve">
     <value>Наши ссылки в социальных сетях</value>
@@ -447,7 +447,7 @@
     <value>Дата</value>
   </data>
   <data name="TestiDurdur" xml:space="preserve">
-    <value>Остановить загрузку тест</value>
+	  <value>Остановить загрузку звукa</value>
   </data>
   <data name="TitremeyiDesteklemiyor" xml:space="preserve">
     <value>Устройство не поддерживает вибрацию.</value>
@@ -492,7 +492,7 @@
     <value>Иша</value>
   </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-    <value>Время, оставшееся до окончания Иша (после вечернего намаза): </value>
+	  <value>Время оставшееся до окончания Иша (после вечернего намаза): </value>
   </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
     <value>После завершения Иша (после вечернего намаза): </value>
@@ -526,5 +526,11 @@
   </data>
   <data name="Kere" xml:space="preserve">
 	  <value> раз</value>
+  </data>
+  <data name="BildirimNamazVakitleri" xml:space="preserve">
+	  <value>Показывать время молитвы в уведомлении</value>
+  </data>
+  <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+	  <value>Примечание. Для вступления в силу может потребоваться полминуты.</value>
   </data>
 </root>

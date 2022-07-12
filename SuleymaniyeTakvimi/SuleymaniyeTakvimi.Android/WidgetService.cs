@@ -10,6 +10,8 @@ using Java.Util;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.CommunityToolkit.Helpers;
+using Debug = System.Diagnostics.Debug;
+
 //using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -17,10 +19,11 @@ namespace SuleymaniyeTakvimi.Droid
     [Service]
     public class WidgetService : IntentService
     {
-        private bool _fromService;
+        private bool _clicked;
         public override void OnStart (Intent intent, int startId)
         {
-            _fromService = intent.GetBooleanExtra("FromService", false);
+            //Debug.WriteLine($"**** intent extras: {intent.Extras}");
+            //_clicked = intent.GetBooleanExtra("clicked", false);
             // Build the widget update for today
             var updateViews = BuildUpdate (this);
 
@@ -185,14 +188,19 @@ namespace SuleymaniyeTakvimi.Droid
             //    updateViews.SetOnClickPendingIntent (Resource.Id.widget, pendingIntent);
             //}
             updateViews.SetOnClickPendingIntent(Resource.Id.widgetRefreshIcon, GetPendingSelfIntent(context, "android.appwidget.action.APPWIDGET_UPDATE"));
-            if(!_fromService)Toast.MakeText(context, Resource.String.refreshed, ToastLength.Short)?.Show();
+            //if (_clicked) Toast.MakeText(context, Resource.String.refreshed, ToastLength.Short)?.Show();
             return updateViews;
         }
         private PendingIntent GetPendingSelfIntent(Context context, string action)
         {
             var intent = new Intent(context, typeof(AppWidget));
+            //intent.PutExtra("clicked", true);
             intent.SetAction(action);
-            return PendingIntent.GetBroadcast(context, 0, intent, 0);
+            var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
+                ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
+                : PendingIntentFlags.UpdateCurrent;
+            //Debug.WriteLine($"**** intent extras: {intent.Extras}");
+            return PendingIntent.GetBroadcast(context, 0, intent, pendingIntentFlags);
         }
     }
 }

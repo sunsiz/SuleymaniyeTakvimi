@@ -1,13 +1,14 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using CoreLocation;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.iOS
 {
-    public class PermissionService:IPermissionService
+    public class PermissionService : IPermissionService
     {
         public async Task<PermissionStatus> HandlePermissionAsync()
         {
@@ -36,6 +37,11 @@ namespace SuleymaniyeTakvimi.iOS
                 status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
             });
             return status;
+        }
+
+        public bool IsLocationServiceEnabled()
+        {
+            return CLLocationManager.Status != CLAuthorizationStatus.Denied;
         }
     }
 }

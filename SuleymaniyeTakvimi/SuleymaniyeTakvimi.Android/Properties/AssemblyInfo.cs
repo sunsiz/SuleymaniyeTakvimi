@@ -21,8 +21,8 @@ using Android.App;
 //      Minor Version 
 //      Build Number
 //      Revision
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyVersion("2.0.9.0")]
+[assembly: AssemblyFileVersion("2.0.9.0")]
 
 // Add some common permissions, these can be removed if not needed
 //[assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]

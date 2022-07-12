@@ -527,4 +527,10 @@
   <data name="Kere" xml:space="preserve">
 	  <value> 次</value>
   </data>
+  <data name="BildirimNamazVakitleri" xml:space="preserve">
+	  <value>在通知中显示礼拜时间</value>
+  </data>
+  <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+	  <value>注意：可能需要半分钟才能生效</value>
+  </data>
 </root>

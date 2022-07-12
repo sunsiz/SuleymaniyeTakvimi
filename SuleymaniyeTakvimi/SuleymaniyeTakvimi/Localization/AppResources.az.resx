@@ -420,4 +420,10 @@
 	<data name="Kere" xml:space="preserve">
 		<value> dəfə</value>
 	</data>
+	<data name="BildirimNamazVakitleri" xml:space="preserve">
+		<value>Bildirişdə namaz vaxtlarını göstərin</value>
+	</data>
+	<data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+		<value>Qeyd: Onun qüvvəyə minməsi yarım dəqiqə çəkə bilər</value>
+	</data>
 </root>

@@ -527,4 +527,10 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   <data name="Kere" xml:space="preserve">
 	  <value> kere</value>
   </data>
+  <data name="BildirimNamazVakitleri" xml:space="preserve">
+	  <value>Bildirimde namaz vakitlerini göster</value>
+  </data>
+  <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+	  <value>Not: Etkili olması yarım dakika sürebilir</value>
+  </data>
 </root>

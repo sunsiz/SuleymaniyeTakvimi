@@ -116,6 +116,28 @@
                     </OnPlatform>
                 </pancakeView:PancakeView.IsVisible>
                 <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" Offset="0"/>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                </pancakeView:PancakeView.Shadow>
+                <StackLayout Padding="9,5">
+                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                        <Switch HorizontalOptions="Start" HeightRequest="48" WidthRequest="48" IsToggled="{Binding NotificationPrayerTimesEnabled}" Visual="Material" />
+                        <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate BildirimNamazVakitleri}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material"/>
+                    </StackLayout>
+                    <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate BildirimNamazVakitleriUyari}" FontSize="Small" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material"/>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center" >
+                <pancakeView:PancakeView.IsVisible>
+                    <OnPlatform x:TypeArguments="system:Boolean">
+                        <On Platform="Android" Value="True" />
+                        <On Platform="iOS" Value="False" />
+                    </OnPlatform>
+                </pancakeView:PancakeView.IsVisible>
+                <pancakeView:PancakeView.BackgroundGradientStops>
                     <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
                     <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
                 </pancakeView:PancakeView.BackgroundGradientStops>
@@ -128,7 +150,7 @@
                         <Switch HorizontalOptions="Start" HeightRequest="48" WidthRequest="48" IsToggled="{Binding ForegroundServiceEnabled}" Visual="Material" />
                         <Label HorizontalOptions="End" Text="{behaviors:Translate EtkinlestirSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" VerticalTextAlignment="Center" Visual="Material"/>
                     </StackLayout>
-                    <Label HorizontalOptions="FillAndExpand" Text="{behaviors:Translate BildirimUyari}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" VerticalTextAlignment="Center" Visual="Material"/>
+                    <Label HorizontalOptions="FillAndExpand" Text="{behaviors:Translate BildirimUyari}" FontSize="Small" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" VerticalTextAlignment="Center" Visual="Material"/>
                             <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate GotoSettings}" Command="{Binding GotoSettingsCommand}" Style="{DynamicResource ButtonStyle}"  BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" TextColor="{StaticResource CardBackgroundColor}" Padding="7" Visual="Material" />
                 </StackLayout>
             </pancakeView:PancakeView>

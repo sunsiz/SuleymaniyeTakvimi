@@ -124,10 +124,10 @@
     <value>Maghrib</value>
   </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-	  <value>Time remaining until the end of Maghrib: </value>
+    <value>Time remaining until the end of Maghrib: </value>
   </data>
   <data name="AlarmHatasi" xml:space="preserve">
-	  <value>Problem occurred while the alarm plays. Details</value>
+    <value>Problem occurred while the alarm plays. Details</value>
   </data>
   <data name="Alarmi" xml:space="preserve">
     <value>Alarm</value>
@@ -136,40 +136,40 @@
     <value>An error occurred while setting the alarm</value>
   </data>
   <data name="AlarmSound" xml:space="preserve">
-	  <value>Alarm Ringtone</value>
+    <value>Alarm Ringtone</value>
   </data>
   <data name="AlarmSwitch" xml:space="preserve">
-	  <value>Play the alarm</value>
+    <value>Play the alarm</value>
   </data>
   <data name="AylikTakvim" xml:space="preserve">
-	  <value>Monthly Calendar</value>
+    <value>Monthly Calendar</value>
   </data>
   <data name="AylikTakvimYenilendi" xml:space="preserve">
-	  <value>Monthly Calendar Refreshed Successfully</value>
+    <value>Monthly Calendar Refreshed Successfully</value>
   </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
-	  <value>5 minutes before</value>
+    <value>5 minutes before</value>
   </data>
   <data name="BildiriDevreDisiBaslik" xml:space="preserve">
-	  <value>Notifications Disabled</value>
+    <value>Notifications Disabled</value>
   </data>
   <data name="BildiriDevreDisiIcerik" xml:space="preserve">
-	  <value> prayer notification disabled.</value>
+    <value> prayer notification disabled.</value>
   </data>
   <data name="BildiriEtkinBaslik" xml:space="preserve">
-	  <value>Notifications Enabled</value>
+    <value>Notifications Enabled</value>
   </data>
   <data name="BildiriEtkinIcerik" xml:space="preserve">
-	  <value> prayer notification enabled.</value>
+    <value> prayer notification enabled.</value>
   </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
     <value>Show notification</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-	  <value>Reminder Time: </value>
+    <value>Reminder Time: </value>
   </data>
   <data name="Birsessecin" xml:space="preserve">
-	  <value>Choose a ringtone</value>
+    <value>Choose a ringtone</value>
   </data>
   <data name="BoylamFormatsiz" xml:space="preserve">
     <value>Longitude</value>
@@ -184,7 +184,7 @@
     <value>Your device does not support GPS</value>
   </data>
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
-	  <value>Your device does not support vibration</value>
+    <value>Your device does not support vibration</value>
   </data>
   <data name="EnlemFormatsiz" xml:space="preserve">
     <value>Latitude</value>
@@ -193,25 +193,25 @@
     <value>Enable</value>
   </data>
   <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
-	  <value>Enables the alarm, vibration, and notification features for this prayer time</value>
+    <value>Enables the alarm, vibration, and notification features for this prayer time</value>
   </data>
   <data name="EzanSesi" xml:space="preserve">
-	  <value>Adhan</value>
+    <value>Adhan</value>
   </data>
   <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
-	  <value>Remaining time for False Fajr (the beginning of Suhoor): </value>
+    <value>Remaining time for False Fajr (the beginning of Suhoor): </value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
-	  <value>False Fajr (Sahar &amp; Suhoor time)</value>
+    <value>False Fajr (Sahar &amp; Suhoor time)</value>
   </data>
   <data name="FecriSadik" xml:space="preserve">
     <value>Fajr</value>
   </data>
   <data name="FecriSadikakalanvakit" xml:space="preserve">
-	  <value>Remaining time for Fajr (the end of Suhoor): </value>
+    <value>Remaining time for Fajr (the end of Suhoor): </value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
-	  <value>Radio Fitrat - The Voice of Fitrah</value>
+    <value>Radio Fitrat - The Voice of Fitrah</value>
   </data>
   <data name="FitratTV" xml:space="preserve">
     <value>Fitrat TV</value>
@@ -229,16 +229,16 @@
     <value>About</value>
   </data>
   <data name="HaritadaGoster" xml:space="preserve">
-	  <value>Show Location On Map</value>
+    <value>Show Location On Map</value>
   </data>
   <data name="HaritaHatasi" xml:space="preserve">
-	  <value>Problem occurred while opening the map.\nDetails:</value>
+    <value>Problem occurred while opening the map.\nDetails:</value>
   </data>
   <data name="Hatadetaylari" xml:space="preserve">
     <value>Error details:</value>
   </data>
   <data name="HorozOtusu" xml:space="preserve">
-	  <value>Rooster Crowing</value>
+    <value>Rooster Crowing</value>
   </data>
   <data name="IcerikYukleniyor" xml:space="preserve">
     <value>Content Loading ...</value>
@@ -247,7 +247,7 @@
     <value>Asr</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-	  <value>Time remaining until the end of Asr: </value>
+    <value>Time remaining until the end of Asr: </value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>Close</value>
@@ -259,16 +259,16 @@
     <value>Qibla</value>
   </data>
   <data name="KibleGostergesi" xml:space="preserve">
-	  <value>Qibla Direction</value>
+    <value>Qibla Direction</value>
   </data>
   <data name="KonumHatasi" xml:space="preserve">
-	  <value>Problem occurred trying to get location</value>
+    <value>Problem occurred trying to get location</value>
   </data>
   <data name="KonumIzniBaslik" xml:space="preserve">
-	  <value>No Permission to Access the Location</value>
+    <value>No Permission to Access the Location</value>
   </data>
   <data name="KonumIzniIcerik" xml:space="preserve">
-	  <value>For normal operation of the application, you need to give permission to access the Location!</value>
+    <value>For normal operation of the application, you need to give permission to access the Location!</value>
   </data>
   <data name="KonumKapali" xml:space="preserve">
     <value>Location services are not enabled on the device. You have to turn on location services first!</value>
@@ -280,28 +280,28 @@
     <value>Refresh</value>
   </data>
   <data name="KonumYenilendi" xml:space="preserve">
-	  <value>Location and prayer times refreshed successfully</value>
+    <value>Location and prayer times refreshed successfully</value>
   </data>
   <data name="KusCiviltisi" xml:space="preserve">
-	  <value>Birds</value>
+    <value>Birds</value>
   </data>
   <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
-	  <value>An error occurred while retrieving the prayer times from the internet.</value>
+    <value>An error occurred while retrieving the prayer times from the internet.</value>
   </data>
   <data name="Ogle" xml:space="preserve">
     <value>Dhuhr</value>
   </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-	  <value>Time remaining until the end of Dhuhr: </value>
+    <value>Time remaining until the end of Dhuhr: </value>
   </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-	  <value>Remaining time for Dhuhr: </value>
+    <value>Remaining time for Dhuhr: </value>
   </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>15 minutes before</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
-	  <value>Suleymaniye Calendar</value>
+    <value>Suleymaniye Calendar</value>
   </data>
   <data name="Radyo" xml:space="preserve">
     <value>Radio</value>
@@ -319,52 +319,52 @@
     <value>Radio Fitrat Twitter Page</value>
   </data>
   <data name="RadyoIcinInternet" xml:space="preserve">
-	  <value>Internet connection required to play the radio, please check your Internet connection. Alternatively, you can listen to the radio by clicking the 'Web Site' link.</value>
+    <value>Internet connection required to play the radio, please check your Internet connection. Alternatively, you can listen to the radio by clicking the 'Web Site' link.</value>
   </data>
   <data name="SabahSonu" xml:space="preserve">
     <value>End of Fajr</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-	  <value>Time remaining until the end of Fajr: </value>
+    <value>Time remaining until the end of Fajr: </value>
   </data>
   <data name="Sehir" xml:space="preserve">
     <value>City</value>
   </data>
   <data name="SesSecAciklama" xml:space="preserve">
-	  <value>Select the alarm ringtone for this prayer time</value>
+    <value>Select the alarm ringtone for this prayer time</value>
   </data>
   <data name="SesTesti" xml:space="preserve">
-	  <value>Sound Test</value>
+    <value>Sound Test</value>
   </data>
   <data name="SorunCikti" xml:space="preserve">
-	  <value>We Encountered a Problem</value>
+    <value>We Encountered a Problem</value>
   </data>
   <data name="SosyalMedyaBaglantisi" xml:space="preserve">
     <value>Our Social Media Links</value>
   </data>
   <data name="SuleymaniyeVakfi" xml:space="preserve">
-	  <value>Suleymaniye Foundation</value>
+    <value>Suleymaniye Foundation</value>
   </data>
   <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
-	  <value>Suleymaniye Foundation Facebook Page</value>
+    <value>Suleymaniye Foundation Facebook Page</value>
   </data>
   <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
-	  <value>Suleymaniye Foundation Instagram Page</value>
+    <value>Suleymaniye Foundation Instagram Page</value>
   </data>
   <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
-	  <value>Suleymaniye Calendar</value>
+    <value>Suleymaniye Calendar</value>
   </data>
   <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
-	  <value>Suleymaniye Foundation Twitter Page</value>
+    <value>Suleymaniye Foundation Twitter Page</value>
   </data>
   <data name="Takvim" xml:space="preserve">
     <value>Calendar</value>
   </data>
   <data name="TakvimIcinInternet" xml:space="preserve">
-	  <value>To renew the prayer times, you need to be connected to the internet. Turn on WiFi or Mobile data and click 'REFRESH'.</value>
+    <value>To renew the prayer times, you need to be connected to the internet. Turn on WiFi or Mobile data and click 'REFRESH'.</value>
   </data>
   <data name="TakvimIcinInternetBaslik" xml:space="preserve">
-	  <value>Internet Connection Required</value>
+    <value>Internet Connection Required</value>
   </data>
   <data name="Tamam" xml:space="preserve">
     <value>OK</value>
@@ -373,16 +373,16 @@
     <value>Date</value>
   </data>
   <data name="TestiDurdur" xml:space="preserve">
-	  <value>Stop the Test</value>
+    <value>Stop the Test</value>
   </data>
   <data name="TitremeyiDesteklemiyor" xml:space="preserve">
-	  <value>Your device does not support vibration.</value>
+    <value>Your device does not support vibration.</value>
   </data>
   <data name="TitresimSwitch" xml:space="preserve">
     <value>Vibrate</value>
   </data>
   <data name="Vakti" xml:space="preserve">
-	  <value>Time: </value>
+    <value>Time: </value>
   </data>
   <data name="VaktiHatirlatmasi" xml:space="preserve">
     <value>Time Reminder</value>
@@ -391,22 +391,22 @@
     <value>version</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
-	  <value> Web Site</value>
+    <value> Web Site</value>
   </data>
   <data name="Yatsi" xml:space="preserve">
     <value>Isha</value>
   </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-	  <value>Time remaining until the end of Isha: </value>
+    <value>Time remaining until the end of Isha: </value>
   </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-	  <value>Time elapsed since the end of Isha: </value>
+    <value>Time elapsed since the end of Isha: </value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
     <value>End of Isha</value>
   </data>
   <data name="YayinAkisi" xml:space="preserve">
-	  <value> Program Schedule</value>
+    <value> Program Schedule</value>
   </data>
   <data name="Yenileniyor" xml:space="preserve">
     <value>Refreshing</value>
@@ -418,29 +418,29 @@
     <value>On time</value>
   </data>
   <data name="AciklamaBas" xml:space="preserve">
-	  <value>People who are submissive to God and stand up to all difficulties for His cause are named “Muslim”. Another pertinent characteristic of those who are “Muslim” is that they apply the commandments of God into their lives without any additions to it from their own desires. “Who speaks in a finer way than the one who invokes God, does righteous deeds and says: ‘I am of those who submit themselves to God (i.e. a Muslim)’?” (Fussilat 41:33)
+    <value>People who are submissive to God and stand up to all difficulties for His cause are named “Muslim”. Another pertinent characteristic of those who are “Muslim” is that they apply the commandments of God into their lives without any additions to it from their own desires. “Who speaks in a finer way than the one who invokes God, does righteous deeds and says: ‘I am of those who submit themselves to God (i.e. a Muslim)’?” (Fussilat 41:33)
 This application is designed to provide safe and fast access to prayer and fasting times. For more detailed information about time calculations and fasting times, the article </value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
-	  <value>Prayer Times From The Equator To The Poles</value>
+    <value>Prayer Times From The Equator To The Poles</value>
   </data>
   <data name="AciklamaLinkURL" xml:space="preserve">
     <value>https://www.islamandquran.org/research/prayer-times-from-the-equator-to-the-poles.html</value>
   </data>
   <data name="AciklamaSon" xml:space="preserve">
-	  <value> should be read.</value>
+    <value> should be read.</value>
   </data>
   <data name="GotoSettings" xml:space="preserve">
     <value>Go to Settings</value>
   </data>
   <data name="UygulamaDiliniSecin" xml:space="preserve">
-	  <value>Choose the app language</value>
+    <value>Choose the app language</value>
   </data>
   <data name="UygulamaDili" xml:space="preserve">
     <value>App language</value>
   </data>
   <data name="UygulamaTemasiniSecin" xml:space="preserve">
-	  <value>Choose the app theme</value>
+    <value>Choose the app theme</value>
   </data>
   <data name="UygulamaTema" xml:space="preserve">
     <value>App theme</value>
@@ -464,66 +464,72 @@ This application is designed to provide safe and fast access to prayer and fasti
     <value>Uyghur</value>
   </data>
   <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
-	  <value>Your device does not support compass</value>
+    <value>Your device does not support compass</value>
   </data>
   <data name="AylikTakvimeErisemedi" xml:space="preserve">
-	  <value>Can not access the Monthly Calendar. Please check that you are connected to the internet and your location service is active!</value>
+    <value>Can not access the Monthly Calendar. Please check that you are connected to the internet and your location service is active!</value>
   </data>
   <data name="KaydetVeUygula" xml:space="preserve">
-	  <value>Save and Apply</value>
+    <value>Save and Apply</value>
   </data>
   <data name="KalanSure" xml:space="preserve">
-	  <value>Remaining Time: </value>
+    <value>Remaining Time: </value>
   </data>
   <data name="AlarmSuresi" xml:space="preserve">
-	  <value>Alarm duration: </value>
+    <value>Alarm duration: </value>
   </data>
   <data name="Dakika" xml:space="preserve">
-	  <value> minutes</value>
+    <value> minutes</value>
   </data>
   <data name="YaziBoyutu" xml:space="preserve">
-	  <value>Font Size: </value>
+    <value>Font Size: </value>
   </data>
   <data name="BildirimKapatma" xml:space="preserve">
-	  <value>Enable sticky notifications</value>
+    <value>Enable sticky notifications</value>
   </data>
   <data name="BildirimUyari" xml:space="preserve">
-	  <value>We recommend that you do not turn this setting off. If you turn it off, alarms may not ring on time. If your alarms do not ring, please check the application settings: In the "Other permissions" section, check that the "Start in the Background" option is selected. Make sure that the "No Restrictions" setting in the "Battery saving" section is on. To check these permissions now, click the button below.</value>
+    <value>We recommend that you do not turn this setting off. If you turn it off, alarms may not ring on time. If your alarms do not ring, please check the application settings: In the "Other permissions" section, check that the "Start in the Background" option is selected. Make sure that the "No Restrictions" setting in the "Battery saving" section is on. To check these permissions now, click the button below.</value>
   </data>
   <data name="KaydetVeKapat" xml:space="preserve">
-	  <value>Save and Close</value>
+    <value>Save and Close</value>
   </data>
   <data name="Arabic" xml:space="preserve">
-	  <value>Arabic</value>
+    <value>Arabic</value>
   </data>
   <data name="Russian" xml:space="preserve">
-	  <value>Russian</value>
+    <value>Russian</value>
   </data>
   <data name="Deutsch" xml:space="preserve">
-	  <value>German</value>
+    <value>German</value>
   </data>
   <data name="French" xml:space="preserve">
-	  <value>French</value>
+    <value>French</value>
   </data>
   <data name="Farsi" xml:space="preserve">
-	  <value>Farsi</value>
+    <value>Farsi</value>
   </data>
   <data name="Azerbaijani" xml:space="preserve">
-	  <value>Azerbaijani</value>
+    <value>Azerbaijani</value>
   </data>
   <data name="Kyrgyz" xml:space="preserve">
-	  <value>Kyrgyz</value>
+    <value>Kyrgyz</value>
   </data>
   <data name="Uzbek" xml:space="preserve">
-	  <value>Uzbek</value>
+    <value>Uzbek</value>
   </data>
   <data name="DakikaOnceden" xml:space="preserve">
-	  <value> minutes before</value>
+    <value> minutes before</value>
   </data>
   <data name="AlarmTekrarlari" xml:space="preserve">
-	  <value>Alarm ringtone repeats: </value>
+    <value>Alarm ringtone repeats: </value>
   </data>
   <data name="Kere" xml:space="preserve">
-	  <value> times</value>
+    <value> times</value>
+  </data>
+  <data name="BildirimNamazVakitleri" xml:space="preserve">
+    <value>Show prayer times in notification</value>
+  </data>
+  <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+    <value>Note: It may take half a minute to take effect</value>
   </data>
 </root>

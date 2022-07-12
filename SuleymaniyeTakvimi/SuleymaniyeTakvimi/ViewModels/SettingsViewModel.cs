@@ -23,6 +23,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command RadioButtonCheckedChanged { get; }
         private bool _dark;
         private bool _foregroundServiceEnabled;
+        private bool _notificationPrayerTimesEnabled;
         private int _currentTheme;
         private int _alarmDuration;
 
@@ -74,6 +75,18 @@ namespace SuleymaniyeTakvimi.ViewModels
                 }
             }
         }
+        public bool NotificationPrayerTimesEnabled
+        {
+            get => _notificationPrayerTimesEnabled;
+            set
+            {
+                if (_notificationPrayerTimesEnabled!=value)
+                {
+                    SetProperty(ref _notificationPrayerTimesEnabled, value);
+                    Preferences.Set("NotificationPrayerTimesEnabled", value);
+                }
+            }
+        }
 
         public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform==DevicePlatform.iOS);
         public int CurrentTheme
@@ -112,6 +125,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             GotoSettingsCommand = new Command(() => { AppInfo.ShowSettingsUI(); });
             _alarmDuration = Preferences.Get("AlarmDuration", 4);
             _foregroundServiceEnabled = Preferences.Get("ForegroundServiceEnabled", true);
+            _notificationPrayerTimesEnabled = Preferences.Get("NotificationPrayerTimesEnabled", true);
             IsBusy = false;
         }
         

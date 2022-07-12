@@ -65,10 +65,11 @@ namespace SuleymaniyeTakvimi.Droid
                     "Yatsı Sonu" => date.DayOfYear + 8000,
                     _ => 0
                 };
-                var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, requestCode, activityIntent,
-                    PendingIntentFlags.UpdateCurrent);
-                var pendingIntent = PendingIntent.GetBroadcast(Application.Context, requestCode, intent,
-                    PendingIntentFlags.UpdateCurrent);
+                var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
+                    ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
+                    : PendingIntentFlags.UpdateCurrent;
+                var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, requestCode, activityIntent, pendingIntentFlags);
+                var pendingIntent = PendingIntent.GetBroadcast(Application.Context, requestCode, intent, pendingIntentFlags);
                 //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
                 //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
                 if (Build.VERSION.SdkInt <= BuildVersionCodes.P)
@@ -86,7 +87,10 @@ namespace SuleymaniyeTakvimi.Droid
             Analytics.TrackEvent("CancelAlarm in the AlarmForegroundService");
             AlarmManager alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService);
             Intent intent = new Intent(Application.Context, typeof(AlarmActivity));
-            PendingIntent pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
+            var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
+                ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
+                : PendingIntentFlags.UpdateCurrent;
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, pendingIntentFlags);
             alarmManager?.Cancel(pendingIntent);
         }
 
@@ -106,12 +110,29 @@ namespace SuleymaniyeTakvimi.Droid
                 SetNotification();
                 _notificationManager.Notify(NOTIFICATION_ID, _notification);
                 _counter++;
+                //if (_counter % 2 == 0)
+                //{
+                //    var data = new DataService();
+                //    var _takvim = data._takvim;
+                //    if ((_takvim.Yukseklik == 114.0 && _takvim.Enlem == 41.0 && _takvim.Boylam == 29.0) || (_takvim.Yukseklik == 0 && _takvim.Enlem == 0 && _takvim.Boylam == 0))
+                //    {
+                //        var location = data.GetCurrentLocationAsync(false).Result;
+                //        if (data.HaveInternet())
+                //        {
+                //            if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                //                data.GetMonthlyPrayerTimes(location, false);
+
+                //            data.SetWeeklyAlarms();
+                //        }
+                //    }
+                //}
+
                 if (_counter != 60) return; //When the 60th time (30 minute) refresh widget manually.
                 //AppWidgetManager.GetInstance(ApplicationContext)?.UpdateAppWidget(
                 //    new ComponentName(ApplicationContext, Java.Lang.Class.FromType(typeof(AppWidget)).Name),
                 //    new RemoteViews(ApplicationContext.PackageName, Resource.Layout.Widget));
                 var intent = new Intent(ApplicationContext, typeof(WidgetService));
-                intent.PutExtra("FromService", true);
+                //intent.PutExtra("Clicked", true);
                 ApplicationContext.StartService(intent);
                 _counter = 0;
             });
@@ -123,8 +144,11 @@ namespace SuleymaniyeTakvimi.Droid
         private void SetNotification()
         {
             Notification.BigTextStyle textStyle = new Notification.BigTextStyle();
-            textStyle.BigText(GetTodaysPrayerTimes());
-            textStyle.SetSummaryText(AppResources.BugunkuNamazVakitleri);
+            if (Preferences.Get("NotificationPrayerTimesEnabled", true))
+            {
+                textStyle.BigText(GetTodaysPrayerTimes());
+                textStyle.SetSummaryText(AppResources.BugunkuNamazVakitleri);
+            }
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 var channelNameJava = new Java.Lang.String(channelName);
@@ -183,8 +207,11 @@ namespace SuleymaniyeTakvimi.Droid
             notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
             notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
             //notificationIntent.PutExtra("has_service_been_started", true);
-
-            var pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent);
+            
+            var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
+                ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
+                : PendingIntentFlags.UpdateCurrent;
+            var pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent, pendingIntentFlags);
             return pendingIntent;
         }
 

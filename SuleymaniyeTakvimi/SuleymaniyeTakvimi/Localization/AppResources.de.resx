@@ -421,4 +421,10 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
 	<data name="Kere" xml:space="preserve">
 		<value> mal</value>
 	</data>
+	<data name="BildirimNamazVakitleri" xml:space="preserve">
+		<value>Gebetszeiten in der Benachrichtigung anzeigen</value>
+	</data>
+	<data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+		<value>Hinweis: Es kann eine halbe Minute dauern, bis die Wirkung eintritt</value>
+	</data>
 </root>
