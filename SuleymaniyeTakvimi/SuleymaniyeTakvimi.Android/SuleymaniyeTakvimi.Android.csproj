@@ -309,6 +309,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\raw\beep3.mp3" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-uz\Strings.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

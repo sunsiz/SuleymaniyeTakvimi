@@ -19,7 +19,7 @@ namespace SuleymaniyeTakvimi.Droid
     [Service]
     public class WidgetService : IntentService
     {
-        private bool _clicked;
+        //private bool _clicked;
         public override void OnStart (Intent intent, int startId)
         {
             //Debug.WriteLine($"**** intent extras: {intent.Extras}");

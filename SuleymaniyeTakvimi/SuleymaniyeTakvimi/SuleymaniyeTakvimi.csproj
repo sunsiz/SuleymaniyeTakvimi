@@ -83,6 +83,9 @@
     <EmbeddedResource Update="Localization\AppResources.ug.resx">
       <DependentUpon>AppResources.resx</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Update="Localization\AppResources.uz.resx">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

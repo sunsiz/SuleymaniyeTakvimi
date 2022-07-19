@@ -54,7 +54,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 new Language(AppResources.Russian, "ru"),
                 new Language(AppResources.Turkish, "tr"),
                 new Language(AppResources.Uyghur, "ug"),
-                //{ new Language(AppResources.Uzbek, "uz") }
+                { new Language(AppResources.Uzbek, "uz") }
             };
             SelectedLanguage = SupportedLanguages.FirstOrDefault(lan => lan.CI == LocalizationResourceManager.Current.CurrentCulture.TwoLetterISOLanguageName);
         }

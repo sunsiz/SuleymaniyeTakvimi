@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<string name="app_name">Sulaymoniya Taqvimi</string>
+	<string name="app_widget_description">Sulaymoniya Taqvimi namoz vaqtlari</string>
+	<string name="refresh">Kontent yangilash</string>
+	<string name="refreshed">Namoz vaqtlari muvaffaqiyatli yangilandi</string>
+	<string name="fecri_kazip">Fajri-kozib (Saharlik)</string>
+	<string name="fecri_sadik">Bamdod</string>
+	<string name="sabah_sonu">Quyosh chiqishi</string>
+	<string name="ogle">Peshin</string>
+	<string name="ikindi">Asr</string>
+	<string name="aksam">Shom</string>
+	<string name="yatsi">Xufton</string>
+	<string name="yatsi_sonu">Xuftonning tugashi</string>
+</resources>
