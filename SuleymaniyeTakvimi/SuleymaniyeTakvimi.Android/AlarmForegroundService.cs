@@ -84,7 +84,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void CancelAlarm()
         {
-            Analytics.TrackEvent("CancelAlarm in the AlarmForegroundService");
+            Analytics.TrackEvent("CancelAlarm in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
             AlarmManager alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService);
             Intent intent = new Intent(Application.Context, typeof(AlarmActivity));
             var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
@@ -133,7 +133,14 @@ namespace SuleymaniyeTakvimi.Droid
                 //    new RemoteViews(ApplicationContext.PackageName, Resource.Layout.Widget));
                 var intent = new Intent(ApplicationContext, typeof(WidgetService));
                 //intent.PutExtra("Clicked", true);
-                ApplicationContext.StartService(intent);
+                try
+                {
+                    ApplicationContext.StartService(intent);
+                }
+                catch (Exception exception)
+                {
+                    System.Diagnostics.Debug.WriteLine($"An exception occured when starting widget service, details: {exception.Message}");
+                }
                 _counter = 0;
             });
             _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
@@ -285,7 +292,7 @@ namespace SuleymaniyeTakvimi.Droid
                 System.Diagnostics.Debug.WriteLine("OnStartCommand Null Intent Exception: " + source + " was null, flags=" + flags + " bits=" + flags);
                 return StartCommandResult.RedeliverIntent;
             }
-            Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService");
+            Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
             if (intent.Action.Equals("SuleymaniyeTakvimi.action.START_SERVICE"))
             {
                 if (_isStarted)

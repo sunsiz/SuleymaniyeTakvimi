@@ -90,6 +90,18 @@ namespace SuleymaniyeTakvimi.ViewModels
         public ItemsViewModel()
         {
             Debug.WriteLine("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            if (DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10)
+            {
+                //Prevent undesired behaviors caused by old settings.
+                Preferences.Set("fecrikazipAlarm", false);
+                Preferences.Set("fecrisadikAlarm", false);
+                Preferences.Set("sabahsonuAlarm", false);
+                Preferences.Set("ogleAlarm", false);
+                Preferences.Set("ikindiAlarm", false);
+                Preferences.Set("aksamAlarm", false);
+                Preferences.Set("yatsiAlarm", false);
+                Preferences.Set("yatsisonuAlarm", false);
+            }
             Title = AppResources.PageTitle;
             Items = new ObservableCollection<Item>();
             data = new DataService();

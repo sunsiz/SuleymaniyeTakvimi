@@ -14,7 +14,7 @@ namespace SuleymaniyeTakvimi.Droid
     {
         public override void OnReceive(Context context, Intent intent)
         {
-            Analytics.TrackEvent("OnReceive in the BootBroadcast");
+            Analytics.TrackEvent("OnReceive in the BootBroadcast Triggered: " + $" at {DateTime.Now}");
             try
             {
                 //Toast.MakeText(context, "Süleymaniye Vakfı Takvimi Başlatılıyor! " + intent.Action, ToastLength.Short)?.Show();
@@ -35,7 +35,7 @@ namespace SuleymaniyeTakvimi.Droid
             catch (Exception exception)
             {
                 Debug.WriteLine(exception);
-                Analytics.TrackEvent("OnReceive in the BootBroadcast Exception: " + exception);
+                Analytics.TrackEvent("OnReceive in the BootBroadcast Exception: " + exception + "\n Triggered: " + $" at {DateTime.Now}");
             }
         }
     }

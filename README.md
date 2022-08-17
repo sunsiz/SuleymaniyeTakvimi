@@ -32,19 +32,29 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 ## Yayın notları:
 
-*2.0.8 sürümündeki yenilikler:*
+*2.1.0 sürümündeki yenilikler (2022-08-17):*
+* Bildirim gösterirken fazladan "Test Alarmı" gösterip ezan çalası düzeltildi.
+
+*2.0.9 sürümündeki yenilikler (2022--07-29):*
+* Bildirim sesi artık seçilen sesleri çalıyor, alarm çalma penceresi kullanmadan bildirim ile alarm kullanabilirsiniz.
+* Yapışkan bildirimde tüm namaz vakitleri göstermeme seçeneği eklendi.
+* Widget yazı boyutları küçük ekranları baz alarak biraz küçültüldü, belli aralıkla "Namaz vakitleri güncellendi" mesajı göstermesi düzeltildi, Android 5 ve 6 sürümlerindeki widget hatası düzeltildi.
+* Özbekçe dil desteği eklendi.
+* Önceki uygulamadaki bazı ses dosyaları eklendi.
+
+*2.0.8 sürümündeki yenilikler (2022-05-18):*
 * Arapça, Azerice, Almanca, Farsça, Fransızca ve Rusça dil destekleri eklendi.
 * Android 10 ve sonraki sürümlerde sistem kısıtlamalarından dolayı alarm çalma penceresi bildirim gösterme ve bildirim sesiyle değiştirildi.
 * Artık yapışkan bildirimde tüm namaz vakitleri gösteriliyor.
 * Widget özelliği eklendi.
 
-*2.0.7 sürümündeki yenilikler:*
+*2.0.7 sürümündeki yenilikler (2022-04-25):*
 * Kullanıcılar arayüz yazı büyüklüğünü ayarlardan değiştirebilirler.
 * Alarm başladıktan sonra keniliğinden kapanma süresini ayarlardan değiştirebilir.
 * Ayarlara sürekli kalan yapışkan bildirimi kapatma seçeneği eklendi.
 * Ana ekrana kalan süreyi gösteren bir özellik eklendi.
 
-*2.0.6 sürümündeki yenilikler:*
+*2.0.6 sürümündeki yenilikler (2022-04-23):*
 * Cihaz pusulayı desteklemediğinde oluşan kilitlenme düzeltildi.
 * Tekrar tekrar alarm sesi seçildiğinde oluşan donma sorunu düzeltildi.
 * Konum davranışı iyileştirildi: Yenile düğmesiyle yenilenmedikçe, artık ilk kez alındıktan sonra konum sormuyor.
@@ -52,22 +62,22 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 * Tema değişikliği ayarlar sayfasına taşındı.
 * Yazı boyutları küçültüldü.
 
-*2.0.5 sürümündeki yenilikler:*
+*2.0.5 sürümündeki yenilikler (2022-04-18):*
 * geçersiz konumdan dolayı kapanış düzeltildi.
 
-*2.0.4 sürümündeki yenilikler:*
+*2.0.4 sürümündeki yenilikler (2022-04-18):*
 * Bazı nadir hatalar düzeltildi, konum ve namaz vakitlerini gösterme iyileştirildi.
 
-*2.0.3 sürümündeki yenilikler:*
+*2.0.3 sürümündeki yenilikler (2022-04-13):*
 * Hakkında sayfası yeniden tasarlandı, renkler daha iyileştirildi, konum izni alma özelliği iyileştiridi.
 
-*2.0.2 sürümündeki yenilikler:*
+*2.0.2 sürümündeki yenilikler (2022-04-07):*
 * Şimdilik Türkçe, İngilizce ve Çince dil tercümeleri mevcuttur, yakında başka dillerde eklenecek.
 
-*2.0.1 sürümündeki yenilikler:*
+*2.0.1 sürümündeki yenilikler (2022-04-04):*
 * Alarm kurarken bazen oluşan ani kapanma olayı düzeltildi.
 
-*2.0 sürümündeki yenilikler:*
+*2.0 sürümündeki yenilikler (2022-03-31):*
 * Uygulama yeniden tasarlandı ve yeni Özellikler eklendi.
 
 
@@ -142,19 +152,29 @@ Suleymaniyetakvimi.com Xamarin mobile application
 
 ## Release notes:
 
-*What's new in version 2.0.8:*
+*What's new in version 2.1.0 (2022-08-17):*
+* Fixed the extra notification with the name "Test Alarm" that playing Adhan.
+
+*What's new in version 2.0.9 (2022-07-29):*
+* Notification sound now plays selected sounds, if you don't want to use alarm window, you can use notification option.
+* Added option to not show all prayer times in sticky notification.
+* Widget font sizes have been slightly reduced based on small screens, the repeated message "Prayer times have been updated" has been fixed, the widget error in Android 5 and 6 versions has been fixed.
+* Added Uzbek language support.
+* Added some audio files from the previous app.
+
+*What's new in version 2.0.8 (2022-05-18):*
 * Added Arabic, Azerbaijani, German, Persian, French, Russian language support.
 * Alarm window replaced with notification and notification ringtone in Android 10 and later version, because the system restriction.
 * Steaky notification now include all prayer times.
 * Added Widget support.
 
-*What's new in version 2.0.7:*
+*What's new in version 2.0.7 (2022-04-25):*
 * Users can change the interface font size from the settings.
 * After the alarm starts, you can change the automatic shutdown time from the settings.
 * Added option to turn off sticky notification in settings.
 * Added a feature that displays the remaining time to the main screen.
 
-*What's new in 2.0.6:*
+*What's new in version 2.0.6 (2022-04-23):*
 * Fixed crashing when device not support compass.
 * Fixed freezing when repeatedly choose alarm sound.
 * Location behavior improved: now never asking location after get it first time, unless refresh it with refresh button.
@@ -162,21 +182,21 @@ Suleymaniyetakvimi.com Xamarin mobile application
 * Theme changing moved to settings page.
 * Font sizes decreased.
 
-*What's new in version 2.0.5:*
+*What's new in version 2.0.5 (2022-04-18):*
 * Fixed crashing over invalid location.
 
-*What's new in version 2.0.4:*
+*What's new in version 2.0.4 (2022-04-18):*
 * Fixed some rare errors, improved location and display prayer times related features.
 
-*What's new in version 2.0.3:*
+*What's new in version 2.0.3 (2022-04-13):*
 * Redesigned About page, improved colors and location permission request process.
 
-*What's new in version 2.0.2:*
+*What's new in version 2.0.2 (2022-04-07):*
 * Changed Default language for non translated languages to English.
 * Currently support English, Turkish, Chinese and more will come.
 
-*What's new in version 2.0.1:*
+*What's new in version 2.0.1 (2022-04-04):*
 * Fixed an issue that crashing when setup alarms sometimes.
 
-*What's new in version 2.0:*
+*What's new in version 2.0 (2022-03-31):*
 * Completely redesigned the application and add new features.

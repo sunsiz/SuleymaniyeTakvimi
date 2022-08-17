@@ -128,11 +128,12 @@ namespace SuleymaniyeTakvimi.Droid
                     if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuBildiri", false))
                         ShowNotification(name, time);
                     break;
-                default:
-                    label?.SetText("Test Alarmı", TextView.BufferType.Normal);
-                    timeLabel?.SetText($"şimdiki zaman: {time}", TextView.BufferType.Normal);
-                    PlayAlarm(name);
-                    break;
+                default: Finish();
+                    return;
+                    //label?.SetText("Test Alarmı", TextView.BufferType.Normal);
+                    //timeLabel?.SetText($"şimdiki zaman: {time}", TextView.BufferType.Normal);
+                    //PlayAlarm(name);
+                    //break;
             }
         }
 

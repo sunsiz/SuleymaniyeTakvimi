@@ -46,7 +46,10 @@ namespace SuleymaniyeTakvimi.Droid
             try
             {
                 var name = intent?.GetStringExtra("name") ?? string.Empty;
-                var time = TimeSpan.Parse(intent?.GetStringExtra("time") ?? string.Empty);
+                var timeStr = intent?.GetStringExtra("time") ?? string.Empty;
+                //Avoid some intents that not scheduled by this app.
+                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(timeStr)) return;
+                var time = TimeSpan.Parse(timeStr);
                 //Toast.MakeText(context, "Received intent! " + name + ": " + time, ToastLength.Short).Show();
                 _notificationManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
                 var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
@@ -203,15 +206,15 @@ namespace SuleymaniyeTakvimi.Droid
             if (name != null)
                 fileName = name switch
                 {
-                    "Fecri Kazip" => Preferences.Get("fecrikazipAlarmSesi","alarm"),
-                    "Fecri Sadık" => Preferences.Get("fecrisadikAlarmSesi","alarm"),
-                    "Sabah Sonu" => Preferences.Get("sabahsonuAlarmSesi","alarm"),
-                    "Öğle" => Preferences.Get("ogleAlarmSesi","alarm"),
-                    "İkindi" => Preferences.Get("ikindiAlarmSesi","alarm"),
-                    "Akşam" => Preferences.Get("aksamAlarmSesi","alarm"),
-                    "Yatsı" => Preferences.Get("yatsiAlarmSesi","alarm"),
-                    "Yatsı Sonu" => Preferences.Get("yatsisonuAlarmSesi","alarm"),
-                    _ => "ezan"
+                    "Fecri Kazip" => Preferences.Get("fecrikazipAlarmSesi", "alarm"),
+                    "Fecri Sadık" => Preferences.Get("fecrisadikAlarmSesi", "alarm"),
+                    "Sabah Sonu" => Preferences.Get("sabahsonuAlarmSesi", "alarm"),
+                    "Öğle" => Preferences.Get("ogleAlarmSesi", "alarm"),
+                    "İkindi" => Preferences.Get("ikindiAlarmSesi", "alarm"),
+                    "Akşam" => Preferences.Get("aksamAlarmSesi", "alarm"),
+                    "Yatsı" => Preferences.Get("yatsiAlarmSesi", "alarm"),
+                    "Yatsı Sonu" => Preferences.Get("yatsisonuAlarmSesi", "alarm"),
+                    //_ => "ezan"
                 };
             return fileName;
             //return fileName switch
@@ -241,7 +244,7 @@ namespace SuleymaniyeTakvimi.Droid
                     "Akşam" => $"{AppResources.Aksam} {AppResources.Vakti} {time}",
                     "Yatsı" => $"{AppResources.Yatsi} {AppResources.Vakti} {time}",
                     "Yatsı Sonu" => $"{AppResources.YatsiSonu} {AppResources.Vakti} {time}",
-                    _ => $"şimdiki zaman: {time}"
+                    //_ => $"şimdiki zaman: {time}"
                 };
 
             return "";
@@ -260,7 +263,7 @@ namespace SuleymaniyeTakvimi.Droid
                     "Akşam" => AppResources.Aksam + " " + AppResources.Alarmi,
                     "Yatsı" => AppResources.Yatsi + " " + AppResources.Alarmi,
                     "Yatsı Sonu" => AppResources.YatsiSonu + " " + AppResources.Alarmi,
-                    _ => "Test Alarmı",
+                    //_ => "Test Alarmı",
                 };
             return "";
         }

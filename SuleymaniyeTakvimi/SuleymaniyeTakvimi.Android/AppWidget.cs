@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System.Diagnostics;
+using Android.App;
 using Android.Appwidget;
 using Android.Content;
 
@@ -22,8 +23,15 @@ namespace SuleymaniyeTakvimi.Droid
         /// </summary>
         public override void OnUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
         {
-            // To prevent any ANR timeouts, we perform the update in a service
-            context.StartService(new Intent(context, typeof(WidgetService)));
+            try
+            {
+                // To prevent any ANR timeouts, we perform the update in a service
+                context.StartService(new Intent(context, typeof(WidgetService)));
+            }
+            catch (System.Exception ex)
+            {
+                Debug.WriteLine($"Service exception in OnUpdate method: {ex.Message}");
+            }
             //var me = new ComponentName(context, Java.Lang.Class.FromType(typeof(AppWidget)).Name);
             //appWidgetManager.UpdateAppWidget(me, BuildRemoteViews(context, appWidgetIds));
         }
@@ -31,8 +39,15 @@ namespace SuleymaniyeTakvimi.Droid
         public override void OnReceive(Context context, Intent intent)
         {
             base.OnReceive(context, intent);
-            // To prevent any ANR timeouts, we perform the update in a service
-            context.StartService(new Intent(context, typeof(WidgetService)));
+            try
+            {
+                // To prevent any ANR timeouts, we perform the update in a service
+                context.StartService(new Intent(context, typeof(WidgetService)));
+            }
+            catch (System.Exception ex)
+            {
+                Debug.WriteLine($"Service exception in OnReceive method: {ex.Message}");
+            }
         }
 
     //private RemoteViews BuildRemoteViews(Context context, int[] appWidgetIds)

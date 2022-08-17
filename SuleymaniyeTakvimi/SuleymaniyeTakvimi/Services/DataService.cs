@@ -53,7 +53,7 @@ namespace SuleymaniyeTakvimi.Services
 
         public async Task<Location> GetCurrentLocationAsync(bool refreshLocation)
         {
-            Analytics.TrackEvent("GetCurrentLocation in the DataService");
+            Analytics.TrackEvent("GetCurrentLocation in the DataService Triggered: " + $" at {DateTime.Now}");
             var location = new Location(0,0);
             if (!askedLocationPermission)
             {
@@ -149,7 +149,7 @@ namespace SuleymaniyeTakvimi.Services
 
         public async Task<Takvim> VakitHesabiAsync()
         {
-            Analytics.TrackEvent("VakitHesabi in the DataService");
+            Analytics.TrackEvent("VakitHesabi in the DataService Triggered: " + $" at {DateTime.Now}");
             _takvim = GetTakvimFromFile();
             if (_takvim != null) return _takvim;
             _takvim = new Takvim();
@@ -276,7 +276,7 @@ namespace SuleymaniyeTakvimi.Services
         //When refreshLocation true, force refresh location not using last known location.
         public async Task<Takvim> GetPrayerTimesAsync(bool refreshLocation)
         {
-            Analytics.TrackEvent("GetPrayerTimes in the DataService");
+            Analytics.TrackEvent("GetPrayerTimes in the DataService Triggered: " + $" at {DateTime.Now}");
             Debug.WriteLine("TimeStamp-GetPrayerTimes-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             //if (File.Exists(FileName))
             //{
@@ -424,25 +424,32 @@ namespace SuleymaniyeTakvimi.Services
 
         public IList<Takvim> GetMonthlyPrayerTimes(Location location, bool forceRefresh)
         {
-            Analytics.TrackEvent("GetMonthlyPrayerTimes in the DataService");
+            Analytics.TrackEvent("GetMonthlyPrayerTimes in the DataService Triggered: " + $" at {DateTime.Now}");
             if (File.Exists(_fileName) && !forceRefresh)
             {
-                XDocument xmldoc = XDocument.Load(_fileName);
-                var takvims = ParseXmlList(xmldoc);
-                xmldoc = null;
-                if (takvims != null)
+                try
                 {
-                    var days = (DateTime.Today - DateTime.Parse(takvims[0].Tarih)).Days;
-                    if (days is < 21 and >= 0)
+                    XDocument xmldoc = XDocument.Load(_fileName);
+                    var takvims = ParseXmlList(xmldoc);
+                    xmldoc = null;
+                    if (takvims != null)
                     {
-                        //xmldoc = ReadTakvimFile();
-                        //MonthlyTakvim = ParseXmlList(xmldoc);
-                        _monthlyTakvim = takvims;
-                        return _monthlyTakvim;
+                        var days = (DateTime.Today - DateTime.Parse(takvims[0].Tarih)).Days;
+                        if (days is < 21 and >= 0)
+                        {
+                            //xmldoc = ReadTakvimFile();
+                            //MonthlyTakvim = ParseXmlList(xmldoc);
+                            _monthlyTakvim = takvims;
+                            return _monthlyTakvim;
+                        }
                     }
-                }
 
-                if (!HaveInternet()) return _monthlyTakvim = takvims;
+                    if (!HaveInternet()) return _monthlyTakvim = takvims;
+                }
+                catch (Exception exception)
+                {
+                    System.Diagnostics.Debug.WriteLine($"An error occurred while reading or parsing the file, details: {exception.Message}");
+                }
             }
 
             if (!HaveInternet()) return null;
@@ -476,9 +483,19 @@ namespace SuleymaniyeTakvimi.Services
             //        .ConfigureAwait(true);
 
             //var xmlResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            XDocument doc = XDocument.Load(url);
-            _monthlyTakvim = ParseXmlList(doc, _konum.Enlem, _konum.Boylam, _konum.Yukseklik);
-            WriteTakvimFile(doc.ToString());
+            try
+            {
+                XDocument doc = XDocument.Load(url);
+                _monthlyTakvim = ParseXmlList(doc, _konum.Enlem, _konum.Boylam, _konum.Yukseklik);
+                WriteTakvimFile(doc.ToString());
+                return _monthlyTakvim;
+            }
+            catch (Exception exception)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"An error occurred while downloading or parsing the xml file, details: {exception.Message}");
+            }
+
             return _monthlyTakvim;
             //var stream = GetType().Module.Assembly.GetManifestResourceStream("SuleymaniyeTakvimi.ayliktakvim.xml");
             //stream.
