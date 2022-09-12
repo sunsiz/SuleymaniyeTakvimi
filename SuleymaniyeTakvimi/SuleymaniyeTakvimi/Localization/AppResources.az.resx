@@ -1,429 +1,537 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>1.3</value>
+    <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Aci" xml:space="preserve">
-		<value>Bucaq</value>
-	</data>
+    <value>Bucaq</value>
+  </data>
   <data name="AciklamaBas" xml:space="preserve">
-		<value>Müsəlman, Allaha təslim olan və Onun yolunda hər çətinliyə qatlanan insanlara verilən addır. Onlar dinə olduğu kimi tabe olanlardır. "Allaha çağıran, xeyirxahlıq edən və mən yalnız Allaha təslim olanlardanam deyəndən daha gözəl sözlü kim ola bilər!" (Füssilət 41/33). Bu program, namaz və oruc vaxtlarına doğru və rahat çata bilmələri üçün nəzərdə tutulmuşdur. Vaxt hesablamaları və oruc saatları barəsində daha geniş məlumat üçün buradakı </value>
-	</data>
+    <value>Müsəlman, Allaha təslim olan və Onun yolunda hər çətinliyə qatlanan insanlara verilən addır. Onlar dinə olduğu kimi tabe olanlardır. "Allaha çağıran, xeyirxahlıq edən və mən yalnız Allaha təslim olanlardanam deyəndən daha gözəl sözlü kim ola bilər!" (Füssilət 41/33). Bu program, namaz və oruc vaxtlarına doğru və rahat çata bilmələri üçün nəzərdə tutulmuşdur. Vaxt hesablamaları və oruc saatları barəsində daha geniş məlumat üçün buradakı </value>
+  </data>
   <data name="AciklamaLinkText" xml:space="preserve">
-		<value>Quranda və sünnədə namaz vaxtları</value>
-	</data>
+    <value>Quranda və sünnədə namaz vaxtları</value>
+  </data>
   <data name="AciklamaLinkURL" xml:space="preserve">
-		<value>https://www.muselmanlar.com/tedqiqatlar/5930.html</value>
-	</data>
+    <value>https://www.muselmanlar.com/tedqiqatlar/5930.html</value>
+  </data>
   <data name="AciklamaSon" xml:space="preserve">
-		<value> məqaləsini oxuyun.</value>
-	</data>
+    <value> məqaləsini oxuyun.</value>
+  </data>
   <data name="AcikTema" xml:space="preserve">
-		<value>Açıq tema</value>
-	</data>
+    <value>Açıq tema</value>
+  </data>
   <data name="Aksam" xml:space="preserve">
-		<value>Axşam</value>
-	</data>
+    <value>Axşam</value>
+  </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-		<value>Axşam vaxtının bitməsinə qalan müddət: </value>
-	</data>
+    <value>Axşam vaxtının bitməsinə qalan müddət: </value>
+  </data>
   <data name="AlarmHatasi" xml:space="preserve">
-		<value>Zəng siqnalı çalanda bir xəta oldu, təfərrüatlar</value>
-	</data>
+    <value>Zəng siqnalı çalanda bir xəta oldu, təfərrüatlar</value>
+  </data>
   <data name="Alarmi" xml:space="preserve">
-		<value>Zəng siqnalı</value>
-	</data>
+    <value>Zəng siqnalı</value>
+  </data>
   <data name="Alarmkurarkenhataolustu" xml:space="preserve">
-		<value>Zəngi quranda bir xəta oldu</value>
-	</data>
+    <value>Zəngi quranda bir xəta oldu</value>
+  </data>
   <data name="AlarmSound" xml:space="preserve">
-		<value>Zəng siqnalı</value>
-	</data>
+    <value>Zəng siqnalı</value>
+  </data>
   <data name="AlarmSuresi" xml:space="preserve">
-		<value>Zəng müddəti: </value>
-	</data>
+    <value>Zəng müddəti: </value>
+  </data>
   <data name="AlarmSwitch" xml:space="preserve">
-		<value>Zəng çal</value>
-	</data>
+    <value>Zəng çal</value>
+  </data>
   <data name="AylikTakvim" xml:space="preserve">
-		<value>Aylıq təqvim</value>
-	</data>
+    <value>Aylıq təqvim</value>
+  </data>
   <data name="AylikTakvimeErisemedi" xml:space="preserve">
-		<value>Aylıq təqvimə bağlanılmadı, Xahiş olunur internetinizin bağlı olub olmadığını və konumunuzun aktiv olduğunu yoxlayın!</value>
-	</data>
+    <value>Aylıq təqvimə bağlanılmadı, Xahiş olunur internetinizin bağlı olub olmadığını və konumunuzun aktiv olduğunu yoxlayın!</value>
+  </data>
   <data name="AylikTakvimYenilendi" xml:space="preserve">
-		<value>Aylıq təqvim başarıyla yeniləndi</value>
-	</data>
+    <value>Aylıq təqvim başarıyla yeniləndi</value>
+  </data>
   <data name="BesDakikaOnceden" xml:space="preserve">
-		<value>5 dəqiqə əvvəlcədən</value>
-	</data>
+    <value>5 dəqiqə əvvəlcədən</value>
+  </data>
   <data name="BildiriDevreDisiBaslik" xml:space="preserve">
-		<value>Bildiriş parametri qeyri-aktiv</value>
-	</data>
+    <value>Bildiriş parametri qeyri-aktiv</value>
+  </data>
   <data name="BildiriDevreDisiIcerik" xml:space="preserve">
-		<value> bildiri qeyri-aktiv oldu.</value>
-	</data>
+    <value> bildiri qeyri-aktiv oldu.</value>
+  </data>
   <data name="BildiriEtkinBaslik" xml:space="preserve">
-		<value>Bildiri parametri aktivləşdi</value>
-	</data>
+    <value>Bildiri parametri aktivləşdi</value>
+  </data>
   <data name="BildiriEtkinIcerik" xml:space="preserve">
-		<value> bildiri aktivləşdi.</value>
-	</data>
+    <value> bildiri aktivləşdi.</value>
+  </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
-		<value>Bildirini göstər</value>
-	</data>
+    <value>Bildirini göstər</value>
+  </data>
   <data name="BildirimKapatma" xml:space="preserve">
-		<value>Bildirini aktivləşdir</value>
-	</data>
+    <value>Bildirini aktivləşdir</value>
+  </data>
   <data name="Azerbaijani" xml:space="preserve">
-		<value>Azəri Türkcəsi</value>
-	</data>
+    <value>Azəri Türkcəsi</value>
+  </data>
   <data name="Arabic" xml:space="preserve">
-		<value>ərəbcə</value>
-	</data>
+    <value>ərəbcə</value>
+  </data>
   <data name="BildirimUyari" xml:space="preserve">
-		<value>Bu parametri söndürməməyi tövsiyə edirik. Əgər qeyri-aktiv buraxarsanız zəng vaxtında çalmaya bilər. Əgər zənginiz çalmırsa xahiş olunur program parametrlərinə baxın: Bu parametrlərdə “Digər iznlər” bölümündə “Arxa planda başlat” izninin seçilmiş olduğunu yoxlayın. “Batareya qoruyucusu” bölümündə olan “Məhdudiyyət yox” parametrinin seçilmiş olduğundan əmin olun. İndi bu iznləri yoxlamaq istərsəniz aşağıdakı düyməyə basın.</value>
-	</data>
-	<data name="BildirmeZamani" xml:space="preserve">
-		<value>Xatırlatma Zamanı: </value>
-	</data>
+    <value>Bu parametri söndürməməyi tövsiyə edirik. Əgər qeyri-aktiv buraxarsanız zəng vaxtında çalmaya bilər. Əgər zənginiz çalmırsa xahiş olunur program parametrlərinə baxın: Bu parametrlərdə “Digər iznlər” bölümündə “Arxa planda başlat” izninin seçilmiş olduğunu yoxlayın. “Batareya qoruyucusu” bölümündə olan “Məhdudiyyət yox” parametrinin seçilmiş olduğundan əmin olun. İndi bu iznləri yoxlamaq istərsəniz aşağıdakı düyməyə basın.</value>
+  </data>
+  <data name="BildirmeZamani" xml:space="preserve">
+    <value>Xatırlatma Zamanı: </value>
+  </data>
   <data name="Birsessecin" xml:space="preserve">
-		<value>Bir səs seçin</value>
-	</data>
+    <value>Bir səs seçin</value>
+  </data>
   <data name="BoylamFormatsiz" xml:space="preserve">
-		<value>Uzunluq</value>
-	</data>
+    <value>Uzunluq</value>
+  </data>
   <data name="BugunkuNamazVakitleri" xml:space="preserve">
-		<value>Bu günkü namaz vaxtları</value>
-	</data>
+    <value>Bu günkü namaz vaxtları</value>
+  </data>
   <data name="CalarSaat" xml:space="preserve">
-		<value>Zəng saat</value>
-	</data>
+    <value>Zəng saat</value>
+  </data>
   <data name="Chinese" xml:space="preserve">
-		<value>Çincə</value>
-	</data>
+    <value>Çincə</value>
+  </data>
   <data name="CihazGPSDesteklemiyor" xml:space="preserve">
-		<value>Cihaz GPS dəstəkləmir</value>
-	</data>
+    <value>Cihaz GPS dəstəkləmir</value>
+  </data>
   <data name="CihazPusulaDesteklemiyor" xml:space="preserve">
-		<value>Cihazınız kompası dəstəkləmir</value>
-	</data>
+    <value>Cihazınız kompası dəstəkləmir</value>
+  </data>
   <data name="CihazTitretmeyiDesteklemiyor" xml:space="preserve">
-		<value>Cihazınız titrətməyi dəstəkləmir</value>
-	</data>
+    <value>Cihazınız titrətməyi dəstəkləmir</value>
+  </data>
   <data name="Dakika" xml:space="preserve">
-		<value> dəqiqə</value>
-	</data>
+    <value> dəqiqə</value>
+  </data>
   <data name="Deutsch" xml:space="preserve">
-		<value>Almanca</value>
-	</data>
+    <value>Almanca</value>
+  </data>
   <data name="EnlemFormatsiz" xml:space="preserve">
-		<value>En</value>
-	</data>
+    <value>En</value>
+  </data>
   <data name="EtkinlestirSwitch" xml:space="preserve">
-		<value>Aktivləşdir</value>
-	</data>
+    <value>Aktivləşdir</value>
+  </data>
   <data name="English" xml:space="preserve">
-		<value>İngilizcə</value>
-	</data>
+    <value>İngilizcə</value>
+  </data>
   <data name="EtkinlestirSwitchAciklama" xml:space="preserve">
-		<value>Bu namaz vaxtı üçün, zəng, titrəşim, bildiri özəlliyini aktivləşdirir</value>
-	</data>
+    <value>Bu namaz vaxtı üçün, zəng, titrəşim, bildiri özəlliyini aktivləşdirir</value>
+  </data>
   <data name="EzanSesi" xml:space="preserve">
-		<value>Əzan səsi</value>
-	</data>
+    <value>Əzan səsi</value>
+  </data>
   <data name="Farsi" xml:space="preserve">
-		<value>Farsca</value>
-	</data>
+    <value>Farsca</value>
+  </data>
   <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
-		<value>Fəcri Kazibin (Sahura) başlamasına qalan müddət: </value>
-	</data>
+    <value>Fəcri Kazibin (Sahura) başlamasına qalan müddət: </value>
+  </data>
   <data name="FecriKazip" xml:space="preserve">
-		<value>Fəcri Kazib</value>
-	</data>
+    <value>Fəcri Kazib</value>
+  </data>
   <data name="FecriSadik" xml:space="preserve">
-		<value>Fəcri Sadiq</value>
-	</data>
+    <value>Fəcri Sadiq</value>
+  </data>
   <data name="FecriSadikakalanvakit" xml:space="preserve">
-		<value>Fəcri Sadiqin (Sahurun) bitməsinə qalan müddət: </value>
-	</data>
+    <value>Fəcri Sadiqin (Sahurun) bitməsinə qalan müddət: </value>
+  </data>
   <data name="FitratinSesi" xml:space="preserve">
-		<value>Radio Fitrət - Fitrətin Səsi</value>
-	</data>
+    <value>Radio Fitrət - Fitrətin Səsi</value>
+  </data>
   <data name="FitratTV" xml:space="preserve">
-		<value>Fitrət Tv</value>
-	</data>
+    <value>Fitrət Tv</value>
+  </data>
   <data name="FitratTVFacebook" xml:space="preserve">
-		<value>Fitrət TV Facebook səhfəsi</value>
-	</data>
+    <value>Fitrət TV Facebook səhfəsi</value>
+  </data>
   <data name="FitratTVTwitter" xml:space="preserve">
-		<value>Fitrət TV Twitter Səhfəsi</value>
-	</data>
+    <value>Fitrət TV Twitter Səhfəsi</value>
+  </data>
   <data name="Hakkinda" xml:space="preserve">
-		<value>Haqqında</value>
-	</data>
+    <value>Haqqında</value>
+  </data>
   <data name="HaritadaGoster" xml:space="preserve">
-		<value>Konumu xəritədə göstər</value>
-	</data>
+    <value>Konumu xəritədə göstər</value>
+  </data>
   <data name="HaritaHatasi" xml:space="preserve">
-		<value>Xəritəni açanda bir xəta oldu. /Təfərrüatlar:</value>
-	</data>
+    <value>Xəritəni açanda bir xəta oldu. /Təfərrüatlar:</value>
+  </data>
   <data name="Hatadetaylari" xml:space="preserve">
-		<value>Xəta təfərrüatları:</value>
-	</data>
+    <value>Xəta təfərrüatları:</value>
+  </data>
   <data name="HorozOtusu" xml:space="preserve">
-		<value>Xoruz banı</value>
-	</data>
+    <value>Xoruz banı</value>
+  </data>
   <data name="IcerikYukleniyor" xml:space="preserve">
-		<value>Məzmun yüklənir ...</value>
-	</data>
+    <value>Məzmun yüklənir ...</value>
+  </data>
   <data name="Ikindi" xml:space="preserve">
-		<value>İkindi</value>
-	</data>
+    <value>İkindi</value>
+  </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-		<value>İkindi vaxtının bitməsinə qalan müddət: </value>
-	</data>
+    <value>İkindi vaxtının bitməsinə qalan müddət: </value>
+  </data>
   <data name="French" xml:space="preserve">
-		<value>Fransızca</value>
-	</data>
+    <value>Fransızca</value>
+  </data>
   <data name="GotoSettings" xml:space="preserve">
-		<value>Ayarlara get</value>
-	</data>
+    <value>Ayarlara get</value>
+  </data>
   <data name="KalanSure" xml:space="preserve">
-		<value>Qalan müddət: </value>
-	</data>
+    <value>Qalan müddət: </value>
+  </data>
   <data name="Kapat" xml:space="preserve">
-		<value>Söndür</value>
-	</data>
+    <value>Söndür</value>
+  </data>
   <data name="Kaydet" xml:space="preserve">
-		<value>Qeyd et</value>
-	</data>
+    <value>Qeyd et</value>
+  </data>
   <data name="KaydetVeKapat" xml:space="preserve">
-		<value>Qeyd  et və söndür</value>
-	</data>
+    <value>Qeyd  et və söndür</value>
+  </data>
   <data name="KaydetVeUygula" xml:space="preserve">
-		<value>Qeyd et və tətbiq et</value>
-	</data>
+    <value>Qeyd et və tətbiq et</value>
+  </data>
   <data name="Kible" xml:space="preserve">
-		<value>Qiblə</value>
-	</data>
+    <value>Qiblə</value>
+  </data>
   <data name="KibleGostergesi" xml:space="preserve">
-		<value>Qiblə görünüşü</value>
-	</data>
+    <value>Qiblə görünüşü</value>
+  </data>
   <data name="KonumHatasi" xml:space="preserve">
-		<value>Konuma bağlananda bir problem yaşandı</value>
-	</data>
+    <value>Konuma bağlananda bir problem yaşandı</value>
+  </data>
   <data name="KonumIzniBaslik" xml:space="preserve">
-		<value>Konuma bağlanma izni yox</value>
-	</data>
+    <value>Konuma bağlanma izni yox</value>
+  </data>
   <data name="KonumIzniIcerik" xml:space="preserve">
-		<value>Cihazınızın normal çalışması üçün Konuma bağlanma icazəsi verməlisiz!</value>
-	</data>
+    <value>Cihazınızın normal çalışması üçün Konuma bağlanma icazəsi verməlisiz!</value>
+  </data>
   <data name="KonumKapali" xml:space="preserve">
-		<value>Cihazda konum xidmətləri aktiv deyil. Əvvəlcə konum xidmətlərini açmalısız!</value>
-	</data>
+    <value>Cihazda konum xidmətləri aktiv deyil. Əvvəlcə konum xidmətlərini açmalısız!</value>
+  </data>
   <data name="KonumKapaliBaslik" xml:space="preserve">
-		<value>Konum xidmətləri bağlıdı</value>
-	</data>
+    <value>Konum xidmətləri bağlıdı</value>
+  </data>
   <data name="KonumYenileButton" xml:space="preserve">
-		<value>Təzələ</value>
-	</data>
+    <value>Təzələ</value>
+  </data>
   <data name="KonumYenilendi" xml:space="preserve">
-		<value>Konum və vaxtlar başarıyla təzələndi</value>
-	</data>
+    <value>Konum və vaxtlar başarıyla təzələndi</value>
+  </data>
   <data name="KoyuTema" xml:space="preserve">
-		<value>Qara tema</value>
-	</data>
+    <value>Qara tema</value>
+  </data>
   <data name="KusCiviltisi" xml:space="preserve">
-		<value>Quş civiltisi</value>
-	</data>
+    <value>Quş civiltisi</value>
+  </data>
   <data name="NamazVaktiAlmaHatasi" xml:space="preserve">
-		<value>Namaz vaxtlarını internetdən alanda bir xəta oldu.</value>
-	</data>
+    <value>Namaz vaxtlarını internetdən alanda bir xəta oldu.</value>
+  </data>
   <data name="Ogle" xml:space="preserve">
-		<value>Günorta</value>
-	</data>
+    <value>Günorta</value>
+  </data>
   <data name="Kyrgyz" xml:space="preserve">
-		<value>Kırgızca</value>
-	</data>
+    <value>Kırgızca</value>
+  </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-		<value>Günorta vaxtının çıxmasına qalan müddət: </value>
-	</data>
+    <value>Günorta vaxtının çıxmasına qalan müddət: </value>
+  </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-		<value>Günortanın girməsinə qalan müddət: </value>
-	</data>
+    <value>Günortanın girməsinə qalan müddət: </value>
+  </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
-		<value>15 dəqiqə əvvəlcədən</value>
-	</data>
+    <value>15 dəqiqə əvvəlcədən</value>
+  </data>
   <data name="PageTitle" xml:space="preserve">
-		<value>Süleymaniyyə təqvimi</value>
-	</data>
+    <value>Süleymaniyyə təqvimi</value>
+  </data>
   <data name="Radyo" xml:space="preserve">
-		<value>Radio</value>
-	</data>
+    <value>Radio</value>
+  </data>
   <data name="RadyoFitrat" xml:space="preserve">
-		<value>Radio Fitrət</value>
-	</data>
+    <value>Radio Fitrət</value>
+  </data>
   <data name="RadyoFitratFaceBook" xml:space="preserve">
-		<value>Radio Fitər Facebook səhfəsi</value>
-	</data>
+    <value>Radio Fitər Facebook səhfəsi</value>
+  </data>
   <data name="RadyoFitratInstagram" xml:space="preserve">
-		<value>Radio Fitrətin instiqram səhfəsi</value>
-	</data>
+    <value>Radio Fitrətin instiqram səhfəsi</value>
+  </data>
   <data name="RadyoFitratTwitter" xml:space="preserve">
-		<value>Radio Fitrətin Tvitter səhfəsi</value>
-	</data>
+    <value>Radio Fitrətin Tvitter səhfəsi</value>
+  </data>
   <data name="RadyoIcinInternet" xml:space="preserve">
-		<value>Radioya bağlanmaq üçün internet lazım, xahiş olunur internetə bağlı olduğunuzu yoxlayın, ya da "web səhfə" linkinə tuşlayaraq ordan qulaq asa bilərsiz.</value>
-	</data>
+    <value>Radioya bağlanmaq üçün internet lazım, xahiş olunur internetə bağlı olduğunuzu yoxlayın, ya da "web səhfə" linkinə tuşlayaraq ordan qulaq asa bilərsiz.</value>
+  </data>
   <data name="Russian" xml:space="preserve">
-		<value>Rusca</value>
-	</data>
+    <value>Rusca</value>
+  </data>
   <data name="SabahSonu" xml:space="preserve">
-		<value>Sübh Sonu</value>
-	</data>
+    <value>Sübh Sonu</value>
+  </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-		<value>Sübh Sonu üçün qalan müddət: </value>
-	</data>
+    <value>Sübh Sonu üçün qalan müddət: </value>
+  </data>
   <data name="Sehir" xml:space="preserve">
-		<value>Şəhər</value>
-	</data>
+    <value>Şəhər</value>
+  </data>
   <data name="SesSecAciklama" xml:space="preserve">
-		<value>Bu vaxt üçün qurulacaq zəngin səsini seçin</value>
-	</data>
+    <value>Bu vaxt üçün qurulacaq zəngin səsini seçin</value>
+  </data>
   <data name="SesTesti" xml:space="preserve">
-		<value>Səs testi</value>
-	</data>
+    <value>Səs testi</value>
+  </data>
   <data name="SorunCikti" xml:space="preserve">
-		<value>Bir problemlə qarşılaşdıq</value>
-	</data>
+    <value>Bir problemlə qarşılaşdıq</value>
+  </data>
   <data name="SosyalMedyaBaglantisi" xml:space="preserve">
-		<value>Sosial medya şəbəkələrimiz</value>
-	</data>
+    <value>Sosial medya şəbəkələrimiz</value>
+  </data>
   <data name="SuleymaniyeVakfi" xml:space="preserve">
-		<value>Süleymaniyyə Vəqfi</value>
-	</data>
+    <value>Süleymaniyyə Vəqfi</value>
+  </data>
   <data name="SuleymaniyeVakfiFacebook" xml:space="preserve">
-		<value>Süleymaniyyə vəqfi Facebook Səhfəsi</value>
-	</data>
+    <value>Süleymaniyyə vəqfi Facebook Səhfəsi</value>
+  </data>
   <data name="SuleymaniyeVakfiInstagram" xml:space="preserve">
-		<value>Süleymaniyyə Vəqfi İnsteqram Səhfəsi</value>
-	</data>
+    <value>Süleymaniyyə Vəqfi İnsteqram Səhfəsi</value>
+  </data>
   <data name="SuleymaniyeVakfiTakvimi" xml:space="preserve">
-		<value>Süleymaniyyə təqvimi</value>
-	</data>
+    <value>Süleymaniyyə təqvimi</value>
+  </data>
   <data name="SuleymaniyeVakfiTwitter" xml:space="preserve">
-		<value>Süleymaniyyə Vəqfi Twitter Səhfəsi</value>
-	</data>
+    <value>Süleymaniyyə Vəqfi Twitter Səhfəsi</value>
+  </data>
   <data name="Takvim" xml:space="preserve">
-		<value>Təqvim</value>
-	</data>
+    <value>Təqvim</value>
+  </data>
   <data name="TakvimIcinInternet" xml:space="preserve">
-		<value>Namaz vaxtlarını təzələmək üçün internetə qoşulmanız lazım, Wifi ya da Mobil məlumatı açın və "Təzələ" tuşlayın.</value>
-	</data>
+    <value>Namaz vaxtlarını təzələmək üçün internetə qoşulmanız lazım, Wifi ya da Mobil məlumatı açın və "Təzələ" tuşlayın.</value>
+  </data>
   <data name="TakvimIcinInternetBaslik" xml:space="preserve">
-		<value>İnternet lazım</value>
-	</data>
+    <value>İnternet lazım</value>
+  </data>
   <data name="Tamam" xml:space="preserve">
-		<value>Oldu</value>
-	</data>
+    <value>Oldu</value>
+  </data>
   <data name="Tarih" xml:space="preserve">
-		<value>Tarix</value>
-	</data>
+    <value>Tarix</value>
+  </data>
   <data name="TestiDurdur" xml:space="preserve">
-		<value>Testi saxla</value>
-	</data>
+    <value>Testi saxla</value>
+  </data>
   <data name="TitremeyiDesteklemiyor" xml:space="preserve">
-		<value>Cihazınız titrəməyi dəstəkləmir.</value>
-	</data>
+    <value>Cihazınız titrəməyi dəstəkləmir.</value>
+  </data>
   <data name="TitresimSwitch" xml:space="preserve">
-		<value>Titrət</value>
-	</data>
+    <value>Titrət</value>
+  </data>
   <data name="Turkish" xml:space="preserve">
-		<value>Türkcə</value>
-	</data>
+    <value>Türkcə</value>
+  </data>
   <data name="UygulamaDili" xml:space="preserve">
-		<value>Tətbiq edilən dil</value>
-	</data>
+    <value>Tətbiq edilən dil</value>
+  </data>
   <data name="UygulamaDiliniSecin" xml:space="preserve">
-		<value>Tətbiqat dili seçin</value>
-	</data>
+    <value>Tətbiqat dili seçin</value>
+  </data>
   <data name="UygulamaTema" xml:space="preserve">
-		<value>Tətbiqat təması</value>
-	</data>
+    <value>Tətbiqat təması</value>
+  </data>
   <data name="UygulamaTemasiniSecin" xml:space="preserve">
-		<value>Tətbiqat təmasını seçin</value>
-	</data>
+    <value>Tətbiqat təmasını seçin</value>
+  </data>
   <data name="Uzbek" xml:space="preserve">
-		<value>Özbəkcə</value>
-	</data>
+    <value>Özbəkcə</value>
+  </data>
   <data name="Vakti" xml:space="preserve">
-		<value>Vaxtı: </value>
-	</data>
+    <value>Vaxtı: </value>
+  </data>
   <data name="VaktiHatirlatmasi" xml:space="preserve">
-		<value>Vaxt xatırlatması</value>
-	</data>
+    <value>Vaxt xatırlatması</value>
+  </data>
   <data name="Version" xml:space="preserve">
-		<value>versiya</value>
-	</data>
+    <value>versiya</value>
+  </data>
   <data name="WebSayfa" xml:space="preserve">
-		<value> Web səhfəsi</value>
-	</data>
+    <value> Web səhfəsi</value>
+  </data>
   <data name="Yatsi" xml:space="preserve">
-		<value>Xüftən</value>
-	</data>
+    <value>Xüftən</value>
+  </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-		<value>Xüftən vaxtının bitməsinə qalan müddət: </value>
-	</data>
+    <value>Xüftən vaxtının bitməsinə qalan müddət: </value>
+  </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-		<value>Xüftənin çıxmasından bu yana: </value>
-	</data>
+    <value>Xüftənin çıxmasından bu yana: </value>
+  </data>
   <data name="YatsiSonu" xml:space="preserve">
-		<value>Xüftən sonu</value>
-	</data>
+    <value>Xüftən sonu</value>
+  </data>
   <data name="YayinAkisi" xml:space="preserve">
-		<value> Yayım axışı</value>
-	</data>
+    <value> Yayım axışı</value>
+  </data>
   <data name="YaziBoyutu" xml:space="preserve">
-		<value>Yazı ölçüsü: </value>
-	</data>
+    <value>Yazı ölçüsü: </value>
+  </data>
   <data name="Yenileniyor" xml:space="preserve">
-		<value>Təzələnir</value>
-	</data>
+    <value>Təzələnir</value>
+  </data>
   <data name="YukseklikFormatsiz" xml:space="preserve">
-		<value>Yüksəklik</value>
-	</data>
+    <value>Yüksəklik</value>
+  </data>
   <data name="Zamaninda" xml:space="preserve">
-		<value>Vaxtında</value>
-	</data>
+    <value>Vaxtında</value>
+  </data>
   <data name="FitratTVYoutube" xml:space="preserve">
-		<value>Fitrət Tv Youtube kanalı</value>
-	</data>
+    <value>Fitrət Tv Youtube kanalı</value>
+  </data>
   <data name="Uyghur" xml:space="preserve">
-		<value>Uygurca</value>
-	</data>
-	<data name="DakikaOnceden" xml:space="preserve">
-		<value> dəqiqə əvvəlcədən</value>
-	</data>
-	<data name="AlarmTekrarlari" xml:space="preserve">
-		<value>Zəng siqnalın təkrar sayı: </value>
-	</data>
-	<data name="Kere" xml:space="preserve">
-		<value> dəfə</value>
-	</data>
-	<data name="BildirimNamazVakitleri" xml:space="preserve">
-		<value>Bildirişdə namaz vaxtlarını göstərin</value>
-	</data>
-	<data name="BildirimNamazVakitleriUyari" xml:space="preserve">
-		<value>Qeyd: Onun qüvvəyə minməsi yarım dəqiqə çəkə bilər</value>
-	</data>
+    <value>Uygurca</value>
+  </data>
+  <data name="DakikaOnceden" xml:space="preserve">
+    <value> dəqiqə əvvəlcədən</value>
+  </data>
+  <data name="AlarmTekrarlari" xml:space="preserve">
+    <value>Zəng siqnalın təkrar sayı: </value>
+  </data>
+  <data name="Kere" xml:space="preserve">
+    <value> dəfə</value>
+  </data>
+  <data name="BildirimNamazVakitleri" xml:space="preserve">
+    <value>Bildirişdə namaz vaxtlarını göstərin</value>
+  </data>
+  <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
+    <value>Qeyd: Onun qüvvəyə minməsi yarım dəqiqə çəkə bilər</value>
+  </data>
+  <data name="HepKonumYenile" xml:space="preserve">
+    <value>Proqram hər dəfə açılanda məkanı və namaz vaxtlarını yeniləyin</value>
+  </data>
 </root>

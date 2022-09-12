@@ -532,4 +532,7 @@ This application is designed to provide safe and fast access to prayer and fasti
   <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
     <value>Note: It may take half a minute to take effect</value>
   </data>
+  <data name="HepKonumYenile" xml:space="preserve">
+    <value>Renew location and prayer times every time the app is opened</value>
+  </data>
 </root>

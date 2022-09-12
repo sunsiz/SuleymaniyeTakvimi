@@ -198,7 +198,7 @@
     <value>Мы рекомендуем не отключать этот параметр. Если его отключить, то будильник не сможет сработать вовремя. Если ваши будильники не звонят, проверьте настройки приложения. В этих настройках в разделе «Другие разрешения» проверьте, что выбрано разрешение «Запуск в фоновом режиме». Убедитесь, что в разделе «Экономия заряда батареи» выбран параметр «Без ограничений». Теперь, если вы хотите проверить эти разрешения, нажмите кнопку ниже.</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-	  <value>Время напоминания: </value>
+    <value>Время напоминания: </value>
   </data>
   <data name="Birsessecin" xml:space="preserve">
     <value>Выбирете звук</value>
@@ -396,7 +396,7 @@
     <value>Конец Фаджра</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-	  <value>Время до окончания Фаджр (утреннего намаза): </value>
+    <value>Время до окончания Фаджр (утреннего намаза): </value>
   </data>
   <data name="Sehir" xml:space="preserve">
     <value>Город</value>
@@ -411,7 +411,7 @@
     <value>Тест звука</value>
   </data>
   <data name="SorunCikti" xml:space="preserve">
-	  <value>Возникла проблемa</value>
+    <value>Возникла проблемa</value>
   </data>
   <data name="SosyalMedyaBaglantisi" xml:space="preserve">
     <value>Наши ссылки в социальных сетях</value>
@@ -447,7 +447,7 @@
     <value>Дата</value>
   </data>
   <data name="TestiDurdur" xml:space="preserve">
-	  <value>Остановить загрузку звукa</value>
+    <value>Остановить загрузку звукa</value>
   </data>
   <data name="TitremeyiDesteklemiyor" xml:space="preserve">
     <value>Устройство не поддерживает вибрацию.</value>
@@ -492,7 +492,7 @@
     <value>Иша</value>
   </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-	  <value>Время оставшееся до окончания Иша (после вечернего намаза): </value>
+    <value>Время оставшееся до окончания Иша (после вечернего намаза): </value>
   </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
     <value>После завершения Иша (после вечернего намаза): </value>
@@ -519,18 +519,21 @@
     <value>https://www.fatva.net/%d0%b2%d1%80%d0%b5%d0%bc%d0%b5%d0%bd%d0%b0-%d0%bd%d0%b0%d0%bc%d0%b0%d0%b7%d0%b0-%d0%b8-%d0%bf%d0%be%d1%81%d1%82%d0%b0-%d0%be%d1%82-%d1%8d%d0%ba%d0%b2%d0%b0%d1%82%d0%be%d1%80%d0%b0-%d0%b4%d0%be-2</value>
   </data>
   <data name="DakikaOnceden" xml:space="preserve">
-	  <value> минут раньше</value>
+    <value> минут раньше</value>
   </data>
   <data name="AlarmTekrarlari" xml:space="preserve">
-	  <value>Повторяется сигнал будильника: </value>
+    <value>Повторяется сигнал будильника: </value>
   </data>
   <data name="Kere" xml:space="preserve">
-	  <value> раз</value>
+    <value> раз</value>
   </data>
   <data name="BildirimNamazVakitleri" xml:space="preserve">
-	  <value>Показывать время молитвы в уведомлении</value>
+    <value>Показывать время молитвы в уведомлении</value>
   </data>
   <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
-	  <value>Примечание. Для вступления в силу может потребоваться полминуты.</value>
+    <value>Примечание. Для вступления в силу может потребоваться полминуты.</value>
+  </data>
+  <data name="HepKonumYenile" xml:space="preserve">
+    <value>Обновлять местоположение и время молитв каждый раз, когда приложение открывается</value>
   </data>
 </root>

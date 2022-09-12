@@ -10,7 +10,7 @@ using Android.Media;
 using Android.Util;
 using AndroidX.Core.App;
 using Xamarin.Essentials;
-using Microsoft.AppCenter.Analytics;
+//using Microsoft.AppCenter.Analytics;
 //using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Localization;
 using Uri = Android.Net.Uri;
@@ -27,7 +27,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            Analytics.TrackEvent("OnCreate in the AlarmActivity");
+            //Analytics.TrackEvent("OnCreate in the AlarmActivity");
             // Create your application here
             SetContentView(Resource.Layout.AlarmLayout);
             //get the current intent
@@ -139,7 +139,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         private void PlayAlarm(string name)
         {
-            Analytics.TrackEvent("PlayAlarm in the AlarmActivity");
+            //Analytics.TrackEvent("PlayAlarm in the AlarmActivity");
 
             var key = "";
             switch (name)
@@ -250,7 +250,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         private static void Vibrate()
         {
-            Analytics.TrackEvent("Vibrate in the AlarmActivity");
+            //Analytics.TrackEvent("Vibrate in the AlarmActivity");
             try
             {
                 // Use default vibration length

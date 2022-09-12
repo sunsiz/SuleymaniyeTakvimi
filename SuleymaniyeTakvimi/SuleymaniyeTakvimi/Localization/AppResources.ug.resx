@@ -121,10 +121,10 @@
     <value>بۇلۇڭ</value>
   </data>
   <data name="Aksam" xml:space="preserve">
-	  <value>ناماز شام</value>
+    <value>ناماز شام</value>
   </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-	  <value>ناماز شامنىڭ چىقىشىغا قالغان ۋاقىت: </value>
+    <value>ناماز شامنىڭ چىقىشىغا قالغان ۋاقىت: </value>
   </data>
   <data name="AlarmHatasi" xml:space="preserve">
     <value>قوڭغۇراق جىرىڭلىغاندا بىر خاتالىق كۆرۈلدى، تەپسىلاتلار</value>
@@ -166,7 +166,7 @@
     <value>ئۇقتۇرۇش كۆرسىتىش</value>
   </data>
   <data name="BildirmeZamani" xml:space="preserve">
-	  <value>ئەسكەرتىش ۋاقتى: </value>
+    <value>ئەسكەرتىش ۋاقتى: </value>
   </data>
   <data name="Birsessecin" xml:space="preserve">
     <value>قوڭغۇراق ئاۋازى تاللاڭ</value>
@@ -199,7 +199,7 @@
     <value>ئەزان (مەككە)</value>
   </data>
   <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
-	  <value>زولۇق ۋاقتىنىڭ كىرىشىگە قالغان ۋاقىت: </value>
+    <value>زولۇق ۋاقتىنىڭ كىرىشىگە قالغان ۋاقىت: </value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
     <value>زولۇق</value>
@@ -208,7 +208,7 @@
     <value>بامدات</value>
   </data>
   <data name="FecriSadikakalanvakit" xml:space="preserve">
-	  <value>بامداتنىڭ كىرىشىگە (زولۇقنىڭ توختىشىغا) قالغان ۋاقىت: </value>
+    <value>بامداتنىڭ كىرىشىگە (زولۇقنىڭ توختىشىغا) قالغان ۋاقىت: </value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
     <value>رادىئو فىترەت - فىترەت ساداسى</value>
@@ -244,10 +244,10 @@
     <value>مەزمۇن يۈكلىنىۋاتىدۇ ...</value>
   </data>
   <data name="Ikindi" xml:space="preserve">
-	  <value>ناماز دىگەر</value>
+    <value>ناماز دىگەر</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-	  <value>ناماز دىگەرنىڭ چىقىشىغا قالغان ۋاقىت: </value>
+    <value>ناماز دىگەرنىڭ چىقىشىغا قالغان ۋاقىت: </value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>تاقاش</value>
@@ -292,10 +292,10 @@
     <value>پېشىن</value>
   </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-	  <value>پېشىننىڭ چىقىشىغا قالغان ۋاقىت: </value>
+    <value>پېشىننىڭ چىقىشىغا قالغان ۋاقىت: </value>
   </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-	  <value>پېشىننىڭ كىرىشىگە قالغان ۋاقىت: </value>
+    <value>پېشىننىڭ كىرىشىگە قالغان ۋاقىت: </value>
   </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>ئون بەش مىنۇت بۇرۇن</value>
@@ -325,7 +325,7 @@
     <value>كۈن چىقىش</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-	  <value>بامداتنىڭ ئاخىرلىشىشىغا قالغان ۋاقىت: </value>
+    <value>بامداتنىڭ ئاخىرلىشىشىغا قالغان ۋاقىت: </value>
   </data>
   <data name="Sehir" xml:space="preserve">
     <value>شەھەر</value>
@@ -385,7 +385,7 @@
     <value>ۋاقتى: </value>
   </data>
   <data name="VaktiHatirlatmasi" xml:space="preserve">
-	  <value>ۋاقتى</value>
+    <value>ۋاقتى</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>نەشرى</value>
@@ -397,10 +397,10 @@
     <value>خۇپتەن</value>
   </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-	  <value>خۇپتەننىڭ چىقىشىغا قالغان ۋاقىت: </value>
+    <value>خۇپتەننىڭ چىقىشىغا قالغان ۋاقىت: </value>
   </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-	  <value>خۇپتەن چىققاندىن بېرى ئۆتكەن ۋاقىت: </value>
+    <value>خۇپتەن چىققاندىن بېرى ئۆتكەن ۋاقىت: </value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
     <value>خۇپتەن ئاخىرى</value>
@@ -519,18 +519,21 @@
     <value>ئۆزبېكچە</value>
   </data>
   <data name="DakikaOnceden" xml:space="preserve">
-	  <value> مىنۇت بۇرۇن</value>
+    <value> مىنۇت بۇرۇن</value>
   </data>
   <data name="AlarmTekrarlari" xml:space="preserve">
-	  <value>قوڭغۇراق ئاۋازى قايتىلاش سانى:</value>
+    <value>قوڭغۇراق ئاۋازى قايتىلاش سانى:</value>
   </data>
   <data name="Kere" xml:space="preserve">
-	  <value> قېتىم</value>
+    <value> قېتىم</value>
   </data>
   <data name="BildirimNamazVakitleri" xml:space="preserve">
-	  <value>ناماز ۋاقتىنى ئۇقتۇرۇشتا كۆرسىتىش</value>
+    <value>ناماز ۋاقتىنى ئۇقتۇرۇشتا كۆرسىتىش</value>
   </data>
   <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
-	  <value>ئەسكەرتىش: كۈچكە ئىگە بولۇش ئۈچۈن يېرىم مىنۇت ۋاقىت كېتىشى مۇمكىن</value>
+    <value>ئەسكەرتىش: كۈچكە ئىگە بولۇش ئۈچۈن يېرىم مىنۇت ۋاقىت كېتىشى مۇمكىن</value>
+  </data>
+  <data name="HepKonumYenile" xml:space="preserve">
+    <value>ھەر قېتىم ئەپ ئېچىلغاندا ئورۇن ۋە ناماز ۋاقتىنى يېڭىلاش</value>
   </data>
 </root>

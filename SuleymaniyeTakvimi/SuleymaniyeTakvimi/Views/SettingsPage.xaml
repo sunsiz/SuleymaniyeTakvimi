@@ -108,6 +108,19 @@
                             <Slider HorizontalOptions="FillAndExpand" HeightRequest="48" Maximum="30" Minimum="1" Value="{Binding AlarmDuration}" MaximumTrackColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.LabeledBy="LabelAlarmDuration"/>
                 </StackLayout>
             </pancakeView:PancakeView>
+            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
+                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+                <pancakeView:PancakeView.Shadow>
+                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                </pancakeView:PancakeView.Shadow>
+                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                        <Switch HorizontalOptions="Start" HeightRequest="48" WidthRequest="48" IsToggled="{Binding AlwaysRenewLocationEnabled}" Visual="Material" />
+                        <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate HepKonumYenile}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material"/>
+                    </StackLayout>
+            </pancakeView:PancakeView>
             <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center" >
                 <pancakeView:PancakeView.IsVisible>
                     <OnPlatform x:TypeArguments="system:Boolean">

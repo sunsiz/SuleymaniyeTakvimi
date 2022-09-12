@@ -21,8 +21,8 @@ using Android.App;
 //      Minor Version 
 //      Build Number
 //      Revision
-[assembly: AssemblyVersion("2.0.9.0")]
-[assembly: AssemblyFileVersion("2.0.9.0")]
+[assembly: AssemblyVersion("2.1.1.0")]
+[assembly: AssemblyFileVersion("2.1.1.0")]
 
 // Add some common permissions, these can be removed if not needed
 //[assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
@@ -30,12 +30,12 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.AccessNetworkState)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessFineLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessCoarseLocation)]
-[assembly: UsesPermission(Android.Manifest.Permission.AccessMockLocation)]
+//[assembly: UsesPermission(Android.Manifest.Permission.AccessMockLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.Vibrate)]
-[assembly: UsesPermission(Android.Manifest.Permission.BatteryStats)]
+//[assembly: UsesPermission(Android.Manifest.Permission.BatteryStats)]
 [assembly: UsesPermission(Android.Manifest.Permission.ReceiveBootCompleted)]
 [assembly: UsesPermission(Android.Manifest.Permission.SetAlarm)]
-[assembly: UsesPermission(Android.Manifest.Permission.WakeLock)]
+//[assembly: UsesPermission(Android.Manifest.Permission.WakeLock)]
 [assembly: UsesPermission(Android.Manifest.Permission.ForegroundService)]
 [assembly: UsesPermission(Android.Manifest.Permission.UseFullScreenIntent)]
 [assembly: UsesPermission(Android.Manifest.Permission.RequestIgnoreBatteryOptimizations)]

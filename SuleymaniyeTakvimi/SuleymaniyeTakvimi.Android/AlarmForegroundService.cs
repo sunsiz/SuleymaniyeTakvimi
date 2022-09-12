@@ -5,7 +5,7 @@ using Android.Content;
 using Android.OS;
 using Android.Util;
 using Java.Util;
-using Microsoft.AppCenter.Analytics;
+//using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
@@ -19,7 +19,7 @@ namespace SuleymaniyeTakvimi.Droid
         private readonly int DELAY_BETWEEN_MESSAGES = 30000;
         private readonly int NOTIFICATION_ID = 1993;
         private readonly string NOTIFICATION_CHANNEL_ID = "SuleymaniyeTakvimichannelId";
-        private readonly string channelName = "Suleymaniye Takvimi";
+        private readonly string channelName = AppResources.SuleymaniyeVakfiTakvimi;
         private readonly string channelDescription = "The Suleymaniye Takvimi notification channel.";
         private Notification _notification;
         private bool _isStarted;
@@ -84,7 +84,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void CancelAlarm()
         {
-            Analytics.TrackEvent("CancelAlarm in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
+            //Analytics.TrackEvent("CancelAlarm in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
             AlarmManager alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService);
             Intent intent = new Intent(Application.Context, typeof(AlarmActivity));
             var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
@@ -292,7 +292,7 @@ namespace SuleymaniyeTakvimi.Droid
                 System.Diagnostics.Debug.WriteLine("OnStartCommand Null Intent Exception: " + source + " was null, flags=" + flags + " bits=" + flags);
                 return StartCommandResult.RedeliverIntent;
             }
-            Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
+            //Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
             if (intent.Action.Equals("SuleymaniyeTakvimi.action.START_SERVICE"))
             {
                 if (_isStarted)

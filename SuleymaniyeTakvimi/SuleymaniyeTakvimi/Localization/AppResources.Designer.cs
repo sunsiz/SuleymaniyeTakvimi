@@ -629,6 +629,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renew location and prayer times every time the app is opened.
+        /// </summary>
+        public static string HepKonumYenile {
+            get {
+                return ResourceManager.GetString("HepKonumYenile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rooster Crowing.
         /// </summary>
         public static string HorozOtusu {

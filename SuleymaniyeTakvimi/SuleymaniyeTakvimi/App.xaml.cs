@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using SuleymaniyeTakvimi.Services;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
+//using Microsoft.AppCenter;
+//using Microsoft.AppCenter.Analytics;
+//using Microsoft.AppCenter.Crashes;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Models;
 using Xamarin.CommunityToolkit.Helpers;
@@ -70,9 +70,9 @@ namespace SuleymaniyeTakvimi
 
         protected override void OnStart()
         {
-            AppCenter.Start("android=a40bd6f0-5ad7-4b36-9a89-740333948b82;" +
-                            "ios=f757b6ef-a959-4aac-9404-98dbbd2fb1bb;",
-                typeof(Analytics), typeof(Crashes));
+            //AppCenter.Start("android=a40bd6f0-5ad7-4b36-9a89-740333948b82;" +
+            //                "ios=f757b6ef-a959-4aac-9404-98dbbd2fb1bb;",
+            //    typeof(Analytics), typeof(Crashes));
             //SetReminderEnabled();
             VersionTracking.Track();
             OnResume();

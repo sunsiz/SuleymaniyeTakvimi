@@ -76,7 +76,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         //        Preferences.Set(ItemId + "AlarmTekrarlari", value);
         //    }
         //}
-        public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform == DevicePlatform.iOS || Etkin);
+        public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform == DevicePlatform.iOS);
 
         public ItemDetailViewModel()
         {

@@ -32,6 +32,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private ObservableCollection<Item> _items;
         private string _remainingTime;
+        private bool _permissionRequested;
 
         public ObservableCollection<Item> Items { get => _items; set => SetProperty<ObservableCollection<Item>>(ref _items, value); }
 
@@ -147,6 +148,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             //CheckLocationInfo(data, 3000);
             if (!Preferences.Get("LocationSaved", false))
                 CheckLocationInfo(3000);
+            if (Preferences.Get("AlwaysRenewLocationEnabled", false)) RefreshLocationCommand.Execute(null);
             //CheckLocationInfo(data, 60000);
             //Dark = Theme.Tema != 1;//0 is dark, 1 is light
             //Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
@@ -257,12 +259,13 @@ namespace SuleymaniyeTakvimi.ViewModels
         public void OnAppearing()
         {
             Debug.WriteLine("TimeStamp-OnAppearing-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
-            if (!Preferences.Get("LocationSaved", false))
+            if (!Preferences.Get("LocationSaved", false) && !_permissionRequested)
             {
 
                 var result = DependencyService.Get<IPermissionService>().HandlePermissionAsync()
                     .ConfigureAwait(false);
                 Debug.WriteLine($"**** {this.GetType().Name}.{nameof(OnAppearing)}: {result}");
+                _permissionRequested = true;
                 //Task.Run(async () =>
                 //{
                 //    var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync()

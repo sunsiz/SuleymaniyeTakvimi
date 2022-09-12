@@ -95,12 +95,6 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.2.0.564</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>4.5.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>4.5.1</Version>
-    </PackageReference>
     <PackageReference Include="Plugin.MediaManager.Forms">
       <Version>1.1.1</Version>
     </PackageReference>
@@ -115,13 +109,13 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>5.0.0.2478</Version>
+      <Version>5.0.0.2515</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.3.0.759</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>5.0.0.2478</Version>
+      <Version>5.0.0.2515</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

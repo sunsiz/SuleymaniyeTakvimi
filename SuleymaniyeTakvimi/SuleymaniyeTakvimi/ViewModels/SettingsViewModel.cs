@@ -24,6 +24,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private bool _dark;
         private bool _foregroundServiceEnabled;
         private bool _notificationPrayerTimesEnabled;
+        private bool _alwaysRenewLocationEnabled;
         private int _currentTheme;
         private int _alarmDuration;
 
@@ -84,6 +85,18 @@ namespace SuleymaniyeTakvimi.ViewModels
                 {
                     SetProperty(ref _notificationPrayerTimesEnabled, value);
                     Preferences.Set("NotificationPrayerTimesEnabled", value);
+                }
+            }
+        }
+        public bool AlwaysRenewLocationEnabled
+        {
+            get => _alwaysRenewLocationEnabled;
+            set
+            {
+                if (_alwaysRenewLocationEnabled!=value)
+                {
+                    SetProperty(ref _alwaysRenewLocationEnabled, value);
+                    Preferences.Set("AlwaysRenewLocationEnabled", value);
                 }
             }
         }

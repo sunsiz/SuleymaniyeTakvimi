@@ -1,5 +1,5 @@
 ﻿using Acr.UserDialogs;
-using Microsoft.AppCenter.Analytics;
+//using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Models;
 using System;
@@ -53,7 +53,7 @@ namespace SuleymaniyeTakvimi.Services
 
         public async Task<Location> GetCurrentLocationAsync(bool refreshLocation)
         {
-            Analytics.TrackEvent("GetCurrentLocation in the DataService Triggered: " + $" at {DateTime.Now}");
+            //Analytics.TrackEvent("GetCurrentLocation in the DataService Triggered: " + $" at {DateTime.Now}");
             var location = new Location(0,0);
             if (!askedLocationPermission)
             {
@@ -149,7 +149,7 @@ namespace SuleymaniyeTakvimi.Services
 
         public async Task<Takvim> VakitHesabiAsync()
         {
-            Analytics.TrackEvent("VakitHesabi in the DataService Triggered: " + $" at {DateTime.Now}");
+            //Analytics.TrackEvent("VakitHesabi in the DataService Triggered: " + $" at {DateTime.Now}");
             _takvim = GetTakvimFromFile();
             if (_takvim != null) return _takvim;
             _takvim = new Takvim();
@@ -276,7 +276,7 @@ namespace SuleymaniyeTakvimi.Services
         //When refreshLocation true, force refresh location not using last known location.
         public async Task<Takvim> GetPrayerTimesAsync(bool refreshLocation)
         {
-            Analytics.TrackEvent("GetPrayerTimes in the DataService Triggered: " + $" at {DateTime.Now}");
+            //Analytics.TrackEvent("GetPrayerTimes in the DataService Triggered: " + $" at {DateTime.Now}");
             Debug.WriteLine("TimeStamp-GetPrayerTimes-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             //if (File.Exists(FileName))
             //{
@@ -424,7 +424,7 @@ namespace SuleymaniyeTakvimi.Services
 
         public IList<Takvim> GetMonthlyPrayerTimes(Location location, bool forceRefresh)
         {
-            Analytics.TrackEvent("GetMonthlyPrayerTimes in the DataService Triggered: " + $" at {DateTime.Now}");
+            //Analytics.TrackEvent("GetMonthlyPrayerTimes in the DataService Triggered: " + $" at {DateTime.Now}");
             if (File.Exists(_fileName) && !forceRefresh)
             {
                 try

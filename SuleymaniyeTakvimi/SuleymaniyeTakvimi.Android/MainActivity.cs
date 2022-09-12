@@ -27,6 +27,7 @@ namespace SuleymaniyeTakvimi.Droid
         public static MainActivity Instance;
         //private Intent _startServiceIntent;
         //private Intent _stopServiceIntent;
+        public bool _permissionRequested;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -91,21 +92,26 @@ namespace SuleymaniyeTakvimi.Droid
             //}
             else if (status == PermissionStatus.Denied)
             {
-                if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+                if (!_permissionRequested)
                 {
-                    UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+                    if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+                    {
+                        UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+                    }
+
+                    _permissionRequested = true;
+                    var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+                    {
+                        AndroidStyleId = 0,
+                        CancelText = AppResources.Kapat,
+                        Message = AppResources.KonumIzniIcerik,
+                        OkText = AppResources.GotoSettings,
+                        Title = AppResources.KonumIzniBaslik
+                    }).ConfigureAwait(false);
+                    if (result) AppInfo.ShowSettingsUI();
+                    System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
                 }
 
-                var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
-                {
-                    AndroidStyleId = 0,
-                    CancelText = AppResources.Kapat,
-                    Message = AppResources.KonumIzniIcerik,
-                    OkText = AppResources.GotoSettings,
-                    Title = AppResources.KonumIzniBaslik
-                }).ConfigureAwait(false);
-                if (result) AppInfo.ShowSettingsUI();
-                System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
             }
             else if (status == PermissionStatus.Disabled)
             {
@@ -121,7 +127,7 @@ namespace SuleymaniyeTakvimi.Droid
                 if (result) OpenDeviceLocationSettingsPage();
                 System.Diagnostics.Debug.WriteLine("Permission Request result:", result.ToString());
             }
-        //});
+            //});
             status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
             return status;
             //var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
