@@ -191,6 +191,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 var qiblaLocation = new Location(_qiblaLatitude, _qiblaLongitude);
                 var position = new Location(_currentLatitude, _currentLongitude);
                 var res = DistanceCalculator.Bearing(position, qiblaLocation);
+                //Heading = e.Reading.HeadingMagneticNorth * Math.PI / 180 + res;
                 var targetHeading = (360 - res) % 360;
 
                 var currentHeading = 360 - e.Reading.HeadingMagneticNorth;

@@ -1,0 +1,5 @@
+﻿"CFBundleDisplayName" = "Sulaymoniya Taqvimi";
+"CFBundleName" = "Sulaymoniya Taqvimi";
+"NSLocationWhenInUseUsageDescription" = "Joriy joylashuvingiz uchun namoz vaqtlarini ko‘rsatish uchun joylashuv ruxsati talab qilinadi";
+"NSLocationAlwaysUsageDescription" = "Joriy joylashuvingiz uchun namoz vaqtlarini ko‘rsatish uchun joylashuv ruxsati talab qilinadi";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Joriy joylashuvingiz uchun namoz vaqtlarini ko‘rsatish uchun joylashuv ruxsati talab qilinadi";

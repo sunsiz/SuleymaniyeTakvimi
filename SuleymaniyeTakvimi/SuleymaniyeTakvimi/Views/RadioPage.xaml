@@ -7,7 +7,7 @@
         <viewModels:RadioViewModel />
     </ContentPage.BindingContext>
     <Shell.TitleView>
-        <StackLayout Orientation="Horizontal" Margin="10">
+        <StackLayout Orientation="Horizontal" HeightRequest="34" Margin="10">
             <Label Style="{StaticResource LabelSectionHeader}" HorizontalOptions="StartAndExpand" FontSize="18" Text="{behaviors:Translate FitratinSesi}" VerticalTextAlignment="Center" />
         </StackLayout>
     </Shell.TitleView>

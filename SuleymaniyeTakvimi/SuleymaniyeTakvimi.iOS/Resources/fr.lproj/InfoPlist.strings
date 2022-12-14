@@ -1,0 +1,5 @@
+﻿"CFBundleDisplayName" = "Calendrier de Süleymaniye";
+"CFBundleName" = "Calendrier de Süleymaniye";
+"NSLocationWhenInUseUsageDescription" = "Une autorisation de localisation est requise pour afficher les heures de prière pour votre emplacement actuel";
+"NSLocationAlwaysUsageDescription" = "Une autorisation de localisation est requise pour afficher les heures de prière pour votre emplacement actuel";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Une autorisation de localisation est requise pour afficher les heures de prière pour votre emplacement actuel";

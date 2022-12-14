@@ -157,7 +157,9 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private void CheckLocationInfo(int timeDelay)
         {
-            if (!DependencyService.Get<IPermissionService>().IsLocationServiceEnabled()) return;
+            var service = DependencyService.Get<IPermissionService>();
+            var isLocationEnabled = service.IsLocationServiceEnabled();
+            if (!isLocationEnabled) return;
             Task.Run(async () =>
             {
                 if (!data.HaveInternet()) return;

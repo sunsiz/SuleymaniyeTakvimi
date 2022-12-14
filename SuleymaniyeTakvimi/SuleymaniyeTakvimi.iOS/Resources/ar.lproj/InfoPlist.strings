@@ -1,0 +1,5 @@
+﻿"CFBundleDisplayName" = "قويم السليمانية";
+"CFBundleName" = "قويم السليمانية";
+"NSLocationWhenInUseUsageDescription" = "إذن الموقع مطلوب لإظهار أوقات الصلاة لموقعك الحالي";
+"NSLocationAlwaysUsageDescription" = "إذن الموقع مطلوب لإظهار أوقات الصلاة لموقعك الحالي";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "إذن الموقع مطلوب لإظهار أوقات الصلاة لموقعك الحالي";

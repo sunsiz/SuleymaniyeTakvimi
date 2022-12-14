@@ -11,7 +11,7 @@
     </ContentPage.BindingContext>-->
     
     <Shell.TitleView>
-        <StackLayout Orientation="Horizontal" Margin="10">
+        <StackLayout Orientation="Horizontal" HeightRequest="34" Margin="10">
             <Label Style="{StaticResource LabelSectionHeader}" HorizontalOptions="StartAndExpand" FontSize="18" Text="{behaviors:Translate KibleGostergesi}" VerticalTextAlignment="Center" />
             <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe627;">
                 <Label.GestureRecognizers>
@@ -36,7 +36,7 @@
                         <FlexLayout Direction="Column" AlignItems="Center">
                             <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="{Binding LatitudeAltitude}" />
                             <Label Margin="5" Padding="5,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="{Binding DegreeLongitude}" />
-                            <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3" Padding="9" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" CornerRadius="29" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
+                            <pancakeView:PancakeView MinimumWidthRequest="300" Margin="3" Padding="9" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" CornerRadius="{OnPlatform Android=25, iOS=20}" Shadow="{pancakeView:ShadowMarkup BlurRadius=5, Opacity=0.3, Offset='4,4'}">
                                 <Label Padding="9,3" HorizontalOptions="Center" VerticalTextAlignment="Center" Style="{DynamicResource LabelStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" FontAttributes="Bold" TextColor="{StaticResource PrimaryAccent50Color}" Text="{behaviors:Translate HaritadaGoster}" />
                                 <pancakeView:PancakeView.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding GoToMapCommand}" />

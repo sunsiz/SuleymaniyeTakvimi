@@ -85,6 +85,21 @@
     <BundleResource Include="Resources\base.lproj\kompas.png" />
     <BundleResource Include="Resources\ug.lproj\kompas.png" />
     <BundleResource Include="Resources\zh.lproj\kompas.png" />
+    <Compile Include="CustomShellRenderer.cs" />
+    <BundleResource Include="Resources\ar.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\ar.lproj\kompas.png" />
+    <BundleResource Include="Resources\az.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\az.lproj\kompas.png" />
+    <BundleResource Include="Resources\de.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\de.lproj\kompas.png" />
+    <BundleResource Include="Resources\fa.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\fa.lproj\kompas.png" />
+    <BundleResource Include="Resources\fr.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\fr.lproj\kompas.png" />
+    <BundleResource Include="Resources\ru.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\ru.lproj\kompas.png" />
+    <BundleResource Include="Resources\uz.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\uz.lproj\kompas.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -150,15 +165,15 @@
       <Version>1.6.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>2.0.4</Version>
+      <Version>2.0.5</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.3.0.759</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>5.0.0.2515</Version>
+      <Version>5.0.0.2545</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -201,5 +216,14 @@
   <ItemGroup />
   <ItemGroup>
     <BundleResource Include="Resources\tr.lproj\kompas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\ar.lproj\" />
+    <Folder Include="Resources\az.lproj\" />
+    <Folder Include="Resources\de.lproj\" />
+    <Folder Include="Resources\fa.lproj\" />
+    <Folder Include="Resources\fr.lproj\" />
+    <Folder Include="Resources\ru.lproj\" />
+    <Folder Include="Resources\uz.lproj\" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,5 @@
+﻿"CFBundleDisplayName" = "تقویم سلیمانیه";
+"CFBundleName" = "تقویم سلیمانیه";
+"NSLocationWhenInUseUsageDescription" = "مجوز مکان برای نشان دادن اوقات نماز برای مکان فعلی شما لازم است";
+"NSLocationAlwaysUsageDescription" = "مجوز مکان برای نشان دادن اوقات نماز برای مکان فعلی شما لازم است";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "مجوز مکان برای نشان دادن اوقات نماز برای مکان فعلی شما لازم است";

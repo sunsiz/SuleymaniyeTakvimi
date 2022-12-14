@@ -1,0 +1,5 @@
+﻿"CFBundleDisplayName" = "Süleymaniye Kalender";
+"CFBundleName" = "Süleymaniye Kalender";
+"NSLocationWhenInUseUsageDescription" = "Die Standortberechtigung ist erforderlich, um die Gebetszeiten für Ihren aktuellen Standort anzuzeigen";
+"NSLocationAlwaysUsageDescription" = "Die Standortberechtigung ist erforderlich, um die Gebetszeiten für Ihren aktuellen Standort anzuzeigen";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Die Standortberechtigung ist erforderlich, um die Gebetszeiten für Ihren aktuellen Standort anzuzeigen";
