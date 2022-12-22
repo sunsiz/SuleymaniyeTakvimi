@@ -307,7 +307,15 @@ namespace SuleymaniyeTakvimi.Services
                     YazKis = TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now) ? 1 : 0,
                     Tarih = DateTime.Today.ToString("dd/MM/yyyy")
                 };
-
+                DateTime now=DateTime.Now;
+                DateTime withKind = DateTime.SpecifyKind(now, DateTimeKind.Local);
+                Console.WriteLine("{0} - Time is ambiguous? {1}", TimeZoneInfo.Local.DaylightName,TimeZoneInfo.Local.IsAmbiguousTime(withKind));
+                Console.WriteLine("{0} - Time is daylight saving time? {1}", TimeZoneInfo.Local.StandardName,TimeZoneInfo.Local.IsDaylightSavingTime(withKind));
+                Console.WriteLine("{0} - Time is support daylight saving time? {1}", TimeZoneInfo.Local.DisplayName,TimeZoneInfo.Local.SupportsDaylightSavingTime);
+                if (TimeZoneInfo.Local.IsAmbiguousTime(withKind) || TimeZoneInfo.Local.SupportsDaylightSavingTime ||
+                    TimeZoneInfo.Local.IsDaylightSavingTime(withKind))
+                    Console.WriteLine("{0} may be daylight saving time in {1}.", 
+                        withKind, TimeZoneInfo.Local.DisplayName);
                 var client = new HttpClient();
                 //string baseUrl = "http://servis.suleymaniyetakvimi.com/servis.asmx/";
                 //client.BaseAddress = new Uri(baseUrl);

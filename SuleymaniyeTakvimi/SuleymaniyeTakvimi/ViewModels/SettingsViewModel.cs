@@ -138,7 +138,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             GotoSettingsCommand = new Command(() => { AppInfo.ShowSettingsUI(); });
             _alarmDuration = Preferences.Get("AlarmDuration", 4);
             _foregroundServiceEnabled = Preferences.Get("ForegroundServiceEnabled", true);
-            _notificationPrayerTimesEnabled = Preferences.Get("NotificationPrayerTimesEnabled", true);
+            _notificationPrayerTimesEnabled = Preferences.Get("NotificationPrayerTimesEnabled", false);
+            _alwaysRenewLocationEnabled = Preferences.Get("AlwaysRenewLocationEnabled", false);
             IsBusy = false;
         }
         
