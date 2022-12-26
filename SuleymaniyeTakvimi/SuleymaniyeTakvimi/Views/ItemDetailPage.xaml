@@ -12,7 +12,7 @@
         <viewModels:ItemDetailViewModel/>
     </ContentPage.BindingContext>-->
     <ScrollView VerticalScrollBarVisibility="Never">
-        <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18,14" Margin="9">
+        <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18,14" Margin="{OnPlatform Android=9, iOS='9,10,9,9'}">
             <pancakeView:PancakeView.BackgroundGradientStops>
                 <pancakeView:GradientStop Color="{AppThemeBinding Light=AliceBlue, Dark={StaticResource AppBackgroundColorDark}}" Offset="0"/>
                 <pancakeView:GradientStop Color="{AppThemeBinding Light=WhiteSmoke, Dark={StaticResource Primary}}" Offset="1"/>
@@ -49,7 +49,7 @@
                             <Label HorizontalOptions="StartAndExpand" Text="{Binding Vakit}" Style="{DynamicResource LabelStyle}" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" VerticalTextAlignment="Center" Visual="Material"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                            <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate EtkinlestirSwitchAciklama}" Visual="Material">
+                            <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" Margin="{OnPlatform Android=0, iOS='0,19,0,0'}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate EtkinlestirSwitchAciklama}" Visual="Material">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding EnableSwitchToggled}" CommandParameter="{Binding Etkin}"/>
                                 </Switch.Behaviors>
@@ -68,7 +68,7 @@
                     </pancakeView:PancakeView.Shadow>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="14,1">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
-                            <Switch IsToggled="{Binding Bildiri}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate BildirimGosterSwitch}" Visual="Material">
+                            <Switch IsToggled="{Binding Bildiri}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" Margin="{OnPlatform Android=0, iOS='0,19,0,0'}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate BildirimGosterSwitch}" Visual="Material">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding BildiriCheckedChanged}" CommandParameter="{Binding Bildiri}"/>
                                 </Switch.Behaviors>
@@ -76,7 +76,7 @@
                             <Label HorizontalOptions="Start" Text="{behaviors:Translate BildirimGosterSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" VerticalTextAlignment="Center" Visual="Material"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                            <Switch IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate TitresimSwitch}" Visual="Material">
+                            <Switch IsToggled="{Binding Titreme}" IsEnabled="{Binding Etkin}" HeightRequest="48" WidthRequest="48" Margin="{OnPlatform Android=0, iOS='0,19,0,0'}" VerticalOptions="Center" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate TitresimSwitch}" Visual="Material">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding TitremeCheckedChanged}" CommandParameter="{Binding Titreme}"/>
                                 </Switch.Behaviors>
@@ -94,7 +94,7 @@
                         </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
-                <pancakeView:PancakeView CornerRadius="9" Grid.Row="6" Grid.ColumnSpan="2" Margin="4,0" IsVisible="{Binding Etkin}">
+                <pancakeView:PancakeView CornerRadius="9" Grid.Row="6" Grid.ColumnSpan="2" Margin="4,0" Padding="5" IsVisible="{Binding Etkin}">
                     <pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
                         <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
