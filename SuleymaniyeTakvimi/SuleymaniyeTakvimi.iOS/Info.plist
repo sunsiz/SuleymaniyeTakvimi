@@ -25,9 +25,9 @@
 	<key>CFBundleDisplayName</key>
 	<string>Süleymaniye Takvimi</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.SuleymaniyeTakvimi</string>
+	<string>MRA.Suleymaniye-Takvimi</string>
 	<key>CFBundleVersion</key>
-	<string>2.0</string>
+	<string>2.0.1</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -84,5 +84,11 @@
 	</dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0.1</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	</array>
 </dict>
 </plist>

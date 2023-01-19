@@ -168,6 +168,8 @@
                                     <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
                                     <Setter Property="Opacity" Value="1" />
                                     <Setter Property="HeightRequest" Value="48"/>
+                                    <!--<Setter Property="Padding" Value="-15,0"/>
+                                    <Setter Property="Margin" Value="5,0"/>-->
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Unchecked">
@@ -177,6 +179,8 @@
                                     <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
                                     <Setter Property="Opacity" Value="0.7" />
                                     <Setter Property="HeightRequest" Value="48"/>
+                                    <!--<Setter Property="Padding" Value="-15,0"/>
+                                    <Setter Property="Margin" Value="5,0"/>-->
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
