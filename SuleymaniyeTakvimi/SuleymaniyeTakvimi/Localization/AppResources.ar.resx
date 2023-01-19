@@ -535,4 +535,13 @@
   <data name="HepKonumYenile" xml:space="preserve">
     <value>قم بتحديث الموقع ومواعيد الصلاة في كل مرة يتم فيها فتح التطبيق</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>إعدادات التطبيق</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>تحديث</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>قم بتشغيل الراديو أو إيقافه مؤقتًا</value>
+  </data>
 </root>

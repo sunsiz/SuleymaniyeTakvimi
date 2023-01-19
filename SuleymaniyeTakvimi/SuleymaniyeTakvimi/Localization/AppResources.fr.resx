@@ -535,4 +535,13 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="HepKonumYenile" xml:space="preserve">
     <value>Actualisez l'emplacement et les heures de prière à chaque ouverture de l'application</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>Paramètres de l'application</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>Rafraîchir</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>Écouter ou mettre en pause la radio</value>
+  </data>
 </root>

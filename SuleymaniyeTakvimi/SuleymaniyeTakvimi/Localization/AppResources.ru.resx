@@ -536,4 +536,13 @@
   <data name="HepKonumYenile" xml:space="preserve">
     <value>Обновлять местоположение и время молитв каждый раз, когда приложение открывается</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>Настройки приложения</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>Обновить</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>Воспроизвести или приостановить радио</value>
+  </data>
 </root>

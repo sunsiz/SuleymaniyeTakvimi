@@ -90,6 +90,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public ItemsViewModel()
         {
+            //IsBusy = true;
             Debug.WriteLine("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             if (DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10)
             {
@@ -149,10 +150,17 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (!Preferences.Get("LocationSaved", false))
                 CheckLocationInfo(3000);
             if (Preferences.Get("AlwaysRenewLocationEnabled", false)) RefreshLocationCommand.Execute(null);
+            var lastAlarmDateStr = Preferences.Get("LastAlarmDate", "Empty");
+            if (lastAlarmDateStr != "Empty")
+            {
+                if ((DateTime.Parse(lastAlarmDateStr) - DateTime.Today).Days > 4)
+                data.SetWeeklyAlarms();
+            }
             //CheckLocationInfo(data, 60000);
             //Dark = Theme.Tema != 1;//0 is dark, 1 is light
             //Console.WriteLine("CurrentCulture is {0}.", CultureInfo.CurrentCulture.Name);
             Debug.WriteLine("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+            //IsBusy = false;
         }
 
         private void CheckLocationInfo(int timeDelay)

@@ -534,4 +534,13 @@
   <data name="HepKonumYenile" xml:space="preserve">
     <value>Proqram hər dəfə açılanda məkanı və namaz vaxtlarını yeniləyin</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>Proqram parametrləri</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>Təzələmək</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>Radionu çal və ya dayandır</value>
+  </data>
 </root>

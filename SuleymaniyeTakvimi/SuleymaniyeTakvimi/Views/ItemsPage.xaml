@@ -11,7 +11,7 @@
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal" Margin="10" HeightRequest="34" x:DataType="local:ItemsViewModel">
             <Label Style="{StaticResource LabelSectionHeader}" HorizontalOptions="StartAndExpand" FontSize="18" Text="{behaviors:Translate PageTitle}" VerticalTextAlignment="Center" />
-            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe8b8;">
+            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe8b8;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate UygulamaAyarlari}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SettingsCommand}" />
                 </Label.GestureRecognizers>
@@ -29,7 +29,7 @@
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding DarkLightModeCommand}" />
                 </Label.GestureRecognizers>
             </Label>-->
-            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe627;">
+            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe627;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Yenile}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding RefreshLocationCommand}" />
                 </Label.GestureRecognizers>
@@ -39,7 +39,7 @@
 
     <Grid Padding="10,0" HorizontalOptions="CenterAndExpand" RowDefinitions="*" ColumnDefinitions="Auto">
         <pancakeView:PancakeView Margin="0" Padding="0" Grid.Row="0">
-                <CollectionView VerticalOptions="Fill" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate BugunkuNamazVakitleri}">
+                <CollectionView VerticalOptions="Fill" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Items}">
                     <CollectionView.Header>
                         <StackLayout>
                             <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7" Padding="3" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
@@ -80,9 +80,9 @@
                                         </DataTrigger>
                                     </pancakeView:PancakeView.Triggers>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Adi}" Style="{DynamicResource LabelStyle}" />
-                                        <Label VerticalOptions="Start" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Vakit}" Style="{DynamicResource LabelStyle}" />
-                                        <Label Margin="0,0,9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="20" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="&#xe7f6;">
+                                        <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Adi}" Style="{DynamicResource LabelStyle}" AutomationProperties.IsInAccessibleTree="True" />
+                                        <Label VerticalOptions="Start" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Vakit}" Style="{DynamicResource LabelStyle}" AutomationProperties.IsInAccessibleTree="True" />
+                                        <Label Margin="0,0,9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="20" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="&#xe7f6;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate EtkinlestirSwitchAciklama}">
                                             <Label.Triggers>
                                                 <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="False">
                                                     <Setter Property="Text" Value="&#xe7f6;" />
@@ -104,7 +104,7 @@
                         <StackLayout Orientation="Vertical">
                             <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7" Padding="5" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
                                 <Label Margin="9,0" Padding="9" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
-                                    Text="{behaviors:Translate AylikTakvim}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AylikTakvim}" x:DataType="local:ItemsViewModel" />
+                                    Text="{behaviors:Translate AylikTakvim}" AutomationProperties.IsInAccessibleTree="True" x:DataType="local:ItemsViewModel" />
                                 <pancakeView:PancakeView.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding GoToMonthCommand}" x:DataType="local:ItemsViewModel"/>
                             </pancakeView:PancakeView.GestureRecognizers>

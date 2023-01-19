@@ -536,4 +536,13 @@
   <data name="HepKonumYenile" xml:space="preserve">
     <value>每次打开应用程序时刷新位置和礼拜时间</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>应用程序设置</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>刷新</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>播放或暂停收音机</value>
+  </data>
 </root>

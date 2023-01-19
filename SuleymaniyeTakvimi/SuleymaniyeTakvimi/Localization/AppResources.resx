@@ -535,4 +535,13 @@ This application is designed to provide safe and fast access to prayer and fasti
   <data name="HepKonumYenile" xml:space="preserve">
     <value>Renew location and prayer times every time the app is opened</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>Application Settings</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>Refresh</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>Play or pause radio</value>
+  </data>
 </root>

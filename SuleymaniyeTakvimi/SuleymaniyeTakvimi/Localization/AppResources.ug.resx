@@ -536,4 +536,13 @@
   <data name="HepKonumYenile" xml:space="preserve">
     <value>ھەر قېتىم ئەپ ئېچىلغاندا ئورۇن ۋە ناماز ۋاقتىنى يېڭىلاش</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>ئەپ تەڭشەكلىرى</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>يېڭىلاش</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>رادىئو قويۇش ياكى توختىتىش</value>
+  </data>
 </root>

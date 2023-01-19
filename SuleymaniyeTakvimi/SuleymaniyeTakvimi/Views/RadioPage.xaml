@@ -32,7 +32,7 @@
                             <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://www.instagram.com/radyofitrat/" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <Label Grid.Row="0" Grid.Column="1" Padding="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="55" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="&#xe038;">
+                    <Label Grid.Row="0" Grid.Column="1" Padding="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="55" Opacity="0.8" TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkColor}, Dark={StaticResource PrimaryAccent50Color}}" Text="&#xe038;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate RadyoCal}">
                         <Label.Triggers>
                             <DataTrigger Binding="{Binding IsPlaying}" TargetType="Label" Value="False">
                                 <Setter Property="Text" Value="&#xe038;" />

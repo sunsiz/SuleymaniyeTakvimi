@@ -536,4 +536,13 @@
   <data name="HepKonumYenile" xml:space="preserve">
     <value>هر بار که برنامه باز می شود مکان و زمان نماز را به روز کنید</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>تنظیمات برنامه</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>تازه کردن</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>پخش یا مکث رادیو</value>
+  </data>
 </root>

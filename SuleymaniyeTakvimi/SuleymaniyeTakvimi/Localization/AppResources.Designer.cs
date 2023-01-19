@@ -899,6 +899,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play or pause radio.
+        /// </summary>
+        public static string RadyoCal {
+            get {
+                return ResourceManager.GetString("RadyoCal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Radio Fitrat.
         /// </summary>
         public static string RadyoFitrat {
@@ -1151,6 +1160,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application Settings.
+        /// </summary>
+        public static string UygulamaAyarlari {
+            get {
+                return ResourceManager.GetString("UygulamaAyarlari", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to App language.
         /// </summary>
         public static string UygulamaDili {
@@ -1282,6 +1300,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string YaziBoyutu {
             get {
                 return ResourceManager.GetString("YaziBoyutu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string Yenile {
+            get {
+                return ResourceManager.GetString("Yenile", resourceCulture);
             }
         }
         

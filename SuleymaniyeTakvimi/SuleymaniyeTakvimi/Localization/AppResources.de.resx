@@ -535,4 +535,13 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
   <data name="HepKonumYenile" xml:space="preserve">
     <value>Aktualisieren Sie Ort und Gebetszeiten jedes Mal, wenn die App geöffnet wird</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>App-Einstellungen</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>Aktualisierung</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>Radio starten oder pausieren</value>
+  </data>
 </root>

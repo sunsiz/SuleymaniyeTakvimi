@@ -536,4 +536,13 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   <data name="HepKonumYenile" xml:space="preserve">
     <value>Uygulama her açıldığında konumu ve namaz vakitlerini yenile</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>Uygulama ayarları</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>Yenile</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>Radyo çal veya duraklat</value>
+  </data>
 </root>

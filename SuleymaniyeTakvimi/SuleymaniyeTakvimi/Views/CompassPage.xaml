@@ -13,7 +13,7 @@
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal" HeightRequest="34" Margin="10">
             <Label Style="{StaticResource LabelSectionHeader}" HorizontalOptions="StartAndExpand" FontSize="18" Text="{behaviors:Translate KibleGostergesi}" VerticalTextAlignment="Center" />
-            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe627;">
+            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,0,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe627;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Yenile}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding RefreshLocationCommand}" />
                 </Label.GestureRecognizers>

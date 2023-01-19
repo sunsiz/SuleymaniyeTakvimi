@@ -315,11 +315,11 @@ namespace SuleymaniyeTakvimi.Droid
 
         private void CheckRemainingReminders()
         {
-            //Check if less than 2 days schedule remained, open the main window to reschedule weekly alaram.
+            //Check if less than 2 scheduled days remained (at day 6 or 7), open the main window to reschedule weekly alaram.
             var lastAlarmDateStr = Preferences.Get("LastAlarmDate", "Empty");
             if (lastAlarmDateStr != "Empty")
             {
-                if ((DateTime.Parse(lastAlarmDateStr) - DateTime.Today).Days < 2)
+                if ((DateTime.Parse(lastAlarmDateStr) - DateTime.Today).Days > 5)
                 {
                     var notificationIntent = new Intent(this, typeof(MainActivity));
                     notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");

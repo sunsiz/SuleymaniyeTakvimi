@@ -536,4 +536,13 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
   <data name="HepKonumYenile" xml:space="preserve">
     <value>Ilova har safar ochilganda joylashuv va namoz vaqtlarini yangilang</value>
   </data>
+  <data name="UygulamaAyarlari" xml:space="preserve">
+	  <value>Ilova sozlamalari</value>
+  </data>
+  <data name="Yenile" xml:space="preserve">
+	  <value>Yangilash</value>
+  </data>
+  <data name="RadyoCal" xml:space="preserve">
+	  <value>Radioni oʻynatish yoki toʻxtatish</value>
+  </data>
 </root>
