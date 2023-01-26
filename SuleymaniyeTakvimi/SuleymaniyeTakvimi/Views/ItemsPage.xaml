@@ -11,7 +11,7 @@
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal" Margin="10" HeightRequest="34" x:DataType="local:ItemsViewModel">
             <Label Style="{StaticResource LabelSectionHeader}" HorizontalOptions="StartAndExpand" FontSize="18" Text="{behaviors:Translate PageTitle}" VerticalTextAlignment="Center" AutomationProperties.IsInAccessibleTree="True" />
-            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,5,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe8b8;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate UygulamaAyarlari}" AutomationProperties.Name="{behaviors:Translate UygulamaAyarlari}">
+            <Label Style="{StaticResource IconStyle}" Padding="3,0" Margin="10,5,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe8b8;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate UygulamaAyarlari}" AutomationProperties.Name="{behaviors:Translate UygulamaAyarlari}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SettingsCommand}" />
                 </Label.GestureRecognizers>
@@ -33,7 +33,7 @@
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding DarkLightModeCommand}" />
                 </Label.GestureRecognizers>
             </Label>-->
-            <Label Style="{StaticResource IconStyle}" Padding="-3,0" Margin="10,5,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe627;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Yenile}" AutomationProperties.Name="{behaviors:Translate Yenile}">
+            <Label Style="{StaticResource IconStyle}" Padding="3,0" Margin="10,5,20,0" FontFamily="MaterialIcons" FontSize="25" Text="&#xe627;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Yenile}" AutomationProperties.Name="{behaviors:Translate Yenile}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding RefreshLocationCommand}" />
                 </Label.GestureRecognizers>
@@ -87,13 +87,15 @@
                                 <StackLayout Orientation="Horizontal">
                                     <Label Padding="7,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Adi}" Style="{DynamicResource LabelStyle}" AutomationProperties.IsInAccessibleTree="True" />
                                     <Label VerticalOptions="Start" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="{Binding Vakit}" Style="{DynamicResource LabelStyle}" AutomationProperties.IsInAccessibleTree="True" />
-                                    <Label Margin="0,0,9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="20" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="&#xe7f6;" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate EtkinlestirSwitchAciklama}">
+                                    <Label Margin="0,0,9,0" HorizontalOptions="End" FontFamily="MaterialIcons" FontSize="20" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource TimeTextColorDark}}" Text="&#xe7f6;" AutomationProperties.IsInAccessibleTree="True"><!--AutomationProperties.HelpText="{behaviors:Translate EtkinlestirSwitchAciklama}"-->
                                         <Label.Triggers>
                                             <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="False">
                                                 <Setter Property="Text" Value="&#xe7f6;" />
+                                                <Setter Property="AutomationProperties.HelpText" Value="{behaviors:Translate DevreDisi}"/>
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding Etkin}" TargetType="Label" Value="True">
                                                 <Setter Property="Text" Value="&#xe7f5;" />
+                                                <Setter Property="AutomationProperties.HelpText" Value="{behaviors:Translate Etkin}"/>
                                             </DataTrigger>
                                         </Label.Triggers>
                                     </Label>
@@ -109,13 +111,13 @@
                     <StackLayout Orientation="Vertical">
                         <pancakeView:PancakeView Style="{StaticResource Card}" HorizontalOptions="Center" Margin="3,7" Padding="3" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" CornerRadius="19" Shadow="{pancakeView:ShadowMarkup BlurRadius=3, Opacity=0.3, Offset='4,4'}">
                             <Label Margin="9,0" Padding="9" BackgroundColor="{AppThemeBinding Light={StaticResource MonthlyButtonBackgroundColor}, Dark={StaticResource MonthlyButtonBackgroundColorDark}}" TextColor="{AppThemeBinding Light={StaticResource ButtonTextColor}, Dark={StaticResource ButtonTextColorDark}}"
-                                    Text="{behaviors:Translate AylikTakvim}" AutomationProperties.IsInAccessibleTree="True" x:DataType="local:ItemsViewModel" Style="{DynamicResource LabelStyle}" />
+                                    Text="{behaviors:Translate AylikTakvim}" x:DataType="local:ItemsViewModel" Style="{DynamicResource LabelStyle}" />
                             <pancakeView:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding GoToMonthCommand}" x:DataType="local:ItemsViewModel"/>
                             </pancakeView:PancakeView.GestureRecognizers>
                         </pancakeView:PancakeView>
                         <pancakeView:PancakeView Style="{StaticResource Card}" Margin="9,5" Padding="7" CornerRadius="{OnPlatform Android=25, iOS=15}" BackgroundColor="{AppThemeBinding Light={StaticResource CurrentTimeBackgroundColor}, Dark={StaticResource CurrentTimeBackgroundColorDark}}">
-                            <Label HorizontalOptions="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Style="{DynamicResource LabelStyle}" Text="{Binding RemainingTime}" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource White}}"/>
+                            <Label HorizontalOptions="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Style="{DynamicResource LabelStyle}" Text="{Binding RemainingTime}" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent600Color}, Dark={StaticResource White}}" AutomationProperties.IsInAccessibleTree="True"/>
                             <!--<Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="&#xe855;" FontFamily="MaterialIcons" FontSize="20" />

@@ -545,4 +545,10 @@
   <data name="RadyoCal" xml:space="preserve">
 	  <value>播放或暂停收音机</value>
   </data>
+  <data name="Etkin" xml:space="preserve">
+	  <value>已启用</value>
+  </data>
+  <data name="DevreDisi" xml:space="preserve">
+	  <value>已禁用</value>
+  </data>
 </root>

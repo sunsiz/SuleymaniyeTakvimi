@@ -545,4 +545,10 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
   <data name="RadyoCal" xml:space="preserve">
 	  <value>Radioni oʻynatish yoki toʻxtatish</value>
   </data>
+  <data name="Etkin" xml:space="preserve">
+	  <value>Yoqilgan</value>
+  </data>
+  <data name="DevreDisi" xml:space="preserve">
+	  <value>O'chirilgan</value>
+  </data>
 </root>

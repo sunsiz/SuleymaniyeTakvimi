@@ -544,4 +544,10 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="RadyoCal" xml:space="preserve">
 	  <value>Écouter ou mettre en pause la radio</value>
   </data>
+  <data name="Etkin" xml:space="preserve">
+	  <value>Activé</value>
+  </data>
+  <data name="DevreDisi" xml:space="preserve">
+	  <value>Désactivé</value>
+  </data>
 </root>

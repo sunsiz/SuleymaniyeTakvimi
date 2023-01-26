@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.Droid
 {
-    public class PermissionService:IPermissionService
+    public class PermissionService : IPermissionService
     {
         public async Task<PermissionStatus> HandlePermissionAsync()
         {
@@ -19,6 +19,11 @@ namespace SuleymaniyeTakvimi.Droid
         {
             LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(Context.LocationService);
             return locationManager != null && locationManager.IsProviderEnabled(LocationManager.GpsProvider);
+        }
+
+        public bool IsVoiceOverRunning()
+        {
+            return false;
         }
     }
 }

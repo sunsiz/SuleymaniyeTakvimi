@@ -544,4 +544,10 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
   <data name="RadyoCal" xml:space="preserve">
 	  <value>Radio starten oder pausieren</value>
   </data>
+  <data name="Etkin" xml:space="preserve">
+	  <value>Aktiviert</value>
+  </data>
+  <data name="DevreDisi" xml:space="preserve">
+	  <value>Deaktiviert</value>
+  </data>
 </root>

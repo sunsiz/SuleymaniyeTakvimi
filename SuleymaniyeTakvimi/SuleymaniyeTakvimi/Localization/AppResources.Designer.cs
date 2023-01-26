@@ -440,6 +440,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string DevreDisi {
+            get {
+                return ResourceManager.GetString("DevreDisi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string English {
@@ -454,6 +463,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string EnlemFormatsiz {
             get {
                 return ResourceManager.GetString("EnlemFormatsiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string Etkin {
+            get {
+                return ResourceManager.GetString("Etkin", resourceCulture);
             }
         }
         

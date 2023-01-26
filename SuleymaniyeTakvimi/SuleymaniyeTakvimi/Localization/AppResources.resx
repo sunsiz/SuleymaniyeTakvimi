@@ -544,4 +544,10 @@ This application is designed to provide safe and fast access to prayer and fasti
   <data name="RadyoCal" xml:space="preserve">
 	  <value>Play or pause radio</value>
   </data>
+  <data name="Etkin" xml:space="preserve">
+	  <value>Enabled</value>
+  </data>
+  <data name="DevreDisi" xml:space="preserve">
+	  <value>Disabled</value>
+  </data>
 </root>

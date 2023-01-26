@@ -545,4 +545,10 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   <data name="RadyoCal" xml:space="preserve">
 	  <value>Radyo çal veya duraklat</value>
   </data>
+  <data name="Etkin" xml:space="preserve">
+	  <value>Etkin</value>
+  </data>
+  <data name="DevreDisi" xml:space="preserve">
+	  <value>Devre Dışı</value>
+  </data>
 </root>

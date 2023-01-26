@@ -545,4 +545,10 @@
   <data name="RadyoCal" xml:space="preserve">
 	  <value>رادىئو قويۇش ياكى توختىتىش</value>
   </data>
+  <data name="Etkin" xml:space="preserve">
+	  <value>ئوچۇق</value>
+  </data>
+  <data name="DevreDisi" xml:space="preserve">
+	  <value>تاقاق</value>
+  </data>
 </root>

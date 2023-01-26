@@ -545,4 +545,10 @@
   <data name="RadyoCal" xml:space="preserve">
 	  <value>Воспроизвести или приостановить радио</value>
   </data>
+  <data name="Etkin" xml:space="preserve">
+	  <value>Включено</value>
+  </data>
+  <data name="DevreDisi" xml:space="preserve">
+	  <value>выключено</value>
+  </data>
 </root>
