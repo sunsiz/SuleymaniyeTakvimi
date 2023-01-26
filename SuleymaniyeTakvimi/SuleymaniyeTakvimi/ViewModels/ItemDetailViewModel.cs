@@ -107,7 +107,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 new Sound(fileName: "kus", name: AppResources.KusCiviltisi), /*Index = 0, */
                 new Sound(fileName: "horoz", name: AppResources.HorozOtusu), /*Index = 1, */
                 new Sound(fileName: "alarm", name: AppResources.CalarSaat), /*Index = 2, */
-                new Sound(fileName: "ezan", name: AppResources.EzanSesi), /*Index = 3, */
+                //new Sound(fileName: "ezan", name: AppResources.EzanSesi), /*Index = 3, */
                 new Sound(fileName: "alarm2", name: AppResources.CalarSaat + " 1"), /*Index = 4, */
                 new Sound(fileName: "beep1", name: AppResources.CalarSaat + " 2"), /*Index = 5, */
                 new Sound(fileName: "beep2", name: AppResources.CalarSaat + " 3"), /*Index = 6, */
@@ -117,6 +117,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 //new Sound() { FileName = "beep2", Name = AppResources.CalarSaat + " 3" }, /*Index = 6, */
                 //new Sound() { FileName = "beep3", Name = AppResources.CalarSaat + " 4" } /*Index = 7, */
             };
+            if (Device.RuntimePlatform == Device.Android) { _availableSounds.Add(new Sound(fileName: "ezan", name: AppResources.EzanSesi)); }
             //string name = "Çalar Saat";
             //int index = 2;
             string file = "alarm";

@@ -35,6 +35,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private bool _permissionRequested;
 
         public ObservableCollection<Item> Items { get => _items; set => SetProperty<ObservableCollection<Item>>(ref _items, value); }
+        public bool IsNecessary => DeviceInfo.Platform == DevicePlatform.iOS;
 
         private Takvim Vakitler
         {

@@ -40,7 +40,7 @@ namespace SuleymaniyeTakvimi.iOS
                 // Watch for notifications while app is active
                 UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
             }
-            else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            else //if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
                 // Ask the user for permission to get notifications on iOS 8.0+
                 var settings = UIUserNotificationSettings.GetSettingsForTypes(

@@ -4,6 +4,7 @@ using Acr.UserDialogs;
 using CoreLocation;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
+using UIKit;
 using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.iOS
@@ -42,6 +43,11 @@ namespace SuleymaniyeTakvimi.iOS
         public bool IsLocationServiceEnabled()
         {
             return CLLocationManager.Status != CLAuthorizationStatus.Denied;
+        }
+
+        public bool IsVoiceOverRunning()
+        {
+            return UIAccessibility.IsVoiceOverRunning;
         }
     }
 }

@@ -7,5 +7,6 @@ namespace SuleymaniyeTakvimi.Services
     {
         Task<PermissionStatus> HandlePermissionAsync();
         bool IsLocationServiceEnabled();
+        bool IsVoiceOverRunning();
     }
 }

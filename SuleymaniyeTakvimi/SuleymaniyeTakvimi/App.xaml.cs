@@ -10,6 +10,7 @@ using Xamarin.CommunityToolkit.Helpers;
 //using Plugin.LocalNotification;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace SuleymaniyeTakvimi
 {
@@ -65,6 +66,7 @@ namespace SuleymaniyeTakvimi
             
             //Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             DependencyService.Register<DataService>();
+            Xamarin.Forms.Device.SetFlags(new List<string> { "Accessibility_Experimental" });
             MainPage = new AppShell();
         }
 
