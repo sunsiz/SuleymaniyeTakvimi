@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using SuleymaniyeTakvimi.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SuleymaniyeTakvimi.Views
@@ -24,6 +25,12 @@ namespace SuleymaniyeTakvimi.Views
         //    //ActivityIndicator.IsRunning = false;
         //    //ActivityIndicator.IsVisible = false;
         //    //IsBusy = false;
+        //}
+        //public override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    var viewModel = new AboutViewModel();
+        //    viewModel.OnAppearing();
         //}
     }
 }
