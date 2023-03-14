@@ -31,5 +31,9 @@ namespace SuleymaniyeTakvimi.ViewModels
             await Shell.Current.GoToAsync($"{nameof(SettingsPage)}").ConfigureAwait(false);
             IsBusy = false;
         }
+        //public void OnAppearing()
+        //{
+        //    var check = ShowButtons;
+        //}
     }
 }
