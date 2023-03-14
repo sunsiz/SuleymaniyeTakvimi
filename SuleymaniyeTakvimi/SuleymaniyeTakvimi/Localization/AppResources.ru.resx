@@ -531,7 +531,7 @@
     <value>Показывать время молитвы в уведомлении</value>
   </data>
   <data name="BildirimNamazVakitleriUyari" xml:space="preserve">
-    <value>Примечание. Для вступления в силу может потребоваться полминуты.</value>
+    <value>Примечание. Для вступления в силу может потребоваться полминуты</value>
   </data>
   <data name="HepKonumYenile" xml:space="preserve">
     <value>Обновлять местоположение и время молитв каждый раз, когда приложение открывается</value>
@@ -550,5 +550,8 @@
   </data>
   <data name="DevreDisi" xml:space="preserve">
 	  <value>выключено</value>
+  </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>Планирование будильников, пожалуйста, подождите</value>
   </data>
 </root>

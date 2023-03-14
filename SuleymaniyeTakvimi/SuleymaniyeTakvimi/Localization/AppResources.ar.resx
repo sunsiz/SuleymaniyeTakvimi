@@ -550,4 +550,7 @@
   <data name="DevreDisi" xml:space="preserve">
 	  <value>مغلق</value>
   </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>جدولة الإنذارات ، من فضلك انتظر</value>
+  </data>
 </root>

@@ -549,4 +549,7 @@
   <data name="DevreDisi" xml:space="preserve">
 	  <value>işlək deyil</value>
   </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>Siqnallar planlaşdırılır, gözləyin</value>
+  </data>
 </root>

@@ -551,4 +551,7 @@
   <data name="DevreDisi" xml:space="preserve">
 	  <value>غیر فعال</value>
   </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>در حال برنامه‌ریزی هشدارها، لطفاً صبر کنید</value>
+  </data>
 </root>

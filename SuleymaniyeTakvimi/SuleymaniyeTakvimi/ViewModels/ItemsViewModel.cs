@@ -12,6 +12,9 @@ using Acr.UserDialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using SuleymaniyeTakvimi.Localization;
+using static Android.Content.ClipData;
+using Item = SuleymaniyeTakvimi.Models.Item;
+using MediaManager;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -34,7 +37,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private string _remainingTime;
         private bool _permissionRequested;
 
-        public ObservableCollection<Item> Items { get => _items; set => SetProperty<ObservableCollection<Item>>(ref _items, value); }
+		public ObservableCollection<Item> Items { get => _items; set => SetProperty<ObservableCollection<Item>>(ref _items, value); }
         public bool IsNecessary => DeviceInfo.Platform == DevicePlatform.iOS;
 
         private Takvim Vakitler

@@ -38,8 +38,8 @@ namespace SuleymaniyeTakvimi.Droid
             
             //BackgroundAggregator.Init(this);
             base.OnCreate(savedInstanceState);
-            //SetAlarmForBackgroundServices(this);//Use periodic background service
-            UserDialogs.Init(this);
+			//SetAlarmForBackgroundServices(this);//Use periodic background service
+			UserDialogs.Init(this);
             //FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Forms.SetFlags("UseLegacyRenderers");

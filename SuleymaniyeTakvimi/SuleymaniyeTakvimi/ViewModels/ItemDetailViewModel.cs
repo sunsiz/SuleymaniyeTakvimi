@@ -14,6 +14,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 //using Plugin.LocalNotification;
 
 namespace SuleymaniyeTakvimi.ViewModels
@@ -477,18 +478,36 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public void GoBack(object obj)
         {
-            using (UserDialogs.Instance.Loading(null,null,null,true,MaskType.Gradient))
-            {
-                CrossMediaManager.Current.MediaPlayer.Stop();
-                DataService data = new DataService();
-                data.SetWeeklyAlarms();
+            Device.BeginInvokeOnMainThread(async () =>
+                    {
+
+	                    try
+	                    {
+		                    using (UserDialogs.Instance.Loading((AppResources.AlarmlarPlanlaniyor)))
+		                    {
+								await CrossMediaManager.Current.MediaPlayer.Stop().ConfigureAwait(false);
                 if (_itemId != null && _selectedSound != null)
                     Preferences.Set(_itemId + "AlarmSesi", _selectedSound.FileName);
+                                await Task.Delay(1000);
+                                DataService data = new DataService();
+                                data.SetWeeklyAlarms();
+		                    }
+	                    }
+	                    catch (Exception ex)
+	                    {
+		                    var val = ex.Message;
+		                    UserDialogs.Instance.Alert("Test", val.ToString(), "Ok");
+	                    }
+                    });	
+						Shell.Current.GoToAsync("..");
+            //using (UserDialogs.Instance.Loading(AppResources.AlarmlarPlanlaniyor,null,null,true,MaskType.Gradient))
+            //{
+                //DataService data = new DataService();
+                //data.SetWeeklyAlarms();
                 //if (Device.RuntimePlatform == Device.Android)
                 //    data.SetMonthlyAlarms();
                 //else data.SetWeeklyAlarms();
-                Shell.Current.GoToAsync("..");
-            }
+            //}
         }
 
         //private Sound SetSelectedSound()

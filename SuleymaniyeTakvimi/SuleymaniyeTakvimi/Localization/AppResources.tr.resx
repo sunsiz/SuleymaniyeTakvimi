@@ -551,4 +551,7 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   <data name="DevreDisi" xml:space="preserve">
 	  <value>Devre Dışı</value>
   </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>Alarmlar planlanıyor, lütfen bekleyin</value>
+  </data>
 </root>

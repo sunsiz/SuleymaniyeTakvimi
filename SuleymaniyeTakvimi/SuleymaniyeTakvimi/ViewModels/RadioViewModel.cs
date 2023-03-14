@@ -33,13 +33,15 @@ namespace SuleymaniyeTakvimi.ViewModels
         public RadioViewModel()
         {
             IsBusy = true;
+            CrossMediaManager.Current.MediaPlayer.Stop();
+            CrossMediaManager.Current.Stop();
             Title = AppResources.IcerikYukleniyor;
             PlayCommand = new Command(Play);
             Title = AppResources.FitratinSesi;
             _ = CheckInternet();
             //_player = CrossSimpleAudioPlayer.Current;
             IsBusy = false;
-            if (CrossMediaManager.Current.IsPlaying()) IsPlaying = true;
+			if (CrossMediaManager.Current.IsPlaying()) IsPlaying = true;
         }
 
         private async void Play()
@@ -65,11 +67,11 @@ namespace SuleymaniyeTakvimi.ViewModels
                         Description = AppResources.FitratinSesi,
                         Title = AppResources.RadyoFitrat,
                         Genre = "Islam",
-                        Uri = "http://shaincast.caster.fm:22344/listen.mp3",
+                        Uri = "https://shaincast.caster.fm:22344/listen.mp3",
                         ImageUri = "https://radyofitrat.com/img/fitratlogoRadyo.png",
-                        MediaItems = new List<IMediaItem>(1){new MediaItem("http://shaincast.caster.fm:22344/listen.mp3")}
+                        MediaItems = new List<IMediaItem>(1){new MediaItem("https://shaincast.caster.fm:22344/listen.mp3")}
                     };
-                    var mediaItem = await CrossMediaManager.Current.Play(radioFitrat).ConfigureAwait(true);
+                    var mediaItem = await CrossMediaManager.Current.Play(radioFitrat).ConfigureAwait(false);
                     //var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
                     mediaItem.Title = AppResources.FitratinSesi;
                     mediaItem.Album = AppResources.RadyoFitrat;
@@ -85,6 +87,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
                     mediaItem.MetadataUpdated += OnMediaItemOnMetadataUpdated;
                     CrossMediaManager.Current.StateChanged += Current_StateChanged;
+                    IsPlaying = true;
                 }
             }
 

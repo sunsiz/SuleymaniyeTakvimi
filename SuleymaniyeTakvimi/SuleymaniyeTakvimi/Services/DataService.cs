@@ -676,7 +676,7 @@ namespace SuleymaniyeTakvimi.Services
                                 if (DateTime.Now < yatsi && Preferences.Get("yatsiEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), yatsiZaman, Preferences.Get("yatsiBildirmeVakti", 0), "Yatsı");
                                 if (DateTime.Now < yatsiSonu && Preferences.Get("yatsisonuEtkin", false)) DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), yatsiSonuZaman, Preferences.Get("yatsisonuBildirmeVakti", 0), "Yatsı Sonu");
                                 dayCounter++;
-                                if (dayCounter >= 7) break;
+                                if (dayCounter >= 21) break;
                             }
                         }
                     }

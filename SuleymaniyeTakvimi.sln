@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuleymaniyeTakvimi.Android", "SuleymaniyeTakvimi\SuleymaniyeTakvimi.Android\SuleymaniyeTakvimi.Android.csproj", "{82E3E257-BF28-4C5C-99F6-2B1796A31A31}"
 EndProject

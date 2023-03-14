@@ -156,7 +156,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private void GoBack(object obj)
         {
             Application.Current.UserAppTheme = Theme.Tema == 1 ? OSAppTheme.Light : OSAppTheme.Dark;
-            Shell.Current.GoToAsync("..");
+			Shell.Current.GoToAsync("..");
         }
     }
 }

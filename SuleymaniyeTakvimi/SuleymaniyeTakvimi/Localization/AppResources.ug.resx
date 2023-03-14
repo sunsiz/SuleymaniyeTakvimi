@@ -522,7 +522,7 @@
     <value> مىنۇت بۇرۇن</value>
   </data>
   <data name="AlarmTekrarlari" xml:space="preserve">
-    <value>قوڭغۇراق ئاۋازى قايتىلاش سانى:</value>
+    <value>قوڭغۇراق ئاۋازى قايتىلاش سانى: </value>
   </data>
   <data name="Kere" xml:space="preserve">
     <value> قېتىم</value>
@@ -550,5 +550,8 @@
   </data>
   <data name="DevreDisi" xml:space="preserve">
 	  <value>تاقاق</value>
+  </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>قوڭغۇراقلىق سائەت تەڭشىلىۋاتىدۇ، سەل ساقلاڭ</value>
   </data>
 </root>

@@ -124,7 +124,7 @@
     <value>昏礼</value>
   </data>
   <data name="Aksamincikmasnakalanvakit" xml:space="preserve">
-    <value>距昏礼结束剩余时间：</value>
+    <value>距昏礼结束剩余时间： </value>
   </data>
   <data name="AlarmHatasi" xml:space="preserve">
     <value>闹钟响起时出现问题。细节</value>
@@ -154,13 +154,13 @@
     <value>通知设置已禁用</value>
   </data>
   <data name="BildiriDevreDisiIcerik" xml:space="preserve">
-    <value>通知已被禁用。</value>
+    <value> 通知已被禁用。</value>
   </data>
   <data name="BildiriEtkinBaslik" xml:space="preserve">
     <value>通知设置已启用</value>
   </data>
   <data name="BildiriEtkinIcerik" xml:space="preserve">
-    <value>通知已启用。</value>
+    <value> 通知已启用。</value>
   </data>
   <data name="BildirimGosterSwitch" xml:space="preserve">
     <value>显示通知</value>
@@ -199,7 +199,7 @@
     <value>宣礼（麦加）</value>
   </data>
   <data name="FecriKazibingirmesinekalanvakit" xml:space="preserve">
-    <value>距进入破晓（封斋时间）的剩余时间：</value>
+    <value>距进入破晓（封斋时间）的剩余时间： </value>
   </data>
   <data name="FecriKazip" xml:space="preserve">
     <value>破晓</value>
@@ -208,7 +208,7 @@
     <value>晨礼（黎明）</value>
   </data>
   <data name="FecriSadikakalanvakit" xml:space="preserve">
-    <value>距晨礼剩余的时间（封斋结束）：</value>
+    <value>距晨礼剩余的时间（封斋结束）： </value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
     <value>Radio Fitrat （菲特拉电台） - 菲特拉之声</value>
@@ -247,7 +247,7 @@
     <value>哺礼</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
-    <value>距哺礼结束剩余的时间：</value>
+    <value>距哺礼结束剩余的时间： </value>
   </data>
   <data name="Kapat" xml:space="preserve">
     <value>关闭</value>
@@ -292,10 +292,10 @@
     <value>晌礼</value>
   </data>
   <data name="Oglenincikmasinakalanvakit" xml:space="preserve">
-    <value>距晌礼结束剩余的时间：</value>
+    <value>距晌礼结束剩余的时间： </value>
   </data>
   <data name="Ogleningirmesinekalanvakit" xml:space="preserve">
-    <value>距进入晌礼时间剩下的时间：</value>
+    <value>距进入晌礼时间剩下的时间： </value>
   </data>
   <data name="OnBesDakikaOnceden" xml:space="preserve">
     <value>提前15分钟</value>
@@ -325,7 +325,7 @@
     <value>晨礼结束</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
-    <value>距晨礼结束剩余的时间：</value>
+    <value>距晨礼结束剩余的时间： </value>
   </data>
   <data name="Sehir" xml:space="preserve">
     <value>城市</value>
@@ -397,10 +397,10 @@
     <value>宵礼</value>
   </data>
   <data name="Yatsinincikmasinakalanvakit" xml:space="preserve">
-    <value>距宵礼结束剩余的时间：</value>
+    <value>距宵礼结束剩余的时间： </value>
   </data>
   <data name="Yatsininciktigindangecenvakit" xml:space="preserve">
-    <value>从宵礼结束后经过的时间：</value>
+    <value>从宵礼结束后经过的时间： </value>
   </data>
   <data name="YatsiSonu" xml:space="preserve">
     <value>宵礼结束</value>
@@ -483,7 +483,7 @@
     <value> 分钟</value>
   </data>
   <data name="YaziBoyutu" xml:space="preserve">
-    <value>字体大小：</value>
+    <value>字体大小： </value>
   </data>
   <data name="BildirimKapatma" xml:space="preserve">
     <value>启用粘性通知</value>
@@ -550,5 +550,8 @@
   </data>
   <data name="DevreDisi" xml:space="preserve">
 	  <value>已禁用</value>
+  </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>正在安排闹钟，请稍候</value>
   </data>
 </root>

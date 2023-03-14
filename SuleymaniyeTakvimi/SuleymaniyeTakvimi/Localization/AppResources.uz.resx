@@ -123,16 +123,16 @@
   <data name="AciklamaBas" xml:space="preserve">
     <value>Musulmon – Alloh taologa taslim boʻlgan va Uning yoʻlida barcha qiyinchiliklarga bardosh berganlarga Alloh taolo bergen ismdir. Ular dinda Allohga xolis turgan holda amal qiluvchilardir. 
 “Allohga da'vat qilgan, solih amallar qilgan va: “Men Allohga to‘liq taslim bo‘lganlardan (musulmonlardan)man”, degan kimsadan ham chiroyli so'zlik biri bormi?” (Fussilat 41/33).
-Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uchun mo'ljallangan. Vaqt hisoblari va ro'za vaqtlari haqida batafsil ma'lumot olish uchun bu yerni bosing</value>
+Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uchun mo'ljallangan. Vaqt hisoblari va ro'za vaqtlari haqida batafsil ma'lumot olish uchun bu yerni bosing </value>
   </data>
   <data name="AciklamaLinkText" xml:space="preserve">
     <value>Qur'onda namoz vaqtlari</value>
   </data>
   <data name="AciklamaLinkURL" xml:space="preserve">
-    <value>https://www.musulmonlar.com/uronda-namoz-va-tlari/</value>
+    <value>https://www.musulmonlar.com/uronda-namoz-va-tlari</value>
   </data>
   <data name="AciklamaSon" xml:space="preserve">
-    <value>Maqolani o'qing</value>
+    <value> Maqolani o'qing.</value>
   </data>
   <data name="AcikTema" xml:space="preserve">
     <value>Ochiq mavzu</value>
@@ -156,13 +156,13 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Signal ovozi</value>
   </data>
   <data name="AlarmSuresi" xml:space="preserve">
-    <value>Signal muddati</value>
+    <value>Signal muddati: </value>
   </data>
   <data name="AlarmSwitch" xml:space="preserve">
     <value>Signal berish</value>
   </data>
   <data name="AlarmTekrarlari" xml:space="preserve">
-    <value>Signal ovozining takrorlanish soni:</value>
+    <value>Signal ovozining takrorlanish soni: </value>
   </data>
   <data name="AylikTakvim" xml:space="preserve">
     <value>Oylik taqvim</value>
@@ -183,13 +183,13 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Bildirishnoma sozlamalari o'chirilgan</value>
   </data>
   <data name="BildiriDevreDisiIcerik" xml:space="preserve">
-    <value>Bildirishnoma o'chirilgan</value>
+    <value> Bildirishnoma o'chirilgan.</value>
   </data>
   <data name="BildiriEtkinBaslik" xml:space="preserve">
     <value>Bildirishnoma sozlamalari yoqilgan</value>
   </data>
   <data name="BildiriEtkinIcerik" xml:space="preserve">
-    <value>Bildirishnoma yoqilgan</value>
+    <value> Bildirishnoma yoqilgan.</value>
   </data>
   <data name="Arabic" xml:space="preserve">
     <value>Arabcha</value>
@@ -246,7 +246,7 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Nemischa</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>Inglizcha </value>
+    <value>Inglizcha</value>
   </data>
   <data name="EnlemFormatsiz" xml:space="preserve">
     <value>Kenglik</value>
@@ -276,7 +276,7 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Bamdod kirishigacha (saharlik tugashigacha) qolgan muddat: </value>
   </data>
   <data name="FitratinSesi" xml:space="preserve">
-    <value>Radio Fitrat - Fitrat Sadosi </value>
+    <value>Radio Fitrat - Fitrat Sadosi</value>
   </data>
   <data name="FitratTV" xml:space="preserve">
     <value>Fitrat TV</value>
@@ -288,7 +288,7 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Fitrat TV Twitterok sahifasi</value>
   </data>
   <data name="FitratTVYoutube" xml:space="preserve">
-    <value> Fitrat TV youtube kanali</value>
+    <value>Fitrat TV youtube kanali</value>
   </data>
   <data name="French" xml:space="preserve">
     <value>Fransuzcha</value>
@@ -309,13 +309,13 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Xatolik tafsilotlari:</value>
   </data>
   <data name="HorozOtusu" xml:space="preserve">
-    <value>Xo'roz tovushi </value>
+    <value>Xo'roz tovushi</value>
   </data>
   <data name="IcerikYukleniyor" xml:space="preserve">
     <value>Kontent yuklanmoqda...</value>
   </data>
   <data name="Ikindi" xml:space="preserve">
-    <value>Asr </value>
+    <value>Asr</value>
   </data>
   <data name="Ikindinincikmasinakalanvakit" xml:space="preserve">
     <value>Asr tugashigacha qolgan muddat: </value>
@@ -414,7 +414,7 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Ruscha</value>
   </data>
   <data name="SabahSonu" xml:space="preserve">
-    <value>Quyosh chiqishi </value>
+    <value>Quyosh chiqishi</value>
   </data>
   <data name="SabahSonunakalanvakit" xml:space="preserve">
     <value>Bamdod tugashigacha qolgan muddat: </value>
@@ -504,7 +504,7 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Versiya</value>
   </data>
   <data name="WebSayfa" xml:space="preserve">
-    <value>Veb-sahifa</value>
+    <value> Veb-sahifa</value>
   </data>
   <data name="Yatsi" xml:space="preserve">
     <value>Xufton</value>
@@ -519,10 +519,10 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
     <value>Xuftonning tugashi</value>
   </data>
   <data name="YayinAkisi" xml:space="preserve">
-    <value>Radio ijrosi</value>
+    <value> Radio ijrosi</value>
   </data>
   <data name="YaziBoyutu" xml:space="preserve">
-    <value>Shrift hajmi:</value>
+    <value>Shrift hajmi: </value>
   </data>
   <data name="Yenileniyor" xml:space="preserve">
     <value>Yangilanmoqda</value>
@@ -550,5 +550,8 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
   </data>
   <data name="DevreDisi" xml:space="preserve">
 	  <value>O'chirilgan</value>
+  </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>Signallar rejalashtirilmoqda, kuting</value>
   </data>
 </root>

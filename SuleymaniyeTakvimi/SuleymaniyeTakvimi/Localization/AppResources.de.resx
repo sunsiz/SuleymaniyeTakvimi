@@ -550,4 +550,7 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
   <data name="DevreDisi" xml:space="preserve">
 	  <value>Deaktiviert</value>
   </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>Planen von Alarmen, bitte warten</value>
+  </data>
 </root>

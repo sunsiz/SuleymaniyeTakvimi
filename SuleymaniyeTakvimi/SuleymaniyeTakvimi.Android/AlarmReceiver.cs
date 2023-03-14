@@ -129,7 +129,7 @@ namespace SuleymaniyeTakvimi.Droid
                 }
 
                 //Uri sound = Uri.Parse("android.resource://" + context.PackageName + "/" + Resource.Raw.horoz);
-                var alarmId = GetAlamId(name);
+                var alarmId = GetAlarmId(name);
                 NotificationCompat.Builder notificationBuilder = null;
                 switch (alarmId)
                 {
@@ -200,7 +200,7 @@ namespace SuleymaniyeTakvimi.Droid
             }
         }
 
-        private string GetAlamId(string name)
+        private string GetAlarmId(string name)
         {
             var fileName = "";
             if (name != null)

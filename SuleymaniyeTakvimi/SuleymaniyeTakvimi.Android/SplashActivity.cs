@@ -24,7 +24,7 @@ namespace SuleymaniyeTakvimi.Droid
             base.OnResume();
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
-        public override void OnBackPressed() { }
+		//public override void OnBackPressed() { }
         
         // Simulates background work that happens behind the splash screen
         //async void SimulateStartup()

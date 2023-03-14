@@ -550,4 +550,7 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="DevreDisi" xml:space="preserve">
 	  <value>Désactivé</value>
   </data>
+  <data name="AlarmlarPlanlaniyor" xml:space="preserve">
+    <value>Programmation des alarmes, veuillez patienter</value>
+  </data>
 </root>
