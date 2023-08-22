@@ -11,7 +11,12 @@ namespace SuleymaniyeTakvimi.iOS
 {
     public class PermissionService : IPermissionService
     {
-        public async Task<PermissionStatus> HandlePermissionAsync()
+		public void AskNotificationPermission()
+		{
+			return;
+		}
+
+		public async Task<PermissionStatus> HandlePermissionAsync()
         {
             var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
             if (status == PermissionStatus.Denied)

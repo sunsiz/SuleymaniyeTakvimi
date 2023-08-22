@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Acr.UserDialogs.Infrastructure;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -71,10 +72,24 @@ namespace SuleymaniyeTakvimi.Droid
             //var status = await HandleLocationPermissionAsync().ConfigureAwait(false);
 
             //StartAlarmForegroundService();
+            
             System.Diagnostics.Debug.WriteLine("Main Activity", $"Main Activity OnCreate Finished: {DateTime.Now:HH:m:s.fff} || Permission result:");
         }
 
-        
+		public void HandleNotificationPermissionAsync()
+        {
+	        const int requestLocationId = 0;
+	        string[] notificationPermission =
+	        {
+		        Manifest.Permission.PostNotifications
+	        };
+	        if ((int)Build.VERSION.SdkInt < 33) return;
+	        if (CheckSelfPermission(Manifest.Permission.PostNotifications) != Permission.Granted)
+	        {
+				RequestPermissions(notificationPermission, requestLocationId);
+	        }
+        }
+
         public async Task<PermissionStatus> HandleLocationPermissionAsync()
         {
             //UserDialogs.Instance.Toast("Running the handle permission task", TimeSpan.FromSeconds(3));

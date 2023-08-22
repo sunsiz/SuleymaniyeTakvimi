@@ -151,7 +151,7 @@ namespace SuleymaniyeTakvimi.Droid
         private void SetNotification()
         {
             Notification.BigTextStyle textStyle = new Notification.BigTextStyle();
-            if (Preferences.Get("NotificationPrayerTimesEnabled", true))
+            if (Preferences.Get("NotificationPrayerTimesEnabled", false))
             {
                 textStyle.BigText(GetTodaysPrayerTimes());
                 textStyle.SetSummaryText(AppResources.BugunkuNamazVakitleri);

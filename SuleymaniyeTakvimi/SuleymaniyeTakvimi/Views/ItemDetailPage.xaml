@@ -149,13 +149,13 @@
                                     HeightRequest="48" HorizontalOptions="FillAndExpand"
                                     BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor},
                                                                       Dark={StaticResource DarkElevation2dp}}"
-                                    AutomationProperties.HelpText="{behaviors:Translate SesSecAciklama}"
-                                    AutomationProperties.IsInAccessibleTree="true"
+                                    
                                     ItemDisplayBinding="{Binding Name}"
                                     SelectedItem="{Binding SelectedSound}"
                                     TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor},
                                                                 Dark={StaticResource White}}"
-                                    ItemsSource="{Binding AvailableSounds}" />
+                                    ItemsSource="{Binding AvailableSounds}" /><!--AutomationProperties.HelpText="{behaviors:Translate SesSecAciklama}"
+                                    AutomationProperties.IsInAccessibleTree="true"-->
                             <!--<Button Text="{Binding TestButtonText}" Command="{Binding TestButtonCommand}" CornerRadius="9" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" HorizontalOptions="End" FontFamily="MaterialIcons" FontAttributes="Bold" Font="Default"/>-->
                             <Label Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                    AutomationProperties.HelpText="{behaviors:Translate AlarmSwitch}"

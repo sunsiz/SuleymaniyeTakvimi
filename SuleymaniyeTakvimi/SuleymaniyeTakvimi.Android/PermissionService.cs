@@ -8,7 +8,13 @@ namespace SuleymaniyeTakvimi.Droid
 {
     public class PermissionService : IPermissionService
     {
-        public async Task<PermissionStatus> HandlePermissionAsync()
+		public void AskNotificationPermission()
+		{
+			MainActivity main = MainActivity.Instance;
+			main.HandleNotificationPermissionAsync();
+		}
+
+		public async Task<PermissionStatus> HandlePermissionAsync()
         {
             MainActivity main = MainActivity.Instance;
             var status = await main.HandleLocationPermissionAsync().ConfigureAwait(false);

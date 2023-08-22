@@ -34,7 +34,7 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
-    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <LangVersion>latest</LangVersion>
@@ -74,8 +74,7 @@
     <AndroidSigningKeyPass>
     </AndroidSigningKeyPass>
     <AndroidDexTool>d8</AndroidDexTool>
-    <AndroidSupportedAbis>
-    </AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
     <AndroidLinkSkip>SuleymaniyeTakvimi;SuleymaniyeTakvimi.Android;Xamarin.Forms.Material;System;System.Xml;</AndroidLinkSkip>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
@@ -104,17 +103,17 @@
       <Version>28.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>2.0.5</Version>
+      <Version>2.0.6</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.0" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>5.0.0.2578</Version>
+      <Version>5.0.0.2612</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.3.0.759</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>5.0.0.2578</Version>
+      <Version>5.0.0.2612</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using MediaManager;
@@ -41,7 +40,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             _ = CheckInternet();
             //_player = CrossSimpleAudioPlayer.Current;
             IsBusy = false;
-			if (CrossMediaManager.Current.IsPlaying()) IsPlaying = true;
+			IsPlaying = CrossMediaManager.Current.IsPlaying();
         }
 
         private async void Play()
@@ -50,7 +49,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             
             if (CrossMediaManager.Current.IsPlaying())
             {
-                await CrossMediaManager.Current.Stop();
+                await CrossMediaManager.Current.Stop().ConfigureAwait(false);
                 CrossMediaManager.Current.Notification.Enabled = false;
                 CrossMediaManager.Current.Notification.UpdateNotification();
                 //CrossMediaManager.Current.Notification.Enabled = false;
@@ -62,32 +61,41 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Title = AppResources.IcerikYukleniyor;
                 if (CheckInternet())
                 {
-                    var radioFitrat = new Radio()
-                    {
-                        Description = AppResources.FitratinSesi,
-                        Title = AppResources.RadyoFitrat,
-                        Genre = "Islam",
-                        Uri = "https://shaincast.caster.fm:22344/listen.mp3",
-                        ImageUri = "https://radyofitrat.com/img/fitratlogoRadyo.png",
-                        MediaItems = new List<IMediaItem>(1){new MediaItem("https://shaincast.caster.fm:22344/listen.mp3")}
-                    };
-                    var mediaItem = await CrossMediaManager.Current.Play(radioFitrat).ConfigureAwait(false);
-                    //var mediaItem = await CrossMediaManager.Current.Play("http://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
-                    mediaItem.Title = AppResources.FitratinSesi;
-                    mediaItem.Album = AppResources.RadyoFitrat;
-                    mediaItem.Author = AppResources.RadyoFitrat;
-                    mediaItem.Artist = AppResources.RadyoFitrat;
-                    mediaItem.ImageUri = "https://radyofitrat.com/img/fitratlogoRadyo.png";
-                    //CrossMediaManager.Current.StepSizeBackward = TimeSpan.FromSeconds(0);
-                    //CrossMediaManager.Current.StepSizeForward = TimeSpan.FromSeconds(0);
-                    //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
-                    //CrossMediaManager.Current.Notification.Enabled = false;
-                    CrossMediaManager.Current.Notification.UpdateNotification();
-                    //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
-                    //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
-                    mediaItem.MetadataUpdated += OnMediaItemOnMetadataUpdated;
-                    CrossMediaManager.Current.StateChanged += Current_StateChanged;
-                    IsPlaying = true;
+	                try
+	                {
+                        //var radioFitrat = new Radio()
+                        //{
+                        // Description = AppResources.FitratinSesi,
+                        // Title = AppResources.RadyoFitrat,
+                        // Genre = "Islam",
+                        // Uri = "https://shaincast.caster.fm:22344/listen.mp3",
+                        // //ImageUri = "https://radyofitrat.com/img/fitratlogoRadyo.png",
+                        // MediaItems = new List<IMediaItem>(1){new MediaItem("https://shaincast.caster.fm:22344/listen.mp3")}
+                        //};
+                        //var mediaItem = await CrossMediaManager.Current.Play(radioFitrat).ConfigureAwait(false);
+                        var mediaItem = await CrossMediaManager.Current.Play("https://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
+                        mediaItem.Title = AppResources.FitratinSesi;
+                        ////mediaItem.Album = AppResources.RadyoFitrat;
+                        //mediaItem.Author = AppResources.RadyoFitrat;
+                        //mediaItem.Artist = AppResources.RadyoFitrat;
+                        //mediaItem.ImageUri = "https://radyofitrat.com/img/fitratlogoRadyo.png";
+                        //CrossMediaManager.Current.StepSizeBackward = TimeSpan.FromSeconds(0);
+                        //CrossMediaManager.Current.StepSizeForward = TimeSpan.FromSeconds(0);
+                        //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
+                        //CrossMediaManager.Current.Notification.Enabled = false;
+                        CrossMediaManager.Current.Notification.UpdateNotification();
+		                //CrossMediaManager.Current.Notification.ShowNavigationControls = false;
+		                //CrossMediaManager.Current.Notification.ShowPlayPauseControls = false;
+		                //mediaItem.MetadataUpdated += OnMediaItemOnMetadataUpdated;
+		                CrossMediaManager.Current.StateChanged += Current_StateChanged;
+		                IsPlaying = true;
+	                }
+	                catch (Exception exception)
+	                {
+		                Debug.WriteLine($"Play exception:{exception.Message}");
+		                if (CrossMediaManager.Current != null)
+			                await CrossMediaManager.Current.Stop().ConfigureAwait(false);
+	                }
                 }
             }
 
@@ -138,13 +146,14 @@ namespace SuleymaniyeTakvimi.ViewModels
                 return;
             }
 
-            //if (CrossMediaManager.Current.State == MediaPlayerState.Failed)
-            //{
-            IsPlaying = false;
-            Title = AppResources.FitratinSesi;
-            UserDialogs.Instance.Toast(AppResources.RadyoIcinInternet, TimeSpan.FromSeconds(7));
-                IsBusy = false;
-            //}
+            if (CrossMediaManager.Current.State == MediaPlayerState.Failed)
+            {
+				IsPlaying = false;
+				Title = AppResources.FitratinSesi;
+				UserDialogs.Instance.Toast(AppResources.RadyoIcinInternet, TimeSpan.FromSeconds(7));
+				//CrossMediaManager.Current.Dispose();
+				IsBusy = false;
+			}
         }
 
         private void OnMediaItemOnMetadataUpdated(object sender, MetadataChangedEventArgs args)

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell x:Class="SuleymaniyeTakvimi.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SuleymaniyeTakvimi.Views"
-       xmlns:localization="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
-       Title="Süleymaniye Vakfi Namaz Vakitleri">
+<Shell x:Class="SuleymaniyeTakvimi.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" xmlns:local="clr-namespace:SuleymaniyeTakvimi.Views" xmlns:localization="clr-namespace:SuleymaniyeTakvimi.Localization;assembly=SuleymaniyeTakvimi" Title="Süleymaniye Vakfı Namaz Vakitleri">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.

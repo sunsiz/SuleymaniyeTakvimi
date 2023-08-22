@@ -158,7 +158,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             if (lastAlarmDateStr != "Empty")
             {
                 if ((DateTime.Parse(lastAlarmDateStr) - DateTime.Today).Days > 4)
-                data.SetWeeklyAlarms();
+	                data.SetWeeklyAlarms();
             }
             //CheckLocationInfo(data, 60000);
             //Dark = Theme.Tema != 1;//0 is dark, 1 is light
@@ -297,6 +297,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             Task.Run(async () =>
             {
                 await Task.Delay(5000).ConfigureAwait(false);
+                DependencyService.Get<IPermissionService>().AskNotificationPermission();
                 if (Preferences.Get("ForegroundServiceEnabled", true))
                     DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
             });

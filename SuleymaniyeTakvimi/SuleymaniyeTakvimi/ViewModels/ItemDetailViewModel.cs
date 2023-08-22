@@ -177,7 +177,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         //    //{
         //    //    var radiobutton = obj as RadioButton;
         //    //    Preferences.Set(_itemId + "BildirmeVakti", radiobutton?.Value.ToString());
-        //    //    Debug.WriteLine("Value Setted for -> " + _itemId + "BildirmeVakti: " +
+        //    //    Debug.WriteLine("Value Set for -> " + _itemId + "BildirmeVakti: " +
         //    //                      Preferences.Get(_itemId + "BildirmeVakti", radiobutton?.Value.ToString()));
         //    //    _bildirmeVakti = radiobutton?.Value.ToString();
         //    //}
@@ -190,7 +190,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var value = (bool) obj;
                 Preferences.Set(_itemId + "Alarm", value);
-                Debug.WriteLine("Value Setted for -> " + _itemId + "Alarm: " +
+                Debug.WriteLine("Value Set for -> " + _itemId + "Alarm: " +
                                   Preferences.Get(_itemId + "Alarm", value));
                 Alarm = value;
             }
@@ -203,7 +203,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var value = (bool) obj;
                 Preferences.Set(_itemId + "Titreme", value);
-                Debug.WriteLine("Value Setted for -> " + _itemId + "Titreme: " +
+                Debug.WriteLine("Value Set for -> " + _itemId + "Titreme: " +
                                   Preferences.Get(_itemId + "Titreme", value));
                 Titreme = value;
                 if (value)
@@ -236,7 +236,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var value = (bool) obj;
                 Preferences.Set(_itemId + "Bildiri", value);
-                Debug.WriteLine("Value Setted for -> " + _itemId + "Bildiri: " +
+                Debug.WriteLine("Value Set for -> " + _itemId + "Bildiri: " +
                                   Preferences.Get(_itemId + "Bildiri", value));
                 Bildiri = value;
                 //var bildiriVakti = TimeSpan.Parse(Vakit) + TimeSpan.FromMinutes(Convert.ToDouble(BildirmeVakti));
@@ -304,7 +304,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 var value = (bool)obj;
                 Preferences.Set(_itemId + "Etkin", value);
-                Debug.WriteLine("Value Setted for -> " + _itemId + "Etkin: " +
+                Debug.WriteLine("Value Set for -> " + _itemId + "Etkin: " +
                                 Preferences.Get(_itemId + "Etkin", value));
                 Etkin = value;
                 if (value)
@@ -313,8 +313,14 @@ namespace SuleymaniyeTakvimi.ViewModels
                     Preferences.Set(_itemId + "Titreme", Preferences.Get(_itemId + "Titreme", true));
                     Preferences.Set(_itemId + "Alarm", Preferences.Get(_itemId + "Alarm", false));
                 }
+                else
+                {
+	                Preferences.Set(_itemId + "Bildiri", false);
+	                Preferences.Set(_itemId + "Titreme", false);
+	                Preferences.Set(_itemId + "Alarm", false);
+                }
             
-            //DataService data = new DataService();
+                //DataService data = new DataService();
                 //data.SetWeeklyAlarms();
                 //if (Device.RuntimePlatform == Device.Android)
                 //    data.SetMonthlyAlarms();
@@ -478,27 +484,26 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public void GoBack(object obj)
         {
-            Device.BeginInvokeOnMainThread(async () =>
-                    {
-
-	                    try
-	                    {
-		                    using (UserDialogs.Instance.Loading((AppResources.AlarmlarPlanlaniyor)))
-		                    {
-								await CrossMediaManager.Current.MediaPlayer.Stop().ConfigureAwait(false);
-                if (_itemId != null && _selectedSound != null)
-                    Preferences.Set(_itemId + "AlarmSesi", _selectedSound.FileName);
-                                await Task.Delay(1000);
-                                DataService data = new DataService();
-                                data.SetWeeklyAlarms();
-		                    }
-	                    }
-	                    catch (Exception ex)
-	                    {
-		                    var val = ex.Message;
-		                    UserDialogs.Instance.Alert("Test", val.ToString(), "Ok");
-	                    }
-                    });	
+	        Device.BeginInvokeOnMainThread(async () =>
+	        {
+		        try
+		        {
+			        using (UserDialogs.Instance.Loading(AppResources.AlarmlarPlanlaniyor))
+			        {
+				        await CrossMediaManager.Current.MediaPlayer.Stop().ConfigureAwait(false);
+				        if (_itemId != null && _selectedSound != null)
+					        Preferences.Set(_itemId + "AlarmSesi", _selectedSound.FileName);
+				        await Task.Delay(1000);
+				        var data = new DataService();
+				        data.SetWeeklyAlarms();
+			        }
+		        }
+		        catch (Exception ex)
+		        {
+			        var val = ex.Message;
+			        UserDialogs.Instance.Alert("Test", val.ToString(), "Ok");
+		        }
+	        });	
 						Shell.Current.GoToAsync("..");
             //using (UserDialogs.Instance.Loading(AppResources.AlarmlarPlanlaniyor,null,null,true,MaskType.Gradient))
             //{
