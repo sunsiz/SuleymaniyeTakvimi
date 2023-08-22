@@ -32,6 +32,18 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 ## Yayın notları:
 
+*2.1.3 sürümündeki yenilikler (2023-8-22):*
+* Bazı cihazlarda alarmı kapatınca zamanı geldiğinde yine çalması düzeltildi.
+* Android 13 ve sonraki Android sürümlerinde bildiri izni sormak zorunlu olduğu için bildirim izni sorma eklendi.
+
+*2.1.2 sürümündeki yenilikler (2023-03-24):*
+* Bazı cihazlarda radyo çalmama problemi düzeltildi.
+* Alarm planlama bir haftadan iki haftalık planlamaya değiştirildi.
+
+*2.1.1 sürümündeki yenilikler (2023-01-14):*
+* Ayarlara "Uygulama her açıldığında konum ve namaz vakitlerini yenile" seçeneği eklendi.
+* Bazı küçük sorunlar düzeltildi.
+
 *2.1.0 sürümündeki yenilikler (2022-08-17):*
 * Bildirim gösterirken fazladan "Test Alarmı" gösterip ezan çalası düzeltildi.
 
@@ -151,6 +163,19 @@ Suleymaniyetakvimi.com Xamarin mobile application
 -->
 
 ## Release notes:
+
+*What's new in version 2.1.3 (2023-08-22):
+* Fixed the problem of keep alarming even turn off the alarm on some devices.
+* Since it is mandatory added ask notification permission feature for Android 13 and later.
+
+*What's new in version 2.1.2 (2023-03-24):*
+* Fixed the problem of not playing the radio on some devices.
+* Alarm scheduling changed from one week to two week scheduling.
+* The vibration option has been removed as it can only show notifications on Android 10 and later.
+
+*What's new in version 2.1.1 (2023-01-14):
+* Add an option for "renew location and prayer times when open application every time" in settings.
+* Fixed some minor issues.
 
 *What's new in version 2.1.0 (2022-08-17):*
 * Fixed the extra notification with the name "Test Alarm" that playing Adhan.

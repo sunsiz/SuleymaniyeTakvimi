@@ -5,20 +5,17 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using SuleymaniyeTakvimi.Localization;
-using static Android.Content.ClipData;
 using Item = SuleymaniyeTakvimi.Models.Item;
-using MediaManager;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+	public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
         private Command LoadItemsCommand { get; }

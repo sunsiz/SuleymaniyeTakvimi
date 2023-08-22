@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using Acr.UserDialogs.Infrastructure;
-using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -81,10 +79,10 @@ namespace SuleymaniyeTakvimi.Droid
 	        const int requestLocationId = 0;
 	        string[] notificationPermission =
 	        {
-		        Manifest.Permission.PostNotifications
+                Android.Manifest.Permission.PostNotifications
 	        };
 	        if ((int)Build.VERSION.SdkInt < 33) return;
-	        if (CheckSelfPermission(Manifest.Permission.PostNotifications) != Permission.Granted)
+	        if (CheckSelfPermission(Android.Manifest.Permission.PostNotifications) != Permission.Granted)
 	        {
 				RequestPermissions(notificationPermission, requestLocationId);
 	        }
