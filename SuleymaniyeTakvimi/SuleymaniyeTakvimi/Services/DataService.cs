@@ -159,7 +159,7 @@ namespace SuleymaniyeTakvimi.Services
             if (location != null)
             {
                 
-                var url = "http://servis.suleymaniyetakvimi.com/servis.asmx/VakitHesabi?";
+                var url = "https://servis.suleymaniyetakvimi.com/servis.asmx/VakitHesabi?";
                 url += "Enlem=" + location.Latitude;
                 url += "&Boylam=" + location.Longitude;
                 url += "&Yukseklik=" + location.Altitude;
@@ -325,7 +325,7 @@ namespace SuleymaniyeTakvimi.Services
                 //            $"VakitHesabi?Enlem={konum.Enlem}&Boylam={konum.Boylam}&Yukseklik={konum.Yukseklik}&SaatBolgesi={konum.SaatBolgesi}&yazSaati={konum.YazKis}&Tarih={konum.Tarih}")
                 //        .ConfigureAwait(false);
                 Thread.CurrentThread.CurrentCulture=CultureInfo.GetCultureInfo("en");
-                var uri = new Uri("http://servis.suleymaniyetakvimi.com/servis.asmx/" +
+                var uri = new Uri("https://servis.suleymaniyetakvimi.com/servis.asmx/" +
                                   $"VakitHesabi?Enlem={Convert.ToDouble(_konum.Enlem, CultureInfo.InvariantCulture.NumberFormat)}" +
                                   $"&Boylam={Convert.ToDouble(_konum.Boylam, CultureInfo.InvariantCulture.NumberFormat)}" +
                                   $"&Yukseklik={Convert.ToDouble(_konum.Yukseklik, CultureInfo.InvariantCulture.NumberFormat)}" +
@@ -472,7 +472,7 @@ namespace SuleymaniyeTakvimi.Services
             };
             //.StandardName;
 
-            var url = "http://servis.suleymaniyetakvimi.com/servis.asmx/VakitHesabiListesi?";
+            var url = "https://servis.suleymaniyetakvimi.com/servis.asmx/VakitHesabiListesi?";
             url += "Enlem=" + _konum.Enlem;
             url += "&Boylam=" + _konum.Boylam;
             url += "&Yukseklik=" + _konum.Yukseklik;

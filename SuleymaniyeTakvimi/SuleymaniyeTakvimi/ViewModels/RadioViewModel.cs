@@ -73,8 +73,13 @@ namespace SuleymaniyeTakvimi.ViewModels
                         // MediaItems = new List<IMediaItem>(1){new MediaItem("https://shaincast.caster.fm:22344/listen.mp3")}
                         //};
                         //var mediaItem = await CrossMediaManager.Current.Play(radioFitrat).ConfigureAwait(false);
-                        var mediaItem = await CrossMediaManager.Current.Play("https://shaincast.caster.fm:22344/listen.mp3").ConfigureAwait(true);
-                        mediaItem.Title = AppResources.FitratinSesi;
+                        //var mediaItem = await CrossMediaManager.Current.Play("https://www.radyofitrat.com/radio.php").ConfigureAwait(true);
+                        //var mediaItem = await CrossMediaManager.Current.Extractor.CreateMediaItem("https://www.radyofitrat.com/radio.m3u");
+                        //mediaItem.MediaType = MediaType.Audio;
+                        //mediaItem.MimeType = MimeType.AudioMpeg;
+                        //await CrossMediaManager.Current.Play(mediaItem);
+                        //mediaItem.Title = AppResources.FitratinSesi;
+                        await CrossMediaManager.Current.Play("https://www.suleymaniyevakfi.org/radio.mp3");
                         ////mediaItem.Album = AppResources.RadyoFitrat;
                         //mediaItem.Author = AppResources.RadyoFitrat;
                         //mediaItem.Artist = AppResources.RadyoFitrat;

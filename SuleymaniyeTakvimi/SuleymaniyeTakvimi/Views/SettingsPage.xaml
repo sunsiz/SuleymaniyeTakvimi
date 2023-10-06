@@ -1,177 +1,174 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
-             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:system="clr-namespace:System;assembly=netstandard"
-             Shell.PresentationMode="ModalAnimated" FlowDirection="{x:Static Device.FlowDirection}"
-             Visual="Material" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource AppBackgroundColorDark}}"
-             x:Class="SuleymaniyeTakvimi.Views.SettingsPage">
+<ContentPage x:Class="SuleymaniyeTakvimi.Views.SettingsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:viewModels="clr-namespace:SuleymaniyeTakvimi.ViewModels;assembly=SuleymaniyeTakvimi"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor},
+                                               Dark={StaticResource AppBackgroundColorDark}}"
+             FlowDirection="{x:Static Device.FlowDirection}"
+             Shell.PresentationMode="ModalAnimated" Visual="Material">
     <ContentPage.BindingContext>
-        <viewModels:SettingsViewModel/>
+        <viewModels:SettingsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Vertical">
-        <pancakeView:PancakeView HorizontalOptions="FillAndExpand" CornerRadius="5" Padding="18,14" Margin="9">
-            <pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:GradientStop Color="{AppThemeBinding Light=AliceBlue, Dark={StaticResource AppBackgroundColorDark}}" Offset="0"/>
-                <pancakeView:GradientStop Color="{AppThemeBinding Light=WhiteSmoke, Dark={StaticResource Primary}}" Offset="1"/>
-            </pancakeView:PancakeView.BackgroundGradientStops>
-            <pancakeView:PancakeView.Shadow>
-                <pancakeView:DropShadow Color="Coral" BlurRadius="6" Opacity="0.3"/>
-            </pancakeView:PancakeView.Shadow>
-        <StackLayout>
-            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center">
+            <pancakeView:PancakeView Margin="9" Padding="18,14" HorizontalOptions="FillAndExpand" CornerRadius="5">
                 <pancakeView:PancakeView.BackgroundGradientStops>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
+                    <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=AliceBlue, Dark={StaticResource AppBackgroundColorDark}}" />
+                    <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=WhiteSmoke, Dark={StaticResource Primary}}" />
                 </pancakeView:PancakeView.BackgroundGradientStops>
                 <pancakeView:PancakeView.Shadow>
-                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
+                    <pancakeView:DropShadow BlurRadius="6" Opacity="0.3" Color="Coral" />
                 </pancakeView:PancakeView.Shadow>
-                <StackLayout Padding="9,5">
-                            <Label HorizontalOptions="Start" Text="{behaviors:Translate UygulamaDili}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" />
-                            <Picker ItemsSource="{Binding SupportedLanguages}" Style="{DynamicResource PickerStyle}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedLanguage}" Title="{behaviors:Translate UygulamaDiliniSecin}" HorizontalOptions="FillAndExpand" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource DarkElevation2dp}}" HeightRequest="48" />
-                            <Button Text="{behaviors:Translate KaydetVeUygula}" Command="{Binding ChangeLanguageCommand}" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" Style="{DynamicResource ButtonStyle}" TextColor="{StaticResource CardBackgroundColor}" Visual="Material" Padding="7"/>
-                </StackLayout>
-            </pancakeView:PancakeView>
-            <pancakeView:PancakeView CornerRadius="9" Margin="4" Padding="9,5" VerticalOptions="Center">
-                <pancakeView:PancakeView.BackgroundGradientStops>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" Offset="0"/>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" Offset="1"/>
-                </pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:PancakeView.Shadow>
-                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
-                </pancakeView:PancakeView.Shadow>
-                <StackLayout Padding="9,5">
-                    <Label HorizontalOptions="Start" Text="{behaviors:Translate UygulamaTema}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" />
-                    <RadioButton Content="{behaviors:Translate AcikTema}" Value="1" x:Name="AcikTema" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate AcikTema}">
-                        <RadioButton.Triggers>
-                            <DataTrigger TargetType="RadioButton" Binding="{Binding CurrentTheme}" Value="1">
-                                <Setter TargetName="AcikTema" Property="IsChecked" Value="True"/>
-                            </DataTrigger>
-                        </RadioButton.Triggers>
-                        <RadioButton.Behaviors>
-                            <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference AcikTema}"/>
-                        </RadioButton.Behaviors>
-                    </RadioButton>
-                    <RadioButton Content="{behaviors:Translate KoyuTema}" Value="0" x:Name="KoyuTema" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate KoyuTema}">
-                        <RadioButton.Triggers>
-                            <DataTrigger TargetType="RadioButton" Binding="{Binding CurrentTheme}" Value="0">
-                                <Setter TargetName="KoyuTema" Property="IsChecked" Value="True"/>
-                            </DataTrigger>
-                        </RadioButton.Triggers>
-                        <RadioButton.Behaviors>
-                            <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference KoyuTema}"/>
-                        </RadioButton.Behaviors>
-                    </RadioButton>
-                </StackLayout>
-            </pancakeView:PancakeView>
-            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center">
-                <pancakeView:PancakeView.BackgroundGradientStops>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
-                </pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:PancakeView.Shadow>
-                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
-                </pancakeView:PancakeView.Shadow>
-                <StackLayout Padding="9,5">
-                            <Label HorizontalOptions="Start" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" x:Name="LabelFontSize">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{behaviors:Translate YaziBoyutu}" />
-                                <Span Text="{Binding FontSize}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                            <Slider HorizontalOptions="FillAndExpand" HeightRequest="48" Maximum="24" Minimum="12" Value="{Binding FontSize}" MaximumTrackColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.LabeledBy="LabelFontSize"/>
-                </StackLayout>
-            </pancakeView:PancakeView>
-            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center" IsVisible="{Binding IsNecessary}">
-                <pancakeView:PancakeView.BackgroundGradientStops>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" Offset="0"/>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" Offset="1"/>
-                </pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:PancakeView.Shadow>
-                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
-                </pancakeView:PancakeView.Shadow>
-                <StackLayout Padding="9,5">
-                            <Label HorizontalOptions="Start" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" x:Name="LabelAlarmDuration">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{behaviors:Translate AlarmSuresi}" />
-                                <Span Text="{Binding AlarmDuration}" />
-                                <Span Text="{behaviors:Translate Dakika}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                            <Slider HorizontalOptions="FillAndExpand" HeightRequest="48" Maximum="30" Minimum="1" Value="{Binding AlarmDuration}" MaximumTrackColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.LabeledBy="LabelAlarmDuration"/>
-                </StackLayout>
-            </pancakeView:PancakeView>
-            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center">
-                <pancakeView:PancakeView.BackgroundGradientStops>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
-                </pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:PancakeView.Shadow>
-                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
-                </pancakeView:PancakeView.Shadow>
-                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                        <Switch HorizontalOptions="Start" HeightRequest="48" WidthRequest="48" IsToggled="{Binding AlwaysRenewLocationEnabled}" Visual="Material" />
-                        <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate HepKonumYenile}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material"/>
+                <StackLayout>
+                    <pancakeView:PancakeView Margin="4,4" Padding="9,5" VerticalOptions="Center" CornerRadius="9">
+                        <pancakeView:PancakeView.BackgroundGradientStops>
+                            <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" />
+                            <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" />
+                        </pancakeView:PancakeView.BackgroundGradientStops>
+                        <pancakeView:PancakeView.Shadow>
+                            <pancakeView:DropShadow BlurRadius="3" Opacity="0.3" Offset="2,2" Color="#000" />
+                        </pancakeView:PancakeView.Shadow>
+                        <StackLayout Padding="9,5">
+                            <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="Start" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate UygulamaDili}" />
+                            <Picker Title="{behaviors:Translate UygulamaDiliniSecin}" Style="{DynamicResource PickerStyle}" HeightRequest="48" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource DarkElevation2dp}}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedLanguage}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" ItemsSource="{Binding SupportedLanguages}" />
+                            <Button Style="{DynamicResource ButtonStyle}" Padding="7" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" TextColor="{StaticResource CardBackgroundColor}" Visual="Material" Command="{Binding ChangeLanguageCommand}" Text="{behaviors:Translate KaydetVeUygula}" />
+                        </StackLayout>
+                    </pancakeView:PancakeView>
+                    <pancakeView:PancakeView Margin="4" Padding="9,5" VerticalOptions="Center" CornerRadius="9">
+                        <pancakeView:PancakeView.BackgroundGradientStops>
+                            <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" />
+                            <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" />
+                        </pancakeView:PancakeView.BackgroundGradientStops>
+                        <pancakeView:PancakeView.Shadow>
+                            <pancakeView:DropShadow BlurRadius="3" Opacity="0.3" Offset="2,2" Color="#000" />
+                        </pancakeView:PancakeView.Shadow>
+                        <StackLayout Padding="9,5">
+                            <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="Start" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate UygulamaTema}" />
+                            <RadioButton x:Name="AcikTema" Style="{StaticResource RadioButtonStyle}" AutomationProperties.HelpText="{behaviors:Translate AcikTema}" AutomationProperties.IsInAccessibleTree="True" Content="{behaviors:Translate AcikTema}" Value="1">
+                                <RadioButton.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentTheme}" TargetType="RadioButton" Value="1">
+                                        <Setter TargetName="AcikTema" Property="IsChecked" Value="True" />
+                                    </DataTrigger>
+                                </RadioButton.Triggers>
+                                <RadioButton.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference AcikTema}" />
+                                </RadioButton.Behaviors>
+                            </RadioButton>
+                            <RadioButton x:Name="KoyuTema" Style="{StaticResource RadioButtonStyle}" AutomationProperties.HelpText="{behaviors:Translate KoyuTema}" AutomationProperties.IsInAccessibleTree="True" Content="{behaviors:Translate KoyuTema}" Value="0">
+                                <RadioButton.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentTheme}" TargetType="RadioButton" Value="0">
+                                        <Setter TargetName="KoyuTema" Property="IsChecked" Value="True" />
+                                    </DataTrigger>
+                                </RadioButton.Triggers>
+                                <RadioButton.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference KoyuTema}" />
+                                </RadioButton.Behaviors>
+                            </RadioButton>
+                        </StackLayout>
+                    </pancakeView:PancakeView>
+                    <pancakeView:PancakeView Margin="4,4" Padding="9,5" VerticalOptions="Center" CornerRadius="9">
+                        <pancakeView:PancakeView.BackgroundGradientStops>
+                            <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" />
+                            <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" />
+                        </pancakeView:PancakeView.BackgroundGradientStops>
+                        <pancakeView:PancakeView.Shadow>
+                            <pancakeView:DropShadow BlurRadius="3" Opacity="0.3" Offset="2,2" Color="#000" />
+                        </pancakeView:PancakeView.Shadow>
+                        <StackLayout Padding="9,5">
+                            <Label x:Name="LabelFontSize" Style="{DynamicResource LabelStyle}" HorizontalOptions="Start" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{behaviors:Translate YaziBoyutu}" />
+                                        <Span Text="{Binding FontSize}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Slider HeightRequest="48" HorizontalOptions="FillAndExpand" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.LabeledBy="LabelFontSize" Maximum="24" MaximumTrackColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Minimum="12" Visual="Material" Value="{Binding FontSize}" />
+                        </StackLayout>
+                    </pancakeView:PancakeView>
+                    <pancakeView:PancakeView IsVisible="{Binding IsNecessary}" Margin="4,4" Padding="9,5" VerticalOptions="Center" CornerRadius="9">
+                        <pancakeView:PancakeView.BackgroundGradientStops>
+                            <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" />
+                            <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" />
+                        </pancakeView:PancakeView.BackgroundGradientStops>
+                        <pancakeView:PancakeView.Shadow>
+                            <pancakeView:DropShadow BlurRadius="3" Opacity="0.3" Offset="2,2" Color="#000" />
+                        </pancakeView:PancakeView.Shadow>
+                        <StackLayout Padding="9,5">
+                            <Label x:Name="LabelAlarmDuration" Style="{DynamicResource LabelStyle}" HorizontalOptions="Start" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{behaviors:Translate AlarmSuresi}" />
+                                        <Span Text="{Binding AlarmDuration}" />
+                                        <Span Text="{behaviors:Translate Dakika}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Slider HeightRequest="48" HorizontalOptions="FillAndExpand" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.LabeledBy="LabelAlarmDuration" Maximum="30" MaximumTrackColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Minimum="1" Visual="Material" Value="{Binding AlarmDuration}" />
+                        </StackLayout>
+                    </pancakeView:PancakeView>
+                    <pancakeView:PancakeView Margin="4,4" Padding="9,5" VerticalOptions="Center" CornerRadius="9">
+                        <pancakeView:PancakeView.BackgroundGradientStops>
+                            <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" />
+                            <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" />
+                        </pancakeView:PancakeView.BackgroundGradientStops>
+                        <pancakeView:PancakeView.Shadow>
+                            <pancakeView:DropShadow BlurRadius="3" Opacity="0.3" Offset="2,2" Color="#000" />
+                        </pancakeView:PancakeView.Shadow>
+                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Switch WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" IsToggled="{Binding AlwaysRenewLocationEnabled}" Visual="Material" />
+                            <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate HepKonumYenile}" />
+                        </StackLayout>
+                    </pancakeView:PancakeView>
+                    <pancakeView:PancakeView Margin="4,4" Padding="9,5" VerticalOptions="Center" CornerRadius="9">
+                        <pancakeView:PancakeView.IsVisible>
+                            <OnPlatform x:TypeArguments="system:Boolean">
+                                <On Platform="Android" Value="True" />
+                                <On Platform="iOS" Value="False" />
+                            </OnPlatform>
+                        </pancakeView:PancakeView.IsVisible>
+                        <pancakeView:PancakeView.BackgroundGradientStops>
+                            <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" />
+                            <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" />
+                        </pancakeView:PancakeView.BackgroundGradientStops>
+                        <pancakeView:PancakeView.Shadow>
+                            <pancakeView:DropShadow BlurRadius="3" Opacity="0.3" Offset="2,2" Color="#000" />
+                        </pancakeView:PancakeView.Shadow>
+                        <StackLayout Padding="9,5">
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <Switch WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" IsToggled="{Binding NotificationPrayerTimesEnabled}" Visual="Material" />
+                                <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate BildirimNamazVakitleri}" />
+                            </StackLayout>
+                            <Label HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" FontSize="Small" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate BildirimNamazVakitleriUyari}" />
+                        </StackLayout>
+                    </pancakeView:PancakeView>
+                    <pancakeView:PancakeView Margin="4,4" Padding="9,5" VerticalOptions="Center" CornerRadius="9">
+                        <pancakeView:PancakeView.IsVisible>
+                            <OnPlatform x:TypeArguments="system:Boolean">
+                                <On Platform="Android" Value="True" />
+                                <On Platform="iOS" Value="False" />
+                            </OnPlatform>
+                        </pancakeView:PancakeView.IsVisible>
+                        <pancakeView:PancakeView.BackgroundGradientStops>
+                            <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" />
+                            <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" />
+                        </pancakeView:PancakeView.BackgroundGradientStops>
+                        <pancakeView:PancakeView.Shadow>
+                            <pancakeView:DropShadow BlurRadius="3" Opacity="0.3" Offset="2,2" Color="#000" />
+                        </pancakeView:PancakeView.Shadow>
+                        <StackLayout Padding="9,5">
+                            <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate BildirimKapatma}" />
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <Switch WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" IsToggled="{Binding ForegroundServiceEnabled}" Visual="Material" />
+                                <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="End" VerticalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate EtkinlestirSwitch}" />
+                            </StackLayout>
+                            <Label HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="Small" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate BildirimUyari}" />
+                            <Button Style="{DynamicResource ButtonStyle}" Padding="7" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" TextColor="{StaticResource CardBackgroundColor}" Visual="Material" Command="{Binding GotoSettingsCommand}" Text="{behaviors:Translate GotoSettings}" />
+                        </StackLayout>
+                    </pancakeView:PancakeView>
+                    <StackLayout Margin="7" Padding="0" HorizontalOptions="Fill" Orientation="Horizontal">
+                        <Button Style="{DynamicResource ButtonStyle}" Padding="7" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Visual="Material" Command="{Binding BackCommand}" Text="{behaviors:Translate KaydetVeKapat}" />
                     </StackLayout>
-            </pancakeView:PancakeView>
-            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center" >
-                <pancakeView:PancakeView.IsVisible>
-                    <OnPlatform x:TypeArguments="system:Boolean">
-                        <On Platform="Android" Value="True" />
-                        <On Platform="iOS" Value="False" />
-                    </OnPlatform>
-                </pancakeView:PancakeView.IsVisible>
-                <pancakeView:PancakeView.BackgroundGradientStops>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=Khaki, Dark={StaticResource DarkElevation12dp}}" Offset="0"/>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#EEE78E, Dark={StaticResource DarkElevation12dp}}" Offset="1"/>
-                </pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:PancakeView.Shadow>
-                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
-                </pancakeView:PancakeView.Shadow>
-                <StackLayout Padding="9,5">
-                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                        <Switch HorizontalOptions="Start" HeightRequest="48" WidthRequest="48" IsToggled="{Binding NotificationPrayerTimesEnabled}" Visual="Material" />
-                        <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate BildirimNamazVakitleri}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material"/>
-                    </StackLayout>
-                    <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate BildirimNamazVakitleriUyari}" FontSize="Small" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material"/>
                 </StackLayout>
             </pancakeView:PancakeView>
-            <pancakeView:PancakeView CornerRadius="9" Margin="4,4" Padding="9,5" VerticalOptions="Center" >
-                <pancakeView:PancakeView.IsVisible>
-                    <OnPlatform x:TypeArguments="system:Boolean">
-                        <On Platform="Android" Value="True" />
-                        <On Platform="iOS" Value="False" />
-                    </OnPlatform>
-                </pancakeView:PancakeView.IsVisible>
-                <pancakeView:PancakeView.BackgroundGradientStops>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" Offset="0"/>
-                    <pancakeView:GradientStop Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation16dp}}" Offset="1"/>
-                </pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:PancakeView.Shadow>
-                    <pancakeView:DropShadow Color="#000" BlurRadius="3" Offset="2,2" Opacity="0.3"/>
-                </pancakeView:PancakeView.Shadow>
-                <StackLayout Padding="9,5">
-                    <Label HorizontalOptions="StartAndExpand" Text="{behaviors:Translate BildirimKapatma}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material"/>
-                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                        <Switch HorizontalOptions="Start" HeightRequest="48" WidthRequest="48" IsToggled="{Binding ForegroundServiceEnabled}" Visual="Material" />
-                        <Label HorizontalOptions="End" Text="{behaviors:Translate EtkinlestirSwitch}" Style="{DynamicResource LabelStyle}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" VerticalTextAlignment="Center" Visual="Material"/>
-                    </StackLayout>
-                    <Label HorizontalOptions="FillAndExpand" Text="{behaviors:Translate BildirimUyari}" FontSize="Small" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" VerticalTextAlignment="Center" Visual="Material"/>
-                            <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate GotoSettings}" Command="{Binding GotoSettingsCommand}" Style="{DynamicResource ButtonStyle}"  BackgroundColor="{AppThemeBinding Light={StaticResource CityBackgroundColor}, Dark={StaticResource CityBackgroundColorDark}}" TextColor="{StaticResource CardBackgroundColor}" Padding="7" Visual="Material" />
-                </StackLayout>
-            </pancakeView:PancakeView>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0" Margin="7">
-                <Button HorizontalOptions="FillAndExpand" Text="{behaviors:Translate KaydetVeKapat}" Command="{Binding BackCommand}" Style="{DynamicResource ButtonStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Padding="7" Visual="Material" />
-            </StackLayout>
-        </StackLayout>
-            </pancakeView:PancakeView>
-            </ScrollView>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
