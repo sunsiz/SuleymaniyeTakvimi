@@ -32,6 +32,10 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 ## Yayın notları:
 
+
+*2.1.4 sürümündeki yenilikler (2023-10-13):*
+* Radyo bağlantısı düzeltildi.
+
 *2.1.3 sürümündeki yenilikler (2023-8-22):*
 * Bazı cihazlarda alarmı kapatınca zamanı geldiğinde yine çalması düzeltildi.
 * Android 13 ve sonraki Android sürümlerinde bildiri izni sormak zorunlu olduğu için bildirim izni sorma eklendi.
@@ -164,7 +168,10 @@ Suleymaniyetakvimi.com Xamarin mobile application
 
 ## Release notes:
 
-*What's new in version 2.1.3 (2023-08-22):
+*What's new in version 2.1.4 (2023-10-13):*
+* Radio link has updated.
+
+*What's new in version 2.1.3 (2023-08-22):*
 * Fixed the problem of keep alarming even turn off the alarm on some devices.
 * Since it is mandatory added ask notification permission feature for Android 13 and later.
 

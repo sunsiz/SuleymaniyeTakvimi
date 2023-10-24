@@ -27,7 +27,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>MRA.Suleymaniye-Takvimi</string>
 	<key>CFBundleVersion</key>
-	<string>2.0.3</string>
+	<string>2.0.4</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -85,7 +85,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.3</string>
+	<string>2.0.4</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
