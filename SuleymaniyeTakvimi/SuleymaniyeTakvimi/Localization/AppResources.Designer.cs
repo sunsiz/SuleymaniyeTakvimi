@@ -917,6 +917,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string Paylas {
+            get {
+                return ResourceManager.GetString("Paylas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Radio.
         /// </summary>
         public static string Radyo {

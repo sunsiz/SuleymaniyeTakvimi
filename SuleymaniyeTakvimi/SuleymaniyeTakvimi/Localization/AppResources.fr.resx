@@ -553,4 +553,7 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>Programmation des alarmes, veuillez patienter</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Partager</value>
+  </data>
 </root>

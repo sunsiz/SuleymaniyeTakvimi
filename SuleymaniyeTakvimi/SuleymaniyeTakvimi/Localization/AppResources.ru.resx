@@ -554,4 +554,7 @@
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>Планирование будильников, пожалуйста, подождите</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Поделиться</value>
+  </data>
 </root>

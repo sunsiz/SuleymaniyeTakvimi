@@ -553,4 +553,7 @@ This application is designed to provide safe and fast access to prayer and fasti
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>Scheduling alarms, please wait</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Share</value>
+  </data>
 </root>

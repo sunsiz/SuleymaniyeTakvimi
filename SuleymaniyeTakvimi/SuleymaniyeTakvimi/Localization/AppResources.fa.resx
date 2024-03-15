@@ -554,4 +554,7 @@
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>در حال برنامه‌ریزی هشدارها، لطفاً صبر کنید</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>هم‌رسانی</value>
+  </data>
 </root>

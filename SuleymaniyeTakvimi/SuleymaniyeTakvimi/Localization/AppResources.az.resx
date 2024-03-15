@@ -552,4 +552,7 @@
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>Siqnallar planlaşdırılır, gözləyin</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Paylaşın</value>
+  </data>
 </root>

@@ -554,4 +554,7 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>Alarmlar planlanıyor, lütfen bekleyin</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Paylaş</value>
+  </data>
 </root>

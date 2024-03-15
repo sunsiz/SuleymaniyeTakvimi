@@ -1,4 +1,5 @@
-﻿using SuleymaniyeTakvimi.ViewModels;
+﻿using SuleymaniyeTakvimi.Services;
+using SuleymaniyeTakvimi.ViewModels;
 using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.Views
@@ -9,7 +10,8 @@ namespace SuleymaniyeTakvimi.Views
         public ItemDetailPage()
         {
             InitializeComponent();
-            BindingContext = viewModel = new ItemDetailViewModel();
+            var dataService = DependencyService.Get<DataService>(); // Get DataService from DI container
+            BindingContext = viewModel = new ItemDetailViewModel(dataService);
         }
 
         protected override void OnDisappearing()

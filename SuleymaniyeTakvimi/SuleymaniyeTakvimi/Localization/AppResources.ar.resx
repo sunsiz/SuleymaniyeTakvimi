@@ -553,4 +553,7 @@
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>جدولة الإنذارات ، من فضلك انتظر</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>مشاركة</value>
+  </data>
 </root>

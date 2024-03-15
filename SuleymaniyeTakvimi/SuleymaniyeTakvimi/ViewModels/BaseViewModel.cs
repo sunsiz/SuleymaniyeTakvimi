@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : MvvmHelpers.BaseViewModel, INotifyPropertyChanged
     {
         //public IDataService DataService => DependencyService.Get<IDataService>();
+        protected readonly DataService DataService;
 
+        public BaseViewModel(DataService dataService)
+        {
+            DataService = dataService;
+        }
         bool _isBusy;
 
         public bool IsBusy

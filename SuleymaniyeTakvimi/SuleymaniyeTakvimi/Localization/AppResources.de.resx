@@ -553,4 +553,7 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>Planen von Alarmen, bitte warten</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Teilen</value>
+  </data>
 </root>

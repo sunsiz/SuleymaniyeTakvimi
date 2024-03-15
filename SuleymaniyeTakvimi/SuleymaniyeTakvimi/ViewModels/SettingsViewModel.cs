@@ -121,7 +121,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        public SettingsViewModel()
+        public SettingsViewModel(DataService dataService):base(dataService)
         {
             IsBusy = true;
             RadioButtonCheckedChanged = new Command(PerformRadioButtonCheckedChanged);

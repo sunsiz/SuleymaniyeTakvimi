@@ -311,7 +311,7 @@ namespace SuleymaniyeTakvimi.Droid
                         await Task.Delay(12000).ConfigureAwait(true);
                         System.Diagnostics.Debug.WriteLine("OnStartCommand: " + $"Starting Set Alarm at {DateTime.Now}");
                         DataService data = new DataService();
-                        data.SetWeeklyAlarms();
+                        await data.SetWeeklyAlarmsAsync();
                     });
                     startupWork.Start();
                     

@@ -1,4 +1,5 @@
-﻿using SuleymaniyeTakvimi.ViewModels;
+﻿using SuleymaniyeTakvimi.Services;
+using SuleymaniyeTakvimi.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -6,7 +7,7 @@ namespace SuleymaniyeTakvimi.Views
 {
     public partial class ItemsPage : ContentPage
     {
-        readonly ItemsViewModel _viewModel;
+        private readonly ItemsViewModel _viewModel;
 
         public ItemsPage()
         {
@@ -15,7 +16,9 @@ namespace SuleymaniyeTakvimi.Views
             //{
             //    Navigation.PushModalAsync(new OnBoardingPage());
             //}
-            BindingContext = _viewModel = new ItemsViewModel();
+            //BindingContext = _viewModel = new ItemsViewModel();
+            var dataService = DependencyService.Get<DataService>(); // Get DataService from DI container
+            BindingContext = _viewModel = new ItemsViewModel(dataService);
         }
 
         protected override void OnAppearing()

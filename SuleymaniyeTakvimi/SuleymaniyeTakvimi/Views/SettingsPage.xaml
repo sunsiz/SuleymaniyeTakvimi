@@ -4,9 +4,9 @@
                                                Dark={StaticResource AppBackgroundColorDark}}"
              FlowDirection="{x:Static Device.FlowDirection}"
              Shell.PresentationMode="ModalAnimated" Visual="Material">
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewModels:SettingsViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     <ContentPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Vertical">
             <pancakeView:PancakeView Margin="9" Padding="18,14" HorizontalOptions="FillAndExpand" CornerRadius="5">

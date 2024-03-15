@@ -79,7 +79,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         //}
         public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform == DevicePlatform.iOS);
 
-        public ItemDetailViewModel()
+        public ItemDetailViewModel(DataService dataService):base(dataService)
         {
             Title = AppResources.PageTitle;
             EnableSwitchToggled = new Command(Etkinlestir);
@@ -494,8 +494,8 @@ namespace SuleymaniyeTakvimi.ViewModels
 				        if (_itemId != null && _selectedSound != null)
 					        Preferences.Set(_itemId + "AlarmSesi", _selectedSound.FileName);
 				        await Task.Delay(1000);
-				        var data = new DataService();
-				        data.SetWeeklyAlarms();
+				        //var data = new DataService();
+				        await DataService.SetWeeklyAlarmsAsync();
 			        }
 		        }
 		        catch (Exception ex)
