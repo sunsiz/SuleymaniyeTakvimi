@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
-    public class SettingsViewModel:BaseViewModel
+    public class SettingsViewModel : BaseViewModel
     {
         IList<Language> _supportedLanguages = Enumerable.Empty<Language>().ToList();
         private Language _selectedLanguage = new Language(AppResources.English, "en");
@@ -60,18 +60,18 @@ namespace SuleymaniyeTakvimi.ViewModels
             SelectedLanguage = SupportedLanguages.FirstOrDefault(lan => lan.CI == LocalizationResourceManager.Current.CurrentCulture.TwoLetterISOLanguageName);
         }
 
-        public bool Dark { get=>_dark; private set=>SetProperty(ref _dark,value); }
+        public bool Dark { get => _dark; private set => SetProperty(ref _dark, value); }
 
         public bool ForegroundServiceEnabled
         {
             get => _foregroundServiceEnabled;
             set
             {
-                if (_foregroundServiceEnabled!=value)
+                if (_foregroundServiceEnabled != value)
                 {
                     SetProperty(ref _foregroundServiceEnabled, value);
                     Preferences.Set("ForegroundServiceEnabled", value);
-                    if(!value)DependencyService.Get<IAlarmService>().StopAlarmForegroundService();
+                    if (!value) DependencyService.Get<IAlarmService>().StopAlarmForegroundService();
                     else DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
                 }
             }
@@ -81,7 +81,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             get => _notificationPrayerTimesEnabled;
             set
             {
-                if (_notificationPrayerTimesEnabled!=value)
+                if (_notificationPrayerTimesEnabled != value)
                 {
                     SetProperty(ref _notificationPrayerTimesEnabled, value);
                     Preferences.Set("NotificationPrayerTimesEnabled", value);
@@ -93,7 +93,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             get => _alwaysRenewLocationEnabled;
             set
             {
-                if (_alwaysRenewLocationEnabled!=value)
+                if (_alwaysRenewLocationEnabled != value)
                 {
                     SetProperty(ref _alwaysRenewLocationEnabled, value);
                     Preferences.Set("AlwaysRenewLocationEnabled", value);
@@ -101,7 +101,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform==DevicePlatform.iOS);
+        public bool IsNecessary => !((DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10) || DeviceInfo.Platform == DevicePlatform.iOS);
         public int CurrentTheme
         {
             get => _currentTheme;
@@ -113,7 +113,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             get => _alarmDuration;
             set
             {
-                if (AlarmDuration!=value)
+                if (AlarmDuration != value)
                 {
                     SetProperty(ref _alarmDuration, value);
                     Preferences.Set("AlarmDuration", value);
@@ -121,28 +121,36 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        public SettingsViewModel(DataService dataService):base(dataService)
+        public SettingsViewModel(DataService dataService) : base(dataService)
         {
-            IsBusy = true;
-            RadioButtonCheckedChanged = new Command(PerformRadioButtonCheckedChanged);
-            LoadLanguages();
-            CurrentTheme = Application.Current.RequestedTheme == OSAppTheme.Dark ? 0 : 1;
-            ChangeLanguageCommand = CommandFactory.Create(() =>
+            try
             {
-                LocalizationResourceManager.Current.CurrentCulture = CultureInfo.GetCultureInfo(SelectedLanguage.CI);
-                Preferences.Set("SelectedLanguage", SelectedLanguage.CI);
+                IsBusy = true;
+                RadioButtonCheckedChanged = new Command(PerformRadioButtonCheckedChanged);
                 LoadLanguages();
-                GoBack(null);
-            });
-            BackCommand = new Command(GoBack);
-            GotoSettingsCommand = new Command(() => { AppInfo.ShowSettingsUI(); });
-            _alarmDuration = Preferences.Get("AlarmDuration", 4);
-            _foregroundServiceEnabled = Preferences.Get("ForegroundServiceEnabled", true);
-            _notificationPrayerTimesEnabled = Preferences.Get("NotificationPrayerTimesEnabled", false);
-            _alwaysRenewLocationEnabled = Preferences.Get("AlwaysRenewLocationEnabled", false);
-            IsBusy = false;
+                CurrentTheme = Application.Current.RequestedTheme == OSAppTheme.Dark ? 0 : 1;
+                ChangeLanguageCommand = CommandFactory.Create(() =>
+                {
+                    LocalizationResourceManager.Current.CurrentCulture =
+                        CultureInfo.GetCultureInfo(SelectedLanguage.CI);
+                    Preferences.Set("SelectedLanguage", SelectedLanguage.CI);
+                    LoadLanguages();
+                    GoBack();
+                });
+                BackCommand = new Command(GoBack);
+                GotoSettingsCommand = new Command(AppInfo.ShowSettingsUI);
+                _alarmDuration = Preferences.Get("AlarmDuration", 4);
+                _foregroundServiceEnabled = Preferences.Get("ForegroundServiceEnabled", true);
+                _notificationPrayerTimesEnabled = Preferences.Get("NotificationPrayerTimesEnabled", false);
+                _alwaysRenewLocationEnabled = Preferences.Get("AlwaysRenewLocationEnabled", false);
+                IsBusy = false;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
-        
+
         private void PerformRadioButtonCheckedChanged(object obj)
         {
             if (!IsBusy)
@@ -153,10 +161,10 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        private void GoBack(object obj)
+        private void GoBack()
         {
             Application.Current.UserAppTheme = Theme.Tema == 1 ? OSAppTheme.Light : OSAppTheme.Dark;
-			Shell.Current.GoToAsync("..");
+            Shell.Current.GoToAsync("..");
         }
     }
 }

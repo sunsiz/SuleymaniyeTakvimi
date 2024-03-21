@@ -9,7 +9,6 @@ namespace SuleymaniyeTakvimi.ViewModels
 {
     public class BaseViewModel : MvvmHelpers.BaseViewModel, INotifyPropertyChanged
     {
-        //public IDataService DataService => DependencyService.Get<IDataService>();
         protected readonly DataService DataService;
 
         public BaseViewModel(DataService dataService)
@@ -42,7 +41,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Preferences.Set("FontSize", value);
             }
         }
-        //public Takvim Vakitler { get; set; }
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
@@ -61,11 +59,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

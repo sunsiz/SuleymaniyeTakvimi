@@ -28,7 +28,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             });
         });
 
-        private IList<Takvim> MonthlyTakvim
+        public IList<Takvim> MonthlyTakvim
         {
             get => _monthlyTakvim;
             set => SetProperty(ref _monthlyTakvim, value);
@@ -44,12 +44,6 @@ namespace SuleymaniyeTakvimi.ViewModels
             BackCommand = new Command(GoBack);
             RefreshCommand = new Command(async () => await RefreshData(location));
             
-            //Task.Run(async () =>
-            //{
-            //    await data.GetMonthlyPrayerTimes(location).ConfigureAwait(true);
-            //});
-            //data.GetMonthlyPrayerTimes(location);
-            //MonthlyTakvim = data.MonthlyTakvim;
             if (!konum.IsTakvimLocationUnValid())
             {
                 MonthlyTakvim = DataService.GetMonthlyPrayerTimes(location, false);

@@ -7,10 +7,6 @@
         <ResourceDictionary>
             <!--  Values  -->
             <Thickness x:Key="ContentPadding">3, 7</Thickness>
-            <!--<Color x:Key="Primary">DodgerBlue</Color>
-            <Color x:Key="AppPrimaryColor">#1976D2</Color>
-            <Color x:Key="SecondaryTextColor">#ffffff</Color>
-            <Color x:Key="OnSurfaceColor">#FFFFFF</Color>-->
             <Color x:Key="AppBackgroundColor">#EFEBE9</Color>
             <Color x:Key="AppBackgroundColorDark">#121212</Color>
             <Color x:Key="PrimaryColor">#5c3021</Color>
@@ -69,10 +65,6 @@
             <Color x:Key="DarkSurface">#121212</Color>
             <Color x:Key="LightSurface">#02FF0266</Color>
 
-            <!--<Color x:Key="MonthlyBackgroundColor">Beige</Color>
-            <Color x:Key="NavigationBarLightColor">#FFFFFF</Color>
-            <Color x:Key="BarTextColor">#FFFFFF</Color>-->
-
             <Color x:Key="BlackC90">#414142</Color>
             <Color x:Key="BlackC50">#939598</Color>
             <Color x:Key="BlackC25">#C8C8C8</Color>
@@ -80,6 +72,7 @@
             <Color x:Key="Black.20">#33000000</Color>
 
             <Color x:Key="Primary">#121212</Color>
+
             <!--  Implicit styles  -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor}}" />
@@ -93,16 +86,6 @@
                 <Setter Property="NavigationPage.BackButtonTitle" Value="" />
             </Style>
 
-            <!--  Fonts
-            <OnPlatform x:Key="FontBold" x:TypeArguments="x:String">
-                <On Platform="iOS" Value="Bold" />
-                <On Platform="Android" Value="Bold" />
-            </OnPlatform>-->
-
-            <OnPlatform x:Key="MaterialIcons" x:TypeArguments="x:String">
-                <On Platform="iOS" Value="MaterialIcons" />
-                <On Platform="Android" Value="MaterialIcons.ttf" />
-            </OnPlatform>
             <Style x:Key="LabelSectionHeader" TargetType="Label">
                 <!--<Setter Property="FontFamily" Value="{StaticResource FontBold}" />-->
                 <Setter Property="FontSize" Value="20" />
@@ -199,6 +182,12 @@
                 <Setter Property="HasShadow" Value="True" />
                 <Setter Property="BorderColor" Value="Silver" />
             </Style>
+
+            <!--  Fonts -->
+            <OnPlatform x:Key="MaterialIcons" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="MaterialIcons" />
+                <On Platform="Android" Value="MaterialIcons.ttf" />
+            </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

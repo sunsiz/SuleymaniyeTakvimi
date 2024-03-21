@@ -2,6 +2,7 @@
 using SuleymaniyeTakvimi.Services;
 using SuleymaniyeTakvimi.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -25,11 +26,8 @@ namespace SuleymaniyeTakvimi.ViewModels
         //public Command DarkLightModeCommand { get; }
         public Command SettingsCommand { get; }
         public Command<Item> ItemTapped { get; }
-        private Takvim _takvim;//, _vakitler;
+        private Takvim _takvim;
         private string _city;
-        //private bool _dark;
-        //private DataService data;
-        //private readonly DataService data;
 
         private ObservableCollection<Item> _items;
         private string _remainingTime;
@@ -57,9 +55,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             set
             {
                 if (SetProperty(ref _takvim, value))
-                {
                     ExecuteLoadItemsCommand();
-                }
             }
         }
 
@@ -67,34 +63,46 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             Debug.WriteLine("TimeStamp-ItemsViewModel-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             //data = dataService;
-            if (DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10)
-            {
-                ResetAlarms();
-            }
 
-            Title = AppResources.PageTitle;
-            Items = new ObservableCollection<Item>();
-            //data = new DataService();
-            Takvim = DataService._takvim;
+            try
+            {
+                dataService.OnTakvimChanged += (newTakvim) =>
+                {
+                    Takvim = newTakvim;
+                };
+                if (DeviceInfo.Platform == DevicePlatform.Android && DeviceInfo.Version.Major >= 10)
+                {
+                    ResetAlarms();
+                }
 
-            LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
-            ItemTapped = new Command<Item>(OnItemSelected);
-            GoToMapCommand = new Command(GoToMap);
-            GoToMonthCommand = new Command(GoToMonthPage);
-            SettingsCommand = new Command(Settings);
-            RefreshLocationCommand = new Command(RefreshLocation);
-            //If Location-saved is false, this means that location is never saved before. So, we need to check the location info.
-            if (!Preferences.Get("LocationSaved", false))
-            {
-                CheckLocationInfo(3000);
-            }
-            //If AlwaysRenewLocationEnabled is true, this means that the user wants to refresh the location info every time the app starts.
-            if (Preferences.Get("AlwaysRenewLocationEnabled", false))
-            {
-                RefreshLocationCommand.Execute(null);
-            }
+                Title = AppResources.PageTitle;
+                Items = new ObservableCollection<Item>();
+                //data = new DataService();
+                Takvim = DataService._takvim;
+
+                LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
+                ItemTapped = new Command<Item>(OnItemSelected);
+                GoToMapCommand = new Command(GoToMap);
+                GoToMonthCommand = new Command(GoToMonthPage);
+                SettingsCommand = new Command(Settings);
+                RefreshLocationCommand = new Command(RefreshLocation);
+                //If Location-saved is false, this means that location is never saved before. So, we need to check the location info.
+                if (!Preferences.Get("LocationSaved", false))
+                {
+                    _ = CheckLocationInfoAsync(3000);
+                }
+                //If AlwaysRenewLocationEnabled is true, this means that the user wants to refresh the location info every time the app starts.
+                if (Preferences.Get("AlwaysRenewLocationEnabled", false))
+                {
+                    RefreshLocationCommand.Execute(null);
+                }
             
-            CheckLastAlarmDate();
+                CheckLastAlarmDate();
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception);
+            }
 
             Debug.WriteLine("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
@@ -174,16 +182,16 @@ namespace SuleymaniyeTakvimi.ViewModels
         /// Finally, it sets the weekly alarms and updates the items in the view model.
         /// </remarks>
 
-        private void CheckLocationInfo(int timeDelay)
+        private async Task CheckLocationInfoAsync(int timeDelay)
         {
             Debug.WriteLine("TimeStamp-ItemsViewModel-CheckLocationInfo-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             var service = DependencyService.Get<IPermissionService>();
             var isLocationEnabled = service.IsLocationServiceEnabled();
             if (!isLocationEnabled) return;
             if (!DataService.HaveInternet()) return;
-            Task.Run(async () =>
+            Takvim = await Task.Run<Takvim>(async () =>
             {
-                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(CheckLocationInfo)}: Starting at {DateTime.Now}");
+                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(CheckLocationInfoAsync)}: Starting at {DateTime.Now}");
                 await Task.Delay(timeDelay).ConfigureAwait(false);
                 Takvim = DataService._takvim;
                 if (Takvim.IsTakvimLocationUnValid()) DataService.InitTakvim();//If the Takvim location info is not valid, initialize the Takvim.
@@ -192,7 +200,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                 await UpdatePrayerTimesIfNeeded().ConfigureAwait(false);
 
                 await DataService.SetWeeklyAlarmsAsync().ConfigureAwait(false);
-                ExecuteLoadItemsCommand();
+                return Takvim;
+                //ExecuteLoadItemsCommand();
             }).ConfigureAwait(false);
             Debug.WriteLine("TimeStamp-ItemsViewModel-CheckLocationInfo-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
@@ -200,7 +209,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         private async Task UpdatePrayerTimesIfNeeded()
         {
             Debug.WriteLine("TimeStamp-ItemsViewModel-UpdatePrayerTimesIfNeeded-IsDefaultLocation", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
-            //if (IsTakvimLocationDefault())
+            //if (Takvim.IsTakvimLocationUnValid())
             //{
             //    Takvim = await DataService.PrepareMonthlyPrayerTimes().ConfigureAwait(false);
             //    _tcs.SetResult(true);
@@ -229,13 +238,16 @@ namespace SuleymaniyeTakvimi.ViewModels
             IsBusy = true;
             Debug.WriteLine("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
 
+            //DataService.InitTakvim();
             DataService.InitTakvim();
             try
             {
-                Items = new ObservableCollection<Item>();
+                //Items = new ObservableCollection<Item>();
                 var vakitIDs = new[] { "fecrikazip", "fecrisadik", "sabahsonu", "ogle", "ikindi", "aksam", "yatsi", "yatsisonu" };
                 var vakitNames = new[] { "FecriKazip", "FecriSadik", "SabahSonu", "Ogle", "Ikindi", "Aksam", "Yatsi", "YatsiSonu" };
                 var vakitValues = new[] { Takvim.FecriKazip, Takvim.FecriSadik, Takvim.SabahSonu, Takvim.Ogle, Takvim.Ikindi, Takvim.Aksam, Takvim.Yatsi, Takvim.YatsiSonu };
+
+                var newItems = new List<Item>(vakitNames.Length);
 
                 for (int i = 0; i < vakitNames.Length; i++)
                 {
@@ -245,11 +257,13 @@ namespace SuleymaniyeTakvimi.ViewModels
                         Adi = AppResources.ResourceManager.GetString(vakitNames[i], CultureInfo.CurrentCulture),
                         Vakit = vakitValues[i],
                         Etkin = Preferences.Get($"{vakitIDs[i]}Etkin", false),
-                        State = CheckState(DateTime.Parse(vakitValues[i]), DateTime.Parse(vakitValues[(i + 1) % vakitIDs.Length]))
+                        State = CheckState(DateTime.ParseExact(vakitValues[i],"HH:mm",CultureInfo.InvariantCulture ), DateTime.ParseExact(vakitValues[(i + 1) % vakitIDs.Length],"HH:mm",CultureInfo.InvariantCulture))
                     };
-                    Items.Add(item);
+                    newItems.Add(item);
                     Preferences.Set(item.Id, item.Vakit);
                 }
+
+                Items = new ObservableCollection<Item>(newItems);
             }
             catch (Exception ex)
             {
@@ -453,10 +467,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 await Task.Delay(2000);
                 // Parse latitude and longitude as double values using InvariantCulture to avoid issues with different culture settings
-                double latitude = Takvim.Enlem;
-                double longitude = Takvim.Boylam;
                 // Get the placemarks for the current location
-                var placemarks = await Geocoding.GetPlacemarksAsync(latitude, longitude).ConfigureAwait(false);
+                var placemarks = await Geocoding.GetPlacemarksAsync(Takvim.Enlem, Takvim.Boylam).ConfigureAwait(false);
 
                 // Get the first placemark, if any
                 var placemark = placemarks.FirstOrDefault();
@@ -484,28 +496,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                 City = Preferences.Get("sehir", AppResources.Sehir);
             }
         }
-
-        //private async void GetCity()
-        //{
-        //    try
-        //    {
-        //        //Without the Convert.ToDouble conversion it confuses the ',' and '.' when UI culture changed. like latitude=50.674367348783 become latitude= 50674367348783 then throw exception.
-        //        var placeMark = await Geocoding.GetPlacemarksAsync(Convert.ToDouble(_takvim.Enlem, CultureInfo.InvariantCulture.NumberFormat), Convert.ToDouble(_takvim.Boylam, CultureInfo.InvariantCulture.NumberFormat)).ConfigureAwait(false);
-        //        if (placeMark != null)
-        //            if (placeMark.FirstOrDefault()?.AdminArea != null)
-        //                City = placeMark.FirstOrDefault().AdminArea;
-        //            else if (placeMark.FirstOrDefault()?.Locality != null)
-        //                City = placeMark.FirstOrDefault().Locality;
-        //            else
-        //                City = placeMark.FirstOrDefault()?.CountryName;
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        Debug.WriteLine(exception);
-        //    }
-
-        //    if (!string.IsNullOrEmpty(City)) Preferences.Set("sehir", City);
-        //    City ??= Preferences.Get("sehir", AppResources.Sehir);
-        //}
+        
     }
 }

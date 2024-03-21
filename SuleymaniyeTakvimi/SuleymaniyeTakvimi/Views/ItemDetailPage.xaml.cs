@@ -18,10 +18,6 @@ namespace SuleymaniyeTakvimi.Views
         {
             base.OnDisappearing();
             viewModel.GoBack(null);
-            //DataService data = new DataService();
-            //if (data.CheckRemindersEnabledAny())
-            //    DependencyService.Get<IForegroundServiceControlService>().StartService();
-            //else DependencyService.Get<IForegroundServiceControlService>().StopService();
         }
     }
 }

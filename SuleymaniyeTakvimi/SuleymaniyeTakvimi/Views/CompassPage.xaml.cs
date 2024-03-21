@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Acr.UserDialogs;
+using SuleymaniyeTakvimi.Services;
 using SuleymaniyeTakvimi.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -11,20 +12,25 @@ namespace SuleymaniyeTakvimi.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CompassPage : ContentPage
     {
+        private CompassViewModel _viewModel;
+
         public CompassPage()
         {
-            CompassViewModel viewModel;
             InitializeComponent();
-            BindingContext = viewModel = new CompassViewModel();
+            var dataService = DependencyService.Get<DataService>(); // Get DataService from DI container
+            BindingContext = _viewModel = new CompassViewModel(dataService);
             Compass.ReadingChanged += Compass_ReadingChanged;
+            StartCompassMonitoring();
+        }
+
+        private void StartCompassMonitoring()
+        {
             try
             {
-                if (!Compass.IsMonitoring) Compass.Start(viewModel.Speed);
+                if (!Compass.IsMonitoring) Compass.Start(_viewModel.Speed);
             }
             catch (FeatureNotSupportedException fnsEx)
             {
-                // Feature not supported on device
-                //UserDialogs.Instance.Alert(AppResources.CihazDesteklemiyor, AppResources.CihazDesteklemiyor);
                 Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Compass_ReadingChanged)}: {fnsEx.Message}");
             }
             catch (Exception ex)
@@ -37,18 +43,15 @@ namespace SuleymaniyeTakvimi.Views
         void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
             CompassImage.RotateTo(360 - e.Reading.HeadingMagneticNorth);
-            //_viewModel.PointToQibla(e);
-            //LabelTest.Text = e.Reading.HeadingMagneticNorth.ToString();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //_viewModel.GetLocation();
             if (!DesignMode.IsDesignModeEnabled)
             {
-                ((CompassViewModel) BindingContext).LocationCommand.Execute(null);
-                ((CompassViewModel) BindingContext).StartCommand.Execute(null);
+                _viewModel.LocationCommand.Execute(null);
+                _viewModel.StartCommand.Execute(null);
             }
         }
     }
