@@ -4,15 +4,16 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Android.Graphics;
 using Android.Media;
 using Android.Util;
-using AndroidX.Core.App;
 using Xamarin.Essentials;
-//using Microsoft.AppCenter.Analytics;
-//using Plugin.LocalNotifications;
 using SuleymaniyeTakvimi.Localization;
+using SuleymaniyeTakvimi.Services;
+using Debug = System.Diagnostics.Debug;
 using Uri = Android.Net.Uri;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -21,20 +22,30 @@ namespace SuleymaniyeTakvimi.Droid
     public class AlarmActivity : Activity, View.IOnClickListener
     {
         private static MediaPlayer _player;
-        //private static int loop;
+        const string DefaultAlarmSesi = "ezan";
+        const int MinuteInMilliseconds = 60000;
 
+        // This method is called when the activity is starting. It initializes the activity and sets up the UI.
+        /// <summary>
+        /// The OnCreate method is part of the Android Activity lifecycle and is called when the activity is first created.
+        /// This method sets up the user interface for the alarm activity.
+        /// It retrieves the name and time from the intent that started the activity and uses these to configure the alarm.
+        /// The method also sets up the layout and text views, and configures the MediaPlayer instance.
+        /// If the name corresponds to a key in DataService.NameToKey, the method sets the alarm label and time label, and checks the user's preferences to determine whether to play the alarm, vibrate the device, or show a notification.
+        /// If the name does not correspond to a key in DataService.NameToKey, the activity is finished.
+        /// </summary>
+        /// <param name="savedInstanceState"></param>
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            //Analytics.TrackEvent("OnCreate in the AlarmActivity");
-            // Create your application here
             SetContentView(Resource.Layout.AlarmLayout);
+
             //get the current intent
             var intent = this.Intent;
             var name = intent?.GetStringExtra("name") ?? string.Empty;
             var time = intent?.GetStringExtra("time") ?? string.Empty;
-            //var timeSpan = TimeSpan.Parse(time);
+            Debug.WriteLine($"Alarm triggered at {DateTime.Now} for {name} and {time}");
             Log.Info("AlarmActivity", $"Alarm triggered at {DateTime.Now} for {name} and {time}");
             FindViewById<Button>(Resource.Id.stopButton)?.SetOnClickListener(this);
             var label = FindViewById<TextView>(Resource.Id.textView);
@@ -46,164 +57,57 @@ namespace SuleymaniyeTakvimi.Droid
             layout?.SetBackgroundColor(Models.Theme.Tema == 1 ? lightColor : darkColor);
             label?.SetTextColor(Models.Theme.Tema == 1 ? darkColor : lightColor);
             timeLabel?.SetTextColor(Models.Theme.Tema == 1 ? darkColor : lightColor);
-            //Android.Net.Uri uri = (Android.Net.Uri)intent.GetStringExtra("fileName");
-            //uri = uri == null || Uri.Empty.Equals(uri) ? Settings.System.DefaultRingtoneUri : uri;
             _player ??= new MediaPlayer();
-            switch (name)
+            if (DataService.KeyToName.TryGetValue(name,out string value))
             {
-                case "Fecri Kazip":
-                    label?.SetText(AppResources.FecriKazip + " " + AppResources.Alarmi, TextView.BufferType.Normal);
-                    timeLabel?.SetText($"{AppResources.FecriKazip} {AppResources.Vakti} {time}",
-                        TextView.BufferType.Normal);
-                    if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipAlarm", true))
-                        PlayAlarm(name);
-                    if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipTitreme", true))
-                        Vibrate();
-                    if (Preferences.Get("fecrikazipEtkin", false) && Preferences.Get("fecrikazipBildiri", false))
-                        ShowNotification(name, time);
-                    break;
-                case "Fecri Sadık":
-                    label?.SetText(AppResources.FecriSadik + " " + AppResources.Alarmi, TextView.BufferType.Normal);
-                    timeLabel?.SetText($"{AppResources.FecriSadik} {AppResources.Vakti} {time}",
-                        TextView.BufferType.Normal);
-                    if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikAlarm", true))
-                        PlayAlarm(name);
-                    if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikTitreme", true))
-                        Vibrate();
-                    if (Preferences.Get("fecrisadikEtkin", false) && Preferences.Get("fecrisadikBildiri", false))
-                        ShowNotification(name, time);
-                    break;
-                case "Sabah Sonu":
-                    label?.SetText(AppResources.SabahSonu + " " + AppResources.Alarmi, TextView.BufferType.Normal);
-                    timeLabel?.SetText($"{AppResources.SabahSonu} {AppResources.Vakti} {time}",
-                        TextView.BufferType.Normal);
-                    if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuAlarm", true))
-                        PlayAlarm(name);
-                    if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuTitreme", true))
-                        Vibrate();
-                    if (Preferences.Get("sabahsonuEtkin", false) && Preferences.Get("sabahsonuBildiri", false))
-                        ShowNotification(name, time);
-                    break;
-                case "Öğle":
-                    label?.SetText(AppResources.Ogle + " " + AppResources.Alarmi, TextView.BufferType.Normal);
-                    timeLabel?.SetText($"{AppResources.Ogle} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleAlarm", true)) PlayAlarm(name);
-                    if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleTitreme", true)) Vibrate();
-                    if (Preferences.Get("ogleEtkin", false) && Preferences.Get("ogleBildiri", false))
-                        ShowNotification(name, time);
-                    break;
-                case "İkindi":
-                    label?.SetText(AppResources.Ikindi + " " + AppResources.Alarmi, TextView.BufferType.Normal);
-                    timeLabel?.SetText($"{AppResources.Ikindi} {AppResources.Vakti} {time}",
-                        TextView.BufferType.Normal);
-                    if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiAlarm", true)) PlayAlarm(name);
-                    if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiTitreme", true)) Vibrate();
-                    if (Preferences.Get("ikindiEtkin", false) && Preferences.Get("ikindiBildiri", false))
-                        ShowNotification(name, time);
-                    break;
-                case "Akşam":
-                    label?.SetText(AppResources.Aksam + " " + AppResources.Alarmi, TextView.BufferType.Normal);
-                    timeLabel?.SetText($"{AppResources.Aksam} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamAlarm", true)) PlayAlarm(name);
-                    if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamTitreme", true)) Vibrate();
-                    if (Preferences.Get("aksamEtkin", false) && Preferences.Get("aksamBildiri", false))
-                        ShowNotification(name, time);
-                    break;
-                case "Yatsı":
-                    label?.SetText(AppResources.Yatsi + " " + AppResources.Alarmi, TextView.BufferType.Normal);
-                    timeLabel?.SetText($"{AppResources.Yatsi} {AppResources.Vakti} {time}", TextView.BufferType.Normal);
-                    if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiAlarm", true)) PlayAlarm(name);
-                    if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiTitreme", true)) Vibrate();
-                    if (Preferences.Get("yatsiEtkin", false) && Preferences.Get("yatsiBildiri", false))
-                        ShowNotification(name, time);
-                    break;
-                case "Yatsı Sonu":
-                    label?.SetText(AppResources.YatsiSonu + " " + AppResources.Alarmi, TextView.BufferType.Normal);
-                    timeLabel?.SetText($"{AppResources.YatsiSonu} {AppResources.Vakti} {time}",
-                        TextView.BufferType.Normal);
-                    if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuAlarm", true))
-                        PlayAlarm(name);
-                    if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuTitreme", true))
-                        Vibrate();
-                    if (Preferences.Get("yatsisonuEtkin", false) && Preferences.Get("yatsisonuBildiri", false))
-                        ShowNotification(name, time);
-                    break;
-                default: Finish();
-                    return;
-                    //label?.SetText("Test Alarmı", TextView.BufferType.Normal);
-                    //timeLabel?.SetText($"şimdiki zaman: {time}", TextView.BufferType.Normal);
-                    //PlayAlarm(name);
-                    //break;
+                var labelName = AppResources.ResourceManager.GetString(value, CultureInfo.CurrentCulture) + " " + AppResources.Alarmi;
+                var timeLabelName = $"{AppResources.ResourceManager.GetString(value, CultureInfo.CurrentCulture)} {AppResources.Vakti} {time}";
+                label?.SetText(labelName, TextView.BufferType.Normal);
+                timeLabel?.SetText(timeLabelName, TextView.BufferType.Normal);
+
+                if (Preferences.Get($"{name}Etkin", false) && Preferences.Get($"{name}Alarm", true))
+                    PlayAlarm(name);
+                if (Preferences.Get($"{name}Etkin", false) && Preferences.Get($"{name}Titreme", true))
+                    Vibrate();
+                if (Preferences.Get($"{name}Etkin", false) && Preferences.Get($"{name}Bildiri", false))
+                    ShowNotification(name, time);
+            }
+            else
+            {
+                Finish();
             }
         }
-
+        
+        // This method plays the alarm sound based on the given name.
+        /// <summary>
+        /// The PlayAlarm method is responsible for playing the alarm sound.
+        /// It takes a name parameter, which is used to retrieve a key from the DataService.NameToKey dictionary.
+        /// This key is then used to get the user's preferred alarm sound from the application preferences. If the preferred sound is not found, a default sound is used.
+        /// The method then maps the sound name to a resource ID, creates a URI for the sound resource, and sets up the MediaPlayer to play the sound.
+        /// If the MediaPlayer is already initialized, it is reset before the new sound is set.
+        /// The sound is set to loop continuously. If an exception occurs during this process, it is caught and logged.
+        /// </summary>
+        /// <param name="name"></param>
         private void PlayAlarm(string name)
         {
-            //Analytics.TrackEvent("PlayAlarm in the AlarmActivity");
-
-            var key = "";
-            switch (name)
-            {
-                case "Fecri Kazip":
-                    key = "fecrikazip";
-                    break;
-                case "Fecri Sadık":
-                    key = "fecrisadik";
-                    break;
-                case "Sabah Sonu":
-                    key = "sabahsonu";
-                    break;
-                case "Öğle":
-                    key = "ogle";
-                    break;
-                case "İkindi":
-                    key = "ikindi";
-                    break;
-                case "Akşam":
-                    key = "aksam";
-                    break;
-                case "Yatsı":
-                    key = "yatsi";
-                    break;
-                case "Yatsı Sonu":
-                    key = "yatsisonu";
-                    break;
-            }
-
             try
             {
-                //await CrossMediaManager.Current.MediaPlayer.Stop().ConfigureAwait(false);
-                //var looper = Preferences.Get(key + "AlarmTekrarlari", 7);
-                var alarmSesi = Preferences.Get(key + "AlarmSesi", "ezan");
-                //var mediaItem = await CrossMediaManager.Current.PlayFromAssembly(alarmSesi + ".mp3").ConfigureAwait(true);
-                //CrossMediaManager.Current.Notification.Enabled = false;
-                //CrossMediaManager.Current.RepeatMode = RepeatMode.All;
-                //await CrossMediaManager.Current.MediaPlayer.Play(mediaItem).ConfigureAwait(false);
-                Uri uri;
-                var context = Application.Context;
-                switch (alarmSesi)
+                var alarmSesi = Preferences.Get(name + "AlarmSesi", DefaultAlarmSesi);
+                var soundResources = new Dictionary<string, int>
                 {
-                    case "kus":
-                        uri = Uri.Parse(
-                            $"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.kus}");
-                        break;
-                    case "horoz":
-                        uri = Uri.Parse(
-                            $"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.horoz}");
-                        break;
-                    case "ezan":
-                        uri = Uri.Parse(
-                            $"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.ezan}");
-                        break;
-                    case "alarm":
-                        uri = Uri.Parse(
-                            $"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm}");
-                        break;
-                    default:
-                        uri = Uri.Parse(
-                            $"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm}");
-                        break;
-                }
+                    { "kus", Resource.Raw.kus },
+                    { "horoz", Resource.Raw.horoz },
+                    { "ezan", Resource.Raw.ezan },
+                    { "alarm", Resource.Raw.alarm },
+                    { "alarm2", Resource.Raw.alarm2 },
+                    { "beep1", Resource.Raw.beep1 },
+                    { "beep2", Resource.Raw.beep2 },
+                    { "beep3", Resource.Raw.beep3 }
+                };
+
+                var soundId = soundResources.ContainsKey(alarmSesi) ? soundResources[alarmSesi] : Resource.Raw.alarm;
+                var context = Application.Context;
+                var uri = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{soundId}");
 
                 if (_player == null)
                 {
@@ -222,35 +126,17 @@ namespace SuleymaniyeTakvimi.Droid
                 _player.Looping = true;
                 _player.SetAudioAttributes(attr);
                 _player.Start();
-                //player.Completion += delegate (object o, EventArgs args) { Player_Completion(o, args, looper); };
             }
             catch (Exception exception)
             {
+                Debug.WriteLine($"{AppResources.AlarmHatasi}:\n{exception.Message}");
                 Log.Error("AlarmActivity-PlayAlarm", $"{AppResources.AlarmHatasi}:\n{exception.Message}");
             }
         }
 
-        // Counts the loop count and stop when finished.
-        //private void Player_Completion(object sender, EventArgs e, int looper)
-        //{
-        //    if (looper <= 0) return;
-        //    if (loop < looper) loop++;
-        //    if (loop == looper)
-        //    {
-        //        loop = 0;
-        //        if (player != null && player.IsPlaying)
-        //        {
-        //            player.Stop();
-        //            player.Reset();
-        //        }
-        //        CheckRemainingReminders();
-        //        Finish();
-        //    }
-        //}
-
+        // This method triggers the device's vibration feature.
         private static void Vibrate()
         {
-            //Analytics.TrackEvent("Vibrate in the AlarmActivity");
             try
             {
                 // Use default vibration length
@@ -262,20 +148,19 @@ namespace SuleymaniyeTakvimi.Droid
             }
             catch (FeatureNotSupportedException ex)
             {
+                Debug.WriteLine(AppResources.CihazTitretmeyiDesteklemiyor + ex.Message);
                 Log.Error("AlarmActivity-Vibrate", AppResources.CihazTitretmeyiDesteklemiyor + ex.Message);
-                //UserDialogs.Instance.Alert("Cihazınız titretmeyi desteklemiyor. " + ex.Message,
-                //    "Cihaz desteklemiyor");
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("AlarmActivity-Vibrate" + ex.Message);
                 Log.Error("AlarmActivity-Vibrate", ex.Message);
-                //UserDialogs.Instance.Alert(ex.Message, "Bir sorunla karşılaştık");
             }
         }
 
+        // This method shows a notification with the given name and time.
         private void ShowNotification(string name, string time)
         {
-            //CrossLocalNotifications.Current.Show($"{AppResources.SuleymaniyeVakfiTakvimi}",$"{name} {AppResources.VaktiHatirlatmasi}", 1994);
             AlarmReceiver notificationHelper = new AlarmReceiver();
             var intent = new Intent(Application.Context, typeof(AlarmReceiver));
             intent.PutExtra("name", name);
@@ -284,9 +169,9 @@ namespace SuleymaniyeTakvimi.Droid
             intent.AddFlags(ActivityFlags.ReceiverForeground);
             notificationHelper.OnReceive(ApplicationContext, intent);
             StopAlarm();
-            //CheckRemainingReminders();
         }
 
+        // This method is called when the window has been attached to the window manager. It sets up window flags.
         public override void OnAttachedToWindow()
         {
             Window?.AddFlags(WindowManagerFlags.ShowWhenLocked |
@@ -295,12 +180,13 @@ namespace SuleymaniyeTakvimi.Droid
                              WindowManagerFlags.TurnScreenOn);
         }
 
+        // This method is called when a view has been clicked. It stops the alarm.
         public void OnClick(View v)
         {
-            //CrossMediaManager.Current.MediaPlayer.Stop();
             StopAlarm();
         }
 
+        // This method stops the alarm sound and checks for remaining reminders.
         private void StopAlarm()
         {
             if (_player != null && _player.IsPlaying)
@@ -313,9 +199,10 @@ namespace SuleymaniyeTakvimi.Droid
             Finish();
         }
 
+        // This method checks if there are any remaining reminders. If there are less than 5 scheduled days remaining, it opens the main window to reschedule the weekly alarm.
         private void CheckRemainingReminders()
         {
-            //Check if less than 2 scheduled days remained (at day 6 or 7), open the main window to reschedule weekly alaram.
+            //Check if less than 5 scheduled days remained (at day 10 t0 15), open the main window to reschedule weekly alaram.
             var lastAlarmDateStr = Preferences.Get("LastAlarmDate", "Empty");
             if (lastAlarmDateStr != "Empty")
             {
@@ -333,32 +220,17 @@ namespace SuleymaniyeTakvimi.Droid
             }
         }
 
+        // This method is called after OnPause(), when the activity is being resumed. It sets up a task to stop the alarm after a certain duration.
         protected override void OnResume()
         {
             base.OnResume();
             var minute = Preferences.Get("AlarmDuration", 4);
             Task.Run(async () =>
             {
-                await Task.Delay(minute*60000).ConfigureAwait(false);
-                //await CrossMediaManager.Current.MediaPlayer.Stop();
-                //if (_player != null && _player.IsPlaying)
-                //{
-                //    _player.Stop();
-                //    _player.Reset();
-                //}
-                //CheckRemainingReminders();
-                //Finish();
+                await Task.Delay(minute * MinuteInMilliseconds).ConfigureAwait(false);
                 StopAlarm();
                 return false;
             });
-            //Xamarin.Forms.Device.StartTimer(TimeSpan.FromMinutes(minute), () =>
-            //{
-            //    // Do something
-            //    CrossMediaManager.Current.MediaPlayer.Stop();
-            //    CheckRemainingReminders();
-            //    Finish();
-            //    return false; // True = Repeat again, False = Stop the timer
-            //});
         }
     }
 }

@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Util;
-using Java.Util;
 //using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
+using Calendar = Java.Util.Calendar;
+using Debug = System.Diagnostics.Debug;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -36,6 +38,7 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, int timeOffset, string name)
         {
+            Debug.WriteLine($"**** Set Alarm in AlarmForeGround Triggered with {date.ToString(CultureInfo.InvariantCulture)}, {triggerTimeSpan.ToString()}, {timeOffset}, {name}");
             using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(AlarmService))
             using (var calendar = Calendar.Instance)
             {
@@ -55,14 +58,14 @@ namespace SuleymaniyeTakvimi.Droid
                 //without the different reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
                 var requestCode = name switch
                 {
-                    "Fecri Kazip" => date.DayOfYear + 1000,
-                    "Fecri Sadık" => date.DayOfYear + 2000,
-                    "Sabah Sonu" => date.DayOfYear + 3000,
-                    "Öğle" => date.DayOfYear + 4000,
-                    "İkindi" => date.DayOfYear + 5000,
-                    "Akşam" => date.DayOfYear + 6000,
-                    "Yatsı" => date.DayOfYear + 7000,
-                    "Yatsı Sonu" => date.DayOfYear + 8000,
+                    "fecrikazip" => date.DayOfYear + 1000,
+                    "fecrisadik" => date.DayOfYear + 2000,
+                    "sabahsonu" => date.DayOfYear + 3000,
+                    "ogle" => date.DayOfYear + 4000,
+                    "ikindi" => date.DayOfYear + 5000,
+                    "aksam" => date.DayOfYear + 6000,
+                    "yatsi" => date.DayOfYear + 7000,
+                    "yatsisonu" => date.DayOfYear + 8000,
                     _ => 0
                 };
                 var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)

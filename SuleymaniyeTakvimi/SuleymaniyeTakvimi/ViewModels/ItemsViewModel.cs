@@ -348,6 +348,11 @@ namespace SuleymaniyeTakvimi.ViewModels
             var vakitValues = new[] { Takvim.FecriKazip, Takvim.FecriSadik, Takvim.SabahSonu, Takvim.Ogle, Takvim.Ikindi, Takvim.Aksam, Takvim.Yatsi, Takvim.YatsiSonu }.Select(TimeSpan.Parse).ToList(); // Parse once
             // Define the resources for the remaining time messages
             var vakitResources = new[] { AppResources.FecriKazibingirmesinekalanvakit, AppResources.FecriSadikakalanvakit, AppResources.SabahSonunakalanvakit, AppResources.Ogleningirmesinekalanvakit, AppResources.Oglenincikmasinakalanvakit, AppResources.Ikindinincikmasinakalanvakit, AppResources.Aksamincikmasnakalanvakit, AppResources.Yatsinincikmasinakalanvakit };
+            // If the current time is before the first prayer of the day, return the time left to the first prayer time
+            if (currentTime <= vakitValues.First())
+            {
+                return AppResources.FecriKazibingirmesinekalanvakit + (currentTime - vakitValues.First()).ToString(@"hh\:mm\:ss");
+            }
             // Loop through the prayers
             for (int i = 0; i < vakitNames.Length; i++)
             {
@@ -358,7 +363,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 // If the current time is between the current and next prayer times, return the remaining time until the next prayer
                 if (currentTime >= currentVakit && currentTime <= nextVakit)
                 {
-                    return vakitResources[i] + (nextVakit - currentTime).ToString(@"hh\:mm\:ss");
+                    return vakitResources[i+1] + (nextVakit - currentTime).ToString(@"hh\:mm\:ss");
                 }
             }
 

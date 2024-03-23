@@ -24,6 +24,18 @@ namespace SuleymaniyeTakvimi.Services
         private bool isPrepareMonthlyPrayerTimesCalled;
         public readonly string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ayliktakvim.json");
         public event Action<Takvim> OnTakvimChanged;
+        public static readonly Dictionary<string, string> KeyToName = new Dictionary<string, string>
+        {
+            { "fecrikazip", "FecriKazip" },
+            { "fecrisadik" , "FecriSadik" },
+            { "sabahsonu" , "SabahSonu" },
+            { "ogle" , "Ogle" },
+            { "ikindi" , "Ikindi" },
+            { "aksam" , "Aksam" },
+            { "yatsi" , "Yatsi" },
+            { "yatsisonu" , "YatsiSonu" }
+        };
+        public static readonly Dictionary<string, string> NameToKey = KeyToName.ToDictionary(x => x.Value, x => x.Key);
 
         public Takvim Takvim
         {
@@ -516,16 +528,17 @@ namespace SuleymaniyeTakvimi.Services
         /// <param name="todayTakvim">The prayer times for the day.</param>
         private void SetAlarmForPrayerTime(Takvim todayTakvim)
         {
+            Debug.WriteLine("TimeStamp-SetAlarmForPrayerTime-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             var prayerTimes = new Dictionary<string, (string, int)>
             {
-                { "Fecri Kazip", (todayTakvim.FecriKazip, Preferences.Get("fecrikazipBildirmeVakti", 0)) },
-                { "Fecri Sadık", (todayTakvim.FecriSadik, Preferences.Get("fecrisadikBildirmeVakti", 0)) },
-                { "Sabah Sonu", (todayTakvim.SabahSonu, Preferences.Get("sabahsonuBildirmeVakti", 0)) },
-                { "Öğle", (todayTakvim.Ogle, Preferences.Get("ogleBildirmeVakti", 0)) },
-                { "İkindi", (todayTakvim.Ikindi, Preferences.Get("ikindiBildirmeVakti", 0)) },
-                { "Akşam", (todayTakvim.Aksam, Preferences.Get("aksamBildirmeVakti", 0)) },
-                { "Yatsı", (todayTakvim.Yatsi, Preferences.Get("yatsiBildirmeVakti", 0)) },
-                { "Yatsı Sonu", (todayTakvim.YatsiSonu, Preferences.Get("yatsisonuBildirmeVakti", 0)) }
+                { "fecrikazip", (todayTakvim.FecriKazip, Preferences.Get("fecrikazipBildirmeVakti", 0)) },
+                { "fecrisadik", (todayTakvim.FecriSadik, Preferences.Get("fecrisadikBildirmeVakti", 0)) },
+                { "sabahsonu", (todayTakvim.SabahSonu, Preferences.Get("sabahsonuBildirmeVakti", 0)) },
+                { "ogle", (todayTakvim.Ogle, Preferences.Get("ogleBildirmeVakti", 0)) },
+                { "ikindi", (todayTakvim.Ikindi, Preferences.Get("ikindiBildirmeVakti", 0)) },
+                { "aksam", (todayTakvim.Aksam, Preferences.Get("aksamBildirmeVakti", 0)) },
+                { "yatsi", (todayTakvim.Yatsi, Preferences.Get("yatsiBildirmeVakti", 0)) },
+                { "yatsisonu", (todayTakvim.YatsiSonu, Preferences.Get("yatsisonuBildirmeVakti", 0)) }
             };
 
             foreach (var prayerTime in prayerTimes)
@@ -538,6 +551,7 @@ namespace SuleymaniyeTakvimi.Services
                     DependencyService.Get<IAlarmService>().SetAlarm(DateTime.Parse(todayTakvim.Tarih), prayerTimeSpan, prayerTime.Value.Item2, prayerTime.Key);
                 }
             }
+            Debug.WriteLine("TimeStamp-SetAlarmForPrayerTime-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
     }
 }
