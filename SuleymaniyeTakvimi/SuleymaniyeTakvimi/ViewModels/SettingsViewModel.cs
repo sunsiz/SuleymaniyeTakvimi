@@ -131,8 +131,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 CurrentTheme = Application.Current.RequestedTheme == OSAppTheme.Dark ? 0 : 1;
                 ChangeLanguageCommand = CommandFactory.Create(() =>
                 {
-                    LocalizationResourceManager.Current.CurrentCulture =
-                        CultureInfo.GetCultureInfo(SelectedLanguage.CI);
+                    LocalizationResourceManager.Current.CurrentCulture = CultureInfo.GetCultureInfo(SelectedLanguage.CI);
                     Preferences.Set("SelectedLanguage", SelectedLanguage.CI);
                     LoadLanguages();
                     GoBack();

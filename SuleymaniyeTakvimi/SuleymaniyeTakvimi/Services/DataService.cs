@@ -37,6 +37,10 @@ namespace SuleymaniyeTakvimi.Services
         };
         public static readonly Dictionary<string, string> NameToKey = KeyToName.ToDictionary(x => x.Value, x => x.Key);
 
+        public static readonly string[] TimeNameKeys = { "fecrikazip", "fecrisadik", "sabahsonu", "ogle", "ikindi", "aksam", "yatsi", "yatsisonu" };
+
+        public static readonly string[] SoundNameKeys = { "kus", "horoz", "ezan", "alarm", "alarm2", "beep1", "beep2", "beep3" };
+
         public Takvim Takvim
         {
             get => _takvim;

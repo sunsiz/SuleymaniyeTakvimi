@@ -7,8 +7,10 @@ using Android.Graphics;
 using Android.Media;
 using AndroidX.Core.App;
 using SuleymaniyeTakvimi.Localization;
+using SuleymaniyeTakvimi.Services;
 using Uri = Android.Net.Uri;
 using Xamarin.Essentials;
+using Debug = System.Diagnostics.Debug;
 using String = Java.Lang.String;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -99,9 +101,10 @@ namespace SuleymaniyeTakvimi.Droid
                         {
                             Description = channelDescriptions[i]
                         };
-
-                        alarmChannel.SetSound(soundUri, alarmAttributes);
+                        var channelSoundUri = GetSoundUri(context, DataService.SoundNameKeys[i]);
+                        alarmChannel.SetSound(channelSoundUri, alarmAttributes);
                         _notificationManager?.CreateNotificationChannel(alarmChannel);
+                        Debug.WriteLine($"**** Alarm Receiver - {channelIds[i]} - {channelNameJava} - {channelDescriptions[i]} - {channelSoundUri}");
                     }
                 }
                 

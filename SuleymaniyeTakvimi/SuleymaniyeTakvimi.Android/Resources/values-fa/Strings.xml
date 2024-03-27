@@ -12,4 +12,5 @@
 	<string name="aksam">شام</string>
 	<string name="yatsi">عشاء</string>
 	<string name="yatsi_sonu">آخر  زمان عشاء</string>
+	<string name="sehir">شهر</string>
 </resources>

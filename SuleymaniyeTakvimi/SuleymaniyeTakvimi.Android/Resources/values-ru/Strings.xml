@@ -12,4 +12,5 @@
 	<string name="aksam">Магриб намаз</string>
 	<string name="yatsi">Иша</string>
 	<string name="yatsi_sonu">Конец Иша</string>
+	<string name="sehir">Город</string>
 </resources>

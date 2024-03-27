@@ -12,4 +12,5 @@
 	<string name="aksam">Maghrib</string>
 	<string name="yatsi">Isha</string>
 	<string name="yatsi_sonu">End of Isha</string>
+	<string name="sehir">City</string>
 </resources>

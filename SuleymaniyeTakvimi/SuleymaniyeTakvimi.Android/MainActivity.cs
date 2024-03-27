@@ -10,7 +10,6 @@ using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Forms;
 using Xamarin.Essentials;
-using Log = Android.Util.Log;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -18,7 +17,7 @@ namespace SuleymaniyeTakvimi.Droid
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static MainActivity Instance;
-        public bool _permissionRequested;
+        private bool _permissionRequested;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -79,7 +78,6 @@ namespace SuleymaniyeTakvimi.Droid
             }
             else if (status == PermissionStatus.Disabled)
             {
-
                 var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
                 {
                     AndroidStyleId = 0,

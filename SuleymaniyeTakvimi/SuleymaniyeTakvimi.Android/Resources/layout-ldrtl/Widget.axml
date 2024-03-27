@@ -17,7 +17,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:id="@+id/gridLayout"
-			android:rowCount="9"
+			android:rowCount="10"
 			android:columnCount="1">
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -265,6 +265,31 @@
 				<TextView
 					android:id="@+id/widgetYatsiSonu"
 					android:text="@string/yatsi_sonu"
+					android:textColor="#121212"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="5dp"
+					android:textSize="@dimen/abc_text_size_medium_material" />
+			</LinearLayout>
+			<LinearLayout
+				android:orientation="horizontal"
+				android:id="@+id/sehirLinearLayout"
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:paddingEnd="20dip"
+				android:paddingStart="20dip"
+				android:gravity="center_horizontal|end">
+				<TextView
+					android:id="@+id/widgetSehirAdi"
+					android:textColor="#121212"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="5dp"
+					android:gravity="start"
+					android:textSize="@dimen/abc_text_size_medium_material" />
+				<TextView
+					android:id="@+id/widgetSehir"
+					android:text="@string/sehir"
 					android:textColor="#121212"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"

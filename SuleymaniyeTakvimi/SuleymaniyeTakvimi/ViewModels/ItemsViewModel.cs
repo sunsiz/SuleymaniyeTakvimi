@@ -13,6 +13,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using SuleymaniyeTakvimi.Localization;
 using Item = SuleymaniyeTakvimi.Models.Item;
+using Java.Lang;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
@@ -99,7 +100,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             
                 CheckLastAlarmDate();
             }
-            catch (Exception exception)
+            catch (System.Exception exception)
             {
                 Debug.WriteLine(exception);
             }
@@ -150,7 +151,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 var options = new MapLaunchOptions { Name = placeMark.FirstOrDefault()?.Thoroughfare ?? placeMark.FirstOrDefault()?.CountryName };
                 await Map.OpenAsync(location, options).ConfigureAwait(false);
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 UserDialogs.Instance.Toast(AppResources.HaritaHatasi + ex.Message);
             }
@@ -254,7 +255,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     var item = new Item
                     {
                         Id = vakitIDs[i],
-                        Adi = AppResources.ResourceManager.GetString(vakitNames[i], CultureInfo.CurrentCulture),
+                        Adi = AppResources.ResourceManager.GetString(vakitNames[i], CultureInfo.GetCultureInfo(Preferences.Get("SelectedLanguage","en"))),
                         Vakit = vakitValues[i],
                         Etkin = Preferences.Get($"{vakitIDs[i]}Etkin", false),
                         State = CheckState(DateTime.ParseExact(vakitValues[i],"HH:mm",CultureInfo.InvariantCulture ), DateTime.ParseExact(vakitValues[(i + 1) % vakitIDs.Length],"HH:mm",CultureInfo.InvariantCulture))
@@ -265,7 +266,7 @@ namespace SuleymaniyeTakvimi.ViewModels
 
                 Items = new ObservableCollection<Item>(newItems);
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Debug.WriteLine(ex);
             }
@@ -313,8 +314,12 @@ namespace SuleymaniyeTakvimi.ViewModels
             IsBusy = true;
             Takvim = DataService._takvim;
             SelectedItem = null;
-            await GetCityAsync();
             ExecuteLoadItemsCommand();
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                RemainingTime = GetRemainingTime();
+                return true; // True = Repeat again, False = Stop the timer
+            });
             Task.Run(async () =>
             {
                 await Task.Delay(5000).ConfigureAwait(false);
@@ -322,13 +327,9 @@ namespace SuleymaniyeTakvimi.ViewModels
                 if (Preferences.Get("ForegroundServiceEnabled", true))
                     DependencyService.Get<IAlarmService>().StartAlarmForegroundService();
             });
+            await GetCityAsync();
             Title = AppResources.PageTitle;
             IsBusy = false;
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-            {
-                RemainingTime = GetRemainingTime();
-                return true; // True = Repeat again, False = Stop the timer
-            });
             Debug.WriteLine("TimeStamp-OnAppearing-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
 
@@ -466,25 +467,35 @@ namespace SuleymaniyeTakvimi.ViewModels
                 IsBusy = false;
             }
         }
+
         private async Task GetCityAsync()
         {
             try
             {
                 await Task.Delay(2000);
-                // Parse latitude and longitude as double values using InvariantCulture to avoid issues with different culture settings
-                // Get the placemarks for the current location
-                var placemarks = await Geocoding.GetPlacemarksAsync(Takvim.Enlem, Takvim.Boylam).ConfigureAwait(false);
-
-                // Get the first placemark, if any
-                var placemark = placemarks.FirstOrDefault();
-
-                if (placemark != null)
+                if (DataService.HaveInternet())
                 {
-                    // Use the AdminArea, Locality, or CountryName, in that order of preference
-                    City = placemark.Locality ?? placemark.AdminArea ?? placemark.CountryName;
+                    // Parse latitude and longitude as double values using InvariantCulture to avoid issues with different culture settings
+                    // Get the placemarks for the current location
+                    var placemarks = await Geocoding.GetPlacemarksAsync(Takvim.Enlem, Takvim.Boylam)
+                        .ConfigureAwait(false);
+
+                    // Get the first placemark, if any
+                    var placemark = placemarks.FirstOrDefault();
+
+                    if (placemark != null)
+                    {
+                        // Use the AdminArea, Locality, or CountryName, in that order of preference
+                        City = placemark.Locality ?? placemark.AdminArea ?? placemark.CountryName;
+                    }
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast($"{AppResources.Sehir}: {AppResources.TakvimIcinInternetBaslik}",
+                        TimeSpan.FromSeconds(7));
                 }
             }
-            catch (Exception exception)
+            catch (System.Exception exception)
             {
                 Debug.WriteLine($"***** GetCityAsync Exception Details: {exception}");
                 UserDialogs.Instance.Toast($"{AppResources.Sehir}: {exception.Message}", TimeSpan.FromSeconds(7));
@@ -501,6 +512,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                 City = Preferences.Get("sehir", AppResources.Sehir);
             }
         }
-        
+
     }
 }
