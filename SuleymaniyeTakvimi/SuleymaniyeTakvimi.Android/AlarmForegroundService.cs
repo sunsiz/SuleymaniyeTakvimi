@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Globalization;
+using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Util;
-using Java.Util;
 //using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
+using Calendar = Java.Util.Calendar;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -16,11 +18,11 @@ namespace SuleymaniyeTakvimi.Droid
     public class AlarmForegroundService : Service, IAlarmService
     {
         private NotificationManager _notificationManager;
-        private readonly int DELAY_BETWEEN_MESSAGES = 30000;
-        private readonly int NOTIFICATION_ID = 1993;
-        private readonly string NOTIFICATION_CHANNEL_ID = "SuleymaniyeTakvimichannelId";
-        private readonly string channelName = AppResources.SuleymaniyeVakfiTakvimi;
-        private readonly string channelDescription = "The Suleymaniye Takvimi notification channel.";
+        private const int DelayBetweenMessages = 30000;
+        private const int NotificationId = 1993;
+        private const string NotificationChannelId = "SuleymaniyeTakvimichannelId";
+        private const string ChannelDescription = "The Suleymaniye Takvimi notification channel.";
+        private readonly string _channelName = AppResources.SuleymaniyeVakfiTakvimi;
         private Notification _notification;
         private bool _isStarted;
         private Handler _handler;
@@ -34,13 +36,22 @@ namespace SuleymaniyeTakvimi.Droid
             return null;
         }
 
+        /// <summary>
+        /// The SetAlarm method is used to set an alarm at a specific time. It first calculates the trigger time by subtracting the time offset from the provided trigger time. It then creates an Intent for both the AlarmActivity and AlarmReceiver with the necessary extras. It also calculates a unique request code based on the name of the alarm to ensure that multiple alarms can be set without overriding each other.
+        /// The method then creates a PendingIntent for both the activity and the broadcast receiver. Depending on the Android version, it either sets an exact alarm that will wake up the device even if it's in idle mode or sets an alarm clock.
+        /// </summary>
+        /// <param name="date">Alarm Date</param>
+        /// <param name="triggerTimeSpan">Alarm triggering time span (hour and minute i.g. 17:19)</param>
+        /// <param name="timeOffset">Alarm triggering offset, generally 0~60 minutes before the trigger time</param>
+        /// <param name="name">Alarm prayer time name</param>
         public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, int timeOffset, string name)
         {
+            System.Diagnostics.Debug.WriteLine($"**** Set Alarm in AlarmForeGround Triggered with {date.ToString(CultureInfo.InvariantCulture)}, {triggerTimeSpan.ToString()}, {timeOffset}, {name}");
+                var prayerTimeSpan = triggerTimeSpan;
+                triggerTimeSpan -= TimeSpan.FromMinutes(timeOffset);
             using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(AlarmService))
             using (var calendar = Calendar.Instance)
             {
-                var prayerTimeSpan = triggerTimeSpan;
-                triggerTimeSpan -= TimeSpan.FromMinutes(timeOffset);
                 //Log.Info("SetAlarm", $"Before Alarm set the Calendar time is {calendar.Time} for {name}");
                 calendar.Set(date.Year, date.Month-1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
                 var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
@@ -53,18 +64,7 @@ namespace SuleymaniyeTakvimi.Droid
                 intent.AddFlags(ActivityFlags.IncludeStoppedPackages);
                 intent.AddFlags(ActivityFlags.ReceiverForeground);
                 //without the different reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
-                var requestCode = name switch
-                {
-                    "Fecri Kazip" => date.DayOfYear + 1000,
-                    "Fecri Sadık" => date.DayOfYear + 2000,
-                    "Sabah Sonu" => date.DayOfYear + 3000,
-                    "Öğle" => date.DayOfYear + 4000,
-                    "İkindi" => date.DayOfYear + 5000,
-                    "Akşam" => date.DayOfYear + 6000,
-                    "Yatsı" => date.DayOfYear + 7000,
-                    "Yatsı Sonu" => date.DayOfYear + 8000,
-                    _ => 0
-                };
+                var requestCode = GetRequestCode(name, date.DayOfYear);
                 var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
                     ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
                     : PendingIntentFlags.UpdateCurrent;
@@ -82,119 +82,141 @@ namespace SuleymaniyeTakvimi.Droid
             }
         }
 
-        public void CancelAlarm()
+        private int GetRequestCode(string name, int dayOfYear)
         {
-            //Analytics.TrackEvent("CancelAlarm in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
-            AlarmManager alarmManager = (AlarmManager)Application.Context.GetSystemService(Context.AlarmService);
-            Intent intent = new Intent(Application.Context, typeof(AlarmActivity));
-            var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
-                ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
-                : PendingIntentFlags.UpdateCurrent;
-            PendingIntent pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, pendingIntentFlags);
-            alarmManager?.Cancel(pendingIntent);
+            return name switch
+            {
+                "fecrikazip" => dayOfYear + 1000,
+                "fecrisadik" => dayOfYear + 2000,
+                "sabahsonu" => dayOfYear + 3000,
+                "ogle" => dayOfYear + 4000,
+                "ikindi" => dayOfYear + 5000,
+                "aksam" => dayOfYear + 6000,
+                "yatsi" => dayOfYear + 7000,
+                "yatsisonu" => dayOfYear + 8000,
+                _ => 0
+            };
         }
 
+        public void CancelAlarm()
+        {
+            var alarmService = Application.Context.GetSystemService(Context.AlarmService);
+            if (alarmService is AlarmManager alarmManager)
+            {
+                var intent = new Intent(Application.Context, typeof(AlarmActivity));
+                var pendingIntentFlags = Build.VERSION.SdkInt > BuildVersionCodes.R
+                    ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
+                    : PendingIntentFlags.UpdateCurrent;
+                var pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, pendingIntentFlags);
+                alarmManager.Cancel(pendingIntent);
+            }
+        }
+
+        /// <summary>
+        /// Called by the system when the service is first created.
+        /// </summary>
+        /// <remarks>
+        /// This method initializes the handler, notification manager, and notification for the service.
+        /// If the preference "ForegroundServiceEnabled" is set, it starts the service in the foreground.
+        /// It then posts a delayed runnable to the handler that will update the notification every 30 seconds and refresh the widget every 30 minutes.
+        /// The _isStarted flag is set to true and the CancelAlarm method is called.
+        /// </remarks>
         public override void OnCreate()
         {
             base.OnCreate();
             _handler = new Handler();
-            _notificationManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
+            _notificationManager = Application.Context.GetSystemService(Context.NotificationService) as NotificationManager;
             SetNotification();
 
-            if(Preferences.Get("ForegroundServiceEnabled",true))this.StartForeground(NOTIFICATION_ID, _notification);
+            if(Preferences.Get("ForegroundServiceEnabled",true))this.StartForeground(NotificationId, _notification);
 
             // This Action will run every 30 second as foreground service running.
             _runnable = new Action(() =>
             {
-                _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
+                _handler.PostDelayed(_runnable, DelayBetweenMessages);
                 SetNotification();
-                _notificationManager.Notify(NOTIFICATION_ID, _notification);
+                _notificationManager.Notify(NotificationId, _notification);
                 _counter++;
-                //if (_counter % 2 == 0)
-                //{
-                //    var data = new DataService();
-                //    var _takvim = data._takvim;
-                //    if ((_takvim.Yukseklik == 114.0 && _takvim.Enlem == 41.0 && _takvim.Boylam == 29.0) || (_takvim.Yukseklik == 0 && _takvim.Enlem == 0 && _takvim.Boylam == 0))
-                //    {
-                //        var location = data.GetCurrentLocationAsync(false).Result;
-                //        if (data.HaveInternet())
-                //        {
-                //            if (location != null && location.Latitude != 0 && location.Longitude != 0)
-                //                data.GetMonthlyPrayerTimes(location, false);
 
-                //            data.SetWeeklyAlarms();
-                //        }
-                //    }
-                //}
-
-                if (_counter != 60) return; //When the 60th time (30 minute) refresh widget manually.
-                //AppWidgetManager.GetInstance(ApplicationContext)?.UpdateAppWidget(
-                //    new ComponentName(ApplicationContext, Java.Lang.Class.FromType(typeof(AppWidget)).Name),
-                //    new RemoteViews(ApplicationContext.PackageName, Resource.Layout.Widget));
-                var intent = new Intent(ApplicationContext, typeof(WidgetService));
-                //intent.PutExtra("Clicked", true);
-                try
+                if (_counter == 60) //When the 60th time (30 minute) refresh widget manually.
                 {
-                    ApplicationContext.StartService(intent);
+                    StartWidgetService();
+                    _counter = 0;
                 }
-                catch (Exception exception)
-                {
-                    System.Diagnostics.Debug.WriteLine($"An exception occured when starting widget service, details: {exception.Message}");
-                }
-                _counter = 0;
             });
-            _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
+            _handler.PostDelayed(_runnable, DelayBetweenMessages);
             _isStarted = true;
             CancelAlarm();
         }
 
+        private void StartWidgetService()
+        {
+            var intent = new Intent(ApplicationContext, typeof(WidgetService));
+
+            try
+            {
+                ApplicationContext.StartService(intent);
+            }
+            catch (Exception exception)
+            {
+                System.Diagnostics.Debug.WriteLine($"An exception occurred when starting widget service, details: {exception.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Sets the notification for the foreground service.
+        /// </summary>
+        /// <remarks>
+        /// This method first creates a BigTextStyle for the notification. If the preference "NotificationPrayerTimesEnabled" is set,
+        /// it sets the big text and summary text for the notification.
+        ///
+        /// Then, it creates a Notification.Builder. The builder's parameters depend on the Android version.
+        /// The builder sets the content title, style, small icon, content intent, when to show, and other properties for the notification.
+        ///
+        /// If the Android version is Oreo or higher, it creates a NotificationChannel and sets the description, light color, and lockscreen visibility for the channel.
+        /// The channel is then created in the notification manager.
+        /// </remarks>
         private void SetNotification()
         {
-            Notification.BigTextStyle textStyle = new Notification.BigTextStyle();
+            // Create a BigTextStyle for the notification
+            var textStyle = new Notification.BigTextStyle();
+
+            // If the preference "NotificationPrayerTimesEnabled" is set, set the big text and summary text for the notification
             if (Preferences.Get("NotificationPrayerTimesEnabled", false))
             {
                 textStyle.BigText(GetTodaysPrayerTimes());
                 textStyle.SetSummaryText(AppResources.BugunkuNamazVakitleri);
             }
+
+            // Create a Notification.Builder. The builder's parameters depend on the Android version
+            var notificationBuilder = Build.VERSION.SdkInt >= BuildVersionCodes.O
+                ? new Notification.Builder(this, NotificationChannelId)
+                : new Notification.Builder(this);
+
+            // Set the content title, style, small icon, content intent, when to show, and other properties for the notification
+            _notification = notificationBuilder
+                .SetContentTitle(GetFormattedRemainingTime())
+                .SetStyle(textStyle)
+                .SetSmallIcon(Resource.Drawable.app_logo)
+                .SetContentIntent(BuildIntentToShowMainActivity())
+                .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
+                .SetShowWhen(true)
+                .SetOngoing(true)
+                .SetOnlyAlertOnce(true)
+                .Build();
+
+            // If the Android version is Oreo or higher, create a NotificationChannel and set the description, light color, and lockscreen visibility for the channel
+            // The channel is then created in the notification manager
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
-                var channelNameJava = new Java.Lang.String(channelName);
-                var channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelNameJava, NotificationImportance.Default)
+                var channelNameJava = new Java.Lang.String(_channelName);
+                var channel = new NotificationChannel(NotificationChannelId, channelNameJava, NotificationImportance.Default)
                 {
-                    Description = channelDescription,
+                    Description = ChannelDescription,
                     LightColor = 1,
                     LockscreenVisibility = NotificationVisibility.Public
                 };
                 _notificationManager.CreateNotificationChannel(channel);
-                _notification = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
-                    //.SetContentTitle(AppResources.SuleymaniyeVakfiTakvimi)
-                    //.SetContentText(GetFormattedRemainingTime())
-                    .SetContentTitle(GetFormattedRemainingTime())
-                    .SetStyle(textStyle)
-                    .SetSmallIcon(Resource.Drawable.app_logo)
-                    .SetContentIntent(BuildIntentToShowMainActivity())
-                    .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
-                    .SetShowWhen(true)
-                    .SetOngoing(true)
-                    .SetOnlyAlertOnce(true)
-                    //.SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
-                    .Build();
-            }
-            else
-            {
-                _notification = new Notification.Builder(this)
-                    //.SetContentTitle(AppResources.SuleymaniyeVakfiTakvimi)
-                    //.SetContentText(GetFormattedRemainingTime())
-                    .SetContentTitle(GetFormattedRemainingTime())
-                    .SetStyle(textStyle)
-                    .SetSmallIcon(Resource.Drawable.app_logo)
-                    .SetContentIntent(BuildIntentToShowMainActivity())
-                    .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
-                    .SetShowWhen(true)
-                    .SetOngoing(true)
-                    .SetOnlyAlertOnce(true)
-                    //.SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
-                    .Build();
             }
         }
 
@@ -222,11 +244,26 @@ namespace SuleymaniyeTakvimi.Droid
             return pendingIntent;
         }
 
+        /// <summary>
+        /// This method calculates the remaining time until the next prayer time and returns a formatted string message.
+        /// </summary>
+        /// <returns>
+        /// A string message that indicates the remaining time until the next prayer time.
+        /// </returns>
+        /// <remarks>
+        /// The method first retrieves the current prayer times from the DataService and the current time of day.
+        /// It then checks the current time against each prayer time in order.
+        /// If the current time is less than a prayer time, it calculates the remaining time until that prayer time,
+        /// If the current time is greater than the last prayer time, calculate the elapsed time since that prayer time,
+        /// formats it as a string, and sets the message to a localized string indicating the remaining time until that prayer time.
+        /// If an exception occurs (for example, if the prayer times cannot be parsed as TimeSpan values),
+        /// it logs the exception and sets the message to a localized string indicating that the location permission is required.
+        /// </remarks>
         private string GetFormattedRemainingTime()
         {
             var message = "";
             var data = new DataService();
-            var takvim = data._takvim;
+            var takvim = data.Takvim;
             var currentTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -270,64 +307,93 @@ namespace SuleymaniyeTakvimi.Droid
 
         private string GetTodaysPrayerTimes()
         {
-            var message = "";
             var data = new DataService();
-            var takvim = data._takvim;
-            message += AppResources.FecriKazip + ": " + takvim.FecriKazip + "\n";
-            message += AppResources.FecriSadik + ": " + takvim.FecriSadik + "\n";
-            message += AppResources.SabahSonu + ": " + takvim.SabahSonu + "\n";
-            message += AppResources.Ogle + ": " + takvim.Ogle + "\n";
-            message += AppResources.Ikindi + ": " + takvim.Ikindi + "\n";
-            message += AppResources.Aksam + ": " + takvim.Aksam + "\n";
-            message += AppResources.Yatsi + ": " + takvim.Yatsi + "\n";
-            message += AppResources.YatsiSonu + ": " + takvim.YatsiSonu;
-            return message;
+            var takvim = data.Takvim;
+
+            var message = new StringBuilder();
+            message.AppendLine($"{AppResources.FecriKazip}: {takvim.FecriKazip}");
+            message.AppendLine($"{AppResources.FecriSadik}: {takvim.FecriSadik}");
+            message.AppendLine($"{AppResources.SabahSonu}: {takvim.SabahSonu}");
+            message.AppendLine($"{AppResources.Ogle}: {takvim.Ogle}");
+            message.AppendLine($"{AppResources.Ikindi}: {takvim.Ikindi}");
+            message.AppendLine($"{AppResources.Aksam}: {takvim.Aksam}");
+            message.Append($"{AppResources.Yatsi}: {takvim.Yatsi}");
+            message.Append($"{AppResources.YatsiSonu}: {takvim.YatsiSonu}");
+
+            return message.ToString();
         }
 
+        /// <summary>
+        /// This method is called when the service is started. It handles the actions to be performed based on the intent action.
+        /// </summary>
+        /// <param name="intent">The Intent supplied to start the service, as given to StartService(Intent).</param>
+        /// <param name="flags">Additional data about this start request. Currently either 0, StartCommandFlags.Redelivery, or StartCommandFlags.Retry.</param>
+        /// <param name="startId">A unique integer representing this specific request to start. Use with StopSelfResult(int).</param>
+        /// <returns>The return value indicates what semantics the system should use for the service's current started state.</returns>
+        /// <remarks>
+        /// If the action of the intent is "SuleymaniyeTakvimi.action.START_SERVICE" and the service is not already started, 
+        /// it starts the service in the foreground, posts a delayed runnable to the handler, sets the _isStarted flag to true, 
+        /// and starts a task to delay for 12 seconds and then set the weekly alarms.
+        /// 
+        /// If the action of the intent is "SuleymaniyeTakvimi.action.STOP_SERVICE", it stops the service from running in the foreground, 
+        /// stops the service itself, and sets the _isStarted flag to false.
+        /// 
+        /// If the intent or its action is null, it logs a debug message and returns StartCommandResult.RedeliverIntent to indicate that 
+        /// the system should create a new service object and call OnStartCommand(Intent, StartCommandFlags, int) with the last intent that 
+        /// was delivered to the service.
+        /// 
+        /// If none of the above conditions are met, it returns StartCommandResult.Sticky to indicate that the system should not try to 
+        /// recreate the service after it has been killed and does not need to have the service's commands redelivered.
+        /// </remarks>
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            if (intent == null || intent.Action == null)
+            if (intent?.Action == null)
             {
                 var source = null == intent ? "intent" : "action";
-                System.Diagnostics.Debug.WriteLine("OnStartCommand Null Intent Exception: " + source + " was null, flags=" + flags + " bits=" + flags);
+                System.Diagnostics.Debug.WriteLine("OnStartCommand Null Intent Exception: " + source +
+                                                   " was null, flags=" + flags + " bits=" + flags);
                 return StartCommandResult.RedeliverIntent;
             }
-            //Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
-            if (intent.Action.Equals("SuleymaniyeTakvimi.action.START_SERVICE"))
+
+            switch (intent.Action)
             {
-                if (_isStarted)
-                {
-                    //Log.Info(TAG, "OnStartCommand: The service is already running.");
-                }
-                else
-                {
-                    //Log.Info(TAG, "OnStartCommand: The service is starting.");
-                    // Enlist this instance of the service as a foreground service
-                    this.StartForeground(NOTIFICATION_ID, _notification);
-                    _handler.PostDelayed(_runnable, DELAY_BETWEEN_MESSAGES);
-                    _isStarted = true;
-                    Task startupWork = new Task(async () =>
+                //Analytics.TrackEvent("OnStartCommand in the AlarmForegroundService Triggered: " + $" at {DateTime.Now}");
+                case "SuleymaniyeTakvimi.action.START_SERVICE":
+                    if (!_isStarted) //else Log.Info(TAG, "OnStartCommand: The service is already running.");
                     {
-                        await Task.Delay(12000).ConfigureAwait(true);
-                        System.Diagnostics.Debug.WriteLine("OnStartCommand: " + $"Starting Set Alarm at {DateTime.Now}");
-                        DataService data = new DataService();
-                        data.SetWeeklyAlarms();
-                    });
-                    startupWork.Start();
-                    
-                }
-            }
-            else if (intent.Action.Equals("SuleymaniyeTakvimi.action.STOP_SERVICE"))
-            {
-                //Log.Info(TAG, "OnStartCommand: The service is stopping.");
-                StopForeground(true);
-                StopSelf(NOTIFICATION_ID);
-                _isStarted = false;
+                        //Log.Info(TAG, "OnStartCommand: The service is starting.");
+                        // Enlist this instance of the service as a foreground service
+                        this.StartForeground(NotificationId, _notification);
+                        _handler.PostDelayed(_runnable, DelayBetweenMessages);
+                        _isStarted = true;
+                        Task.Run(async () =>
+                        {
+                            await Task.Delay(12000);
+                            System.Diagnostics.Debug.WriteLine($"OnStartCommand: Starting Set Alarm at {DateTime.Now}");
+                            var data = new DataService();
+                            await data.SetWeeklyAlarmsAsync();
+                        });
+                    }
+
+                    break;
+                case "SuleymaniyeTakvimi.action.STOP_SERVICE":
+                    //Log.Info(TAG, "OnStartCommand: The service is stopping.");
+                    StopForeground(true);
+                    StopSelf(NotificationId);
+                    _isStarted = false;
+                    break;
             }
 
             return StartCommandResult.Sticky;
         }
-        
+
+        /// <summary>
+        /// Starts the foreground service for the alarm.
+        /// </summary>
+        /// <remarks>
+        /// This method creates an Intent for the AlarmForegroundService and sets the action to "SuleymaniyeTakvimi.action.START_SERVICE".
+        /// It then calls the StartTheService method with this intent to start the service.
+        /// </remarks>
         public void StartAlarmForegroundService()
         {
             Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
@@ -335,38 +401,40 @@ namespace SuleymaniyeTakvimi.Droid
             
             var startServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
             startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-                {
-                    Application.Context?.StartForegroundService(startServiceIntent);
-                }
-                else
-                {
-                    Application.Context?.StartService(startServiceIntent);
-                }
-            });
+            StartTheService(startServiceIntent);
             System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
 
+        /// <summary>
+        /// Stops the foreground service for the alarm.
+        /// </summary>
+        /// <remarks>
+        /// This method creates an Intent for the AlarmForegroundService and sets the action to "SuleymaniyeTakvimi.action.STOP_SERVICE".
+        /// It then calls the StartTheService method with this intent to stop the service.
+        /// </remarks>
         public void StopAlarmForegroundService()
         {
             Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
             var stopServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
             stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
+            StartTheService(stopServiceIntent);
+            System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
+        }
+
+        private void StartTheService(Intent serviceIntent)
+        {
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
                 {
-                    Application.Context?.StartForegroundService(stopServiceIntent);
+                    Application.Context?.StartForegroundService(serviceIntent);
                 }
                 else
                 {
-                    Application.Context?.StartService(stopServiceIntent);
+                    Application.Context?.StartService(serviceIntent);
                 }
             });
-            System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
         }
     }
 }

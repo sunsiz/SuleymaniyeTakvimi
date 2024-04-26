@@ -28,14 +28,13 @@ namespace SuleymaniyeTakvimi.iOS
 
                 var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
                 {
-                    AndroidStyleId = 0,
                     CancelText = AppResources.Kapat,
                     Message = AppResources.KonumIzniIcerik,
                     OkText = AppResources.GotoSettings,
                     Title = AppResources.KonumIzniBaslik
                 }).ConfigureAwait(false);
                 if (result) AppInfo.ShowSettingsUI();
-                Debug.WriteLine("Permission Request result:", result.ToString());
+                Debug.WriteLine($"Permission Request result: {result}");
             }
             MainThread.BeginInvokeOnMainThread(async () =>
             {

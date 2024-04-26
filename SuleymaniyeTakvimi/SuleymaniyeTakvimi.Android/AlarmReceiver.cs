@@ -2,12 +2,15 @@
 using Android.Content;
 using Android.OS;
 using System;
+using System.Collections.Generic;
 using Android.Graphics;
 using Android.Media;
 using AndroidX.Core.App;
 using SuleymaniyeTakvimi.Localization;
+using SuleymaniyeTakvimi.Services;
 using Uri = Android.Net.Uri;
 using Xamarin.Essentials;
+using Debug = System.Diagnostics.Debug;
 using String = Java.Lang.String;
 
 namespace SuleymaniyeTakvimi.Droid
@@ -16,152 +19,99 @@ namespace SuleymaniyeTakvimi.Droid
     public class AlarmReceiver : BroadcastReceiver
     {
         private NotificationManager _notificationManager;
-        private readonly int _notificationId = 2022;
-        private readonly string _alarmBirdChannelId = "SuleymaniyeTakvimialarmbirdchannelId";
-        private readonly string _alarmRoosterChannelId = "SuleymaniyeTakvimialarmroosterchannelId";
-        private readonly string _alarmAdhanChannelId = "SuleymaniyeTakvimialarmadhanchannelId";
-        private readonly string _alarmAlarmChannelId = "SuleymaniyeTakvimialarmalarmchannelId";
-        private readonly string _alarm1AlarmChannelId = "SuleymaniyeTakvimialarmalarm1channelId";
-        private readonly string _alarm2AlarmChannelId = "SuleymaniyeTakvimialarmalarm2channelId";
-        private readonly string _alarm3AlarmChannelId = "SuleymaniyeTakvimialarmalarm3channelId";
-        private readonly string _alarm4AlarmChannelId = "SuleymaniyeTakvimialarmalarm4channelId";
-        private readonly string _birdsChannelName = "Suleymaniye Takvimi Alarm Birds";
-        private readonly string _roosterChannelName = "Suleymaniye Takvimi Alarm Rooster";
-        private readonly string _adhanChannelName = "Suleymaniye Takvimi Alarm Adhan";
-        private readonly string _alarmChannelName = "Suleymaniye Takvimi Alarm Alarm";
-        private readonly string _alarm1ChannelName = "Suleymaniye Takvimi Alarm Alarm 1";
-        private readonly string _alarm2ChannelName = "Suleymaniye Takvimi Alarm Alarm 2";
-        private readonly string _alarm3ChannelName = "Suleymaniye Takvimi Alarm Alarm 3";
-        private readonly string _alarm4ChannelName = "Suleymaniye Takvimi Alarm Alarm 4";
-        private readonly string _birdsChannelDescription = "The Suleymaniye Takvimi birds alarm channel.";
-        private readonly string _roosterChannelDescription = "The Suleymaniye Takvimi rooster alarm channel.";
-        private readonly string _adhanChannelDescription = "The Suleymaniye Takvimi adhan alarm channel.";
-        private readonly string _alarmChannelDescription = "The Suleymaniye Takvimi alarm alarm channel.";
-        private readonly string _alarm1ChannelDescription = "The Suleymaniye Takvimi alarm alarm 1 channel.";
-        private readonly string _alarm2ChannelDescription = "The Suleymaniye Takvimi alarm alarm 2 channel.";
-        private readonly string _alarm3ChannelDescription = "The Suleymaniye Takvimi alarm alarm 3 channel.";
-        private readonly string _alarm4ChannelDescription = "The Suleymaniye Takvimi alarm alarm 4 channel.";
+        private const int NotificationId = 2022;
+        private const string AlarmBirdChannelId = "SuleymaniyeTakvimialarmbirdchannelId";
+        private const string AlarmRoosterChannelId = "SuleymaniyeTakvimialarmroosterchannelId";
+        private const string AlarmAdhanChannelId = "SuleymaniyeTakvimialarmadhanchannelId";
+        private const string AlarmAlarmChannelId = "SuleymaniyeTakvimialarmalarmchannelId";
+        private const string Alarm1AlarmChannelId = "SuleymaniyeTakvimialarmalarm1channelId";
+        private const string Alarm2AlarmChannelId = "SuleymaniyeTakvimialarmalarm2channelId";
+        private const string Alarm3AlarmChannelId = "SuleymaniyeTakvimialarmalarm3channelId";
+        private const string Alarm4AlarmChannelId = "SuleymaniyeTakvimialarmalarm4channelId";
+        private const string BirdsChannelName = "Suleymaniye Takvimi Alarm Birds";
+        private const string RoosterChannelName = "Suleymaniye Takvimi Alarm Rooster";
+        private const string AdhanChannelName = "Suleymaniye Takvimi Alarm Adhan";
+        private const string AlarmChannelName = "Suleymaniye Takvimi Alarm Alarm";
+        private const string Alarm1ChannelName = "Suleymaniye Takvimi Alarm Alarm 1";
+        private const string Alarm2ChannelName = "Suleymaniye Takvimi Alarm Alarm 2";
+        private const string Alarm3ChannelName = "Suleymaniye Takvimi Alarm Alarm 3";
+        private const string Alarm4ChannelName = "Suleymaniye Takvimi Alarm Alarm 4";
+        private const string BirdsChannelDescription = "The Suleymaniye Takvimi birds alarm channel.";
+        private const string RoosterChannelDescription = "The Suleymaniye Takvimi rooster alarm channel.";
+        private const string AdhanChannelDescription = "The Suleymaniye Takvimi adhan alarm channel.";
+        private const string AlarmChannelDescription = "The Suleymaniye Takvimi alarm alarm channel.";
+        private const string Alarm1ChannelDescription = "The Suleymaniye Takvimi alarm alarm 1 channel.";
+        private const string Alarm2ChannelDescription = "The Suleymaniye Takvimi alarm alarm 2 channel.";
+        private const string Alarm3ChannelDescription = "The Suleymaniye Takvimi alarm alarm 3 channel.";
+        private const string Alarm4ChannelDescription = "The Suleymaniye Takvimi alarm alarm 4 channel.";
+
+        /// <summary>
+        /// This method is called when the BroadcastReceiver is receiving an Intent broadcast.
+        /// It processes the received intent, extracts the necessary information, and creates a notification.
+        /// </summary>
+        /// <param name="context">The Context in which the receiver is running.</param>
+        /// <param name="intent">The Intent being received.</param>
         public override void OnReceive(Context context, Intent intent)
         {
             try
             {
+                // Extract the name and time from the intent.
                 var name = intent?.GetStringExtra("name") ?? string.Empty;
                 var timeStr = intent?.GetStringExtra("time") ?? string.Empty;
-                //Avoid some intents that not scheduled by this app.
+                
+                // If the name or time is missing, this intent was not scheduled by this app, so ignore it.
                 if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(timeStr)) return;
+                
+                // Parse the time string into a TimeSpan.
                 var time = TimeSpan.Parse(timeStr);
                 //Toast.MakeText(context, "Received intent! " + name + ": " + time, ToastLength.Short).Show();
+                // Get the notification manager service.
                 _notificationManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
+
+                // Create a PendingIntent for the full-screen intent.
                 var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
                     ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
                     : PendingIntentFlags.UpdateCurrent;
                 PendingIntent fullScreenPendingIntent = PendingIntent.GetActivity(context, 0, new Intent(context, typeof(AlarmActivity)), pendingIntentFlags);
-                //var sound = GetRingtoneFileName(context, name);
-                var birdsSound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.kus}");
-                var roosterSound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.horoz}");
-                var adhanSound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.ezan}");
-                var alarmSound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm}");
-                var alarm1Sound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm2}");
-                var alarm2Sound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.beep1}");
-                var alarm3Sound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.beep2}");
-                var alarm4Sound = Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.beep3}");
+                
+                // Get the alarm ID, sound URI, and channel ID based on the name.
+                var alarmId = GetAlarmId(name);
+                var soundUri = GetSoundUri(context, alarmId);
+                var channelId = GetChannelId(alarmId);
+                
+                // Create the audio attributes for the notification.
                 var alarmAttributes = new AudioAttributes.Builder()
                     .SetContentType(AudioContentType.Sonification)
-                    .SetUsage(AudioUsageKind.NotificationRingtone).Build();
+                    ?.SetUsage(AudioUsageKind.NotificationRingtone)
+                    ?.Build();
+                
+                // If the Android version is Oreo or higher, create the notification channels.
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
                 {
-                    var birdsAlarmChannelNameJava = new String(_birdsChannelName);
-                    var roosterAlarmChannelNameJava = new String(_roosterChannelName);
-                    var adhanAlarmChannelNameJava = new String(_adhanChannelName);
-                    var alarmAlarmChannelNameJava = new String(_alarmChannelName);
-                    var alarm1AlarmChannelNameJava = new String(_alarm1ChannelName);
-                    var alarm2AlarmChannelNameJava = new String(_alarm2ChannelName);
-                    var alarm3AlarmChannelNameJava = new String(_alarm3ChannelName);
-                    var alarm4AlarmChannelNameJava = new String(_alarm4ChannelName);
-                    var birdsAlarmChannel = new NotificationChannel(_alarmBirdChannelId, birdsAlarmChannelNameJava, NotificationImportance.Max)
+                    // Define the channel IDs, names, and descriptions.
+                    var channelIds = new List<string> { AlarmBirdChannelId, AlarmRoosterChannelId, AlarmAdhanChannelId, AlarmAlarmChannelId, Alarm1AlarmChannelId, Alarm2AlarmChannelId, Alarm3AlarmChannelId, Alarm4AlarmChannelId };
+                    var channelNames = new List<string> { BirdsChannelName, RoosterChannelName, AdhanChannelName, AlarmChannelName, Alarm1ChannelName, Alarm2ChannelName, Alarm3ChannelName, Alarm4ChannelName };
+                    var channelDescriptions = new List<string> { BirdsChannelDescription, RoosterChannelDescription, AdhanChannelDescription, AlarmChannelDescription, Alarm1ChannelDescription, Alarm2ChannelDescription, Alarm3ChannelDescription, Alarm4ChannelDescription };
+                    
+                    // Create each notification channel.
+                    for (int i = 0; i < channelIds.Count; i++)
                     {
-                        Description = _birdsChannelDescription
-                    };
-                    var roosterAlarmChannel = new NotificationChannel(_alarmRoosterChannelId, roosterAlarmChannelNameJava, NotificationImportance.Max)
-                    {
-                        Description = _roosterChannelDescription
-                    };
-                    var adhanAlarmChannel = new NotificationChannel(_alarmAdhanChannelId, adhanAlarmChannelNameJava, NotificationImportance.Max)
-                    {
-                        Description = _adhanChannelDescription
-                    };
-                    var alarmAlarmChannel = new NotificationChannel(_alarmAlarmChannelId, alarmAlarmChannelNameJava, NotificationImportance.Max)
-                    {
-                        Description = _alarmChannelDescription
-                    };
-                    var alarm1AlarmChannel = new NotificationChannel(_alarm1AlarmChannelId, alarm1AlarmChannelNameJava, NotificationImportance.Max)
-                    {
-                        Description = _alarm1ChannelDescription
-                    };
-                    var alarm2AlarmChannel = new NotificationChannel(_alarm2AlarmChannelId, alarm2AlarmChannelNameJava, NotificationImportance.Max)
-                    {
-                        Description = _alarm2ChannelDescription
-                    };
-                    var alarm3AlarmChannel = new NotificationChannel(_alarm3AlarmChannelId, alarm3AlarmChannelNameJava, NotificationImportance.Max)
-                    {
-                        Description = _alarm3ChannelDescription
-                    };
-                    var alarm4AlarmChannel = new NotificationChannel(_alarm4AlarmChannelId, alarm4AlarmChannelNameJava, NotificationImportance.Max)
-                    {
-                        Description = _alarm4ChannelDescription
-                    };
-                    birdsAlarmChannel.SetSound(birdsSound, alarmAttributes);
-                    roosterAlarmChannel.SetSound(roosterSound, alarmAttributes);
-                    adhanAlarmChannel.SetSound(adhanSound, alarmAttributes);
-                    alarmAlarmChannel.SetSound(alarmSound, alarmAttributes);
-                    alarm1AlarmChannel.SetSound(alarm1Sound, alarmAttributes);
-                    alarm2AlarmChannel.SetSound(alarm2Sound, alarmAttributes);
-                    alarm3AlarmChannel.SetSound(alarm3Sound, alarmAttributes);
-                    alarm4AlarmChannel.SetSound(alarm4Sound, alarmAttributes);
-                    _notificationManager?.CreateNotificationChannel(birdsAlarmChannel);
-                    _notificationManager?.CreateNotificationChannel(roosterAlarmChannel);
-                    _notificationManager?.CreateNotificationChannel(adhanAlarmChannel);
-                    _notificationManager?.CreateNotificationChannel(alarmAlarmChannel);
-                    _notificationManager?.CreateNotificationChannel(alarm1AlarmChannel);
-                    _notificationManager?.CreateNotificationChannel(alarm2AlarmChannel);
-                    _notificationManager?.CreateNotificationChannel(alarm3AlarmChannel);
-                    _notificationManager?.CreateNotificationChannel(alarm4AlarmChannel);
+                        var channelNameJava = new String(channelNames[i]);
+                        var alarmChannel = new NotificationChannel(channelIds[i], channelNameJava, NotificationImportance.Max)
+                        {
+                            Description = channelDescriptions[i]
+                        };
+                        var channelSoundUri = GetSoundUri(context, DataService.SoundNameKeys[i]);
+                        alarmChannel.SetSound(channelSoundUri, alarmAttributes);
+                        _notificationManager?.CreateNotificationChannel(alarmChannel);
+                        Debug.WriteLine($"**** Alarm Receiver - {channelIds[i]} - {channelNameJava} - {channelDescriptions[i]} - {channelSoundUri}");
+                    }
                 }
-
-                //Uri sound = Uri.Parse("android.resource://" + context.PackageName + "/" + Resource.Raw.horoz);
-                var alarmId = GetAlarmId(name);
-                NotificationCompat.Builder notificationBuilder = null;
-                switch (alarmId)
-                {
-                    case "kus":
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarmBirdChannelId).SetSound(birdsSound);
-                        break;
-                    case "horoz":
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarmRoosterChannelId).SetSound(roosterSound);
-                        break;
-                    case "ezan":
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarmAdhanChannelId).SetSound(adhanSound);
-                        break;
-                    case "alarm":
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarmAlarmChannelId).SetSound(alarmSound);
-                        break;
-                    case "alarm2":
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarm1AlarmChannelId).SetSound(alarm1Sound);
-                        break;
-                    case "beep1":
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarm2AlarmChannelId).SetSound(alarm2Sound);
-                        break;
-                    case "beep2":
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarm3AlarmChannelId).SetSound(alarm3Sound);
-                        break;
-                    case "beep3":
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarm4AlarmChannelId).SetSound(alarm4Sound);
-                        break;
-                    default:
-                        notificationBuilder = new NotificationCompat.Builder(context, _alarmAlarmChannelId).SetSound(alarmSound);
-                        break;
-                }
-                notificationBuilder.SetSmallIcon(Resource.Drawable.app_logo)
+                
+                // Build the notification.
+                var notificationBuilder = new NotificationCompat.Builder(context, channelId)
+                    .SetSound(soundUri)
+                    .SetSmallIcon(Resource.Drawable.app_logo)
                     .SetContentTitle(GetTitle(name))
                     .SetContentText(GetContent(name, time))
                     .SetPriority(NotificationCompat.PriorityMax)
@@ -171,101 +121,113 @@ namespace SuleymaniyeTakvimi.Droid
                     .SetLargeIcon(BitmapFactory.DecodeResource(Application.Context.Resources, Resource.Drawable.app_logo))
                     .SetDefaults(0)
                     .SetFullScreenIntent(fullScreenPendingIntent, true);
-                //NotificationCompat.Builder notificationBuilder =
-                //    new NotificationCompat.Builder(context, ALARM_CHANNEL_ID)
-                //        .SetSmallIcon(Resource.Drawable.app_logo)
-                //        .SetContentTitle(GetTitle(name))
-                //        .SetContentText(GetContent(name, time))
-                //        .SetPriority(NotificationCompat.PriorityMax)
-                //        .SetCategory(NotificationCompat.CategoryAlarm)
-                //        .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Alarm))
-                //        .SetAutoCancel(true)
-                //        .SetContentIntent(BuildIntentToShowMainActivity())
-                //        .SetLargeIcon(BitmapFactory.DecodeResource(Application.Context.Resources, Resource.Mipmap.icon))
-                //        .SetDefaults(0)
-                //        // Use a full-screen intent only for the highest-priority alerts where you
-                //        // have an associated activity that you would like to launch after the user
-                //        // interacts with the notification. Also, if your app targets Android 10
-                //        // or higher, you need to request the USE_FULL_SCREEN_INTENT permission in
-                //        // order for the platform to invoke this notification.
-                //        .SetFullScreenIntent(fullScreenPendingIntent, true);
                 
+                // Create the notification and notify the notification manager.
                 Notification alarmlNotification = notificationBuilder.Build();
-                _notificationManager.Notify(_notificationId,alarmlNotification);
+                _notificationManager?.Notify(NotificationId,alarmlNotification);
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
-                //throw;
+                // Log any exceptions that occur while processing the intent.
+                Console.WriteLine($@"**** Alarm reciver OnReceive exception: {exception}");
             }
         }
 
-        private string GetAlarmId(string name)
+        private static string GetAlarmId(string name)
         {
-            var fileName = "";
-            if (name != null)
-                fileName = name switch
-                {
-                    "Fecri Kazip" => Preferences.Get("fecrikazipAlarmSesi", "alarm"),
-                    "Fecri Sadık" => Preferences.Get("fecrisadikAlarmSesi", "alarm"),
-                    "Sabah Sonu" => Preferences.Get("sabahsonuAlarmSesi", "alarm"),
-                    "Öğle" => Preferences.Get("ogleAlarmSesi", "alarm"),
-                    "İkindi" => Preferences.Get("ikindiAlarmSesi", "alarm"),
-                    "Akşam" => Preferences.Get("aksamAlarmSesi", "alarm"),
-                    "Yatsı" => Preferences.Get("yatsiAlarmSesi", "alarm"),
-                    "Yatsı Sonu" => Preferences.Get("yatsisonuAlarmSesi", "alarm"),
-                    //_ => "ezan"
-                };
-            return fileName;
-            //return fileName switch
-            //{
-            //    "kus" => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm3}"),
-            //    "horoz" => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.horoz}"),
-            //    "alarm" => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm1}"),
-            //    "ezan" => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.ezan}"),
-            //    "alarm2" => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm2}"),
-            //    "beep1" => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.beep1}"),
-            //    "beep2" => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.beep2}"),
-            //    "beep3" => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.beep3}"),
-            //    _ => Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{Resource.Raw.alarm1}")
-            //};
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
+
+            return name switch
+            {
+                "fecrikazip" => Preferences.Get("fecrikazipAlarmSesi", "alarm"),
+                "fecrisadik" => Preferences.Get("fecrisadikAlarmSesi", "alarm"),
+                "sabahsonu" => Preferences.Get("sabahsonuAlarmSesi", "alarm"),
+                "ogle" => Preferences.Get("ogleAlarmSesi", "alarm"),
+                "ikindi" => Preferences.Get("ikindiAlarmSesi", "alarm"),
+                "aksam" => Preferences.Get("aksamAlarmSesi", "alarm"),
+                "yatsi" => Preferences.Get("yatsiAlarmSesi", "alarm"),
+                "yatsisonu" => Preferences.Get("yatsisonuAlarmSesi", "alarm"),
+                _ => string.Empty
+            };
+        }
+
+        private Uri GetSoundUri(Context context, string alarmId)
+        {
+            var soundResource = alarmId switch
+            {
+                "kus" => Resource.Raw.kus,
+                "horoz" => Resource.Raw.horoz,
+                "ezan" => Resource.Raw.ezan,
+                "alarm" => Resource.Raw.alarm,
+                "alarm2" => Resource.Raw.alarm2,
+                "beep1" => Resource.Raw.beep1,
+                "beep2" => Resource.Raw.beep2,
+                "beep3" => Resource.Raw.beep3,
+                _ => Resource.Raw.alarm
+            };
+
+            return Uri.Parse($"{ContentResolver.SchemeAndroidResource}://{context.PackageName}/{soundResource}");
+        }
+
+        private string GetChannelId(string alarmId)
+        {
+            return alarmId switch
+            {
+                "kus" => AlarmBirdChannelId,
+                "horoz" => AlarmRoosterChannelId,
+                "ezan" => AlarmAdhanChannelId,
+                "alarm" => AlarmAlarmChannelId,
+                "alarm2" => Alarm1AlarmChannelId,
+                "beep1" => Alarm2AlarmChannelId,
+                "beep2" => Alarm3AlarmChannelId,
+                "beep3" => Alarm4AlarmChannelId,
+                _ => AlarmAlarmChannelId
+            };
         }
 
         private string GetContent(string name, TimeSpan time)
         {
-            if (name != null)
-                return name switch
-                {
-                    "Fecri Kazip" => $"{AppResources.FecriKazip} {AppResources.Vakti} {time}",
-                    "Fecri Sadık" => $"{AppResources.FecriSadik} {AppResources.Vakti} {time}",
-                    "Sabah Sonu" => $"{AppResources.SabahSonu} {AppResources.Vakti} {time}",
-                    "Öğle" => $"{AppResources.Ogle} {AppResources.Vakti} {time}",
-                    "İkindi" => $"{AppResources.Ikindi} {AppResources.Vakti} {time}",
-                    "Akşam" => $"{AppResources.Aksam} {AppResources.Vakti} {time}",
-                    "Yatsı" => $"{AppResources.Yatsi} {AppResources.Vakti} {time}",
-                    "Yatsı Sonu" => $"{AppResources.YatsiSonu} {AppResources.Vakti} {time}",
-                    //_ => $"şimdiki zaman: {time}"
-                };
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
 
-            return "";
+            return name switch
+            {
+                "fecrikazip" => $"{AppResources.FecriKazip} {AppResources.Vakti} {time}",
+                "fecrisadik" => $"{AppResources.FecriSadik} {AppResources.Vakti} {time}",
+                "Sabahsonu" => $"{AppResources.SabahSonu} {AppResources.Vakti} {time}",
+                "ogle" => $"{AppResources.Ogle} {AppResources.Vakti} {time}",
+                "ikindi" => $"{AppResources.Ikindi} {AppResources.Vakti} {time}",
+                "aksam" => $"{AppResources.Aksam} {AppResources.Vakti} {time}",
+                "yatsi" => $"{AppResources.Yatsi} {AppResources.Vakti} {time}",
+                "yatsisonu" => $"{AppResources.YatsiSonu} {AppResources.Vakti} {time}",
+                _ => string.Empty
+            };
         }
 
         private string GetTitle(string name)
         {
-            if (name != null)
-                return name switch
-                {
-                    "Fecri Kazip" => AppResources.FecriKazip + " " + AppResources.Alarmi,
-                    "Fecri Sadık" => AppResources.FecriSadik + " " + AppResources.Alarmi,
-                    "Sabah Sonu" => AppResources.SabahSonu + " " + AppResources.Alarmi,
-                    "Öğle" => AppResources.Ogle + " " + AppResources.Alarmi,
-                    "İkindi" => AppResources.Ikindi + " " + AppResources.Alarmi,
-                    "Akşam" => AppResources.Aksam + " " + AppResources.Alarmi,
-                    "Yatsı" => AppResources.Yatsi + " " + AppResources.Alarmi,
-                    "Yatsı Sonu" => AppResources.YatsiSonu + " " + AppResources.Alarmi,
-                    //_ => "Test Alarmı",
-                };
-            return "";
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
+
+            return name switch
+            {
+                "fecrikazip" => AppResources.FecriKazip + " " + AppResources.Alarmi,
+                "fecrisadik" => AppResources.FecriSadik + " " + AppResources.Alarmi,
+                "sabahsonu" => AppResources.SabahSonu + " " + AppResources.Alarmi,
+                "ogle" => AppResources.Ogle + " " + AppResources.Alarmi,
+                "ikindi" => AppResources.Ikindi + " " + AppResources.Alarmi,
+                "aksam" => AppResources.Aksam + " " + AppResources.Alarmi,
+                "yatsi" => AppResources.Yatsi + " " + AppResources.Alarmi,
+                "yatsisonu" => AppResources.YatsiSonu + " " + AppResources.Alarmi,
+                _ => string.Empty
+            };
         }
 
         /// <summary>
@@ -273,23 +235,17 @@ namespace SuleymaniyeTakvimi.Droid
         /// user taps on the notification; it will take them to the main activity of the app.
         /// </summary>
         /// <returns>The content intent.</returns>
-        PendingIntent BuildIntentToShowMainActivity()
+        private PendingIntent BuildIntentToShowMainActivity()
         {
-            //Intent myIntent = new Intent();
-            //myIntent.SetAction(Android.Provider.Settings.ActionIgnoreBatteryOptimizationSettings);
-            ////myIntent.SetData(Android.Net.Uri.FromParts("package", PackageName, null));
-            //myIntent.AddFlags(ActivityFlags.NewTask);
-            //StartActivity(myIntent);
             var notificationIntent = new Intent(Application.Context, typeof(MainActivity));
             notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
             notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
-            //notificationIntent.PutExtra("has_service_been_started", true);
-            
-            var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
+
+            var pendingIntentFlags = Build.VERSION.SdkInt > BuildVersionCodes.R
                 ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
                 : PendingIntentFlags.UpdateCurrent;
-            var pendingIntent = PendingIntent.GetActivity(Application.Context, 0, notificationIntent, pendingIntentFlags);
-            return pendingIntent;
+
+            return PendingIntent.GetActivity(Application.Context, 0, notificationIntent, pendingIntentFlags);
         }
     }
 }

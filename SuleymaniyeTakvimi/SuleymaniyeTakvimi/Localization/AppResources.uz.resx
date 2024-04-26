@@ -554,4 +554,7 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>Signallar rejalashtirilmoqda, kuting</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Ulashish</value>
+  </data>
 </root>

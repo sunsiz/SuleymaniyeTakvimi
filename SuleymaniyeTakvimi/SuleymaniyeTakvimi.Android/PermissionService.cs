@@ -8,23 +8,28 @@ namespace SuleymaniyeTakvimi.Droid
 {
     public class PermissionService : IPermissionService
     {
-		public void AskNotificationPermission()
-		{
-			MainActivity main = MainActivity.Instance;
-			main.HandleNotificationPermissionAsync();
-		}
+        private readonly MainActivity _mainActivityInstance;
+        private readonly LocationManager _locationManager;
 
-		public async Task<PermissionStatus> HandlePermissionAsync()
+        public PermissionService()
         {
-            MainActivity main = MainActivity.Instance;
-            var status = await main.HandleLocationPermissionAsync().ConfigureAwait(false);
-            return status;
+            _mainActivityInstance = MainActivity.Instance;
+            _locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(Context.LocationService);
+        }
+
+        public void AskNotificationPermission()
+        {
+            _mainActivityInstance.HandleNotificationPermissionAsync();
+        }
+
+        public Task<PermissionStatus> HandlePermissionAsync()
+        {
+            return _mainActivityInstance.HandleLocationPermissionAsync();
         }
 
         public bool IsLocationServiceEnabled()
         {
-            LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(Context.LocationService);
-            return locationManager != null && locationManager.IsProviderEnabled(LocationManager.GpsProvider);
+            return _locationManager != null && _locationManager.IsProviderEnabled(LocationManager.GpsProvider);
         }
 
         public bool IsVoiceOverRunning()

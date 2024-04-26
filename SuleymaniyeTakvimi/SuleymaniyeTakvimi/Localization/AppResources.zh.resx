@@ -554,4 +554,7 @@
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>正在安排闹钟，请稍候</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>分享</value>
+  </data>
 </root>

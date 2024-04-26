@@ -2,29 +2,35 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : MvvmHelpers.BaseViewModel, INotifyPropertyChanged
     {
-        //public IDataService DataService => DependencyService.Get<IDataService>();
+        protected readonly DataService DataService;
 
-        bool _isBusy;
-
-        public bool IsBusy
+        protected BaseViewModel(DataService dataService)
         {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
+            DataService = dataService;
         }
 
-        string _title = string.Empty;
+        //private bool _isBusy;
 
-        public string Title
-        {
-            get => _title;
-            set => SetProperty(ref _title, value);
-        }
+        //public bool IsBusy
+        //{
+        //    get => _isBusy;
+        //    set => SetProperty(ref _isBusy, value);
+        //}
+
+        //string _title = string.Empty;
+
+        //public string Title
+        //{
+        //    get => _title;
+        //    set => SetProperty(ref _title, value);
+        //}
 
         private int _fontSize = Preferences.Get("FontSize", 14);
         public int FontSize
@@ -36,7 +42,6 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Preferences.Set("FontSize", value);
             }
         }
-        //public Takvim Vakitler { get; set; }
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
@@ -51,16 +56,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
 
         #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
         #endregion
     }
 }

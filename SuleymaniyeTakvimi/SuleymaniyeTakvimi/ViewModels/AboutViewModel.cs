@@ -1,4 +1,5 @@
-﻿using SuleymaniyeTakvimi.Localization;
+﻿using System.Threading.Tasks;
+using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -15,16 +16,16 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         public string VersionNumber { get => _versionNumber; set => SetProperty(ref _versionNumber, value); }
 
-        public bool ShowButtons { get { if (Device.RuntimePlatform == Device.iOS) { var service = DependencyService.Get<Services.IPermissionService>(); return service.IsVoiceOverRunning(); } else return false; } }
+        public bool ShowButtons => Device.RuntimePlatform == Device.iOS && DependencyService.Get<Services.IPermissionService>().IsVoiceOverRunning();
 
         public AboutViewModel()
         {
             Title = AppResources.SuleymaniyeVakfi;
-            VersionNumber = " v" + AppInfo.VersionString + " ";
-            SettingsCommand = new Command(Settings);
+            VersionNumber = $" v{AppInfo.VersionString} ";
+            SettingsCommand = new Command(async () => await Settings());
         }
 
-        private async void Settings(object obj)
+        private async Task Settings()
         {
             IsBusy = true;
             // This will push the SettingsPage onto the navigation stack

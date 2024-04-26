@@ -554,4 +554,7 @@
   <data name="AlarmlarPlanlaniyor" xml:space="preserve">
     <value>قوڭغۇراقلىق سائەت تەڭشىلىۋاتىدۇ، سەل ساقلاڭ</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>ھەمبەھىرلەش</value>
+  </data>
 </root>

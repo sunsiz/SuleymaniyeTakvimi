@@ -5,19 +5,17 @@
                                                Dark={StaticResource AppBackgroundColorDark}}"
              FlowDirection="{x:Static Device.FlowDirection}"
              Shell.PresentationMode="ModalAnimated" Visual="Material">
-    <!--<ContentPage.BindingContext>
-        <viewModels:ItemDetailViewModel/>
-    </ContentPage.BindingContext>-->
+
     <ScrollView VerticalScrollBarVisibility="Never">
-        <pancakeView:PancakeView Margin="{OnPlatform Android=9, iOS='9,10,9,9'}" Padding="18,14" HorizontalOptions="FillAndExpand" CornerRadius="5">
-            <pancakeView:PancakeView.BackgroundGradientStops>
-                <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=AliceBlue, Dark={StaticResource AppBackgroundColorDark}}" />
-                <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=WhiteSmoke, Dark={StaticResource Primary}}" />
-            </pancakeView:PancakeView.BackgroundGradientStops>
-            <pancakeView:PancakeView.Shadow>
-                <pancakeView:DropShadow BlurRadius="6" Opacity="0.3" Color="Coral" />
-            </pancakeView:PancakeView.Shadow>
             <Grid x:DataType="viewModels:ItemDetailViewModel" ColumnDefinitions="*, Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Visual="Material">
+                <Grid.Margin><OnPlatform x:TypeArguments="Thickness" Android="9" iOS="9,10,9,9" /></Grid.Margin>
+                <Grid.Padding><Thickness>18,14</Thickness></Grid.Padding>
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Offset="0" Color="{AppThemeBinding Light=AliceBlue, Dark={StaticResource AppBackgroundColorDark}}" />
+                        <GradientStop Offset="1" Color="{AppThemeBinding Light=WhiteSmoke, Dark={StaticResource Primary}}" />
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <pancakeView:PancakeView Grid.Row="0" Grid.ColumnSpan="2" Margin="14,4" CornerRadius="9">
                     <pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=Goldenrod, Dark={StaticResource PrimaryColor}}" />
@@ -66,7 +64,7 @@
                         <StackLayout HorizontalOptions="Fill" VerticalOptions="Center" Orientation="Horizontal">
                             <Switch WidthRequest="48" HeightRequest="48" Margin="{OnPlatform Android=0, iOS='0,19,0,0'}" AutomationProperties.HelpText="{behaviors:Translate BildirimGosterSwitch}" AutomationProperties.IsInAccessibleTree="True" IsEnabled="{Binding Etkin}" IsToggled="{Binding Bildiri}" Visual="Material">
                                 <Switch.Behaviors>
-                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding BildiriCheckedChanged}" CommandParameter="{Binding Bildiri}" />
+                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding NotificationCheckedChanged}" CommandParameter="{Binding Bildiri}" />
                                 </Switch.Behaviors>
                             </Switch>
                             <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate BildirimGosterSwitch}" />
@@ -74,7 +72,7 @@
                         <StackLayout IsVisible="{Binding IsNecessary}" HorizontalOptions="Fill" Orientation="Horizontal">
                             <Switch WidthRequest="48" HeightRequest="48" Margin="{OnPlatform Android=0, iOS='0,19,0,0'}" VerticalOptions="Center" AutomationProperties.HelpText="{behaviors:Translate TitresimSwitch}" AutomationProperties.IsInAccessibleTree="True" IsEnabled="{Binding Etkin}" IsToggled="{Binding Titreme}" Visual="Material">
                                 <Switch.Behaviors>
-                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding TitremeCheckedChanged}" CommandParameter="{Binding Titreme}" />
+                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding VibrationCheckedChanged}" CommandParameter="{Binding Titreme}" />
                                 </Switch.Behaviors>
                             </Switch>
                             <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" Visual="Material" Text="{behaviors:Translate TitresimSwitch}" />
@@ -111,52 +109,9 @@
                             </Label.FormattedText>
                         </Label>
                         <Slider HeightRequest="48" HorizontalOptions="FillAndExpand" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.LabeledBy="LabelAlarmStartTime" Maximum="60" Minimum="0" Visual="Material" Value="{Binding BildirmeVakti}" />
-                        <!--<Label HorizontalOptions="Start" Text="{behaviors:Translate BildirmeZamani}" Style="{DynamicResource LabelStyle}" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}" Visual="Material"/>
-                        <RadioButton Content="{behaviors:Translate Zamaninda}" Value="0" x:Name="Zamaninda" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate Zamaninda}" Visual="Material">
-                            <RadioButton.Triggers>
-                                <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="0">
-                                    <Setter TargetName="Zamaninda" Property="IsChecked" Value="True"/>
-                                </DataTrigger>
-                            </RadioButton.Triggers>
-                            <RadioButton.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Zamaninda}"/>
-                            </RadioButton.Behaviors>
-                        </RadioButton>
-                        <RadioButton Content="{behaviors:Translate BesDakikaOnceden}" Value="5" x:Name="Bes" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate BesDakikaOnceden}" Visual="Material">
-                            <RadioButton.Triggers>
-                                <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="5">
-                                    <Setter TargetName="Bes" Property="IsChecked" Value="True"/>
-                                </DataTrigger>
-                            </RadioButton.Triggers>
-                            <RadioButton.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Bes}"/>
-                            </RadioButton.Behaviors>
-                        </RadioButton>
-                        <RadioButton Content="{behaviors:Translate OnBesDakikaOnceden}" Value="15" x:Name="Onbes" Style="{StaticResource RadioButtonStyle}" AutomationProperties.IsInAccessibleTree="True" AutomationProperties.HelpText="{behaviors:Translate OnBesDakikaOnceden}" Visual="Material">
-                            <RadioButton.Triggers>
-                                <DataTrigger TargetType="RadioButton" Binding="{Binding BildirmeVakti}" Value="15">
-                                    <Setter TargetName="Onbes" Property="IsChecked" Value="True"/>
-                                </DataTrigger>
-                            </RadioButton.Triggers>
-                            <RadioButton.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding RadioButtonCheckedChanged}" CommandParameter="{x:Reference Onbes}"/>
-                            </RadioButton.Behaviors>
-                        </RadioButton>-->
                         <Label Style="{DynamicResource LabelStyle}" HorizontalOptions="Start" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}" Visual="Material" Text="{behaviors:Translate AlarmSound}" />
                         <StackLayout Orientation="Horizontal">
-                            <Picker Title="{behaviors:Translate Birsessecin}"
-                                    Style="{DynamicResource PickerStyle}"
-                                    HeightRequest="48" HorizontalOptions="FillAndExpand"
-                                    BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor},
-                                                                      Dark={StaticResource DarkElevation2dp}}"
-                                    
-                                    ItemDisplayBinding="{Binding Name}"
-                                    SelectedItem="{Binding SelectedSound}"
-                                    TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor},
-                                                                Dark={StaticResource White}}"
-                                    ItemsSource="{Binding AvailableSounds}" /><!--AutomationProperties.HelpText="{behaviors:Translate SesSecAciklama}"
-                                    AutomationProperties.IsInAccessibleTree="true"-->
-                            <!--<Button Text="{Binding TestButtonText}" Command="{Binding TestButtonCommand}" CornerRadius="9" BackgroundColor="{StaticResource PrimaryLightAccent100Color}" HorizontalOptions="End" FontFamily="MaterialIcons" FontAttributes="Bold" Font="Default"/>-->
+                            <Picker Title="{behaviors:Translate Birsessecin}" Style="{DynamicResource PickerStyle}" HeightRequest="48" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackgroundColor}, Dark={StaticResource DarkElevation2dp}}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSound}" TextColor="{AppThemeBinding Light={StaticResource OnPrimaryColor}, Dark={StaticResource White}}" ItemsSource="{Binding AvailableSounds}" />
                             <Label Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                    AutomationProperties.HelpText="{behaviors:Translate AlarmSwitch}"
                                    AutomationProperties.IsInAccessibleTree="True" FontAttributes="Bold" FontFamily="MaterialIcons" FontSize="45" Opacity="0.8"
@@ -177,29 +132,12 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                        <!--<StackLayout Orientation="Vertical" IsVisible="{Binding IsNecessary}">
-                            <Label HorizontalOptions="Start" Style="{DynamicResource LabelStyle}"
-                                   HorizontalTextAlignment="End"
-                                   TextColor="{AppThemeBinding Light={StaticResource PrimaryAccent800Color}, Dark={StaticResource PrimaryAccent100Color}}"
-                                   Visual="Material" x:Name="LabelAlarmRepeats">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{behaviors:Translate AlarmTekrarlari}" />
-                                        <Span Text="{Binding AlarmRepeats}" />
-                                        <Span Text="{behaviors:Translate Kere}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        <Slider HorizontalOptions="FillAndExpand" HeightRequest="48" Maximum="30" Minimum="1" Value="{Binding AlarmRepeats}" Visual="Material" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.LabeledBy="LabelAlarmRepeats" />
-                        </StackLayout>-->
                     </StackLayout>
                 </pancakeView:PancakeView>
 
                 <StackLayout Grid.Row="7" Grid.ColumnSpan="2" Margin="7" Padding="0" HorizontalOptions="Fill" Orientation="Horizontal">
                     <Button Style="{DynamicResource ButtonStyle}" Padding="7" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryAccent400Color}, Dark={StaticResource SecondaryColor}}" Visual="Material" Command="{Binding BackCommand}" Text="{behaviors:Translate Kapat}" />
                 </StackLayout>
-                <!--</pancakeView:PancakeView>-->
             </Grid>
-        </pancakeView:PancakeView>
     </ScrollView>
 </ContentPage>
