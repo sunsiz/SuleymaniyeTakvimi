@@ -64,7 +64,6 @@ namespace SuleymaniyeTakvimi.Droid
                     UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
                 }
 
-                _permissionRequested = true;
                 var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
                 {
                     AndroidStyleId = 0,
@@ -74,6 +73,7 @@ namespace SuleymaniyeTakvimi.Droid
                     Title = AppResources.KonumIzniBaslik
                 }).ConfigureAwait(false);
                 if (result) AppInfo.ShowSettingsUI();
+                _permissionRequested = true;
                 System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
             }
             else if (status == PermissionStatus.Disabled)

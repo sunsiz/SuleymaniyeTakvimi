@@ -263,7 +263,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             var message = "";
             var data = new DataService();
-            var takvim = data._takvim;
+            var takvim = data.Takvim;
             var currentTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -308,7 +308,7 @@ namespace SuleymaniyeTakvimi.Droid
         private string GetTodaysPrayerTimes()
         {
             var data = new DataService();
-            var takvim = data._takvim;
+            var takvim = data.Takvim;
 
             var message = new StringBuilder();
             message.AppendLine($"{AppResources.FecriKazip}: {takvim.FecriKazip}");

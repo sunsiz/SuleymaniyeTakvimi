@@ -18,7 +18,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command RefreshCommand { get; }
         public Command ShareCommand => new Command(async () =>
         {
-            var takvim = DataService._takvim;
+            var takvim = DataService.Takvim;
             var url = $"https://www.suleymaniyetakvimi.com/home/monthlyCalendar?latitude={takvim.Enlem}&longitude={takvim.Boylam}";
             await Share.RequestAsync(new ShareTextRequest
             {
@@ -38,34 +38,37 @@ namespace SuleymaniyeTakvimi.ViewModels
             IsBusy = true;
             //data = dataService;
             //var data = new DataService();
-            var konum = DataService._takvim;
-            var location = new Location()
-                { Latitude = konum.Enlem, Longitude = konum.Boylam, Altitude = konum.Yukseklik };
+            var konum = DataService.Takvim;
+            var location = new Location() { Latitude = konum.Enlem, Longitude = konum.Boylam, Altitude = konum.Yukseklik };
             BackCommand = new Command(GoBack);
             RefreshCommand = new Command(async () => await RefreshData(location));
-            
-            if (!konum.IsTakvimLocationUnValid())
+
+            _ = InitializeAsync(location);
+            IsBusy = false;
+        }
+
+        private async Task InitializeAsync(Location location)
+        {
+            if (!DataService.Takvim.IsTakvimLocationUnValid())
             {
-                MonthlyTakvim = DataService.GetMonthlyPrayerTimes(location, false);
+                MonthlyTakvim = await DataService.GetMonthlyPrayerTimesAsync(location, false);
                 if (MonthlyTakvim == null)
                 {
                     UserDialogs.Instance.Alert(AppResources.TakvimIcinInternet, AppResources.TakvimIcinInternetBaslik);
-                    return;
                 }
             }
             else
                 UserDialogs.Instance.Toast(AppResources.KonumIzniIcerik, TimeSpan.FromSeconds(3));
-            IsBusy = false;
         }
 
         private async Task RefreshData(Location location)
         {
             using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
             {
-                location = await DataService.GetCurrentLocationAsync(true);
                 if (location != null && location.Latitude != 0 && location.Longitude != 0)
                 {
-                    MonthlyTakvim = DataService.GetMonthlyPrayerTimes(location, true);
+                    location = await DataService.GetCurrentLocationAsync(true);
+                    MonthlyTakvim = await DataService.GetMonthlyPrayerTimesAsync(location, true);
                     if (MonthlyTakvim == null)
                     {
                         UserDialogs.Instance.Alert(AppResources.TakvimIcinInternet, AppResources.TakvimIcinInternetBaslik);

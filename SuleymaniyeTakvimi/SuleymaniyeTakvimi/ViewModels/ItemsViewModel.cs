@@ -24,7 +24,6 @@ namespace SuleymaniyeTakvimi.ViewModels
         public Command GoToMapCommand { get; }
         public Command GoToMonthCommand { get; }
         public Command RefreshLocationCommand { get; }
-        //public Command DarkLightModeCommand { get; }
         public Command SettingsCommand { get; }
         public Command<Item> ItemTapped { get; }
         private Takvim _takvim;
@@ -79,19 +78,15 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Title = AppResources.PageTitle;
                 Items = new ObservableCollection<Item>();
                 //data = new DataService();
-                Takvim = DataService._takvim;
+                Takvim = DataService.Takvim;
 
-                LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
+                LoadItemsCommand = new Command(async () => ExecuteLoadItemsCommand());
                 ItemTapped = new Command<Item>(OnItemSelected);
-                GoToMapCommand = new Command(GoToMap);
-                GoToMonthCommand = new Command(GoToMonthPage);
-                SettingsCommand = new Command(Settings);
-                RefreshLocationCommand = new Command(RefreshLocation);
-                //If Location-saved is false, this means that location is never saved before. So, we need to check the location info.
-                if (!Preferences.Get("LocationSaved", false))
-                {
-                    _ = CheckLocationInfoAsync(3000);
-                }
+                GoToMapCommand = new Command(async () => GoToMap());
+                GoToMonthCommand = new Command(async () => GoToMonthPage());
+                SettingsCommand = new Command(async () => Settings());
+                RefreshLocationCommand = new Command(async () => RefreshLocation());
+                _ = InitializeLocation();
                 //If AlwaysRenewLocationEnabled is true, this means that the user wants to refresh the location info every time the app starts.
                 if (Preferences.Get("AlwaysRenewLocationEnabled", false))
                 {
@@ -106,6 +101,20 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
 
             Debug.WriteLine("TimeStamp-ItemsViewModel-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
+        }
+
+        private async Task InitializeLocation()
+        {
+            //If Location-saved is false, this means that location is never saved before. So, we need to check the location info.
+            if (!Preferences.Get("LocationSaved", false))
+            {
+                var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+
+                if (status == PermissionStatus.Granted)
+                {
+                    await CheckLocationInfoAsync(5000);
+                }
+            }
         }
 
         /// <summary>
@@ -123,14 +132,22 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private async void RefreshLocation()
         {
+            var permissionService = DependencyService.Get<IPermissionService>();
+            var locationPermissionStatus = await permissionService.HandlePermissionAsync();
+
+            if (locationPermissionStatus == PermissionStatus.Unknown)
+            {
+                // Handle the case where permission is not granted, e.g., show a message to the user
+                return;
+            }
             using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
             {
-                await GetPrayerTimesAsync().ConfigureAwait(false);
-                await Task.Run(() =>
+                await GetPrayerTimesAsync();
+                await Task.Run(async () =>
                 {
                     var location = new Location(Takvim.Enlem, Takvim.Boylam, Takvim.Yukseklik);
-                    DataService.GetMonthlyPrayerTimes(location, true);
-                    _ = DataService.SetWeeklyAlarmsAsync();
+                    await DataService.GetMonthlyPrayerTimesAsync(location, true);
+                    await DataService.SetWeeklyAlarmsAsync();
                 }).ConfigureAwait(false);
             }
             ExecuteLoadItemsCommand();
@@ -147,7 +164,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             try
             {
                 var location = new Location(Takvim.Enlem, Takvim.Boylam);
-                var placeMark = await Geocoding.GetPlacemarksAsync(location).ConfigureAwait(true);
+                var placeMark = await Geocoding.GetPlacemarksAsync(location);
                 var options = new MapLaunchOptions { Name = placeMark.FirstOrDefault()?.Thoroughfare ?? placeMark.FirstOrDefault()?.CountryName };
                 await Map.OpenAsync(location, options).ConfigureAwait(false);
             }
@@ -190,11 +207,11 @@ namespace SuleymaniyeTakvimi.ViewModels
             var isLocationEnabled = service.IsLocationServiceEnabled();
             if (!isLocationEnabled) return;
             if (!DataService.HaveInternet()) return;
-            Takvim = await Task.Run<Takvim>(async () =>
+            Takvim = await Task.Run(async () =>
             {
                 Debug.WriteLine($"**** {this.GetType().Name}.{nameof(CheckLocationInfoAsync)}: Starting at {DateTime.Now}");
                 await Task.Delay(timeDelay).ConfigureAwait(false);
-                Takvim = DataService._takvim;
+                Takvim = DataService.Takvim;
                 if (Takvim.IsTakvimLocationUnValid()) DataService.InitTakvim();//If the Takvim location info is not valid, initialize the Takvim.
                 _tcs = new TaskCompletionSource<bool>();
 
@@ -210,14 +227,6 @@ namespace SuleymaniyeTakvimi.ViewModels
         private async Task UpdatePrayerTimesIfNeeded()
         {
             Debug.WriteLine("TimeStamp-ItemsViewModel-UpdatePrayerTimesIfNeeded-IsDefaultLocation", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
-            //if (Takvim.IsTakvimLocationUnValid())
-            //{
-            //    Takvim = await DataService.PrepareMonthlyPrayerTimes().ConfigureAwait(false);
-            //    _tcs.SetResult(true);
-            //    await _tcs.Task;
-            //    Debug.WriteLine($"***** IsDefaultLocation-Takvim {nameof(DataService.PrepareMonthlyPrayerTimes)} returned result: {Takvim}");
-            //}
-            Takvim = DataService._takvim;
             //If the Takvim location info is still not valid, try to get today's prayer times directly from the internet.
             if (Takvim.IsTakvimLocationUnValid())
             {
@@ -238,8 +247,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             IsBusy = true;
             Debug.WriteLine("TimeStamp-ItemsViewModel-ExecuteLoadItemsCommand-Start", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
-
-            //DataService.InitTakvim();
+            
             DataService.InitTakvim();
             try
             {
@@ -312,7 +320,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
 
             IsBusy = true;
-            Takvim = DataService._takvim;
+            Takvim = DataService.Takvim;
             SelectedItem = null;
             ExecuteLoadItemsCommand();
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
@@ -320,7 +328,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 RemainingTime = GetRemainingTime();
                 return true; // True = Repeat again, False = Stop the timer
             });
-            Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 await Task.Delay(5000).ConfigureAwait(false);
                 DependencyService.Get<IPermissionService>().AskNotificationPermission();
@@ -472,7 +480,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             try
             {
-                await Task.Delay(2000);
+                await Task.Delay(3000);
                 if (DataService.HaveInternet())
                 {
                     // Parse latitude and longitude as double values using InvariantCulture to avoid issues with different culture settings

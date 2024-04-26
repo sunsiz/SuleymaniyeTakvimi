@@ -117,10 +117,10 @@ namespace SuleymaniyeTakvimi.ViewModels
             {
                 if (_currentLatitude == 0.0 && _currentLongitude == 0.0 && _currentAltitude == 0.0)
                 {
-                    var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+                    var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                     if (status == PermissionStatus.Granted)
                     {
-                        var location = await DataService.GetCurrentLocationAsync(false).ConfigureAwait(false);
+                        var location = await DataService.GetCurrentLocationAsync(false);
                         if (location != null && location.Latitude != 0 && location.Longitude != 0)
                         {
                             _currentLatitude = location.Latitude;
@@ -130,7 +130,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     }
                     else if (!_askedPermission)
                     {
-                        var result = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
+                        await DependencyService.Get<IPermissionService>().HandlePermissionAsync();
                         _askedPermission = true;
                     }
                 }
@@ -147,10 +147,10 @@ namespace SuleymaniyeTakvimi.ViewModels
             try
             {
                 var location = new Location(_currentLatitude, _currentLongitude);
-                var placemark = await Geocoding.GetPlacemarksAsync(_currentLatitude, _currentLongitude).ConfigureAwait(true);
-                var options = new MapLaunchOptions { Name = placemark.FirstOrDefault()?.Thoroughfare ?? placemark.FirstOrDefault()?.CountryName };
+                var placeMark = await Geocoding.GetPlacemarksAsync(_currentLatitude, _currentLongitude);
+                var options = new MapLaunchOptions { Name = placeMark.FirstOrDefault()?.Thoroughfare ?? placeMark.FirstOrDefault()?.CountryName };
 
-                await Map.OpenAsync(location, options).ConfigureAwait(false);
+                await Map.OpenAsync(location, options);
             }
             catch (Exception ex)
             {
@@ -162,7 +162,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
             {
-                var location = await DataService.GetCurrentLocationAsync(true).ConfigureAwait(false);
+                var location = await DataService.GetCurrentLocationAsync(true);
                 if (location != null && location.Latitude != 0 && location.Longitude != 0)
                 {
                     _currentLatitude = location.Latitude;

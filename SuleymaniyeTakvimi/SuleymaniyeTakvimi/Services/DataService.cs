@@ -18,11 +18,11 @@ namespace SuleymaniyeTakvimi.Services
 {
     public class DataService : IDataService
     {
-        public Takvim _takvim;
+        private Takvim _takvim;
         private IList<Takvim> _monthlyTakvim;
-        private bool askedLocationPermission;
-        private bool isPrepareMonthlyPrayerTimesCalled;
-        public readonly string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ayliktakvim.json");
+        private bool _askedLocationPermission;
+        private bool _isPrepareMonthlyPrayerTimesCalled;
+        private readonly string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ayliktakvim.json");
         public event Action<Takvim> OnTakvimChanged;
         public static readonly Dictionary<string, string> KeyToName = new Dictionary<string, string>
         {
@@ -35,11 +35,12 @@ namespace SuleymaniyeTakvimi.Services
             { "yatsi" , "Yatsi" },
             { "yatsisonu" , "YatsiSonu" }
         };
-        public static readonly Dictionary<string, string> NameToKey = KeyToName.ToDictionary(x => x.Value, x => x.Key);
+        //public static readonly Dictionary<string, string> NameToKey = KeyToName.ToDictionary(x => x.Value, x => x.Key);
 
-        public static readonly string[] TimeNameKeys = { "fecrikazip", "fecrisadik", "sabahsonu", "ogle", "ikindi", "aksam", "yatsi", "yatsisonu" };
+        //public static readonly string[] TimeNameKeys = { "fecrikazip", "fecrisadik", "sabahsonu", "ogle", "ikindi", "aksam", "yatsi", "yatsisonu" };
 
         public static readonly string[] SoundNameKeys = { "kus", "horoz", "ezan", "alarm", "alarm2", "beep1", "beep2", "beep3" };
+        private static readonly SemaphoreSlim PermissionSemaphore = new SemaphoreSlim(1, 1);
 
         public Takvim Takvim
         {
@@ -98,15 +99,27 @@ namespace SuleymaniyeTakvimi.Services
                 return GetSavedLocation();
             }
 
-            if (!askedLocationPermission)
+            try
             {
-                var status = await DependencyService.Get<IPermissionService>().HandlePermissionAsync().ConfigureAwait(false);
-                if (status != PermissionStatus.Granted)
+                await PermissionSemaphore.WaitAsync();
+                if (!_askedLocationPermission)
                 {
-                    UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
-                    askedLocationPermission = true;
-                    return GetSavedLocation();
+                    var status = PermissionStatus.Denied;
+                    await Device.InvokeOnMainThreadAsync(async () =>
+                    {
+                        status = await DependencyService.Get<IPermissionService>().HandlePermissionAsync();
+                    });
+                    if (status != PermissionStatus.Granted)
+                    {
+                        UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
+                        _askedLocationPermission = true;
+                        return GetSavedLocation();
+                    }
                 }
+            }
+            finally
+            {
+                PermissionSemaphore.Release();
             }
 
             Location location = null;
@@ -123,10 +136,11 @@ namespace SuleymaniyeTakvimi.Services
 
                 if (location != null && location.Latitude != 0.0 && location.Longitude != 0.0)
                 {
-                    Debug.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    Debug.WriteLine(
+                        $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                     Preferences.Set("LastLatitude", location.Latitude);
                     Preferences.Set("LastLongitude", location.Longitude);
-                    Preferences.Set("LastAltitude", location.Altitude??0);
+                    Preferences.Set("LastAltitude", location.Altitude ?? 0);
                     Preferences.Set("LocationSaved", true);
                 }
                 else
@@ -149,12 +163,14 @@ namespace SuleymaniyeTakvimi.Services
             catch (PermissionException pEx)
             {
                 UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
-                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)} **** Permission Exception: {pEx.Message}");
+                Debug.WriteLine(
+                    $"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)} **** Permission Exception: {pEx.Message}");
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.Alert(ex.Message, AppResources.KonumHatasi);
-                Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)} **** Unknown Exception: {ex.Message}");
+                Debug.WriteLine(
+                    $"**** {this.GetType().Name}.{nameof(GetCurrentLocationAsync)} **** Unknown Exception: {ex.Message}");
             }
 
             return location ?? GetSavedLocation();
@@ -167,6 +183,17 @@ namespace SuleymaniyeTakvimi.Services
                 Latitude = Preferences.Get("LastLatitude", 0.0),
                 Longitude = Preferences.Get("LastLongitude", 0.0)
             };
+        }
+
+        public async Task<string> GetJsonFromApiAsync(string endpoint, Dictionary<string, string> parameters)
+        {
+            using var client = new HttpClient();
+            var uri = new Uri($"https://api.suleymaniyetakvimi.com/api/{endpoint}?" +
+                              string.Join("&", parameters.Select(kvp => $"{kvp.Key}={kvp.Value}")));
+
+            var response = await client.GetAsync(uri);
+            var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return jsonResult;
         }
 
         /// <summary>
@@ -187,7 +214,7 @@ namespace SuleymaniyeTakvimi.Services
             {
                 try
                 {
-                    string json = File.ReadAllText(_fileName);
+                    string json = ReadFileContentWithFileStream(_fileName);//File.ReadAllText(_fileName);
                     var takvims = JsonConvert.DeserializeObject<List<Takvim>>(json, new TakvimConverter());
                     if (takvims != null && DateTime.Parse(takvims[0].Tarih) <= DateTime.Today &&
                         DateTime.Parse(takvims[takvims.Count - 1].Tarih) >= DateTime.Today)
@@ -204,15 +231,20 @@ namespace SuleymaniyeTakvimi.Services
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(ex.Message);
+                    Debug.WriteLine($"**** GetTakvimFromFile can not get takvim from file, exception: {ex.Message}");
                 }
             }
 
-            Task.Run(async () => { await GetPrayerTimesAsync(false).ConfigureAwait(false); });
-            if (!isPrepareMonthlyPrayerTimesCalled)
+            Task.Run(async () => { await GetPrayerTimesAsync(false); });
+            if (!_isPrepareMonthlyPrayerTimesCalled)
             {
-                isPrepareMonthlyPrayerTimesCalled = true;
-                Task.Run(async () => { await PrepareMonthlyPrayerTimes().ConfigureAwait(false); });
+                _isPrepareMonthlyPrayerTimesCalled = true;
+                if (Preferences.Get("LocationSaved", false) && !Preferences.Get("AlwaysRenewLocationEnabled", false))
+                {
+                    var location = new Location(Preferences.Get("LastLatitude", 41.0), Preferences.Get("LastLongitude", 29.0));
+                    _ = GetMonthlyPrayerTimesAsync(location, false);
+                }
+                else Task.Run(async () => { await PrepareMonthlyPrayerTimes(); });
             }
 
             return _takvim ?? new Takvim();
@@ -229,18 +261,22 @@ namespace SuleymaniyeTakvimi.Services
         /// It then calls the GetMonthlyPrayerTimes method with the location and true as the parameters to force a refresh of the prayer times.
         /// Finally, it retrieves the Takvim object from a file by calling the GetTakvimFromFile method and returns it.
         /// </remarks>
-        public async Task<Takvim> PrepareMonthlyPrayerTimes()
+        private async Task PrepareMonthlyPrayerTimes()
         {
-            var location = await GetCurrentLocationAsync(true).ConfigureAwait(false);
-            GetMonthlyPrayerTimes(location, true);
+            Debug.WriteLine($"**** PrepareMonthlyPrayerTimes method triggered at {DateTime.Now.ToLongTimeString()}");
+            var location = await GetCurrentLocationAsync(true);
+            Debug.WriteLine($"**** PrepareMonthlyPrayerTimes method get location at {DateTime.Now.ToLongTimeString()}");
+            await GetMonthlyPrayerTimesAsync(location, true);
+            Debug.WriteLine($"**** PrepareMonthlyPrayerTimes method get monthly times at {DateTime.Now.ToLongTimeString()}");
             _takvim = GetTakvimFromFile();
-            return _takvim;
+            Debug.WriteLine($"**** PrepareMonthlyPrayerTimes method finished at {DateTime.Now.ToLongTimeString()}");
         }
 
         /// <summary>
         /// This asynchronous method retrieves the prayer times for the current day.
         /// </summary>
         /// <param name="refreshLocation">A boolean indicating whether to force a refresh of the location data not using last known location.</param>
+        /// <param name="tryFromFileFirst">A boolean indicating whether to try read the object from the json file first or just get it from the API</param>
         /// <returns>
         /// A Task that represents the asynchronous operation. The Task result contains a Takvim object with the prayer times for the current day.
         /// </returns>
@@ -270,18 +306,19 @@ namespace SuleymaniyeTakvimi.Services
 
             try
             {
-                var location = await GetCurrentLocationAsync(refreshLocation).ConfigureAwait(false);
+                Location location;
+                if (Preferences.Get("LocationSaved", false) && !Preferences.Get("AlwaysRenewLocationEnabled", false))
+                    location = new Location(Preferences.Get("LastLatitude", 41.0), Preferences.Get("LastLongitude", 29.0));
+                else location = await GetCurrentLocationAsync(refreshLocation);
                 if (location != null && location.Latitude != 0.0 && location.Longitude != 0.0)
                 {
-                    using var client = new HttpClient();
-
-                    var uri = new Uri($"https://api.suleymaniyetakvimi.com/api/TimeCalculation/TimeCalculate?" +
-                                      $"latitude={location.Latitude}" +
-                                      $"&longitude={location.Longitude}" +
-                                      $"&date={DateTime.Today:yyyy-MM-dd}");
-
-                    var response = await client.GetAsync(uri);
-                    var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    var parameters = new Dictionary<string, string>
+                    {
+                        { "latitude", location.Latitude.ToString() },
+                        { "longitude", location.Longitude.ToString() },
+                        { "date", DateTime.Today.ToString("yyyy-MM-dd") }
+                    };
+                    var jsonResult = await GetJsonFromApiAsync("TimeCalculation/TimeCalculate", parameters);
                     if (!string.IsNullOrEmpty(jsonResult))
                     {
                         Debug.WriteLine("TimeStamp-GetPrayerTimes-JsonResult", jsonResult);
@@ -305,7 +342,7 @@ namespace SuleymaniyeTakvimi.Services
             Debug.WriteLine("TimeStamp-GetPrayerTimes-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
             return _takvim;
         }
-        
+
         /// <summary>
         /// Checks if any prayer time reminders are enabled in the application preferences.
         /// </summary>
@@ -346,30 +383,31 @@ namespace SuleymaniyeTakvimi.Services
         /// <remarks>
         /// The method first checks if there is a file with cached prayer times and if the forceRefresh parameter is false. 
         /// If both conditions are met, it tries to read the prayer times from the file.
-        /// If the file does not exist, cannot be read, or the data is more than 21 days old, the method makes a GET request to an API to retrieve the prayer times.
+        /// If the file does not exist, cannot be read, or the data has only last two weeks left (contains two month's data), the method makes a GET request to an API to retrieve the prayer times.
         /// The API response is a JSON string that is deserialized into a list of Takvim objects.
         /// The method also writes the retrieved prayer times to a file for future use.
         /// </remarks>
-        public IList<Takvim> GetMonthlyPrayerTimes(Location location, bool forceRefresh)
+        public async Task<IList<Takvim>> GetMonthlyPrayerTimesAsync(Location location, bool forceRefresh)
         {
-            //Analytics.TrackEvent("GetMonthlyPrayerTimes in the DataService Triggered: " + $" at {DateTime.Now}");
             if (File.Exists(_fileName) && !forceRefresh)
             {
                 try
                 {
-                    string json = File.ReadAllText(_fileName);
+                    string json = ReadFileContentWithFileStream(_fileName);//File.ReadAllText(_fileName);
                     var takvims = JsonConvert.DeserializeObject<List<Takvim>>(json, new TakvimConverter());
                     if (takvims != null)
                     {
-                        var days = (DateTime.Today - DateTime.Parse(takvims[0].Tarih)).Days;
-                        if (days is < 21 and >= 0)
+                        var days = (DateTime.Parse(takvims[takvims.Count - 1].Tarih) - DateTime.Today).Days;
+                        if (days >= 0)
                         {
                             _monthlyTakvim = takvims;
+                            if (days < 14 && HaveInternet())
+                            {
+                                _monthlyTakvim = await GetMonthlyPrayerTimesFromApiAsync(location);
+                            }
                             return _monthlyTakvim;
                         }
                     }
-
-                    if (!HaveInternet()) return _monthlyTakvim = takvims;
                 }
                 catch (Exception exception)
                 {
@@ -377,51 +415,61 @@ namespace SuleymaniyeTakvimi.Services
                 }
             }
 
-            if (!HaveInternet()) return null;
-            
-            try
+            if (HaveInternet())
             {
-                using var client = new HttpClient();
-                var monthlyCalendar = new List<Takvim>();
-                var jsonContent = string.Empty;
-                
-                var monthId = DateTime.Today.Month;
-                var year = DateTime.Today.Year;
-                    var uri = new Uri($"https://api.suleymaniyetakvimi.com/api/TimeCalculation/TimeCalculateByMonth?" +
-                                      $"latitude={location.Latitude}" +
-                                      $"&longitude={location.Longitude}" +
-                                      $"&monthId={monthId}" +
-                                      $"&year={year}");
-
-                    var response = client.GetAsync(uri).GetAwaiter().GetResult();
-                    var jsonResult = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                    if (!string.IsNullOrEmpty(jsonResult))
-                    {
-                        jsonContent += jsonResult;
-                        var takvims = JsonConvert.DeserializeObject<List<Takvim>>(jsonResult, new TakvimConverter());
-                        monthlyCalendar.AddRange(takvims);
-                    }
-                    else
-                    {
-                        UserDialogs.Instance.Toast(AppResources.NamazVaktiAlmaHatasi, TimeSpan.FromSeconds(5));
-                    }
-                
-                _monthlyTakvim = monthlyCalendar;
-                // Write the updated prayer times to the file.
-                using var streamWriter = new StreamWriter(_fileName, false);
-                streamWriter.Write(jsonContent);
-                return monthlyCalendar;
-            }
-            catch (Exception exception)
-            {
-                UserDialogs.Instance.Alert(exception.Message, AppResources.KonumHatasi);
-                System.Diagnostics.Debug.WriteLine(
-                    $"An error occurred while downloading or parsing the json file, details: {exception.Message}");
+                try
+                {
+                    _monthlyTakvim = await GetMonthlyPrayerTimesFromApiAsync(location);
+                }
+                catch (Exception exception)
+                {
+                    UserDialogs.Instance.Alert(exception.Message, AppResources.KonumHatasi);
+                    Debug.WriteLine($"An error occurred while downloading or parsing the json file, details: {exception.Message}");
+                }
             }
 
             return _monthlyTakvim;
         }
 
+        private async Task<IList<Takvim>> GetMonthlyPrayerTimesFromApiAsync(Location location)
+        {
+            using var client = new HttpClient();
+            var monthlyCalendar = new List<Takvim>();
+            var jsonContent = string.Empty;
+            var parameters = new Dictionary<string, string>
+                    {
+                        { "latitude", location.Latitude.ToString() },
+                        { "longitude", location.Longitude.ToString() },
+                        { "monthId", DateTime.Today.Month.ToString() },
+                        { "year", DateTime.Today.Year.ToString() }
+                    };
+            var jsonResult = await GetJsonFromApiAsync("TimeCalculation/TimeCalculateByMonth", parameters);
+            if (!string.IsNullOrEmpty(jsonResult))
+            {
+                jsonContent += jsonResult;
+                parameters = new Dictionary<string, string>
+                        {
+                            { "latitude", location.Latitude.ToString() },
+                            { "longitude", location.Longitude.ToString() },
+                            { "monthId", DateTime.Today.AddMonths(1).Month.ToString() },
+                            { "year", DateTime.Today.AddMonths(1).Year.ToString() }
+                        };
+                jsonResult = await GetJsonFromApiAsync("TimeCalculation/TimeCalculateByMonth", parameters);
+                if (!string.IsNullOrEmpty(jsonResult)) jsonContent = jsonContent.Replace("}]", "},") + jsonResult.Replace("[{", "{");
+                var takvims = JsonConvert.DeserializeObject<List<Takvim>>(jsonContent, new TakvimConverter());
+                monthlyCalendar.AddRange(takvims);
+            }
+            else
+            {
+                UserDialogs.Instance.Toast(AppResources.NamazVaktiAlmaHatasi, TimeSpan.FromSeconds(5));
+            }
+
+            // Write the updated prayer times to the file.
+            using var fileStream = new FileStream(_fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
+            using var streamWriter = new StreamWriter(fileStream);
+            await streamWriter.WriteAsync(jsonContent);
+            return monthlyCalendar;
+        }
 
         public bool HaveInternet()
         {
@@ -459,10 +507,14 @@ namespace SuleymaniyeTakvimi.Services
             {
                 if (!File.Exists(_fileName) || IsFileOutdated())
                 {
-                    var location = await GetCurrentLocationAsync(false).ConfigureAwait(false);
+                    Location location;
+                    if (!Preferences.Get("LocationSaved", false) || Preferences.Get("AlwaysRenewLocationEnabled", false))
+                        location = await GetCurrentLocationAsync(false);
+                    else location = new Location(Preferences.Get("LastLatitude", 41.0), Preferences.Get("LastLongitude", 29.0));
+
                     if (location != null && location.Latitude != 0.0 && location.Longitude != 0.0)
                     {
-                        _monthlyTakvim = GetMonthlyPrayerTimes(location, false);
+                        _monthlyTakvim = await GetMonthlyPrayerTimesAsync(location, false);
                         if (_monthlyTakvim == null)
                         {
                             await UserDialogs.Instance.AlertAsync(AppResources.TakvimIcinInternet,
@@ -494,7 +546,7 @@ namespace SuleymaniyeTakvimi.Services
 
         private bool IsFileOutdated()
         {
-            string json = File.ReadAllText(_fileName);
+            string json = ReadFileContentWithFileStream(_fileName);
             var takvims = JsonConvert.DeserializeObject<List<Takvim>>(json, new TakvimConverter());
             if (takvims != null && (DateTime.Parse(takvims[takvims.Count - 1].Tarih) - DateTime.Today).Days > 3)
             {
@@ -557,5 +609,21 @@ namespace SuleymaniyeTakvimi.Services
             }
             Debug.WriteLine("TimeStamp-SetAlarmForPrayerTime-Finish", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt"));
         }
+
+        private string ReadFileContentWithFileStream(string fileName)
+        {
+            try
+            {
+                using var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using var reader = new StreamReader(stream);
+                return reader.ReadToEnd();
+            }
+            catch (IOException ex)
+            {
+                Debug.WriteLine($"An error occurred while reading the file: {ex.Message}");
+                return string.Empty;
+            }
+        }
+
     }
 }

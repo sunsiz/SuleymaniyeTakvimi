@@ -44,18 +44,17 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             SupportedLanguages = new List<Language>()
             {
-                new Language(AppResources.Arabic, "ar"),
-                new Language(AppResources.Azerbaijani, "az"),
-                new Language(AppResources.Chinese, "zh"),
-                new Language(AppResources.Deutsch, "de"),
-                new Language(AppResources.English, "en"),
-                new Language(AppResources.Farsi, "fa"),
-                new Language(AppResources.French, "fr"),
-                //{ new Language(AppResources.Kyrgyz, "ky") },
-                new Language(AppResources.Russian, "ru"),
-                new Language(AppResources.Turkish, "tr"),
-                new Language(AppResources.Uyghur, "ug"),
-                { new Language(AppResources.Uzbek, "uz") }
+                new Language("العربية", "ar"),
+                new Language("Azəri Türkcəsi", "az"),
+                new Language("汉语", "zh"),
+                new Language("Deutsch", "de"),
+                new Language("English", "en"),
+                new Language("فارسی", "fa"),
+                new Language("Français", "fr"),
+                new Language("Русский", "ru"),
+                new Language("Türkçe", "tr"),
+                new Language("ئۇيغۇرچە", "ug"),
+                new Language("O'zbekcha", "uz")
             };
             SelectedLanguage = SupportedLanguages.FirstOrDefault(lan => lan.CI == LocalizationResourceManager.Current.CurrentCulture.TwoLetterISOLanguageName);
         }

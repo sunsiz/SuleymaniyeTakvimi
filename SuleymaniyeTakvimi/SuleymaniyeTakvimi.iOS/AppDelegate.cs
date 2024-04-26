@@ -50,11 +50,6 @@ namespace SuleymaniyeTakvimi.iOS
                 UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
             }
             CrossMediaManager.Current.Init();
-            //this.ShinyFinishedLaunching(new Startup(), services => services.UseNotifications());
-            //iOSShinyHost.Init(platformBuild: services => services.UseNotifications());/*new Startup(),*/
-            // Ask the user for permission to show notifications on iOS 10.0+ at startup.
-            // If not asked at startup, user will be asked when showing the first notification.
-            //Plugin.LocalNotification.NotificationCenter.AskPermission();
             LoadApplication(new App());
             
             DependencyService.Register<IAlarmService, AlarmService>();
@@ -66,20 +61,18 @@ namespace SuleymaniyeTakvimi.iOS
 
         private static void SetAlarms()
         {
-            DataService data = new DataService();
+            var data = new DataService();
             _ = data.SetWeeklyAlarmsAsync();
         }
 
         public override void WillTerminate(UIApplication uiApplication)
         {
-            //UserDialogs.Instance.Alert("Uygulam kapanıyor.", "Uyarı", "Tamam");
             Debug.WriteLine("WillTerminate Executing.");
             SetAlarms();
             base.WillTerminate(uiApplication);
         }
         public override void DidEnterBackground(UIApplication uiApplication)
         {
-            //UserDialogs.Instance.Alert("Uygulam arka plana geçiyor ve 30 saniye sonra kapanabilir.", "Uyarı", "Tamam");
             Debug.WriteLine("DidEnterBackground Executing.");
             SetAlarms();
             base.DidEnterBackground(uiApplication);

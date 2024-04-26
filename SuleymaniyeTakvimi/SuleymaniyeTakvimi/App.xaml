@@ -183,7 +183,7 @@
                 <Setter Property="BorderColor" Value="Silver" />
             </Style>
 
-            <!--  Fonts -->
+            <!--  Fonts  -->
             <OnPlatform x:Key="MaterialIcons" x:TypeArguments="x:String">
                 <On Platform="iOS" Value="MaterialIcons" />
                 <On Platform="Android" Value="MaterialIcons.ttf" />

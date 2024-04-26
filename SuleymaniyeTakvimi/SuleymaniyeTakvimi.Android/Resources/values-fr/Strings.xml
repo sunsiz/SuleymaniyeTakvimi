@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<string name="app_name">Calendrier de Süleymaniye</string>
+	<string name="app_widget_description">Calendrier de Süleymaniye Horaires de prière</string>
+	<string name="refresh">Actualiser le contenu</string>
+	<string name="refreshed">Horaires de prière renouvelés avec succès</string>
+	<string name="fecri_kazip">Sahar</string>
+	<string name="fecri_sadik">Fajr</string>
+	<string name="sabah_sonu">Fin du Fajr</string>
+	<string name="ogle">Dhuhr</string>
+	<string name="ikindi">Asr</string>
+	<string name="aksam">Maghreb</string>
+	<string name="yatsi">Icha</string>
+	<string name="yatsi_sonu">Fin d’Icha</string>
+	<string name="sehir">Ville</string>
+</resources>

@@ -11,25 +11,26 @@ namespace SuleymaniyeTakvimi.ViewModels
     {
         protected readonly DataService DataService;
 
-        public BaseViewModel(DataService dataService)
+        protected BaseViewModel(DataService dataService)
         {
             DataService = dataService;
         }
-        bool _isBusy;
 
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
-        }
+        //private bool _isBusy;
 
-        string _title = string.Empty;
+        //public bool IsBusy
+        //{
+        //    get => _isBusy;
+        //    set => SetProperty(ref _isBusy, value);
+        //}
 
-        public string Title
-        {
-            get => _title;
-            set => SetProperty(ref _title, value);
-        }
+        //string _title = string.Empty;
+
+        //public string Title
+        //{
+        //    get => _title;
+        //    set => SetProperty(ref _title, value);
+        //}
 
         private int _fontSize = Preferences.Get("FontSize", 14);
         public int FontSize
@@ -55,12 +56,12 @@ namespace SuleymaniyeTakvimi.ViewModels
         }
 
         #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
         #endregion
     }
 }

@@ -6,18 +6,18 @@ namespace SuleymaniyeTakvimi.Views
 {
     public partial class ItemDetailPage : ContentPage
     {
-        private ItemDetailViewModel viewModel;
+        private readonly ItemDetailViewModel _viewModel;
         public ItemDetailPage()
         {
             InitializeComponent();
             var dataService = DependencyService.Get<DataService>(); // Get DataService from DI container
-            BindingContext = viewModel = new ItemDetailViewModel(dataService);
+            BindingContext = _viewModel = new ItemDetailViewModel(dataService);
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            viewModel.GoBack(null);
+            _ = _viewModel.GoBack(null);
         }
     }
 }
