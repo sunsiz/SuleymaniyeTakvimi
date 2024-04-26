@@ -32,6 +32,13 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 ## Yayın notları:
 
+*2.1.5 sürümündeki yenilikler (2024-04-25):*
+* Bazı ülkelerde şehir adını gösterememesi düzeltildi.
+* Aylık takvim ve hakkında sayfasına paylaşma seçenekleri eklendi.
+* Dil seçenekleri listesi değiştirildi.
+* Takvim verilerini alma bağlantıları güncellendi ve artık aylık takvim iki aylık namaz vakitlerini gösteriyor.
+* Widget'te artık şehir adını da gösteriyor.
+* Başka ufak düzeltmeler yapıldı
 
 *2.1.4 sürümündeki yenilikler (2023-10-13):*
 * Radyo bağlantısı düzeltildi.
@@ -167,6 +174,14 @@ Suleymaniyetakvimi.com Xamarin mobile application
 -->
 
 ## Release notes:
+
+*What's new in version 2.1.5 (2024-04-25):*
+* Fixed the city name not being displayed in some countries.
+* Added sharing options to the monthly calendar and about page.
+* Language options list has been changed.
+* Links to retrieve calendar data have been updated and the monthly calendar now shows prayer times for two months.
+* Widget now display city too.
+* Other minor fixes were made.
 
 *What's new in version 2.1.4 (2023-10-13):*
 * Radio link has updated.
