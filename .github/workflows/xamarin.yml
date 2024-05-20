@@ -19,7 +19,7 @@ jobs:
       uses: maxim-lobanov/setup-xamarin@v1
       with:
           # Version of Mono to select
-          # mono-version: 6 # optional
+          mono-version: 6 # optional
           # Version of Xamarin.iOS to select
           # xamarin-ios-version: 15 # optional
           # Version of Xamarin.Mac to select
