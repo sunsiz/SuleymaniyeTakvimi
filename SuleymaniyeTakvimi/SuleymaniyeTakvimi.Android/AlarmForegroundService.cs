@@ -2,10 +2,14 @@
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
+using Android;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using Android.Util;
+using AndroidX.Core.Content;
 //using Microsoft.AppCenter.Analytics;
 using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
@@ -15,6 +19,7 @@ using Calendar = Java.Util.Calendar;
 namespace SuleymaniyeTakvimi.Droid
 {
     [Service]
+    [Register("com.suleymaniyetakvimi.AlarmForegroundService")]
     public class AlarmForegroundService : Service, IAlarmService
     {
         private NotificationManager _notificationManager;
@@ -128,7 +133,20 @@ namespace SuleymaniyeTakvimi.Droid
             _notificationManager = Application.Context.GetSystemService(Context.NotificationService) as NotificationManager;
             SetNotification();
 
-            if(Preferences.Get("ForegroundServiceEnabled",true))this.StartForeground(NotificationId, _notification);
+            if (Preferences.Get("ForegroundServiceEnabled", true))
+            {
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                {
+                    if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ForegroundService) == Permission.Granted)
+                    {
+                        this.StartForeground(NotificationId, _notification);
+                    }
+                }
+                else
+                {
+                    this.StartForeground(NotificationId, _notification);
+                }
+            }
 
             // This Action will run every 30 second as foreground service running.
             _runnable = new Action(() =>

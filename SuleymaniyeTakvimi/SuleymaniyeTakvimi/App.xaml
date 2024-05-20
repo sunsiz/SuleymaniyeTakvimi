@@ -72,6 +72,8 @@
             <Color x:Key="Black.20">#33000000</Color>
 
             <Color x:Key="Primary">#121212</Color>
+            <Color x:Key="CardBackgroundLight">#FCE4AE</Color>
+            <Color x:Key="CardBackgroundLightAccent">#F8E9BE</Color>
 
             <!--  Implicit styles  -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">

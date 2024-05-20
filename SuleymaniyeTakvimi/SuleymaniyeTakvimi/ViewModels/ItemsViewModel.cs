@@ -79,13 +79,13 @@ namespace SuleymaniyeTakvimi.ViewModels
                 Items = new ObservableCollection<Item>();
                 //data = new DataService();
                 Takvim = DataService.Takvim;
-
-                LoadItemsCommand = new Command(async () => ExecuteLoadItemsCommand());
+                City = Preferences.Get("sehir", AppResources.Sehir);
+                LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
                 ItemTapped = new Command<Item>(OnItemSelected);
-                GoToMapCommand = new Command(async () => GoToMap());
-                GoToMonthCommand = new Command(async () => GoToMonthPage());
-                SettingsCommand = new Command(async () => Settings());
-                RefreshLocationCommand = new Command(async () => RefreshLocation());
+                GoToMapCommand = new Command(async ()=>await GoToMap());
+                GoToMonthCommand = new Command(async () => await GoToMonthPage());
+                SettingsCommand = new Command(async () => await Settings());
+                RefreshLocationCommand = new Command(async () => await RefreshLocation());
                 _ = InitializeLocation();
                 //If AlwaysRenewLocationEnabled is true, this means that the user wants to refresh the location info every time the app starts.
                 if (Preferences.Get("AlwaysRenewLocationEnabled", false))
@@ -130,7 +130,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        private async void RefreshLocation()
+        private async Task RefreshLocation()
         {
             var permissionService = DependencyService.Get<IPermissionService>();
             var locationPermissionStatus = await permissionService.HandlePermissionAsync();
@@ -143,17 +143,17 @@ namespace SuleymaniyeTakvimi.ViewModels
             using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
             {
                 await GetPrayerTimesAsync();
-                await Task.Run(async () =>
+                if (Takvim != null)
                 {
                     var location = new Location(Takvim.Enlem, Takvim.Boylam, Takvim.Yukseklik);
                     await DataService.GetMonthlyPrayerTimesAsync(location, true);
                     await DataService.SetWeeklyAlarmsAsync();
-                }).ConfigureAwait(false);
+                }
             }
             ExecuteLoadItemsCommand();
         }
 
-        private async void GoToMap()
+        private async Task GoToMap()
         {
             if (IsBusy)
             {
@@ -351,6 +351,10 @@ namespace SuleymaniyeTakvimi.ViewModels
         /// </returns>
         private string GetRemainingTime()
         {
+            if (Takvim == null)
+            {
+                return string.Empty;
+            }
             var currentTime = DateTime.Now.TimeOfDay;
             // Define the names and times of the prayers
             var vakitNames = new[] { "FecriKazip", "FecriSadik", "SabahSonu", "Ogle", "Ikindi", "Aksam", "Yatsi", "YatsiSonu" };
@@ -404,7 +408,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}").ConfigureAwait(false);
         }
 
-        private async void GoToMonthPage()
+        private async Task GoToMonthPage()
         {
             if (IsBusy)
             {
@@ -428,6 +432,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             //var data = new DataService();
 
             Takvim = await DataService.GetPrayerTimesAsync(true).ConfigureAwait(false);
+            if(Takvim == null) return;
             if (!Takvim.IsTakvimLocationUnValid())
             {
                 //Application.Current.Properties["takvim"] = Vakitler;
@@ -458,7 +463,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             }
         }
 
-        private async void Settings()
+        private async Task Settings()
         {
             if (IsBusy)
             {
