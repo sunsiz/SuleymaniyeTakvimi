@@ -90,9 +90,9 @@
                 </pancakeView:PancakeView>
                 <pancakeView:PancakeView Grid.Row="6" Grid.ColumnSpan="2" IsVisible="{Binding Etkin}" Margin="4,0" Padding="5" CornerRadius="9">
                     <pancakeView:PancakeView.BackgroundGradientStops>
-                        <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light=#FCE4AE, Dark={StaticResource DarkElevation16dp}}" />
+                        <pancakeView:GradientStop Offset="0" Color="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource DarkElevation16dp}}" />
                         <!--<pancakeView:GradientStop Color="PapayaWhip" Offset="0.75"/>-->
-                        <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light=#F8E9BE, Dark={StaticResource DarkElevation12dp}}" />
+                        <pancakeView:GradientStop Offset="1" Color="{AppThemeBinding Light={StaticResource CardBackgroundLightAccent}, Dark={StaticResource DarkElevation12dp}}" />
                     </pancakeView:PancakeView.BackgroundGradientStops>
                     <pancakeView:PancakeView.Shadow>
                         <pancakeView:DropShadow BlurRadius="3" Opacity="0.3" Offset="1,1" Color="#000" />
