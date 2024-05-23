@@ -33,7 +33,13 @@ namespace SuleymaniyeTakvimi.Droid
         private Handler _handler;
         private Action _runnable;
         private int _counter;
+        private readonly Context _context;
         
+        public AlarmForegroundService()
+        {
+            _context = Application.Context;
+            _notificationManager = _context.GetSystemService(Context.NotificationService) as NotificationManager;
+        }
         public override IBinder OnBind(Intent intent)
         {
             // Return null because this is a pure started service. A hybrid service would return a binder that would
@@ -54,16 +60,16 @@ namespace SuleymaniyeTakvimi.Droid
             System.Diagnostics.Debug.WriteLine($"**** Set Alarm in AlarmForeGround Triggered with {date.ToString(CultureInfo.InvariantCulture)}, {triggerTimeSpan.ToString()}, {timeOffset}, {name}");
                 var prayerTimeSpan = triggerTimeSpan;
                 triggerTimeSpan -= TimeSpan.FromMinutes(timeOffset);
-            using (var alarmManager = (AlarmManager)Application.Context.GetSystemService(AlarmService))
+            using (var alarmManager = (AlarmManager)_context.GetSystemService(AlarmService))
             using (var calendar = Calendar.Instance)
             {
                 //Log.Info("SetAlarm", $"Before Alarm set the Calendar time is {calendar.Time} for {name}");
                 calendar.Set(date.Year, date.Month-1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
-                var activityIntent = new Intent(Application.Context, typeof(AlarmActivity));
+                var activityIntent = new Intent(_context, typeof(AlarmActivity));
                 activityIntent.PutExtra("name", name);
                 activityIntent.PutExtra("time", prayerTimeSpan.ToString());
                 activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
-                var intent = new Intent(Application.Context, typeof(AlarmReceiver));
+                var intent = new Intent(_context, typeof(AlarmReceiver));
                 intent.PutExtra("name", name);
                 intent.PutExtra("time", prayerTimeSpan.ToString());
                 intent.AddFlags(ActivityFlags.IncludeStoppedPackages);
@@ -73,8 +79,8 @@ namespace SuleymaniyeTakvimi.Droid
                 var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
                     ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
                     : PendingIntentFlags.UpdateCurrent;
-                var pendingActivityIntent = PendingIntent.GetActivity(Application.Context, requestCode, activityIntent, pendingIntentFlags);
-                var pendingIntent = PendingIntent.GetBroadcast(Application.Context, requestCode, intent, pendingIntentFlags);
+                var pendingActivityIntent = PendingIntent.GetActivity(_context, requestCode, activityIntent, pendingIntentFlags);
+                var pendingIntent = PendingIntent.GetBroadcast(_context, requestCode, intent, pendingIntentFlags);
                 //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
                 //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
                 if (Build.VERSION.SdkInt <= BuildVersionCodes.P)
@@ -105,14 +111,14 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void CancelAlarm()
         {
-            var alarmService = Application.Context.GetSystemService(Context.AlarmService);
+            var alarmService = _context.GetSystemService(Context.AlarmService);
             if (alarmService is AlarmManager alarmManager)
             {
-                var intent = new Intent(Application.Context, typeof(AlarmActivity));
+                var intent = new Intent(_context, typeof(AlarmActivity));
                 var pendingIntentFlags = Build.VERSION.SdkInt > BuildVersionCodes.R
                     ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
                     : PendingIntentFlags.UpdateCurrent;
-                var pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, pendingIntentFlags);
+                var pendingIntent = PendingIntent.GetBroadcast(_context, 0, intent, pendingIntentFlags);
                 alarmManager.Cancel(pendingIntent);
             }
         }
@@ -130,7 +136,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             base.OnCreate();
             _handler = new Handler();
-            _notificationManager = Application.Context.GetSystemService(Context.NotificationService) as NotificationManager;
+            //_notificationManager = Application.Context.GetSystemService(Context.NotificationService) as NotificationManager;
             SetNotification();
 
             if (Preferences.Get("ForegroundServiceEnabled", true))
@@ -417,7 +423,7 @@ namespace SuleymaniyeTakvimi.Droid
             Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
             
-            var startServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
+            var startServiceIntent = new Intent(_context, typeof(AlarmForegroundService));
             startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
             StartTheService(startServiceIntent);
             System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity SetAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
@@ -434,7 +440,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             Log.Info("Main Activity", $"Main Activity StopAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
-            var stopServiceIntent = new Intent(Application.Context, typeof(AlarmForegroundService));
+            var stopServiceIntent = new Intent(_context, typeof(AlarmForegroundService));
             stopServiceIntent.SetAction("SuleymaniyeTakvimi.action.STOP_SERVICE");
             StartTheService(stopServiceIntent);
             System.Diagnostics.Debug.WriteLine("Main Activity" + $"Main Activity StopAlarmForegroundService Finished: {DateTime.Now:HH:m:s.fff}");
@@ -446,11 +452,11 @@ namespace SuleymaniyeTakvimi.Droid
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
                 {
-                    Application.Context?.StartForegroundService(serviceIntent);
+                    _context?.StartForegroundService(serviceIntent);
                 }
                 else
                 {
-                    Application.Context?.StartService(serviceIntent);
+                    _context?.StartService(serviceIntent);
                 }
             });
         }

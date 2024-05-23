@@ -173,7 +173,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                 SaveAndGoBackCommand = CommandFactory.Create(() =>
                 {
                     var currentLanguage = Preferences.Get("SelectedLanguage", "en");
-                    if (SelectedLanguage.CI != currentLanguage)
+                    if (SelectedLanguage != null && SelectedLanguage.CI != currentLanguage)
                     {
                         LocalizationResourceManager.Current.CurrentCulture = CultureInfo.GetCultureInfo(SelectedLanguage.CI);
                         Preferences.Set("SelectedLanguage", SelectedLanguage.CI);
