@@ -21,13 +21,13 @@ jobs:
           # Version of Mono to select
           mono-version: 6 # optional
           # Version of Xamarin.iOS to select
-          xamarin-ios-version: 15 # optional
+          # xamarin-ios-version: 15 # optional
           # Version of Xamarin.Mac to select
-          xamarin-mac-version: 7 # optional
+          # xamarin-mac-version: 7 # optional
           # Version of Xamarin.Android to select
-          xamarin-android-version: 11 # optional
+          # xamarin-android-version: 11 # optional
           # Version of Xcode to use with Xamarin.iOS and Xamarin.Mac
-          xcode-version: 14.2 # optional
+          # xcode-version: 14.2 # optional
           
   Android:
     runs-on: macos-latest
