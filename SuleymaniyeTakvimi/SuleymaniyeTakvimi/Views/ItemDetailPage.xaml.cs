@@ -14,10 +14,10 @@ namespace SuleymaniyeTakvimi.Views
             BindingContext = _viewModel = new ItemDetailViewModel(dataService);
         }
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            _ = _viewModel.GoBack(null);
-        }
+        //protected override void OnDisappearing()
+        //{
+        //    base.OnDisappearing();
+        //    _ = _viewModel.GoBack(null);
+        //}
     }
 }

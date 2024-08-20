@@ -34,11 +34,13 @@ namespace SuleymaniyeTakvimi.Droid
         private Action _runnable;
         private int _counter;
         private readonly Context _context;
-        
+        private readonly DataService _dataService;
+
         public AlarmForegroundService()
         {
             _context = Application.Context;
             _notificationManager = _context.GetSystemService(Context.NotificationService) as NotificationManager;
+            _dataService = new DataService();
         }
         public override IBinder OnBind(Intent intent)
         {
@@ -58,13 +60,13 @@ namespace SuleymaniyeTakvimi.Droid
         public void SetAlarm(DateTime date, TimeSpan triggerTimeSpan, int timeOffset, string name)
         {
             System.Diagnostics.Debug.WriteLine($"**** Set Alarm in AlarmForeGround Triggered with {date.ToString(CultureInfo.InvariantCulture)}, {triggerTimeSpan.ToString()}, {timeOffset}, {name}");
-                var prayerTimeSpan = triggerTimeSpan;
-                triggerTimeSpan -= TimeSpan.FromMinutes(timeOffset);
+            var prayerTimeSpan = triggerTimeSpan;
+            triggerTimeSpan -= TimeSpan.FromMinutes(timeOffset);
             using (var alarmManager = (AlarmManager)_context.GetSystemService(AlarmService))
             using (var calendar = Calendar.Instance)
             {
                 //Log.Info("SetAlarm", $"Before Alarm set the Calendar time is {calendar.Time} for {name}");
-                calendar.Set(date.Year, date.Month-1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
+                calendar.Set(date.Year, date.Month - 1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
                 var activityIntent = new Intent(_context, typeof(AlarmActivity));
                 activityIntent.PutExtra("name", name);
                 activityIntent.PutExtra("time", prayerTimeSpan.ToString());
@@ -260,7 +262,7 @@ namespace SuleymaniyeTakvimi.Droid
             notificationIntent.SetAction("Alarm.action.MAIN_ACTIVITY");
             notificationIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask);
             //notificationIntent.PutExtra("has_service_been_started", true);
-            
+
             var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
                 ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
                 : PendingIntentFlags.UpdateCurrent;
@@ -286,9 +288,12 @@ namespace SuleymaniyeTakvimi.Droid
         private string GetFormattedRemainingTime()
         {
             var message = "";
-            var data = new DataService();
-            var takvim = data.Takvim;
+            var takvim = _dataService.Takvim;
             var currentTime = DateTime.Now.TimeOfDay;
+            if (takvim == null)
+            {
+                return AppResources.NamazVaktiAlmaHatasi;
+            }
             try
             {
                 if (currentTime < TimeSpan.Parse(takvim.FecriKazip))
@@ -322,7 +327,7 @@ namespace SuleymaniyeTakvimi.Droid
             catch (Exception exception)
             {
                 System.Diagnostics.Debug.WriteLine($"GetFormattedRemainingTime exception: {exception.Message}. Location: {takvim.Enlem}, {takvim.Boylam}");
-                Log.Error("GetFormattedRemainingTime",$"GetFormattedRemainingTime exception: {exception.Message}. Location: {takvim.Enlem}, {takvim.Boylam}");
+                Log.Error("GetFormattedRemainingTime", $"GetFormattedRemainingTime exception: {exception.Message}. Location: {takvim.Enlem}, {takvim.Boylam}");
                 message = AppResources.KonumIzniIcerik;
             }
 
@@ -331,9 +336,11 @@ namespace SuleymaniyeTakvimi.Droid
 
         private string GetTodaysPrayerTimes()
         {
-            var data = new DataService();
-            var takvim = data.Takvim;
-
+            var takvim = _dataService.Takvim;
+            if(takvim == null)
+            {
+                return AppResources.NamazVaktiAlmaHatasi;
+            }
             var message = new StringBuilder();
             message.AppendLine($"{AppResources.FecriKazip}: {takvim.FecriKazip}");
             message.AppendLine($"{AppResources.FecriSadik}: {takvim.FecriSadik}");
@@ -394,8 +401,8 @@ namespace SuleymaniyeTakvimi.Droid
                         {
                             await Task.Delay(12000);
                             System.Diagnostics.Debug.WriteLine($"OnStartCommand: Starting Set Alarm at {DateTime.Now}");
-                            var data = new DataService();
-                            await data.SetWeeklyAlarmsAsync();
+                            //var data = new DataService();
+                            await _dataService.SetWeeklyAlarmsAsync();
                         });
                     }
 
@@ -422,7 +429,7 @@ namespace SuleymaniyeTakvimi.Droid
         {
             Log.Info("Main Activity", $"Main Activity SetAlarmForegroundService Started: {DateTime.Now:HH:m:s.fff}");
             //var startServiceIntent = new Intent(this, typeof(ForegroundService));
-            
+
             var startServiceIntent = new Intent(_context, typeof(AlarmForegroundService));
             startServiceIntent.SetAction("SuleymaniyeTakvimi.action.START_SERVICE");
             StartTheService(startServiceIntent);

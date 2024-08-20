@@ -177,6 +177,8 @@ namespace SuleymaniyeTakvimi.ViewModels
                     {
                         LocalizationResourceManager.Current.CurrentCulture = CultureInfo.GetCultureInfo(SelectedLanguage.CI);
                         Preferences.Set("SelectedLanguage", SelectedLanguage.CI);
+                        // Trigger the language change event in itemsviewmodel
+                        MessagingCenter.Send(this, "LanguageChanged");
                         LoadLanguages();
                     }
                     GoBack();

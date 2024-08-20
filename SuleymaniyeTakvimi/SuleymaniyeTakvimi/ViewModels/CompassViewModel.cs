@@ -121,7 +121,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     if (status == PermissionStatus.Granted)
                     {
                         var location = await DataService.GetCurrentLocationAsync(false);
-                        if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                        if (Helper.IsValidLocation(location))
                         {
                             _currentLatitude = location.Latitude;
                             _currentLongitude = location.Longitude;
@@ -130,7 +130,10 @@ namespace SuleymaniyeTakvimi.ViewModels
                     }
                     else if (!_askedPermission)
                     {
-                        await DependencyService.Get<IPermissionService>().HandlePermissionAsync();
+                        await Device.InvokeOnMainThreadAsync(async () =>
+                        {
+                            status = await DependencyService.Get<IPermissionService>().HandlePermissionAsync();
+                        });
                         _askedPermission = true;
                     }
                 }
@@ -163,7 +166,7 @@ namespace SuleymaniyeTakvimi.ViewModels
             using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
             {
                 var location = await DataService.GetCurrentLocationAsync(true);
-                if (location != null && location.Latitude != 0 && location.Longitude != 0)
+                if (Helper.IsValidLocation(location))
                 {
                     _currentLatitude = location.Latitude;
                     _currentLongitude = location.Longitude;

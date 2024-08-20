@@ -24,7 +24,7 @@ namespace SuleymaniyeTakvimi.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            App.Current.Resources["DefaultFontSize"] = Preferences.Get("FontSize", 14);
+            Application.Current.Resources["DefaultFontSize"] = Preferences.Get("FontSize", 14);
             _viewModel.OnAppearing();
         }
     }

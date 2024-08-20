@@ -63,7 +63,7 @@ namespace SuleymaniyeTakvimi.Droid
                 if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(timeStr)) return;
                 
                 // Parse the time string into a TimeSpan.
-                var time = TimeSpan.Parse(timeStr);
+                //var time = TimeSpan.Parse(timeStr);
                 //Toast.MakeText(context, "Received intent! " + name + ": " + time, ToastLength.Short).Show();
                 // Get the notification manager service.
                 _notificationManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
@@ -113,7 +113,7 @@ namespace SuleymaniyeTakvimi.Droid
                     .SetSound(soundUri)
                     .SetSmallIcon(Resource.Drawable.app_logo)
                     .SetContentTitle(GetTitle(name))
-                    .SetContentText(GetContent(name, time))
+                    .SetContentText(GetContent(name, timeStr))
                     .SetPriority(NotificationCompat.PriorityMax)
                     .SetCategory(NotificationCompat.CategoryAlarm)
                     .SetAutoCancel(true)
@@ -188,7 +188,7 @@ namespace SuleymaniyeTakvimi.Droid
             };
         }
 
-        private string GetContent(string name, TimeSpan time)
+        private string GetContent(string name, string time)
         {
             if (string.IsNullOrEmpty(name))
             {

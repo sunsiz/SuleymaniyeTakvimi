@@ -63,6 +63,7 @@ namespace SuleymaniyeTakvimi.iOS
         {
             var data = new DataService();
             _ = data.SetWeeklyAlarmsAsync();
+            //_ = DataService.SetWeeklyAlarmsAsync();
         }
 
         public override void WillTerminate(UIApplication uiApplication)

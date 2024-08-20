@@ -32,6 +32,14 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 ## Yayın notları:
 
+*2.1.7 sürümündeki yenilikler (2024-08-20):*
+* Bazı hatalar düzeltildi.
+* Namaz vakitlerini alma işlemi iyileştirildi, Artık eski ve yeni bağlantıların hangisinden hızlı veri alabilirse onu kullanacak.
+* Namaz vakitlerini alamadığında durmadan tekrar denemesi düzeltildi.
+
+*2.1.6 sürümündeki yenilikler (2024-06-07):*
+* Bazı hatalar düzeltildi.
+
 *2.1.5 sürümündeki yenilikler (2024-04-25):*
 * Bazı ülkelerde şehir adını gösterememesi düzeltildi.
 * Aylık takvim ve hakkında sayfasına paylaşma seçenekleri eklendi.

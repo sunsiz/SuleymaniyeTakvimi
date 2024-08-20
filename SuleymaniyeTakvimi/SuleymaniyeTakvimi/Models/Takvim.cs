@@ -65,5 +65,11 @@ namespace SuleymaniyeTakvimi.Models
         {
             return (Yukseklik == 114.0 && Enlem == 41.0 && Boylam == 29.0) || (Yukseklik == 0 && Enlem == 0 && Boylam == 0);
         }
+
+        public string DisplayValues()
+        {
+            return
+                $"Enlem: {Enlem}, Boylam: {Boylam}, Yukseklik: {Yukseklik}, SaatBolgesi: {SaatBolgesi}, YazKis: {YazKis},FecriKazip: {FecriKazip}, FecriSadik: {FecriSadik}, SabahSonu: {SabahSonu}, Ogle: {Ogle}, Ikindi: {Ikindi}, Aksam: {Aksam}, Yatsi: {Yatsi}, YatsiSonu: {YatsiSonu}, Tarih: {Tarih}";
+        }
     }
 }

@@ -18,6 +18,11 @@ namespace SuleymaniyeTakvimi.Droid
     {
         public static MainActivity Instance;
         private bool _permissionRequested;
+        private bool _locationDialogShown;
+        private bool _locationPermissionHandled;
+        //private const string LocationPermissionHandledKey = "LocationPermissionHandled";
+        //private const string PermissionRequestedKey = "PermissionRequested";
+        //private const string LocationDialogShownKey = "LocationDialogShown";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -54,30 +59,72 @@ namespace SuleymaniyeTakvimi.Droid
 
         public async Task<PermissionStatus> HandleLocationPermissionAsync()
         {
+            //var locationPermissionHandled = Preferences.Get(LocationPermissionHandledKey, false);
+            //var permissionRequested = Preferences.Get(PermissionRequestedKey, false);
+            //var locationDialogShown = Preferences.Get(LocationDialogShownKey, false);
+
+            //System.Diagnostics.Debug.WriteLine("Location Permission Handled: " + locationPermissionHandled);
+            //System.Diagnostics.Debug.WriteLine("Permission Requested: " + permissionRequested);
+            //System.Diagnostics.Debug.WriteLine("Location Dialog Shown: " + locationDialogShown);
+
+            if (_locationPermissionHandled)
+            {
+                System.Diagnostics.Debug.WriteLine("Location Permission Handled flag is true");
+                return PermissionStatus.Granted;
+            }
             var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            System.Diagnostics.Debug.WriteLine($"Location Permission Requested, the result is {status}");
             if (status == PermissionStatus.Granted)
+            {
+                //Preferences.Set(LocationPermissionHandledKey, true);
+                _locationPermissionHandled = true;
                 return status;
+            }
+
             if (status == PermissionStatus.Denied && !_permissionRequested)
             {
+                System.Diagnostics.Debug.WriteLine("Permission is denied  and Requested flag is false");
                 if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
                 {
                     UserDialogs.Instance.Alert(AppResources.KonumIzniIcerik, AppResources.KonumIzniBaslik);
                 }
 
-                var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+                if (!_locationDialogShown)
                 {
-                    AndroidStyleId = 0,
-                    CancelText = AppResources.Kapat,
-                    Message = AppResources.KonumIzniIcerik,
-                    OkText = AppResources.GotoSettings,
-                    Title = AppResources.KonumIzniBaslik
-                }).ConfigureAwait(false);
-                if (result) AppInfo.ShowSettingsUI();
-                _permissionRequested = true;
-                System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
+                    //Preferences.Set(PermissionRequestedKey, true);
+                    //Preferences.Set(LocationDialogShownKey, true);
+                    _permissionRequested = true;
+                    _locationDialogShown = true;
+                    var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
+                    {
+                        AndroidStyleId = 0,
+                        CancelText = AppResources.Kapat,
+                        Message = AppResources.KonumIzniIcerik,
+                        OkText = AppResources.GotoSettings,
+                        Title = AppResources.KonumIzniBaslik
+                    }).ConfigureAwait(false);
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        if (result)
+                        {
+                            AppInfo.ShowSettingsUI();
+                        }
+                        else
+                        {
+                            // Handle the case where the user clicks the cancel button
+                            System.Diagnostics.Debug.WriteLine("User clicked cancel on the permission dialog");
+                        }
+                    });
+                    //if (result) AppInfo.ShowSettingsUI();
+                    //System.Diagnostics.Debug.WriteLine("Permission Requested flag saved:", Preferences.Get(PermissionRequestedKey,false).ToString());
+                    //System.Diagnostics.Debug.WriteLine("Location Dialog Shown flag saved:", Preferences.Get(LocationDialogShownKey, false).ToString());
+                    System.Diagnostics.Debug.WriteLine("Open settings dialog result:", result.ToString());
+                }
             }
-            else if (status == PermissionStatus.Disabled)
+            else if (status == PermissionStatus.Disabled && !_locationDialogShown)
             {
+                //Preferences.Set(LocationDialogShownKey, true);
+                _locationDialogShown = true;
                 var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
                 {
                     AndroidStyleId = 0,
@@ -86,10 +133,24 @@ namespace SuleymaniyeTakvimi.Droid
                     OkText = AppResources.GotoSettings,
                     Title = AppResources.KonumIzniBaslik
                 }).ConfigureAwait(false);
-                if (result) OpenDeviceLocationSettingsPage();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (result)
+                    {
+                        OpenDeviceLocationSettingsPage();
+                    }
+                    else
+                    {
+                        // Handle the case where the user clicks the cancel button
+                        System.Diagnostics.Debug.WriteLine("User clicked cancel on the permission dialog");
+                    }
+                });
+                //if (result) OpenDeviceLocationSettingsPage();
+                //System.Diagnostics.Debug.WriteLine("Location Dialog Shown flag saved:", Preferences.Get(LocationDialogShownKey, false).ToString());
                 System.Diagnostics.Debug.WriteLine("Permission Request result:", result.ToString());
             }
-            return await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+
+            return status; //await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)

@@ -7,7 +7,7 @@ using Xamarin.Essentials;
 
 namespace SuleymaniyeTakvimi.ViewModels
 {
-    public class BaseViewModel : MvvmHelpers.BaseViewModel, INotifyPropertyChanged
+    public class BaseViewModel : MvvmHelpers.BaseViewModel
     {
         protected readonly DataService DataService;
 
@@ -38,8 +38,8 @@ namespace SuleymaniyeTakvimi.ViewModels
             get => _fontSize;
             set
             {
-                SetProperty(ref _fontSize, value);
-                Preferences.Set("FontSize", value);
+                if (SetProperty(ref _fontSize, value))
+                    Preferences.Set("FontSize", value);
             }
         }
         protected bool SetProperty<T>(ref T backingStore, T value,

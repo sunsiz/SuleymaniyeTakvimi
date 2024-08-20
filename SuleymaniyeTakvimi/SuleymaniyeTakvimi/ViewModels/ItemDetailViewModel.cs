@@ -285,6 +285,9 @@ namespace SuleymaniyeTakvimi.ViewModels
                     await Task.Delay(1000);
                     await DataService.SetWeeklyAlarmsAsync();
                 }
+                    // Trigger the Alarm Saved event in itemsviewmodel
+                    Debug.WriteLine("Sending AlarmSaved Message from ItemDetailViewModel");
+                    MessagingCenter.Send(this, "AlarmSaved");
             }
             catch (Exception ex)
             {
