@@ -557,4 +557,10 @@ Ushbu dastur namoz va ro'za vaqtlariga bexatar va tezkor kirishni ta'minlash uch
   <data name="Paylas" xml:space="preserve">
     <value>Ulashish</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>Oylik taqvim yangilanmoqda</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>Fayl xatosi, taqvimni yangilang.</value>
+  </data>
 </root>

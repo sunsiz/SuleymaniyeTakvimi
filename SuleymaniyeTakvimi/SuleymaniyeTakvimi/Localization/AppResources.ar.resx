@@ -556,4 +556,10 @@
   <data name="Paylas" xml:space="preserve">
     <value>مشاركة</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>تحديث التقويم الشهري الآن</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>خطأ في الملف، يرجى تحديث التقويم.</value>
+  </data>
 </root>

@@ -556,4 +556,10 @@ Diese Anwendung wurde entwickelt, um einen sicheren und schnellen Zugriff auf Ge
   <data name="Paylas" xml:space="preserve">
     <value>Teilen</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>Aktualisieren des Monatskalenders</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>Dateifehler, bitte aktualisieren Sie den Kalender.</value>
+  </data>
 </root>

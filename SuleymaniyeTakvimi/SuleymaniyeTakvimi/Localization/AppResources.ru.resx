@@ -557,4 +557,10 @@
   <data name="Paylas" xml:space="preserve">
     <value>Поделиться</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>Обновление календаря на месяц</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>Ошибка файла, пожалуйста, обновите календарь.</value>
+  </data>
 </root>

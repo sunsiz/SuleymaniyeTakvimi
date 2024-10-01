@@ -555,4 +555,10 @@
   <data name="Paylas" xml:space="preserve">
     <value>Paylaşın</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>Aylıq Təqvim yenilənir</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>Fayl Xətası, Təqvimi Yeniləyin.</value>
+  </data>
 </root>

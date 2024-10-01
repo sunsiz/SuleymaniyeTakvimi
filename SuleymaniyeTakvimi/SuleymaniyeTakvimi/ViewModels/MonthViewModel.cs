@@ -80,18 +80,18 @@ namespace SuleymaniyeTakvimi.ViewModels
 
         private async Task RefreshData(Location location)
         {
-            using (UserDialogs.Instance.Loading(AppResources.Yenileniyor))
+            using (UserDialogs.Instance.Loading(AppResources.AylikTakvimYenileniyor))
             {
                 if (!Helper.HaveInternet()){
                     UserDialogs.Instance.Toast(AppResources.TakvimIcinInternetBaslik, TimeSpan.FromSeconds(3));
                 return;
                 }
 
-                if (DependencyService.Get<IPermissionService>().IsLocationServiceEnabled() == false)
-                {
-                    UserDialogs.Instance.Toast(AppResources.KonumKapaliBaslik, TimeSpan.FromSeconds(3));
-                    return;
-                }
+                //if (DependencyService.Get<IPermissionService>().IsLocationServiceEnabled() == false && Preferences.Get("LocationSaved",false))
+                //{
+                //    UserDialogs.Instance.Toast(AppResources.KonumKapaliBaslik, TimeSpan.FromSeconds(3));
+                //    return;
+                //}
 
                 if (!Helper.IsValidLocation(location))
                 {

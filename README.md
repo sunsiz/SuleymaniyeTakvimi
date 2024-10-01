@@ -32,6 +32,13 @@ Suleymaniyetakvimi.com Xamarin mobil uygulaması
 
 ## Yayın notları:
 
+*2.1.9 sürümündeki yenilikler (2024-10-03):*
+* Yenile simgesine tıklayınca konumun yenilenmemesi düzeltildi.
+* Alarmı iptal ettikten sonra yine çalmaya devam etmesi düzeltildi.
+
+*2.1.8 sürümündeki yenilikler (2024-08-22):*
+* Namaz vakitleri dosyasını okurken çıkan hata düzeltildi.
+
 *2.1.7 sürümündeki yenilikler (2024-08-20):*
 * Bazı hatalar düzeltildi.
 * Namaz vakitlerini alma işlemi iyileştirildi, Artık eski ve yeni bağlantıların hangisinden hızlı veri alabilirse onu kullanacak.
@@ -182,6 +189,21 @@ Suleymaniyetakvimi.com Xamarin mobile application
 -->
 
 ## Release notes:
+
+*What's new in version 2.1.9 (2024-10-03):*
+* Fixed location not being updated when clicking the refresh icon.
+* Fixed the issue where the alarm continues to ring after canceling it.
+
+*What's new in version 2.1.8 (2024-08-22):*
+* Fixed an error that occurred when reading the prayer times file.
+
+*What's new in version 2.1.7 (2024-08-20):*
+* Some bugs fixed.
+* Improved the process of getting prayer times, now it will use the fastest data from the old and new connections.
+* Fixed the problem of keep trying to get prayer times when it can't get it.
+
+*What's new in version 2.1.6 (2024-06-07):*
+* Some bugs fixed.
 
 *What's new in version 2.1.5 (2024-04-25):*
 * Fixed the city name not being displayed in some countries.

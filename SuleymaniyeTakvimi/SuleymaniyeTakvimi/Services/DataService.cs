@@ -363,7 +363,7 @@ namespace SuleymaniyeTakvimi.Services
                 {
                     Location location;
                     if (Preferences.Get("LocationSaved", false) &&
-                        !Preferences.Get("AlwaysRenewLocationEnabled", false))
+                        !Preferences.Get("AlwaysRenewLocationEnabled", false) && !refreshLocation)
                         location = new Location(Preferences.Get("LastLatitude", 41.0),
                             Preferences.Get("LastLongitude", 29.0));
                     else location = await GetCurrentLocationAsync(refreshLocation).ConfigureAwait(false);
@@ -533,7 +533,7 @@ namespace SuleymaniyeTakvimi.Services
                         if (_monthlyTakvim == null)
                         {
                             await UserDialogs.Instance.AlertAsync(AppResources.TakvimIcinInternet,
-                                AppResources.TakvimIcinInternetBaslik);
+                                AppResources.NamazVaktiAlmaHatasi);
                             return;
                         }
                     }

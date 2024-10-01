@@ -242,6 +242,15 @@ namespace SuleymaniyeTakvimi.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renewing Monthly Calendar.
+        /// </summary>
+        public static string AylikTakvimYenileniyor {
+            get {
+                return ResourceManager.GetString("AylikTakvimYenileniyor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Azerbaijani.
         /// </summary>
         public static string Azerbaijani {
@@ -454,6 +463,15 @@ namespace SuleymaniyeTakvimi.Localization {
         public static string DevreDisi {
             get {
                 return ResourceManager.GetString("DevreDisi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Error, Please Refresh Calendar..
+        /// </summary>
+        public static string DosyaHatasi {
+            get {
+                return ResourceManager.GetString("DosyaHatasi", resourceCulture);
             }
         }
         

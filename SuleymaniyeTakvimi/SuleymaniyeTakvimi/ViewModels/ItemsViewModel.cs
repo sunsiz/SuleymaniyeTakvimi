@@ -58,15 +58,15 @@ namespace SuleymaniyeTakvimi.ViewModels
         public string City
         {
             get => _city;
-            set
-            {
-                if (_city != value)
-                {
-                    _city = value;
-                    OnPropertyChanged(nameof(City));
-                }
-            }
-            //set => SetProperty(ref _city, value);
+            //set
+            //{
+            //    if (_city != value)
+            //    {
+            //        _city = value;
+            //        OnPropertyChanged(nameof(City));
+            //    }
+            //}
+            set => SetProperty(ref _city, value);
         }
 
         private Takvim Takvim
@@ -203,7 +203,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                     using (var loading = UserDialogs.Instance.Loading(AppResources.Yenileniyor))
                     {
                         Takvim = await DataService.GetPrayerTimesAsync(true).ConfigureAwait(false);
-                        Debug.WriteLine($"***** {this.GetType().Name}.{nameof(RefreshLocation)} Prayer Time: {Takvim}");
+                        Debug.WriteLine($"***** {this.GetType().Name}.{nameof(RefreshLocation)} Prayer Time: {Takvim.DisplayValues()}");
                         if (Takvim != null && !Takvim.IsTakvimLocationUnValid())
                         {
                             //Application.Current.Properties["takvim"] = Vakitler;
@@ -235,7 +235,7 @@ namespace SuleymaniyeTakvimi.ViewModels
                         if (Takvim != null)
                         {
                             var location = new Location(Takvim.Enlem, Takvim.Boylam, Takvim.Yukseklik);
-                            loading.Title = AppResources.AylikTakvimYenilendi;
+                            loading.Title = AppResources.AylikTakvimYenileniyor;
                             if(Helper.IsValidLocation(location))await DataService.GetMonthlyPrayerTimesAsync(location, true);
                             loading.Title = AppResources.AlarmlarPlanlaniyor;
                             await DataService.SetWeeklyAlarmsAsync();
@@ -587,7 +587,7 @@ namespace SuleymaniyeTakvimi.ViewModels
         {
             try
             {
-                await Task.Delay(3000);
+                await Task.Delay(1000);
                 if (Helper.HaveInternet())
                 {
                     // Parse latitude and longitude as double values using InvariantCulture to avoid issues with different culture settings

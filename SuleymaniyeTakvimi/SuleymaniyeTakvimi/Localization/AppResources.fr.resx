@@ -556,4 +556,10 @@ Cette application est conçue pour fournir un accès sûr et rapide aux heures d
   <data name="Paylas" xml:space="preserve">
     <value>Partager</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>Mise à jour du calendrier mensuel en cours</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>Erreur de fichier, veuillez rafraîchir le calendrier.</value>
+  </data>
 </root>

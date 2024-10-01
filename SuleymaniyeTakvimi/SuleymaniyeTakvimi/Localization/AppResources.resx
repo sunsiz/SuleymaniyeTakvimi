@@ -556,4 +556,10 @@ This application is designed to provide safe and fast access to prayer and fasti
   <data name="Paylas" xml:space="preserve">
     <value>Share</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>Renewing Monthly Calendar</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>File Error, Please Refresh Calendar.</value>
+  </data>
 </root>

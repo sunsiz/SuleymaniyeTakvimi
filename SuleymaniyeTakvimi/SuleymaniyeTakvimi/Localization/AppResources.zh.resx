@@ -557,4 +557,10 @@
   <data name="Paylas" xml:space="preserve">
     <value>分享</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>正在更新月历</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>文件出错，请更新日历。</value>
+  </data>
 </root>

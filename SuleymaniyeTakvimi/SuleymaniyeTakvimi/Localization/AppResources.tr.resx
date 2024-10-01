@@ -557,4 +557,10 @@ Bu program, namaz ve oruç vakitlerine güvenli ve hızlı ulaşabilmeleri için
   <data name="Paylas" xml:space="preserve">
     <value>Paylaş</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>Aylık Takvim Yenileniyor</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>Dosya Hatası, Lütfen Takvimi Yenileyin.</value>
+  </data>
 </root>

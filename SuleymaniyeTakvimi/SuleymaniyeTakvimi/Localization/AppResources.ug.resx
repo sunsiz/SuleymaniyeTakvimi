@@ -557,4 +557,10 @@
   <data name="Paylas" xml:space="preserve">
     <value>ھەمبەھىرلەش</value>
   </data>
+  <data name="AylikTakvimYenileniyor" xml:space="preserve">
+    <value>ئايلىق كالېندارنى يېڭىلاۋاتىدۇ</value>
+  </data>
+  <data name="DosyaHatasi" xml:space="preserve">
+    <value>ھۆججەتتە خاتالىق بار، كالېندارنى يېڭىلاڭ.</value>
+  </data>
 </root>

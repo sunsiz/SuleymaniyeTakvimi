@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using SuleymaniyeTakvimi.Localization;
 using SuleymaniyeTakvimi.Services;
 using Xamarin.Essentials;
 using Calendar = Java.Util.Calendar;
+using Debug = System.Diagnostics.Debug;
 
 namespace SuleymaniyeTakvimi.Droid
 {
@@ -62,37 +64,45 @@ namespace SuleymaniyeTakvimi.Droid
             System.Diagnostics.Debug.WriteLine($"**** Set Alarm in AlarmForeGround Triggered with {date.ToString(CultureInfo.InvariantCulture)}, {triggerTimeSpan.ToString()}, {timeOffset}, {name}");
             var prayerTimeSpan = triggerTimeSpan;
             triggerTimeSpan -= TimeSpan.FromMinutes(timeOffset);
-            using (var alarmManager = (AlarmManager)_context.GetSystemService(AlarmService))
-            using (var calendar = Calendar.Instance)
-            {
-                //Log.Info("SetAlarm", $"Before Alarm set the Calendar time is {calendar.Time} for {name}");
-                calendar.Set(date.Year, date.Month - 1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
-                var activityIntent = new Intent(_context, typeof(AlarmActivity));
-                activityIntent.PutExtra("name", name);
-                activityIntent.PutExtra("time", prayerTimeSpan.ToString());
-                activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
-                var intent = new Intent(_context, typeof(AlarmReceiver));
-                intent.PutExtra("name", name);
-                intent.PutExtra("time", prayerTimeSpan.ToString());
-                intent.AddFlags(ActivityFlags.IncludeStoppedPackages);
-                intent.AddFlags(ActivityFlags.ReceiverForeground);
-                //without the different reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
-                var requestCode = GetRequestCode(name, date.DayOfYear);
-                var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
-                    ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
-                    : PendingIntentFlags.UpdateCurrent;
-                var pendingActivityIntent = PendingIntent.GetActivity(_context, requestCode, activityIntent, pendingIntentFlags);
-                var pendingIntent = PendingIntent.GetBroadcast(_context, requestCode, intent, pendingIntentFlags);
-                //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
-                //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
-                if (Build.VERSION.SdkInt <= BuildVersionCodes.P)
-                    alarmManager?.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
-                else
-                    alarmManager?.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
-                //else
-                //    alarmManager?.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
-                System.Diagnostics.Debug.WriteLine("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
-            }
+
+            using var alarmManager = (AlarmManager)_context.GetSystemService(AlarmService);
+            using var calendar = Calendar.Instance;
+
+            //Log.Info("SetAlarm", $"Before Alarm set the Calendar time is {calendar.Time} for {name}");
+            calendar.Set(date.Year, date.Month - 1, date.Day, triggerTimeSpan.Hours, triggerTimeSpan.Minutes, 0);
+
+            var activityIntent = new Intent(_context, typeof(AlarmActivity));
+            activityIntent.PutExtra("name", name);
+            activityIntent.PutExtra("time", prayerTimeSpan.ToString());
+            activityIntent.AddFlags(ActivityFlags.ReceiverForeground);
+
+            var intent = new Intent(_context, typeof(AlarmReceiver));
+            intent.PutExtra("name", name);
+            intent.PutExtra("time", prayerTimeSpan.ToString());
+            intent.AddFlags(ActivityFlags.IncludeStoppedPackages);
+            intent.AddFlags(ActivityFlags.ReceiverForeground);
+
+            //without the different reuestCode there will be only one pending intent and it updates every schedule, so only one alarm will be active at the end.
+            var requestCode = GetRequestCode(name, date.DayOfYear);
+            //_alarmRequestCodes.Add(requestCode);// Track the request code for canceling the alarm
+
+            var pendingIntentFlags = (Build.VERSION.SdkInt > BuildVersionCodes.R)
+                ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
+                : PendingIntentFlags.UpdateCurrent;
+
+            var pendingActivityIntent = PendingIntent.GetActivity(_context, requestCode, activityIntent, pendingIntentFlags);
+            var pendingIntent = PendingIntent.GetBroadcast(_context, requestCode, intent, pendingIntentFlags);
+
+            //alarmManager.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup,calendar.TimeInMillis,pendingActivityIntent);
+            //alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingActivityIntent);
+            if (Build.VERSION.SdkInt <= BuildVersionCodes.P)
+                alarmManager?.SetAlarmClock(new AlarmManager.AlarmClockInfo(calendar.TimeInMillis, pendingActivityIntent), pendingActivityIntent);
+            else
+                alarmManager?.SetExactAndAllowWhileIdle(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
+            //else
+            //    alarmManager?.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
+            //Debug.WriteLine($"**** Set Alarm **** Request Codes Counts: {_alarmRequestCodes.Count}");
+            System.Diagnostics.Debug.WriteLine("SetAlarm", $"Alarm set for {calendar.Time} for {name}");
         }
 
         private int GetRequestCode(string name, int dayOfYear)
@@ -113,17 +123,48 @@ namespace SuleymaniyeTakvimi.Droid
 
         public void CancelAlarm()
         {
+            Debug.WriteLine($"**** Cancel Alarm Started **** Time: {DateTime.Now:MM/dd/yyyy hh:mm:ss.fff tt}");
             var alarmService = _context.GetSystemService(Context.AlarmService);
-            if (alarmService is AlarmManager alarmManager)
+            if (alarmService is not AlarmManager alarmManager) return;
+
+            var lastAlarmDateStr = Preferences.Get("LastAlarmDate", "Empty");
+            if (lastAlarmDateStr == "Empty") return;
+
+            var alarmLeftCount = 14 - (DateTime.Parse(lastAlarmDateStr) - DateTime.Today).Days;
+            if (alarmLeftCount <= 0) return;
+
+            var alarmIntent = Build.VERSION.SdkInt >= BuildVersionCodes.Q
+                ? new Intent(_context, typeof(AlarmReceiver))
+                : new Intent(_context, typeof(AlarmActivity));
+            var pendingIntentFlags = Build.VERSION.SdkInt > BuildVersionCodes.R
+                ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
+                : PendingIntentFlags.UpdateCurrent;
+
+            var prayerTimes = new[] { "fecrikazip", "fecrisadik", "sabahsonu", "ogle", "ikindi", "aksam", "yatsi", "yatsisonu" };
+
+            for (int i = 0; i < alarmLeftCount; i++)
             {
-                var intent = new Intent(_context, typeof(AlarmActivity));
-                var pendingIntentFlags = Build.VERSION.SdkInt > BuildVersionCodes.R
-                    ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
-                    : PendingIntentFlags.UpdateCurrent;
-                var pendingIntent = PendingIntent.GetBroadcast(_context, 0, intent, pendingIntentFlags);
+                var dayOfYear = DateTime.Today.AddDays(i).DayOfYear;
+                foreach (var prayerTime in prayerTimes)
+                {
+                    CancelAlarmForRequestCode(alarmManager, alarmIntent, pendingIntentFlags, GetRequestCode(prayerTime, dayOfYear));
+                }
+            }
+
+            Debug.WriteLine($"**** Cancel Alarm Ended **** Time: {DateTime.Now:MM/dd/yyyy hh:mm:ss.fff tt}");
+        }
+
+        private void CancelAlarmForRequestCode(AlarmManager alarmManager, Intent alarmIntent, PendingIntentFlags pendingIntentFlags, int requestCode)
+        {
+            var pendingIntent = PendingIntent.GetBroadcast(_context, requestCode, alarmIntent, pendingIntentFlags);
+            if (pendingIntent != null)
+            {
                 alarmManager.Cancel(pendingIntent);
+                pendingIntent.Cancel();
+                Debug.WriteLine($"**** Cancel Alarm **** Canceled alarm for {requestCode}");
             }
         }
+
 
         /// <summary>
         /// Called by the system when the service is first created.
@@ -137,7 +178,7 @@ namespace SuleymaniyeTakvimi.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            _handler = new Handler();
+            _handler = new Handler(Looper.MainLooper);//_handler = new Handler();
             //_notificationManager = Application.Context.GetSystemService(Context.NotificationService) as NotificationManager;
             SetNotification();
 
@@ -172,7 +213,7 @@ namespace SuleymaniyeTakvimi.Droid
             });
             _handler.PostDelayed(_runnable, DelayBetweenMessages);
             _isStarted = true;
-            CancelAlarm();
+            //CancelAlarm();
         }
 
         private void StartWidgetService()
@@ -210,7 +251,7 @@ namespace SuleymaniyeTakvimi.Droid
             // If the preference "NotificationPrayerTimesEnabled" is set, set the big text and summary text for the notification
             if (Preferences.Get("NotificationPrayerTimesEnabled", false))
             {
-                textStyle.BigText(GetTodaysPrayerTimes());
+                textStyle.BigText(GetPrayerTimesOfToday());
                 textStyle.SetSummaryText(AppResources.BugunkuNamazVakitleri);
             }
 
@@ -334,10 +375,10 @@ namespace SuleymaniyeTakvimi.Droid
             return message;
         }
 
-        private string GetTodaysPrayerTimes()
+        private string GetPrayerTimesOfToday()
         {
             var takvim = _dataService.Takvim;
-            if(takvim == null)
+            if (takvim == null)
             {
                 return AppResources.NamazVaktiAlmaHatasi;
             }
@@ -409,7 +450,8 @@ namespace SuleymaniyeTakvimi.Droid
                     break;
                 case "SuleymaniyeTakvimi.action.STOP_SERVICE":
                     //Log.Info(TAG, "OnStartCommand: The service is stopping.");
-                    StopForeground(true);
+                    StopForeground(StopForegroundFlags.Remove);
+                    //StopForeground(true);
                     StopSelf(NotificationId);
                     _isStarted = false;
                     break;
