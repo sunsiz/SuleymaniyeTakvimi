@@ -68,7 +68,7 @@
     </AndroidSigningStorePass>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
     <AndroidSigningKeyAlias>
     </AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>

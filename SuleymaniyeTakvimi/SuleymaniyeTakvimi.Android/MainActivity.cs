@@ -33,6 +33,7 @@ namespace SuleymaniyeTakvimi.Droid
             base.OnCreate(savedInstanceState);
             UserDialogs.Init(this);
             Forms.SetFlags("IndicatorView_Experimental", "UseLegacyRenderers");
+            Forms.SetFlags("FastRenderers_Experimental");
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);

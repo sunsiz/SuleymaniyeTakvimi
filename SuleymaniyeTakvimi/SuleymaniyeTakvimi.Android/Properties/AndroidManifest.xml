@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="53" android:versionName="2.1.9" package="com.suleymaniyetakvimi" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="2.2" package="org.suleymaniyevakfi" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 	<application android:label="@string/app_name" android:theme="@style/MainTheme" android:networkSecurityConfig="@xml/network_security_config" android:icon="@mipmap/icon" android:supportsRtl="true">
-		<service android:name="com.suleymaniyetakvimi.AlarmForegroundService" android:foregroundServiceType="systemExempted">
+		<service android:name="org.suleymaniyevakfi.AlarmForegroundService" android:foregroundServiceType="systemExempted">
 			<!--<meta-data android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
 			          android:value="Need update notification content continuously every 30 second, to let user know how much time left, without opening the app"/>-->
 		</service>

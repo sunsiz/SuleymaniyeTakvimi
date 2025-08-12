@@ -21,7 +21,7 @@ using Debug = System.Diagnostics.Debug;
 namespace SuleymaniyeTakvimi.Droid
 {
     [Service]
-    [Register("com.suleymaniyetakvimi.AlarmForegroundService")]
+    [Register("org.suleymaniyevakfi.AlarmForegroundService")]
     public class AlarmForegroundService : Service, IAlarmService
     {
         private NotificationManager _notificationManager;
